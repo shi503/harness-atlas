@@ -1,0 +1,435 @@
+<title>The LoomWarp Grid</title>
+<style>
+  :root{
+    --ink:#14161d; --ink-2:#3c4152; --ink-3:#6b7186;
+    --ground:#f4f3f1; --panel:#fbfaf9; --line:#dddad4;
+    --indigo:#3a4fb0; --indigo-deep:#22307a; --indigo-wash:#e8eaf6;
+    --madder:#b4462f; --madder-wash:#f7e6e1;
+    --slack:#c2beb5;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ink:#eceef4; --ink-2:#b3b9cb; --ink-3:#828a a0; --ink-3:#828aa0;
+      --ground:#101219; --panel:#171a23; --line:#2b303d;
+      --indigo:#8c9cf0; --indigo-deep:#aab6f7; --indigo-wash:#1c2140;
+      --madder:#e08871; --madder-wash:#331d18;
+      --slack:#4a4f5e;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eceef4; --ink-2:#b3b9cb; --ink-3:#828aa0;
+    --ground:#101219; --panel:#171a23; --line:#2b303d;
+    --indigo:#8c9cf0; --indigo-deep:#aab6f7; --indigo-wash:#1c2140;
+    --madder:#e08871; --madder-wash:#331d18;
+    --slack:#4a4f5e;
+  }
+  :root[data-theme="light"]{
+    --ink:#14161d; --ink-2:#3c4152; --ink-3:#6b7186;
+    --ground:#f4f3f1; --panel:#fbfaf9; --line:#dddad4;
+    --indigo:#3a4fb0; --indigo-deep:#22307a; --indigo-wash:#e8eaf6;
+    --madder:#b4462f; --madder-wash:#f7e6e1;
+    --slack:#c2beb5;
+  }
+
+  body{background:var(--ground);color:var(--ink);font-family:var(--sans);
+       line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:64rem;margin:0 auto;padding:4rem 1.5rem 6rem;
+        display:flex;flex-direction:column;gap:4rem;}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;text-wrap:balance;line-height:1.2;margin:0;}
+  h1{font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.015em;}
+  h2{font-size:clamp(1.5rem,3vw,2rem);}
+  h3{font-size:1.1rem;}
+  p{margin:0;max-width:65ch;}
+  a{color:var(--indigo);}
+  .eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;
+           text-transform:uppercase;color:var(--ink-3);}
+  .lede{font-size:1.15rem;color:var(--ink-2);max-width:60ch;}
+  section{display:flex;flex-direction:column;gap:1.5rem;}
+  .stack{display:flex;flex-direction:column;gap:.75rem;}
+  hr{border:0;border-top:1px solid var(--line);margin:0;}
+
+  /* ---- loom ---- */
+  .loom{background:var(--panel);border:1px solid var(--line);border-radius:2px;
+        padding:1.5rem;overflow-x:auto;}
+  .loom svg{display:block;min-width:640px;width:100%;height:auto;}
+  .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.5rem 1.5rem;}
+  .ctl{display:flex;align-items:center;gap:.6rem;padding:.3rem 0;}
+  .ctl-id{font-family:var(--mono);font-size:.75rem;color:var(--ink-3);width:1.6rem;}
+  .ctl-name{flex:1;font-size:.9rem;}
+  .ctl input{flex:0 0 7rem;accent-color:var(--indigo);}
+  .ctl-val{font-family:var(--mono);font-size:.85rem;width:1.1rem;text-align:right;
+           font-variant-numeric:tabular-nums;}
+  .readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
+           gap:1px;background:var(--line);border:1px solid var(--line);border-radius:2px;}
+  .stat{background:var(--panel);padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.2rem;}
+  .stat-k{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;
+          text-transform:uppercase;color:var(--ink-3);}
+  .stat-v{font-family:var(--serif);font-size:1.5rem;font-variant-numeric:tabular-nums;}
+  .stat-v.warn{color:var(--madder);}
+  .stat-n{font-size:.8rem;color:var(--ink-3);}
+
+  /* ---- grid ---- */
+  .gridwrap{overflow-x:auto;border:1px solid var(--line);border-radius:2px;background:var(--panel);}
+  table{border-collapse:collapse;width:100%;min-width:56rem;font-size:.82rem;}
+  th,td{text-align:left;vertical-align:top;padding:.7rem .8rem;
+        border-bottom:1px solid var(--line);border-right:1px solid var(--line);}
+  th:last-child,td:last-child{border-right:0;}
+  thead th{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+           color:var(--ink-3);font-weight:500;background:var(--ground);position:sticky;top:0;}
+  tbody th{font-family:var(--sans);font-weight:600;font-size:.85rem;white-space:nowrap;
+           background:var(--ground);}
+  tbody th span{display:block;font-family:var(--mono);font-size:.68rem;
+                color:var(--ink-3);font-weight:400;}
+  td.cell{cursor:pointer;color:var(--ink-2);transition:background .12s;}
+  td.cell:hover,td.cell:focus-visible{background:var(--indigo-wash);color:var(--ink);outline:none;}
+  td.cell.at{background:var(--indigo-wash);color:var(--ink);
+             box-shadow:inset 3px 0 0 var(--indigo);font-weight:500;}
+  td.cell.min{box-shadow:inset 3px 0 0 var(--madder);background:var(--madder-wash);}
+  .thresh{border-left:2px dashed var(--indigo)!important;}
+
+  .note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--indigo);
+        padding:1rem 1.2rem;border-radius:2px;}
+  .note.warn{border-left-color:var(--madder);}
+  .note p+p{margin-top:.6rem;}
+  dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.2rem;margin:0;font-size:.92rem;}
+  dt{font-family:var(--mono);font-size:.75rem;color:var(--indigo);padding-top:.2rem;
+     text-transform:uppercase;letter-spacing:.08em;}
+  dd{margin:0;color:var(--ink-2);}
+  footer{color:var(--ink-3);font-size:.8rem;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+
+<div class="wrap">
+
+<header class="stack">
+  <div class="eyebrow">LoomWarp · framework reference</div>
+  <h1>The Grid</h1>
+  <p class="lede">Twelve warp threads, six thread counts. The warp is the structure that makes work possible; each workstream is one weft thread passed across it. Reliability is a property of the warp, not the weft — and fabric tears at its thinnest section.</p>
+</header>
+
+<section>
+  <h2>Why the metaphor is load-bearing</h2>
+  <p>A loom holds two kinds of thread. The <strong>warp</strong> is strung first — fixed, held under tension, running the length of the fabric. The <strong>weft</strong> is passed across it, one pass at a time. The warp never becomes the product. It is the structure that makes the product possible, and you cannot weave on a warp you have not strung.</p>
+  <dl>
+    <dt>Warp</dt><dd>The twelve <strong>layers</strong>, read bottom-up — Foundation, Environment, Agent Harness, System Stacks, Capabilities, Context, Workspaces, Workflow Tasks, Trust, IMPROVE, Teams &amp; Agents, Surfaces. Strung once, held under tension, reused by every job. Each carries its own sub-layers, which is where the grade is actually taken.</dd>
+    <dt>Weft</dt><dd>A <strong>workstream</strong>. One bounded unit of work, passed across the warp. The thing that actually gets made.</dd>
+    <dt>Count</dt><dd>The <strong>maturity stage</strong> of each layer, taken as its weakest sub-layer&rsquo;s. Low count tears under load; high count bears weight.</dd>
+  </dl>
+  <p>The claim, precisely: <strong>making an individual workstream better is weaving a nicer thread. Making the system reliable means stringing more warp.</strong> That is the difference between an AI widget and AI infrastructure.</p>
+</section>
+
+<section>
+  <div class="stack">
+    <div class="eyebrow">Diagnostic</div>
+    <h2>Weave your own</h2>
+    <p>Set each layer to the rightmost stage that is <em>true with evidence</em>, not aspirational. If you cannot point at the artifact, you are one column to the left. Defaults show LoomWarp's own self-grade.</p>
+  </div>
+  <div class="loom"><svg id="loom" viewBox="0 0 900 430" role="img" aria-labelledby="loomtitle"><title id="loomtitle">Woven fabric diagram: twelve warp threads at their current maturity stage</title></svg></div>
+  <div class="controls" id="controls"></div>
+  <div class="readout">
+    <div class="stat"><span class="stat-k">Minimum — governs</span><span class="stat-v warn" id="s-min">1</span><span class="stat-n" id="s-min-n"></span></div>
+    <div class="stat"><span class="stat-k">Mean — flatters</span><span class="stat-v" id="s-mean">2.3</span><span class="stat-n">Reported by most maturity models</span></div>
+    <div class="stat"><span class="stat-k">Real org stage</span><span class="stat-v" id="s-org">Resistant</span><span class="stat-n" id="s-org-n"></span></div>
+    <div class="stat"><span class="stat-k">Bottleneck</span><span class="stat-v" id="s-neck" style="font-size:1.15rem"></span><span class="stat-n" id="s-neck-n"></span></div>
+  </div>
+  <div class="note warn">
+    <p><strong>The average flatters; the minimum diagnoses.</strong> A team with excellent context engineering and no enforcement is not an AI-First organization. It is an Opportunistic one that has invested unevenly — and it will exhibit the Stage-2 failure mode, capability trapped in individuals and unreproducible by anyone else, no matter how sophisticated its strongest thread looks.</p>
+  </div>
+</section>
+
+<section>
+  <div class="stack">
+    <div class="eyebrow">12 × 6</div>
+    <h2>The Grid</h2>
+    <p>Click any cell to set that layer's stage. The dashed rule marks the commitment threshold. A layer&rsquo;s grade is its weakest sub-layer&rsquo;s &mdash; hover a row name for the sub-layers it rolls up, or a slider for why it is graded where it is.</p>
+  </div>
+  <div class="gridwrap"><table id="grid"></table></div>
+</section>
+
+<section>
+  <h2>The two thresholds</h2>
+  <div class="note">
+    <p><strong>Stage 3 → 4 — structure stops being social and becomes mechanical.</strong> Columns 1–3 scale with the people who remember them. Column 4 is enforcement: an invariant held at a point the model cannot reach. Teams stall at 3 indefinitely because column 3 feels like progress and costs nothing organizationally. Nobody drifts into 4 — it is a commitment.</p>
+    <p><strong>Stage 5 → 6 — you need something to learn from.</strong> A self-improving layer requires a corpus of evaluated outcomes. Any layer graded 6 while Evidence &mdash; <code>8b</code>, inside Trust &mdash; sits at 2 is claiming a learning loop with nothing feeding it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="stack">
+    <div class="eyebrow">Bridge</div>
+    <h2>What layer stages imply about the organization</h2>
+    <p>The Grid grades <em>layers</em> — structural completeness. Established AI-native maturity models grade an <em>organization</em> — posture and operating model. Different subjects, same six stages, same threshold, because an org's posture is what its structure permits.</p>
+  </div>
+  <div class="gridwrap"><table id="bridge"></table></div>
+</section>
+
+<footer>Companion to <code>projects/loomwarp/specs/v1-framework/00-README.md</code>. Rows are generated from <code>CROSSWALK.md</code> §0 by <code>scripts/gen-grid-rows.mjs</code> &mdash; edit the map, not this file. Enforcement points include hooks, AST-level lint rules, conformance tests, and CI gates — hooks are one member, not the definition.</footer>
+
+</div>
+
+<script>
+const STAGES=["Absent","Individual","Shared","Governed","Default","Self-improving"];
+const ORG=["Resistant","Opportunistic","Assisted","Systematized","AI-First","AI-Native"];
+const ORGDESC=["AI is a risk surface to be sandboxed","Personal productivity, not team capability","Shared templates; humans still orchestrate everything","AI designed into core workflows with gates and measurement","Roles redesigned around abundant intelligence","Agents own sub-workflows; internal capability becomes product"];
+const NECK=["Trust","Repeatability","Workflow design","Operating model","Org redesign","Strategic coherence"];
+
+// >>> GENERATED by scripts/gen-grid-rows.mjs from CROSSWALK.md §0 — do not edit by hand
+// source: projects/loomwarp/specs/v1-framework/CROSSWALK.md §0 · 12 layers · 33 sub-layers as drill-down (O-6, CROSSWALK §3.7)
+// regenerate: node scripts/gen-grid-rows.mjs
+const E=[
+ {id:"11",name:"Surfaces",acc:false,at:3,
+  sub:"11a Surfaces",
+  why:"The source-of-truth decision is made and codified — markdown in the repo, flowing outward — but no channel, no project board and no communication surface is configured, which is the stage-4 test unmet (`11a`)",
+  c:["Work lives wherever it landed",
+     "Each person watches their own surface",
+     "Team agrees where things go",
+     "Source of truth codified, integrations configured, flow direction stated",
+     "Views generate from the source of truth; humans meet work where they already are",
+     "Surfaces reconcile automatically; drift is flagged"]},
+ {id:"10",name:"Teams & Agents",acc:false,at:1,
+  sub:"10a Roster · 10b Org",
+  why:"`10a` Roster records no list of any kind — agent definitions exist, humans appear nowhere, and no artifact pairs an actor with an accountable person",
+  c:["Nobody knows who is on the team, human or agent",
+     "A list in one person's head",
+     "A list someone maintains",
+     "Machine-readable roster routing resolves against; every actor has an accountable owner",
+     "Roster and org chart drive delegation, escalation and permission together",
+     "The roster updates from observed participation"]},
+ {id:"9",name:"IMPROVE",acc:false,at:1,
+  sub:"9a Learning · 9b Rituals · 9c Cadence · 9d Anti-fragile Lifecycle · 9e Raise the Floor · 9f Diagnose the Bottleneck",
+  why:"`9c` Cadence grades itself at stage 1 in its own words — nothing runs on a schedule and no handler is bound at any lifecycle point; every recurring check runs because somebody remembered it",
+  c:["Nothing persists and nothing runs on a schedule",
+     "Individual notes; one person's reminders",
+     "A wiki someone maintains; recurring meetings humans remember",
+     "Curated synthesis with owners and review dates; scheduled loops that emit an artifact",
+     "Evaluated outcomes promote reviewed changes; the bottleneck is computed, not argued",
+     "Regression-tested promotion with rollback; the loop tunes from its own emissions"]},
+ {id:"8",name:"Trust",acc:false,at:1,
+  sub:"8a Evals · 8b Evidence · 8c Observability · 8d Efficiency",
+  why:"Evidence is the strongest thread here and `8d` Efficiency is the weakest: cost is invisible, no per-workstream accounting and no budget, which its component file calls this row's stage-1 cell exactly",
+  c:["“It says it's done”; cost is invisible",
+     "Exit codes and logs; spend reviewed monthly, in aggregate",
+     "Structured handoff docs; someone reads them",
+     "Schema-valid events and evidence bundles, blocking gates; cost attributed per unit of work",
+     "Every claim resolves to an artifact; independent evaluation; cost joined to outcome",
+     "Outcome evals retroactively invalidate a handoff; routing and budget adjust from measured return"]},
+ {id:"7",name:"Workflow Tasks",acc:false,at:4,
+  sub:"7a Workflow Tasks",
+  why:"`7a` records the work-contract schema and the workstream PRD behind it as one of the few things in our column that is genuinely built; what has never been exercised is the graph around it, which the same file assigns to `3a` and a different grade",
+  c:["Work is whatever was said in the thread",
+     "One person's checklist",
+     "A written template the team follows",
+     "A work contract with declared inputs, done-condition, owner and bound; schema-valid",
+     "Contracts dispatch, inherit and close without a human retyping them",
+     "Contracts re-shape from how their own runs went"]},
+ {id:"6",name:"Workspaces",acc:true,at:1,
+  sub:"6a Product · 6b Infrastructure · 6c Estate · 6d Delivery",
+  why:"`6b` Infrastructure fails at stage 1 by our own credibility check — a private submodule means a stranger cannot clone recursively, so the environment cannot be created a second time by anyone",
+  c:["Repos found by memory; the environment exists on one laptop",
+     "One dev's local clone layout",
+     "Documented layout others copy; a deploy someone runs by hand",
+     "Machine-readable registry with owners and interfaces; environments and delivery declared",
+     "Registry drives clone, routing and impact analysis; delivery runs from the contract",
+     "The registry self-updates from the estate"]},
+ {id:"5",name:"Context",acc:true,at:2,
+  sub:"5a Individual Memory · 5b Team Memory · 5c Knowledge",
+  why:"Carried from the retiring Grid's Context row with its stale line count dropped: shared committed context files exist, and the bundle resolver is a spike that dispatch never calls",
+  c:["Whatever's in the window",
+     "Personal CLAUDE.md",
+     "Shared, committed context files",
+     "Versioned, owned, layered, reviewed like code",
+     "Resolved as a bundle per job, hashed and provenanced",
+     "Agents propose context updates; staleness auto-flags"]},
+ {id:"4",name:"Capabilities",acc:false,at:2,
+  sub:"4a Capability · 4b Capability Permissions",
+  why:"Carried from the retiring Grid's Capability row — seven skills, six vendored verbatim, one original and documentation-only — with the permissions half added from `4b`, which records no per-package grant",
+  c:["Tribal knowledge",
+     "Personal prompt library",
+     "Shared skills folder",
+     "Versioned packages, owners, standards tier, declared permissions",
+     "Distributed via marketplace, permissioned per invocation, telemetered",
+     "Capabilities retire and promote on usage evidence"]},
+ {id:"3",name:"System Stacks",acc:false,at:2,
+  sub:"3a Control · 3b Routing · 3c Composition · 3d Configuration · 3e Standards",
+  why:"The weakest of the five is `3c` Composition: agent definitions exist and the assembly does not — no declared stack, no protected core, and no statement of what shares a context with what. `3e` Standards is the strongest at seven guides behind an inheritance contract, and minimum governs",
+  c:["Ad hoc prompting; no standard to write against",
+     "One-off scripts and a personal prompt library",
+     "Documented workflow humans follow; guides behind an inheritance contract",
+     "Declared dependency graph and routing rule; standards enforced where the model cannot reach",
+     "Graph and roster complete enough that work crosses repos with no human in the loop",
+     "The graph and the standards re-plan from observed outcomes"]},
+ {id:"2",name:"Agent Harness",acc:false,at:1,
+  sub:"2a Adapters & Middleware · 2b Hooks · 2c Enforcement",
+  why:"`2c` Enforcement is policy theatre caught in our own repo — four tier files, one wired, and the only live run used `bypassPermissions`, which skips deny rules entirely",
+  c:["Whatever the agent can reach; nothing fires on its own",
+     "Per-dev permission prompts and a local hook or two",
+     "Agreed tiers and lifecycle points, documented in prose",
+     "Invariants enforced where the model cannot reach, deny wins; hooks bound at declared events",
+     "Risk-tiered per action, fresh authorization at each effect; the harness versioned like code",
+     "Rules tune from denial and incident evidence"]},
+ {id:"1",name:"Environment",acc:false,at:2,
+  sub:"1a Environment",
+  why:"`registry/repositories.yaml` is built and schema-backed, and it is the Estate row of the inventory and nothing else — no SaaS, no data systems, no execution environments, no auth model",
+  c:["Nobody has written down what we can reach",
+     "One person knows which systems are wired",
+     "A shared list of systems, kept by hand",
+     "Declared inventory: each entry names its adapter, interface, auth, owner and pinned version",
+     "Reach derives from the declaration; what breaks when a system goes away is answerable",
+     "The inventory reconciles against the live estate and flags versions that drifted"]},
+ {id:"0",name:"Foundation",acc:false,at:2,
+  sub:"0a Substrate",
+  why:"Claude Code only, portability posture undecided — recorded against ourselves rather than deferred, and an undecided posture is not a setup a second person can copy",
+  c:["Whatever each dev installed",
+     "One person's working setup",
+     "Documented setup others copy",
+     "Declared harness and models, portability constraint recorded; a second person installs unaided",
+     "The choice is priced — which model runs which job, and what moving would cost",
+     "Capability moves between harnesses on evidence"]}
+];
+// <<< GENERATED
+
+// Layer names and sub-layer lists carry "&" ("Teams & Agents", "2a Adapters & Middleware"), which the
+// retired E1-E7 names never did. Escape before any of them reaches an HTML attribute.
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;");
+const NS="http://www.w3.org/2000/svg";
+const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+
+function drawLoom(){
+  const svg=document.getElementById("loom");
+  while(svg.childNodes.length>1)svg.removeChild(svg.lastChild);
+  const L=170,R=880,W=R-L,col=W/6,top=38;
+  // H must match the viewBox height declared on the <svg> above. Warp spacing derives from the row count,
+  // so the fabric keeps that frame as the row set changes; MARG leaves the last thread the same clearance
+  // at the bottom that `top-18` leaves at the top.
+  const H=430,MARG=18;
+  const gap=E.length>1?Math.min(54,(H-MARG-top)/(E.length-1)):54;
+  const foot=top+(E.length-1)*gap;
+  const min=Math.min(...E.map(e=>e.at));
+
+  for(let s=0;s<=6;s++){
+    const x=L+s*col;
+    svg.appendChild(el("line",{x1:x,y1:top-18,x2:x,y2:foot+14,
+      stroke:"var(--line)","stroke-width":s===3?1.5:1,"stroke-dasharray":s===3?"5 4":""}));
+  }
+  for(let s=0;s<6;s++){
+    const t=el("text",{x:L+s*col+col/2,y:top-24,"text-anchor":"middle",
+      fill:"var(--ink-3)","font-family":"var(--mono)","font-size":"10","letter-spacing":"1.2"});
+    t.textContent=String(s+1);svg.appendChild(t);
+  }
+
+  E.forEach((e,i)=>{
+    const y=top+i*gap, end=L+e.at*col, isMin=e.at===min;
+    const lab=el("text",{x:L-14,y:y+4,"text-anchor":"end",fill:"var(--ink)",
+      "font-family":"var(--sans)","font-size":"12.5"});
+    lab.textContent=e.name;svg.appendChild(lab);
+    const idl=el("text",{x:14,y:y+4,fill:"var(--ink-3)","font-family":"var(--mono)","font-size":"10.5"});
+    idl.textContent=e.id;svg.appendChild(idl);
+
+    // slack (unstrung) warp beyond the woven edge
+    svg.appendChild(el("line",{x1:end,y1:y,x2:R,y2:y,stroke:"var(--slack)",
+      "stroke-width":1,"stroke-dasharray":"3 5"}));
+
+    // woven fabric: warp bundle + weft ticks, tighter at higher counts
+    const c=isMin?"var(--madder)":"var(--indigo)";
+    [-3.5,0,3.5].forEach(o=>svg.appendChild(el("line",{x1:L,y1:y+o,x2:end,y2:y+o,
+      stroke:c,"stroke-width":1.15,"stroke-opacity":o===0?.95:.5})));
+    const step=14-e.at;
+    for(let x=L+3;x<end;x+=step)
+      svg.appendChild(el("line",{x1:x,y1:y-7,x2:x,y2:y+7,stroke:c,
+        "stroke-width":1,"stroke-opacity":.34+e.at*.055}));
+
+    if(isMin){
+      const z=el("path",{d:`M${end} ${y-11} l6 5 l-6 5 l6 5`,fill:"none",
+        stroke:"var(--madder)","stroke-width":1.8,"stroke-linejoin":"round"});
+      svg.appendChild(z);
+      const w=el("text",{x:end+16,y:y+4,fill:"var(--madder)",
+        "font-family":"var(--mono)","font-size":"9.5","letter-spacing":"1"});
+      w.textContent="TEARS HERE";svg.appendChild(w);
+    }
+  });
+}
+
+function drawGrid(){
+  const t=document.getElementById("grid");
+  const min=Math.min(...E.map(e=>e.at));
+  let h="<thead><tr><th>Layer</th>";
+  STAGES.forEach((s,i)=>h+=`<th class="${i===3?'thresh':''}">${i+1} · ${s}</th>`);
+  h+="</tr></thead><tbody>";
+  E.forEach((e,r)=>{
+    h+=`<tr><th title="${esc(e.sub)}">${e.name}${e.acc?" ⟳":""}<span>${e.id}</span></th>`;
+    e.c.forEach((c,i)=>{
+      const on=e.at===i+1;
+      h+=`<td class="cell${on?" at":""}${on&&e.at===min?" min":""}${i===3?" thresh":""}"
+           tabindex="0" role="button" data-r="${r}" data-s="${i+1}"
+           aria-label="${esc(e.name)}, stage ${i+1}">${c}</td>`;
+    });
+    h+="</tr>";
+  });
+  t.innerHTML=h+"</tbody>";
+}
+
+function drawBridge(){
+  let h=`<thead><tr><th>Stage</th><th>Grid — this layer is…</th><th>Organization — this team is…</th><th>Bottleneck</th></tr></thead><tbody>`;
+  for(let i=0;i<6;i++){
+    h+=`<tr${i===3?' class="thresh"':''}><th>${i+1}</th><td><strong>${STAGES[i]}</strong></td>
+        <td><strong>${ORG[i]}</strong> — ${ORGDESC[i]}</td><td>${NECK[i]}</td></tr>`;
+  }
+  document.getElementById("bridge").innerHTML=h+"</tbody>";
+}
+
+function drawControls(){
+  const c=document.getElementById("controls");
+  c.innerHTML=E.map((e,i)=>`<label class="ctl" title="${esc(e.why)}"><span class="ctl-id">${e.id}</span>
+    <span class="ctl-name">${e.name}${e.acc?" ⟳":""}</span>
+    <input type="range" min="1" max="6" value="${e.at}" data-r="${i}"
+      aria-label="${esc(e.name)} stage">
+    <span class="ctl-val" id="v${i}">${e.at}</span></label>`).join("");
+}
+
+function stats(){
+  const v=E.map(e=>e.at), min=Math.min(...v);
+  const mean=(v.reduce((a,b)=>a+b,0)/v.length).toFixed(1);
+  const weakest=E.filter(e=>e.at===min);
+  const weak=weakest.map(e=>e.name).join(" · ");
+  document.getElementById("s-min").textContent=min;
+  document.getElementById("s-min-n").textContent=weak;
+  document.getElementById("s-mean").textContent=mean;
+  document.getElementById("s-org").textContent=ORG[min-1];
+  document.getElementById("s-org-n").textContent=ORGDESC[min-1];
+  const neck=document.getElementById("s-neck"), neckN=document.getElementById("s-neck-n");
+  if(weakest.length===1){
+    neck.textContent=weakest[0].name;
+    neck.title="";
+    neckN.textContent="What actually limits you next";
+  }else if(weakest.length<=3){
+    neck.textContent=weak;
+    neck.title="";
+    neckN.textContent=`${weakest.length} layers tied — none moves it alone`;
+  }else{
+    neck.textContent=`${weakest.length} layers tied`;
+    neck.title=weak;
+    neckN.textContent="Hover for which — none moves it alone";
+  }
+}
+
+function render(){drawLoom();drawGrid();stats();}
+
+function set(r,s){E[r].at=s;document.getElementById("v"+r).textContent=s;
+  document.querySelector(`input[data-r="${r}"]`).value=s;render();}
+
+document.addEventListener("input",e=>{
+  if(e.target.matches("input[type=range]"))set(+e.target.dataset.r,+e.target.value);
+});
+document.addEventListener("click",e=>{
+  const c=e.target.closest("td.cell");if(c)set(+c.dataset.r,+c.dataset.s);
+});
+document.addEventListener("keydown",e=>{
+  const c=e.target.closest("td.cell");
+  if(c&&(e.key==="Enter"||e.key===" ")){e.preventDefault();set(+c.dataset.r,+c.dataset.s);}
+});
+
+drawControls();drawBridge();render();
+</script>

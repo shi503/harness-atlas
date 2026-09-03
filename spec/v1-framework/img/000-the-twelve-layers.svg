@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1010" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <!-- Hand-authored. The twelve layers of the LoomWarp framework, read from the bottom.
+       Layers 5 and 6 (the ⟳ pair) are the only two that accumulate and are drawn apart:
+       warm fill, heavier stroke, the ⟳ glyph, and their own bracket. -->
+  <rect x="0" y="0" width="900" height="1010" fill="#faf9f6"/>
+  <text x="450" y="36" text-anchor="middle" font-size="19" font-weight="700" fill="#111111">The twelve layers — read from the bottom</text>
+
+  <!-- read-direction arrow, left -->
+  <line x1="44" y1="908" x2="44" y2="86" stroke="#666666" stroke-width="2"/>
+  <path d="M44,74 L38,88 L50,88 Z" fill="#666666"/>
+  <text x="30" y="500" text-anchor="middle" font-size="12" fill="#666666" transform="rotate(-90 30 500)">a foundation, then up and out</text>
+
+  <!-- ===== bands, layer 11 (top) to layer 0 (bottom); y = 64 + (11 - L) * 72 ===== -->
+  <!-- runs group: layers 7–11, cool fill -->
+  <rect x="70" y="64" width="610" height="64" fill="#eef1f5" stroke="#8a94a6" stroke-width="1.2"/>
+  <text x="86" y="90" font-size="15" font-weight="700" fill="#111111">11 · Surfaces</text>
+  <text x="86" y="112" font-size="12" fill="#444444">11a Surfaces</text>
+
+  <rect x="70" y="136" width="610" height="64" fill="#eef1f5" stroke="#8a94a6" stroke-width="1.2"/>
+  <text x="86" y="162" font-size="15" font-weight="700" fill="#111111">10 · Teams &amp; Agents</text>
+  <text x="86" y="184" font-size="12" fill="#444444">10a Roster · 10b Org</text>
+
+  <rect x="70" y="208" width="610" height="64" fill="#eef1f5" stroke="#8a94a6" stroke-width="1.2"/>
+  <text x="86" y="230" font-size="15" font-weight="700" fill="#111111">9 · IMPROVE</text>
+  <text x="86" y="248" font-size="12" fill="#444444">9a Learning · 9b Rituals · 9c Cadence · 9d Anti-fragile Lifecycle</text>
+  <text x="86" y="264" font-size="12" fill="#444444">9e Raise the Floor · 9f Diagnose the Bottleneck</text>
+
+  <rect x="70" y="280" width="610" height="64" fill="#eef1f5" stroke="#8a94a6" stroke-width="1.2"/>
+  <text x="86" y="306" font-size="15" font-weight="700" fill="#111111">8 · Trust</text>
+  <text x="86" y="328" font-size="12" fill="#444444">8a Evals · 8b Evidence · 8c Observability · 8d Efficiency</text>
+
+  <rect x="70" y="352" width="610" height="64" fill="#eef1f5" stroke="#8a94a6" stroke-width="1.2"/>
+  <text x="86" y="378" font-size="15" font-weight="700" fill="#111111">7 · Workflow Tasks</text>
+  <text x="86" y="400" font-size="12" fill="#444444">7a Workflow Tasks</text>
+
+  <!-- ⟳ pair: layers 6 and 5, warm fill, heavier stroke, glyph -->
+  <rect x="70" y="424" width="610" height="64" fill="#f7e8c8" stroke="#b9862f" stroke-width="2.5"/>
+  <text x="86" y="450" font-size="15" font-weight="700" fill="#111111">6 · Workspaces</text>
+  <text x="86" y="472" font-size="12" fill="#444444">6a Product · 6b Infrastructure · 6c Estate · 6d Delivery</text>
+  <text x="648" y="466" font-size="28" fill="#8a6414">⟳</text>
+
+  <rect x="70" y="496" width="610" height="64" fill="#f7e8c8" stroke="#b9862f" stroke-width="2.5"/>
+  <text x="86" y="522" font-size="15" font-weight="700" fill="#111111">5 · Context</text>
+  <text x="86" y="544" font-size="12" fill="#444444">5a Individual Memory · 5b Team Memory · 5c Knowledge</text>
+  <text x="648" y="538" font-size="28" fill="#8a6414">⟳</text>
+
+  <!-- configured group: layers 0–4, plain fill -->
+  <rect x="70" y="568" width="610" height="64" fill="#ffffff" stroke="#999999" stroke-width="1.2"/>
+  <text x="86" y="594" font-size="15" font-weight="700" fill="#111111">4 · Capabilities</text>
+  <text x="86" y="616" font-size="12" fill="#444444">4a Capability · 4b Capability Permissions</text>
+
+  <rect x="70" y="640" width="610" height="64" fill="#ffffff" stroke="#999999" stroke-width="1.2"/>
+  <text x="86" y="666" font-size="15" font-weight="700" fill="#111111">3 · System Stacks</text>
+  <text x="86" y="688" font-size="12" fill="#444444">3a Control · 3b Routing · 3c Composition · 3d Configuration · 3e Standards</text>
+
+  <rect x="70" y="712" width="610" height="64" fill="#ffffff" stroke="#999999" stroke-width="1.2"/>
+  <text x="86" y="738" font-size="15" font-weight="700" fill="#111111">2 · Agent Harness</text>
+  <text x="86" y="760" font-size="12" fill="#444444">2a Adapters &amp; Middleware · 2b Hooks · 2c Enforcement</text>
+
+  <rect x="70" y="784" width="610" height="64" fill="#ffffff" stroke="#999999" stroke-width="1.2"/>
+  <text x="86" y="810" font-size="15" font-weight="700" fill="#111111">1 · Environment</text>
+  <text x="86" y="832" font-size="12" fill="#444444">1a Environment</text>
+
+  <rect x="70" y="856" width="610" height="64" fill="#ffffff" stroke="#999999" stroke-width="1.2"/>
+  <text x="86" y="882" font-size="15" font-weight="700" fill="#111111">0 · Foundation</text>
+  <text x="86" y="904" font-size="12" fill="#444444">0a Substrate</text>
+
+  <!-- the one published upward edge: 3b resolves against 10a -->
+  <path d="M683,672 C728,672 728,168 686,168" fill="none" stroke="#a63d3d" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <path d="M690,162 L678,166 L688,175 Z" fill="#a63d3d"/>
+
+  <!-- right brackets: runs / accumulates / configured -->
+  <path d="M760,66 h10 v350 h-10" fill="none" stroke="#8a94a6" stroke-width="1.5"/>
+  <text x="782" y="245" font-size="13" fill="#555555">runs</text>
+
+  <path d="M760,426 h10 v132 h-10" fill="none" stroke="#b9862f" stroke-width="2"/>
+  <text x="782" y="488" font-size="13" font-weight="700" fill="#8a6414">accumulates ⟳</text>
+  <text x="782" y="506" font-size="11" fill="#8a6414">the two you cannot buy</text>
+
+  <path d="M760,570 h10 v350 h-10" fill="none" stroke="#999999" stroke-width="1.5"/>
+  <text x="782" y="749" font-size="13" fill="#555555">configured</text>
+
+  <!-- caption -->
+  <text x="450" y="954" text-anchor="middle" font-size="13" fill="#333333">Settle each layer on the answers of the layers beneath it. The numbering is the order a team comes to need them —</text>
+  <text x="450" y="972" text-anchor="middle" font-size="13" fill="#333333">a reading order, not a strict dependency order: the dashed edge is 3b Routing resolving against 10a Roster.</text>
+  <text x="450" y="994" text-anchor="middle" font-size="12" fill="#8a6414">⟳ — the only two layers that accumulate. Everything beneath them is configured; everything above them runs.</text>
+</svg>
