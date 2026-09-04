@@ -41,6 +41,10 @@ the vendor's names. §D–§F tell them how far to trust the rest.
      count `⚠️ contestable`, and cite what you built it from.
    - A **published refusal list** (*"No MCP. No sub-agents."*) is quoted once, in full, in §D, and
      pointed at from §C's verdict. Affected §B rows carry a one-line pointer, not the quote again.
+   - A fourth verdict exists: **stated once, then dropped** — the vendor named a set in a document it
+     has since superseded and never restated it. Count is `0 named`; the old set goes in a separate
+     *candidates* table, clearly labelled as not the vendor's current claim; the verdict says which
+     of the old names still exist as concrete objects. Never promote a candidate into the count.
 5. **Every factual cell carries a mark**: `✅` direct (you read the primary source) · `◐` relayed (a
    secondary source, or a snippet you did not open) · `⚠️` unverified. No unmarked claims. A thing
    that is **specified but not shipped** (a design doc marked proposal, an acknowledged CLI gap) is
@@ -48,7 +52,13 @@ the vendor's names. §D–§F tell them how far to trust the rest.
    sources disagree** (one page says *deprecated*, another says *experimental*), quote both, mark the
    cell `✅ (conflicting)`, and let the newer commit win for the "what it ships" column. A page you
    read through a fetch tool is still a primary read (`✅`) if it is the vendor's own docs or repo;
-   the mark is about *whose* words, not *which* tool.
+   the mark is about *whose* words, not *which* tool. When **doctrine and shipped code disagree**
+   (the docs say a gate exists; the code comment says the gate was bypassed), the code is the
+   primary source for "what it ships" and the doctrine is quoted in §D as a stated claim — mark the
+   row `✅ (doctrine ≠ code)`. Seen in three consecutive teardowns; it is the normal case, not an edge.
+   **A system that already speaks this atlas's vocabulary** (a KD-built layer, or one that cites the
+   33 components) is a hazard: its own use of *primitive*, *component*, *evidence* is a claim to be
+   verified against its files, not a shortcut. Quote it as the vendor's word and classify it yourself.
 6. **Primary sources first.** The repo at a named commit or tag, its docs directory, its config
    schema, its examples, `gh api` on the repo, the vendor's own docs site. Blog posts, reviews and
    search snippets are `◐` and go in §E under *Secondary*. **The docs surface is wider than the docs

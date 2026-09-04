@@ -75,6 +75,16 @@ listed in §4.
 > left unchanged. The primitive-set row (below, "The primitive sets themselves") is also corrected:
 > the prior text named "order" as a primitive and "Event Stream," and omitted Rig — the vendor's own
 > admission test and `how-gas-city-works.md` name six: Agent, Bead, Formula, Rig, Pack, Event.
+>
+> **LoomWarp column corrected 2026-09-03**, against [`content/loomwarp.md`](../content/loomwarp.md)
+> (W4 #3) — re-checked cell by cell against the files, not against the product's own self-assessment.
+> One cell was wrong: **Context assembly** `○→◐`. `control/dispatch.py`'s `build_prompt_for()` reads a
+> workstream's `context_bundle:` file list (hand-curated per workstream in the BLUEPRINT) and
+> concatenates each file's text into the assembled prompt before the PRD — a real, mechanical
+> assembly step, thinner than a first-class object (no hashing, versioning, or owner attribution — the
+> unbuilt "Briefing" the framework names separately) but not absent. Every other LoomWarp cell in the
+> grid below was checked against `content/loomwarp.md` §B and left unchanged — including `Standards
+> tier` (●, confirmed) and `Agent definitions` (●, confirmed: `.claude/agents/*.md`).
 
 
 | Component                     | Claude Code | Hermes | Pi  | OpenClaw | OpenCode | Grok Bot / Build | Codex | gstack / gbrain | Gas City | QM  | Indigo HQ | SageOx | FRACTAL | generic-cerebro | LoomWarp |
@@ -86,7 +96,7 @@ listed in §4.
 | **Skills**                    | ●           | ●      | ●   | ●        | ●        | ●                | ●     | ●               | ●        | ●   | ●         | ○      | ◐       | ●               | ◐        |
 | **Individual memory**         | ●           | ●      | ○   | ●        | ○        | ●?               | ●     | ●               | ◐        | ●   | ●         | ◐      | ○       | ●               | ○        |
 | **Team memory**               | ◐           | ○      | ○   | ◐        | ○        | ○                | ○     | ●               | ◐        | ●   | ●         | ●      | ○       | ●               | ◐        |
-| **Context assembly**          | ◐           | ●      | ◐   | ●        | ◐        | ●                | ●     | ◐               | ◐        | ●   | ●         | ●      | ○       | ◐               | ○        |
+| **Context assembly**          | ◐           | ●      | ◐   | ●        | ◐        | ●                | ●     | ◐               | ◐        | ●   | ●         | ●      | ○       | ◐               | **◐**    |
 | **Task decomposition**        | ●           | ●      | ◐   | ●        | ●        | ●                | ●     | ●               | ●        | ◐   | ●         | ◐      | ●       | ●               | ●        |
 | **Project board**             | ○           | ●      | ○   | ◐        | ○        | ○                | ◐     | ○               | ●        | ○   | ◐         | ○      | ○       | ◐               | ○        |
 | **Communication channel**     | ○           | ●      | ○   | ●        | ◐        | ◐                | ○     | ○               | ◐        | ●   | ○         | ●      | ○       | ◐               | ○        |

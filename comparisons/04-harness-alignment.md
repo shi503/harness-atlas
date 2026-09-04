@@ -126,42 +126,52 @@ different axis and are not merged, per the genre rule in
 > over operator-configured commands, not a sandbox around an agent's own tool calls. Marked ◐ rather
 > than ● where the row's chat-harness framing does not transfer cleanly; see `content/gas-city.md` §B's
 > per-row notes and the Skill findings in its HANDOFF.
+>
+> **LoomWarp column added 2026-09-03** (W4 #3). Every cell traces to
+> [`content/loomwarp.md`](../content/loomwarp.md) §B; no existing column was re-scored. LoomWarp's
+> altitude is **process layer**, one step further from a runtime than Gas City's gateway/host: it does
+> not drive other harnesses' loops in general, it installs *into* exactly one (Claude Code), by copying
+> agent and skill files into that harness's own convention. Rows read as thinner analogues even where
+> the mechanism is real — 3a Control is a model-free dependency resolver plus a markdown-regex outcome
+> classifier, not an approval gate or a completion contract; 2c Enforcement is four permission-tier
+> files, one wired, bypassed on the one live run. Several `○`s below are the product's own recorded
+> absences (`content/loomwarp.md` §B), not this table failing to find something that exists.
 
-| | Component | v1 horizon | Hermes | Pi | OpenClaw | OpenCode | Grok | Codex | Gas City | What the row shows |
-|---|---|---|---|---|---|---|---|---|---|---|
-| **0a** | Substrate | `shipped` | ● | ● | ● | ● | ● | ● | ● | Model-pluggable in all four; Hermes and OpenClaw add per-task **auxiliary/utility model slots**; OpenClaw adds a **runtime** slot beside the model |
-| **1a** | Environment | `bet` | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | Hermes `terminal.backend` (7 options) and OpenClaw `tools.exec.host` declare *where shell runs*; OpenCode `references` declares *which other repos exist*. None declares the inventory of systems a team reaches. Adjacent, not against |
-| **2a** | Adapters & Middleware | `shipped` | ● | ● | ● | ● | ● | ● | ● | MCP client in 3 of 4 — Pi refuses it. ACP in 3 of 4 (see §3.4) |
-| **2b** | Hooks | `shipped` | ● | ● | ● | ● | ● | ● | ● | ~45 · ~40 · ~45 · 21 named events. **All four are code hooks** (Python/TS); only Hermes also takes shell hooks — and its wire shape is *"Claude Code compatible"* (exit 2 blocks) |
-| **2c** | Enforcement | `shipped` | ● | ◐ | ● | ● | ● | ● | ◐ | Pi's ◐ is by declaration: *"Run in a container, or build your own confirmation flow."* The other three ship deny lists that survive their own yolo/auto modes |
-| **3a** | Control | `shipped` | ● | ◐ | ◐ | ● | ● | ● | ◐ | Hermes `/goal` with `gate add <command>` is a **completion contract with deterministic gates**; OpenCode `plan` vs `build` agents; Pi ships plan mode as an example only |
-| **3b** | Routing | `emerging` | ● | ○ | ● | ◐ | ◐ | ◐ | ● | Two new named objects for *message → agent*: Hermes `gateway.profile_routes`, OpenClaw `bindings[]` with a published specificity ladder. Still two words |
-| **3c** | Composition | `emerging` | ● | ◐ | ● | ● | ● | ● | ◐ | Two shapes now visible: **agent-as-file** (OpenCode `agents/*.md` with `mode:`; Pi's example; Claude Code) vs **agent-as-directory** (Hermes profile; OpenClaw workspace + `agentDir`). The disagreement is structural, not lexical |
-| **3d** | Configuration | `shipped` | ● | ● | ● | ● | ● | ● | ● | `AGENTS.md` and `CLAUDE.md` read by 4 of 4. **Managed scope** in 3 of 4 — Hermes `/etc/hermes/`, OpenCode managed dirs + MDM, OpenClaw roles — and OpenCode publishes a nine-rung precedence ladder |
-| **3e** | Standards | `bet` | ○ | ○ | ○ | ○ | ○ | ○ | ○ | Holds. Nearest: Hermes bundles practice skills (`test-driven-development`, `systematic-debugging`); OpenCode ships formatters and LSP, which are checks, not a bar |
-| **4a** | Capability | `shipped` | ● | ● | ● | ● | ● | ● | ● | `SKILL.md` / Agent Skills in 4 of 4; `.agents/skills/` and `.claude/skills/` read by 4 of 4. Pi's **pi package** is the single container for four resource types; OpenClaw's **ClawHub** is a registry with a lockfile and publish gate |
-| **4b** | Capability Permissions | `emerging` | ● | ◐ | ● | ● | ● | ● | ◐ | Five peers now, four words: `toolset` · `tool policy` · `permission` · QM keychain · Indigo profile. Hermes adds a rule worth stealing: *"parent-broadening toolsets get rejected"* for subagents |
-| **5a** | Individual Memory | `emerging` | ● | ○ | ● | ○ | ● | ● | ◐ | **The genre split** (§3.1). Hermes and OpenClaw share `MEMORY.md` + `USER.md` + `SOUL.md` — **by lineage, not independent discovery**: Hermes ships `claw migrate` |
-| **5b** | Team Memory | `emerging` | ○ | ○ | ◐ | ○ | ○ | ○ | ◐ | OpenClaw: shared-workspace dreaming and a memory-provenance table; no person→team promotion with review. Hermes kanban is shared *work state*, not memory |
-| **5c** | Knowledge | `shipped` | ◐ | ○ | ● | ○ | ◐ | ◐ | ○ | OpenClaw `memory-wiki`: *"structured claims with evidence, provenance"* — see §3.6 for what that does to the provenance claim |
-| **6a** | Product | `bet` | ○ | ○ | ○ | ○ | ○ | ○ | ○ | Holds, 4 × ○. Goals and workboards are not a deliverable |
-| **6b** | Infrastructure | `emerging` | ● | ◐ | ● | ◐ | ● | ● | ● | Hermes `terminal.backend`; OpenClaw `sandbox` + `node` + `cloud worker` + `fleet`. Pi and OpenCode delegate outward (Gondolin/Docker/OpenShell; an experimental workspace adapter) |
-| **6c** | Estate | `emerging` | ◐ | ○ | ◐ | ◐ | ○ | ◐ | ◐ | Worktrees in three; OpenCode `references` is the nearest thing to a declared estate. No cross-repo impact analysis anywhere |
-| **6d** | Delivery | `bet` | ◐ | ○ | ○ | ◐ | ◐ | ◐ | ◐ | OpenCode's GitHub Action / GitLab component opens PRs from a comment — the strongest ◐; nothing reaches production |
-| **7a** | Workflow Tasks | `emerging` | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● | Hermes **kanban** *"owns lifecycle truth"*. OpenClaw has six task-shaped objects (§3.3) — accommodation, not a primitive. Pi refuses: *"No built-in to-dos. They confuse models."* |
-| **8a** | Evals | `shipped` | ◐ | ◐ | ◐ | ○ | ◐ | ◐ | ○ | All dev-facing. Pi's `vitest-evals` harness computes **baseline/candidate pass-rate lift**; OpenClaw's `skill_proposal_evaluate` returns `pass / revise / block` |
-| **8b** | Evidence | `shipped` | ● | ● | ● | ◐ | ● | ● | ● | Pi's session JSONL tree is a receipt with `usage`/`cost` per entry and exports `PI_SESSION_ID` to tools. **Two ledgers are content-free by construction** (§3.6) |
-| **8c** | Observability | `shipped` | ● | ◐ | ● | ◐ | ● | ● | ● | OTLP in three; OpenClaw's spans carry `gen_ai.client.token.usage`; OpenCode's exporter is in source and not in docs |
-| **8d** | Efficiency | `emerging` | ● | ◐ | ● | ◐ | ● | ◐ | ◐ | Compaction and cost display in all four. **Zero hard spend budgets in four** — the cost slot [`02-harness-taxonomies.md`](./2026-08-research/02-harness-taxonomies.md) §3 found absent from every taxonomy is absent from shipped harnesses too |
-| **9a** | Learning | `emerging` | ● | ○ | ● | ○ | ● | ◐ | ○ | Genre split again. Both shippers put a **review gate on model-authored skills**: Hermes `skills.write_approval` + Curator lifecycle; OpenClaw Skill Workshop + `skill_proposal_evaluate`. Two names, one shape |
-| **9b** | Rituals | `emerging` | ◐ | ○ | ◐ | ○ | ◐ | ○ | ○ | Machine rituals only — OpenClaw's *"bootstrap ritual"*, nightly dreaming, heartbeat; Hermes's `weekly-review-planning` skill. No standup, retro or planning object |
-| **9c** | Cadence | `shipped` | ● | ○ | ● | ○ | ● | ○ | ● | Hermes cron with an `executions.db` attempt ledger; OpenClaw automations + heartbeat. Coding harnesses have none |
-| **9d** | Anti-fragile Lifecycle | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | Recovery everywhere — restart resume, failover, doctor — and no closed improvement loop. Holds |
-| **9e** | Raise the Floor | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | The row asks how a second way gets retired. OpenClaw's VISION: *"We do not keep long-lived aliases or compatibility branches"*, enforced by `doctor --fix` migrations — a vendor-side ratchet. Nearest shipped statement; still not the team's |
-| **9f** | Diagnose the Bottleneck | `bet` | ◐ | ○ | ◐ | ○ | ◐ | ○ | ◐ | OpenClaw ships a **maturity scorecard for itself** — 50 surfaces, 280 capabilities, bands Experimental → Stable, *"evidence-led"* from QA IDs. Same shape as the Grid, pointed at the product not the team (§3.7) |
-| **10a** | Roster | `emerging` | ● | ○ | ● | ◐ | ● | ◐ | ● | Hermes Bot Mode: *"a roster of named Bots"* with `@name-device` handles; OpenClaw `agents.entries.*.identity` + `IDENTITY.md`. Two more peers, two more words |
-| **10b** | Org | `claimed` | ◐ | ○ | ● | ◐ | ● | ◐ | ◐ | **OpenClaw ships it**: session creator (immutable) / owner (*"in the style of a GitHub issue assignee"*) / participants, roles `view / suggest / write`, operator scopes. First shipped *who answers* object in the corpus (§3.5) |
-| **11a** | Surfaces | `emerging` | ● | ◐ | ● | ● | ● | ● | ● | 35 and ~30 channel docs in the assistants; TUI/desktop/web/IDE/ACP/CI/Slack in OpenCode; Pi is a terminal with a sibling chat bridge |
+| | Component | v1 horizon | Hermes | Pi | OpenClaw | OpenCode | Grok | Codex | Gas City | LoomWarp | What the row shows |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **0a** | Substrate | `shipped` | ● | ● | ● | ● | ● | ● | ● | ◐ | Model-pluggable in all four; Hermes and OpenClaw add per-task **auxiliary/utility model slots**; OpenClaw adds a **runtime** slot beside the model. LoomWarp is Claude-Code-only, model chosen per agent role, no adapter — its own spec marks portability **undecided** |
+| **1a** | Environment | `bet` | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | Hermes `terminal.backend` (7 options) and OpenClaw `tools.exec.host` declare *where shell runs*; OpenCode `references` declares *which other repos exist*. None declares the inventory of systems a team reaches. Adjacent, not against. LoomWarp's `registry/repositories.yaml` is the same shape at one further remove — two repos, no shell/network inventory |
+| **2a** | Adapters & Middleware | `shipped` | ● | ● | ● | ● | ● | ● | ● | ◐ | MCP client in 3 of 4 — Pi refuses it. ACP in 3 of 4 (see §3.4). LoomWarp's one adapter is a CLI invocation (`claude -p ...`) — no MCP, no ACP |
+| **2b** | Hooks | `shipped` | ● | ● | ● | ● | ● | ● | ● | ○ | ~45 · ~40 · ~45 · 21 named events. **All four are code hooks** (Python/TS); only Hermes also takes shell hooks. LoomWarp ships none of its own — checked `.claude/settings.local.json`, `policy/*.json` |
+| **2c** | Enforcement | `shipped` | ● | ◐ | ● | ● | ● | ● | ◐ | ◐ | Pi's ◐ is by declaration: *"Run in a container, or build your own confirmation flow."* LoomWarp's four risk-tier files are real Claude-Code-shaped deny lists, one wired — but the one live dispatch bypassed all of them (`--permission-mode bypassPermissions`), its own code comment naming the gap |
+| **3a** | Control | `shipped` | ● | ◐ | ◐ | ● | ● | ● | ◐ | ◐ | Hermes `/goal` with `gate add <command>` is a **completion contract with deterministic gates**. LoomWarp's `router.py`+`dispatch.py` is genuinely model-free dependency resolution, but the terminal classifier is a regex over a HANDOFF's markdown table — the exact anti-pattern its own evaluation doctrine names |
+| **3b** | Routing | `emerging` | ● | ○ | ● | ◐ | ◐ | ◐ | ● | ○ | Two new named objects for *message → agent*: Hermes `gateway.profile_routes`, OpenClaw `bindings[]` with a published specificity ladder. LoomWarp's routing is static, author-time BLUEPRINT fields — no resolver, no roster to resolve against |
+| **3c** | Composition | `emerging` | ● | ◐ | ● | ● | ● | ● | ◐ | ◐ | Two shapes now visible: **agent-as-file** (OpenCode `agents/*.md` with `mode:`; Pi's example; Claude Code) vs **agent-as-directory** (Hermes profile; OpenClaw workspace + `agentDir`). LoomWarp ships five agent-as-file role definitions but the composition runtime itself is Claude Code's, not its own |
+| **3d** | Configuration | `shipped` | ● | ● | ● | ● | ● | ● | ● | ◐ | `AGENTS.md` and `CLAUDE.md` read by 4 of 4. **Managed scope** in 3 of 4. LoomWarp's BLUEPRINT explicitly splits router-read vs. dispatch-only fields, but has no managed/org-override layer of its own |
+| **3e** | Standards | `bet` | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ● | Holds for every runtime. **LoomWarp is the one column that ships it**: seven guides, ~930 lines, a stated three-tier inheritance contract (*"reference never copy, tighten never contradict"*) — the strongest single row in this table for LoomWarp, and the one no runtime beside it has an answer to |
+| **4a** | Capability | `shipped` | ● | ● | ● | ● | ● | ● | ● | ◐ | `SKILL.md` / Agent Skills in 4 of 4. LoomWarp ships seven skills, distributed by a `cp -r` sync script with a documented removal defect — present, not first-class |
+| **4b** | Capability Permissions | `emerging` | ● | ◐ | ● | ● | ● | ● | ◐ | ○ | Five peers now, four words: `toolset` · `tool policy` · `permission` · QM keychain · Indigo profile. LoomWarp has none — its permission tiers gate actions, not who may invoke a skill |
+| **5a** | Individual Memory | `emerging` | ● | ○ | ● | ○ | ● | ● | ◐ | ○ | **The genre split** (§3.1). LoomWarp's own spec defers this layer to Claude Code's native default and names it explicitly as a layer a personal stack may diverge on |
+| **5b** | Team Memory | `emerging` | ○ | ○ | ◐ | ○ | ○ | ○ | ◐ | ◐ | OpenClaw: shared-workspace dreaming and a memory-provenance table. LoomWarp's `context/memory/decision-ledger/` is a real, schema-validated ADR store with a CLI — genuine, if small (five ADRs) |
+| **5c** | Knowledge | `shipped` | ◐ | ○ | ● | ○ | ◐ | ◐ | ○ | ○ | OpenClaw `memory-wiki`: *"structured claims with evidence, provenance."* LoomWarp has nothing distinct from its context fabric and decision ledger — checked and confirmed absent |
+| **6a** | Product | `bet` | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ | Holds, 4 × ○, and holds for LoomWarp too — no statement of what its own output may not become was found |
+| **6b** | Infrastructure | `emerging` | ● | ◐ | ● | ◐ | ● | ● | ● | ◐ | Hermes `terminal.backend`; OpenClaw `sandbox` + `node` + `cloud worker` + `fleet`. LoomWarp is local subprocess execution only, wall-clock-timeout-wrapped, no container or remote layer |
+| **6c** | Estate | `emerging` | ◐ | ○ | ◐ | ◐ | ○ | ◐ | ◐ | ◐ | Worktrees in three; OpenCode `references` is the nearest thing to a declared estate. LoomWarp's `registry/repositories.yaml` is a real, if two-entry, inventory schema — and it omits the control repo itself (a named open defect) |
+| **6d** | Delivery | `bet` | ◐ | ○ | ○ | ◐ | ◐ | ◐ | ◐ | ○ | OpenCode's GitHub Action / GitLab component opens PRs from a comment — the strongest ◐. LoomWarp has no CI/CD of its own — `find .github` is empty; its `ci-cd.md` guide is doctrine, not a wired gate |
+| **7a** | Workflow Tasks | `emerging` | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● | ● | Hermes **kanban** *"owns lifecycle truth."* LoomWarp's **work contract** (a BLUEPRINT entry + PRD) is the one object its own current spec names as a surviving, concrete primitive — the strongest `●` in this column |
+| **8a** | Evals | `shipped` | ◐ | ◐ | ◐ | ○ | ◐ | ◐ | ○ | ◐ | All dev-facing. LoomWarp's own evaluation doctrine specifies a genuine five-layer model, but the shipped classifier is the markdown-regex anti-pattern that doctrine names and rejects — doctrine real, mechanism contradicts it |
+| **8b** | Evidence | `shipped` | ● | ● | ● | ◐ | ● | ● | ● | ◐ | Pi's session JSONL tree is a receipt with `usage`/`cost` per entry. LoomWarp's `context/evidence/<workstream>/` is real and populated at run time, but only for the handful of workstreams actually dispatched |
+| **8c** | Observability | `shipped` | ● | ◐ | ● | ◐ | ● | ● | ● | ◐ | OTLP in three. LoomWarp's `events.jsonl` is real (13 lines, 3 event types) but unschema'd — by its own standards doc's rule, *"a log, not evidence"* |
+| **8d** | Efficiency | `emerging` | ● | ◐ | ● | ◐ | ● | ◐ | ◐ | ◐ | Compaction and cost display in all four. LoomWarp has one crude per-dispatch spend cap (`--max-budget-usd`, default 5, explicitly "not a measured value" per its own docstring), no aggregate accounting |
+| **9a** | Learning | `emerging` | ● | ○ | ● | ○ | ● | ◐ | ○ | ○ | Genre split again. LoomWarp's own spec marks this layer *"designed only"* — no promotion mechanism found |
+| **9b** | Rituals | `emerging` | ◐ | ○ | ◐ | ○ | ◐ | ○ | ○ | ○ | Machine rituals only. LoomWarp has none — no cron, standup, or retro object of its own |
+| **9c** | Cadence | `shipped` | ● | ○ | ● | ○ | ● | ○ | ● | ○ | Hermes cron with an `executions.db` attempt ledger. LoomWarp's dispatch is manually invoked only — no scheduler |
+| **9d** | Anti-fragile Lifecycle | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | Recovery everywhere — restart resume, failover, doctor — and no closed improvement loop, until LoomWarp: `fractal/ISSUES.md` is a genuine append-only defect ledger, eight dated entries with severity, root cause and required fix — the second `●` in this column |
+| **9e** | Raise the Floor | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | The row asks how a second way gets retired. LoomWarp's `standards/` and `fractal-init` skill are real starting templates; no retirement mechanism for a second way once it appears |
+| **9f** | Diagnose the Bottleneck | `bet` | ◐ | ○ | ◐ | ○ | ◐ | ○ | ◐ | ○ | OpenClaw ships a **maturity scorecard for itself**. LoomWarp has nothing — its own spec calls this function unprovided by anyone, field-wide, and that held for its own instance on this pass too |
+| **10a** | Roster | `emerging` | ● | ○ | ● | ◐ | ● | ◐ | ● | ◐ | Hermes Bot Mode: *"a roster of named Bots."* LoomWarp ships five role files (`.claude/agents/`) — real, though its own field-level analysis calls this function unprovided by anyone, itself included; recorded as a tension, not resolved (`content/loomwarp.md` §F) |
+| **10b** | Org | `claimed` | ◐ | ○ | ● | ◐ | ● | ◐ | ◐ | ◐ | **OpenClaw ships it.** LoomWarp's `people.yaml` is a thin (two-entry) but real, mechanically validated RACI registry inside its decision ledger |
+| **11a** | Surfaces | `emerging` | ● | ◐ | ● | ● | ● | ● | ● | ◐ | 35 and ~30 channel docs in the assistants. LoomWarp is CLI-only — headless dispatch or a human-run second window — with markdown (HANDOFF/PULSE) as the surface of record |
 
 **Column totals** (● / ◐ / ○): Hermes 20 / 10 / 3 · Pi 6 / 11 / 16 · OpenClaw 20 / 10 / 3 ·
 OpenCode 10 / 13 / 10 · Grok 19 / 10 / 4. **Codex 14 / 13 / 6** — added 2026-09-03, not part of the
@@ -170,7 +180,13 @@ OpenCode 10 / 13 / 10 · Grok 19 / 10 / 4. **Codex 14 / 13 / 6** — added 2026-
 full sourcing at [`content/gas-city.md`](../content/gas-city.md) §B. Its total sits in the same range
 as the six runtimes beside it despite the altitude difference — a process layer/host that drives
 someone else's loop still fills most of the same rows, just with an analogue rather than an instance
-in several of them (see the note above the table). The totals are not a ranking — the next section is about
+in several of them (see the note above the table). **LoomWarp 3 / 19 / 11** — added 2026-09-03 (W4 #3);
+full sourcing at [`content/loomwarp.md`](../content/loomwarp.md) §B. The lowest `●` count in the
+table, and the three are not the three a runtime would earn: `3e` Standards (unclaimed by every
+runtime beside it), `7a` Workflow Tasks (the work contract — its own spec's one surviving named
+primitive), and `9d` Anti-fragile Lifecycle (the ISSUES ledger) — all team-process rows, none a loop
+row, which is the expected shape for a process layer one altitude below Gas City's gateway/host. The
+totals are not a ranking — the next section is about
 why the shapes differ. The Grok column reads high because it is a pair: Build supplies the loop-side
 `●`s (2b, 2c, 3a, 3d, 4b, 8b, 8c) and Bot supplies the team-side ones (5a, 9a, 9c, 10a); neither
 half alone would score the way the pair does, which is the genre split of §3.1 inside one vendor.

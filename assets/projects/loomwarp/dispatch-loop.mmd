@@ -1,0 +1,23 @@
+%% Redrawn in house notation from docs/ARCHITECTURE.md's "Dispatch sequence — outcome
+%% classification without trusting exit codes" sequenceDiagram (shi503/loomwarp-team-system
+%% @ 8844df6, private repo, read 2026-09-03). Converted from a sequenceDiagram to the house
+%% flowchart TD notation; no diagram existed for this loop as a flowchart in the source.
+%% Embedded as a copy in content/loomwarp.md, between §A and §B.
+flowchart TD
+  Reset["dispatch.py reset<br/>(clears .state.json + evidence)"] --> Next
+  Next["router.py next<br/>(unmodified — zero LLM in the decision)"] --> Ready{Ready<br/>workstreams?}
+  Ready -->|none| Wait["report waiting / all-complete"]
+  Ready -->|yes| Assemble["assemble_prompt()<br/>context_bundle + PRD + background-agent guard"]
+  Assemble --> Mode{target_mode?}
+  Mode -->|headless| Spawn["claude -p --agent feature-lead<br/>--permission-mode bypassPermissions<br/>(wall-clock timeout)"]
+  Mode -->|human| Print["print assembled command<br/>for a human to run in a second window"]
+  Spawn --> Classify["classify()<br/>never trusts the exit code"]
+  Classify -->|HANDOFF.md: PASS, no FAIL| Complete["COMPLETE"]
+  Classify -->|HANDOFF.md: FAIL cell| Failed["FAILED"]
+  Classify -->|PULSE.md: escalation_needed| Blocked["BLOCKED<br/>(via router.py's own pulse subcommand)"]
+  Classify -->|neither before timeout| Unknown["UNKNOWN<br/>— nothing fabricated"]
+  Complete --> Update["router.py update <name> COMPLETE<br/>(only outcome that advances state)"]
+  Failed --> Evidence["context/evidence/<workstream>/<br/>+ control/events.jsonl"]
+  Blocked --> Evidence
+  Unknown --> Evidence
+  Print --> Evidence
