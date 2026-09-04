@@ -114,8 +114,69 @@ each at KD's direction, each logged here rather than hidden:
 
 ## 7. Sanity-run findings (W2 · AC-2)
 
-_Pending — three sub-agents running (Pi, Claude Code, Gas City). This section is appended when they
-report, with a section-by-section verdict per harness and the consolidated list of skill defects._
+Three sub-agents (sonnet), in parallel, `--sanity` mode, 2026-09-03. Every draft came back
+structurally complete: three opener paragraphs, §A–§F, all 33 rows in order, a non-empty §F ending in
+`Skill findings`, no grid touched, checker PASS. Drafts at `content/{pi,claude-code,gas-city}-draft.md`
+(430 · 345 · 430 lines); diagrams at `assets/projects/{claude-code/agentic-loop,gas-city/six-primitives}.mmd`.
+
+### Per harness
+
+**Pi** — diffed against `content/pi.md`. The template fits; the refusal-list carve-out in rule 4 is
+load-bearing. **The two passes disagree on the primitive count: 8 + 3 supporting (`pi.md`) vs 5 + 3
+(draft)** — same harness, same sources, different scoping of Session and Settings. The draft skipped
+the examples directory and a sibling repo (`pi-chat`) that `pi.md` had read, and is less complete for
+it. It also caught something real: `packages/server/README.md` changed between the 2026-09-02 and
+2026-09-03 reads. **Verdict:** `pi.md` stays canonical; the draft is not promoted; the skill was
+wrong, not the agent.
+
+**Claude Code** — read against `content/claude-code/` (13 docs). Anthropic's docs carry at least
+**four** architecture pictures; the draft redrew the "agentic loop" and listed the rest. The local
+"seven insertion points" drawing is a repo-original synthesis, not a redraw — the README's anatomy
+diagram inherits that and should say so (it now credits the guide, not Anthropic). Primitive count
+lands at a contestable 7–9 because Anthropic publishes no list. **One page cannot carry Claude Code
+inline**: Hooks (~30 events), the three multi-agent objects and the OTel schema each want a link-out.
+Two primary findings: `anthropics/claude-code` carries **no OSS license** (`license: null`, "All rights
+reserved") and **no application source tree** — it is a docs-and-plugins repo. **Verdict:** a real
+profile is worth doing in W4 with link-outs to the deep read; not promoted from this draft.
+
+**Gas City** — read against `comparisons/systems/gas-city.md`. The template assumes a runtime; for a
+process layer, 3a Control and 2c Enforcement fill as "Gas City's analogue", and the altitude is
+genuinely **two at once** (hosts many loops; installs into each). Rule 4 was the easiest here: Gas
+City ships its own admission test for primitives and a documented *deletion* of one. **The short
+profile has two claims that fail against primary sources: the primitive count is six, not seven**
+(it counted Order, which the docs call non-primitive, and missed Rig) **and there is no "Factory
+Worker Protocol"** — zero hits for the name or "FWP" across the org. **Verdict:** the short profile
+needs correcting when W4 #2 runs; the draft is the better document today but is not promoted, per
+decision 9.
+
+### Consolidated skill defects, and what was changed
+
+Folded into `skills/harness-teardown/SKILL.md` in the same session (commit below):
+
+| Defect | Fix |
+|---|---|
+| Primitive-set scope undefined → 8 vs 5 on the same harness | Rule 4 now defines *primitive* (user-authored intent) vs *(supporting)* (harness-owned infrastructure), aliases as one, bundles as one row, and a `⚠️ contestable` range when the vendor publishes no list |
+| No mark for "specified but not shipped" (Gas City 8d) | `◐ (proposal)` |
+| Docs surface too narrow; sibling repos ambiguous; experimental packages drift | Rule 6: `packages/*/README`, examples, design docs in-bounds and marked `(source-only)`; vendor-named sibling repos in-bounds; pin citations to a commit |
+| One altitude forced on a two-altitude system; inclusion test Q2 has no per-layer answer | Rule 7: record both altitudes with evidence; answer Q2 per layer |
+| Sibling products sharing vocabulary (Gas Town / Gas City) | Rule 8: every row names the product |
+| Refusal quotes duplicated across §B/§C/§D | Rule 4: quote once in §D, pointers elsewhere |
+| Large harness does not fit one page | Step 4: a row is a summary; >8 lines links out; profile stays one page |
+| Several vendor diagrams | Step 6: redraw the one nearest the loop; list the rest in §F |
+| `--sanity` documented after step 9 | Moved to a callout before step 1; step 2 now names the examples dir and the glossary |
+
+Also fixed in-session: the README's anatomy caption now says the picture is this repo's synthesis,
+and its Gas City line no longer repeats the short profile's two failed claims. Carried, not fixed:
+the `pi.md` vs draft count disagreement should be re-run once under the revised rule 4 to confirm
+the rule closes it.
+
+### Two primary findings to carry into W4
+
+- Gas City: six primitives, no FWP under that name — correct `comparisons/systems/gas-city.md` when
+  its profile is written (W4 #2), and the README's Gas City line, which currently repeats "a protocol
+  that makes the coding agent substitutable" from the short profile.
+- Claude Code: the GitHub repo is not the source of the CLI and carries no OSS license — §A of its
+  real profile must say so; the corpus has assumed otherwise.
 
 ## 8. Open items carried forward
 
@@ -149,4 +210,6 @@ report, with a section-by-section verdict per harness and the consolidated list 
 | `fb59b63` | `harnesses/` → `content/` rename + link pass |
 | `fa12ef2` | README manifesto, index.md shape, CLAUDE.md |
 | `bca15f1` | teardown skill, `assets/templates/` |
-| _(next)_ | PRD amendments, ISSUE-003, this HANDOFF; then the three sanity drafts |
+| `e7ac284` | PRD amendments W2–W6, ISSUE-003, this HANDOFF (§1–6, 8–9) |
+| `a9fe54b` | the three sanity drafts, `assets/projects/` |
+| _(this commit)_ | skill revised from the sanity findings, HANDOFF §7, README caption and Gas City line |

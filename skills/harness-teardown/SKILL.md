@@ -27,12 +27,38 @@ the vendor's names. §D–§F tell them how far to trust the rest.
    in the primitive table. The vocabulary ledger `vocabulary.md` exists for exactly this.
 4. **A primitive set is 5–7 and forces a choice.** Count it. Say which of *5–7 healthy · 12+
    accommodation failure · refusal list* it is. Do not pad a set to look complete or trim one to look
-   healthy.
+   healthy. **What counts** (settled after two runs on the same harness disagreed 8 vs 5):
+   - A **primitive** is a unit the *user authors* to express intent, and the harness makes the single
+     sanctioned way to do so — an extension, a skill, a formula, a bead, a prompt template.
+   - Infrastructure the *harness owns* — the session store, the settings file, the trust ledger, the
+     model catalog — is **`(supporting)`** unless the vendor's own docs name it as a first-class
+     authoring unit. Singular and sanctioned is necessary, not sufficient.
+   - Two names for the same slot (`AGENTS.md` / `CLAUDE.md`) are **one** primitive; record the alias
+     in the path cell.
+   - A primitive that bundles others (a *package* over extensions, skills, prompts) stays one row;
+     write `bundles: …` in its definition cell. The table is flat; the hierarchy is in the cell.
+   - If the vendor publishes **no** list, say so, give the range you could defend (*"7–9"*), mark the
+     count `⚠️ contestable`, and cite what you built it from.
+   - A **published refusal list** (*"No MCP. No sub-agents."*) is quoted once, in full, in §D, and
+     pointed at from §C's verdict. Affected §B rows carry a one-line pointer, not the quote again.
 5. **Every factual cell carries a mark**: `✅` direct (you read the primary source) · `◐` relayed (a
-   secondary source, or a snippet you did not open) · `⚠️` unverified. No unmarked claims.
+   secondary source, or a snippet you did not open) · `⚠️` unverified. No unmarked claims. A thing
+   that is **specified but not shipped** (a design doc marked proposal, an acknowledged CLI gap) is
+   `◐ (proposal)` with the source — neither "ships it" nor "nothing here".
 6. **Primary sources first.** The repo at a named commit or tag, its docs directory, its config
    schema, its examples, `gh api` on the repo, the vendor's own docs site. Blog posts, reviews and
-   search snippets are `◐` and go in §E under *Secondary*.
+   search snippets are `◐` and go in §E under *Secondary*. **The docs surface is wider than the docs
+   nav**: `packages/*/README.md`, the examples directory and design docs in the tree are in-bounds
+   even when nothing links to them — mark them `(source-only, not in docs nav)`. A **sibling
+   repository the vendor's own docs name** is in-bounds: read at least its README. Experimental
+   packages change between reads — pin every citation to the commit you read, not `main`.
+7. **When two altitudes are both true, record both.** A process layer that hosts many loops *and*
+   installs into each of them (Gas City) gets two bold altitude lines with the evidence for each; do
+   not force one. Likewise the inclusion test's *"does it serve more than one person"*: where an
+   org or managed-settings layer sits over a single-operator runtime, answer **per layer**.
+8. **Sibling products that share vocabulary** (Gas Town / Gas City; Grok Bot / Grok Build): every row
+   names which product the claim is about. Rule 3 covers one harness borrowing another's word; this
+   covers one vendor using the same word twice.
 
 The standing rules of the repo (`CLAUDE.md`) and the definition of a primitive (the concepts document,
 `01-concepts.md` §3.17) are the authorities behind this list; when this file and they disagree, they
@@ -42,24 +68,37 @@ win.
 
 Work in this order. Do not write §B before §A is done — the altitude decides how half the rows read.
 
+> **`--sanity` first, because it changes step 9.** A sanity run tests the skill, not the harness's
+> place in the corpus: write to `content/<name>-draft.md`, perform **none** of the four downstream
+> obligations in step 9, and end §F with a `### Skill findings` subsection (see below). Read this
+> before you reach step 9, not after.
+
 1. **Fix the source.** Resolve the canonical repo (`gh api repos/<owner>/<name>` — follow redirects,
    note prior homes), the tag or commit you are reading, the docs root, and the read date. Every
    later citation is relative to these. Write them into the frontmatter `source:` field now.
 2. **Read the whole docs surface once, fast.** README, docs index, configuration reference, security
-   or permissions page, extension or plugin page, examples directory, changelog head, the *what we
-   do not do* or non-goals section if there is one. List what you opened; §B's absence rows will
-   name them.
+   or permissions page, extension or plugin page, **examples directory** (open it — a run that skipped
+   it missed the refusal list's second citation), changelog head, the *what we do not do* or
+   non-goals section if there is one, the **glossary** if there is one (a maintained glossary makes
+   §C an order of magnitude cheaper; note its presence or absence in §A). List what you opened; §B's
+   absence rows will name them.
 3. **§A Identity.** Fill the 13-field table. Then run the **three-question inclusion test** and the
    **loop question**, each answered with a quoted line and a source. Then write the
    **primitive preview** — the names only; definitions come in §C.
 4. **§B, all 33 rows, in the fixed order.** For each: what it ships (your words), the path or
-   mechanism (their words), the source, the mark. Where nothing is shipped, rule 2 applies.
+   mechanism (their words), the source, the mark. Where nothing is shipped, rule 2 applies. **A row
+   is a summary, not a reference**: if a row wants more than ~8 lines (thirty hook events, a full
+   telemetry schema, three multi-agent objects), write the summary and link out — to a deep read
+   beside the profile (`content/<name>/…`) or to the Tier-2 component page. The profile stays one
+   page for any harness, however large.
 5. **§C Primitive set.** One row per primitive: name · path or key · the project's own definition,
    verbatim · source. Then the count, and the verdict.
 6. **The diagram rule.** If the harness's own documentation carries an architecture or loop diagram,
    redraw it as mermaid in the house notation — one file under `assets/projects/<harness>/`, cited to
    the original — and embed a copy in the profile beside §A's loop-question answer. If the
-   documentation carries no diagram, draw none: a diagram you invented is an inference.
+   documentation carries **several**, redraw the one nearest the loop question and list the others
+   in §F by title and URL, so a later pass can pick them up. If the documentation carries no diagram,
+   draw none: a diagram you invented is an inference.
 7. **§D, §E, §F.** Limitations quoted and grouped by source document, no commentary. Sources split
    primary / secondary, including the literal `gh api` commands you ran. Then everything you could
    not verify — bulleted, marked, with the reason. **§F may not be empty.** If it is, you have not
@@ -86,9 +125,14 @@ the *skill*, not to replace the material. Under `--sanity`:
 
 - write to `content/<name>-draft.md`, never to `content/<name>.md`;
 - perform **none** of the four downstream obligations;
+- do **not** open the existing profile or short teardown until your draft is written; then diff, and
+  record section by section which is right and why;
 - in §F, add a final subsection **`Skill findings`**: every place this template did not fit the
-  harness, every rule that was ambiguous, every section that was hard to fill from primary sources.
-  These are findings about the skill; edit nothing else.
+  harness, every rule that was ambiguous, every section that was hard to fill from primary sources,
+  and every step you skipped. These are findings about the skill; edit nothing else.
+
+Run on 2026-09-03 against Pi, Claude Code and Gas City; the rules marked *settled after…* above
+came out of that run. Findings are in the W0-alignment HANDOFF §7.
 
 ## The page
 

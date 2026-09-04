@@ -74,8 +74,12 @@ flowchart TD
   package["packaging &amp; distribution<br/>plugins · packages · managed settings<br/><i>4a Capability · 3e Standards</i>"] -.-> load
 ```
 
-*Source: [`assets/templates/harness-loop.mmd`](assets/templates/harness-loop.mmd). The twelve layers
-those component IDs belong to are drawn in [`index.md`](index.md) §3.*
+*Source: [`assets/templates/harness-loop.mmd`](assets/templates/harness-loop.mmd). This picture is
+this repo's own synthesis — generalised from the "seven insertion points" reading of Claude Code in
+[`content/claude-code/20-consolidated-guide.md`](content/claude-code/20-consolidated-guide.md) §1,
+which is itself a synthesis, not a vendor diagram. Vendor diagrams, redrawn, live under
+[`assets/projects/`](assets/projects/). The twelve layers those component IDs belong to are drawn in
+[`index.md`](index.md) §3.*
 
 ## How to read a profile
 
@@ -105,7 +109,7 @@ are in [`index.md`](index.md) §1.
 | **Claude Code** | runtime | An agent loop with seven insertion points; every choice is *when does it load* × *who enforces it* | OTel spans + `tool_decision` audit records | [`content/claude-code/`](content/claude-code/20-consolidated-guide.md) *(pre-template deep read; template profile pending)* |
 | **Pi** | runtime | Defined by subtraction — *"No MCP. No sub-agents. No permission popups."* — each shipped as an example extension instead; holds at eight primitives | the session JSONL *tree*, which doubles as the run receipt | [`content/pi.md`](content/pi.md) |
 | **Hermes** | gateway / host | Makes *learning* the headline: authors skills from experience, caps memory files, ages skills out; hosts the Codex app-server as an alternate loop | the kanban that owns *"lifecycle truth"* | [`content/hermes.md`](content/hermes.md) |
-| **Gas City** | process layer | Yegge's *software factory*: formulas, agents, beads, orders, packs, and a protocol that makes the coding agent substitutable | the typed `bead` record + its relation graph | [`comparisons/systems/gas-city.md`](comparisons/systems/gas-city.md) *(short profile; template profile queued)* |
+| **Gas City** | process layer | Yegge's *software factory*: six declared primitives with a published admission test for adding one — and a documented deletion of one — over a swappable coding agent | the typed `bead` record + its relation graph | [`comparisons/systems/gas-city.md`](comparisons/systems/gas-city.md) *(short profile — its "seven" and its "Factory Worker Protocol" did not survive the 2026-09-03 primary-source read; see [`content/gas-city-draft.md`](content/gas-city-draft.md); template profile queued)* |
 | **LoomWarp** | process layer | The system this atlas was cut out of, scored here as a peer with no special status — *its primitive-set row stays blank until someone earns it* | `events.jsonl` — eight real events, none schema-validated | queued (W4) |
 | **FRACTAL** | process layer | A PRD-per-workstream process with an append-only defect ledger, run un-routed in this very repo; KD-built, graded by the same rules | the `HANDOFF.md` beside each PRD, and `ISSUES.md` | [`comparisons/systems/kd-built-frameworks/03-fractal-as-iterated.md`](comparisons/systems/kd-built-frameworks/03-fractal-as-iterated.md) *(delta doc; template profile queued)* |
 
