@@ -3,9 +3,19 @@ title: "Teardown — Gas Town / Gas City / Beads"
 tier: reference
 project: loomwarp
 created: "2026-08-11"
-status: DRAFT
+status: SUPERSEDED
+superseded_by: content/gas-city.md
 owner: KD
 ---
+
+> **Superseded 2026-09-03.** Replaced by the primary-source teardown at
+> [`../../content/gas-city.md`](../../content/gas-city.md) (W4 #2). Two claims below did not survive a
+> primary-source read: **the primitive count is six, not seven** (this page counts Order, which the
+> vendor's own admission test calls non-primitive, and omits Rig, a genuine sixth primitive), and
+> **there is no "Factory Worker Protocol"** — a `gh api search/code` pass across `org:gastownhall`
+> found zero matches for the name or "FWP" as a protocol. This page is kept, unedited below this
+> notice, as the record of what a secondary-source-only pass got right and wrong; see the new profile's
+> §F for the full finding.
 
 # Gas Town / Gas City / Beads — Steve Yegge
 

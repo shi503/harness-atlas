@@ -62,6 +62,19 @@ listed in §4.
 > source this pass: `external-agent-migration` reads *from* Claude Code and Cursor, one-way; nothing
 > ships an ACP crate). Placed with the runtime/harness block, before `gstack / gbrain`. No existing
 > column re-scored.
+>
+> **Gas City column corrected 2026-09-03**, against [`content/gas-city.md`](../content/gas-city.md)
+> (W4 #2) — the existing column was re-checked cell by cell, not re-scored wholesale. Three cells were
+> wrong and are changed here, each traceable to the new profile's §B: **Individual memory** `○→◐`
+> (per-agent session logs plus the sibling **Beads** product's `bd remember`/`bd prime` project memory
+> are real, if one layer removed from a Gas-City-owned object — §B row 5a); **Team memory** `○→◐` (the
+> shared, Dolt-backed bead store plus Mail persist across sessions that share no session — §B row 5b);
+> **Context assembly** `○→◐` (agent context is seeded automatically per turn from the role's prompt
+> template plus live work items and mail — `docs/guides/capabilities-for-coding-agent-users.md`, §B
+> row 3c/5a). Every other Gas City cell in the grid below was checked against the same profile and
+> left unchanged. The primitive-set row (below, "The primitive sets themselves") is also corrected:
+> the prior text named "order" as a primitive and "Event Stream," and omitted Rig — the vendor's own
+> admission test and `how-gas-city-works.md` name six: Agent, Bead, Formula, Rig, Pack, Event.
 
 
 | Component                     | Claude Code | Hermes | Pi  | OpenClaw | OpenCode | Grok Bot / Build | Codex | gstack / gbrain | Gas City | QM  | Indigo HQ | SageOx | FRACTAL | generic-cerebro | LoomWarp |
@@ -71,9 +84,9 @@ listed in §4.
 | **Multi-model / adversarial** | ◐           | ●      | ◐   | ◐        | ◐        | ●                | ◐     | ◐               | ●        | ●   | ○         | ○      | ○       | ◐               | ○        |
 | **Agent definitions**         | ●           | ●      | ◐   | ●        | ●        | ●                | ●     | ◐               | ●        | ◐   | ●         | ◐      | ●       | ●               | ●        |
 | **Skills**                    | ●           | ●      | ●   | ●        | ●        | ●                | ●     | ●               | ●        | ●   | ●         | ○      | ◐       | ●               | ◐        |
-| **Individual memory**         | ●           | ●      | ○   | ●        | ○        | ●?               | ●     | ●               | ○        | ●   | ●         | ◐      | ○       | ●               | ○        |
-| **Team memory**               | ◐           | ○      | ○   | ◐        | ○        | ○                | ○     | ●               | ○        | ●   | ●         | ●      | ○       | ●               | ◐        |
-| **Context assembly**          | ◐           | ●      | ◐   | ●        | ◐        | ●                | ●     | ◐               | ○        | ●   | ●         | ●      | ○       | ◐               | ○        |
+| **Individual memory**         | ●           | ●      | ○   | ●        | ○        | ●?               | ●     | ●               | ◐        | ●   | ●         | ◐      | ○       | ●               | ○        |
+| **Team memory**               | ◐           | ○      | ○   | ◐        | ○        | ○                | ○     | ●               | ◐        | ●   | ●         | ●      | ○       | ●               | ◐        |
+| **Context assembly**          | ◐           | ●      | ◐   | ●        | ◐        | ●                | ●     | ◐               | ◐        | ●   | ●         | ●      | ○       | ◐               | ○        |
 | **Task decomposition**        | ●           | ●      | ◐   | ●        | ●        | ●                | ●     | ●               | ●        | ◐   | ●         | ◐      | ●       | ●               | ●        |
 | **Project board**             | ○           | ●      | ○   | ◐        | ○        | ○                | ◐     | ○               | ●        | ○   | ◐         | ○      | ○       | ◐               | ○        |
 | **Communication channel**     | ○           | ●      | ○   | ●        | ◐        | ◐                | ○     | ○               | ◐        | ●   | ○         | ●      | ○       | ◐               | ○        |
@@ -105,7 +118,7 @@ primitive set is the most direct available answer to *what its architecture is*.
 | **Grok Build**      | project rules (`AGENTS.md`, `.grok/rules/`) · skill · plugin / marketplace · hook · MCP server · permission rule / mode · **sandbox profile** · agent / persona / role — and **three config files written by three people**: `config.toml` (user) · `managed_config.toml` (fleet) · signed `requirements.toml` (pins) |
 | **Grok Bot**        | **Bot** · **Computer** (one VM per member, `/workspace`) · skill (saved by asking, or **taught by demonstration**) · **routine** (schedule or Slack/GitHub event) · plugin / connector · approval / auto-review rule |
 | **Codex**           | `AGENTS.md` · skill · plugin (bundles skill + MCP server) · subagent (TOML) · hook · MCP server · **permission profile** · **execpolicy rule** — ⚠️ contestable 8, no vendor list; mid-migration (`sandbox_mode` and `[permissions]` coexist; `codex mcp-server` deprecated for the app-server) |
-| **Gas City**        | formula (TOML workflow) · agent · **bead** (git-native work unit) · order (trigger) · pack (bundle) · Event Stream                                                                                                                                                                  |
+| **Gas City**        | **agent** (who) · **bead** (what — Dolt-backed work-item substrate, not git-native JSON) · **formula** (how) · **rig** (where) · **pack** (configures) · **event** (observe) — six, corrected 2026-09-03 against [`content/gas-city.md`](../content/gas-city.md) §C; the prior text named "order" (a derived trigger pairing, not primitive, per the vendor's own admission test) and omitted rig |
 | **QM**              | **scope** (user or room, each with its own memory, files, keychain, permissions, crons, sandbox) · posture · adapter                                                                                                                                                                |
 | **Indigo HQ**       | company · worker · command · thread · skill                                                                                                                                                                                                                                         |
 | **SageOx**          | Knowledge Bubble · Ledger · Team Context · Murmur                                                                                                                                                                                                                                   |
@@ -253,7 +266,7 @@ primitives, and they should be corrected by anyone who knows better.
 
 | Cell                             | Why inferred                                                                                                                                                            |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Gas City · Individual memory `○` | No memory primitive found in the published primitive list; absence of evidence                                                                                          |
+| Gas City · Individual memory `◐` | Corrected 2026-09-03 from `○` — no Gas-City-owned memory *primitive*, but real individual memory exists one layer down: per-agent session logs and the sibling Beads product's `bd remember`/`bd prime`, surfaced through the Bead primitive rather than a Gas City feature of its own. `content/gas-city.md` §B row 5a |
 | QM · Secrets `◐`                 | Keychain view is part of the scope bundle; brokering behaviour not documented                                                                                           |
 | SageOx · Individual memory `◐`   | Ledger is per-repo and cross-machine; whether a personal scope exists is not stated                                                                                     |
 | Indigo · Evidence `○`            | No telemetry or event stream documented; the PM analysis notes no audit trail                                                                                           |

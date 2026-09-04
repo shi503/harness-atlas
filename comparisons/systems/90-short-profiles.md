@@ -27,6 +27,7 @@ These run the agent loop. LoomWarp installs *into* one of these; it is not one.
 |---|---|---|---|
 | **Claude Code** | Anthropic | Full pointer at [`claude-code.md`](./claude-code.md) | `[V]` |
 | **Codex CLI** | OpenAI | **Torn down 2026-09-03** — [`content/codex.md`](../../content/codex.md). A runtime split into an engine and a wire protocol (the app-server); Hermes and OpenClaw both embed it. Contestable 8-primitive set, mid-migration on two fronts (`sandbox_mode`/`[permissions]`; `codex mcp-server` deprecated for the app-server) | `[V]` |
+| **Gas City** | Gas Town Hall (`gastownhall`) | **Torn down 2026-09-03** — [`content/gas-city.md`](../../content/gas-city.md), replacing this section's prior entry (`comparisons/systems/gas-city.md`, now `SUPERSEDED`). A gateway/host over 15+ coding-agent CLIs, six primitives (Agent, Bead, Formula, Rig, Pack, Event) gated by a documented SDK-admission test, and a documented deletion of a prior primitive. The short profile's two claims — a seven-item primitive count and a "Factory Worker Protocol" — did not survive the primary-source read: the real count is six, and no FWP was found under any name | `[V]` |
 | **goose** | Block | Local-first agent framework; combines LLMs, extensible tools, MCP-based integration. **An AAIF founding project** — governance now sits with the Linux Foundation, not Block | `[V]` |
 | **Cursor** | Anysphere | IDE-attached; team rules. Named among the top closed-source coding harnesses of 2026 | `[S]` |
 | **Antigravity** | Google | Named among the top closed harnesses of 2026 | `[S]` |

@@ -34,3 +34,17 @@ The rename re-pointed every local link *href* repo-wide and the checker passes, 
 `systems/90-short-profiles.md` still says `systems/harnesses/<name>.md` — a label already stale since
 the spin-out. Prose in un-recut material was deliberately left alone in W0; W6 owns "the grid's own
 prose describes the grid" and should fix the labels when it touches those files.
+
+---
+
+## ISSUE-004 — two claims in `comparisons/` rest on Gas City's disproven "Factory Worker Protocol"
+
+**Severity:** WARN · **Found:** 2026-09-03, W4 #2 Gas City teardown · **Assigned:** W6 matrix-backfill
+
+The Gas City profile (`content/gas-city.md`) found no "Factory Worker Protocol" / "FWP" anywhere in the
+org (`gh api search/code`, zero hits). Two places outside the Gas City column still lean on it and were
+out of the feature-lead's write scope: (1) the **Amp** and **Gemini CLI** rows in
+`comparisons/systems/90-short-profiles.md` §1 cite "Gas City FWP" as the evidence they are supported
+hosts; (2) a design-principle callout in `comparisons/02-component-matrix.md` describes a three-way
+Codex/Claude/Gemini review formula that the primary sources show is two-lane. Re-source both from the
+providers Gas City actually documents, or downgrade the marks.

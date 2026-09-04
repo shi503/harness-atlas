@@ -117,47 +117,60 @@ different axis and are not merged, per the genre rule in
 > **Codex column added 2026-09-03**, per [`W4-teardowns.md`](../fractal/workstreams/W4-teardowns.md)
 > (Codex first in the queue: *"two systems in the corpus embed its app-server as a runtime"*). Every
 > cell traces to [`content/codex.md`](../content/codex.md) §B; no existing column was re-scored.
+>
+> **Gas City column added 2026-09-03** (W4 #2). Every cell traces to
+> [`content/gas-city.md`](../content/gas-city.md) §B; no existing column was re-scored. Unlike the six
+> columns beside it, Gas City is not itself a **runtime** — its altitude is gateway/host (§4.1) — so
+> several rows read as its *analogue* rather than a like-for-like instance: 3a Control is
+> dependency-gated dispatch, not an interactive approval gate; 2c Enforcement is trust-boundary policy
+> over operator-configured commands, not a sandbox around an agent's own tool calls. Marked ◐ rather
+> than ● where the row's chat-harness framing does not transfer cleanly; see `content/gas-city.md` §B's
+> per-row notes and the Skill findings in its HANDOFF.
 
-| | Component | v1 horizon | Hermes | Pi | OpenClaw | OpenCode | Grok | Codex | What the row shows |
-|---|---|---|---|---|---|---|---|---|---|
-| **0a** | Substrate | `shipped` | ● | ● | ● | ● | ● | ● | Model-pluggable in all four; Hermes and OpenClaw add per-task **auxiliary/utility model slots**; OpenClaw adds a **runtime** slot beside the model |
-| **1a** | Environment | `bet` | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | Hermes `terminal.backend` (7 options) and OpenClaw `tools.exec.host` declare *where shell runs*; OpenCode `references` declares *which other repos exist*. None declares the inventory of systems a team reaches. Adjacent, not against |
-| **2a** | Adapters & Middleware | `shipped` | ● | ● | ● | ● | ● | ● | MCP client in 3 of 4 — Pi refuses it. ACP in 3 of 4 (see §3.4) |
-| **2b** | Hooks | `shipped` | ● | ● | ● | ● | ● | ● | ~45 · ~40 · ~45 · 21 named events. **All four are code hooks** (Python/TS); only Hermes also takes shell hooks — and its wire shape is *"Claude Code compatible"* (exit 2 blocks) |
-| **2c** | Enforcement | `shipped` | ● | ◐ | ● | ● | ● | ● | Pi's ◐ is by declaration: *"Run in a container, or build your own confirmation flow."* The other three ship deny lists that survive their own yolo/auto modes |
-| **3a** | Control | `shipped` | ● | ◐ | ◐ | ● | ● | ● | Hermes `/goal` with `gate add <command>` is a **completion contract with deterministic gates**; OpenCode `plan` vs `build` agents; Pi ships plan mode as an example only |
-| **3b** | Routing | `emerging` | ● | ○ | ● | ◐ | ◐ | ◐ | Two new named objects for *message → agent*: Hermes `gateway.profile_routes`, OpenClaw `bindings[]` with a published specificity ladder. Still two words |
-| **3c** | Composition | `emerging` | ● | ◐ | ● | ● | ● | ● | Two shapes now visible: **agent-as-file** (OpenCode `agents/*.md` with `mode:`; Pi's example; Claude Code) vs **agent-as-directory** (Hermes profile; OpenClaw workspace + `agentDir`). The disagreement is structural, not lexical |
-| **3d** | Configuration | `shipped` | ● | ● | ● | ● | ● | ● | `AGENTS.md` and `CLAUDE.md` read by 4 of 4. **Managed scope** in 3 of 4 — Hermes `/etc/hermes/`, OpenCode managed dirs + MDM, OpenClaw roles — and OpenCode publishes a nine-rung precedence ladder |
-| **3e** | Standards | `bet` | ○ | ○ | ○ | ○ | ○ | ○ | Holds. Nearest: Hermes bundles practice skills (`test-driven-development`, `systematic-debugging`); OpenCode ships formatters and LSP, which are checks, not a bar |
-| **4a** | Capability | `shipped` | ● | ● | ● | ● | ● | ● | `SKILL.md` / Agent Skills in 4 of 4; `.agents/skills/` and `.claude/skills/` read by 4 of 4. Pi's **pi package** is the single container for four resource types; OpenClaw's **ClawHub** is a registry with a lockfile and publish gate |
-| **4b** | Capability Permissions | `emerging` | ● | ◐ | ● | ● | ● | ● | Five peers now, four words: `toolset` · `tool policy` · `permission` · QM keychain · Indigo profile. Hermes adds a rule worth stealing: *"parent-broadening toolsets get rejected"* for subagents |
-| **5a** | Individual Memory | `emerging` | ● | ○ | ● | ○ | ● | ● | **The genre split** (§3.1). Hermes and OpenClaw share `MEMORY.md` + `USER.md` + `SOUL.md` — **by lineage, not independent discovery**: Hermes ships `claw migrate` |
-| **5b** | Team Memory | `emerging` | ○ | ○ | ◐ | ○ | ○ | ○ | OpenClaw: shared-workspace dreaming and a memory-provenance table; no person→team promotion with review. Hermes kanban is shared *work state*, not memory |
-| **5c** | Knowledge | `shipped` | ◐ | ○ | ● | ○ | ◐ | ◐ | OpenClaw `memory-wiki`: *"structured claims with evidence, provenance"* — see §3.6 for what that does to the provenance claim |
-| **6a** | Product | `bet` | ○ | ○ | ○ | ○ | ○ | ○ | Holds, 4 × ○. Goals and workboards are not a deliverable |
-| **6b** | Infrastructure | `emerging` | ● | ◐ | ● | ◐ | ● | ● | Hermes `terminal.backend`; OpenClaw `sandbox` + `node` + `cloud worker` + `fleet`. Pi and OpenCode delegate outward (Gondolin/Docker/OpenShell; an experimental workspace adapter) |
-| **6c** | Estate | `emerging` | ◐ | ○ | ◐ | ◐ | ○ | ◐ | Worktrees in three; OpenCode `references` is the nearest thing to a declared estate. No cross-repo impact analysis anywhere |
-| **6d** | Delivery | `bet` | ◐ | ○ | ○ | ◐ | ◐ | ◐ | OpenCode's GitHub Action / GitLab component opens PRs from a comment — the strongest ◐; nothing reaches production |
-| **7a** | Workflow Tasks | `emerging` | ● | ○ | ◐ | ◐ | ◐ | ◐ | Hermes **kanban** *"owns lifecycle truth"*. OpenClaw has six task-shaped objects (§3.3) — accommodation, not a primitive. Pi refuses: *"No built-in to-dos. They confuse models."* |
-| **8a** | Evals | `shipped` | ◐ | ◐ | ◐ | ○ | ◐ | ◐ | All dev-facing. Pi's `vitest-evals` harness computes **baseline/candidate pass-rate lift**; OpenClaw's `skill_proposal_evaluate` returns `pass / revise / block` |
-| **8b** | Evidence | `shipped` | ● | ● | ● | ◐ | ● | ● | Pi's session JSONL tree is a receipt with `usage`/`cost` per entry and exports `PI_SESSION_ID` to tools. **Two ledgers are content-free by construction** (§3.6) |
-| **8c** | Observability | `shipped` | ● | ◐ | ● | ◐ | ● | ● | OTLP in three; OpenClaw's spans carry `gen_ai.client.token.usage`; OpenCode's exporter is in source and not in docs |
-| **8d** | Efficiency | `emerging` | ● | ◐ | ● | ◐ | ● | ◐ | Compaction and cost display in all four. **Zero hard spend budgets in four** — the cost slot [`02-harness-taxonomies.md`](./2026-08-research/02-harness-taxonomies.md) §3 found absent from every taxonomy is absent from shipped harnesses too |
-| **9a** | Learning | `emerging` | ● | ○ | ● | ○ | ● | ◐ | Genre split again. Both shippers put a **review gate on model-authored skills**: Hermes `skills.write_approval` + Curator lifecycle; OpenClaw Skill Workshop + `skill_proposal_evaluate`. Two names, one shape |
-| **9b** | Rituals | `emerging` | ◐ | ○ | ◐ | ○ | ◐ | ○ | Machine rituals only — OpenClaw's *"bootstrap ritual"*, nightly dreaming, heartbeat; Hermes's `weekly-review-planning` skill. No standup, retro or planning object |
-| **9c** | Cadence | `shipped` | ● | ○ | ● | ○ | ● | ○ | Hermes cron with an `executions.db` attempt ledger; OpenClaw automations + heartbeat. Coding harnesses have none |
-| **9d** | Anti-fragile Lifecycle | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | Recovery everywhere — restart resume, failover, doctor — and no closed improvement loop. Holds |
-| **9e** | Raise the Floor | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | The row asks how a second way gets retired. OpenClaw's VISION: *"We do not keep long-lived aliases or compatibility branches"*, enforced by `doctor --fix` migrations — a vendor-side ratchet. Nearest shipped statement; still not the team's |
-| **9f** | Diagnose the Bottleneck | `bet` | ◐ | ○ | ◐ | ○ | ◐ | ○ | OpenClaw ships a **maturity scorecard for itself** — 50 surfaces, 280 capabilities, bands Experimental → Stable, *"evidence-led"* from QA IDs. Same shape as the Grid, pointed at the product not the team (§3.7) |
-| **10a** | Roster | `emerging` | ● | ○ | ● | ◐ | ● | ◐ | Hermes Bot Mode: *"a roster of named Bots"* with `@name-device` handles; OpenClaw `agents.entries.*.identity` + `IDENTITY.md`. Two more peers, two more words |
-| **10b** | Org | `claimed` | ◐ | ○ | ● | ◐ | ● | ◐ | **OpenClaw ships it**: session creator (immutable) / owner (*"in the style of a GitHub issue assignee"*) / participants, roles `view / suggest / write`, operator scopes. First shipped *who answers* object in the corpus (§3.5) |
-| **11a** | Surfaces | `emerging` | ● | ◐ | ● | ● | ● | ● | 35 and ~30 channel docs in the assistants; TUI/desktop/web/IDE/ACP/CI/Slack in OpenCode; Pi is a terminal with a sibling chat bridge |
+| | Component | v1 horizon | Hermes | Pi | OpenClaw | OpenCode | Grok | Codex | Gas City | What the row shows |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **0a** | Substrate | `shipped` | ● | ● | ● | ● | ● | ● | ● | Model-pluggable in all four; Hermes and OpenClaw add per-task **auxiliary/utility model slots**; OpenClaw adds a **runtime** slot beside the model |
+| **1a** | Environment | `bet` | ◐ | ○ | ◐ | ◐ | ◐ | ◐ | ◐ | Hermes `terminal.backend` (7 options) and OpenClaw `tools.exec.host` declare *where shell runs*; OpenCode `references` declares *which other repos exist*. None declares the inventory of systems a team reaches. Adjacent, not against |
+| **2a** | Adapters & Middleware | `shipped` | ● | ● | ● | ● | ● | ● | ● | MCP client in 3 of 4 — Pi refuses it. ACP in 3 of 4 (see §3.4) |
+| **2b** | Hooks | `shipped` | ● | ● | ● | ● | ● | ● | ● | ~45 · ~40 · ~45 · 21 named events. **All four are code hooks** (Python/TS); only Hermes also takes shell hooks — and its wire shape is *"Claude Code compatible"* (exit 2 blocks) |
+| **2c** | Enforcement | `shipped` | ● | ◐ | ● | ● | ● | ● | ◐ | Pi's ◐ is by declaration: *"Run in a container, or build your own confirmation flow."* The other three ship deny lists that survive their own yolo/auto modes |
+| **3a** | Control | `shipped` | ● | ◐ | ◐ | ● | ● | ● | ◐ | Hermes `/goal` with `gate add <command>` is a **completion contract with deterministic gates**; OpenCode `plan` vs `build` agents; Pi ships plan mode as an example only |
+| **3b** | Routing | `emerging` | ● | ○ | ● | ◐ | ◐ | ◐ | ● | Two new named objects for *message → agent*: Hermes `gateway.profile_routes`, OpenClaw `bindings[]` with a published specificity ladder. Still two words |
+| **3c** | Composition | `emerging` | ● | ◐ | ● | ● | ● | ● | ◐ | Two shapes now visible: **agent-as-file** (OpenCode `agents/*.md` with `mode:`; Pi's example; Claude Code) vs **agent-as-directory** (Hermes profile; OpenClaw workspace + `agentDir`). The disagreement is structural, not lexical |
+| **3d** | Configuration | `shipped` | ● | ● | ● | ● | ● | ● | ● | `AGENTS.md` and `CLAUDE.md` read by 4 of 4. **Managed scope** in 3 of 4 — Hermes `/etc/hermes/`, OpenCode managed dirs + MDM, OpenClaw roles — and OpenCode publishes a nine-rung precedence ladder |
+| **3e** | Standards | `bet` | ○ | ○ | ○ | ○ | ○ | ○ | ○ | Holds. Nearest: Hermes bundles practice skills (`test-driven-development`, `systematic-debugging`); OpenCode ships formatters and LSP, which are checks, not a bar |
+| **4a** | Capability | `shipped` | ● | ● | ● | ● | ● | ● | ● | `SKILL.md` / Agent Skills in 4 of 4; `.agents/skills/` and `.claude/skills/` read by 4 of 4. Pi's **pi package** is the single container for four resource types; OpenClaw's **ClawHub** is a registry with a lockfile and publish gate |
+| **4b** | Capability Permissions | `emerging` | ● | ◐ | ● | ● | ● | ● | ◐ | Five peers now, four words: `toolset` · `tool policy` · `permission` · QM keychain · Indigo profile. Hermes adds a rule worth stealing: *"parent-broadening toolsets get rejected"* for subagents |
+| **5a** | Individual Memory | `emerging` | ● | ○ | ● | ○ | ● | ● | ◐ | **The genre split** (§3.1). Hermes and OpenClaw share `MEMORY.md` + `USER.md` + `SOUL.md` — **by lineage, not independent discovery**: Hermes ships `claw migrate` |
+| **5b** | Team Memory | `emerging` | ○ | ○ | ◐ | ○ | ○ | ○ | ◐ | OpenClaw: shared-workspace dreaming and a memory-provenance table; no person→team promotion with review. Hermes kanban is shared *work state*, not memory |
+| **5c** | Knowledge | `shipped` | ◐ | ○ | ● | ○ | ◐ | ◐ | ○ | OpenClaw `memory-wiki`: *"structured claims with evidence, provenance"* — see §3.6 for what that does to the provenance claim |
+| **6a** | Product | `bet` | ○ | ○ | ○ | ○ | ○ | ○ | ○ | Holds, 4 × ○. Goals and workboards are not a deliverable |
+| **6b** | Infrastructure | `emerging` | ● | ◐ | ● | ◐ | ● | ● | ● | Hermes `terminal.backend`; OpenClaw `sandbox` + `node` + `cloud worker` + `fleet`. Pi and OpenCode delegate outward (Gondolin/Docker/OpenShell; an experimental workspace adapter) |
+| **6c** | Estate | `emerging` | ◐ | ○ | ◐ | ◐ | ○ | ◐ | ◐ | Worktrees in three; OpenCode `references` is the nearest thing to a declared estate. No cross-repo impact analysis anywhere |
+| **6d** | Delivery | `bet` | ◐ | ○ | ○ | ◐ | ◐ | ◐ | ◐ | OpenCode's GitHub Action / GitLab component opens PRs from a comment — the strongest ◐; nothing reaches production |
+| **7a** | Workflow Tasks | `emerging` | ● | ○ | ◐ | ◐ | ◐ | ◐ | ● | Hermes **kanban** *"owns lifecycle truth"*. OpenClaw has six task-shaped objects (§3.3) — accommodation, not a primitive. Pi refuses: *"No built-in to-dos. They confuse models."* |
+| **8a** | Evals | `shipped` | ◐ | ◐ | ◐ | ○ | ◐ | ◐ | ○ | All dev-facing. Pi's `vitest-evals` harness computes **baseline/candidate pass-rate lift**; OpenClaw's `skill_proposal_evaluate` returns `pass / revise / block` |
+| **8b** | Evidence | `shipped` | ● | ● | ● | ◐ | ● | ● | ● | Pi's session JSONL tree is a receipt with `usage`/`cost` per entry and exports `PI_SESSION_ID` to tools. **Two ledgers are content-free by construction** (§3.6) |
+| **8c** | Observability | `shipped` | ● | ◐ | ● | ◐ | ● | ● | ● | OTLP in three; OpenClaw's spans carry `gen_ai.client.token.usage`; OpenCode's exporter is in source and not in docs |
+| **8d** | Efficiency | `emerging` | ● | ◐ | ● | ◐ | ● | ◐ | ◐ | Compaction and cost display in all four. **Zero hard spend budgets in four** — the cost slot [`02-harness-taxonomies.md`](./2026-08-research/02-harness-taxonomies.md) §3 found absent from every taxonomy is absent from shipped harnesses too |
+| **9a** | Learning | `emerging` | ● | ○ | ● | ○ | ● | ◐ | ○ | Genre split again. Both shippers put a **review gate on model-authored skills**: Hermes `skills.write_approval` + Curator lifecycle; OpenClaw Skill Workshop + `skill_proposal_evaluate`. Two names, one shape |
+| **9b** | Rituals | `emerging` | ◐ | ○ | ◐ | ○ | ◐ | ○ | ○ | Machine rituals only — OpenClaw's *"bootstrap ritual"*, nightly dreaming, heartbeat; Hermes's `weekly-review-planning` skill. No standup, retro or planning object |
+| **9c** | Cadence | `shipped` | ● | ○ | ● | ○ | ● | ○ | ● | Hermes cron with an `executions.db` attempt ledger; OpenClaw automations + heartbeat. Coding harnesses have none |
+| **9d** | Anti-fragile Lifecycle | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | Recovery everywhere — restart resume, failover, doctor — and no closed improvement loop. Holds |
+| **9e** | Raise the Floor | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | The row asks how a second way gets retired. OpenClaw's VISION: *"We do not keep long-lived aliases or compatibility branches"*, enforced by `doctor --fix` migrations — a vendor-side ratchet. Nearest shipped statement; still not the team's |
+| **9f** | Diagnose the Bottleneck | `bet` | ◐ | ○ | ◐ | ○ | ◐ | ○ | ◐ | OpenClaw ships a **maturity scorecard for itself** — 50 surfaces, 280 capabilities, bands Experimental → Stable, *"evidence-led"* from QA IDs. Same shape as the Grid, pointed at the product not the team (§3.7) |
+| **10a** | Roster | `emerging` | ● | ○ | ● | ◐ | ● | ◐ | ● | Hermes Bot Mode: *"a roster of named Bots"* with `@name-device` handles; OpenClaw `agents.entries.*.identity` + `IDENTITY.md`. Two more peers, two more words |
+| **10b** | Org | `claimed` | ◐ | ○ | ● | ◐ | ● | ◐ | ◐ | **OpenClaw ships it**: session creator (immutable) / owner (*"in the style of a GitHub issue assignee"*) / participants, roles `view / suggest / write`, operator scopes. First shipped *who answers* object in the corpus (§3.5) |
+| **11a** | Surfaces | `emerging` | ● | ◐ | ● | ● | ● | ● | ● | 35 and ~30 channel docs in the assistants; TUI/desktop/web/IDE/ACP/CI/Slack in OpenCode; Pi is a terminal with a sibling chat bridge |
 
 **Column totals** (● / ◐ / ○): Hermes 20 / 10 / 3 · Pi 6 / 11 / 16 · OpenClaw 20 / 10 / 3 ·
 OpenCode 10 / 13 / 10 · Grok 19 / 10 / 4. **Codex 14 / 13 / 6** — added 2026-09-03, not part of the
 2026-09-02 read the rest of this total sentence describes; full sourcing at
-[`content/codex.md`](../content/codex.md) §B. The totals are not a ranking — the next section is about
+[`content/codex.md`](../content/codex.md) §B. **Gas City 13 / 14 / 6** — added 2026-09-03 (W4 #2);
+full sourcing at [`content/gas-city.md`](../content/gas-city.md) §B. Its total sits in the same range
+as the six runtimes beside it despite the altitude difference — a process layer/host that drives
+someone else's loop still fills most of the same rows, just with an analogue rather than an instance
+in several of them (see the note above the table). The totals are not a ranking — the next section is about
 why the shapes differ. The Grok column reads high because it is a pair: Build supplies the loop-side
 `●`s (2b, 2c, 3a, 3d, 4b, 8b, 8c) and Bot supplies the team-side ones (5a, 9a, 9c, 10a); neither
 half alone would score the way the pair does, which is the genre split of §3.1 inside one vendor.

@@ -30,9 +30,10 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 | OpenCode | runtime | [`content/opencode.md`](content/opencode.md) | template |
 | Grok Bot / Grok Build | hosted product / runtime | [`content/grok.md`](content/grok.md) | template |
 | Codex CLI | runtime | [`content/codex.md`](content/codex.md) | template (W4 #1, 2026-09-03) |
+| Gas City | gateway / host, install-into-a-loop nested | [`content/gas-city.md`](content/gas-city.md) | template (W4 #2, 2026-09-03); short profile superseded |
 | Claude Code | runtime | [`content/claude-code/`](content/claude-code/00-README.md) | pre-template deep read, 13 docs; template profile in the W2 sanity run |
-| Gas City · HumanLayer · Deep Agents · Indigo HQ · QM · SageOx · gstack/gbrain | process layers | [`comparisons/systems/`](comparisons/systems/) | short teardowns, un-recut |
-| Gas City → LoomWarp → FRACTAL → Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | [`fractal/workstreams/W4-teardowns.md`](fractal/workstreams/W4-teardowns.md) | queued, in that order |
+| HumanLayer · Deep Agents · Indigo HQ · QM · SageOx · gstack/gbrain | process layers | [`comparisons/systems/`](comparisons/systems/) | short teardowns, un-recut |
+| LoomWarp → FRACTAL → Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | [`fractal/workstreams/W4-teardowns.md`](fractal/workstreams/W4-teardowns.md) | queued, in that order |
 
 ## 2. The range
 
