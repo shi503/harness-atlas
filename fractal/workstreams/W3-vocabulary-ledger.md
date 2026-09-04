@@ -15,7 +15,7 @@ no way to say so without the ledger. This is load-bearing, not tidying.
 
 `vocabulary.md` filled: `term → concept (vendor's words, cited) → who says it → our component(s) →
 instances`. Every seeded row completed; every term used as a primitive in any file under
-`harnesses/` present.
+`content/` (renamed from `harnesses/` in W0, 2026-09-03) present.
 
 ## Acceptance criteria
 

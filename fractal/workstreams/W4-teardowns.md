@@ -9,17 +9,28 @@
 
 Tier 3 populated by the skill, comparably, so Tier 2 has cells to link into.
 
+> **Amended 2026-09-03 by W0.** Output directory is `content/` (was `harnesses/`). The queue changed:
+> **Gas City replaces goose** (KD: *"never heard of it"*), and **FRACTAL is added** after LoomWarp as a
+> second KD-built peer, so the README highlight reel has a Template-A page to land on. Each harness
+> is dispatched to one sub-agent; the architect stays in the planning session. The skill now carries
+> a diagram rule (step 6) — obey it per harness.
+
 ## Deliverable
 
-One `harnesses/<name>.md` per target, produced by `skills/harness-teardown/SKILL.md`, plus its
-three downstream obligations. Order:
+One `content/<name>.md` per target, produced by `skills/harness-teardown/SKILL.md`, plus its
+four downstream obligations. Order:
 
 1. **Codex** — two systems in the corpus embed its app-server as a runtime.
-2. **goose** — the AAIF-hosted harness.
+2. **Gas City** — Yegge's software factory; documentation-dense; short profile already at
+   `comparisons/systems/gas-city.md` (replaces goose in this slot).
 3. **LoomWarp** — re-authored as a **peer**, same template, no special status. The LoomWarp-owned
    `systems/loomwarp.md` in the source repo stays as the product's self-assessment. **Its
    primitive-set row stays blank until someone earns it** — that blank is a finding.
-4. The named-but-untorn: Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline.
+4. **FRACTAL** — KD-built, run un-routed in this very repo; the same peer rule as LoomWarp. The
+   delta doc at `comparisons/systems/kd-built-frameworks/03-fractal-as-iterated.md` is a source,
+   not the profile.
+5. The named-but-untorn: Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline.
+   goose drops off the priority list; it may rejoin here if someone makes the case.
 
 ## Acceptance criteria
 

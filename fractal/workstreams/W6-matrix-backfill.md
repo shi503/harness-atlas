@@ -24,8 +24,11 @@ Every teardown in the corpus has its column, and the grid's own prose describes 
 
 ## Acceptance criteria
 
-- **AC-1** Every file under `harnesses/` and every Template-A file under `comparisons/systems/`
-  has a column in both grids. Zero exceptions, or each named with a reason.
+- **AC-1** Every file under `content/` (renamed from `harnesses/` in W0) and every Template-A file
+  under `comparisons/systems/` has a column in both grids. Zero exceptions, or each named with a
+  reason. Draft files (`content/<name>-draft.md`, the W2 sanity outputs) are excluded until promoted.
+- **AC-4** ISSUE-003 closed: the `systems/harnesses/…` link labels in `comparisons/` read
+  `content/…`.
 - **AC-2** Every new `●` cites a primitive by name and file; every `○` names the pages checked.
 - **AC-3** The count prose matches `wc` of the table.
 
