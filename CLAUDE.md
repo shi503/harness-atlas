@@ -42,3 +42,20 @@ PRD says `Mode: interactive`), and closed by a `HANDOFF.md` beside it. Defects i
 
 Skills live at repo-root `skills/`, never `.claude/skills/`. A distributable skill carries its
 operational checklist inline and cites canonical guides by name, never by path.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specs live as FRACTAL workstream PRDs under `fractal/workstreams/`, not a separate ticket
+store. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default five-role vocabulary (needs-triage, needs-info, ready-for-agent, ready-for-human, wontfix),
+applied as a `Status:` line in a PRD's header. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` + `docs/adr/` at the repo root, created lazily. See
+`docs/agents/domain.md`.
