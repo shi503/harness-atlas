@@ -86,18 +86,23 @@ which is itself a synthesis, not a vendor diagram. Vendor diagrams, redrawn, liv
 Every page under [`content/`](content/) has the same shape, produced by
 [`skills/harness-teardown/SKILL.md`](skills/harness-teardown/SKILL.md):
 
-1. **Three paragraphs at the top** — *why this file exists · in one screen · what it does not claim.*
-   Read only these and you have the thesis.
-2. **Identity, and three tests.** Does state persist across sessions, and where? Does it serve more
-   than one person? Does it bind mechanically, or only by prose? Then the loop question: does it run
-   the loop itself, host other loops, or install into one — which fixes its **altitude**.
-3. **Thirty-three rows**, one per component, each with a path, a source and a mark
-   (`✅` direct · `◐` relayed · `⚠️` unverified). Absence is written *"Nothing here — checked README,
-   docs index, settings, examples"*. **Never inferred.**
+1. **Thirty seconds.** A one-line thesis and an **at-a-glance card**: altitude, primitives, the
+   one structured output it optimises for, whether it binds mechanically, where state lives, who it
+   serves, what it refuses, and a coverage count.
+2. **The picture.** The vendor's own **system map**, redrawn, with one paragraph on how it thinks
+   about work; then one to three **workflows** transcribed from the vendor's docs — the turn,
+   delegation, the signature flow. Never invented: a harness with no vendor diagram gets a
+   clearly-labelled overlay of the atlas anatomy, or an absence line.
+3. **The matrix.** Thirty-three components under twelve layers, one mark each — `●` named
+   primitive · `◐` present, not first-class · `○` absent · `n/a` — with the primitive's name or a
+   ten-word note. Every row links to its detail.
 4. **The primitive set** — the vendor's own names and definitions, verbatim, counted. Five to seven
    is healthy; twelve-plus is accommodation failure; a published refusal list is the strongest form.
-5. **Stated limitations**, quoted without commentary; **sources**, down to the `gh api` commands run;
-   and **what could not be verified** — mandatory, never empty.
+5. **Open what you need.** Details per component (what it ships, the path, the source — `✅` direct ·
+   `↪` relayed · `⚠️` unverified), then identity and the inclusion test, stated limits quoted without
+   commentary, sources down to the `gh api` commands run, and what could not be verified — all
+   collapsed, all mandatory. Absence is written *"Nothing here — checked README, docs index,
+   settings, examples"*. **Never inferred.**
 
 ## Highlights
 

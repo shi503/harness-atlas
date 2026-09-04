@@ -73,38 +73,98 @@ function walk(dir, out = []) {
   return out;
 }
 
+/**
+ * Anchors — added 2026-09-04 for Template v2 (W8). A link may carry `#fragment`; since v2 profiles
+ * are cited per component (`content/<name>.md#2b-hooks`) and their at-a-glance card links within
+ * the page (`#5-primitives`), a fragment that names no heading is a dead end of the same kind.
+ * Slugs follow GitHub's rule: strip markdown markup from the heading text, lowercase, drop every
+ * character that is not a letter, digit, space or hyphen, turn spaces into hyphens; a repeated
+ * slug gets `-1`, `-2`… Headings inside <details> count. Still only "links resolve" — no content
+ * guard, no count, no vocabulary.
+ */
+const slugCache = new Map();
+function headingSlugs(absPath) {
+  if (slugCache.has(absPath)) return slugCache.get(absPath);
+  const seen = new Map();
+  const slugs = new Set();
+  let inFence = false;
+  for (const raw of readFileSync(absPath, "utf8").split("\n")) {
+    if (/^\s*(```|~~~)/.test(raw)) { inFence = !inFence; continue; }
+    if (inFence) continue;
+    const h = raw.match(/^#{1,6}\s+(.*?)\s*#*\s*$/);
+    if (!h) continue;
+    let text = h[1]
+      .replace(/!?\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .replace(/<[^>]+>/g, "")
+      .replace(/[`*_~]/g, "");
+    let slug = text
+      .toLowerCase()
+      .replace(/[^\p{L}\p{N}\s-]/gu, "")
+      .replace(/\s/g, "-");
+    const n = seen.get(slug) ?? 0;
+    seen.set(slug, n + 1);
+    if (n > 0) slug = `${slug}-${n}`;
+    slugs.add(slug);
+  }
+  slugCache.set(absPath, slugs);
+  return slugs;
+}
+
 const files = walk(ROOT);
 const broken = [];
+const badAnchors = [];
 const debts = new Map();
 let checked = 0;
+let anchorsChecked = 0;
 
 for (const file of files) {
   const rel = relative(REPO, file);
   const lines = readFileSync(file, "utf8").split("\n");
 
+  // A link inside a fenced code block is an example, not a promise — skip it (paths and anchors
+  // alike). The skill's page template is written in fences for exactly this reason.
+  let fenced = false;
   lines.forEach((line, i) => {
+    if (/^\s*(```|~~~)/.test(line)) { fenced = !fenced; return; }
+    if (fenced) return;
     for (const m of line.matchAll(/\[[^\]]*\]\(([^)\s]+)\)/g)) {
-      let target = m[1];
-      if (/^(https?:|mailto:|#)/.test(target)) continue;
-      target = decodeURIComponent(target.split("#")[0]);
-      if (!target) continue;
-      checked++;
+      const raw = m[1];
+      if (/^(https?:|mailto:)/.test(raw)) continue;
+      const [path, ...fragParts] = raw.split("#");
+      const fragment = fragParts.length ? decodeURIComponent(fragParts.join("#")) : null;
+      const target = decodeURIComponent(path);
 
-      const abs = resolve(dirname(file), target);
-      if (existsSync(abs)) continue;
+      const abs = target ? resolve(dirname(file), target) : file;
 
-      const reason = exemptReason(target);
-      if (reason) {
-        debts.set(target, reason);
-        continue;
+      if (target) {
+        checked++;
+        if (!existsSync(abs)) {
+          const reason = exemptReason(target);
+          if (reason) debts.set(target, reason);
+          else broken.push({ file: rel, line: i + 1, target });
+          continue;
+        }
       }
-      broken.push({ file: rel, line: i + 1, target });
+
+      if (fragment !== null && fragment !== "" && abs.endsWith(".md") && existsSync(abs)) {
+        anchorsChecked++;
+        if (!headingSlugs(abs).has(fragment.toLowerCase())) {
+          badAnchors.push({ file: rel, line: i + 1, target: `${target || "(this file)"}#${fragment}` });
+        }
+      }
     }
   });
 }
 
 console.log(`Scanned ${files.length} markdown file(s) under the repo root`);
-console.log(`Checked ${checked} local link(s).`);
+console.log(`Checked ${checked} local link(s) and ${anchorsChecked} anchor(s).`);
+
+if (badAnchors.length) {
+  console.error(`\nFAIL — ${badAnchors.length} anchor(s) name a heading that does not exist:\n`);
+  for (const b of badAnchors) console.error(`  ${b.file}:${b.line}\n    -> ${b.target}`);
+  console.error("\nA fragment is a promise of a heading. Fix the slug, or add the heading.");
+  process.exit(1);
+}
 
 if (debts.size) {
   console.log(`\nRecorded debts (${debts.size}), not failures:`);

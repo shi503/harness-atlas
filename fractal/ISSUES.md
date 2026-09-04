@@ -62,3 +62,16 @@ command, the append-only `ISSUES.md` ledger, and the four evaluation templates a
 archive discipline are genuine fork additions. The delta doc's 27/130 count is also stale (32/156 at
 `2cd56e7`). This is the self-referential hazard the skill's rule 5 now names: a same-author secondary
 source was wrong about the author's own system. Re-head the delta doc or correct §1 with a dated note.
+
+---
+
+## ISSUE-006 — Template A's `◐` (relayed source) collides with the grids' `◐` (partial coverage)
+
+**Severity:** WARN · **Found:** 2026-09-04, KD's review of the first four W4 profiles · **Assigned:** W8 template-v2
+
+Inside a profile the legend reads `✅ direct · ◐ relayed · ⚠️ unverified`; in
+`comparisons/02-component-matrix.md` and `04-harness-alignment.md` the same glyph means *present but not
+a first-class primitive*. Rule 5's `◐ (proposal)` then mixed the two in one cell. Template v2 separates
+them: coverage marks `● ◐ ○ n/a` live only in a profile's component matrix; source marks become
+`✅ ↪ ⚠️` and live only in the details and provenance sections. Existing v1 profiles carry the
+collision until restructured (W8b).

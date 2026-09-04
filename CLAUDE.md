@@ -11,7 +11,7 @@ one peer column here, scored by the same rules, with no special status.
 | 0 · the manifesto | `README.md` | The argument and the highlights, what GitHub renders first. KD's problem statement verbatim, the five-minute script, the anatomy diagram, a curated reel — never the full list |
 | 1 · the shape | `index.md` | One screen. The grid first, the maturity range second, the layers, the words. Every noun links down, including every profile. No prose walls |
 | 2 · components | `components/<id>-<name>.md` | One page per component, ~80 lines: what it is, the single best example, the comparison table with a `structured output` row, every cell linking into a Tier-3 anchor |
-| 3 · profiles | `content/<name>.md` | One page per harness, in the shape `skills/harness-teardown/SKILL.md` prescribes. Anchored per section. (Was `harnesses/` until 2026-09-03 — renamed in W0 to match the 12-factor-agents page architecture and to sidestep harness-vs-agent naming) |
+| 3 · profiles | `content/<name>.md` | One page per harness, in the shape `skills/harness-teardown/SKILL.md` prescribes (Template v2 since 2026-09-04: card → system map → workflows → `●◐○` matrix → primitives → collapsed details). Anchored per component: `content/<name>.md#<id>-<slug>`, e.g. `#2b-hooks`. A deep-read folder `content/<name>/` may sit beside the page and is linked out to, never inlined. (Was `harnesses/` until 2026-09-03 — renamed in W0 to match the 12-factor-agents page architecture) |
 
 Cross-cutting: `vocabulary.md` (term → concept → who says it → our component → instances),
 `maturity/` (the range argument and `grid.html`, the instrument), and `assets/` (`templates/` for the
@@ -33,6 +33,8 @@ Un-recut material lives under `spec/`, `comparisons/`, `craft/`. History lives u
 - **Do not borrow a word and change its referent.** The vocabulary ledger exists so two systems doing the same thing under different names stay classifiable.
 - **Archive by ruling, never by deletion.** A vocabulary retires by writing a ruling, publishing a crosswalk, and re-heading the loser.
 - **Vendor's words only** in a teardown's primitives table. Verbatim, cited, dated.
+- **Coverage marks and source marks never share a table.** `● ◐ ○ n/a` say how much of a component a system ships and live in the grids and a profile's matrix; `✅ ↪ ⚠️` say whose words a claim rests on and live in a profile's details and provenance. `◐` is never a source mark.
+- **High signal, low noise.** A profile describes its harness and nothing else — no corpus placement, no "why this file exists", no comparison to another harness. The grids compare.
 
 ## Frontmatter
 
