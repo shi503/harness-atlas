@@ -17,7 +17,7 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 
 → [`comparisons/02-component-matrix.md`](comparisons/02-component-matrix.md) — the current grid, 19 rows × 14 columns
 → [`comparisons/04-harness-alignment.md`](comparisons/04-harness-alignment.md) §2 — the 33-component view across five harnesses
-→ [`harnesses/`](harnesses/) — the teardowns the cells trace to
+→ [`harnesses/`](content/) — the teardowns the cells trace to
 
 ## 2. The range
 

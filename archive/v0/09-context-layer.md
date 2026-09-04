@@ -304,9 +304,9 @@ converts §6 from a wishlist into a test plan.
 | wrapping the tool call | `write`, `isolate` | `PreToolUse` | Every write carries scope, actor and provenance — `P-5`, `P-10`, `P-11`; the gate is outside the prompt — `P-22` |
 
 **`InstructionsLoaded` already fires.**
-[`03-hooks.md`](../../harnesses/claude-code/03-hooks.md) names it *"the load-bearing event for
+[`03-hooks.md`](../../content/claude-code/03-hooks.md) names it *"the load-bearing event for
 LoomWarp's context-provenance manifest"*, and
-[`20-consolidated-guide.md`](../../harnesses/claude-code/20-consolidated-guide.md) records the hole it
+[`20-consolidated-guide.md`](../../content/claude-code/20-consolidated-guide.md) records the hole it
 would fill: *"**No context provenance.** Nothing records which instruction files, skills, and rules were
 in the window."*
 

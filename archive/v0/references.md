@@ -133,7 +133,7 @@ Sources and the full table: [`comparisons/systems/90-short-profiles.md`](../../c
 Docs: <https://code.claude.com/docs/en/> · index at `/docs/llms.txt` · any page's raw markdown by
 appending `.md`
 
-Full analysis in [`../../references/claude-code/`](../../harnesses/claude-code) — 13 documents read
+Full analysis in [`../../references/claude-code/`](../../content/claude-code) — 13 documents read
 from the official docs on 2026-08-10, covering the extension layer through v2.1.224.
 
 The short version for v0: the extension layer is far more capable than when LoomWarp's architecture

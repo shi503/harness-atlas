@@ -31,11 +31,11 @@ These run the agent loop. LoomWarp installs *into* one of these; it is not one.
 | **Cursor** | Anysphere | IDE-attached; team rules. Named among the top closed-source coding harnesses of 2026 | `[S]` |
 | **Antigravity** | Google | Named among the top closed harnesses of 2026 | `[S]` |
 | **Kiro** | AWS | Target of gstack `--host` | `[S]` |
-| **OpenClaw** | Peter Steinberger · OpenClaw Foundation | **Torn down 2026-09-02** — [`harnesses/openclaw.md`](../../harnesses/openclaw.md). A gateway that hosts other harnesses as runtimes; the only system in the corpus to ship a session *owner* | `[V]` |
-| **Hermes** | Nous Research | **Torn down 2026-09-02** — [`harnesses/hermes.md`](../../harnesses/hermes.md). Self-improving; kanban owns *"lifecycle truth"*; imports from Claude Code, Codex and OpenClaw | `[V]` |
-| **Pi** | Mario Zechner · Earendil | **Torn down 2026-09-02** — [`harnesses/pi.md`](../../harnesses/pi.md). The runtime under QM; refuses MCP, subagents, permissions, plan mode and to-dos by design | `[V]` |
-| **OpenCode** | Anomaly | **Torn down 2026-09-02** — [`harnesses/opencode.md`](../../harnesses/opencode.md). Coding-harness control case; nine-rung config precedence ending in MDM | `[V]` |
-| **Grok Bot / Grok Build** | SpaceXAI | **Torn down 2026-09-02** — [`harnesses/grok.md`](../../harnesses/grok.md). Hosted always-on teammate (beta 2026-08-11) paired with the Apache-2.0 Rust harness; whether one runs on the other is ⚠️ unstated at source | `[V]` |
+| **OpenClaw** | Peter Steinberger · OpenClaw Foundation | **Torn down 2026-09-02** — [`harnesses/openclaw.md`](../../content/openclaw.md). A gateway that hosts other harnesses as runtimes; the only system in the corpus to ship a session *owner* | `[V]` |
+| **Hermes** | Nous Research | **Torn down 2026-09-02** — [`harnesses/hermes.md`](../../content/hermes.md). Self-improving; kanban owns *"lifecycle truth"*; imports from Claude Code, Codex and OpenClaw | `[V]` |
+| **Pi** | Mario Zechner · Earendil | **Torn down 2026-09-02** — [`harnesses/pi.md`](../../content/pi.md). The runtime under QM; refuses MCP, subagents, permissions, plan mode and to-dos by design | `[V]` |
+| **OpenCode** | Anomaly | **Torn down 2026-09-02** — [`harnesses/opencode.md`](../../content/opencode.md). Coding-harness control case; nine-rung config precedence ending in MDM | `[V]` |
+| **Grok Bot / Grok Build** | SpaceXAI | **Torn down 2026-09-02** — [`harnesses/grok.md`](../../content/grok.md). Hosted always-on teammate (beta 2026-08-11) paired with the Apache-2.0 Rust harness; whether one runs on the other is ⚠️ unstated at source | `[V]` |
 | **Amp** | Sourcegraph | Abstracted by Gas City's FWP; SageOx ships a plugin for it | `[S]` |
 | **Gemini CLI · Droid · Aider · Windsurf · Cline** | various | Appear in SageOx's support matrix and Gas City's FWP list. Not separately assessed | `[S]` |
 

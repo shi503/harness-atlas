@@ -364,7 +364,7 @@ cluster (§9).
 ## 7. Enforcement, ordered
 
 Pick the cheapest rung that actually binds. This is the LoomWarp reading of the ladder that
-[20-consolidated-guide.md](../../harnesses/claude-code/20-consolidated-guide.md) §5 documents for
+[20-consolidated-guide.md](../../content/claude-code/20-consolidated-guide.md) §5 documents for
 Claude Code specifically.
 
 
@@ -461,7 +461,7 @@ engineering alone. Re-check **2027-03-01**.
 ## 10. Where this framework stops
 
 Honest boundaries, in the same spirit as
-[20-consolidated-guide.md](../../harnesses/claude-code/20-consolidated-guide.md) §10. These are the
+[20-consolidated-guide.md](../../content/claude-code/20-consolidated-guide.md) §10. These are the
 places to attack it.
 
 - **The layer list is not the system map.** A stack of twelve boxes carries no edges. The

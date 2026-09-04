@@ -157,7 +157,7 @@ Adapted from the Indigo landscape analysis, which is the clearest published vers
 | **Full teardown** | [gstack/gbrain](./systems/gstack-gbrain.md) · [Gas City](./systems/gas-city.md) · [Indigo HQ](./systems/indigo-hq.md) · [SageOx](./systems/sageox.md) · [LoomWarp](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/loomwarp.md) | Direct peers with primary sources available |
 | **Full teardown — context providers** | [`systems/context-providers/`](./systems/context-providers) — 5 teardowns + a 25-row provider matrix | Components inside **one function** (`F3`), scored against one contract. A different axis from the columns of this corpus: those are process layers, these are what plugs into a function |
 | **Full teardown — prior art** | [generic-cerebro](./systems/kd-built-frameworks) — 9 documents + 22 ADR seeds + an enrichment plan | Not a peer: no licence, no releases, one operator. It is the system LoomWarp descends from, with primary sources fully available, and it holds mechanisms four of the notes below were already asking about |
-| **Full teardown — harnesses** (added 2026-09-02) | [`systems/harnesses/`](../harnesses) — Hermes · Pi · OpenClaw · OpenCode · Grok Bot / Grok Build, each against all 33 v1 components · synthesis at [`04-harness-alignment.md`](./04-harness-alignment.md) | Not peers — they run the loop. Read because v1's upper-layer markers need peer citations, and because two of them (OpenClaw, Hermes) **host other harnesses**, which breaks §1.3's adapter tell and §1.4's test. `04` §4.1 proposes a third altitude |
+| **Full teardown — harnesses** (added 2026-09-02) | [`systems/harnesses/`](../content) — Hermes · Pi · OpenClaw · OpenCode · Grok Bot / Grok Build, each against all 33 v1 components · synthesis at [`04-harness-alignment.md`](./04-harness-alignment.md) | Not peers — they run the loop. Read because v1's upper-layer markers need peer citations, and because two of them (OpenClaw, Hermes) **host other harnesses**, which breaks §1.3's adapter tell and §1.4's test. `04` §4.1 proposes a third altitude |
 | **By reference** | [Claude Code](./systems/claude-code.md) · [QM](./systems/qm.md) · [FRACTAL](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/fractal.md) | Deep analysis already exists in this repo; these link rather than duplicate |
 | **Short profile** | Harnesses, other "agentOS" senses, adjacent categories, the standards layer | [`systems/90-short-profiles.md`](./systems/90-short-profiles.md) |
 
@@ -340,5 +340,5 @@ This corpus has a shelf life. Two claims are contested and one source set is alr
 ---
 
 *Companion: [`../elements.md`](../archive/elements.md) — the functions and the Grid ·
-[`../claude-code/`](../harnesses/claude-code) — the harness we run on ·
+[`../claude-code/`](../content/claude-code) — the harness we run on ·
 [`../../specs/archive/v0/references.md`](../archive/v0/references.md) — the sourced catalog*

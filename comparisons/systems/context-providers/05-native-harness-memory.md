@@ -18,7 +18,7 @@ genuinely good here. It is also where the single cheapest path to the Briefing r
 steal*.
 
 > Scored against [`../../../../specs/v0/09-context-layer.md`](../../../archive/v0/09-context-layer.md) §6.
-> Deep native analysis already exists at [`../../../claude-code/`](../../../harnesses/claude-code); this reads it
+> Deep native analysis already exists at [`../../../claude-code/`](../../../content/claude-code); this reads it
 > only as an `F3` provider.
 
 ---
@@ -100,7 +100,7 @@ ownership.
 
 | | |
 |---|---|
-| **Source** | First-party documentation, analysed at [`../../../claude-code/`](../../../harnesses/claude-code) across 10+ documents |
+| **Source** | First-party documentation, analysed at [`../../../claude-code/`](../../../content/claude-code) across 10+ documents |
 | **Stage** | Shipped and in daily use; this is the most-verified provider in the folder |
 | **Scale evidence** | n/a — it is the harness |
 | **Coverage of this teardown** | **Claude Code only.** Codex, Cursor and Amp are `TBD` |
@@ -110,9 +110,9 @@ ownership.
 
 ## The steal that matters: `InstructionsLoaded` already fires
 
-[`../../../claude-code/03-hooks.md`](../../../harnesses/claude-code/03-hooks.md) names it:
+[`../../../claude-code/03-hooks.md`](../../../content/claude-code/03-hooks.md) names it:
 *"`InstructionsLoaded` is the load-bearing event for LoomWarp's context-provenance manifest."*
-[`../../../claude-code/20-consolidated-guide.md`](../../../harnesses/claude-code/20-consolidated-guide.md) names
+[`../../../claude-code/20-consolidated-guide.md`](../../../content/claude-code/20-consolidated-guide.md) names
 the hole: *"**No context provenance.** Nothing records which instruction files, skills, and rules were
 in the window."*
 
@@ -145,12 +145,12 @@ keyed by `session_id`, and join it to the run's outcome. **`GAP-27`.**
 
 ## Sources
 
-- [`../../../claude-code/03-hooks.md`](../../../harnesses/claude-code/03-hooks.md) — `InstructionsLoaded`
-- [`../../../claude-code/07-context-and-memory.md`](../../../harnesses/claude-code/07-context-and-memory.md) — the
+- [`../../../claude-code/03-hooks.md`](../../../content/claude-code/03-hooks.md) — `InstructionsLoaded`
+- [`../../../claude-code/07-context-and-memory.md`](../../../content/claude-code/07-context-and-memory.md) — the
   native scope table
-- [`../../../claude-code/09-telemetry-and-evidence.md`](../../../harnesses/claude-code/09-telemetry-and-evidence.md)
+- [`../../../claude-code/09-telemetry-and-evidence.md`](../../../content/claude-code/09-telemetry-and-evidence.md)
   — `claude_code.plugin_loaded`, correlation keys
-- [`../../../claude-code/20-consolidated-guide.md`](../../../harnesses/claude-code/20-consolidated-guide.md) — the
+- [`../../../claude-code/20-consolidated-guide.md`](../../../content/claude-code/20-consolidated-guide.md) — the
   no-context-provenance finding
 - [`../../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md)
   — `ContextProvenance` as a priority

@@ -161,7 +161,7 @@ found a naming problem worth stating plainly.
 > ⚠️ **Anthropic publishes no "surfaces" or "layers" framework.** It publishes named *techniques* and
 > one named loop. Where our documents say *surfaces*, that word is **ours** and should be introduced
 > as ours — the nine "extension surfaces" in
-> [`../../references/claude-code/01-extension-surfaces.md`](../../harnesses/claude-code/01-extension-surfaces.md)
+> [`../../references/claude-code/01-extension-surfaces.md`](../../content/claude-code/01-extension-surfaces.md)
 > are our organising of Anthropic's docs, not Anthropic's own frame.
 
 | Structure | Source | Items |

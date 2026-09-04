@@ -10,7 +10,7 @@ owner: KD
 # Claude Code — Anthropic
 
 > **This is a pointer, not a teardown.** The full analysis is 13 documents in
-> [`../../claude-code/`](../../harnesses/claude-code), read from the official docs on 2026-08-10 and covering
+> [`../../claude-code/`](../../content/claude-code), read from the official docs on 2026-08-10 and covering
 > the extension layer through v2.1.224. That work is not duplicated here.
 
 **Category.** A **harness** — the only entry in this corpus that is one. Everything else in
@@ -72,6 +72,6 @@ QM makes the same move about its command policy. Both are the honest register th
 ## Sources
 
 Docs: <https://code.claude.com/docs/en/> · index at `/docs/llms.txt` · any page's raw markdown by
-appending `.md`. Full reading: [`../../claude-code/`](../../harnesses/claude-code) (13 documents, 2026-08-10)
+appending `.md`. Full reading: [`../../claude-code/`](../../content/claude-code) (13 documents, 2026-08-10)
 and the function-by-function gap analysis at
 [`../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md).
