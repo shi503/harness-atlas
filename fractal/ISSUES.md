@@ -48,3 +48,17 @@ out of the feature-lead's write scope: (1) the **Amp** and **Gemini CLI** rows i
 hosts; (2) a design-principle callout in `comparisons/02-component-matrix.md` describes a three-way
 Codex/Claude/Gemini review formula that the primary sources show is two-lane. Re-source both from the
 providers Gas City actually documents, or downgrade the marks.
+
+---
+
+## ISSUE-005 — `03-fractal-as-iterated.md` claims three fork additions that already shipped upstream
+
+**Severity:** WARN · **Found:** 2026-09-03, W4 #4 FRACTAL teardown · **Assigned:** none yet — KD to rule (it is a KD-authored doc)
+
+`comparisons/systems/kd-built-frameworks/03-fractal-as-iterated.md` §1 lists `pulse` as a router
+command, the append-only `ISSUES.md` ledger, and the four evaluation templates as additions the
+`generic-cerebro` fork made. `content/fractal.md` re-checked upstream at the vendored commit
+`6398f6db` and found all three already there; only dual blueprint-schema normalization and the
+archive discipline are genuine fork additions. The delta doc's 27/130 count is also stale (32/156 at
+`2cd56e7`). This is the self-referential hazard the skill's rule 5 now names: a same-author secondary
+source was wrong about the author's own system. Re-head the delta doc or correct §1 with a dated note.

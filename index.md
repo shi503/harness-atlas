@@ -32,9 +32,10 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 | Codex CLI | runtime | [`content/codex.md`](content/codex.md) | template (W4 #1, 2026-09-03) |
 | Gas City | gateway / host, install-into-a-loop nested | [`content/gas-city.md`](content/gas-city.md) | template (W4 #2, 2026-09-03); short profile superseded |
 | LoomWarp | process layer | [`content/loomwarp.md`](content/loomwarp.md) | template (W4 #3, 2026-09-03); peer, primitive set 0 named |
+| FRACTAL (upstream · generic-cerebro fork · this repo) | process layer | [`content/fractal.md`](content/fractal.md) | template (W4 #4, 2026-09-03); peer, three instances, five named artifacts never stated as a set |
 | Claude Code | runtime | [`content/claude-code/`](content/claude-code/00-README.md) | pre-template deep read, 13 docs; template profile in the W2 sanity run |
 | HumanLayer · Deep Agents · Indigo HQ · QM · SageOx · gstack/gbrain | process layers | [`comparisons/systems/`](comparisons/systems/) | short teardowns, un-recut |
-| FRACTAL → Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | [`fractal/workstreams/W4-teardowns.md`](fractal/workstreams/W4-teardowns.md) | queued, in that order |
+| Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | [`fractal/workstreams/W4-teardowns.md`](fractal/workstreams/W4-teardowns.md) | queued, in that order |
 
 ## 2. The range
 

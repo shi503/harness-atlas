@@ -1,0 +1,25 @@
+%% Redrawn in house notation from upstream FRACTAL's own README.md "## Architecture" diagram
+%% (shi503/fractal-agent-system, public, MIT — pinned at the LoomWarp-vendored commit
+%% 6398f6db059598e381336601b21609928cf24034, 2026-04-20; re-checked at HEAD 60393054, 2026-09-03 —
+%% the diagram is byte-identical between the two reads). Source used a `graph TB` with two
+%% loosely-columned flows (delegation down, solid arrows; validation up, dotted arrows) inside one
+%% graph; redrawn here as `flowchart TD` with the same two arrow styles kept distinct, per this
+%% atlas's house notation. Accessed 2026-09-03. See ../../../content/fractal.md §A.
+flowchart TD
+  User["User<br/>(Human)"] -->|"intent interview"| Strategist["Tier 0: Strategist"]
+  Strategist -->|"STRATEGIST-*.md"| Architect["Tier 1: Architect"]
+  Architect -->|"create PRDs, add to BLUEPRINT"| BP["BLUEPRINT.yaml + PRDs"]
+  BP --> Router["router.py<br/>(deterministic, no LLM)"]
+  Router -->|"next: ready workstreams"| FL["Tier 2: Feature Lead(s)"]
+  FL -->|"atomic tasks"| SA["Tier 3: Sub-Agents"]
+
+  SA -.->|"report back"| FL
+  FL -.->|"HANDOFF.md + build evidence"| Gate["Build / HANDOFF gate"]
+  Gate <-.->|"router.py update COMPLETE"| Router
+  Router <-.->|"status / next"| Architect
+  Architect <-.->|"Layer 1: lint/build/tsc"| Eval["Eval gate"]
+  Architect <-.->|"Layer 2: LLM judgment"| Eval
+  Eval <-.->|"accept"| Router
+  Eval <-.->|"reject (max 2x)"| FL
+  Eval <-.->|"escalate"| User
+  Architect <-.->|"escalate"| User

@@ -85,15 +85,27 @@ listed in §4.
 > unbuilt "Briefing" the framework names separately) but not absent. Every other LoomWarp cell in the
 > grid below was checked against `content/loomwarp.md` §B and left unchanged — including `Standards
 > tier` (●, confirmed) and `Agent definitions` (●, confirmed: `.claude/agents/*.md`).
+>
+> **FRACTAL column re-checked 2026-09-03**, against [`content/fractal.md`](../content/fractal.md)
+> (W4 #4), cell by cell against the pinned vendored commit (`6398f6db`), not against LoomWarp's own
+> federated build on top of it. Two cells were wrong: **Harness adapter** `○→◐` — `SETUP-CURSOR.md`
+> documents translating Claude Code agent files into Cursor rules, thin and "community-supported" but
+> a real, named second-harness path, the same shape as Hermes's `◐ᴴ`; **Skills** `◐→●` — seven
+> first-class `SKILL.md` files, installed once by the README's own copy step with no ongoing sync
+> script and none of LoomWarp's `cp -r` removal defect, the same standing every other `●` in this row
+> earns. Every other FRACTAL cell was checked against `content/fractal.md` §B and left unchanged,
+> including **Standards tier** (○, confirmed absent at the pinned commit — `git ls-tree 6398f6db --
+> standards` is empty; a `standards/` directory now exists at upstream's current HEAD, outside this
+> pinned commit's scope, flagged in the profile's §F rather than changing this cell).
 
 
 | Component                     | Claude Code | Hermes | Pi  | OpenClaw | OpenCode | Grok Bot / Build | Codex | gstack / gbrain | Gas City | QM  | Indigo HQ | SageOx | FRACTAL | generic-cerebro | LoomWarp |
 | ----------------------------- | ----------- | ------ | --- | -------- | -------- | ---------------- | ----- | ---------------- | -------- | --- | --------- | ------ | ------- | --------------- | -------- |
-| **Harness adapter**           | n/a         | ◐ᴴ     | n/a | ●ᴴ       | n/a      | n/a              | n/a   | ●               | ●        | ●   | ●         | ●      | ○       | ○               | ○        |
+| **Harness adapter**           | n/a         | ◐ᴴ     | n/a | ●ᴴ       | n/a      | n/a              | n/a   | ●               | ●        | ●   | ●         | ●      | ◐       | ○               | ○        |
 | **Context adapter**           | n/a         | ●      | ○   | ◐        | ○        | ○                | ○     | ◐               | ○        | ◐   | ○         | ○      | ○       | ○               | **○**    |
 | **Multi-model / adversarial** | ◐           | ●      | ◐   | ◐        | ◐        | ●                | ◐     | ◐               | ●        | ●   | ○         | ○      | ○       | ◐               | ○        |
 | **Agent definitions**         | ●           | ●      | ◐   | ●        | ●        | ●                | ●     | ◐               | ●        | ◐   | ●         | ◐      | ●       | ●               | ●        |
-| **Skills**                    | ●           | ●      | ●   | ●        | ●        | ●                | ●     | ●               | ●        | ●   | ●         | ○      | ◐       | ●               | ◐        |
+| **Skills**                    | ●           | ●      | ●   | ●        | ●        | ●                | ●     | ●               | ●        | ●   | ●         | ○      | ●       | ●               | ◐        |
 | **Individual memory**         | ●           | ●      | ○   | ●        | ○        | ●?               | ●     | ●               | ◐        | ●   | ●         | ◐      | ○       | ●               | ○        |
 | **Team memory**               | ◐           | ○      | ○   | ◐        | ○        | ○                | ○     | ●               | ◐        | ●   | ●         | ●      | ○       | ●               | ◐        |
 | **Context assembly**          | ◐           | ●      | ◐   | ●        | ◐        | ●                | ●     | ◐               | ◐        | ●   | ●         | ●      | ○       | ◐               | **◐**    |
@@ -133,7 +145,7 @@ primitive set is the most direct available answer to *what its architecture is*.
 | **Indigo HQ**       | company · worker · command · thread · skill                                                                                                                                                                                                                                         |
 | **SageOx**          | Knowledge Bubble · Ledger · Team Context · Murmur                                                                                                                                                                                                                                   |
 | **gstack / gbrain** | skill (chained through artifacts) · brain · source                                                                                                                                                                                                                                  |
-| **FRACTAL**         | BLUEPRINT · workstream · PRD · HANDOFF · PULSE                                                                                                                                                                                                                                      |
+| **FRACTAL**         | STRATEGIST doc · BLUEPRINT · workstream (PRD) · HANDOFF · PULSE — five, `⚠️ contestable` (vendor never states the set; assembled from the README's own per-object descriptions, per [`content/fractal.md`](../content/fractal.md) §C, 2026-09-03). "Workstream" and "PRD" corrected from two entries to one aliased pair — the BLUEPRINT names the workstream, the PRD is its concrete file, per rule 3 |
 | **generic-cerebro** | decision entry · finding-class · `paths:`-scoped rule file · wiki tier                                                                                                                                                                                                              |
 | **LoomWarp**        | **— unstated.** Artifacts exist; a *set* does not                                                                                                                                                                                                                                   |
 

@@ -21,7 +21,11 @@ the vendor's names. §D–§F tell them how far to trust the rest.
 1. **Vendor's words only** in the identity quotes, the primitive definitions and the limitations.
    Verbatim, cited, dated. Your paraphrase goes in "What it ships", nowhere else.
 2. **Absence is recorded, never inferred.** An empty component row is written
-   `**Nothing here** — checked <the pages you checked>`. Naming the pages is the evidence.
+   `**Nothing here** — checked <the pages you checked>`. Naming the pages is the evidence. Two
+   absences are not the same: **never built** is the form above; **deliberately removed** (a
+   mechanism the vendor shipped and later deleted, or an instance that runs without a piece its
+   upstream has) is written `**Removed** — <what, when, cited>`. The second is a design decision
+   and belongs in §C's verdict; the first is just a gap.
 3. **Do not borrow a word and change its referent.** If the harness calls something a *project* or a
    *skill* and means something different from the component of the same name, say so in the row and
    in the primitive table. The vocabulary ledger `vocabulary.md` exists for exactly this.
