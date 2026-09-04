@@ -75,3 +75,33 @@ a first-class primitive*. Rule 5's `◐ (proposal)` then mixed the two in one ce
 them: coverage marks `● ◐ ○ n/a` live only in a profile's component matrix; source marks become
 `✅ ↪ ⚠️` and live only in the details and provenance sections. Existing v1 profiles carry the
 collision until restructured (W8b).
+
+---
+
+## ISSUE-007 — vendor-named, load-bearing objects missing from six profiles' §C tables (UNDERCOUNT)
+
+**Severity:** WARN · **Found:** 2026-09-04, W3 vocabulary harvest · **Assigned:** W8b restructure (re-point) and W8c diagram pass (re-read) per harness
+
+The vendor's own docs name these objects and the profile's §B rows lean on them, but the profile's §C
+primitive table never lists them: **Hermes** `gateway` (`gateway.profile_routes`, `gateway-config.yaml`),
+`/goal`, "Bot Mode"; **OpenClaw** the metadata-only audit ledger, operator roles/scopes
+(creator/owner/participant); **Gas City** `rig` (caught by the 2026-09-03 sanity run, fixed in
+`content/gas-city.md`); **Pi** counted 8 + 3 on 2026-09-02 and 5 + 3 on 2026-09-03 for the same
+sources — resolved by rule 4's primitive-vs-supporting definition, to be re-run. The ledger records
+each with an `UNDERCOUNT` flag (KD's ruling, W3 Q3); the profiles are corrected when re-read.
+
+---
+
+## ISSUE-008 — twenty-odd `●` cells in the grids have no nameable primitive
+
+**Severity:** WARN · **Found:** 2026-09-04, W3 vocabulary harvest (AC-1) · **Assigned:** W6 matrix-backfill
+
+`comparisons/04-harness-alignment.md` §2: Hermes `2c` `3a` `3b` `6b` `8b` `8d` `10a` `11a`; OpenClaw `8b`
+`8d` `10b` `11a`; OpenCode `11a`; Grok `8c` `8d` `10b`; every harness at `0a`.
+`comparisons/02-component-matrix.md` §1: QM Multi-model · Skills · Distribution/sync; Indigo HQ Team
+memory; SageOx Harness adapter · Distribution/sync; Claude Code Evidence/telemetry; Hermes
+Evidence/telemetry · Communication channel; gstack/gbrain Distribution/sync; generic-cerebro Skills ·
+Distribution/sync; FRACTAL Agent definitions (sibling-repo source); LoomWarp Agent definitions · Task
+decomposition · Standards tier. KD's ruling (W3 Q4): an unnamed `●` becomes `◐` with a dated note — a
+correction, not a re-score; `0a` keeps `●` under the stated convention *`●` at 0a = model-pluggable,
+not named*. W6 applies; the ledger's §2 index is the checklist.
