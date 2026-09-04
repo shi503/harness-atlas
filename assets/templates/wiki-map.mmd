@@ -1,0 +1,22 @@
+%% How the wiki is laid out. Three tiers, every link bidirectional, two cross-cutting ledgers.
+%% Canonical source. README.md embeds a copy; edit here first.
+flowchart LR
+  readme["README.md<br/>the manifesto — why, and the highlights"]
+  index["index.md<br/>Tier 1 · the shape, one screen<br/>grid → range → layers → words"]
+  content["content/&lt;harness&gt;.md<br/>Tier 3 · one profile per harness<br/>identity · 33 rows · primitives · limits · unverified"]
+  components["components/&lt;id&gt;-&lt;name&gt;.md<br/>Tier 2 · one page per component<br/>what it is · best example · comparison table"]
+  vocab["vocabulary.md<br/>term → concept → who says it → component"]
+  maturity["maturity/<br/>the range argument · grid.html"]
+  skill["skills/harness-teardown/SKILL.md<br/>the template every profile follows"]
+  assets["assets/<br/>templates/ core diagrams · projects/&lt;harness&gt;/"]
+  readme --> index
+  readme -->|"highlight reel"| content
+  index --> content
+  index --> components
+  index --> maturity
+  index --> vocab
+  components <-->|"every cell links to an anchor"| content
+  skill -.->|"produces"| content
+  vocab -.-> components
+  assets -.-> readme
+  assets -.-> content

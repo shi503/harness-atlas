@@ -1,0 +1,21 @@
+%% The anatomy every harness shares. One loop, and the insertion points around it.
+%% Each insertion point is labelled with the component that grades it, so a teardown's §B rows land on this picture.
+%% Generalised from the Claude Code consolidated guide §1 (seven insertion points); the shape holds for every runtime in the corpus.
+%% Canonical source. README.md embeds a copy; edit here first.
+flowchart TD
+  start(["session start"]) --> load
+  load["load instructions &amp; capability<br/>context files · skills · settings<br/><i>3d Configuration · 4a Capability · 5a Memory</i>"]
+  load --> prompt["prompt + context window<br/><i>5c Knowledge · 3d</i>"]
+  prompt --> model[["MODEL<br/><i>0a Substrate</i>"]]
+  model -->|"tool call"| gate{"permission gate<br/>allow · ask · deny<br/><i>2c Enforcement · 4b Permissions</i>"}
+  gate -->|"allowed"| tool["tool runs<br/>shell · edit · MCP · ACP<br/><i>2a Adapters · 1a Environment</i>"]
+  gate -->|"denied"| prompt
+  tool --> result["result → context"]
+  result --> model
+  model -->|"final turn"| done(["turn ends<br/><i>8b Evidence · 8c Observability</i>"])
+  hooks["lifecycle events → hooks<br/>fail-open or fail-closed<br/><i>2b Hooks</i>"] -.-> load
+  hooks -.-> gate
+  hooks -.-> result
+  delegate["delegation &amp; isolation<br/>subagents · forks · worktrees<br/><i>3c Composition · 3a Control</i>"] -.-> model
+  orchestrate["orchestration<br/>teams · background sessions · routing<br/><i>3b Routing · 10a Roster</i>"] -.-> delegate
+  package["packaging &amp; distribution<br/>plugins · packages · managed settings<br/><i>4a Capability · 3e Standards</i>"] -.-> load

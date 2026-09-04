@@ -1,0 +1,34 @@
+%% The twelve layers, thirty-three components. Original numbering (the 13-layer renumber was struck in W0, 2026-09-03).
+%% Read bottom-up: a unit of work descends through what the team configured, picks up what it accumulated,
+%% and rises through the judgements it makes, until it crosses the surface where people are.
+%% Canonical source. index.md and README.md embed a copy; edit here first.
+flowchart BT
+  subgraph configured["CONFIGURED — decided before any unit of work starts"]
+    direction BT
+    L0["0 Foundation<br/>0a Substrate"]
+    L1["1 Environment<br/>1a Environment"]
+    L2["2 Agent Harness<br/>2a Adapters &amp; Middleware · 2b Hooks · 2c Enforcement"]
+    L3["3 System Stacks<br/>3a Control · 3b Routing · 3c Composition · 3d Configuration · 3e Standards"]
+    L4["4 Capabilities<br/>4a Capability · 4b Capability Permissions"]
+    L0 --> L1 --> L2 --> L3 --> L4
+  end
+  subgraph accumulates["ACCUMULATES ⟳ — survives the session, cannot be re-decided per unit"]
+    direction BT
+    L5["5 Context ⟳<br/>5a Individual Memory · 5b Team Memory · 5c Knowledge"]
+    L6["6 Workspaces ⟳<br/>6a Product · 6b Infrastructure · 6c Estate · 6d Delivery"]
+    L5 --> L6
+  end
+  L7["7 Workflow Tasks<br/>7a Workflow Tasks — the unit of work, written down"]
+  subgraph runs["RUNS — judgements re-decided for every unit"]
+    direction BT
+    L8["8 Trust<br/>8a Evals · 8b Evidence · 8c Observability · 8d Efficiency"]
+    L9["9 IMPROVE<br/>9a Learning · 9b Rituals · 9c Cadence · 9d Anti-fragile Lifecycle · 9e Raise the Floor · 9f Diagnose the Bottleneck"]
+    L10["10 Teams &amp; Agents<br/>10a Roster · 10b Org"]
+    L8 --> L9 --> L10
+  end
+  L11["11 Surfaces<br/>11a Surfaces — where work is seen, and which version is true"]
+  L4 --> L5
+  L6 --> L7
+  L7 --> L8
+  L10 --> L11
+  people(("people")) --- L11
