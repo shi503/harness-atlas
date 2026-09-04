@@ -56,29 +56,35 @@ listed in §4.
 > system is a **host** shipping adapters *for other harnesses* (OpenClaw's `agentRuntime` slot and
 > ACP plugin; Hermes's Codex app-server runtime and import adapters), not a layer shipping an adapter
 > *into* one. `04` §4.1 argues that is a third altitude.
+>
+> **Codex column added 2026-09-03** — [`content/codex.md`](../content/codex.md), first in the W4 queue
+> because Hermes and OpenClaw both embed its app-server as a runtime (confirmed at Codex's own primary
+> source this pass: `external-agent-migration` reads *from* Claude Code and Cursor, one-way; nothing
+> ships an ACP crate). Placed with the runtime/harness block, before `gstack / gbrain`. No existing
+> column re-scored.
 
 
-| Component                     | Claude Code | Hermes | Pi  | OpenClaw | OpenCode | Grok Bot / Build | gstack / gbrain | Gas City | QM  | Indigo HQ | SageOx | FRACTAL | generic-cerebro | LoomWarp |
-| ----------------------------- | ----------- | ------ | --- | -------- | -------- | ---------------- | --------------- | -------- | --- | --------- | ------ | ------- | --------------- | -------- |
-| **Harness adapter**           | n/a         | ◐ᴴ     | n/a | ●ᴴ       | n/a      | n/a              | ●               | ●        | ●   | ●         | ●      | ○       | ○               | ○        |
-| **Context adapter**           | n/a         | ●      | ○   | ◐        | ○        | ○                | ◐               | ○        | ◐   | ○         | ○      | ○       | ○               | **○**    |
-| **Multi-model / adversarial** | ◐           | ●      | ◐   | ◐        | ◐        | ●                | ◐               | ●        | ●   | ○         | ○      | ○       | ◐               | ○        |
-| **Agent definitions**         | ●           | ●      | ◐   | ●        | ●        | ●                | ◐               | ●        | ◐   | ●         | ◐      | ●       | ●               | ●        |
-| **Skills**                    | ●           | ●      | ●   | ●        | ●        | ●                | ●               | ●        | ●   | ●         | ○      | ◐       | ●               | ◐        |
-| **Individual memory**         | ●           | ●      | ○   | ●        | ○        | ●?               | ●               | ○        | ●   | ●         | ◐      | ○       | ●               | ○        |
-| **Team memory**               | ◐           | ○      | ○   | ◐        | ○        | ○                | ●               | ○        | ●   | ●         | ●      | ○       | ●               | ◐        |
-| **Context assembly**          | ◐           | ●      | ◐   | ●        | ◐        | ●                | ◐               | ○        | ●   | ●         | ●      | ○       | ◐               | ○        |
-| **Task decomposition**        | ●           | ●      | ◐   | ●        | ●        | ●                | ●               | ●        | ◐   | ●         | ◐      | ●       | ●               | ●        |
-| **Project board**             | ○           | ●      | ○   | ◐        | ○        | ○                | ○               | ●        | ○   | ◐         | ○      | ○       | ◐               | ○        |
-| **Communication channel**     | ○           | ●      | ○   | ●        | ◐        | ◐                | ○               | ◐        | ●   | ○         | ●      | ○       | ◐               | ○        |
-| **Permissions / policy**      | ●           | ●      | ○   | ●        | ●        | ●                | ○               | ◐        | ●   | ●         | ○      | ◐       | **○**           | ◐        |
-| **Human-in-loop posture**     | ●           | ●      | ○   | ●        | ●        | ●                | ○               | ●        | ●   | ●         | ○      | ◐       | ◐               | ◐        |
-| **Secrets brokering**         | ○           | ◐?     | ○   | ◐        | ◐?       | ●?               | ○               | ○        | ◐   | ●         | ○      | ○       | ○               | ○        |
-| **Evidence / telemetry**      | ●           | ●      | ●   | ●        | ◐        | ●                | ◐               | ●        | ●   | ○         | ●      | ◐       | ●               | ◐        |
-| **Capture loop**              | ◐           | ●      | ○   | ●        | ○        | ●                | ●               | ○        | ○   | ◐         | ●      | ○       | ●               | ○        |
-| **Distribution / sync**       | ●           | ●      | ●   | ●        | ◐        | ●                | ●               | ●        | ●   | ●         | ●      | ○       | ●               | ◐        |
-| **Standards tier**            | ○           | ○      | ○   | ○        | ○        | ○                | ○               | ○        | ○   | ○         | ○      | ○       | **●**           | ●        |
-| **Provenance → outcome join** | ○           | ○      | ○   | ◐?       | ○        | ○                | ○               | ○        | ○   | ○         | ◐      | ○       | **◐**           | ○        |
+| Component                     | Claude Code | Hermes | Pi  | OpenClaw | OpenCode | Grok Bot / Build | Codex | gstack / gbrain | Gas City | QM  | Indigo HQ | SageOx | FRACTAL | generic-cerebro | LoomWarp |
+| ----------------------------- | ----------- | ------ | --- | -------- | -------- | ---------------- | ----- | ---------------- | -------- | --- | --------- | ------ | ------- | --------------- | -------- |
+| **Harness adapter**           | n/a         | ◐ᴴ     | n/a | ●ᴴ       | n/a      | n/a              | n/a   | ●               | ●        | ●   | ●         | ●      | ○       | ○               | ○        |
+| **Context adapter**           | n/a         | ●      | ○   | ◐        | ○        | ○                | ○     | ◐               | ○        | ◐   | ○         | ○      | ○       | ○               | **○**    |
+| **Multi-model / adversarial** | ◐           | ●      | ◐   | ◐        | ◐        | ●                | ◐     | ◐               | ●        | ●   | ○         | ○      | ○       | ◐               | ○        |
+| **Agent definitions**         | ●           | ●      | ◐   | ●        | ●        | ●                | ●     | ◐               | ●        | ◐   | ●         | ◐      | ●       | ●               | ●        |
+| **Skills**                    | ●           | ●      | ●   | ●        | ●        | ●                | ●     | ●               | ●        | ●   | ●         | ○      | ◐       | ●               | ◐        |
+| **Individual memory**         | ●           | ●      | ○   | ●        | ○        | ●?               | ●     | ●               | ○        | ●   | ●         | ◐      | ○       | ●               | ○        |
+| **Team memory**               | ◐           | ○      | ○   | ◐        | ○        | ○                | ○     | ●               | ○        | ●   | ●         | ●      | ○       | ●               | ◐        |
+| **Context assembly**          | ◐           | ●      | ◐   | ●        | ◐        | ●                | ●     | ◐               | ○        | ●   | ●         | ●      | ○       | ◐               | ○        |
+| **Task decomposition**        | ●           | ●      | ◐   | ●        | ●        | ●                | ●     | ●               | ●        | ◐   | ●         | ◐      | ●       | ●               | ●        |
+| **Project board**             | ○           | ●      | ○   | ◐        | ○        | ○                | ◐     | ○               | ●        | ○   | ◐         | ○      | ○       | ◐               | ○        |
+| **Communication channel**     | ○           | ●      | ○   | ●        | ◐        | ◐                | ○     | ○               | ◐        | ●   | ○         | ●      | ○       | ◐               | ○        |
+| **Permissions / policy**      | ●           | ●      | ○   | ●        | ●        | ●                | ●     | ○               | ◐        | ●   | ●         | ○      | ◐       | **○**           | ◐        |
+| **Human-in-loop posture**     | ●           | ●      | ○   | ●        | ●        | ●                | ●     | ○               | ●        | ●   | ●         | ○      | ◐       | ◐               | ◐        |
+| **Secrets brokering**         | ○           | ◐?     | ○   | ◐        | ◐?       | ●?               | ◐?    | ○               | ○        | ◐   | ●         | ○      | ○       | ○               | ○        |
+| **Evidence / telemetry**      | ●           | ●      | ●   | ●        | ◐        | ●                | ●     | ◐               | ●        | ●   | ○         | ●      | ◐       | ●               | ◐        |
+| **Capture loop**              | ◐           | ●      | ○   | ●        | ○        | ●                | ●     | ●               | ○        | ○   | ◐         | ●      | ○       | ●               | ○        |
+| **Distribution / sync**       | ●           | ●      | ●   | ●        | ◐        | ●                | ●     | ●               | ●        | ●   | ●         | ●      | ○       | ●               | ◐        |
+| **Standards tier**            | ○           | ○      | ○   | ○        | ○        | ○                | ○     | ○               | ○        | ○   | ○         | ○      | ○       | **●**           | ●        |
+| **Provenance → outcome join** | ○           | ○      | ○   | ◐?       | ○        | ○                | ○     | ○               | ○        | ○   | ○         | ◐      | ○       | **◐**           | ○        |
 
 
 Every mark in the `generic-cerebro` column traces to a cited primitive in `[systems/kd-built-frameworks/](./systems/kd-built-frameworks)`. It is prior art rather than a competitor — no licence, no releases, one operator — which is why it changes what several rows *mean* without changing who the rows are *against*.
@@ -98,6 +104,7 @@ primitive set is the most direct available answer to *what its architecture is*.
 | **OpenCode**        | agent (`agents/*.md`, `mode:`) · command · skill · plugin · tool · **permission** · rules · MCP server · (`references` · `policies`)                                                                                                                                                |
 | **Grok Build**      | project rules (`AGENTS.md`, `.grok/rules/`) · skill · plugin / marketplace · hook · MCP server · permission rule / mode · **sandbox profile** · agent / persona / role — and **three config files written by three people**: `config.toml` (user) · `managed_config.toml` (fleet) · signed `requirements.toml` (pins) |
 | **Grok Bot**        | **Bot** · **Computer** (one VM per member, `/workspace`) · skill (saved by asking, or **taught by demonstration**) · **routine** (schedule or Slack/GitHub event) · plugin / connector · approval / auto-review rule |
+| **Codex**           | `AGENTS.md` · skill · plugin (bundles skill + MCP server) · subagent (TOML) · hook · MCP server · **permission profile** · **execpolicy rule** — ⚠️ contestable 8, no vendor list; mid-migration (`sandbox_mode` and `[permissions]` coexist; `codex mcp-server` deprecated for the app-server) |
 | **Gas City**        | formula (TOML workflow) · agent · **bead** (git-native work unit) · order (trigger) · pack (bundle) · Event Stream                                                                                                                                                                  |
 | **QM**              | **scope** (user or room, each with its own memory, files, keychain, permissions, crons, sandbox) · posture · adapter                                                                                                                                                                |
 | **Indigo HQ**       | company · worker · command · thread · skill                                                                                                                                                                                                                                         |
@@ -256,6 +263,7 @@ primitives, and they should be corrected by anyone who knows better.
 | OpenClaw · Provenance `◐?`       | Memory-provenance table records entry origin per agent/session — provenance on the **memory** side, same shape as SageOx's `◐`; no per-run manifest, no join. `04` §3.6 |
 | Grok · Individual memory `●?`    | Bot memory is a named, automatic, per-Bot store whose **format and location are undocumented**; Build's is documented (`~/.grok/memory/MEMORY.md` + SQLite) but *"experimental and disabled by default."* The `●` rests on the Bot half |
 | Grok · Secrets `●?`              | Bot: hosted-MCP sign-in tokens *"stay with Cursor's backend, which runs those tool calls on the computer's behalf"*; secure secret request is *"masked, excluded from the transcript, and not shown to the model."* Brokering by description, on a closed product; Build's half is `◐` (0600 credential file, env scrubbing) |
+| Codex · Secrets `◐?`             | `codex-rs/secrets` and `codex-rs/keyring-store` crates exist in the tree and `agent-identity` signs per-agent assertion headers; crate contents were not read this pass, only the file/directory listing — `content/codex.md` §F |
 
 
 > KD Note: it's probably inferred that the local user context is also inherited in your harness (eg. claude code's local memories and jsonl sessions) and the affordance we made in generic-cerebro is that users would have ./specs/ where project local specs and planning were stored and we would have individual .gitignored  `./_dev/<username>/` folders for any individual sandboxes and playgrounds. 

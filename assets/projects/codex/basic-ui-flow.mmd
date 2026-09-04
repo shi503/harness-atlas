@@ -1,0 +1,22 @@
+%% Redrawn in house notation from openai/codex's own sequence diagram, "Basic UI Flow",
+%% in codex-rs/docs/protocol_v1.md (openai/codex @ rust-v0.153.2, commit 79016fc).
+%% Source is a design doc in the tree, source-only, not linked from the docs nav.
+%% Original caption: "A single user input, followed by a 2-turn task." A second diagram,
+%% "Task Interrupt", sits beside it in the same file and is listed, not redrawn, in §F.
+%% This flowchart compresses the original mermaid sequenceDiagram's UI/Daemon/Model swimlanes
+%% into the house loop shape; no node or edge not in the original text is added.
+%% Accessed 2026-09-03.
+flowchart TD
+  cfg(["Op::ConfigureSession"]) --> session["Session<br/><i>current config &amp; state</i>"]
+  session -->|"Op::UserTurn"| task["Task<br/><i>runs until no output remains,<br/>Op::Interrupt, or blocked on approval</i>"]
+  task --> turn["Turn: prompt + prior output"]
+  turn --> model[["Model<br/><i>Responses API</i>"]]
+  model -->|"response: exec / patch"| gate{"Event::ExecApprovalRequest<br/><i>sandbox + approval policy</i>"}
+  gate -->|"Op::ExecApproval::Allow"| exec["ExecStart → exec / apply_patch → ExecStop"]
+  gate -.->|"deny / Op::Interrupt"| interrupted(["Event::Error(interrupted)"])
+  exec --> complete["Event::TurnComplete<br/><i>stdout fed to next Turn</i>"]
+  complete -->|"more output"| turn
+  model -->|"response: message + completed"| agentmsg["Event::AgentMessage"]
+  agentmsg --> done(["Event::TurnComplete<br/>Task ends"])
+  ui(("UI<br/><i>CLI/TUI · IDE ext · app-server client</i>")) -.->|"drives"| cfg
+  ui -.->|"Op::Interrupt"| task

@@ -44,7 +44,11 @@ the vendor's names. §D–§F tell them how far to trust the rest.
 5. **Every factual cell carries a mark**: `✅` direct (you read the primary source) · `◐` relayed (a
    secondary source, or a snippet you did not open) · `⚠️` unverified. No unmarked claims. A thing
    that is **specified but not shipped** (a design doc marked proposal, an acknowledged CLI gap) is
-   `◐ (proposal)` with the source — neither "ships it" nor "nothing here".
+   `◐ (proposal)` with the source — neither "ships it" nor "nothing here". When **two primary
+   sources disagree** (one page says *deprecated*, another says *experimental*), quote both, mark the
+   cell `✅ (conflicting)`, and let the newer commit win for the "what it ships" column. A page you
+   read through a fetch tool is still a primary read (`✅`) if it is the vendor's own docs or repo;
+   the mark is about *whose* words, not *which* tool.
 6. **Primary sources first.** The repo at a named commit or tag, its docs directory, its config
    schema, its examples, `gh api` on the repo, the vendor's own docs site. Blog posts, reviews and
    search snippets are `◐` and go in §E under *Secondary*. **The docs surface is wider than the docs
