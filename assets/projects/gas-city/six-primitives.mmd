@@ -1,0 +1,27 @@
+%% Redrawn in house notation from Gas City's own diagram, embedded in
+%% docs/getting-started/how-gas-city-works.md (gastownhall/gascity @ a6b72d8,
+%% file docs/diagrams/excalidraw-rendered/primitives.svg, source .excalidraw at
+%% docs/diagrams/excalidraw/primitives.excalidraw). Alt text in the docs page:
+%% "The six primitives and how they relate: Packs declare agents, formulas,
+%% and orders; a Formula operates over a convoy of Beads, fanning work out to
+%% Agents that execute in a Rig; Events are fired so humans and agents can
+%% observe." Accessed 2026-09-03.
+%% NOTE: the SVG's text layer gives six node labels and six edge labels
+%% ("configures", "configures", "operates over", "executes", "works in",
+%% "fires") but not machine-readable connector endpoints -- edge placement
+%% below is reconstructed from the docs page's prose caption, quoted above,
+%% not read off raw SVG path coordinates. See gas-city-draft.md §F.
+flowchart TD
+  Pack["Pack<br/><i>the config</i><br/>agents · formulas · orders<br/>(City = your local pack)"]
+  Formula["Formula<br/><i>the HOW</i><br/>order · run · sling"]
+  Bead["Bead<br/><i>the WHAT</i><br/>convoy · dependencies"]
+  Agent["Agent<br/><i>the WHO</i><br/>session · provider · pool"]
+  Rig["Rig<br/><i>the WHERE</i><br/>repo · namespace · scope"]
+  Event(["Event<br/><i>the signal</i><br/>humans &amp; agents observe"])
+
+  Pack -->|configures| Agent
+  Pack -->|configures| Formula
+  Formula -->|operates over| Bead
+  Bead -->|fans out to, executes| Agent
+  Agent -->|works in| Rig
+  Bead -.->|fires| Event
