@@ -8,12 +8,19 @@ one peer column here, scored by the same rules, with no special status.
 
 | Tier | Where | Rule |
 |---|---|---|
-| 1 · the shape | `index.md` | One screen. The grid first, the maturity range second. Every noun links down. No prose walls |
+| 0 · the manifesto | `README.md` | The argument and the highlights, what GitHub renders first. KD's problem statement verbatim, the five-minute script, the anatomy diagram, a curated reel — never the full list |
+| 1 · the shape | `index.md` | One screen. The grid first, the maturity range second, the layers, the words. Every noun links down, including every profile. No prose walls |
 | 2 · components | `components/<id>-<name>.md` | One page per component, ~80 lines: what it is, the single best example, the comparison table with a `structured output` row, every cell linking into a Tier-3 anchor |
-| 3 · harnesses | `harnesses/<name>.md` | One page per harness, in the shape `skills/harness-teardown/SKILL.md` prescribes. Anchored per section |
+| 3 · profiles | `content/<name>.md` | One page per harness, in the shape `skills/harness-teardown/SKILL.md` prescribes. Anchored per section. (Was `harnesses/` until 2026-09-03 — renamed in W0 to match the 12-factor-agents page architecture and to sidestep harness-vs-agent naming) |
 
-Cross-cutting: `vocabulary.md` (term → concept → who says it → our component → instances) and
-`maturity/` (the range argument and `grid.html`, the instrument).
+Cross-cutting: `vocabulary.md` (term → concept → who says it → our component → instances),
+`maturity/` (the range argument and `grid.html`, the instrument), and `assets/` (`templates/` for the
+standardized core-concept diagrams, `projects/<harness>/` for per-harness ones; `.mmd` is canonical,
+pages embed a copy, a `.png` beside it is an optional render).
+
+Component IDs are the **original twelve layers** (`0a`…`11a`, per `spec/v1-framework/CROSSWALK.md`
+§0). The 13-layer renumber in the consolidated guide §1 was struck in W0 on 2026-09-03: the landscape
+moves too fast to keep re-minting IDs.
 
 Un-recut material lives under `spec/`, `comparisons/`, `craft/`. History lives under `archive/`.
 `RULING-2026-09-02-spinout.md` says what came from where.
