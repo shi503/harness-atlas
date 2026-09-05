@@ -97,6 +97,16 @@ listed in §4.
 > including **Standards tier** (○, confirmed absent at the pinned commit — `git ls-tree 6398f6db --
 > standards` is empty; a `standards/` directory now exists at upstream's current HEAD, outside this
 > pinned commit's scope, flagged in the profile's §F rather than changing this cell).
+>
+> **Claude Code column re-checked 2026-09-04** against the new Template v2 profile,
+> [`content/claude-code.md`](../content/claude-code.md) §4. One cell corrected: **Communication
+> channel** ○→◐ — Channels (Telegram, Discord, iMessage, or a webhook, pushing events into a running
+> session, two-way where the integration supports it) did not exist in this matrix's 2026-08-11 read;
+> confirmed present today, research preview, not first-class → [`#11a-surfaces`](../content/claude-code.md#11a-surfaces). Every other cell was
+> checked against the profile's §4/§6 and left unchanged, including **Standards tier** (○ — Agent
+> Skills is a co-published technical schema, not the process-doctrine artifact this row asks for; see
+> [`#3e-standards`](../content/claude-code.md#3e-standards)) and **Provenance → outcome join** (○ — the profile's own card states the same gap
+> the corpus already recorded here).
 
 
 | Component                     | Claude Code | Hermes | Pi  | OpenClaw | OpenCode | Grok Bot / Build | Codex | gstack / gbrain | Gas City | QM  | Indigo HQ | SageOx | FRACTAL | generic-cerebro | LoomWarp |
@@ -111,7 +121,7 @@ listed in §4.
 | **Context assembly**          | ◐           | ●      | ◐   | ●        | ◐        | ●                | ●     | ◐               | ◐        | ●   | ●         | ●      | ○       | ◐               | **◐**    |
 | **Task decomposition**        | ●           | ●      | ◐   | ●        | ●        | ●                | ●     | ●               | ●        | ◐   | ●         | ◐      | ●       | ●               | ●        |
 | **Project board**             | ○           | ●      | ○   | ◐        | ○        | ○                | ◐     | ○               | ●        | ○   | ◐         | ○      | ○       | ◐               | ○        |
-| **Communication channel**     | ○           | ●      | ○   | ●        | ◐        | ◐                | ○     | ○               | ◐        | ●   | ○         | ●      | ○       | ◐               | ○        |
+| **Communication channel**     | ◐           | ●      | ○   | ●        | ◐        | ◐                | ○     | ○               | ◐        | ●   | ○         | ●      | ○       | ◐               | ○        |
 | **Permissions / policy**      | ●           | ●      | ○   | ●        | ●        | ●                | ●     | ○               | ◐        | ●   | ●         | ○      | ◐       | **○**           | ◐        |
 | **Human-in-loop posture**     | ●           | ●      | ○   | ●        | ●        | ●                | ●     | ○               | ●        | ●   | ●         | ○      | ◐       | ◐               | ◐        |
 | **Secrets brokering**         | ○           | ◐?     | ○   | ◐        | ◐?       | ●?               | ◐?    | ○               | ○        | ◐   | ●         | ○      | ○       | ○               | ○        |
@@ -132,7 +142,7 @@ primitive set is the most direct available answer to *what its architecture is*.
 
 | System              | Its primitives                                                                                                                                                                                                                                                                      |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Claude Code**     | skill · subagent · hook · plugin · MCP server · settings · agent team                                                                                                                                                                                                               |
+| **Claude Code**     | skill · subagent · hook · plugin · MCP server · agent team · dynamic workflow · instruction file (`CLAUDE.md`) — corrected 2026-09-04 against [`content/claude-code.md`](../content/claude-code.md) §5; "settings" dropped as `(supporting)` infrastructure, not an authored-intent primitive |
 | **Hermes**          | profile · `SOUL.md` · skill · memory (`MEMORY.md`/`USER.md`) · toolset · plugin · hook · cron job · context file · **kanban task** (*"owns lifecycle truth"*)                                                                                                                       |
 | **Pi**              | extension · skill · prompt template · theme · **pi package** (the one container for the other four) · session tree · settings · context file — and a published refusal list: no MCP, no sub-agents, no permission popups, no plan mode, no to-dos                                   |
 | **OpenClaw**        | gateway · agent (`agents.entries`) · workspace files (`AGENTS.md` `SOUL.md` `USER.md` `IDENTITY.md` `MEMORY.md`) · channel + **binding** · skill · plugin · hook (two tiers) · tool policy / exec approvals / sandbox · automation / heartbeat · node · session · **agent runtime** |

@@ -1,0 +1,23 @@
+%% Transcribed from Anthropic's own per-turn event table and lifecycle diagram at
+%% https://code.claude.com/docs/en/hooks ("Hook lifecycle"), repo anthropics/claude-code
+%% @ v2.1.261 (d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b), read 2026-09-04 (raw .md fetch).
+%% Alt text: "Hook lifecycle diagram showing optional Setup feeding into SessionStart,
+%% then a per-turn loop containing UserPromptSubmit, UserPromptExpansion for slash
+%% commands, the nested agentic loop (PreToolUse, PermissionRequest, PostToolUse,
+%% PostToolUseFailure, PostToolBatch, SubagentStart/Stop, TaskCreated, TaskCompleted),
+%% and Stop or StopFailure, followed by TeammateIdle, PreCompact, PostCompact, and
+%% SessionEnd." No node or edge not in the original; async/standalone events omitted
+%% for space (see content/claude-code.md#2b-hooks for the full 33-event list).
+flowchart TD
+  start(["SessionStart"]) --> prompt["UserPromptSubmit"]
+  prompt --> expand["UserPromptExpansion<br/><i>slash commands</i>"]
+  expand --> pre["PreToolUse"]
+  pre --> perm{"PermissionRequest<br/>deny · ask · allow"}
+  perm -->|"allow"| tool["tool executes"]
+  perm -->|"deny"| prompt
+  tool --> post["PostToolUse /<br/>PostToolUseFailure"]
+  post -->|"more tool calls"| pre
+  post -->|"turn ends"| stop["Stop / StopFailure"]
+  stop -->|"blocked, exit 2"| prompt
+  stop --> compact["PreCompact → PostCompact"]
+  compact --> ended(["SessionEnd"])

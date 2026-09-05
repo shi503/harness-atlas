@@ -10,6 +10,9 @@ status: ACTIVE
 
 # Claude Code — extensibility reference set
 
+**This folder is the deep read for the Template v2 profile at [`../claude-code.md`](../claude-code.md).**
+Start there; open these documents when a detail row's `Ships`/`Path`/`Source` links out here.
+
 **What this is.** A distilled, LoomWarp-oriented reading of Anthropic's official Claude Code
 documentation, focused on the **extension layer** — the surfaces you use to change what Claude Code
 knows, what it can reach, what it is allowed to do, and how work gets orchestrated across agents.
