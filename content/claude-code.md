@@ -221,221 +221,350 @@ flowchart LR
 
 `✅ direct · ↪ relayed · ⚠️ unverified`
 
-<details>
-<summary><b>0 · Foundation</b> — 0a ●</summary>
+### 0 · Foundation
 
 #### 0a Substrate
+<details>
+<summary>● Model swap (Sonnet/Opus/Fable) + 5-provider substrate (API, Bedrock, Vertex, Foundry, Claude Platform on AWS)</summary>
+
 **Ships.** Model switch mid-session (`/model`, `--model`) across Sonnet/Opus/Haiku/Fable families, with `effort` levels (`low`→`max`) trading reasoning depth for cost. The same CLI runs against the Anthropic API, Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or Claude Platform on AWS.
 **Path.** `/model`, `claude --model <name>`, `ANTHROPIC_DEFAULT_HAIKU_MODEL`
 **Source.** ✅ `model-config.md` (↪ relayed, not reopened today) · ✅ `admin-setup.md`
 
 </details>
 
-<details>
-<summary><b>1 · Environment</b> — 1a ◐</summary>
+### 1 · Environment
 
 #### 1a Environment
+<details>
+<summary>◐ <code>additionalDirectories</code>/<code>--add-dir</code> + sandbox domain allowlist — reach configured, not a declared systems inventory</summary>
+
 **Ships.** Reach is configured, not declared: the working directory plus `additionalDirectories`/`--add-dir` set what Claude can touch; the Bash sandbox's `sandbox.network.allowedDomains` gates network reach at the OS level. No component inventories *which* systems a team owns (no estate registry — see [6c](#6c-estate)).
 **Path.** `permissions.additionalDirectories`, `--add-dir`, `sandbox.network.allowedDomains`
 **Source.** ✅ `large-codebases.md` · ✅ `sandboxing.md`
 
 </details>
 
-<details>
-<summary><b>2 · Agent Harness</b> — 2a ● · 2b ● · 2c ●</summary>
+### 2 · Agent Harness
 
 #### 2a Adapters & Middleware
+<details>
+<summary>● <b>MCP server</b> — 4 transports; no ACP found</summary>
+
 **Ships.** MCP client over four transports (stdio, HTTP, SSE-deprecated, WebSocket), with tool-schema deferral (`ToolSearch`) so idle servers cost little context. No Agent Client Protocol (ACP) support found. The Agent SDK (TypeScript/Python) embeds the same binary for programmatic use.
 **Path.** `claude mcp add`, `.mcp.json`
 **Source.** ✅ `mcp.md` · ✅ `agent-sdk/agent-loop.md`
 
+</details>
+
 #### 2b Hooks
+<details>
+<summary>● <b>Hook</b> — 33 events, fail-open by default, 5 handler types</summary>
+
 **Ships.** 33 named lifecycle events (`SessionStart` through `ElicitationResult`, counted directly from the `###` headings in the raw reference page), five handler types (command, HTTP, MCP tool, prompt, agent), and a decision protocol where most events fail open (*"The hook can deny the call, but staying silent doesn't approve it"*) while `PreToolUse`/`UserPromptSubmit`/`Stop` and others fail closed on exit 2. Full event list and matcher syntax: [`content/claude-code/03-hooks.md`](claude-code/03-hooks.md) (↪, 2026-08-10 read, 29 events at that date — the count has grown).
 **Path.** `hooks` block in settings; `hooks/hooks.json` in a plugin
 **Source.** ✅ `hooks.md` (raw fetch) · ✅ `hooks-guide.md`
 
+</details>
+
 #### 2c Enforcement
+<details>
+<summary>● Permission rules (deny→ask→allow) + OS sandbox (Seatbelt/bwrap) + managed settings</summary>
+
 **Ships.** A four-rung ladder: permission rules (*"Rules are evaluated in order: deny, then ask, then allow. The first match... determines the outcome"*) → `PreToolUse` hooks → managed settings (org-wide, higher precedence, `strictPluginOnlyCustomization` locks capability sources to plugins) → the Bash sandbox (Seatbelt on macOS, bwrap/seccomp on Linux/WSL2, OS-enforced). *"Permission rules are enforced by Claude Code, not by the model."*
 **Path.** `permissions.{allow,ask,deny}`, `sandbox.enabled`, `managed-settings.json`
 **Source.** ✅ `permissions.md` · ✅ `sandboxing.md` · ✅ `admin-setup.md`
 
 </details>
 
-<details>
-<summary><b>3 · System Stacks</b> — 3a ● · 3b ◐ · 3c ● · 3d ● · 3e ◐</summary>
+### 3 · System Stacks
 
 #### 3a Control
+<details>
+<summary>● Plan mode + <code>/goal</code> — <i>"a wrapper around a session-scoped prompt-based Stop hook"</i></summary>
+
 **Ships.** Plan mode gives a read-only proposal-then-approve gate (*"Claude explores and proposes an approach for your approval"*). `/goal` layers a completion contract on top: *"a wrapper around a session-scoped prompt-based Stop hook"* — a small model judges *not yet met · met · impossible* after every turn, capped at three idle check-ins. Auto mode's classifier reviews most tool calls in the background.
 **Path.** `/goal <condition>`, `--permission-mode plan`
 **Source.** ✅ `goal.md` · ✅ `permission-modes.md`
 
+</details>
+
 #### 3b Routing
+<details>
+<summary>◐ Per-role model assignment + <code>availableModels</code> substitution; no message→agent resolver</summary>
+
 **Ships.** Per-invocation model choice resolves through a fixed fallback chain (spawn prompt → subagent-definition `model` → `CLAUDE_CODE_SUBAGENT_MODEL` → session model), with `availableModels` allowlist substitution. No message-to-agent dispatch resolver comparable to a gateway's routing table was found — routing here is model selection, not agent selection.
 **Path.** `model:` frontmatter field, `CLAUDE_CODE_SUBAGENT_MODEL`
 **Source.** ✅ `sub-agents.md` · ✅ `agent-teams.md`
 
+</details>
+
 #### 3c Composition
+<details>
+<summary>● <b>Subagent</b> + <b>Agent team</b> (experimental, off by default)</summary>
+
 **Ships.** Subagents run in an isolated context window and report a summary back; agent teams (experimental, `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`, disabled by default) are peer sessions coordinating over a shared, file-locked task list and direct messaging. Forks share the parent's full context and prompt cache. Nesting capped at depth 3, concurrency at 20 subagents / one team per session. Full reference: [`content/claude-code/04-subagents.md`](claude-code/04-subagents.md), [`05-multi-agent-orchestration.md`](claude-code/05-multi-agent-orchestration.md) (↪, 2026-08-10).
 **Path.** `.claude/agents/*.md`; `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS`
 **Source.** ✅ `sub-agents.md` · ✅ `agent-teams.md`
 
+</details>
+
 #### 3d Configuration
+<details>
+<summary>● <b>Instruction file</b> (<code>CLAUDE.md</code>) load order + settings-layer precedence + managed policy</summary>
+
 **Ships.** `CLAUDE.md` loads from four scopes in precedence order (managed policy → user → project → `CLAUDE.local.md`), concatenated broadest-to-narrowest; `.claude/rules/` adds path-scoped instructions via `paths:` frontmatter. Settings resolve managed → CLI → project-local → project → user, with arrays merging and a named list of managed-only keys (`strictPluginOnlyCustomization`, `allowManagedHooksOnly`, …).
 **Path.** `CLAUDE.md`, `.claude/rules/*.md`, `settings.json`
 **Source.** ✅ `memory.md` · ✅ `settings-reference.md`
 
+</details>
+
 #### 3e Standards
+<details>
+<summary>◐ Agent Skills open standard (co-published) + JSON Schema for structured output</summary>
+
 **Ships.** Skills *"follow the Agent Skills open standard; Claude Code extends it with invocation control and subagent execution"* — a co-published schema, not one Anthropic alone authors. Structured output validates against JSON Schema draft-07. No standards layer of its own (guides, conventions doc) comparable to a process layer's was found.
 **Path.** `SKILL.md` frontmatter; `--json-schema`
 **Source.** ✅ `skills.md` (↪ for full frontmatter table, `content/claude-code/02-skills.md`) · ✅ `agent-sdk/structured-outputs.md`
 
 </details>
 
-<details>
-<summary><b>4 · Capabilities</b> — 4a ● · 4b ●</summary>
+### 4 · Capabilities
 
 #### 4a Capability
+<details>
+<summary>● <b>Skill</b> + MCP + <b>Plugin</b> bundling both</summary>
+
 **Ships.** Skills (model-invoked or `/name`-invoked, progressive disclosure — description always loads, body on demand), MCP servers, and plugins that bundle both plus hooks, subagents, LSP servers and monitors under one namespaced (`plugin-name:skill-name`) install. Official and community marketplaces distribute plugins pinned to a commit SHA. Full reference: [`content/claude-code/02-skills.md`](claude-code/02-skills.md), [`06-plugins-and-distribution.md`](claude-code/06-plugins-and-distribution.md) (↪, 2026-08-10).
 **Path.** `.claude/skills/`, `.claude-plugin/plugin.json`
 **Source.** ✅ `skills.md` · ✅ `plugins.md`
 
+</details>
+
 #### 4b Capability Permissions
+<details>
+<summary>● <code>allowed-tools</code>/<code>disallowedTools</code> + <code>skillOverrides</code> + <code>strictPluginOnlyCustomization</code></summary>
+
 **Ships.** A subagent's `tools`/`disallowedTools` allow/deny lists; a skill's own `allowed-tools` frontmatter pre-approves what it needs; `skillOverrides` withholds a skill from Claude entirely; managed `strictPluginOnlyCustomization` locks skills/hooks/agents/MCP to plugin-or-managed sources only.
 **Path.** `tools:`/`disallowedTools:` frontmatter; `skillOverrides`
 **Source.** ✅ `sub-agents.md` · ✅ `settings-reference.md`
 
 </details>
 
-<details>
-<summary><b>5 · Context ⟳</b> — 5a ● · 5b ◐ · 5c ◐</summary>
+### 5 · Context ⟳
 
 #### 5a Individual Memory
+<details>
+<summary>● <code>CLAUDE.md</code> + auto memory (<code>MEMORY.md</code>) + subagent <code>memory:</code> scopes</summary>
+
 **Ships.** Two mechanisms: `CLAUDE.md` (operator-written, git-tracked, ≤200-line target, survives compaction by re-reading from disk) and auto memory (Claude-written, four typed notes — `user`/`feedback`/`project`/`reference` — indexed by `MEMORY.md`, first 200 lines/25KB loaded every session). Subagents get their own `memory:` scope (`user`/`project`/`local`). Both are explicitly *"context, not enforced configuration."*
 **Path.** `CLAUDE.md`; `~/.claude/projects/<project>/memory/MEMORY.md`
 **Source.** ✅ `memory.md`
 
+</details>
+
 #### 5b Team Memory
+<details>
+<summary>◐ Project <code>CLAUDE.md</code> is shared instructions, not shared learnings; auto memory is machine-local</summary>
+
 **Ships.** Project-scope `CLAUDE.md` is git-shared instructions, not accumulated learnings. Auto memory is explicitly machine-local (*"all worktrees... share one auto memory directory... not shared across machines"*) — no shared-learnings store surviving the team was found.
 **Path.** `.claude/CLAUDE.md` (git-committed)
 **Source.** ✅ `memory.md`
 
+</details>
+
 #### 5c Knowledge
+<details>
+<summary>◐ MCP resources/prompts/connectors surface external data; no dedicated knowledge component</summary>
+
 **Ships.** MCP servers expose external resources/prompts (`tools/list`, `prompts/list`, `resources/list`) and claude.ai connectors surface Google Drive/Notion/etc. — retrievable, but no dedicated curated-and-cited knowledge-base component distinct from a tool call.
 **Path.** MCP `resources`/`prompts`
 **Source.** ✅ `mcp.md`
 
 </details>
 
-<details>
-<summary><b>6 · Workspaces ⟳</b> — 6a ○ · 6b ● · 6c ◐ · 6d ●</summary>
+### 6 · Workspaces ⟳
 
 #### 6a Product
+<details>
+<summary>○</summary>
+
 **Nothing here** — checked `overview.md`, `how-claude-code-works.md`, `artifacts.md` (name only, not reopened today). No statement of what the harness's own output must not become.
 
+</details>
+
 #### 6b Infrastructure
+<details>
+<summary>● Sandbox, cloud environments, self-hosted environments, devcontainers</summary>
+
 **Ships.** Local execution by default; cloud sessions run in Anthropic-managed VMs with network access controls and audit logging; self-hosted environments run on org infrastructure; devcontainer support for a fixed dev image.
 **Path.** `--worktree`; cloud/self-hosted environment config
 **Source.** ✅ `security.md` (Cloud execution security) · ✅ `worktrees.md`
 
+</details>
+
 #### 6c Estate
+<details>
+<summary>◐ Monorepo per-directory config + worktrees; no declared repo/service inventory</summary>
+
 **Ships.** `worktree.sparsePaths` and per-directory `CLAUDE.md`/skills scope a monorepo; `additionalDirectories`/`--add-dir` reach a sibling package or repo. No inventory object naming the team's repos/services was found — this is per-task reach, not a registry.
 **Path.** `worktree.sparsePaths`, `additionalDirectories`
 **Source.** ✅ `large-codebases.md`
 
+</details>
+
 #### 6d Delivery
+<details>
+<summary>● GitHub Actions/GitLab CI/CD + Code Review (non-blocking)</summary>
+
 **Ships.** GitHub Actions/GitLab CI/CD run Claude on `@claude` mentions or a schedule; the managed Code Review service posts inline PR comments ranked by severity but *"the check run always completes with a neutral conclusion so it never blocks merging."*
 **Path.** `.github/workflows/claude.yml`; Code Review admin toggle
 **Source.** ✅ `github-actions.md` · ✅ `code-review.md`
 
 </details>
 
-<details>
-<summary><b>7 · Workflow Tasks</b> — 7a ◐</summary>
+### 7 · Workflow Tasks
 
 #### 7a Workflow Tasks
+<details>
+<summary>◐ <code>TodoWrite</code> + agent-team shared task list — session/team-scoped, not durable</summary>
+
 **Ships.** `TodoWrite` gives an in-session, ephemeral checklist; an agent team's shared task list adds dependencies and file-locked claiming, but both are session- or team-scoped — neither is a durable, cross-session ticket that *"owns lifecycle truth"* the way a peer's kanban does.
 **Path.** `TodoWrite` tool; team `~/.claude/tasks/{team-name}/`
 **Source.** ✅ `agent-teams.md`
 
 </details>
 
-<details>
-<summary><b>8 · Trust</b> — 8a ◐ · 8b ● · 8c ● · 8d ●</summary>
+### 8 · Trust
 
 #### 8a Evals
+<details>
+<summary>◐ Code Review's multi-agent verification pipeline — explicitly non-blocking</summary>
+
 **Ships.** Code Review runs a fleet of specialized agents in parallel, verifies each candidate against actual code behavior, ranks by severity (Important/Nit/Pre-existing) — but is explicitly advisory: *"Findings are tagged by severity and don't approve or block your PR."* `/code-review --fix` is the local, session-scoped equivalent.
 **Path.** GitHub check run "Claude Code Review"
 **Source.** ✅ `code-review.md`
 
+</details>
+
 #### 8b Evidence
+<details>
+<summary>● <code>claude_code.tool_decision</code> permission-audit event</summary>
+
 **Ships.** `claude_code.tool_decision` is a named permission-decision audit event (accept/reject); `claude_code.permission_mode_changed` and `claude_code.auth` add adjacent audit events. Full attribute list: [`content/claude-code/09-telemetry-and-evidence.md`](claude-code/09-telemetry-and-evidence.md) (↪, 2026-08-10).
 **Path.** OTel Logs/Events exporter
 **Source.** ✅ `monitoring-usage.md`
 
+</details>
+
 #### 8c Observability
+<details>
+<summary>● OTel metrics/events + beta distributed traces, <code>agent_id</code>/<code>workflow.run_id</code></summary>
+
 **Ships.** OpenTelemetry metrics (`claude_code.token.usage`, `.cost.usage`, …), events, and beta distributed traces with a span hierarchy (`claude_code.interaction` → `llm_request`/`hook`/`tool` → `tool.execution`), carrying `agent_id`/`parent_agent_id`/`workflow.run_id`/`skill.name`/`plugin.name` for full-tree attribution.
 **Path.** `CLAUDE_CODE_ENHANCED_TELEMETRY_BETA=1`
 **Source.** ✅ `monitoring-usage.md`
 
+</details>
+
 #### 8d Efficiency
+<details>
+<summary>● <code>/usage</code>, prompt-cache stats, <code>modelPricing</code>, spend limits, effort levels</summary>
+
 **Ships.** `/usage` shows session cost, prompt-cache hit rate, and per-skill/subagent/plugin/MCP-server attribution; `modelPricing` lets an org report contracted rates instead of list price; per-plan spend limits and usage credits; effort levels trade reasoning depth for token cost.
 **Path.** `/usage`, `modelPricing`, `--max-budget-usd`
 **Source.** ✅ `costs.md`
 
 </details>
 
-<details>
-<summary><b>9 · IMPROVE</b> — 9a ◐ · 9b ◐ · 9c ● · 9d ○ · 9e ◐ · 9f ◐</summary>
+### 9 · IMPROVE
 
 #### 9a Learning
+<details>
+<summary>◐ Auto memory's <code>feedback</code> notes; no core promote-to-shared-rule pipeline</summary>
+
 **Ships.** Auto memory's `feedback`-typed notes capture corrections privately, per machine, per repository. No core mechanism was found that promotes a captured lesson into a shared, reviewed rule — the `skill-creator` eval loop cited in the 2026-08-10 deep read is plugin-scoped, not core harness (per that read's own finding).
 **Path.** `~/.claude/projects/<project>/memory/feedback_*.md`
 **Source.** ✅ `memory.md`
 
+</details>
+
 #### 9b Rituals
+<details>
+<summary>◐ Code Review triggers on PR open/push as an automated review ritual</summary>
+
 **Ships.** Code Review's per-repo trigger (*"Once after PR creation"/"After every push"/"Manual"*) is a recurring, harness-known review ritual with severity-tagged output; adoption materials (`champion-kit.md`, `communications-kit.md`) exist but were not reopened today. No retro/standup object found.
 **Path.** Code Review "Review Behavior" per repo
 **Source.** ✅ `code-review.md` · ⚠️ `champion-kit.md`/`communications-kit.md` not reopened
 
+</details>
+
 #### 9c Cadence
+<details>
+<summary>● <code>/loop</code>, cron tools, Routines (cloud), Desktop scheduled tasks</summary>
+
 **Ships.** Three scheduling tiers compared in the vendor's own table: `/loop` (session-scoped, fixed or Claude-chosen interval, 7-day expiry), Routines (cloud, ≥1 hour, survives restarts, no local files), and Desktop scheduled tasks (local, ≥1 minute). Cron syntax with jitter to spread load.
 **Path.** `/loop`, `CronCreate`, Routines
 **Source.** ✅ `scheduled-tasks.md`
 
+</details>
+
 #### 9d Anti-fragile Lifecycle
+<details>
+<summary>○</summary>
+
 **Nothing here** — checked `troubleshooting.md`/`errors.md` (titles only, not reopened today) and `security.md`. No defect ledger, post-mortem object, or closed-loop *lesson → rule* mechanism found; the changelog is release notes, not a root-caused defect record.
 
+</details>
+
 #### 9e Raise the Floor
+<details>
+<summary>◐ <code>/doctor</code>, <code>/init</code>, curated official plugin marketplace</summary>
+
 **Ships.** `/doctor` diagnoses config and trims an over-long `CLAUDE.md`; `/init` scaffolds a starting `CLAUDE.md` from the codebase; the curated `claude-plugins-official` marketplace is a vetted golden-path set an org can force-enable.
 **Path.** `/doctor`, `/init`, `claude-plugins-official`
 **Source.** ✅ `memory.md` · ✅ `plugins.md`
 
+</details>
+
 #### 9f Diagnose the Bottleneck
+<details>
+<summary>◐ <code>/insights</code> (friction points) + analytics' PRs-per-user chart</summary>
+
 **Ships.** `/insights` analyzes up to 200 recent sessions and writes a report on *"friction points such as misunderstood requests or buggy code."* The Team/Enterprise analytics dashboard's PRs-per-user chart is framed *"to understand how individual productivity changes as Claude Code adoption increases"* — adoption/ROI framing, not a throughput-loss instrument for a pipeline.
 **Path.** `/insights`, `claude.ai/analytics/claude-code`
 **Source.** ✅ `costs.md` · ✅ `analytics.md`
 
 </details>
 
-<details>
-<summary><b>10 · Teams & Agents</b> — 10a ◐ · 10b ◐</summary>
+### 10 · Teams & Agents
 
 #### 10a Roster
+<details>
+<summary>◐ Built-in subagents (Explore/Plan/general-purpose) + team <code>members</code> array — session-scoped</summary>
+
 **Ships.** Three built-in subagents (Explore, Plan, general-purpose) plus custom `.claude/agents/*.md` definitions; an agent team's `config.json` holds a `members` array teammates can read to discover each other. Scoped to one session — not an org-wide named roster of agents or people.
 **Path.** `.claude/agents/*.md`; team `config.json`
 **Source.** ✅ `sub-agents.md` · ✅ `agent-teams.md`
 
+</details>
+
 #### 10b Org
+<details>
+<summary>◐ Owner/Primary Owner/Admin/Billing/Developer roles; no custom-role mechanism</summary>
+
 **Ships.** Named roles beyond a single "Owner": Console dashboards gate on Developer/Billing/Admin/Owner/Primary Owner; Code Review setup requires *"the Owner or Primary Owner role."* Org-wide managed settings, model restrictions, and effort limits exist — no custom-role or fine-grained RBAC mechanism was found.
 **Path.** `claude.ai/admin-settings`
 **Source.** ✅ `admin-setup.md` · ✅ `costs.md` · ✅ `code-review.md`
 
 </details>
 
-<details>
-<summary><b>11 · Surfaces</b> — 11a ●</summary>
+### 11 · Surfaces
 
 #### 11a Surfaces
+<details>
+<summary>● CLI, VS Code, JetBrains, Desktop, web, Slack — <i>"the same underlying Claude Code engine"</i></summary>
+
 **Ships.** CLI, VS Code, JetBrains, Desktop, web (`claude.ai/code`), Slack, and Claude Tag — *"Each surface connects to the same underlying Claude Code engine, so your repo's CLAUDE.md files, settings, and MCP servers work across all of them."* Local surfaces share config; cloud sessions start from a fresh clone and don't read `~/.claude/`.
 **Path.** `claude`, VS Code/JetBrains extensions, Desktop app
 **Source.** ✅ `platforms.md` · ✅ `glossary.md` (Surface)

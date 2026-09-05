@@ -41,8 +41,10 @@ first, a matrix you scan, details you open.
 
 ## Acceptance criteria
 
-- **AC-1** For every v2 profile: `## 6. Details` starts at or before line 220; the file is ≤ 600
-  lines; 33 matrix rows and 33 `####` detail headings in checklist order; the matrix totals equal
+- **AC-1** For every v2 profile: `## 6. Details` starts at or before line 220; the file is ≤ 700
+  lines (raised from 600 on 2026-09-04 when the render check forced layout B — headings outside
+  the collapsible, four lines per component); 33 matrix rows, 33 `####` detail headings and 33
+  `<details>` blocks in checklist order, no heading inside a collapsible; the matrix totals equal
   the card's Coverage row and the harness's column totals in `04-harness-alignment.md` §2.
 - **AC-2** No `◐` outside `## 4.`–`## 5.`; no `✅`, `↪` or `⚠️` before `## 6.`; zero `◐ (proposal)`.
 - **AC-3** Every embedded mermaid block diffs empty against its `assets/projects/<harness>/*.mmd`;

@@ -68,8 +68,8 @@ Write for the first reader; the others open what they need.
      exists and the code says it was bypassed (the code wins **Ships**; the doctrine is quoted in
      §8). No unmarked claims.
    - **5b — Coverage marks**, allowed only in §4 — plus two echoes of §4 and nothing else: the card's
-     **Coverage** row, and each §6 `<summary>` line's per-component recap (`2a ● · 2b ● · 2c ●`), which
-     must match §4 exactly. `●` the vendor names a first-class, user-authored
+     **Coverage** row, and each component's §6 `<summary>` line (its §4 mark and note, verbatim),
+     which must match §4 exactly. `●` the vendor names a first-class, user-authored
      unit for this row (it appears in §5, or is a cited vendor-named object) · `◐` present, not
      first-class — a mechanism without a primitive, an analogue at another altitude, or a proposal
      not shipped (note says `proposal`) · `○` absent, the detail row names the pages checked · `n/a`
@@ -136,9 +136,10 @@ is **derived from** the details, never written first.
    one?* — with what runs the loop, what adapters it ships for other harnesses, and which other
    systems ship adapters for it. Fix the **altitude** in one bold line: process layer · gateway /
    host · runtime · hosted product (loop not user-visible). Two altitudes if rule 7 applies.
-4. **Details — all 33 components, in the fixed order, under the twelve layer blocks (§6).** For
-   each: **Ships** (your words, ≤ 5 lines, this harness only), **Path** (their words — file, key,
-   command), **Source** (mark + citation). Rule 2 for absences. If a row wants more than ~8 lines
+4. **Details — all 33 components, in the fixed order, under the twelve layer headings (§6).** For
+   each: a visible `####` heading, then a collapsed body with **Ships** (your words, ≤ 5 lines, this
+   harness only), **Path** (their words — file, key, command), **Source** (mark + citation). The
+   `<summary>` line is filled in at step 6, from the matrix. Rule 2 for absences. If a row wants more than ~8 lines
    (thirty hook events, a full telemetry schema, three multi-agent objects), write the summary and
    link out — to a deep-read folder beside the profile (`content/<name>/…`) or the Tier-2
    component page. The profile stays one page for any harness.
@@ -190,16 +191,18 @@ is **derived from** the details, never written first.
     - **(e)** the harness's row in `index.md` §1: state cell → `v2 (<date>)`.
     Skipping any of these is a known live defect (the repo's ISSUES ledger, `ISSUE-001`).
 12. **Check.** `node scripts/check-doc-links.mjs` passes (it resolves anchors). Then: `## 6. Details`
-    at or before line 220; the file ≤ 600 lines; 33 matrix rows and 33 `####` headings in order;
-    no `◐` outside §4, no `✅ ↪ ⚠️` before §6; matrix totals = card Coverage = grid column totals;
-    every embedded mermaid diffs empty against its `.mmd`.
+    at or before line 220; the file ≤ 700 lines; 33 matrix rows, 33 `####` headings and 33
+    `<details>` blocks in §6, in order; no `◐` outside §4 and the two echoes, no `✅ ↪ ⚠️` before §5;
+    matrix totals = card Coverage = grid column totals; every embedded mermaid diffs empty against
+    its `.mmd`; no `####` heading sits inside a `<details>`.
 
 ## The page
 
 Output path: beside the other profiles, in the repo's Tier-3 directory (`content/` here), as
 `<name>.md` in lower-kebab-case, the harness's canonical short name. Ten numbered H2s, exact text,
 so every anchor is stable. Budgets in brackets; **frontmatter through §5 ≤ 220 lines, whole file
-≤ 600**. A harness that cannot fit links out to `content/<name>/`; it does not grow.
+≤ 700** (layout B costs four lines per component in §6; the number that matters is the first). A
+harness that cannot fit links out to `content/<name>/`; it does not grow.
 
 ### Frontmatter [≤ 11]
 
@@ -328,29 +331,41 @@ Supporting objects in the same table, prefixed `(supporting)`. Then **Count:** `
 `<m>` supporting. **Verdict:** per rule 4, one sentence of reason. The refusal list, quoted in full,
 if there is one. Under *stated once, then dropped*, the candidates table follows, labelled.
 
-### `## 6. Details` [≤ 300]
+### `## 6. Details` [≤ 400]
 
-The source legend in one line — `✅ direct · ↪ relayed · ⚠️ unverified` — then twelve blocks, one per
-layer, in order:
+The source legend in one line — `✅ direct · ↪ relayed · ⚠️ unverified` — then twelve layer headings
+in order, each holding its components. **Headings stay outside the collapsible; only the body
+collapses.** (Tested 2026-09-04: GitHub scrolls a `#2b-hooks` link to the heading but does not open
+a `<details>` that contains it, so a heading inside a collapsed block is unreachable by link.)
 
 ```
-<details>
-<summary><b>2 · Agent Harness</b> — 2a ● · 2b ● · 2c ●</summary>
+### 2 · Agent Harness
 
 #### 2a Adapters & Middleware
+<details>
+<summary>● <b>MCP server</b> · app-server · SDK</summary>
+
 **Ships.** <≤ 5 lines, this harness only, the mechanism first.>
 **Path.** `~/.codex/config.toml` `[mcp_servers.*]` · `codex app-server`
 **Source.** ✅ `LEARN/codex/extend/mcp` · ✅ `RS/app-server/README.md`
 
+</details>
+
 #### 2b Hooks
+<details>
+<summary>● <b>Hook</b> — 11 events; MCP hooks fail open</summary>
+
 …
 
 </details>
 ```
 
-HTML rules: a blank line after `</summary>` and before `</details>`; `<summary>` takes inline HTML
-only (`<b>`, `<a href>`), not markdown; **no mermaid inside `<details>`**. The `####` heading text is
-exactly `<id> <Component>` from the checklist. A row over ~8 lines links out and stays short.
+The `<summary>` line is the component's §4 mark and note, verbatim — the second of the two permitted
+echoes of §4. HTML rules: a blank line after `</summary>` and before `</details>`; `<summary>` takes
+inline HTML only (`<b>`, `<code>`, `<a href>`), never markdown — write `<code>x</code>` not
+backticks, `<b>x</b>` not double asterisks, and no markdown links; **no mermaid inside `<details>`**. The
+`####` heading text is exactly `<id> <Component>` from the checklist; the `###` layer heading is
+`<n> · <Layer name>` from the checklist, nothing else. A body over ~8 lines links out and stays short.
 
 ### `## 7. Identity and inclusion test` [≤ 45]
 
