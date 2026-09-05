@@ -48,7 +48,11 @@ Write for the first reader; the others open what they need.
    - A primitive that bundles others (a *package* over extensions, skills, prompts) stays one row;
      write `bundles: …` in its definition cell. The table is flat; the hierarchy is in the cell.
    - If the vendor publishes **no** list, say so, give the range you could defend (*"7–9"*), mark the
-     count `⚠️ contestable`, and cite what you built it from.
+     count `⚠️ contestable`, and cite what you built it from. (`⚠️ contestable` on a count is a rule-4
+     modifier, not a source mark; it may appear in the card and in §5.)
+   - **The count is a snapshot.** Harnesses ship primitives between reads (Claude Code went 7 → 8 in
+     a month). State the read date beside the count; never "correct" an older profile's count from
+     a newer read without re-reading.
    - A **published refusal list** (*"No MCP. No sub-agents."*) is quoted once, in full, in §5, and
      pointed at from the card's **Refuses** row. Matrix notes and detail rows carry a pointer, not
      the quote again.
@@ -56,14 +60,16 @@ Write for the first reader; the others open what they need.
      never restated it. Count is `0 named`; the old set goes in a separate *candidates* table,
      clearly labelled as not the vendor's current claim. Never promote a candidate into the count.
 5. **Two mark systems, and they never share a table.**
-   - **5a — Source marks**, allowed only in §6–§10: `✅` direct (you read the vendor's own docs or
+   - **5a — Source marks**, allowed only in §5–§10 (§5's own Source column included): `✅` direct (you read the vendor's own docs or
      repo — through a fetch tool is still direct; the mark is about *whose* words, not which tool) ·
      `↪` relayed (a secondary source, a snippet you did not open, or this repo's own earlier
      read) · `⚠️` unverified. Modifiers: `✅ (conflicting)` when two primary sources disagree (quote
      both; the newer commit wins the **Ships** line) · `✅ (doctrine ≠ code)` when the docs say a gate
      exists and the code says it was bypassed (the code wins **Ships**; the doctrine is quoted in
      §8). No unmarked claims.
-   - **5b — Coverage marks**, allowed only in §4: `●` the vendor names a first-class, user-authored
+   - **5b — Coverage marks**, allowed only in §4 — plus two echoes of §4 and nothing else: the card's
+     **Coverage** row, and each §6 `<summary>` line's per-component recap (`2a ● · 2b ● · 2c ●`), which
+     must match §4 exactly. `●` the vendor names a first-class, user-authored
      unit for this row (it appears in §5, or is a cited vendor-named object) · `◐` present, not
      first-class — a mechanism without a primitive, an analogue at another altitude, or a proposal
      not shipped (note says `proposal`) · `○` absent, the detail row names the pages checked · `n/a`
@@ -110,8 +116,12 @@ is **derived from** the details, never written first.
 
 1. **Fix the source.** Resolve the canonical repo (`gh api repos/<owner>/<name>` — follow redirects,
    note prior homes), the tag or commit you are reading (`git rev-parse` on a local clone, or the
-   API), the docs root, and the read date. Write them into the frontmatter `source:` now.
-2. **Read the whole docs surface once, fast, and inventory the pictures.** README, docs index,
+   API), the docs root, and the read date. Write them into the frontmatter `source:` now. For the
+   first release or tag, page the API (`--paginate`, or `?per_page=100&page=N` to the end) — the
+   first page is the newest, not the oldest.
+2. **Read the whole docs surface once, fast, and inventory the pictures.** Fetch docs pages **raw**
+   (the `.md` source, or the repo file), not through a summarising fetch — summaries drop diagrams
+   and event tables; one vendor lifecycle diagram was missed that way. README, docs index,
    configuration reference, security or permissions page, extension or plugin page, **examples
    directory**, changelog head, the non-goals section if there is one, the **glossary** if there is
    one (note its presence or absence in §7 — a glossary makes §5 an order of magnitude cheaper).
