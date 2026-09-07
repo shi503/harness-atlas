@@ -254,7 +254,8 @@ Then two `###` subsections, in this order. They are **subsections of §1, not ne
 still ten numbered H2s.
 
 **`### 1a. Positioning stats`** — the harness's DX fingerprint, then the seven-row character sheet
-copied from `spectrums/positions.md`, then the links out (the rendered card, the scoring YAML, the
+copied from `spectrums/positioning.md`, then the **drafted-until-verified banner** if the harness's
+YAML says `verified: false` (R11), then the links out (the rendered card, the scoring YAML, the
 scorecard definitions, the ten axes), then one italic line giving the scoring date and the profile
 read date it was scored against.
 

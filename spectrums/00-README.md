@@ -40,7 +40,8 @@ enough yet. **Only the third one grades**, and it grades a team, not a harness.
 
 **The sheet has two faces, and they are one instrument.** Ten axes here — the detail layer, for the
 reader who will open an anchor. Seven authored dimensions at [`01-scorecard.md`](01-scorecard.md) —
-the headline layer, for the reader who will not. One YAML file per harness holds both. The scorecard
+the headline layer, for the reader who will not, revised 2026-09-07 and rendered at
+[`positioning.md`](positioning.md). One YAML file per harness holds both. The scorecard
 is **not** a fourth instrument, and calling it one would re-fuse what
 [`../RULING-2026-09-02-spinout.md`](../RULING-2026-09-02-spinout.md) un-fused.
 
@@ -83,6 +84,12 @@ relaxation of the rule: R3's test is unchanged — *no new research*.
 authored dimensions was added at [`01-scorecard.md`](01-scorecard.md), per R7's *"fix the sheet in a
 dated revision; do not fork it."* R7 is not relaxed: it forbids **per-harness** axes, and the seven
 are house-owned and applied identically to every harness. Ruling: `2026-09-07-dx-scorecard`.
+
+**Second dated revision — 2026-09-07.** The ten axes are **again unchanged in definition, anchors and
+polarity**. KD revised the seven dimensions above them (ruling `2026-09-07-dx-revision`), which moved
+four `Headline` rows in §3: axis VIII is promoted out of detail-only, axis III is demoted into it, and
+axes VI and X are now read partially rather than whole. Every change is a display decision about the
+headline layer; nothing below §3's anchors moved. See [`01-scorecard.md`](01-scorecard.md) §7.
 
 ---
 
@@ -176,7 +183,7 @@ spectrums:
 | **Anchors** | `−3` OpenClaw, *"designed for a single operator"* · `+3` QM's per-scope rooms |
 | **Cost of +3** | Every feature must be scoped before it ships; solo velocity drops |
 | **Cost of −3** | The second-user bottleneck — coordination, visibility, review, shared context |
-| **Headline** | **DX-1** Operator scale — pass-through, [`01-scorecard.md`](01-scorecard.md) |
+| **Headline** | **DX-1** Org scale — pass-through, and the only one left. [`01-scorecard.md`](01-scorecard.md) |
 
 This is the axis KD named ("team size"), and it is the spine of
 [`05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md) §2's SOLO → TEAM →
@@ -206,7 +213,7 @@ MULTI-TEAM → ORG rendering. That rendering is the fuller reading; this is its 
 | **Anchors** | `+3` Macedo's **T4**, stated as a *membership condition* for being a harness at all |
 | **Cost of +3** | False stops and friction; the escape hatch becomes a design problem of its own |
 | **Cost of −3** | Every guardrail is a suggestion |
-| **Headline** | **DX-2** Constraint form — [`01-scorecard.md`](01-scorecard.md) |
+| **Headline** | detail-only since 2026-09-07 — DX-2 was re-referented to *Weight class*, which reads axis VIII, not this. Binding force is now read at the detail layer alone. [`01-scorecard.md`](01-scorecard.md) §7 |
 
 Factor `VII`. The `0` notch is the *doctrine ≠ code* case the teardown skill names as the normal case —
 the docs say a gate exists; the code says it was bypassed. Score the code.
@@ -253,7 +260,7 @@ choice hurt.** A `+3` here is usually evidence of a past `−3`.
 | **Rows** | §5 count and verdict, directly |
 | **Cost of +3** | The agent invents a fourth way because three exist (factor `I`) |
 | **Cost of −3** | Use cases it simply cannot serve, and will not |
-| **Headline** | **DX-2** Constraint form — read for direction and **inverted**; see that dimension's `reads.note` |
+| **Headline** | **DX-2** Weight class — read for **bulk only**, verdict discarded; see that dimension's `reads.note` |
 
 **The one centred axis in the core set.** The repo already holds the opinion — *5–7 healthy · 12+
 accommodation failure · refusal list* — so here `|value|` is distance from health, not a position. It
@@ -269,7 +276,7 @@ is included because it is free: §5 already produces the verdict, and the sheet 
 | **Rows** | `3a` `2c` `9c` `7a` |
 | **Cost of +3** | Blast radius, and a bill nobody watched accrue |
 | **Cost of −3** | The human is the throughput ceiling |
-| **Headline** | detail-only — orthogonal to DX-2: a deterministic pipeline can run unattended, a prose-led harness can be approval-first. [`01-scorecard.md`](01-scorecard.md) §3 |
+| **Headline** | detail-only — orthogonal to DX-2: a heavyweight harness can run unattended, a lightweight one can be approval-first. [`01-scorecard.md`](01-scorecard.md) §3 |
 
 Marked `centred` because the outside literature converges on the asymmetric boundary as the answer.
 **This is the one shape call in the sheet that is a judgement, not a reading** — if `+3` is a
@@ -287,7 +294,7 @@ for ruling.
 | **Anchors** | `+3` FRACTAL's HANDOFF, whose *"not completed"* section must say `None` rather than be skipped |
 | **Cost of +3** | A ceremony tax on every one-line change |
 | **Cost of −3** | *"It said it was done."* |
-| **Headline** | detail-only — an analyst's question, no DX reader. [`01-scorecard.md`](01-scorecard.md) §3 |
+| **Headline** | **DX-2** Weight class — **direct**. Promoted out of detail-only 2026-09-07: *expected rigor* is a buyer's words for *how is completion known*. [`01-scorecard.md`](01-scorecard.md) §7 |
 
 Factor `X`.
 
@@ -302,7 +309,7 @@ Factor `X`.
 | **Anchors** | `+3` finding-classes promoting into standards; the llm-wiki pattern |
 | **Cost of +3** | Curation burden, drift, and rules that outlive the reason they were written |
 | **Cost of −3** | The same lesson relearned every quarter |
-| **Headline** | detail-only — and the axis most likely to go stale as a harness matures. [`01-scorecard.md`](01-scorecard.md) §3 |
+| **Headline** | detail-only — an analyst's question, and the axis most likely to go stale as a harness matures. [`01-scorecard.md`](01-scorecard.md) §3 |
 
 Factor `XI`, and Karpathy's test: ***does knowledge compound, or does it just get retrieved?***
 
@@ -316,7 +323,7 @@ Factor `XI`, and Karpathy's test: ***does knowledge compound, or does it just ge
 | **Rows** | `8d` `8c` `8b` |
 | **Cost of +3** | Instrumentation that only pays for itself at org scale |
 | **Cost of −3** | A system nobody can justify continuing to buy |
-| **Headline** | **DX-7** Cost visibility — pass-through, [`01-scorecard.md`](01-scorecard.md) |
+| **Headline** | **DX-7** Cost controls & efficiency — **the observability third only**, not a pass-through since 2026-09-07. [`01-scorecard.md`](01-scorecard.md) §7 |
 
 Factor `XIV`, and the sharpest finding in the research: practitioners are saturated with cost while **no
 published harness taxonomy gives it a row**. **This axis is expected to fail R6** — near-total clustering
@@ -348,7 +355,7 @@ the axis and it stays. Retired ids are never reused (R7).
 
 ## 5. Producing and placing a sheet
 
-**Where it lives.** `spectrums/positions.md` — one table, harnesses down, the ten axes across, mirroring
+**Where it lives.** `spectrums/positioning.md` — one table, harnesses down, the ten axes across, mirroring
 the grid genre. The YAML position blocks are the source of truth and sit beside it as
 `spectrums/positions/<harness>.yaml`. This keeps every profile untouched but for one card row (§5).
 
@@ -364,7 +371,7 @@ the grid genre. The YAML position blocks are the source of truth and sit beside 
 **Obligations on adding a sheet** — the same shape as the teardown skill's step 9, and for the same
 reason (ISSUE-001 exists because obligations were advice):
 
-1. a row in `spectrums/positions.md`;
+1. a row in `spectrums/positioning.md`, and a `verification:` block on the YAML (R11);
 2. the YAML block committed beside it;
 3. any axis scored `null` names its pages checked;
 4. a link from the profile to its row, and back.

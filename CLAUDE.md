@@ -16,7 +16,9 @@ one peer column here, scored by the same rules, with no special status.
 Cross-cutting: `vocabulary.md` (term → concept → who says it → our component → instances),
 `spectrums/` (the sheet's two faces — `01-scorecard.md`, seven DX dimensions for a thirty-second read,
 over `00-README.md`'s ten `−3…+3` axes; scores in `positions/<harness>.yaml`, rendered in
-`positions.md`. Neither grades, bar one declared dimension), `RULINGS.md` (the index of decisions that
+`positioning.md`, which says where a harness sits relative to the industry and how that was derived.
+Neither grades, bar one declared dimension. Every card carries a **drafted-until-verified** banner
+until a person signs it off — R11), `RULINGS.md` (the index of decisions that
 changed a rule, an id or a name — the text stays where it was written),
 `maturity/` (the range argument and `grid.html`, the instrument), and `assets/` (`templates/` for the
 standardized core-concept diagrams, `projects/<harness>/` for per-harness ones; `.mmd` is canonical,

@@ -130,3 +130,20 @@ github.com, branch `template-v2`, `spectrums/positions.md`, Chrome, 2026-09-07, 
 
 `e33ee3c` the draft, verbatim · `07695c3` scorecard, intake, ruling index · `5c42837` the scoring pass ·
 *(this commit)* corpus-table fix and this HANDOFF.
+
+---
+
+## Superseded by the 2026-09-07 revision — forward pointer, appended not rewritten
+
+Everything above is the record of W9 as it landed and is left intact. Later the same day KD revised
+the seven dimensions and renamed the rendered page. **Three references above are now stale by name:**
+
+- `spectrums/positions.md` is **`spectrums/positioning.md`** — ruling `2026-09-07-positioning-rename`.
+  The `spectrums/positions/` folder and the YAML `positions:` key are unchanged.
+- The seven dimensions named in deliverable 1 were revised — four ids retired and superseded, DX-4's
+  polarity reversed, DX-5 narrowed. Ruling `2026-09-07-dx-revision`, text at `01-scorecard.md` §7.
+- The Claude Code fingerprint recorded in deliverable 7, `+1 · +1 · +3 · −2 · +3† · −3 · +3`, is
+  superseded by `+1 · +1 · +3 · +2 · +2† · −3 · +3`. It is kept in the YAML under
+  `superseded_scorecard:`, not deleted.
+
+Appended per the standing rule that a vocabulary retires by ruling and a crosswalk, never by deletion.

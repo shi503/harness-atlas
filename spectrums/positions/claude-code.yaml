@@ -6,6 +6,32 @@
 # Every `evidence` entry points at a section or component id of the profile named
 # below. Never at a URL: the profile already holds the citation.
 
+# ---------------------------------------------------------------- R11 verification
+# 01-scorecard.md §1 R11 and §2.3. `verified: false` renders the DRAFTED banner on the
+# card in positioning.md. Only a human review pass flips it — not age, not a re-render.
+verification:
+  derived_from:
+    - "vendor documentation — code.claude.com/docs/en/, read 2026-09-04 via the profile"
+    - "repo README, release notes and tag history — anthropics/claude-code"
+    - "product positioning — claude.com/product/claude-code, quoted verbatim in §7"
+  grounded_against:
+    - "§4 component matrix — 33 rows, ● 17 · ◐ 14 · ○ 2"
+    - "§5 primitives — 8 named units, ⚠️ contestable"
+    - "§7 identity table — licence, stars, repo age, tags, install, self-description"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    Positioning and observed artifact disagree in two places, and the artifact won both times.
+    (1) The repo description and the docs give different self-descriptions; §7 records both and
+    rule 5a picks the docs. (2) GitHub's linguist reports Python while the root tree carries no
+    application source and the CLI installs as a compiled binary — §7 marks the repo's status
+    ⚠️ unverified rather than reading the language field as evidence of openness. Neither
+    disagreement moved a DX value; both are recorded because R11 says the disagreement is the
+    thing worth keeping, not the resolution.
+
 spectrums:
   schema_version: 2
   harness: claude-code
@@ -112,54 +138,103 @@ spectrums:
 
   # ------------------------------------------------------- the seven DX dimensions
   # Authored, never computed (01-scorecard.md §1 R8).
+  #
+  # RE-SCORED 2026-09-07 against the revised seven (ruling `2026-09-07-dx-revision`,
+  # 01-scorecard.md §7). Four ids retired and superseded; DX-4's polarity reversed;
+  # DX-5 narrowed to adoption. The superseded scoring is kept below the live block.
   scorecard:
 
-    - id: operator-scale
+    - id: org-scale
       dx: 1
       value: 1
       mark: direct
+      supersedes: operator-scale
       reads_opened:
         axes: ["operator-scale: +1"]
-        profile: ["§7 Q2", "10b", "10a", "3d"]
-      because: "Pass-through of axis I. Org policy is enforced; tenancy is not modelled."
+        profile: ["§7 Q2", "10b", "10a", "3d", "4b"]
+      because: "Pass-through of axis I, and the only one left. Org policy is enforced over sessions — managed settings, Code Review, analytics — but no tenancy, scope or room object exists."
+      unchanged_by_revision: true
 
-    - id: constraint-form
+    - id: weight-class
       dx: 2
       value: 1
       mark: direct
+      supersedes: constraint-form
       reads_opened:
-        axes: ["binding-force: +3", "primitive-discipline: +1 — read inverted, direction only"]
-        profile: ["2c", "3a", "2b", "3e", "§7 Q3"]
-      because: "Mechanical at the tool-call boundary, prose everywhere upstream of it — context, not enforced configuration."
+        axes: ["proof-ceremony: 0 — direct", "primitive-discipline: +1 — BULK ONLY, verdict discarded"]
+        profile: ["§5 · 8 named units", "§1 · Structured output = the claude_code.interaction OTel trace", "§3 · hook lifecycle and subagent/agent-team workflows", "2b · 33 hook events", "2c", "8a", "8b"]
+      because: >
+        Real machinery, unenforced rigor. Eight named units sits above the 5–7 band, 2b ships 33 hook
+        events across 5 handler types, and 6b names four execution environments — that is a
+        substantial harness. But nothing requires an artifact per unit: 8a's multi-agent verification
+        pipeline is "explicitly non-blocking", 8c's traces are beta and opt-in, and the structured
+        output is telemetry rather than a gate. No domain-specific validation standard exists.
+      split: >
+        R10. Machinery scored at +1; rigor alone is 0 (axis VIII, verbatim: "nothing requires an
+        artifact per unit"). Scored on the machinery, which §5's count states most directly.
+      note: >
+        NOT a re-labelling of the old constraint-form +1. That value answered "prose or machine",
+        which is now axis III alone. This value answers "how much harness, and built to produce what".
+        The two agreeing at +1 is a coincidence of this harness, not a mapping.
 
-    - id: footprint
+    - id: surfaces-extendability
       dx: 3
       value: 3
       mark: direct
+      supersedes: footprint
       reads_opened:
         axes: ["surface-breadth: +3 (probation)"]
-        profile: ["11a", "6b", "6d", "8c", "1a"]
-      because: "Six surfaces on one engine, four execution environments, CI and review, and telemetry out."
+        profile: ["11a · six first-party surfaces on one engine", "6b · four execution environments", "6d · CI/CD and Code Review", "8c · telemetry out", "1a", "2b · hooks", "2a · MCP, 4 transports", "4a · Skill + MCP + Plugin bundling"]
+      because: >
+        A platform on every clause of the +3 anchor. Six surfaces with a stated source of truth —
+        "the same underlying Claude Code engine" — four execution environments, published hook, MCP
+        and plugin extension points, delivery through GitHub Actions and GitLab CI/CD, and OTel out.
+      note: >
+        Widened 2026-09-07. Hooks (2b), plugin bundling (4a) and adapters (2a) are now scored here
+        rather than under DX-5. The value did not move; the evidence set grew.
 
-    - id: domain-breadth
+    - id: domain-specialization
       dx: 4
-      value: -2
+      value: 2
       mark: direct
+      supersedes: domain-breadth
       reads_opened:
         axes: []
-        profile: ["§7 · what it says it is, verbatim", "Genre row (04-harness-alignment §1)", "§5 · no refusal list"]
-      because: "Names one domain in its own first sentence — an agentic coding tool — but refuses no adjacent use."
+        profile: ["§7 · what it says it is, verbatim", "Genre row (04-harness-alignment §1)", "6d · Code Review", "6c · monorepo config and worktrees", "§5 · no published refusal list"]
+      because: >
+        Positioned AND built for one domain. It names it in its own first sentence — "an agentic
+        coding tool that reads your codebase, edits files, runs commands" — and the machinery is
+        code-shaped rather than generic: 6d ships a hosted Code Review service and CI integration,
+        6c carries monorepo and worktree handling. Short of +3 because it refuses no adjacent use:
+        §5 finds no published refusal list, checked across glossary.md, overview.md and
+        how-claude-code-works.md.
+      note: >
+        POLARITY REVERSED 2026-09-07. This is the same reading as the superseded domain-breadth −2,
+        with the sign flipped and the "machinery is domain-shaped" half newly required. A reader
+        comparing +2 here against −2 in any pre-revision copy is looking at one observation, not two.
 
     - id: ecosystem
       dx: 5
-      value: 3
+      value: 2
       grades: true
       mark: direct
       reads_opened:
         axes: []
-        profile: ["§7 Stars 144,088", "§7 Repo created 2025-02-22", "§7 213 tags", "4a", "2a", "3e"]
-      because: "Marketplaces with SHA pinning, a co-published open standard, MCP, and 144k stars at the read date."
-      gap: "No plugin or marketplace-entry count appears in the profile. A count would confirm or weaken the extension-market half of +3."
+        profile: ["§7 Stars 144,088 (2026-09-04)", "§7 Repo created 2025-02-22", "§7 213 tags, latest v2.1.261 published 2026-09-04", "§7 First release ⚠️ unverified", "9e · curated OFFICIAL plugin marketplace"]
+      because: >
+        Wide adoption and longevity are both met — 144,088 stars, 18 months of repo history, 213 tags
+        with a release published on the read date itself. The third clause of +3 is not: the profile
+        records no count of third-party authors, plugins or marketplace entries, and 9e's marketplace
+        is described as "curated official". Stars measure attention, not building.
+      gap: >
+        No third-party author, plugin or marketplace-entry count appears anywhere in the profile or
+        its 12-document deep read. A count is the single fact that would settle +2 against +3.
+      note: >
+        MOVED BY THE REVISION, not by new evidence. The superseded ecosystem +3 rested substantially
+        on "marketplaces with SHA pinning, a co-published open standard, MCP" — all of which are now
+        DX-3 (01-scorecard.md §4, the DX-3 boundary note). Under anchors narrowed to adoption alone,
+        the same profile reads +2. This is the revision's one score change, and it is the intended
+        consequence of removing the DX-3/DX-5 evidence collision.
 
     - id: ownership
       dx: 6
@@ -167,15 +242,45 @@ spectrums:
       mark: direct
       reads_opened:
         axes: ["substrate-portability: 0"]
-        profile: ["§7 License — no OSS licence, license: null", "§7 Install — compiled binary", "0a", "6b"]
+        profile: ["§7 License — no OSS licence, LICENSE.md 'All rights reserved', license: null", "§7 Install — compiled binary", "0a", "6b"]
       because: "No OSS licence, a compiled binary, one vendor's model family. All three anchors of −3 are met."
-      split: "Where it runs is portable — five providers, self-hosted environments. What runs is not ownable. Scored on the licence, which §7 states verbatim."
+      split: >
+        Where it runs is portable — five providers, self-hosted environments, devcontainers. What runs
+        is not ownable. Scored on the licence, which §7 states verbatim.
+      unchanged_by_revision: true
 
-    - id: cost-visibility
+    - id: cost-controls
       dx: 7
       value: 3
       mark: direct
+      supersedes: cost-visibility
       reads_opened:
-        axes: ["cost-visibility: +3"]
-        profile: ["8d", "8c"]
-      because: "Pass-through of axis X. Per-skill, per-subagent, per-plugin and per-MCP-server attribution, plus spend limits."
+        axes: ["cost-visibility: +3 — the observability third", "routing-determinism: −1 (probation) — the routing third"]
+        profile: ["8d · /usage, prompt-cache stats, modelPricing, spend limits, effort levels", "8c · OTel metrics/events + beta traces", "8b", "3b · per-role model assignment + availableModels substitution"]
+      because: >
+        All three thirds shipped, and 8d carries them in one row. Observability: /usage attributes
+        cost per skill, subagent, plugin and MCP server, and OTel spans join spend to the run.
+        Efficiency: prompt-cache stats and effort levels. Control: enforced spend limits, plus
+        per-role model assignment and modelPricing as model measurement and routing.
+      note: >
+        NO LONGER A PASS-THROUGH. Axis X supplies the observability third only; the efficiency and
+        control thirds are read from 8d and 3b. Scored +3 on the cost sense of routing — per-role
+        model assignment is model routing — even though routing-determinism scores −1, which is about
+        message-to-agent resolution and is a different question. Recorded so the −1 is not read as
+        contradicting this cell.
+
+  # ---------------------------------------------- superseded scoring, 2026-09-07 (kept, not deleted)
+  # The seven as scored against the ORIGINAL dimensions earlier the same day, before KD's
+  # revision. Kept under the standing rule that a vocabulary retires by ruling, never by
+  # deletion. Do not render these; they answer questions the sheet no longer asks.
+  superseded_scorecard:
+    revision: "2026-09-07-dx-revision"
+    fingerprint: "+1 · +1 · +3 · −2 · +3† · −3 · +3"
+    values:
+      operator-scale:   {dx: 1, value: 1,  now: "org-scale +1 — unchanged"}
+      constraint-form:  {dx: 2, value: 1,  now: "weight-class +1 — same number, different question"}
+      footprint:        {dx: 3, value: 3,  now: "surfaces-extendability +3 — unchanged, evidence set grew"}
+      domain-breadth:   {dx: 4, value: -2, now: "domain-specialization +2 — POLARITY REVERSED"}
+      ecosystem:        {dx: 5, value: 3,  now: "ecosystem +2 — MOVED by the narrowing to adoption only"}
+      ownership:        {dx: 6, value: -3, now: "ownership −3 — unchanged"}
+      cost-visibility:  {dx: 7, value: 3,  now: "cost-controls +3 — unchanged, dimension widened"}

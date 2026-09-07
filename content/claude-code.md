@@ -33,31 +33,38 @@ template: v2
 
 ### 1a. Positioning stats
 
-`+1 · +1 · +3 · −2 · +3† · −3 · +3` — the seven DX dimensions, in order.
+`+1 · +1 · +3 · +2 · +2† · −3 · +3` — the seven DX dimensions, in order.
+
+> **⚠️ Drafted 2026-09-07, not yet verified.** Derived from Anthropic's documentation, the repo's
+> README and tag history, and the product page — grounded against §4, §5 and §7 below. No person has
+> re-read these seven values yet. [`01-scorecard.md`](../spectrums/01-scorecard.md) §1 R11 says how the
+> banner comes off.
 
 | | | | | |
 |:-:|---|---:|:-:|---|
-| **1** | Operator scale | single operator | `────●──` | multi-tenant, many teams |
-| **2** | Constraint form | prose-led | `────●──` | machine-led |
-| **3** | Footprint | one surface | `──────●` | many surfaces, environments, deployments |
-| **4** | Domain breadth | one named use case | `─●─────` | general-purpose |
-| **5** | Ecosystem **†** | tribal, proprietary | `▰▰▰▰▰` | wide adoption, extensive plugins |
+| **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
+| **2** | Weight class | light-weight | `────●──` | heavy-weight |
+| **3** | Surfaces & extendability | one surface | `──────●` | many surfaces, environments, a platform |
+| **4** | Domain specialization | general-purpose | `─────●─` | one named domain, with workflows to match |
+| **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▰▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `●──────` | yours |
-| **7** | Cost visibility | unmetered | `──────●` | attributed to the unit of work |
+| **7** | Cost controls & efficiency | unmetered, unrestricted | `──────●` | observability, efficiency, routing |
 
 **†** the one **graded** dimension; every other row is a position, not a score. **Neither end is
 better.** Ten axes sit beneath these seven — `I +1 · II 0 · III +3 · IV +3 · V 0 · VI +1 · VII 0 ·
-VIII 0 · IX 0 · X +3` — and five of them feed no cell above by design.
+VIII 0 · IX 0 · X +3` — and four of them feed no cell above by design.
 
 → the rendered card and the reasoning per dimension:
-[`spectrums/positions.md`](../spectrums/positions.md#2-claude-code) ·
+[`spectrums/positioning.md`](../spectrums/positioning.md#2-claude-code) ·
 the scored source of truth: [`positions/claude-code.yaml`](../spectrums/positions/claude-code.yaml) ·
 what each dimension means: [`spectrums/01-scorecard.md`](../spectrums/01-scorecard.md) ·
 the ten axes: [`spectrums/00-README.md`](../spectrums/00-README.md)
 
-*Scored 2026-09-07 against this profile as read 2026-09-04. This table is the **one sanctioned echo**
-of the scorecard — it is derived from the same YAML that renders `positions.md`, so the two match by
-construction. Re-score in the YAML, never here.*
+*Scored 2026-09-07 against this profile as read 2026-09-04, then re-scored the same day against the
+revised seven (ruling `2026-09-07-dx-revision`). Two values moved: dimension 4's polarity reversed
+(`−2` → `+2`, one observation), and dimension 5 fell to `+2` when its anchors narrowed to adoption.
+This table is the **one sanctioned echo** of the scorecard — it is derived from the same YAML that
+renders `positioning.md`, so the two match by construction. Re-score in the YAML, never here.*
 
 ### 1b. Contents
 

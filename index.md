@@ -45,7 +45,7 @@ thirty-second read; ten axes beneath them for the reader who will open an anchor
 
 → [`spectrums/01-scorecard.md`](spectrums/01-scorecard.md) — the seven DX dimensions, the character-sheet face
 → [`spectrums/00-README.md`](spectrums/00-README.md) — the ten axes, and what makes one admissible
-→ [`spectrums/positions.md`](spectrums/positions.md) — the scored corpus, one card per harness
+→ [`spectrums/positioning.md`](spectrums/positioning.md) — where each harness sits, one card per harness, and how we decided
 
 ## 3. The range
 
