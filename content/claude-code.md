@@ -27,7 +27,7 @@ template: v2
 | **Serves** | One operator per session; managed settings, Code Review and analytics run org-wide → [10b](#10b-org) |
 | **Refuses** | No published refusal list — checked `glossary.md`, `overview.md`, `how-claude-code-works.md` → [§5](#5-primitives) |
 | **Coverage** | ● 17 · ◐ 14 · ○ 2 · n/a 0 → [§4](#4-component-matrix) |
-| **Deep read** | [`content/claude-code/`](claude-code/00-README.md) — 13-document extensibility reference (2026-08-10 read, relayed here) |
+| **Deep read** | [`content/claude-code/`](claude-code/00-README.md) — 12-document extensibility reference (2026-08-10 read, relayed here) |
 | **Source** | anthropics/claude-code @ v2.1.261 (`d7dbd9a09f5977…`) · code.claude.com/docs/en/ · read 2026-09-04 |
 | **Unverified** | 9 items → [§10](#10-unverified) |
 
@@ -691,7 +691,7 @@ flowchart LR
 
 `gh api` commands run: `gh api repos/anthropics/claude-code`, `gh api repos/anthropics/claude-code/tags[?page=]`, `gh api repos/anthropics/claude-code/releases/latest`, `gh api repos/anthropics/claude-code/releases/tags/v2.0.73`, `gh api repos/anthropics/claude-code/git/refs/tags/v2.1.261`, `gh api repos/anthropics/claude-code/contents/LICENSE.md`, `gh api repos/anthropics/claude-code/git/trees/main`.
 
-**Secondary** (↪): [`content/claude-code/`](claude-code/00-README.md) — 13-document deep read, sourced 2026-08-10, used for full field/event tables this profile summarises and links out to; `comparisons/systems/claude-code.md` — the prior pointer page.
+**Secondary** (↪): [`content/claude-code/`](claude-code/00-README.md) — 12-document deep read, sourced 2026-08-10, used for full field/event tables this profile summarises and links out to; `comparisons/systems/claude-code.md` — the prior pointer page.
 
 **Placement.** [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 (Claude Code column) · [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 (Claude Code column).
 

@@ -120,3 +120,21 @@ but unchecked. Two fixes, either acceptable: strike the sentence, or restore the
 rule cuts toward striking it — *markdown is not code; no generator contracts* — which is also why this is
 MINOR rather than WARN. Recorded because `docs/agents/intake.md` §3 counts `grid.html` as one of the
 twenty-four places a new component must be synced by hand, and that count is only correct if this is known.
+
+---
+
+## ISSUE-010 — "13 documents" for `content/claude-code/`, which holds 12 (stale since the spin-out)
+
+**Severity:** MINOR · **Found:** 2026-09-07, W9 phase 1 while writing the profile's §1b deep-read links · **Assigned:** W6 matrix-backfill
+
+Five non-archive files outside `content/` say the Claude Code deep read is **13 documents**. The folder
+holds **12**. `RULING-2026-09-02-spinout.md` line 35 is explicit about why: *"`references/claude-code/**`
+minus `30-gap-analysis-loomwarp.md` (12)"* moved to this repo, and line 45 lists that thirteenth file
+among the nine that **stayed with LoomWarp** — it is LoomWarp-specific gap analysis and correctly did
+not travel. The count was never updated to match.
+
+Corrected in `content/claude-code.md` (the card and §9) by W9. Still stale in
+`comparisons/systems/claude-code.md` (lines 14, 77) and `comparisons/systems/90-short-profiles.md`
+(line 46), which W6 owns. `content/claude-code/00-README.md` §table still lists the thirteenth row and
+that is **correct** — it links out to the file's LoomWarp home rather than claiming a local copy;
+only the *count* is wrong. Archived copies and the superseded draft are left alone as historical record.
