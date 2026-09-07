@@ -1,236 +1,666 @@
 ---
-title: "Pi — the minimal harness that refuses its own primitives, read at source"
+title: "Pi — the minimal harness that refuses its own primitives"
 tier: reference
-project: loomwarp
+project: harness-atlas
 created: "2026-09-02"
+updated: "2026-09-07"
 status: DRAFT
 owner: KD
 source: "github.com/earendil-works/pi (formerly badlogic/pi-mono) @ v0.84.4 · packages/coding-agent/docs · read 2026-09-02"
 provenance: OBSERVED
+template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
 ---
 
 # Pi — Mario Zechner · Earendil
 
-**Why this file exists.** [`../90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 filed Pi under
-*"Not separately assessed."* [`../qm.md`](../comparisons/systems/qm.md)'s subject runs Pi as one of its pluggable agent
-loops, which makes Pi the clearest available example of the **runtime under a process layer** — the
-altitude [`../../00-README.md`](../comparisons/00-README.md) §1.2 says the word *harness* fails to separate.
-Read against the 33 components; synthesis at
-[`../../04-harness-alignment.md`](../comparisons/04-harness-alignment.md).
+***A TypeScript terminal harness whose defining move is subtraction: it publishes what it will not
+ship — MCP, sub-agents, permission popups, plan mode, to-dos, background bash — and ships each as an
+example extension instead, so the loop is minimal and everything above it is yours to author.***
 
-**In one screen.** A TypeScript terminal harness whose defining move is subtraction. Its README
-lists what it will not ship — *"No MCP. No sub-agents. No permission popups. No plan mode. No built-in
-to-dos. No background bash."* — and ships each as an example extension instead. Four resource types
-(extension, skill, prompt template, theme) travel in one container, the **pi package**, over npm or
-git. It has ~40 typed lifecycle events, a session JSONL *tree* that doubles as the run receipt, a
-dev-facing evals harness with baseline/candidate lift, and **nothing** for memory, team, cadence,
-roster or org — by design, and it says so.
+## 1. At a glance
 
-**What it does not claim.** §D. The load-bearing lines: no built-in permission system; no sandbox;
-one operator; prompt injection *"cannot be reliably prevented by pi."*
+| | |
+|---|---|
+| **Altitude** | Runtime — runs the loop itself, and ships an SDK and RPC mode for embedding → [§7](#7-identity-and-inclusion-test) |
+| **Primitives** | 8, ⚠️ contestable — extension · skill · prompt template · theme · pi package · session · settings · context file → [§5](#5-primitives) |
+| **Structured output** | The session JSONL **tree** — `id`/`parentId` branching, with `usage`, `cost`, model and `stopReason` per entry → [8b](#8b-evidence) |
+| **Binds mechanically?** | Only where you install the mechanism — *"Pi does not include a built-in permission system"* → [2c](#2c-enforcement) |
+| **State persists** | Session JSONL at `~/.pi/agent/sessions/--<path>--/`, resumable and forkable; no memory feature → [5a](#5a-individual-memory) |
+| **Serves** | One operator; project `.pi/settings.json` *"can be shared with your team"*, and nothing else knows a second person exists → [10b](#10b-org) |
+| **Refuses** | A published refusal list — *"No MCP. No sub-agents. No permission popups. No plan mode. No built-in to-dos. No background bash."* → [§5](#5-primitives) |
+| **Coverage** | ● 6 · ◐ 11 · ○ 16 · n/a 0 → [§4](#4-component-matrix) |
+| **Source** | earendil-works/pi @ v0.84.4 · `packages/coding-agent/docs` · read 2026-09-02 |
+| **Unverified** | 9 items → [§10](#10-unverified) |
 
----
+### 1a. Positioning stats
 
-# Pi (pi coding agent) — harness research, primary-source read
+`−1 · −2 · +2 · 0 · +2† · +3 · +1` — the seven DX dimensions, in order.
 
-Access date for every source: **2026-09-02**. Marks: ✅ direct (primary read) · ◐ relayed (secondary) · ⚠️ unverified.
+> **⚠️ Drafted 2026-09-07, not yet verified.** Derived from Pi's own README, docs and RFC index, and
+> the maintainer's post about the Earendil sale — grounded against §4, §5 and §7 below. No person has
+> re-read these seven values yet. [`01-scorecard.md`](../spectrums/01-scorecard.md) §1 R11 says how the
+> banner comes off.
 
-URL shorthands used below:
-- `REPO` = https://github.com/earendil-works/pi
-- `CA` = https://github.com/earendil-works/pi/blob/main/packages/coding-agent
-- `DOCS` = https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs
-- `EX` = https://github.com/earendil-works/pi/blob/main/packages/coding-agent/examples/extensions
+| | | | | |
+|:-:|---|---:|:-:|---|
+| **1** | Org scale | single operator | `──●────` | multi-tenant, many teams |
+| **2** | Weight class | light-weight | `─●─────` | heavy-weight |
+| **3** | Surfaces & extendability | one surface | `─────●─` | many surfaces, environments, a platform |
+| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▱▱` | wide adoption, longevity, network economies |
+| **6** | Ownership | rented | `──────●` | yours |
+| **7** | Cost controls & efficiency | unmetered, unrestricted | `────●──` | observability, efficiency, routing |
 
----
+**†** the one **graded** dimension; every other row is a position, not a score. **Neither end is
+better.** Ten axes sit beneath these seven — `I −1 · II 0 · III −1 · IV +3 · V +2 · VI −2 · VII +2 ·
+VIII +1 · IX 0 · X +1` — and four of them feed no cell above by design.
 
-## A. Identity
+→ [`spectrums/positioning.md`](../spectrums/positioning.md#3-pi) ·
+[`positions/pi.yaml`](../spectrums/positions/pi.yaml) ·
+[`01-scorecard.md`](../spectrums/01-scorecard.md) · [`00-README.md`](../spectrums/00-README.md)
 
-| Field | Value | Mark / source |
-|---|---|---|
-| Canonical name | **Pi** ("Pi Agent Harness" is the monorepo title; the CLI binary is `pi`; the CLI package is "pi coding agent") | ✅ `REPO/blob/main/README.md` ("# Pi Agent Harness"), `CA/package.json` (`"bin": {"pi": ...}`) |
-| Prior names / homes | GitHub `badlogic/pi-mono` → `earendil-works/pi` (old URL redirects; `gh api repos/badlogic/pi-mono` returns `earendil-works/pi`). npm `@mariozechner/pi-coding-agent` (created 2025-11-12, last 0.73.1, deprecated: "please use @earendil-works/pi-coding-agent instead going forward") → `@earendil-works/pi-coding-agent` (created 2026-05-07). | ✅ GitHub API; npm registry `https://registry.npmjs.org/@mariozechner%2Fpi-coding-agent` and `.../@earendil-works%2Fpi-coding-agent`; `CA/CHANGELOG.md` §0.74.0 (2026-05-07): "Updated repository links and package references for the move to `earendil-works/pi-mono` and `@earendil-works/*` package scopes." |
-| Owner / maintainer | Created by Mario Zechner (badlogic). Since April/May 2026 an Earendil product; Zechner: "I'm a shareholder of Earendil and in charge of all pi decisions, along with Armin and Colin." LICENSE file: "Copyright (c) 2025 Mario Zechner". | ✅ https://mariozechner.at/posts/2026-04-08-ive-sold-out/ ; ✅ `REPO/blob/main/LICENSE` |
-| GitHub URL | https://github.com/earendil-works/pi | ✅ |
-| License | MIT ("pi is MIT licensed. It will stay MIT licensed." — Zechner) | ✅ GitHub API `license.spdx_id: MIT`; LICENSE file; blog post |
-| Stars | **100,782** stars, 12,529 forks (2026-09-02) | ✅ `gh api repos/badlogic/pi-mono` |
-| Language | TypeScript | ✅ GitHub API |
-| Repo created | 2025-08-09; first commits 2025-08-11 | ✅ GitHub API `created_at`; commits API |
-| First release | CHANGELOG's oldest entry: `## [0.10.0] - 2025-11-25`; old npm package created 2025-11-12; oldest GitHub Release object in API paging: v0.25.4 (2025-12-21). Earlier versions were published to npm before GitHub Releases were used. | ✅ `CA/CHANGELOG.md` tail; npm registry; GitHub releases API |
-| Latest release | **v0.84.4**, 2026-08-28 (npm `latest` = 0.84.4). Last push 2026-09-02. | ✅ GitHub releases API; npm registry |
-| Install | `npm install -g --ignore-scripts @earendil-works/pi-coding-agent` or `curl -fsSL https://pi.dev/install.sh \| sh` | ✅ `DOCS/index.md`, `DOCS/quickstart.md` |
-| Website / docs | https://pi.dev ; docs mirror at https://pi.dev/docs/latest ; package gallery https://pi.dev/packages ; RFCs at https://rfc.earendil.com/keyword/pi/ | ✅ root README |
+*Scored 2026-09-07 against this profile as read 2026-09-02. This table is the **one sanctioned echo**
+of the scorecard — derived from the same YAML that renders `positioning.md`, so the two match by
+construction. Re-score in the YAML, never here.*
 
-**What it says it is, verbatim:**
+### 1b. Contents
 
-> "Pi is a minimal terminal coding harness. Adapt pi to your workflows, not the other way around, without having to fork and modify pi internals. Extend it with TypeScript Extensions, Skills, Prompt Templates, and Themes. Put your extensions, skills, prompt templates, and themes in Pi Packages and share them with others via npm or git." — ✅ `CA/README.md`
+[§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) ·
+[§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) ·
+[§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) ·
+[§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) ·
+[§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-> "Pi ships with powerful defaults but skips features like sub agents and plan mode. Instead, you can ask pi to build what you want or install a third party pi package that matches your workflow. Pi runs in four modes: interactive, print or JSON, RPC for process integration, and an SDK for embedding in your own apps." — ✅ `CA/README.md`
+No deep-read folder exists for Pi. `content/pi-draft.md` is a superseded `--sanity` draft, kept as
+history and not a reading path.
 
-> "This is the home of the Pi agent harness project including our self extensible coding agent." — ✅ `REPO/blob/main/README.md`
+## 2. System map
 
-### Inclusion test
+**Diagram inventory not done at the 2026-09-02 read — pending the diagram pass (W8c).** No
+`assets/projects/pi/` exists, and no vendor diagram was inventoried when the source read was taken.
+This is a recorded gap, not an absence: the read predates the diagram obligation.
 
-**1. Does state persist across sessions? Where, in what format?** — **Yes (session transcripts and config), but there is no "memory" feature.**
-- Sessions auto-save as JSONL at `~/.pi/agent/sessions/--<path>--/<timestamp>_<uuid>.jsonl` (`<path>` = cwd with `/`→`-`), tree-structured via `id`/`parentId`, format version 3; resumable with `pi -c`, `pi -r`, `--session <path|id>`, `--fork`. ✅ `DOCS/session-format.md`, `DOCS/sessions.md`
-- Other persisted state under `~/.pi/agent/`: `settings.json`, `auth.json` (OAuth tokens / API keys), `trust.json` (project trust decisions), `models.json` (custom models), `models-store.json` (cached catalogs), `keybindings.json`, `AGENTS.md`, `sessions/`, `npm/`, `git/`. ✅ `CA/README.md`, `DOCS/security.md`, `DOCS/providers.md`, `DOCS/quickstart.md` ("Uninstalling pi leaves settings, credentials, sessions, and installed pi packages in `~/.pi/agent/`.")
-- Extensions persist their own state into the session file via `pi.appendEntry()` ("Session persistence - Store state that survives restarts"). ✅ `DOCS/extensions.md`
-- A SQLite session backend exists as a separate package (`@earendil-works/pi-session-backend-sqlite-node`, with FTS search) for `pi-agent-core`. ✅ `REPO/blob/main/packages/session-backends/sqlite-node/README.md`
-- A grep of all `docs/*.md` and the README for the word "memory" (excluding in-memory/RAM senses) returned nothing: no memory files, no auto-memory. ✅
+**How it thinks about work.** A unit of work is one turn in one session, and the session is a
+**tree**, not a line — every entry carries an `id` and a `parentId`, so branching happens in place
+rather than by copying a file. The loop itself is `@earendil-works/pi-agent-core`; the CLI wraps it as
+`AgentSession`. Nothing gates entry and nothing gates a tool call by default — *"By default, it runs
+with the permissions of the user and process that launched it."* What shapes a run is the extension
+set the operator installed: ~40 typed lifecycle events, one of which (`tool_call`) can block. Work
+lands as file edits and shell effects; the receipt is the session file, which is also the thing you
+resume, fork, export and share.
 
-**2. Does it serve more than one person?** — **One operator.** It "runs with the permissions of the user account that starts it" (✅ `DOCS/security.md`). Team-facing affordances are config-sharing only: project `.pi/settings.json` "can be shared with your team, and pi installs any missing packages automatically on startup after the project is trusted" (✅ `DOCS/packages.md`). The experimental `pi-server`/`pi-client`/`pi-protocol` packages allow multiple *clients* to attach to sessions with exclusive/shared leases, but state "Treat peers as untrusted" and ship no auth, user model, or coding-agent service ("This package does not provide a standalone CLI or coding-agent service. Applications supply the `PiServerService` implementation."). ✅ `REPO/blob/main/packages/server/README.md`, `packages/client/README.md`. The sibling `earendil-works/pi-chat` bridges Discord/Telegram channels to per-channel sandboxed pi sessions (✅ https://github.com/earendil-works/pi-chat/blob/main/README.md).
+## 3. Workflows
 
-**3. Does it bind mechanically or only by prose?** — **Mechanically only where you install the mechanism; nothing mechanical by default.**
-- Verbatim: "Pi does not include a built-in permission system for restricting filesystem, process, network, or credential access. By default, it runs with the permissions of the user and process that launched it." ✅ root README. "No permission popups. Run in a container, or build your own confirmation flow with extensions". ✅ `CA/README.md`
-- Mechanical levers that do exist: (a) the `tool_call` extension event "**Can block.**" via `{ block: true, reason?, terminate? }`, and "`tool_call` errors block the tool (fail-safe)" ✅ `DOCS/extensions.md`; (b) CLI tool allow/deny: `--tools <list>` ("Allowlist specific tool names"), `--exclude-tools`, `--no-tools`, `--no-builtin-tools`, and `defaultTools` in settings ✅ `CA/README.md`, `DOCS/settings.md`; (c) **project trust** gates loading of `.pi/settings.json`, `.pi/extensions|skills|prompts|themes`, `.pi/SYSTEM.md`, project `.agents/skills` — decisions stored in `~/.pi/agent/trust.json`; `defaultProjectTrust: "ask"|"always"|"never"` ✅ `DOCS/security.md`; (d) OS-level isolation is delegated outward: Gondolin micro-VM extension, Docker, NVIDIA OpenShell ✅ `DOCS/containerization.md`.
-- Instruction files (`AGENTS.md`, `CLAUDE.md`, `AGENTS.override.md`, `.pi/SYSTEM.md`, `APPEND_SYSTEM.md`) are prose only. Security doc: "Project trust is only an input-loading guard... It does not make untrusted code, untrusted prompts, or untrusted model output safe." ✅
+**Not written at the 2026-09-02 read — pending the diagram pass (W8c).** A recorded gap. The three
+sequences a workflow pass should draw, each already evidenced in §6 and needing no new source read:
 
-### Harness or process layer?
+1. **The turn and the extension event chain** — `input` → `before_agent_start` → `turn_start` →
+   `tool_call` (can block) → `tool_execution_*` → `tool_result` → `turn_end` → `agent_end`
+   ([2b](#2b-hooks)).
+2. **Session as a tree** — `/fork`, `/clone`, `/tree`, branch summaries, and where compaction enters
+   ([8b](#8b-evidence), [8d](#8d-efficiency)).
+3. **Package install and resource resolution** — `pi install npm:|git:` → project trust →
+   per-scope enable/disable → hot reload ([4a](#4a-capability), [4b](#4b-capability-permissions)).
 
-- **Runs the loop itself.** The agent loop is `@earendil-works/pi-agent-core` (`Agent` class, `agent.prompt()`, event stream), built on `@earendil-works/pi-ai`; the CLI wraps it as `AgentSession`. ✅ `REPO/blob/main/packages/agent/README.md`, `DOCS/sdk.md`
-- **Embeddable via SDK** (documented): "The SDK provides programmatic access to pi's agent capabilities. Use it to embed pi in other applications, build custom interfaces, or integrate with automated workflows." `createAgentSession()`, `AgentSession`, `createAgentSessionRuntime()`, `SessionManager.inMemory()`. ✅ `DOCS/sdk.md`. Also `pi --mode rpc` (stdin/stdout JSONL, "useful for embedding the agent in other applications, IDEs, or custom UIs") ✅ `DOCS/rpc.md`, and `--mode json` ✅ `DOCS/json.md`. Package exports: `.`, `./rpc-entry`, `./client`. ✅ `CA/package.json`
-- **Adapters it ships for other harnesses:** reads Claude Code / Codex skill dirs (`"skills": ["~/.claude/skills", "~/.codex/skills"]`, `"../.claude/skills"`) ✅ `DOCS/skills.md`; loads `CLAUDE.md` as a context file ✅ `CA/README.md`; example `claude-rules.ts` ("Load rules from files") ✅ `DOCS/extensions.md`; README lists "Make pi look like Claude Code" as an extension possibility ✅.
-- **Other systems shipping an adapter for Pi:** **QM (Quartermaster, yc-software/qm)** — its README: "Pi, OpenCode, Codex, and Claude Code all drive the same core" and diagram node "Agent loop (Pi, OpenCode, Claude Code)". ✅ https://github.com/yc-software/qm/blob/main/README.md (grepped raw). Pi does **not** document QM. OpenClaw reportedly "embeds Pi via the SDK" ◐ (search snippet only, not read at source). First-party: `earendil-works/pi-chat` (a pi extension) ✅. The pi.dev gallery lists a third-party package described as "MCP (Model Context Protocol) adapter extension for Pi coding agent" and one as "Pi extension for single-agent delegation and scripted multi-agent workflows" ✅ https://pi.dev/packages (package names not captured).
+## 4. Component matrix
 
-### Primitive set (see §C for definitions)
+`● named primitive · ◐ partial, present-not-first-class · ○ absent (pages named in §6) · n/a does not apply at this altitude`
 
-Extension · Skill · Prompt template · Theme · Pi package · Session (tree) · Settings (global/project) · Context file (`AGENTS.md`). Supporting first-class objects: Project trust, built-in Tools, `models.json`.
+**Marks copied verbatim from Pi's column in [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2; not re-derived at the restructure.**
 
----
+| # | Component | Mark | Primitive / note |
+|---|---|:-:|---|
+| **0 · Foundation** | | | |
+| [0a](#0a-substrate) | Substrate | ● | 31 API-key providers + subscriptions + local llama.cpp; custom providers via extension |
+| **1 · Environment** | | | |
+| [1a](#1a-environment) | Environment | ○ | Local shell and filesystem at the launching user's permissions; no declared inventory |
+| **2 · Agent Harness** | | | |
+| [2a](#2a-adapters--middleware) | Adapters & Middleware | ● | [**Extension**](#5-primitives) `ExtensionAPI` + SDK + RPC + JSON — **no MCP, by refusal** |
+| [2b](#2b-hooks) | Hooks | ● | ~40 typed lifecycle events, TypeScript handlers; `tool_call` can block |
+| [2c](#2c-enforcement) | Enforcement | ◐ | No built-in permission system or sandbox; `--tools` allowlist and project trust are the levers |
+| **3 · System Stacks** | | | |
+| [3a](#3a-control) | Control | ◐ | No plan mode; the shipped `plan-mode/` example is one |
+| [3b](#3b-routing) | Routing | ○ | Manual model routing only; no automatic delegation rules |
+| [3c](#3c-composition) | Composition | ◐ | No sub-agents; the shipped `subagent/` example spawns separate `pi` processes |
+| [3d](#3d-configuration) | Configuration | ● | [**Context file**](#5-primitives) + [**Settings**](#5-primitives) with project-over-global merge |
+| [3e](#3e-standards) | Standards | ○ | No rules pack shipped; prompt templates and pinned packages are the vehicles |
+| **4 · Capabilities** | | | |
+| [4a](#4a-capability) | Capability | ● | [**Pi package**](#5-primitives) bundling [**skill**](#5-primitives) · extension · prompt template · theme |
+| [4b](#4b-capability-permissions) | Capability Permissions | ◐ | Skill `allowed-tools`, per-package filtering, per-scope enable/disable; no per-user ACLs |
+| **5 · Context ⟳** | | | |
+| [5a](#5a-individual-memory) | Individual Memory | ○ | No memory feature — grep of docs and README found none |
+| [5b](#5b-team-memory) | Team Memory | ○ | Project `.pi/` shared via VCS; nothing team-aware |
+| [5c](#5c-knowledge) | Knowledge | ○ | No RAG, embeddings or wiki; SQLite FTS over own sessions in a separate package |
+| **6 · Workspaces ⟳** | | | |
+| [6a](#6a-product) | Product | ○ | |
+| [6b](#6b-infrastructure) | Infrastructure | ◐ | Gondolin micro-VM, Docker, NVIDIA OpenShell, SSH — all delegated outward |
+| [6c](#6c-estate) | Estate | ○ | No multi-repo model; sessions keyed per working directory |
+| [6d](#6d-delivery) | Delivery | ○ | Nothing built in; git examples only |
+| **7 · Workflow Tasks** | | | |
+| [7a](#7a-workflow-tasks) | Workflow Tasks | ○ | Deliberately none — *"They confuse models. Use a TODO.md file"* |
+| **8 · Trust** | | | |
+| [8a](#8a-evals) | Evals | ◐ | `packages/evals` with baseline/candidate lift — dev-facing, not a ship gate |
+| [8b](#8b-evidence) | Evidence | ● | [**Session**](#5-primitives) JSONL tree — the receipt, with per-entry `usage` and `cost` |
+| [8c](#8c-observability) | Observability | ◐ | `pi-telemetry` vendor-neutral contracts — **no exporter shipped** |
+| [8d](#8d-efficiency) | Efficiency | ◐ | Token/cost/cache footer, compaction, cache retention, thinking budgets; **no spend limits** |
+| **9 · IMPROVE** | | | |
+| [9a](#9a-learning) | Learning | ○ | No auto-capture; self-extension is the stated posture |
+| [9b](#9b-rituals) | Rituals | ○ | Nothing encoded; user-authored prompt templates only |
+| [9c](#9c-cadence) | Cadence | ○ | Nothing here; `pi -p` from cron is the external route |
+| [9d](#9d-anti-fragile-lifecycle) | Anti-fragile Lifecycle | ◐ | Retry budgets, auto-compaction recovery, staged `pi update` with rollback |
+| [9e](#9e-raise-the-floor) | Raise the Floor | ◐ | Installer, `/login`, `/settings`, `pi config` TUI; no `doctor`, no `init` |
+| [9f](#9f-diagnose-the-bottleneck) | Diagnose the Bottleneck | ○ | Nothing here; `/session` stats are the nearest |
+| **10 · Teams & Agents** | | | |
+| [10a](#10a-roster) | Roster | ○ | Nothing built in; the subagent example uses Markdown personas |
+| [10b](#10b-org) | Org | ○ | Single operator; no ownership, RACI or escalation |
+| **11 · Surfaces** | | | |
+| [11a](#11a-surfaces) | Surfaces | ◐ | TUI · print · JSON · RPC · SDK · experimental remote protocol; no IDE shipped |
+| **● 6 · ◐ 11 · ○ 16 · n/a 0** | | | |
 
-## B. Component table (33 rows)
+## 5. Primitives
 
-| # | Component | What it ships | Path / mechanism | Source (accessed 2026-09-02) | Mark |
-|---|---|---|---|---|---|
-| 0a | Substrate | Model-pluggable via `@earendil-works/pi-ai` ("Unified multi-provider LLM API (OpenAI, Anthropic, Google, …)"). Subscriptions: Anthropic Claude Pro/Max, OpenAI ChatGPT Plus/Pro (Codex), GitHub Copilot. API-key providers listed (31): Anthropic, Ant Ling, OpenAI, Azure OpenAI, DeepSeek, NVIDIA NIM, Google Gemini, Google Vertex, Amazon Bedrock, Mistral, Groq, Cerebras, Cloudflare AI Gateway, Cloudflare Workers AI, xAI, OpenRouter, Vercel AI Gateway, ZAI Coding Plan (Global/China), OpenCode Zen, OpenCode Go, Hugging Face, Fireworks, Together AI, Baseten, Kimi For Coding, MiniMax, Xiaomi MiMo (+3 token plans). Local: llama.cpp router (`/login llama.cpp`, `/llama`). Thinking levels `off…max`. | `/model`, `/thinking`, `--provider`, `--model provider/id:thinking`; `defaultProvider`/`defaultModel`/`modelThinkingLevels`/`thinkingBudgets` in `settings.json`; custom models `~/.pi/agent/models.json`; custom APIs/OAuth via `pi.registerProvider()` in an extension; `pi update --models` refreshes catalogs | `CA/README.md` §Providers & Models; `DOCS/models.md`; `DOCS/custom-provider.md`; `DOCS/settings.md` | ✅ |
-| 1a | Environment | Local shell + filesystem with the launching user's permissions. Built-in tools: `read`, `bash`, `powershell` (Windows), `edit`, `write`, `grep`, `find`, `ls` (default set given to the model: `read`, `write`, `edit`, `bash`). User `!cmd` / `!!cmd`. No built-in browser or network tool (web search/browser come from skills, e.g. the linked `badlogic/pi-skills` repo "Web search, browser automation"). Remote/container: built-in tools have pluggable operations (`ReadOperations`, `WriteOperations`, `EditOperations`, `BashOperations`, `PowerShellOperations`, `LsOperations`, `GrepOperations`, `FindOperations`) plus a bash `spawnHook`; examples `ssh.ts`, `sandbox/`, `gondolin/`. | `CA/README.md` §Quick Start, §Tool Options; `DOCS/extensions.md` §Remote Execution; `DOCS/containerization.md`; `DOCS/skills.md` §Skill Repositories | ✅ |
-| 2a | Adapters & Middleware | Provider abstraction = `pi-ai` (`createModels()`, `models.setProvider(...)`, `streamSimple`). Loop = `pi-agent-core` `Agent`. Tool registry/middleware = `ExtensionAPI`: `pi.registerTool()`, `pi.on(event)`, `pi.registerCommand()`, `pi.registerProvider()`, `pi.registerFlag()`, `pi.setActiveTools()`, `pi.sendMessage()`, `pi.events` (inter-extension bus). Provider-request middleware events `before_provider_headers` / `before_provider_request` / `after_provider_response`. **No MCP client**: "**No MCP.** Build CLI tools with READMEs (see Skills), or build an extension that adds MCP support." A third-party MCP adapter package is listed on the gallery. Process integration: `--mode rpc` (JSONL), `--mode json`, SDK. Experimental remote protocol: `@earendil-works/pi-protocol` (CBOR frames, `[uint32-be length][CBOR]`, "hello" handshake), `pi-client` (`PiClient`, `SessionLease` exclusive/shared), `pi-server` (`PiServer`, Unix-socket listener). Extension imports available: `@earendil-works/pi-coding-agent`, `pi-ai`, `pi-agent-core`, `pi-tui`, `typebox`. | `packages/agent/README.md`; `packages/ai/README.md`; `DOCS/extensions.md` §ExtensionAPI Methods; `CA/README.md` §Philosophy; `packages/protocol|client|server/README.md`; https://pi.dev/packages | ✅ |
-| 2b | Hooks | Extensions subscribe to named lifecycle events. Published list: **startup** `project_trust`; **resources** `resources_discover`; **session** `session_start`, `session_info_changed`, `session_before_switch` (can cancel), `session_before_fork` (can cancel), `session_before_compact` (can cancel/customize), `session_compact`, `session_compact_failed`, `session_before_tree`, `session_tree`, `session_shutdown`; **agent** `before_agent_start` (inject message / modify system prompt), `agent_start`, `agent_end`, `agent_settled`, `ui_prompt_start`, `ui_prompt_end`, `turn_start`, `turn_end`, `message_start`, `message_update`, `message_end`, `tool_execution_start`, `tool_execution_update`, `tool_execution_end`, `context` (modify messages), `before_provider_headers`, `before_provider_request`, `after_provider_response`; **model** `model_select`, `thinking_level_select`; **tool** `tool_call` (can block, input mutable), `tool_result` (can modify); **user bash** `user_bash`; **input** `input` (intercept/transform). Hooks are TypeScript handlers, not shell scripts. | `~/.pi/agent/extensions/*.ts`, `.pi/extensions/*.ts`, `-e <path>`; `pi.on("<event>", handler)` | `DOCS/extensions.md` §Events, §Lifecycle Overview; `CA/CHANGELOG.md` 0.84.4 (adds `ui_prompt_start/end`) | ✅ |
-| 2c | Enforcement | No built-in permission system, sandbox, or popups (quoted in §A). Mechanical levers: `tool_call` handler returns `{ block: true, reason, terminate }` (examples `permission-gate.ts`, `protected-paths.ts`, `inline-bash.ts`); "tool_call errors block the tool (fail-safe)"; CLI `--tools` allowlist, `--exclude-tools`, `--no-tools`, `--no-builtin-tools`; `defaultTools` setting; **project trust** gate (`~/.pi/agent/trust.json`, `defaultProjectTrust`, `/trust`, `--approve`/`--no-approve`); `images.blockImages`; plan-mode example enforces a read-only bash allowlist and disables edit/write. OS isolation delegated: Gondolin micro-VM (routes `read/write/edit/bash/grep/find/ls` and `!` into the VM), Docker, NVIDIA OpenShell ("policy-controlled sandbox with filesystem, process, network, credential, and inference controls"). | `DOCS/extensions.md` §tool_call, §Error Handling; `CA/README.md` §Tool Options, §Project Trust; `DOCS/security.md`; `DOCS/containerization.md`; `EX/plan-mode/README.md` | ✅ |
-| 3a | Control | No built-in plan mode ("**No plan mode.** Write plans to files, or build it with extensions, or install a package."). Shipped example `plan-mode/`: `/plan`, `--plan` flag, `Ctrl+Alt+P`, "Plan:" extraction, "Execute the plan" prompt, `[DONE:n]` markers. Approval gates: project-trust prompt at startup; `ctx.ui.confirm()` available to extensions; `timed-confirm.ts`. Run contracts: interactive; `-p` print (exits); `--mode json`; `--mode rpc` `prompt` command with `streamingBehavior: "steer" | "followUp"`; message queue (Enter = steering, Alt+Enter = follow-up; `steeringMode`/`followUpMode`). `structured-output.ts` example: "Final structured-output tool with `terminate: true`". | `CA/README.md` §Philosophy, §Message Queue, §Modes; `EX/plan-mode/README.md`; `DOCS/rpc.md` §prompt | ✅ |
-| 3b | Routing | Manual model routing only: `/model`, Ctrl+P cycling over a scoped list (`--models "claude-*,gpt-4o"`, `enabledModels`, `/scoped-models`), per-model thinking defaults (`modelThinkingLevels`), `model_select` event, `pi.setModel()`. Examples: `handoff.ts` "Cross-provider model handoff", `preset.ts` "Saveable presets (model, tools, thinking)". Agent routing exists only in the subagent example (caller names the agent). No automatic delegation rules. | `CA/README.md` §Commands, §Model Options; `DOCS/settings.md` §Model Cycling; `DOCS/extensions.md` §Examples Reference | ✅ |
-| 3c | Composition | No built-in sub-agents ("**No sub-agents.** … Spawn pi instances via tmux, or build your own with extensions"). Shipped example `subagent/`: each subagent is "a separate `pi` process"; agent definitions are Markdown files at `~/.pi/agent/agents/*.md` (user) and `.pi/agents/*.md` (project, off by default, `agentScope: "both"|"project"`, `confirmProjectAgents`); sample agents `scout.md`, `planner.md`, `reviewer.md`, `worker.md`; workflow presets as prompt templates `implement.md` (scout→planner→worker), `scout-and-plan.md`, `implement-and-review.md`. System prompt composition: `.pi/SYSTEM.md` / `~/.pi/agent/SYSTEM.md` replace, `APPEND_SYSTEM.md` append, `--system-prompt`, `--append-system-prompt`, `before_agent_start` can modify. Gallery lists a third-party "single-agent delegation and scripted multi-agent workflows" package. | `EX/subagent/README.md`; `CA/README.md` §Philosophy, §System Prompt; https://pi.dev/packages | ✅ |
-| 3d | Configuration | Instruction files: `AGENTS.md` or `CLAUDE.md` loaded from `~/.pi/agent/AGENTS.md` (global), parent directories walking up, and cwd — all concatenated; `AGENTS.override.md` replaces that directory's file; `--no-context-files`. Settings: `~/.pi/agent/settings.json` (global) and `.pi/settings.json` (project, "overrides global"; nested objects merged; `defaultProjectTrust`/`httpProxy` global-only; project `defaultTools` array replaces global). Keybindings `~/.pi/agent/keybindings.json`. Config dir override `PI_CODING_AGENT_DIR`; `PI_PACKAGE_DIR`; session dir precedence `--session-dir` > `PI_CODING_AGENT_SESSION_DIR` > `sessionDir`. `pi config` toggles resources per scope. `piConfig.configDir: ".pi"` in package.json. | `CA/README.md` §Context Files, §Settings, §Environment Variables; `DOCS/settings.md` §Project Overrides; `CA/package.json` | ✅ |
-| 3e | Standards | Nothing shipped as a rules pack. Vehicles that could carry one: prompt templates (`prompts/*.md`, e.g. a `/review`), skills, `AGENTS.md`, and versioned pi packages (npm `@ver` / git `@tag` pinned). Example `claude-rules.ts` = "Load rules from files" (`on("session_start")`, `on("before_agent_start")`). The repo's own `AGENTS.md` is a concrete rules file for contributors/agents. | `DOCS/prompt-templates.md`; `DOCS/packages.md`; `DOCS/extensions.md` §Examples Reference; `REPO/blob/main/AGENTS.md` | ✅ |
-| 4a | Capability | Four resource types + one container: **Skills** (Agent Skills standard, `SKILL.md` with `name`/`description` frontmatter; `~/.pi/agent/skills/`, `~/.agents/skills/`, `.pi/skills/`, `.agents/skills/` up the tree; `--skill`; Claude/Codex dirs via `skills` setting; `/skill:name`); **Extensions** (`~/.pi/agent/extensions/`, `.pi/extensions/`, `-e path|npm:|git:`); **Prompt templates** (`~/.pi/agent/prompts/*.md`, `.pi/prompts/`); **Themes** (`~/.pi/agent/themes/`, `.pi/themes/`); **Pi packages** bundle them: `pi install npm:@foo/pi-tools[@ver]`, `pi install git:github.com/user/repo[@ref]`, `https://…`, `ssh://…`, local paths; `-l` project-local; installs to `~/.pi/agent/npm/`, `~/.pi/agent/git/<host>/<path>` (or `.pi/npm/`, `.pi/git/`); `pi list`, `pi update --all|--extensions|--self`, `pi remove`; manifest = `"pi": { extensions, skills, prompts, themes }` in `package.json` + keyword `pi-package`; convention dirs `extensions/ skills/ prompts/ themes/`. Registry: npm search on `pi-package` + gallery https://pi.dev/packages (showed "1-50 / 5618" packages, filter by type, sort by downloads). `/reload` hot-reloads. | `DOCS/skills.md`; `DOCS/extensions.md`; `DOCS/prompt-templates.md`; `DOCS/themes.md`; `DOCS/packages.md`; `CA/README.md` §Pi Packages; https://pi.dev/packages | ✅ |
-| 4b | Capability Permissions | Skill frontmatter `allowed-tools` ("Space-delimited list of pre-approved tools (experimental)") and `disable-model-invocation: true` (hidden from system prompt; `/skill:name` only). Per-tool: `--tools`/`--exclude-tools`/`defaultTools`; `pi.setActiveTools()`; `tools.ts` example toggles tools. Per-package filtering in settings object form: `{"source": "npm:my-package", "extensions": ["extensions/*.ts", "!extensions/legacy.ts"], "skills": [], ...}` with `+path`/`-path`; `pi config` enable/disable per resource, global vs project. Project resources load only after trust. No per-user ACLs. | `DOCS/skills.md` §Frontmatter; `DOCS/packages.md` §Package Filtering, §Enable and Disable; `DOCS/settings.md` §Tools | ✅ |
-| 5a | Individual Memory | **Nothing here** as a memory system — checked README, docs index, settings, sessions, extensions (grep for "memory" found no feature). What exists: manual global instructions at `~/.pi/agent/AGENTS.md`; resumable session transcripts (`-c`, `/resume`); extension state via `pi.appendEntry()`. Sibling `pi-chat` claims "Durable memory — account-wide and channel-specific memory files" (separate repo, not read beyond README). | `CA/README.md`; `DOCS/*.md`; https://github.com/earendil-works/pi-chat/blob/main/README.md | ✅ |
-| 5b | Team Memory | **Nothing here** — checked README, docs index, settings. Nearest: project `.pi/settings.json` + `.pi/` resources shared via VCS ("can be shared with your team"), gated by project trust; `pi-share-hf` publishes sessions to Hugging Face datasets (public corpus, not team memory). | `DOCS/packages.md`; root README §Share your OSS coding agent sessions | ✅ |
-| 5c | Knowledge | **Nothing here** in the CLI — no RAG/embeddings/wiki. Retrieval over own sessions: `@earendil-works/pi-session-backend-sqlite-node` provides "SQLite session repository, migrations, materialized views, and optional FTS search" (`createSqliteSessionSearch`) for `pi-agent-core` sessions. `/tree` search by typing; `/resume` picker search. Web search only via skills (external). | `REPO/blob/main/packages/session-backends/sqlite-node/README.md`; `DOCS/sessions.md` | ✅ |
-| 6a | Product | **Nothing here** — checked README, docs index, examples. No PRD/spec objects. | — | ✅ |
-| 6b | Infrastructure | Local process by default. Documented isolation patterns: **Gondolin** extension (`examples/extensions/gondolin/`; host `pi`, tools in a local Linux micro-VM, cwd mounted at `/workspace`; needs Node ≥ 23.6 + QEMU); **Plain Docker** (`Dockerfile.pi`, `-v "$PWD:/workspace"`, named volume for `/root/.pi/agent`); **NVIDIA OpenShell** (`openshell sandbox create --name pi-sandbox --from pi -- pi`; local Docker/Podman/VM gateway or remote Kubernetes gateway; `inference.local` credential injection). SSH remote execution example `ssh.ts` (`--ssh` flag). Experimental remote sessions via `pi-server` (Unix socket; WebSocket listeners must auth at upgrade). Standalone Bun binaries via `scripts/build-binaries.sh`. | `DOCS/containerization.md`; `DOCS/extensions.md` §Remote Execution; `packages/server/README.md`; root README §Building standalone binaries | ✅ |
-| 6c | Estate | **Nothing here** — no multi-repo model. Sessions are keyed per working directory (`sessions/--<path>--/`); context files and `.agents/skills` walk parent directories "up to git repo root". | `DOCS/session-format.md`; `DOCS/skills.md` §Locations | ✅ |
-| 6d | Delivery | **Nothing built in.** Examples: `git-checkpoint.ts` (stash on turns), `auto-commit-on-exit.ts`, `git-merge-and-resolve.ts` (fetch, merge, resolve conflicts), `dirty-repo-guard.ts`, `github-issue-autocomplete.ts` (`#1234` from `gh issue list`). CI use = `pi -p` with `GIT_TERMINAL_PROMPT=0` / `GIT_SSH_COMMAND` guidance for package installs. `/share` uploads a private GitHub gist. | `DOCS/extensions.md` §Examples Reference; `DOCS/packages.md` §git; `CA/README.md` §Commands | ✅ |
-| 7a | Workflow Tasks | Deliberately none: "**No built-in to-dos.** They confuse models. Use a TODO.md file, or build your own with extensions." Examples: `todo.ts` ("Stateful tool with persistence"), plan-mode `/todos` + `[DONE:n]` progress widget. | `CA/README.md` §Philosophy; `EX/plan-mode/README.md` | ✅ |
-| 8a | Evals | `packages/evals` — "behavioral, model-backed checks for Pi workflows" adapting a real `AgentSession` to `vitest-evals`: `createPiCodingAgentHarness({ name, model, noTools, transformSystemPrompt, output })`, `describeEval`, `evalHarnessTable({ baseline, candidate(s), repetitions })` computing pass-rate lift plus token/latency/cost deltas; run `npm run eval -- --provider … --model …` (or `PI_PROVIDER`/`PI_MODEL`); artifacts in `.eval/` (`runs.jsonl`, `sessions/` JSONL). Unit/e2e: `./test.sh`, `test/suite/harness.ts` + "faux provider" (no real keys). Not a user-facing "gate before ship" — it is a dev-facing harness for comparing prompts/skills/models. | `REPO/blob/main/packages/evals/README.md`; `REPO/blob/main/AGENTS.md` §Commands | ✅ |
-| 8b | Evidence | Session JSONL tree = the receipt: every user/assistant/tool/compaction/branch-summary/custom entry with `id`/`parentId`, `usage`, `cost`, model, `stopReason`; path `~/.pi/agent/sessions/--<path>--/<timestamp>_<uuid>.jsonl`; `/session` shows file/ID/tokens/cost; `/export [file]` → HTML or JSONL; `--export <in> [out]`; `/share` → private gist w/ HTML; `/import <file>`; `--mode json` streams every `AgentSessionEvent`; `pi-share-hf` publishes sessions as HF datasets; bash tools receive `PI_SESSION_ID`, `PI_SESSION_FILE` for external attribution; `AI_AGENT=pi`, `PI_CODING_AGENT=true` env markers. | `DOCS/session-format.md`; `DOCS/sessions.md`; `DOCS/json.md`; `CA/README.md` §Environment Variables; root README | ✅ |
-| 8c | Observability | `@earendil-works/pi-telemetry`: "Vendor-neutral telemetry contracts" — `TelemetryContext`/`TelemetrySpan`, `NOOP_TELEMETRY_CONTEXT`, `InMemoryTelemetryContext`, typed schemas; "no exporter, global current-span state, or dependency on a telemetry backend. Applications can … provide an adapter for OpenTelemetry, Sentry, logs, or another backend." (RFC 0019 "Pi Telemetry" — Implemented, 2026-04-14.) Provider-level inspection events `before_provider_request` / `after_provider_response` (`provider-payload.ts`). Startup pings: `enableInstallTelemetry` (anonymous version ping to `pi.dev/api/report-install`, `PI_TELEMETRY=0`), `enableAnalytics` opt-in (experimental first-time setup; RFC 0038 "Pi Analytics" in Discussion), `--offline`/`PI_OFFLINE=1`. No built-in OTel exporter. | `REPO/blob/main/packages/telemetry/README.md`; `DOCS/settings.md` §Telemetry; https://rfc.earendil.com/keyword/pi/ | ✅ |
-| 8d | Efficiency | Footer shows tokens (`↑` in, `↓` out, `R` cache read, `W` cache write, `CH` cache-hit rate), cost, context usage; `/session` totals include tool-reported usage and summary generation. **Compaction**: auto on `contextTokens > contextWindow - reserveTokens` (default 16384) keeping `keepRecentTokens` (20000), also mid-run between tool results and next response; `/compact [instructions]`; `session_before_compact` customization; **branch summaries** on `/tree` switch. Caching: `PI_CACHE_RETENTION=long` (Anthropic 1h, OpenAI 24h), `showCacheMissNotices`, `transport: "websocket-cached"`; compaction requests disable cache writes. `thinkingBudgets` per level. Retry budget settings. No spend budget/limits. | `CA/README.md` §Interactive Mode; `DOCS/compaction.md`; `DOCS/settings.md` §Compaction, §Retry, §Message Delivery | ✅ |
-| 9a | Learning | No auto-capture. Self-extension is the stated posture: each doc opens with "pi can create extensions/skills/prompt templates/pi packages. Ask it to build one for your use case." Session sharing (`pi-share-hf` → HF datasets) is framed as improving agents generally, not the local install. `pi-chat` (sibling) claims "Skills — agent-created reusable tools, auto-discovered". | `DOCS/skills.md`, `DOCS/extensions.md`, `DOCS/packages.md` (banners); root README §Share your OSS coding agent sessions | ✅ |
-| 9b | Rituals | **Nothing encoded.** Only user-authored prompt templates (doc examples: `/review` staged diff, `pr` "Review PRs from URLs", `is` issues, `cl` "Audit changelog entries before release") and subagent workflow presets (`implement-and-review.md`). | `DOCS/prompt-templates.md`; `EX/subagent/README.md` | ✅ |
-| 9c | Cadence | **Nothing here** — grep of docs for cron/schedule returns only retry-scheduling events. External triggers possible: `file-trigger.ts` ("File watcher triggers messages"), `pi -p` from cron, `pi-chat` `/chat-spawn-all` tmux workers. | `DOCS/extensions.md` §Examples Reference; `CA/README.md` §Modes | ✅ |
-| 9d | Anti-fragile lifecycle | `retry.enabled/maxRetries(3)/baseDelayMs(2000)` agent-level exponential backoff; `retry.provider.timeoutMs/maxRetries(0)/maxRetryDelayMs(60000)`; auto-compaction "Triggers on context overflow (recovers and retries)"; `summarization_retry_scheduled/attempt_start/finished` events; resume `-c`/`-r`/`--session`; tree/fork/clone; `session_shutdown` on Ctrl+C/Ctrl+D/SIGHUP/SIGTERM; "Extension errors are logged, agent continues"; `git-checkpoint.ts`; managed `pi update` "installs the exact checked version into a staged, lockfile-backed release and activates it only after verification, leaving the current release intact if the update fails"; JSONL trailing-newline corruption fix (0.84.4); `PiClient` "does not reconnect automatically". | `DOCS/settings.md` §Retry; `CA/README.md` §Compaction; `DOCS/rpc.md`; `DOCS/extensions.md` §Lifecycle, §Error Handling; `DOCS/packages.md`; `packages/client/README.md` | ✅ |
-| 9e | Raise the floor | Installer `curl -fsSL https://pi.dev/install.sh \| sh`; `/login` provider picker; `/settings` UI; `/hotkeys`; `/changelog`; `pi config` TUI; startup header lists loaded AGENTS.md/templates/skills/extensions; "you can also ask the agent to explain itself"; `--verbose`. Experimental first-time setup behind `PI_EXPERIMENTAL=1` (RFC 0044 "First Time Setup" — Discussion; RFC 0043 "Experimental Pi Flag" — Published; RFC 0047 "New Locked Pi Install" — Discussion). No `doctor` command found. No project `init` wizard. | `DOCS/index.md`; `DOCS/quickstart.md`; `DOCS/settings.md` (`enableAnalytics`); https://rfc.earendil.com/keyword/pi/ | ✅ |
-| 9f | Diagnose the bottleneck | **Nothing here** — no maturity/readiness scoring. Nearest: `/session` stats; `ctx.getContextUsage()` for extensions; skill validation warnings. | `DOCS/extensions.md` §ExtensionContext; `DOCS/skills.md` §Validation | ✅ |
-| 10a | Roster | **Nothing built in.** Subagent example: named agent personas as Markdown in `~/.pi/agent/agents/` (`scout`, `planner`, `reviewer`, `worker`). Process identity env: `AI_AGENT=pi`. Session naming `/name`, `--name`. | `EX/subagent/README.md`; `CA/README.md` §Environment Variables | ✅ |
-| 10b | Org | **Nothing here** — single operator, no ownership/RACI/escalation. HITL posture is whatever an extension builds (`ctx.ui.confirm`, `permission-gate.ts`) plus project-trust yes/no. (QM layers approval modes on top of Pi — QM's README, not Pi's.) | `DOCS/extensions.md`; https://github.com/yc-software/qm/blob/main/README.md | ✅ |
-| 11a | Surfaces | Terminal TUI (`regular` or experimental `fullscreen`, images, mermaid, themes); print `-p` (stdin piping); `--mode json`; `--mode rpc`; SDK (Node); experimental remote protocol (`pi-client`/`pi-server`, Unix socket; WebSocket possible); `/share` HTML gist; `/export` HTML; web package gallery. Chat channels: not in Pi itself — sibling `pi-chat` extension bridges **Discord and Telegram** (root README calls it "Slack/chat automation"; the pi-chat README lists Discord/Telegram only). IDE: none shipped (RPC doc says it is "useful for embedding the agent in other applications, IDEs, or custom UIs"). Platform docs: Windows, Termux (Android), tmux. | `CA/README.md` §Interactive Mode, §Modes; `DOCS/tui.md`; `DOCS/rpc.md`; `packages/client/README.md`; root README; https://github.com/earendil-works/pi-chat/blob/main/README.md | ✅ |
-
----
-
-## C. Primitive set (name · path · project's own definition)
-
-| Primitive | Path / key | Project's definition (verbatim) | Source |
+| Primitive | Path / key | Project's own definition (verbatim) | Source |
 |---|---|---|---|
-| **Extension** | `~/.pi/agent/extensions/*.ts` or `*/index.ts` (global); `.pi/extensions/` (project); `-e <path\|npm:\|git:>`; settings `extensions: []` | "Extensions are TypeScript modules that extend pi's behavior. They can subscribe to lifecycle events, register custom tools callable by the LLM, add commands, and more." | ✅ `DOCS/extensions.md` |
-| **Skill** | `~/.pi/agent/skills/`, `~/.agents/skills/`, `.pi/skills/`, `.agents/skills/` (cwd→ancestors); `--skill`; settings `skills: []`; `SKILL.md` with `name`, `description` | "Skills are self-contained capability packages that the agent loads on-demand. A skill provides specialized workflows, setup instructions, helper scripts, and reference documentation for specific tasks. Pi implements the Agent Skills standard, warning about most violations but remaining lenient." | ✅ `DOCS/skills.md` |
-| **Prompt template** | `~/.pi/agent/prompts/*.md`, `.pi/prompts/*.md`; `--prompt-template`; settings `prompts: []`; invoked as `/name` | "Prompt templates are Markdown snippets that expand into full prompts. Type `/name` in the editor to invoke a template, where `name` is the filename without `.md`." | ✅ `DOCS/prompt-templates.md` |
-| **Theme** | `~/.pi/agent/themes/*.json`, `.pi/themes/`; `--theme`; settings `theme`, `themes: []` | "Built-in: `dark`, `light`. Themes hot-reload: modify the active theme file and pi immediately applies changes." | ✅ `CA/README.md` |
-| **Pi package** | `package.json` → `"pi": { "extensions", "skills", "prompts", "themes" }` + keyword `pi-package`; installed via `pi install npm:…\|git:…`; settings `packages: []`; stored in `~/.pi/agent/npm/`, `~/.pi/agent/git/`, `.pi/npm/`, `.pi/git/` | "Pi packages bundle extensions, skills, prompt templates, and themes so you can share them through npm or git. A package can declare resources in `package.json` under the `pi` key, or use conventional directories." | ✅ `DOCS/packages.md` |
-| **Session** (tree) | `~/.pi/agent/sessions/--<path>--/<timestamp>_<uuid>.jsonl`; `sessionDir`, `--session-dir`, `PI_CODING_AGENT_SESSION_DIR`; `/tree`, `/fork`, `/clone`, `/resume` | "Sessions are stored as JSONL files with a tree structure. Each entry has an `id` and `parentId`, enabling in-place branching without creating new files." | ✅ `CA/README.md` |
-| **Settings** | `~/.pi/agent/settings.json` (global), `.pi/settings.json` (project) | "Pi uses JSON settings files with project settings overriding global settings." … "Project settings (`.pi/settings.json`) override global settings. Nested objects are merged". | ✅ `DOCS/settings.md` |
-| **Context file** | `~/.pi/agent/AGENTS.md`; `AGENTS.md`/`CLAUDE.md` in parents and cwd; `AGENTS.override.md`; `--no-context-files` | "Pi loads `AGENTS.md` (or `CLAUDE.md`) at startup from: `~/.pi/agent/AGENTS.md` (global), Parent directories (walking up from cwd), Current directory … All matching files are concatenated." | ✅ `CA/README.md` |
-| (supporting) **Project trust** | `~/.pi/agent/trust.json`; `defaultProjectTrust`; `/trust`; `--approve`/`--no-approve`; `project_trust` event | "Project trust controls whether pi loads project-local settings, resources, packages, and extensions. It is not a sandbox and it does not restrict what the model can ask tools to do after you start working in a directory." | ✅ `DOCS/security.md` |
-| (supporting) **Tool** | built-ins `read bash powershell edit write grep find ls`; `pi.registerTool()`; `--tools`, `defaultTools` | "By default, pi gives the model four tools: `read`, `write`, `edit`, and `bash`. The model uses these to fulfill your requests." | ✅ `CA/README.md` |
-| (supporting) **models.json** | `~/.pi/agent/models.json` | "Add providers via `~/.pi/agent/models.json` if they speak a supported API (OpenAI, Anthropic, Google). For custom APIs or OAuth, use extensions." | ✅ `CA/README.md` |
+| Extension | `~/.pi/agent/extensions/*.ts`; `.pi/extensions/`; `-e <path\|npm:\|git:>` | *"Extensions are TypeScript modules that extend pi's behavior. They can subscribe to lifecycle events, register custom tools callable by the LLM, add commands, and more."* | ✅ `DOCS/extensions.md` |
+| Skill | `~/.pi/agent/skills/`, `~/.agents/skills/`, `.pi/skills/`; `SKILL.md` with `name`, `description` | *"Skills are self-contained capability packages that the agent loads on-demand… Pi implements the Agent Skills standard, warning about most violations but remaining lenient."* | ✅ `DOCS/skills.md` |
+| Prompt template | `~/.pi/agent/prompts/*.md`, `.pi/prompts/*.md`; invoked `/name` | *"Prompt templates are Markdown snippets that expand into full prompts."* | ✅ `DOCS/prompt-templates.md` |
+| Theme | `~/.pi/agent/themes/*.json`, `.pi/themes/`; `--theme` | *"Built-in: `dark`, `light`. Themes hot-reload."* | ✅ `CA/README.md` |
+| Pi package | `package.json` → `"pi": { extensions, skills, prompts, themes }` + keyword `pi-package` | *"Pi packages bundle extensions, skills, prompt templates, and themes so you can share them through npm or git."* — bundles the four above | ✅ `DOCS/packages.md` |
+| Session (tree) | `~/.pi/agent/sessions/--<path>--/<timestamp>_<uuid>.jsonl` | *"Sessions are stored as JSONL files with a tree structure. Each entry has an `id` and `parentId`, enabling in-place branching without creating new files."* | ✅ `CA/README.md` |
+| Settings | `~/.pi/agent/settings.json` (global), `.pi/settings.json` (project) | *"Pi uses JSON settings files with project settings overriding global settings."* | ✅ `DOCS/settings.md` |
+| Context file | `~/.pi/agent/AGENTS.md`; `AGENTS.md`/`CLAUDE.md` up the tree; `AGENTS.override.md` | *"Pi loads `AGENTS.md` (or `CLAUDE.md`) at startup… All matching files are concatenated."* | ✅ `CA/README.md` |
+| (supporting) Project trust | `~/.pi/agent/trust.json`; `defaultProjectTrust`; `/trust` | *"Project trust controls whether pi loads project-local settings, resources, packages, and extensions. It is not a sandbox…"* | ✅ `DOCS/security.md` |
+| (supporting) Tool | built-ins `read bash powershell edit write grep find ls`; `pi.registerTool()` | *"By default, pi gives the model four tools: `read`, `write`, `edit`, and `bash`."* | ✅ `CA/README.md` |
+| (supporting) models.json | `~/.pi/agent/models.json` | *"Add providers via `~/.pi/agent/models.json` if they speak a supported API… For custom APIs or OAuth, use extensions."* | ✅ `CA/README.md` |
 
----
+**Count:** 8 primitives, 3 supporting *(as counted at the 2026-09-02 read)*. **Verdict:** ⚠️ contestable
+— one past this corpus's 5–7 healthy band, and **the count is disputed against itself**: this profile's
+source read gave 8 + 3 on 2026-09-02, and the `--sanity` draft gave 5 + 3 on 2026-09-03 from the same
+sources. `fractal/ISSUES.md` ISSUE-007 records the disagreement; rule 4's primitive-vs-supporting
+definition is the resolution and **has not been re-run at a source read**. Carried forward unchanged.
 
-## D. Stated limitations / "what it does not claim" (quoted)
+**The published refusal list**, quoted in full — the clearest in this corpus, and the reason the
+verdict is not simply "accommodation":
 
-From `CA/README.md` §Philosophy (✅):
-> "Pi is aggressively extensible so it doesn't have to dictate your workflow. Features that other tools bake in can be built with extensions, skills, or installed from third-party pi packages. This keeps the core minimal while letting you shape pi to fit how you work.
-> **No MCP.** Build CLI tools with READMEs (see Skills), or build an extension that adds MCP support.
-> **No sub-agents.** There's many ways to do this. Spawn pi instances via tmux, or build your own with extensions, or install a package that does it your way.
-> **No permission popups.** Run in a container, or build your own confirmation flow with extensions inline with your environment and security requirements.
-> **No plan mode.** Write plans to files, or build it with extensions, or install a package.
-> **No built-in to-dos.** They confuse models. Use a TODO.md file, or build your own with extensions.
-> **No background bash.** Use tmux. Full observability, direct interaction."
+> *"**No MCP.** Build CLI tools with READMEs (see Skills), or build an extension that adds MCP support.
+> **No sub-agents.** There's many ways to do this. Spawn pi instances via tmux, or build your own with
+> extensions, or install a package that does it your way. **No permission popups.** Run in a container,
+> or build your own confirmation flow with extensions inline with your environment and security
+> requirements. **No plan mode.** Write plans to files, or build it with extensions, or install a
+> package. **No built-in to-dos.** They confuse models. Use a TODO.md file, or build your own with
+> extensions. **No background bash.** Use tmux. Full observability, direct interaction."* — ✅ `CA/README.md`
 
-From `DOCS/usage.md` §Design Principles (✅):
-> "It intentionally does not include built-in MCP, sub-agents, permission popups, plan mode, to-dos, or background bash. You can build or install those workflows as extensions or packages, or use external tools such as containers and tmux."
+## 6. Details
 
-From root README §Permissions & Containerization (✅):
-> "Pi does not include a built-in permission system for restricting filesystem, process, network, or credential access. By default, it runs with the permissions of the user and process that launched it. If you need stronger boundaries, containerize or sandbox Pi."
+`✅ direct · ↪ relayed · ⚠️ unverified`
 
-From `DOCS/security.md` §No Built-in Sandbox (✅):
-> "Pi does not include a built-in sandbox. Built-in tools can read files, write files, edit files, and run shell commands with the permissions of the pi process. Extensions are TypeScript modules that run with the same permissions. … This is intentional. … A partial in-process sandbox would be easy to misunderstand as a security boundary … Real isolation needs to come from the operating system or a virtualization/container boundary."
-> "Prompt injection from repository files, comments, documentation, context files, or build output is expected local-agent risk and cannot be reliably prevented by pi."
+### 0 · Foundation
 
-Package-level disclaimers (✅):
-> `packages/server/README.md`: "Experimental. This package is under active development and may change or be removed without notice. Its APIs and behavior are not yet stable." … "This package does not provide a standalone CLI or coding-agent service."
-> `packages/protocol/README.md`: "The protocol is experimental and has no compatibility guarantees."
-> `packages/client/README.md`: "`PiClient` does not reconnect automatically." / "Treat peers as untrusted."
-> `packages/telemetry/README.md`: "no exporter, global current-span state, or dependency on a telemetry backend."
+#### 0a Substrate
+<details>
+<summary>● 31 API-key providers + subscriptions + local llama.cpp; custom providers via extension</summary>
 
-Skills spec deviation (✅ `DOCS/skills.md`):
-> "Pi allows skill names to differ from their parent directory even though the standard disallows it; that rule is suboptimal for shared skill directories used across multiple agent harnesses."
+**Ships.** Model-pluggable via `@earendil-works/pi-ai` — *"Unified multi-provider LLM API (OpenAI, Anthropic, Google, …)"*. Subscriptions: Anthropic Claude Pro/Max, OpenAI ChatGPT Plus/Pro, GitHub Copilot. 31 API-key providers listed including Bedrock, Vertex, Azure OpenAI, Mistral, Groq, Cerebras, xAI, OpenRouter, Together, Fireworks. Local via llama.cpp router. Thinking levels `off…max`.
+**Path.** `/model`, `/thinking`, `--provider`, `--model provider/id:thinking`; `~/.pi/agent/models.json`; `pi.registerProvider()` in an extension
+**Source.** ✅ `CA/README.md` §Providers & Models · `DOCS/models.md` · `DOCS/custom-provider.md`
 
-Ownership/governance (✅ https://mariozechner.at/posts/2026-04-08-ive-sold-out/):
-> "pi is MIT licensed. It will stay MIT licensed." … "No CLA, no DCO, no new hoops to jump through." … "And if you ever feel like we've lost the plot, the fork button on GitHub still works. Always will."
+</details>
 
-Roadmap pointer (✅ root README): "Longer term plans for Pi can also be found in RFCs" → https://rfc.earendil.com/keyword/pi/ listing (titles/status only read): 0054 Responses Lite Investigation (Discussion), 0047 New Locked Pi Install (Discussion), 0044 First Time Setup (Discussion), 0043 Experimental Pi Flag (Published), 0039 Dynamic Model Configuration In Pi (Discussion), 0038 Pi Analytics (Discussion), 0031 Terminal Multiplexers (Published), 0019 Pi Telemetry (Implemented), 0015 Pi Licensing (Discussion).
+### 1 · Environment
 
----
+#### 1a Environment
+<details>
+<summary>○ Local shell and filesystem at the launching user's permissions; no declared inventory</summary>
 
-## E. Sources (all accessed 2026-09-02)
+**Nothing here** as a declared systems inventory — checked `CA/README.md`, `DOCS/index.md`, `DOCS/settings.md`, `DOCS/containerization.md`.
+**What exists instead.** Local shell and filesystem with the launching user's permissions. Built-in tools `read`, `bash`, `powershell`, `edit`, `write`, `grep`, `find`, `ls`; the model gets four by default. Pluggable operations (`ReadOperations`, `BashOperations`, …) plus a bash `spawnHook` let an extension redirect execution — examples `ssh.ts`, `sandbox/`, `gondolin/`.
+**Source.** ✅ `CA/README.md` §Quick Start · `DOCS/extensions.md` §Remote Execution
 
-Primary — GitHub API / repo:
-- `gh api repos/badlogic/pi-mono` → redirected to `earendil-works/pi` (stars, forks, license, language, created/pushed dates)
-- `gh api repos/badlogic/pi-mono/releases` / tags (v0.84.4 … v0.82.0; oldest paged release v0.25.4)
-- `gh api repos/earendil-works/pi/contents/packages` , `.../packages/coding-agent/docs`, `.../examples/extensions`, `.../examples/sdk`, `.../packages/session-backends`, `.../examples/extensions/sandbox`
-- `gh api repos/earendil-works/pi/commits?until=2025-08-12` (first commit 2025-08-11)
-- https://github.com/earendil-works/pi/blob/main/README.md
-- https://github.com/earendil-works/pi/blob/main/LICENSE
-- https://github.com/earendil-works/pi/blob/main/AGENTS.md
-- https://github.com/earendil-works/pi/blob/main/packages/coding-agent/README.md
-- https://github.com/earendil-works/pi/blob/main/packages/coding-agent/package.json
-- https://github.com/earendil-works/pi/blob/main/packages/coding-agent/CHANGELOG.md
-- https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/{index,quickstart,usage,settings,security,containerization,extensions,skills,packages,prompt-templates,sessions,session-format,compaction,sdk,rpc,json,providers,models,custom-provider,environment-variables,themes,tui,keybindings,development}.md and `docs.json`
-- https://github.com/earendil-works/pi/blob/main/packages/coding-agent/examples/extensions/subagent/README.md
-- https://github.com/earendil-works/pi/blob/main/packages/coding-agent/examples/extensions/plan-mode/README.md
-- https://github.com/earendil-works/pi/blob/main/packages/{agent,ai,tui,telemetry,evals,server,client,protocol}/README.md
-- https://github.com/earendil-works/pi/blob/main/packages/session-backends/sqlite-node/README.md
-- https://github.com/earendil-works/pi-chat/blob/main/README.md
-- https://github.com/yc-software/qm/blob/main/README.md (raw, grepped for Pi/harness/license lines)
-- https://registry.npmjs.org/@mariozechner%2Fpi-coding-agent ; https://registry.npmjs.org/@earendil-works%2Fpi-coding-agent
-- https://pi.dev/packages (via WebFetch)
-- https://rfc.earendil.com/keyword/pi/ (via WebFetch; titles/status only)
-- https://mariozechner.at/posts/2026-04-08-ive-sold-out/ (author's own post; via WebFetch)
+</details>
 
-Secondary (◐, used only for context, not for any named file/feature):
-- WebSearch result snippets: wavect.io QM review; everydev.ai QM listing; en.wikipedia.org "Pi (AI agent)"; pi-map.org "pi joins Earendil"; explainx.ai; implicator.ai.
+### 2 · Agent Harness
 
----
+#### 2a Adapters & Middleware
+<details>
+<summary>● <b>Extension</b> ExtensionAPI + SDK + RPC + JSON — no MCP, by refusal</summary>
 
-## F. Things I could NOT verify
+**Ships.** Provider abstraction `pi-ai`; loop `pi-agent-core`; tool registry and middleware via `ExtensionAPI` — `registerTool`, `on(event)`, `registerCommand`, `registerProvider`, `registerFlag`, `setActiveTools`, `sendMessage`, and an inter-extension bus. Provider-request middleware at `before_provider_headers` / `before_provider_request` / `after_provider_response`. Process integration by `--mode rpc` (JSONL), `--mode json`, and the SDK. Experimental remote protocol `pi-protocol` (CBOR frames), `pi-client`, `pi-server`.
+**No MCP, and it is a refusal, not a gap** — *"**No MCP.** Build CLI tools with READMEs, or build an extension that adds MCP support."* A third-party MCP adapter package is listed on the gallery.
+**Path.** `pi.*` ExtensionAPI · `--mode rpc|json` · `@earendil-works/pi-{protocol,client,server}`
+**Source.** ✅ `DOCS/extensions.md` §ExtensionAPI Methods · `CA/README.md` §Philosophy · package READMEs
 
-- **OpenClaw embedding Pi via the SDK** — appeared only in a search snippet; not read at OpenClaw's source. ◐/⚠️
-- **QM's Pi integration mechanism** (SDK vs RPC vs subprocess) — QM's README confirms Pi as one of its harness options, but I did not read QM's Pi adapter code. Pi's own docs never mention QM. ◐
-- **The exact npm package names** of the third-party MCP adapter and multi-agent packages on pi.dev/packages — the gallery fetch returned descriptions but I did not capture package identifiers. ⚠️ (existence ✅, names not recorded)
-- **The blog post's stated new npm name "@earendil/pi"** differs from the actual published scope `@earendil-works/pi-coding-agent`; the actual name is what the registry and CHANGELOG 0.73.1/0.74.0 show. Reported the registry value.
-- **Root README's "Slack/chat automation" pointer to pi-chat** — pi-chat's README documents Discord and Telegram only; no Slack integration was found in the pi-chat README. ⚠️ (possible drift between the two READMEs, or Slack support lives elsewhere)
-- **`examples/extensions/sandbox/`** has no README (404); only `index.ts`, `package.json`, `package-lock.json`, `.gitignore` exist. Its behavior beyond "Sandboxed tool execution — Tool operations" (extensions.md table) was not read. ⚠️
-- **Exact version at which the v4 lane-based `Session`/`SessionStorage`/`SessionRepo` APIs and the experimental `PiClient` remote protocol landed** — both sit under the `## [0.84.0] - 2026-08-06` header of the CHANGELOG; I did not read the entries above them to rule out an earlier partial landing. ◐
-- **RFC contents** — only the index (titles, status, dates) was fetched; no RFC body was read, so no roadmap text is quoted beyond titles.
-- **First release date** — CHANGELOG starts at 0.10.0 (2025-11-25) and the old npm package was created 2025-11-12; I did not find a record of what, if anything, was published between the August 2025 repo creation and November 2025.
-- **Star count precision** — GitHub API value at fetch time (100,782); no historical series checked.
+</details>
+
+#### 2b Hooks
+<details>
+<summary>● ~40 typed lifecycle events, TypeScript handlers; <code>tool_call</code> can block</summary>
+
+**Ships.** Extensions subscribe to named lifecycle events across seven groups — startup (`project_trust`), resources, session (`session_start`, `session_before_switch`/`_fork`/`_compact`, all cancellable, `session_tree`, `session_shutdown`), agent (`before_agent_start` which can inject a message or modify the system prompt, `turn_start`/`_end`, `message_*`, `tool_execution_*`, `context`, the three provider events), model (`model_select`, `thinking_level_select`), tool (`tool_call` — **can block**, input mutable; `tool_result` — can modify), user bash, and input (intercept/transform).
+**Handlers are TypeScript, not shell scripts.**
+**Path.** `~/.pi/agent/extensions/*.ts`, `.pi/extensions/*.ts`, `-e <path>`; `pi.on("<event>", handler)`
+**Source.** ✅ `DOCS/extensions.md` §Events, §Lifecycle Overview · `CA/CHANGELOG.md` 0.84.4
+
+</details>
+
+#### 2c Enforcement
+<details>
+<summary>◐ No built-in permission system or sandbox; <code>--tools</code> allowlist and project trust are the levers</summary>
+
+**Ships.** Nothing by default — *"Pi does not include a built-in permission system for restricting filesystem, process, network, or credential access."* The mechanical levers that do exist: the `tool_call` handler returning `{ block: true, reason, terminate }` (with *"tool_call errors block the tool (fail-safe)"*); CLI `--tools` allowlist, `--exclude-tools`, `--no-tools`, `--no-builtin-tools`, and `defaultTools`; **project trust**, which gates loading of `.pi/` settings, extensions, skills and prompts. OS isolation is delegated outward to Gondolin, Docker or NVIDIA OpenShell.
+**The vendor bounds the claim itself** — *"Project trust is only an input-loading guard… It does not make untrusted code, untrusted prompts, or untrusted model output safe."*
+**Path.** `pi.on("tool_call")` · `--tools` · `~/.pi/agent/trust.json`, `defaultProjectTrust`, `/trust`
+**Source.** ✅ `DOCS/extensions.md` §tool_call · `CA/README.md` §Tool Options · `DOCS/security.md`
+
+</details>
+
+### 3 · System Stacks
+
+#### 3a Control
+<details>
+<summary>◐ No plan mode; the shipped <code>plan-mode/</code> example is one</summary>
+
+**Ships.** No built-in plan mode — *"**No plan mode.** Write plans to files, or build it with extensions, or install a package."* The shipped example supplies `/plan`, a `--plan` flag, `Ctrl+Alt+P`, plan extraction and `[DONE:n]` markers. Approval affordances: the project-trust prompt at startup, `ctx.ui.confirm()` for extensions, `timed-confirm.ts`. Run contracts: interactive, `-p` print, `--mode json`, `--mode rpc` with `streamingBehavior: "steer" | "followUp"`, and a message queue where Enter steers and Alt+Enter follows up.
+**Path.** `EX/plan-mode/` · `--mode rpc` `prompt` · `steeringMode`/`followUpMode`
+**Source.** ✅ `CA/README.md` §Philosophy, §Message Queue · `EX/plan-mode/README.md` · `DOCS/rpc.md`
+
+</details>
+
+#### 3b Routing
+<details>
+<summary>○ Manual model routing only; no automatic delegation rules</summary>
+
+**Nothing here** as a resolver — checked `CA/README.md` §Commands, `DOCS/settings.md`, `DOCS/extensions.md`.
+**What exists instead.** Manual model selection: `/model`, Ctrl+P cycling over a scoped list (`--models "claude-*,gpt-4o"`, `enabledModels`, `/scoped-models`), per-model thinking defaults, the `model_select` event, `pi.setModel()`. Examples `handoff.ts` (cross-provider handoff) and `preset.ts`. Agent routing exists only inside the subagent example, where the caller names the agent.
+**Source.** ✅ `CA/README.md` §Model Options · `DOCS/extensions.md` §Examples Reference
+
+</details>
+
+#### 3c Composition
+<details>
+<summary>◐ No sub-agents; the shipped <code>subagent/</code> example spawns separate <code>pi</code> processes</summary>
+
+**Ships.** No built-in sub-agents — *"**No sub-agents.** … Spawn pi instances via tmux, or build your own with extensions."* The shipped example makes each subagent *"a separate `pi` process"*, with agent definitions as Markdown at `~/.pi/agent/agents/*.md` and `.pi/agents/*.md` (project scope off by default), sample personas `scout`, `planner`, `reviewer`, `worker`, and workflow presets as prompt templates. System-prompt composition: `.pi/SYSTEM.md` replaces, `APPEND_SYSTEM.md` appends, `--system-prompt` / `--append-system-prompt`, and `before_agent_start` can modify.
+**Path.** `EX/subagent/` · `~/.pi/agent/agents/*.md` · `agentScope`, `confirmProjectAgents`
+**Source.** ✅ `EX/subagent/README.md` · `CA/README.md` §Philosophy, §System Prompt
+
+</details>
+
+#### 3d Configuration
+<details>
+<summary>● <b>Context file</b> + <b>Settings</b> with project-over-global merge</summary>
+
+**Ships.** Instruction files `AGENTS.md` or `CLAUDE.md` loaded from `~/.pi/agent/AGENTS.md`, every parent directory walking up, and cwd — all concatenated; `AGENTS.override.md` replaces that directory's file; `--no-context-files` disables. Settings at `~/.pi/agent/settings.json` (global) and `.pi/settings.json` (project, *"overrides global"*, nested objects merged, `defaultProjectTrust`/`httpProxy` global-only, project `defaultTools` replaces rather than merges). Keybindings, `PI_CODING_AGENT_DIR`, `PI_PACKAGE_DIR`, and a session-dir precedence chain.
+**Path.** `~/.pi/agent/{settings,keybindings}.json` · `.pi/settings.json` · `pi config`
+**Source.** ✅ `CA/README.md` §Context Files, §Settings · `DOCS/settings.md` §Project Overrides
+
+</details>
+
+#### 3e Standards
+<details>
+<summary>○ No rules pack shipped; prompt templates and pinned packages are the vehicles</summary>
+
+**Nothing here** as a shipped standard — checked `DOCS/prompt-templates.md`, `DOCS/packages.md`, `DOCS/extensions.md`.
+**What exists instead.** Vehicles that could carry one: prompt templates, skills, `AGENTS.md`, and versioned pi packages pinned by npm `@ver` or git `@tag`. The example `claude-rules.ts` loads rules from files. The repo's own `AGENTS.md` is a concrete rules file for its contributors.
+**Source.** ✅ `DOCS/prompt-templates.md` · `DOCS/packages.md` · `REPO/AGENTS.md`
+
+</details>
+
+### 4 · Capabilities
+
+#### 4a Capability
+<details>
+<summary>● <b>Pi package</b> bundling <b>skill</b> · extension · prompt template · theme</summary>
+
+**Ships.** Four resource types in one container. Skills follow the Agent Skills standard and load from four directory roots plus Claude/Codex skill dirs. Extensions, prompt templates and themes each have global and project roots. **Pi packages** bundle all four: `pi install npm:@foo/pi-tools[@ver]`, `git:github.com/user/repo[@ref]`, https, ssh or a local path; `-l` installs project-local; `pi list`, `pi update --all|--extensions|--self`, `pi remove`; manifest is a `"pi"` key in `package.json` plus the keyword `pi-package`. Registry is npm search on that keyword plus the gallery at pi.dev/packages, **which showed 5,618 packages at the read**. `/reload` hot-reloads.
+**Path.** `pi install` · `~/.pi/agent/{npm,git}/` · `.pi/{npm,git}/` · https://pi.dev/packages
+**Source.** ✅ `DOCS/packages.md` · `DOCS/skills.md` · `CA/README.md` §Pi Packages
+
+</details>
+
+#### 4b Capability Permissions
+<details>
+<summary>◐ Skill <code>allowed-tools</code>, per-package filtering, per-scope enable/disable; no per-user ACLs</summary>
+
+**Ships.** Skill frontmatter `allowed-tools` (*"Space-delimited list of pre-approved tools (experimental)"*) and `disable-model-invocation: true`. Per-tool control by `--tools`/`--exclude-tools`/`defaultTools` and `pi.setActiveTools()`. Per-package filtering in the settings object form with glob include/exclude and `+path`/`-path`. `pi config` enables or disables each resource, global versus project. Project resources load only after trust.
+**No per-user ACLs** — there is no user model to hang them on ([10b](#10b-org)).
+**Path.** `SKILL.md` frontmatter · `settings.json` package objects · `pi config`
+**Source.** ✅ `DOCS/skills.md` §Frontmatter · `DOCS/packages.md` §Package Filtering
+
+</details>
+
+### 5 · Context ⟳
+
+#### 5a Individual Memory
+<details>
+<summary>○ No memory feature — grep of docs and README found none</summary>
+
+**Nothing here** — checked `CA/README.md`, every `DOCS/*.md`, `DOCS/settings.md`, `DOCS/sessions.md`, `DOCS/extensions.md`. A grep for *"memory"* excluding in-memory/RAM senses returned nothing: no memory files, no auto-memory.
+**What exists instead.** Manual global instructions at `~/.pi/agent/AGENTS.md`; resumable session transcripts (`-c`, `/resume`); extension state written into the session via `pi.appendEntry()` (*"Session persistence — Store state that survives restarts"*). The sibling `pi-chat` claims *"Durable memory — account-wide and channel-specific memory files"* — ↪ separate repo, README only.
+**Source.** ✅ `CA/README.md` · `DOCS/*.md` · ↪ pi-chat README
+
+</details>
+
+#### 5b Team Memory
+<details>
+<summary>○ Project <code>.pi/</code> shared via VCS; nothing team-aware</summary>
+
+**Nothing here** — checked `CA/README.md`, `DOCS/index.md`, `DOCS/settings.md`, `DOCS/packages.md`.
+**What exists instead.** Project `.pi/settings.json` and `.pi/` resources shared through version control — *"can be shared with your team, and pi installs any missing packages automatically on startup after the project is trusted"* — which is file sharing, not shared learning. `pi-share-hf` publishes sessions to Hugging Face datasets, a public corpus rather than a team one.
+**Source.** ✅ `DOCS/packages.md` · root README §Share your OSS coding agent sessions
+
+</details>
+
+#### 5c Knowledge
+<details>
+<summary>○ No RAG, embeddings or wiki; SQLite FTS over own sessions in a separate package</summary>
+
+**Nothing here** in the CLI — checked `DOCS/index.md`, `DOCS/sessions.md`, `CA/README.md`.
+**What exists instead.** `@earendil-works/pi-session-backend-sqlite-node` provides *"SQLite session repository, migrations, materialized views, and optional FTS search"* for `pi-agent-core` sessions — retrieval over your own transcripts, not curated knowledge. `/tree` and `/resume` search by typing. Web search only through skills.
+**Source.** ✅ `packages/session-backends/sqlite-node/README.md` · `DOCS/sessions.md`
+
+</details>
+
+### 6 · Workspaces ⟳
+
+#### 6a Product
+<details>
+<summary>○ Nothing here</summary>
+
+**Nothing here** — checked `CA/README.md`, `DOCS/index.md`, the examples directory. No PRD or spec object of any kind.
+**Source.** ✅ (absence recorded at the 2026-09-02 read)
+
+</details>
+
+#### 6b Infrastructure
+<details>
+<summary>◐ Gondolin micro-VM, Docker, NVIDIA OpenShell, SSH — all delegated outward</summary>
+
+**Ships.** A local process by default, with three documented isolation patterns, none of them Pi's own: **Gondolin** (an extension; host `pi`, tools inside a local Linux micro-VM with cwd mounted at `/workspace`; needs Node ≥ 23.6 and QEMU); **plain Docker** (`Dockerfile.pi`, cwd bind-mount, named volume for `~/.pi/agent`); **NVIDIA OpenShell** (*"policy-controlled sandbox with filesystem, process, network, credential, and inference controls"*, local or remote Kubernetes gateway). SSH remote execution via the `ssh.ts` example. Experimental remote sessions over `pi-server`. Standalone Bun binaries.
+**Path.** `EX/gondolin/` · `Dockerfile.pi` · `openshell sandbox create` · `--ssh`
+**Source.** ✅ `DOCS/containerization.md` · `DOCS/extensions.md` §Remote Execution
+
+</details>
+
+#### 6c Estate
+<details>
+<summary>○ No multi-repo model; sessions keyed per working directory</summary>
+
+**Nothing here** — checked `DOCS/session-format.md`, `DOCS/skills.md`, `CA/README.md`.
+**What exists instead.** Sessions are keyed per working directory (`sessions/--<path>--/`); context files and `.agents/skills` walk parent directories *"up to git repo root"*. One directory at a time, with no inventory of the others.
+**Source.** ✅ `DOCS/session-format.md` · `DOCS/skills.md` §Locations
+
+</details>
+
+#### 6d Delivery
+<details>
+<summary>○ Nothing built in; git examples only</summary>
+
+**Nothing here** — checked `CA/README.md`, `DOCS/index.md`, `DOCS/packages.md`.
+**What exists instead.** Examples: `git-checkpoint.ts` (stash on turns), `auto-commit-on-exit.ts`, `git-merge-and-resolve.ts`, `dirty-repo-guard.ts`, `github-issue-autocomplete.ts`. CI use is `pi -p` with guidance on `GIT_TERMINAL_PROMPT` and `GIT_SSH_COMMAND` for package installs. `/share` uploads a private gist.
+**Source.** ✅ `DOCS/extensions.md` §Examples Reference · `DOCS/packages.md` §git
+
+</details>
+
+### 7 · Workflow Tasks
+
+#### 7a Workflow Tasks
+<details>
+<summary>○ Deliberately none — <i>"They confuse models. Use a TODO.md file"</i></summary>
+
+**Nothing here, by refusal** — *"**No built-in to-dos.** They confuse models. Use a TODO.md file, or build your own with extensions."* This is a refusal-list entry, not a gap.
+**What exists instead.** The `todo.ts` example (*"Stateful tool with persistence"*) and the plan-mode example's `/todos` with `[DONE:n]` progress markers.
+**Source.** ✅ `CA/README.md` §Philosophy · `EX/plan-mode/README.md`
+
+</details>
+
+### 8 · Trust
+
+#### 8a Evals
+<details>
+<summary>◐ <code>packages/evals</code> with baseline/candidate lift — dev-facing, not a ship gate</summary>
+
+**Ships.** `packages/evals` — *"behavioral, model-backed checks for Pi workflows"* — adapts a real `AgentSession` to `vitest-evals`: `createPiCodingAgentHarness({ name, model, noTools, transformSystemPrompt, output })`, `describeEval`, and `evalHarnessTable({ baseline, candidate(s), repetitions })` computing pass-rate lift plus token, latency and cost deltas. Artifacts land in `.eval/`. Unit and e2e tests run through `./test.sh` with a faux provider needing no real keys.
+**Not a gate.** It is a development harness for comparing prompts, skills and models — nothing requires a unit of work to clear it before shipping.
+**Path.** `npm run eval -- --provider … --model …` · `.eval/runs.jsonl`
+**Source.** ✅ `packages/evals/README.md` · `REPO/AGENTS.md` §Commands
+
+</details>
+
+#### 8b Evidence
+<details>
+<summary>● <b>Session</b> JSONL tree — the receipt, with per-entry <code>usage</code> and <code>cost</code></summary>
+
+**Ships.** The session file *is* the receipt. Every user, assistant, tool, compaction, branch-summary and custom entry carries `id`, `parentId`, `usage`, `cost`, model and `stopReason`. `/session` shows file, ID, tokens and cost; `/export [file]` writes HTML or JSONL; `--export` works headlessly; `/share` uploads a private gist with HTML; `/import` reads one back; `--mode json` streams every `AgentSessionEvent`. Bash tools receive `PI_SESSION_ID` and `PI_SESSION_FILE` for external attribution, and `AI_AGENT=pi` marks the process.
+**This is the card's structured output** — and unusually, the same artifact is both the receipt and the resumable state ([5a](#5a-individual-memory)).
+**Path.** `~/.pi/agent/sessions/--<path>--/<timestamp>_<uuid>.jsonl`
+**Source.** ✅ `DOCS/session-format.md` · `DOCS/sessions.md` · `DOCS/json.md`
+
+</details>
+
+#### 8c Observability
+<details>
+<summary>◐ <code>pi-telemetry</code> vendor-neutral contracts — no exporter shipped</summary>
+
+**Ships.** `@earendil-works/pi-telemetry` — *"Vendor-neutral telemetry contracts"* — supplying `TelemetryContext`/`TelemetrySpan`, a no-op context, an in-memory context and typed schemas, with *"no exporter, global current-span state, or dependency on a telemetry backend. Applications can … provide an adapter for OpenTelemetry, Sentry, logs, or another backend."* (RFC 0019, Implemented, 2026-04-14.) Provider-level inspection through `before_provider_request` / `after_provider_response`. Startup pings: `enableInstallTelemetry` (anonymous, `PI_TELEMETRY=0` to disable) and opt-in `enableAnalytics`; `--offline` disables both.
+**The contract ships; the pipe does not.** No built-in OTel exporter.
+**Path.** `@earendil-works/pi-telemetry` · `PI_TELEMETRY`, `PI_OFFLINE`
+**Source.** ✅ `packages/telemetry/README.md` · `DOCS/settings.md` §Telemetry
+
+</details>
+
+#### 8d Efficiency
+<details>
+<summary>◐ Token/cost/cache footer, compaction, cache retention, thinking budgets; no spend limits</summary>
+
+**Ships.** The footer shows tokens in and out, cache read and write, cache-hit rate, cost and context usage; `/session` totals include tool-reported usage. **Compaction** fires automatically once `contextTokens > contextWindow - reserveTokens` (default 16,384), keeping `keepRecentTokens` (20,000), and also mid-run between a tool result and the next response; `/compact [instructions]` is manual and `session_before_compact` customises it; branch summaries fire on `/tree` switch. Caching is controllable through `PI_CACHE_RETENTION=long` (Anthropic 1h, OpenAI 24h), `showCacheMissNotices` and a cached websocket transport. `thinkingBudgets` trade depth for cost per level.
+**No spend budget or limit of any kind** — the accounting is complete and the enforcement is absent.
+**Path.** `/compact` · `reserveTokens`, `keepRecentTokens` · `PI_CACHE_RETENTION` · `thinkingBudgets`
+**Source.** ✅ `DOCS/compaction.md` · `DOCS/settings.md` §Compaction, §Retry · `CA/README.md`
+
+</details>
+
+### 9 · IMPROVE
+
+#### 9a Learning
+<details>
+<summary>○ No auto-capture; self-extension is the stated posture</summary>
+
+**Nothing here** as capture — checked `DOCS/skills.md`, `DOCS/extensions.md`, `DOCS/packages.md`, root README.
+**What exists instead, and it is a genuine posture.** Each capability doc opens with the same banner: *"pi can create extensions/skills/prompt templates/pi packages. Ask it to build one for your use case."* The promotion path from lesson to authored capability is real and stated; what is missing is anything that notices a lesson happened. Session sharing through `pi-share-hf` is framed as improving agents generally, not this install.
+**Source.** ✅ `DOCS/skills.md`, `DOCS/extensions.md`, `DOCS/packages.md` banners
+
+</details>
+
+#### 9b Rituals
+<details>
+<summary>○ Nothing encoded; user-authored prompt templates only</summary>
+
+**Nothing here** — checked `DOCS/prompt-templates.md`, `EX/subagent/README.md`.
+**What exists instead.** User-authored prompt templates the docs illustrate as `/review` over a staged diff, `pr` for reviewing PRs from URLs, `is` for issues, `cl` to audit changelog entries before a release; and the subagent example's `implement-and-review.md` preset. Every one of these is an example, not a shipped ritual.
+**Source.** ✅ `DOCS/prompt-templates.md` · `EX/subagent/README.md`
+
+</details>
+
+#### 9c Cadence
+<details>
+<summary>○ Nothing here; <code>pi -p</code> from cron is the external route</summary>
+
+**Nothing here** — a grep of the docs for cron and schedule returned only retry-scheduling events.
+**What exists instead.** External triggers: the `file-trigger.ts` example (*"File watcher triggers messages"*), `pi -p` invoked from cron, and `pi-chat`'s `/chat-spawn-all` tmux workers.
+**Source.** ✅ `DOCS/extensions.md` §Examples Reference · `CA/README.md` §Modes
+
+</details>
+
+#### 9d Anti-fragile Lifecycle
+<details>
+<summary>◐ Retry budgets, auto-compaction recovery, staged <code>pi update</code> with rollback</summary>
+
+**Ships.** Agent-level retry with exponential backoff (`retry.enabled`, `maxRetries` 3, `baseDelayMs` 2000) and a separate provider-level retry budget. Auto-compaction *"triggers on context overflow (recovers and retries)"*, with `summarization_retry_scheduled`/`attempt_start`/`finished` events. Resumption by `-c`, `-r`, `--session`, plus tree, fork and clone. `session_shutdown` fires on Ctrl+C, Ctrl+D, SIGHUP and SIGTERM. *"Extension errors are logged, agent continues."* `pi update` *"installs the exact checked version into a staged, lockfile-backed release and activates it only after verification, leaving the current release intact if the update fails."*
+**No defect ledger** — recovery is runtime resilience, not a lifecycle that turns failure into a rule.
+**Path.** `retry.*` settings · `pi update` · `git-checkpoint.ts`
+**Source.** ✅ `DOCS/settings.md` §Retry · `DOCS/packages.md` · `DOCS/extensions.md` §Error Handling
+
+</details>
+
+#### 9e Raise the Floor
+<details>
+<summary>◐ Installer, <code>/login</code>, <code>/settings</code>, <code>pi config</code> TUI; no <code>doctor</code>, no <code>init</code></summary>
+
+**Ships.** A one-line installer, a `/login` provider picker, a `/settings` UI, `/hotkeys`, `/changelog`, and a `pi config` TUI. The startup header lists every loaded `AGENTS.md`, template, skill and extension, and the docs add *"you can also ask the agent to explain itself"*. `--verbose` for detail. An experimental first-time setup sits behind `PI_EXPERIMENTAL=1`.
+**No `doctor` command and no project `init` wizard were found** — checked `DOCS/index.md`, `DOCS/quickstart.md`, `CA/README.md`.
+**Source.** ✅ `DOCS/index.md` · `DOCS/quickstart.md` · RFC index
+
+</details>
+
+#### 9f Diagnose the Bottleneck
+<details>
+<summary>○ Nothing here; <code>/session</code> stats are the nearest</summary>
+
+**Nothing here** — checked `DOCS/extensions.md`, `DOCS/skills.md`, `CA/README.md`. No maturity or readiness scoring of any kind.
+**What exists instead.** `/session` statistics, `ctx.getContextUsage()` for extensions, and skill validation warnings.
+**Source.** ✅ `DOCS/extensions.md` §ExtensionContext · `DOCS/skills.md` §Validation
+
+</details>
+
+### 10 · Teams & Agents
+
+#### 10a Roster
+<details>
+<summary>○ Nothing built in; the subagent example uses Markdown personas</summary>
+
+**Nothing here** — checked `CA/README.md`, `DOCS/index.md`.
+**What exists instead.** The subagent example's named personas as Markdown in `~/.pi/agent/agents/` — `scout`, `planner`, `reviewer`, `worker`. Process identity is the `AI_AGENT=pi` environment marker. Sessions can be named with `/name` or `--name`.
+**Source.** ✅ `EX/subagent/README.md` · `CA/README.md` §Environment Variables
+
+</details>
+
+#### 10b Org
+<details>
+<summary>○ Single operator; no ownership, RACI or escalation</summary>
+
+**Nothing here** — checked `DOCS/security.md`, `DOCS/settings.md`, `packages/server/README.md`.
+**What exists instead.** Human-in-the-loop posture is whatever an extension builds — `ctx.ui.confirm`, the `permission-gate.ts` example — plus a project-trust yes or no. The experimental `pi-server`/`pi-client` pair lets multiple *clients* attach to a session with exclusive or shared leases, but ships no auth and no user model, and instructs *"Treat peers as untrusted."* QM layers approval modes above Pi; that is QM's design, not Pi's.
+**Source.** ✅ `packages/server/README.md`, `packages/client/README.md` · ↪ QM README
+
+</details>
+
+### 11 · Surfaces
+
+#### 11a Surfaces
+<details>
+<summary>◐ TUI · print · JSON · RPC · SDK · experimental remote protocol; no IDE shipped</summary>
+
+**Ships.** A terminal TUI (regular or experimental fullscreen, with images, mermaid and themes); print mode `-p` with stdin piping; `--mode json`; `--mode rpc`; a Node SDK; and the experimental remote protocol over a Unix socket. `/share` produces an HTML gist and `/export` an HTML file; the package gallery is a web surface. Chat channels are **not in Pi** — the sibling `pi-chat` extension bridges Discord and Telegram. **No IDE integration is shipped**; the RPC doc only says it is *"useful for embedding the agent in other applications, IDEs, or custom UIs."* Platform docs cover Windows, Termux and tmux.
+**The terminal is the source of truth**; every other surface is a projection of a session file.
+**Source.** ✅ `CA/README.md` §Interactive Mode, §Modes · `DOCS/tui.md` · `DOCS/rpc.md` · ↪ pi-chat README
+
+</details>
+
+## 7. Identity and inclusion test
+
+<details>
+<summary>Identity · inclusion test · loop question</summary>
+
+| Field | Value |
+|---|---|
+| Canonical name | **Pi** — *"Pi Agent Harness"* is the monorepo title, the binary is `pi`, the CLI package is *"pi coding agent"* ✅ |
+| Prior names / homes | `badlogic/pi-mono` → `earendil-works/pi` (old URL redirects). npm `@mariozechner/pi-coding-agent` (2025-11-12, deprecated) → `@earendil-works/pi-coding-agent` (2026-05-07) ✅ GitHub API, npm registry, `CHANGELOG` §0.74.0 |
+| Owner / maintainer | Created by Mario Zechner; since April/May 2026 an Earendil product. Zechner: *"I'm a shareholder of Earendil and in charge of all pi decisions, along with Armin and Colin."* LICENSE still reads *"Copyright (c) 2025 Mario Zechner"* ✅ |
+| GitHub URL | `github.com/earendil-works/pi` ✅ |
+| License | **MIT** — *"pi is MIT licensed. It will stay MIT licensed."* ✅ GitHub API `license.spdx_id: MIT`; LICENSE file; maintainer's post |
+| Stars | 100,782 stars, 12,529 forks (2026-09-02) ✅ `gh api` |
+| Language | TypeScript ✅ GitHub API |
+| Repo created | 2025-08-09; first commits 2025-08-11 ✅ GitHub API |
+| First release | ⚠️ uncertain — `CHANGELOG`'s oldest entry is `0.10.0` (2025-11-25); the old npm package was created 2025-11-12; the oldest release object paged from the API is v0.25.4 (2025-12-21). Earlier versions went to npm before GitHub Releases were used ✅ (each fact) / ⚠️ (the date itself) |
+| Latest release | **v0.84.4**, 2026-08-28; last push 2026-09-02 ✅ |
+| Install | `npm install -g --ignore-scripts @earendil-works/pi-coding-agent` or `curl -fsSL https://pi.dev/install.sh \| sh` ✅ |
+| Website / docs | `pi.dev` · docs mirror `pi.dev/docs/latest` · gallery `pi.dev/packages` · RFCs `rfc.earendil.com/keyword/pi/` ✅ |
+| What it says it is, verbatim | *"Pi is a minimal terminal coding harness. Adapt pi to your workflows, not the other way around, without having to fork and modify pi internals."* and *"Pi ships with powerful defaults but skips features like sub agents and plan mode. Instead, you can ask pi to build what you want or install a third party pi package that matches your workflow."* ✅ `CA/README.md` |
+
+**Does state persist across sessions, where, in what format?** **Yes — transcripts and config, but there is no memory feature.** Sessions auto-save as JSONL at `~/.pi/agent/sessions/--<path>--/<timestamp>_<uuid>.jsonl`, tree-structured by `id`/`parentId`, format version 3, resumable with `pi -c`, `pi -r`, `--session` and `--fork`. Other state under `~/.pi/agent/`: `settings.json`, `auth.json`, `trust.json`, `models.json`, `keybindings.json`, `AGENTS.md`. A grep for *"memory"* across the docs found no feature. ✅ `DOCS/session-format.md`, `DOCS/sessions.md`
+
+**Does it serve more than one person?** **One operator.** It *"runs with the permissions of the user account that starts it."* Team affordances are config sharing only: project `.pi/settings.json` *"can be shared with your team, and pi installs any missing packages automatically on startup after the project is trusted."* The experimental `pi-server`/`pi-client` pair lets multiple clients attach to sessions with leases, but states *"Treat peers as untrusted"* and ships no auth, no user model and no coding-agent service. ✅ `DOCS/security.md`, `DOCS/packages.md`, `packages/server/README.md`
+
+**Does it bind mechanically, or only by prose?** **Mechanically only where you install the mechanism; nothing mechanical by default.** *"Pi does not include a built-in permission system for restricting filesystem, process, network, or credential access."* The levers that exist — a blocking `tool_call` handler, the `--tools` allowlist, project trust, delegated OS isolation — are all opt-in. Instruction files are prose only, and the security doc bounds even the trust gate: *"It does not make untrusted code, untrusted prompts, or untrusted model output safe."* ✅ root README, `DOCS/security.md`
+
+**Loop question.** **Runs the loop itself.** The agent loop is `@earendil-works/pi-agent-core` (`Agent`, `agent.prompt()`, an event stream) built on `pi-ai`; the CLI wraps it as `AgentSession`. It is also **embeddable** by a documented SDK, `--mode rpc` and `--mode json`. It ships adapters that *read* other harnesses' conventions — Claude Code and Codex skill directories, `CLAUDE.md` as a context file — but installs into no other harness's loop. Other systems adapt to it: QM drives Pi as one of its pluggable agent loops (QM's README, not Pi's). ✅ `packages/agent/README.md`, `DOCS/sdk.md`, `DOCS/skills.md`
+
+**Altitude.** **Runtime.** One operator, one loop, one directory at a time — and an SDK for anyone who wants to host it.
+
+</details>
+
+## 8. Limits
+
+<details>
+<summary>What it does not claim, in the vendor's words</summary>
+
+**From `CA/README.md` §Philosophy** ✅
+
+> *"Pi is aggressively extensible so it doesn't have to dictate your workflow. Features that other tools bake in can be built with extensions, skills, or installed from third-party pi packages. This keeps the core minimal while letting you shape pi to fit how you work."*
+
+**From root README §Permissions & Containerization** ✅
+
+> *"Pi does not include a built-in permission system for restricting filesystem, process, network, or credential access. By default, it runs with the permissions of the user and process that launched it. If you need stronger boundaries, containerize or sandbox Pi."*
+
+**From `DOCS/security.md` §No Built-in Sandbox** ✅
+
+> *"Pi does not include a built-in sandbox. Built-in tools can read files, write files, edit files, and run shell commands with the permissions of the pi process. Extensions are TypeScript modules that run with the same permissions. … This is intentional. … A partial in-process sandbox would be easy to misunderstand as a security boundary … Real isolation needs to come from the operating system or a virtualization/container boundary."*
+>
+> *"Prompt injection from repository files, comments, documentation, context files, or build output is expected local-agent risk and cannot be reliably prevented by pi."*
+
+**Package-level disclaimers** ✅
+
+> `packages/server/README.md`: *"Experimental. This package is under active development and may change or be removed without notice."* … *"This package does not provide a standalone CLI or coding-agent service."*
+> `packages/protocol/README.md`: *"The protocol is experimental and has no compatibility guarantees."*
+> `packages/client/README.md`: *"`PiClient` does not reconnect automatically."* / *"Treat peers as untrusted."*
+> `packages/telemetry/README.md`: *"no exporter, global current-span state, or dependency on a telemetry backend."*
+
+**Skills spec deviation** ✅ `DOCS/skills.md`
+
+> *"Pi allows skill names to differ from their parent directory even though the standard disallows it; that rule is suboptimal for shared skill directories used across multiple agent harnesses."*
+
+**Ownership and governance** ✅ maintainer's post, 2026-04-08
+
+> *"pi is MIT licensed. It will stay MIT licensed."* … *"No CLA, no DCO, no new hoops to jump through."* … *"And if you ever feel like we've lost the plot, the fork button on GitHub still works. Always will."*
+
+</details>
+
+## 9. Sources
+
+<details>
+<summary>Primary · secondary · placement · diagrams not redrawn</summary>
+
+**All primary sources accessed 2026-09-02. No source was re-read at the 2026-09-07 restructure.**
+
+**Primary — GitHub API and repo.** `gh api repos/badlogic/pi-mono` (redirects to `earendil-works/pi`; stars, forks, license, language, dates) · `gh api .../releases` and tags · `gh api .../contents/packages`, `.../packages/coding-agent/docs`, `.../examples/extensions`, `.../examples/sdk`, `.../packages/session-backends` · `gh api .../commits?until=2025-08-12`.
+
+**Primary — files.** `REPO/README.md` · `REPO/LICENSE` · `REPO/AGENTS.md` · `CA/README.md` · `CA/package.json` · `CA/CHANGELOG.md` · `DOCS/{index,quickstart,usage,settings,security,containerization,extensions,skills,packages,prompt-templates,sessions,session-format,compaction,sdk,rpc,json,providers,models,custom-provider,environment-variables,themes,tui,keybindings,development}.md` and `docs.json` · `EX/subagent/README.md` · `EX/plan-mode/README.md` · `packages/{agent,ai,tui,telemetry,evals,server,client,protocol}/README.md` · `packages/session-backends/sqlite-node/README.md`.
+
+**Primary — registries and sites.** npm registry for both package scopes · `pi.dev/packages` (5,618 packages at fetch) · `rfc.earendil.com/keyword/pi/` (titles and status only) · the maintainer's post of 2026-04-08.
+
+**Secondary (↪).** `earendil-works/pi-chat` README (sibling repo, README only) · `yc-software/qm` README, grepped raw for Pi and harness lines · search-result snippets for QM reviews and a Wikipedia entry, used for context and for no named feature.
+
+**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md#3-pi).
+
+**Diagrams not redrawn.** **No diagram inventory was taken at the 2026-09-02 read.** Whether Pi's docs contain vendor diagrams is unknown and unrecorded — it is a gap in the read, not a finding about the vendor. The diagram pass (W8c) opens the sources and records what it finds.
+
+</details>
+
+## 10. Unverified
+
+<details>
+<summary>9 items</summary>
+
+- **OpenClaw embedding Pi via the SDK** — a search snippet only, never read at OpenClaw's source. ⚠️
+- **QM's Pi integration mechanism** (SDK, RPC or subprocess) — QM's README confirms Pi as a harness option; its adapter code was not read, and Pi's own docs never mention QM. ↪
+- **Package names of the third-party MCP adapter and multi-agent packages** on the gallery — descriptions were captured, identifiers were not. ⚠️ (existence ✅)
+- **The maintainer's post names a new npm scope `@earendil/pi`** which differs from the published `@earendil-works/pi-coding-agent`. The registry value is the one reported.
+- **Root README calls `pi-chat` "Slack/chat automation"** but the pi-chat README documents Discord and Telegram only. ⚠️ possible drift between the two READMEs.
+- **`examples/extensions/sandbox/`** has no README (404); only `index.ts`, `package.json` and lockfiles exist. Its behaviour beyond the one-line docs table entry was not read. ⚠️
+- **The version at which the v4 lane-based session APIs and the experimental `PiClient` landed** — both sit under `## [0.84.0]` in the CHANGELOG; entries above were not read to rule out an earlier partial landing. ↪
+- **RFC contents** — only the index was fetched. No RFC body was read, so nothing is quoted beyond titles and status.
+- **First release date** — the CHANGELOG starts at 0.10.0 and the old npm package at 2025-11-12; nothing was found covering August to November 2025.
+
+**Added at the 2026-09-07 restructure, and not source questions:** the primitive count is disputed 8 versus 5 against the same sources (ISSUE-007, unresolved); and **no diagram inventory exists** for this harness (§2, §3, §9).
+
+</details>

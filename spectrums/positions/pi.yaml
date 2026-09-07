@@ -1,0 +1,202 @@
+# Pi — spectrum positions and DX scorecard.
+#
+# Scored against the profile as restructured to Template v2 on 2026-09-07 from
+# the source read of 2026-09-02. No source was opened at scoring time (R3).
+# Every `evidence` entry points at a section or component id of that profile.
+
+# ---------------------------------------------------------------- R11 verification
+verification:
+  derived_from:
+    - "Pi's own README and packages/coding-agent/docs — read 2026-09-02 via the profile"
+    - "repo README, CHANGELOG, LICENSE and tag history — earendil-works/pi"
+    - "the maintainer's post of 2026-04-08 on the Earendil sale, quoted verbatim in §8"
+    - "the RFC index at rfc.earendil.com — titles and status only, no body read"
+  grounded_against:
+    - "§4 component matrix — 33 rows, ● 6 · ◐ 11 · ○ 16, copied from the 04 grid column"
+    - "§5 primitives — 8 named units, ⚠️ contestable and internally disputed (ISSUE-007)"
+    - "§7 identity table — MIT licence, 100,782 stars, repo created 2025-08-09, v0.84.4"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    Positioning and observed artifact agree unusually well here — Pi's refusal list is a
+    positioning document that is also a factual inventory of absent machinery, and §4 bears it
+    out row for row. Two disagreements are recorded rather than resolved. (1) The root README
+    calls the sibling pi-chat "Slack/chat automation" while pi-chat's own README documents
+    Discord and Telegram only; §10 carries it, and 11a was scored on the narrower claim.
+    (2) The maintainer's post names an npm scope that differs from the published one; the
+    registry value won. Neither moved a DX value.
+
+spectrums:
+  schema_version: 2
+  harness: pi
+  profile: content/pi.md
+  profile_read: "2026-09-02"      # the source read; the restructure added no facts
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  positions:
+
+    - id: operator-scale
+      value: -1
+      mark: direct
+      evidence: ["§7 · serves more than one person", "10a", "10b", "5b", "3d"]
+      because: "Stated single-operator security posture, with project settings shareable through version control and nothing else aware of a second person."
+      split: "The stated posture is −3 — it runs as the user who launched it. The mechanism is 0 — .pi/settings.json is explicitly shareable with a team. Scored between; both halves are in §7 verbatim."
+
+    - id: state-durability
+      value: 0
+      mark: direct
+      evidence: ["5a", "8b", "§7 · does state persist", "5c"]
+      because: "Session JSONL on one machine, resumable and forkable by its author; no memory feature and no shared store."
+      gap: "A SQLite session backend with FTS exists as a separate package for pi-agent-core. Whether the CLI can use it is not stated; if it can, this moves toward +1."
+
+    - id: binding-force
+      value: -1
+      mark: direct
+      evidence: ["2c", "§7 · binds mechanically or only by prose", "4b"]
+      because: "Nothing binds by default, and the vendor says so; --tools, defaultTools and project trust are real controls the operator must opt into."
+      split: "Default is −3 — no permission system, no sandbox. Configured is 0 — an allowlist and a trust gate outside the prompt. Scored on the default, which the vendor states most directly."
+
+    - id: loop-ownership
+      value: 3
+      dual: null
+      mark: direct
+      evidence: ["§7 · loop question", "2a", "0a"]
+      because: "Runs the loop itself via pi-agent-core and installs into no other harness's loop; reading Claude and Codex skill dirs is convention-reading, not hosting."
+
+    - id: substrate-portability
+      value: 2
+      mark: direct
+      evidence: ["0a", "2a", "§5 refusal list"]
+      because: "Thirty-one providers plus local llama.cpp and custom providers via extension, with SDK and RPC outward — but MCP is refused, not missing."
+      split: "Model portability is +3; protocol portability is held down by the MCP refusal. Scored +2 on the pair, since the refusal is a design position the vendor defends rather than a gap."
+
+    - id: primitive-discipline
+      value: -2
+      mark: direct
+      evidence: ["§5 count and verdict", "§5 refusal list"]
+      because: "A published refusal list the vendor defends item by item, against eight authoring units — narrow by intent, not quite narrow by count."
+      gap: "The count is disputed against itself: 8 + 3 at the 2026-09-02 read, 5 + 3 at the 2026-09-03 sanity draft, same sources. ISSUE-007 is unresolved; a re-run under rule 4 could move this to −3."
+
+    - id: control-posture
+      value: 2
+      mark: direct
+      evidence: ["2c", "3a", "§7 · binds mechanically or only by prose", "7a"]
+      because: "No approval gate of any kind by default — no popups, no plan mode, no permission system; the operator accepts the risk at launch."
+      split: "Unattended is the default *posture*, but nothing *bounds* an unattended run, which the +3 anchor requires. Scored +2 rather than +3 for the missing bound."
+      # This is the harness axis VII's contested shape needs. See positioning.md §4.
+
+    - id: proof-ceremony
+      value: 1
+      mark: direct
+      evidence: ["8b", "8a", "7a"]
+      because: "Every session is auto-saved as a complete receipt with per-entry usage and cost — stronger than on-demand, but there is no unit of work to bind it to."
+
+    - id: improvement-loop
+      value: 0
+      mark: direct
+      evidence: ["9a", "4a", "9d", "9b"]
+      because: "No capture of any kind, against a real and stated promotion path — ask the agent to build the extension, then ship it as a package."
+      split: "Capture is −3; promotion is close to +3 and is the vendor's stated posture. Scored 0 on the pair; the axis asks what happens to a lesson, and nothing notices one."
+
+    - id: cost-visibility
+      value: 1
+      mark: direct
+      evidence: ["8d", "8b", "8c"]
+      because: "Per-entry usage and cost inside the session tree, plus a live footer — real attribution, with no budget the harness enforces."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  probation:
+
+    - id: surface-breadth
+      value: 0
+      mark: direct
+      evidence: ["11a", "6b"]
+      because: "TUI, print, JSON, RPC, SDK and an experimental remote protocol, with the terminal as the stated source of truth; no IDE and no first-party chat."
+
+    - id: routing-determinism
+      value: 0
+      mark: direct
+      evidence: ["3b"]
+      because: "Model selection is manual, so no model is in the decision loop — but there is no resolver either, and agent routing does not exist."
+      gap: "This axis's poles are 'the model decides' and 'a resolver decides'. Manual operator selection is neither. If a third harness scores the same way, the axis needs a third anchor."
+
+    - id: knowledge-depth
+      value: -3
+      mark: direct
+      evidence: ["5c"]
+      because: "No RAG, embeddings or wiki in the CLI; full-text search over your own transcripts lives in a separate package."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # The revised seven (ruling `2026-09-07-dx-revision`). Authored, never computed (R8).
+  scorecard:
+
+    - id: org-scale
+      dx: 1
+      value: -1
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: −1"]
+        profile: ["§7 Q2", "10a", "10b", "3d", "4b"]
+      because: "Pass-through of axis I. One operator by design and by security posture; a shared settings file is the whole of its team story."
+
+    - id: weight-class
+      dx: 2
+      value: -2
+      mark: direct
+      reads_opened:
+        axes: ["proof-ceremony: +1 — direct", "primitive-discipline: −2 — BULK ONLY, verdict discarded"]
+        profile: ["§5 count and refusal list", "§1 Structured output", "§3 Workflows — none shipped", "2c", "8b", "8a"]
+      because: "Subtraction is the whole design: no plan mode, no to-dos, no sub-agents, no gate a unit must clear. Session receipts and an evals package keep it off the floor."
+
+    - id: surfaces-extendability
+      dx: 3
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: 0 (probation)"]
+        profile: ["2b — ~40 events", "4a — 5,618 gallery packages", "2a", "6b", "11a", "8c", "6d"]
+        note: "Scored well above its surface-breadth input. The axis reads surfaces alone; this dimension also reads hooks, plugins and extension points, where Pi is strongest — ~40 typed events, a four-type package format, and a registry with 5,618 packages."
+      because: "A genuine platform on the extension side — events, packages, a registry, four execution environments — held off +3 by no delivery and telemetry that ships contracts without an exporter."
+
+    - id: domain-specialization
+      dx: 4
+      value: 0
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 · what it says it is", "Genre row (04-harness-alignment §1)", "§3 Workflows", "§5 refusal list"]
+      because: "Names coding in its own first sentence and ships nothing domain-specific — the 0 anchor verbatim. Its refusals are about structure, not about domains."
+
+    - id: ecosystem
+      dx: 5
+      value: 2
+      grades: true
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars 100,782", "§7 Repo created 2025-08-09", "§7 Latest v0.84.4", "4a — 5,618 packages on the gallery"]
+      because: "Large adoption and a real third-party ecosystem, against thirteen months of history and an ownership change in month nine — longevity is the part not yet proven."
+      gap: "The gallery's 5,618 packages is a count of listings, not of distinct authors or of maintained packages. An author count would firm this up in either direction."
+
+    - id: ownership
+      dx: 6
+      value: 3
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: +2"]
+        profile: ["§7 License — MIT", "§7 Install", "§8 ownership and governance", "0a", "6b"]
+      because: "MIT and stated to stay MIT, no CLA, thirty-one providers, self-hostable, and the maintainer names the fork button as a feature."
+
+    - id: cost-controls
+      dx: 7
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: +1 — the observability third", "routing-determinism: 0 (probation) — the routing third"]
+        profile: ["8d", "8c", "8b", "3b", "5a"]
+      because: "Strong efficiency machinery — compaction, cache retention, thinking budgets — and per-entry attribution, but no spend bound and no routing to pull on."

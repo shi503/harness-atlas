@@ -57,18 +57,21 @@ pass is the only thing that clears it** — not age, not a re-render, not a seco
 | Harness | 1 Org scale | 2 Weight | 3 Surfaces | 4 Domain | 5 Eco † | 6 Ownership | 7 Cost | Scored | Verified |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---|:-:|
 | [Claude Code](#2-claude-code) | +1 | +1 | +3 | +2 | +2 | −3 | +3 | 2026-09-07 | ⚠️ no |
-| Pi · Hermes · OpenClaw · OpenCode · Grok · Codex · Gas City · LoomWarp · FRACTAL | | | | | | | | **not yet** — scored as W8b restructures each profile to Template v2 | |
+| [Pi](#3-pi) | −1 | −2 | +2 | 0 | +2 | **+3** | +1 | 2026-09-07 | ⚠️ no |
+| Hermes · OpenClaw · OpenCode · Grok · Codex · Gas City · LoomWarp · FRACTAL | | | | | | | | **not yet** — scored as W8b restructures each profile to Template v2 | |
 
 The fingerprint — the seven values as one line, `+1 · +1 · +3 · +2 · +2† · −3 · +3` — heads each
 harness's own section below. It is not repeated as a column here: at nine columns it wrapped to four
 lines on github.com and stopped being a fingerprint (checked 2026-09-07).
 
-**Ten of eleven are unscored, and that is a scope statement, not an absence.** The remaining profiles
+**Nine of eleven are unscored, and that is a scope statement, not an absence.** The remaining profiles
 are Template A; W8b renumbers their sections, which would invalidate every evidence path written now.
 
-> **R6 is untestable at one harness.** A dimension earns its place by taking ≥3 distinct values across
-> the scored corpus. **Nothing below has been validated as discriminating** — this pass proves the
-> procedure, not the instrument. The corpus finding waits for W8b.
+> **R6 is untestable at two harnesses**, but it is no longer untested. A dimension earns its place by
+> taking ≥3 distinct values across the corpus. **Two is not three** — nothing below is validated as
+> discriminating yet. What two does prove is that the sheet is not flat: Claude Code and Pi differ on
+> **all seven**, and are at opposite ends of DX-6 Ownership (`−3` against `+3`). The corpus finding
+> still waits for W8b.
 
 ---
 
@@ -142,7 +145,52 @@ The superseded fingerprint `+1 · +1 · +3 · −2 · +3† · −3 · +3` is ke
 
 ---
 
-## 3. Findings
+## 3. Pi
+
+`−1 · −2 · +2 · 0 · +2† · +3 · +1`
+
+[`content/pi.md`](../content/pi.md#1-at-a-glance) · profile read 2026-09-02 · restructured and
+scored 2026-09-07 · [`positions/pi.yaml`](positions/pi.yaml) ·
+back: [§1a Positioning stats](../content/pi.md#1a-positioning-stats)
+
+> **⚠️ Drafted, not verified.** Derived from Pi's README, docs and RFC index and the maintainer's
+> post — grounded against §4, §5 and §7. No person has re-read these values. See §0.
+
+| | | | | |
+|:-:|---|---:|:-:|---|
+| **1** | Org scale | single operator | `──●────` | multi-tenant, many teams |
+| **2** | Weight class | light-weight | `─●─────` | heavy-weight |
+| **3** | Surfaces & extendability | one surface | `─────●─` | many surfaces, environments, a platform |
+| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▱▱` | wide adoption, longevity, network economies |
+| **6** | Ownership | rented | `──────●` | yours |
+| **7** | Cost controls & efficiency | unmetered, unrestricted | `────●──` | observability, efficiency, routing |
+
+<details>
+<summary>Why each — evidence and reasoning</summary>
+
+| | Why | Read from |
+|---|---|---|
+| **1** `−1` | Stated single-operator posture against a shareable project settings file. **Split** — the posture is `−3`, the mechanism is `0` | §7 Q2 · `10a` `10b` `5b` `3d` |
+| **2** `−2` | Subtraction is the design: no plan mode, no to-dos, no sub-agents, no gate a unit must clear. Session receipts and an evals package keep it off the floor | axis VIII `+1` · axis VI `−2` **bulk only** · §5 · `2c` `8b` `8a` |
+| **3** `+2` | A platform on the extension side — ~40 typed events, a four-type package format, a registry showing 5,618 packages, four execution environments. Held off `+3` by no delivery and telemetry that ships contracts without an exporter | `2b` `4a` `2a` `6b` `11a` `8c` `6d` |
+| **4** `0` | Names coding in its first sentence and ships nothing domain-specific — the `0` anchor verbatim. Its refusals are about structure, not domain | §7 self-description · `Genre` · §3 · §5 |
+| **5** `+2` **†** | Large adoption and a real third-party ecosystem, against thirteen months of history and an ownership change in month nine — longevity is what is unproven | §7 Stars 100,782 · created 2025-08-09 · `4a` |
+| **6** `+3` | MIT and stated to stay MIT, no CLA, 31 providers, self-hostable, and the maintainer names the fork button as a feature | §7 License · §8 governance · `0a` `6b` |
+| **7** `+1` | Compaction, cache retention and thinking budgets, plus per-entry cost in the session tree — but no spend bound and no routing to pull on | axis X `+1` · probation `routing-determinism 0` · `8d` `8c` `3b` |
+
+**The ten axes beneath.** `I −1 · II 0 · III −1 · IV +3 · V +2 · VI −2 · VII +2 · VIII +1 · IX 0 · X +1`.
+Probation: `surface-breadth 0 · routing-determinism 0 · knowledge-depth −3`.
+
+**Five `split:` entries and three `gap:` entries** — the most on any harness so far. Pi is a system
+defined by what it refuses, and a refusal reads differently as a *posture* than as a *mechanism*;
+R10 fired on axes I, III, V, VII and IX for exactly that reason.
+
+</details>
+
+---
+
+## 4. Findings
 
 1. **The DX-3/DX-5 collision was real, and narrowing it moved a score.** Before the revision, the same
    sentence — *marketplaces with SHA pinning, a co-published open standard, MCP* — was the evidence for
@@ -157,17 +205,32 @@ The superseded fingerprint `+1 · +1 · +3 · −2 · +3† · −3 · +3` is ke
 3. **DX-2's re-referent gave axis VIII a headline home.** *Proof ceremony* was detail-only on the
    argument that no DX reader arrives with *how is completion known*. A weight-class reader arrives
    with exactly that, in different words. Detail-only drops from five axes to four.
-4. **Axis VII's contested shape survives untested.** `polar` and `centred` both read `0` on this
-   harness. Settling it needs one that is unambiguously autonomous-by-default.
-5. **Five `split:` entries on the one harness scored** — axes I and V, plus DX-1, DX-2 and DX-6, and the
-   probation axis `routing-determinism`. R10 was written for a hypothetical and has met six real cases.
-6. **`+1` twice on DX-2 is a coincidence, not a mapping.** The superseded `constraint-form` scored `+1`
+4. **Axis VII's contested shape now has its test case, and the test says `polar`.** It read `0` on
+   Claude Code under either reading, so the first harness settled nothing. **Pi scores `+2`** — no
+   permission system, no popups, no plan mode, nothing gated by default. Under `centred` that reads as
+   *two notches from healthy*, i.e. a failure; but Pi's docs defend it at length as a deliberate
+   position — *"This is intentional… A partial in-process sandbox would be easy to misunderstand as a
+   security boundary."* An axis that scores a defended design choice as a defect has the wrong shape.
+   **Recommend retiring the `centred` marking on axis VII.** KD's ruling; the argument is now on the
+   record rather than hypothetical.
+5. **Pi is the corpus's first `+3` on DX-6 Ownership, against Claude Code's `−3`.** Two harnesses, both
+   poles of one dimension, on the same evidence field — §7's licence row. That is R1 (*two live poles,
+   named in this corpus*) satisfied for DX-6 by observation rather than by assertion.
+6. **R10 fired five times on Pi alone**, on axes I, III, V, VII and IX. The pattern is not random: a
+   harness defined by what it *refuses* reads differently as a **posture** than as a **mechanism**, and
+   every one of those five splits is that same distinction. **Pi suggests R10 is under-specified** — it
+   says *score the half the profile states most directly*, which is ambiguous when a vendor states both
+   halves equally clearly, as Pi does. A rule that says *which* half wins by default would help.
+7. **Five `split:` entries on Claude Code** — axes I and V, plus DX-1, DX-2 and DX-6, and the
+   probation axis `routing-determinism`. R10 was written for a hypothetical and has now met eleven
+   real cases across two harnesses.
+8. **`+1` twice on DX-2 is a coincidence, not a mapping.** The superseded `constraint-form` scored `+1`
    and `weight-class` scores `+1`, from different reads answering different questions. Recorded because
    the next reader will assume the dimension was merely renamed.
 
 ---
 
-## 4. The R3 falsification check
+## 5. The R3 falsification check
 
 [`00-README.md`](00-README.md) §6: *"If backfilling a profile requires opening a vendor source, R3 is
 violated and that axis is a component request in disguise."*

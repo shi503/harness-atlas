@@ -24,7 +24,7 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 
 | Harness | Altitude | Profile | State |
 |---|---|---|---|
-| Pi | runtime | [`content/pi.md`](content/pi.md) | template |
+| Pi | runtime | [`content/pi.md`](content/pi.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
 | Hermes | gateway / host | [`content/hermes.md`](content/hermes.md) | template |
 | OpenClaw | gateway / host | [`content/openclaw.md`](content/openclaw.md) | template |
 | OpenCode | runtime | [`content/opencode.md`](content/opencode.md) | template |
