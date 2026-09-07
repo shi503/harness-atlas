@@ -265,7 +265,7 @@ block ≤ 25 lines (a copy of its `.mmd`). Or the one-line absence per slot.
 
 The coverage legend in one line — `● named primitive · ◐ partial, present-not-first-class · ○ absent
 (pages named in §6) · n/a does not apply at this altitude` — then **one** table: 12 bold layer-divider
-rows carrying the layer names from `index.md` §3, 33 component rows in the fixed order, a totals
+rows carrying the layer names from the atlas index's layer section, 33 component rows in the fixed order, a totals
 row. Two-product harnesses (Grok Bot / Build) carry two mark columns and two totals.
 
 ```
@@ -280,7 +280,10 @@ row. Two-product harnesses (Grok Bot / Build) carry two mark columns and two tot
 
 **The checklist.** These are the 33 rows, the layer they sit under, the question each answers, and
 the anchor its detail heading produces. **This list is inline on purpose and is never read from a
-spec.** Do not add a 34th row or rename one.
+spec.** Do not add a 34th row or rename one. **If you found something no row carries**, that is a
+finding, not a licence: record it as a candidate and route it — the intake conventions and the
+component crosswalk's candidates section carry the two-peers test and the twenty-four-place sync cost.
+A teardown never admits a component; a ruling does.
 
 | Layer | # | Component | The question the row answers | Anchor |
 |---|---|---|---|---|
@@ -426,4 +429,5 @@ nothing: git history is the archive.
   another inside its own page.
 - Edit any other harness's profile, `spec/`, or `components/`.
 - Add a 34th row, rename a component to match a vendor's word, or grade anything — profiles record;
-  the grids compare; the maturity range grades.
+  the grids compare; the maturity range grades. An object that fits no row is recorded as a candidate
+  and routed, never given a row here.

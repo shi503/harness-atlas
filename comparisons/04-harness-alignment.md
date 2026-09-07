@@ -39,6 +39,15 @@ more than one way · `○` absent, checked. Every mark is ✅ direct unless the 
 
 ## 1. Who they are, and whether they are peers
 
+> **Superseded as a rubric, kept as a reference (ruling `2026-09-07-alignment-reference`).** The five
+> columns below stop at the 2026-09-02 teardowns; `Genre`, `Language · licence` and `Stars` are now
+> read continuously across all eleven harnesses by the DX scorecard at
+> [`../spectrums/01-scorecard.md`](../spectrums/01-scorecard.md) — DX-4, DX-6 and DX-5 respectively.
+> **This section is not retired.** It is the prose inventory the scorecard compresses, it carries
+> findings the scorecard does not (§3.1's argument that genre predicts which components are `●`), and
+> it can still generate more. Read it for the argument; read the scorecard for the position.
+
+
 | | Hermes | Pi | OpenClaw | OpenCode | Grok Bot / Grok Build |
 |---|---|---|---|---|---|
 | **Owner** | Nous Research | Mario Zechner → Earendil (May 2026) | Peter Steinberger · OpenClaw Foundation | Anomaly (was `sst/opencode`) | SpaceXAI (Bot runs on Cursor account infrastructure) |

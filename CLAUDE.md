@@ -14,6 +14,10 @@ one peer column here, scored by the same rules, with no special status.
 | 3 · profiles | `content/<name>.md` | One page per harness, in the shape `skills/harness-teardown/SKILL.md` prescribes (Template v2 since 2026-09-04: card → system map → workflows → `●◐○` matrix → primitives → collapsed details). Anchored per component: `content/<name>.md#<id>-<slug>`, e.g. `#2b-hooks`. A deep-read folder `content/<name>/` may sit beside the page and is linked out to, never inlined. (Was `harnesses/` until 2026-09-03 — renamed in W0 to match the 12-factor-agents page architecture) |
 
 Cross-cutting: `vocabulary.md` (term → concept → who says it → our component → instances),
+`spectrums/` (the sheet's two faces — `01-scorecard.md`, seven DX dimensions for a thirty-second read,
+over `00-README.md`'s ten `−3…+3` axes; scores in `positions/<harness>.yaml`, rendered in
+`positions.md`. Neither grades, bar one declared dimension), `RULINGS.md` (the index of decisions that
+changed a rule, an id or a name — the text stays where it was written),
 `maturity/` (the range argument and `grid.html`, the instrument), and `assets/` (`templates/` for the
 standardized core-concept diagrams, `projects/<harness>/` for per-harness ones; `.mmd` is canonical,
 pages embed a copy, a `.png` beside it is an optional render).
@@ -63,6 +67,12 @@ store. See `docs/agents/issue-tracker.md`.
 
 Default five-role vocabulary (needs-triage, needs-info, ready-for-agent, ready-for-human, wontfix),
 applied as a `Status:` line in a PRD's header. See `docs/agents/triage-labels.md`.
+
+### Intake
+
+How a newly-discovered thing is recorded and routed: four triggers, five states (NOTICED → RESEARCHED
+→ PROBATION → ADMITTED → REJECTED), and a routing table naming each source of truth and its sync cost.
+A 34th component costs 24 edits, which is why probation exists. See `docs/agents/intake.md`.
 
 ### Domain docs
 

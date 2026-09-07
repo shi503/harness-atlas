@@ -490,6 +490,47 @@ is a decision rather than a discovery.
 
 ---
 
+### 3.13 Component candidates — probation, promotion, retirement
+
+**Recorded 2026-09-07 (W9).** `skills/harness-teardown/SKILL.md` §4 states *"Do not add a 34th row or
+rename one"* and gave that prohibition no exit. This is the exit. It is not a relaxation: the
+prohibition still binds every teardown, and admission is a ruling, not a judgement call.
+
+**The admission test already existed and nobody connected it.**
+[`../../comparisons/04-harness-alignment.md`](../../comparisons/04-harness-alignment.md) §1 states the
+evidence rule for the `emerging` / `claimed` / `bet` markers: ***two peers shipping it as a named
+primitive***. That is the test. It is cited, not re-invented.
+
+**Probation.** A candidate object is named in profiles as a `◐`-with-note or a detail-row line and
+**never given a matrix row**. It costs nothing until it graduates — which matters, because admission
+costs twenty-four edits (ten enumerations, twelve profile matrices, `maturity/grid.html` and
+`assets/templates/layer-stack.mmd`; the full list is in
+[`../../docs/agents/intake.md`](../../docs/agents/intake.md) §3).
+
+**Promotion** requires all three: the two-peers test met; an argument that **no current row absorbs
+it** — the `2.2` shape, *"the nearest thing that is not it"*; and the twenty-four-place sync paid in
+**one commit**. Promotion is a ruling **and** a `SKILL.md` revision, because the skill owns the anchor
+slugs.
+
+**Retirement** is by ruling: re-head, never delete, per `CLAUDE.md`. **Ids are never reused.**
+
+#### The current candidates
+
+Seeded from the objects `fractal/ISSUES.md` ISSUE-007 already names as UNDERCOUNTs. Each was noticed
+in a teardown and never routed anywhere — precisely the failure this section closes. **None is
+proposed for admission**; they are recorded so the argument is not re-run from scratch.
+
+| Object | Vendor's words | Peers seen | Nearest row that may already absorb it | State |
+|---|---|---|---|---|
+| `gateway` | *"the gateway never opens an inbound port"*; `gateway.profile_routes` | Hermes; OpenClaw and Gas City sit at the same altitude | `3b` Routing · `2a` Adapters | **PROBATION** — one peer names it as an object; the altitude is already carried by §1's loop question |
+| audit ledger | *"never stores prompts, message bodies, tool arguments, tool results"* — metadata only | OpenClaw | `8b` Evidence | **PROBATION** — a *property of* `8b`, not a peer of it. Likely resolves as a vocabulary row |
+| operator roles / scopes | creator · owner · participant; session owner *"in the style of a GitHub issue assignee"* | OpenClaw; QM's rooms and scopes | `10b` Org · `4b` Capability Permissions | **PROBATION** — two peers, but `10b`'s own question already asks *who answers* |
+| `/goal` | a goal with a token budget and an independent evidence review | Hermes | `3a` Control · `7a` Workflow Tasks | **REJECTED** 2026-09-07 — one peer, and `3a`'s question covers it. Recorded, not deleted |
+
+**The count stays 33.** Nothing here changes it.
+
+---
+
 *The design: [`../archive/v0/11-architecture.md`](../../archive/v0/11-architecture.md) §1 · The jobs:
 [`../../references/comparisons/03-jtbd.md`](../../comparisons/03-jtbd.md) · The ancestor,
 re-argued and never copied: [`../archive/v0/02-functions.md`](../../archive/v0/02-functions.md) · The horizon rule:

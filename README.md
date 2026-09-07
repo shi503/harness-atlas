@@ -79,7 +79,7 @@ this repo's own synthesis — generalised from the "seven insertion points" read
 [`content/claude-code/20-consolidated-guide.md`](content/claude-code/20-consolidated-guide.md) §1,
 which is itself a synthesis, not a vendor diagram. Vendor diagrams, redrawn, live under
 [`assets/projects/`](assets/projects/). The twelve layers those component IDs belong to are drawn in
-[`index.md`](index.md) §3.*
+[`index.md`](index.md#4-the-layers).*
 
 ## How to read a profile
 

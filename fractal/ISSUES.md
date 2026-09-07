@@ -105,3 +105,18 @@ Distribution/sync; FRACTAL Agent definitions (sibling-repo source); LoomWarp Age
 decomposition · Standards tier. KD's ruling (W3 Q4): an unnamed `●` becomes `◐` with a dated note — a
 correction, not a re-score; `0a` keeps `●` under the stated convention *`●` at 0a = model-pluggable,
 not named*. W6 applies; the ledger's §2 index is the checklist.
+
+---
+
+## ISSUE-009 — `00-consolidated-guide-and-mental-model.md` claims a generator that no longer exists
+
+**Severity:** MINOR · **Found:** 2026-09-07, W9 intake routing (counting the sync cost of a 34th component) · **Assigned:** W5 component-pages
+
+`spec/v1-framework/00-consolidated-guide-and-mental-model.md` §"the grid" says `maturity/grid.html`'s rows
+are *"**generated** from `CROSSWALK.md` §0 so drift is impossible."* The generator, `scripts/gen-grid-rows.mjs`,
+did not come across in the spin-out — `scripts/` holds only `check-doc-links.mjs` and `rewrite-paths.mjs`.
+The twelve `sub:` fields in `grid.html` are therefore **hand-maintained**, and drift is not merely possible
+but unchecked. Two fixes, either acceptable: strike the sentence, or restore the script. Note the standing
+rule cuts toward striking it — *markdown is not code; no generator contracts* — which is also why this is
+MINOR rather than WARN. Recorded because `docs/agents/intake.md` §3 counts `grid.html` as one of the
+twenty-four places a new component must be synced by hand, and that count is only correct if this is known.

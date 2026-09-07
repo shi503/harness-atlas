@@ -38,6 +38,12 @@ The grid says a harness has enforcement. The sheet says whether that enforcement
 model can route around, or a control outside the prompt. The range says whether your team is good
 enough yet. **Only the third one grades**, and it grades a team, not a harness.
 
+**The sheet has two faces, and they are one instrument.** Ten axes here — the detail layer, for the
+reader who will open an anchor. Seven authored dimensions at [`01-scorecard.md`](01-scorecard.md) —
+the headline layer, for the reader who will not. One YAML file per harness holds both. The scorecard
+is **not** a fourth instrument, and calling it one would re-fuse what
+[`../RULING-2026-09-02-spinout.md`](../RULING-2026-09-02-spinout.md) un-fused.
+
 **Vocabulary note — not "the heuristics".** In [`../comparisons/2026-08-research/05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md)
 and in the outside literature (compaction rules, sandboxing by default, bounded iteration), a
 *heuristic* is an architectural **rule you hold**. This sheet is a **measurement you take**. Reusing the
@@ -55,8 +61,8 @@ of these is rejected, and the rejection is written down.
 |---|---|---|---|
 | **R1** | **Two live poles** | Name a harness *in this corpus* sitting at each end | An axis with a vacant pole is an aspiration, i.e. a grade |
 | **R2** | **Both costs statable** | Fill `cost_of_plus` **and** `cost_of_minus` | The anti-grade test. Enforced by the schema: a definition missing either field is not a spectrum |
-| **R3** | **Derivable from the profile** | Scoreable from §B / §C / §D of an existing profile, with **no new research** | Makes the sheet backfillable across 11 profiles for the price of reading them. An axis needing fresh vendor reads is a 34th component request, not an axis |
-| **R4** | **Evidence per score** | Every non-null value names the §B rows or §C primitives it came from, and carries `✅ ◐ ⚠️` | Same mark vocabulary as the profiles. No unmarked claims |
+| **R3** | **Derivable from the profile** | Scoreable from §4 / §5 / §6 / §7 of an existing profile, with **no new research** | Makes the sheet backfillable across 11 profiles for the price of reading them. An axis needing fresh vendor reads is a 34th component request, not an axis |
+| **R4** | **Evidence per score** | Every non-null value names the §4 / §6 component ids or §5 primitives it came from, and carries `✅ ◐ ⚠️` | Same mark vocabulary as the profiles. No unmarked claims |
 | **R5** | **Absence is recorded, never inferred** | Unscoreable ⇒ `value: null` **plus** the pages checked | The repo's standing rule, applied to scores. A missing score is never a `0` |
 | **R6** | **It discriminates** | ≥3 distinct values across the scored corpus — **or** its flatness is a published finding, named | A flat axis is noise, unless the flatness is the point (see `cost-visibility`) |
 | **R7** | **House-owned and fixed** | The same ten for every harness; no per-harness axes, ever | A harness that "needs its own axis" is telling you the sheet is wrong. Fix the sheet in a dated revision; do not fork it |
@@ -64,6 +70,19 @@ of these is rejected, and the rejection is written down.
 **On the count.** Ten, matching the persona sheets — not because ten is principled, but because ten
 sliders is the readable limit and the precedent is yours. Unlike a primitive set, there is no 5–7 rule
 here: this is an instrument, not an authoring surface. Three more axes sit on probation in §4.
+
+**On R3 and §7.** Section numbers throughout this file are **Template v2's** (`## 1. At a glance` …
+`## 10. Unverified`). R3 was first written against Template A and named `§B / §C / §D`; the mapping is
+`§A → §1 + §7 · §B → §4 + §6 · §C → §5 · §D → §8`, and eight profiles are still Template A until W8b
+restructures them. **§7 *Identity and inclusion test* is in bounds and always was** — licence, stars,
+repo age, releases, install and the vendor's verbatim self-description are part of the profile. The
+original sentence simply predates Template v2. This is a correction of a stale enumeration, not a
+relaxation of the rule: R3's test is unchanged — *no new research*.
+
+**Dated revision — 2026-09-07.** The ten axes below are **unchanged**. A headline layer of seven
+authored dimensions was added at [`01-scorecard.md`](01-scorecard.md), per R7's *"fix the sheet in a
+dated revision; do not fork it."* R7 is not relaxed: it forbids **per-harness** axes, and the seven
+are house-owned and applied identically to every harness. Ruling: `2026-09-07-dx-scorecard`.
 
 ---
 
@@ -86,7 +105,7 @@ Two blocks. The **definition** block lives here, once. The **position** block is
     "-3": "…"
     "0":  "…"
     "+3": "…"
-  evidence_rows: ["10a", "10b", "5b", "6c", "4b"]   # §B component ids the score is read from
+  evidence_rows: ["10a", "10b", "5b", "6c", "4b"]   # §4 / §6 component ids the score is read from
   corpus_anchor:                  # R1 — a real harness at each end, cited
     minus: "OpenClaw — 'designed for a single operator'"
     plus:  "QM — per-scope rooms and adapters"
@@ -98,27 +117,27 @@ Two blocks. The **definition** block lives here, once. The **position** block is
 
 ### 2.2 Position — one block per harness
 
-Authored at teardown time (a new §G in Template A) or backfilled from an existing profile.
+Backfilled from an existing profile. **It never lives inside the profile** — see §5.
 
 ```yaml
 spectrums:
   schema_version: 1
-  harness: codex-cli
-  profile: content/codex.md
+  harness: claude-code
+  profile: content/claude-code.md
   scored: "2026-09-04"
   scorer: KD
   positions:
     - id: operator-scale
       value: -3                   # integer −3…+3, or null
       mark: direct                # direct ✅ | relayed ◐ | unverified ⚠️
-      evidence: ["§B 10b", "§C refusal list"]
+      evidence: ["§4 10b", "§5 refusal list"]
       because: "No tenancy object anywhere; settings are per-machine."   # ≤25 words
     - id: loop-ownership
       value: 0
       dual: 3                     # second position, only where dual_allowed: true
       dual_because: "Hosts other loops and installs into them — both evidenced, skill rule 7."
       mark: direct
-      evidence: ["§A altitude", "§B 2a"]
+      evidence: ["§7 altitude", "§4 2a"]
       because: "Ships adapters for other runtimes and an app-server of its own."
     - id: cost-visibility
       value: null                 # R5 — never a 0
@@ -132,10 +151,12 @@ spectrums:
 |---|---|
 | `value` | Integer `−3…+3`, or `null`. **Never `0` to mean "unknown"** — `0` is a claim that the harness sits in the middle |
 | `mark` | Mirrors the profile's own marks. A score inherits the **weakest** mark of the rows it rests on |
-| `evidence` | Non-empty whenever `value` is non-null. Points at §B row ids or §C primitive names — **never at a URL**; the profile already holds the citation |
+| `evidence` | Non-empty whenever `value` is non-null. Points at §4 / §6 component ids or §5 primitive names — **never at a URL**; the profile already holds the citation |
 | `because` | One sentence, ≤25 words. If it needs two, the axis is doing two jobs |
 | `unscored_because` + `pages_checked` | Both mandatory when `value: null`. This is the `○` rule from the grids, verbatim |
 | `dual` / `dual_because` | Permitted only where the definition sets `dual_allowed: true`. Today: `loop-ownership` only |
+| `split` | Where two halves of a harness disagree and neither is `dual_allowed`, name the half scored and the half not. Score the half the profile states most directly; **never average** |
+| `gap` | **Optional, and mandatory whenever the scorer identified a question the profile cannot answer that would move the score by ≥1 notch.** One sentence. The score still stands — this is not a `null`. Omitting a known gap is inference by omission, which the repo's standing rule forbids. **A `gap` recurring on the same axis across three harnesses is an R3 warning** and becomes a candidate component via [`../docs/agents/intake.md`](../docs/agents/intake.md) |
 | `scored` / `scorer` | A score is dated and attributed. Re-scoring appends a dated note; it does not overwrite |
 
 ---
@@ -155,6 +176,7 @@ spectrums:
 | **Anchors** | `−3` OpenClaw, *"designed for a single operator"* · `+3` QM's per-scope rooms |
 | **Cost of +3** | Every feature must be scoped before it ships; solo velocity drops |
 | **Cost of −3** | The second-user bottleneck — coordination, visibility, review, shared context |
+| **Headline** | **DX-1** Operator scale — pass-through, [`01-scorecard.md`](01-scorecard.md) |
 
 This is the axis KD named ("team size"), and it is the spine of
 [`05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md) §2's SOLO → TEAM →
@@ -171,6 +193,7 @@ MULTI-TEAM → ORG rendering. That rendering is the fuller reading; this is its 
 | **Anchors** | `+3` beads — dependency-aware task graph in a Dolt SQL database, atomic claiming |
 | **Cost of +3** | A schema to migrate and a store to run; state outlives the reason it was written |
 | **Cost of −3** | No resumption, no audit, no second reader |
+| **Headline** | detail-only — splits across DX-1 and DX-6 without belonging to either. [`01-scorecard.md`](01-scorecard.md) §3 |
 
 ### III · Binding force — *what actually stops the model?* `polar`
 
@@ -183,6 +206,7 @@ MULTI-TEAM → ORG rendering. That rendering is the fuller reading; this is its 
 | **Anchors** | `+3` Macedo's **T4**, stated as a *membership condition* for being a harness at all |
 | **Cost of +3** | False stops and friction; the escape hatch becomes a design problem of its own |
 | **Cost of −3** | Every guardrail is a suggestion |
+| **Headline** | **DX-2** Constraint form — [`01-scorecard.md`](01-scorecard.md) |
 
 Factor `VII`. The `0` notch is the *doctrine ≠ code* case the teardown skill names as the normal case —
 the docs say a gate exists; the code says it was bypassed. Score the code.
@@ -194,10 +218,11 @@ the docs say a gate exists; the code says it was bypassed. Score the code.
 | **−3** | Installs into someone else's loop — a process layer |
 | **0** | Hosts loops it does not own — a gateway, shipping adapters both ways |
 | **+3** | Runs the loop itself — a runtime |
-| **Rows** | `0a` `2a` `3c`, plus §A's loop question |
+| **Rows** | `0a` `2a` `3c`, plus §7's loop question |
 | **Anchors** | `−3` FRACTAL, LoomWarp · `0` Hermes, OpenClaw · `+3` Codex CLI, Pi, OpenCode |
 | **Cost of +3** | You own model churn, every adapter, and every regression in the substrate |
 | **Cost of −3** | You inherit every host's limits and cannot fix them |
+| **Headline** | detail-only — `dual_allowed`, and a headline cell structurally cannot hold two values. [`01-scorecard.md`](01-scorecard.md) §3 |
 
 The altitude taxonomy made ordinal. **Dual scoring is required, not tolerated**: Gas City both hosts
 loops and installs into them, and skill rule 7 says record both. A *hosted product* (loop not
@@ -213,6 +238,7 @@ user-visible) scores `+3` with `loop_visible: false` — it is not a fourth notc
 | **Rows** | `0a` `2a` `3e` |
 | **Cost of +3** | Lowest-common-denominator features; no substrate-specific depth |
 | **Cost of −3** | Lock-in — but you get everything the substrate has |
+| **Headline** | **DX-6** Ownership — [`01-scorecard.md`](01-scorecard.md) |
 
 `J13`'s finding applies directly: **adapters are the maturity tell — you write one only after the first
 choice hurt.** A `+3` here is usually evidence of a past `−3`.
@@ -224,13 +250,14 @@ choice hurt.** A `+3` here is usually evidence of a past `−3`.
 | **−3** | Refusal list. Publishes what it will not ship; the set is narrow on purpose |
 | **0** | Healthy. 5–7 named primitives, and the set forces a choice |
 | **+3** | Accommodation. 12+, or no published set — every request became a unit |
-| **Rows** | §C count and verdict, directly |
+| **Rows** | §5 count and verdict, directly |
 | **Cost of +3** | The agent invents a fourth way because three exist (factor `I`) |
 | **Cost of −3** | Use cases it simply cannot serve, and will not |
+| **Headline** | **DX-2** Constraint form — read for direction and **inverted**; see that dimension's `reads.note` |
 
 **The one centred axis in the core set.** The repo already holds the opinion — *5–7 healthy · 12+
 accommodation failure · refusal list* — so here `|value|` is distance from health, not a position. It
-is included because it is free: §C already produces the verdict, and the sheet only has to carry it.
+is included because it is free: §5 already produces the verdict, and the sheet only has to carry it.
 
 ### VII · Control posture — *what may run unattended?* **`centred`** ⚠️ *shape contested*
 
@@ -242,6 +269,7 @@ is included because it is free: §C already produces the verdict, and the sheet 
 | **Rows** | `3a` `2c` `9c` `7a` |
 | **Cost of +3** | Blast radius, and a bill nobody watched accrue |
 | **Cost of −3** | The human is the throughput ceiling |
+| **Headline** | detail-only — orthogonal to DX-2: a deterministic pipeline can run unattended, a prose-led harness can be approval-first. [`01-scorecard.md`](01-scorecard.md) §3 |
 
 Marked `centred` because the outside literature converges on the asymmetric boundary as the answer.
 **This is the one shape call in the sheet that is a judgement, not a reading** — if `+3` is a
@@ -259,6 +287,7 @@ for ruling.
 | **Anchors** | `+3` FRACTAL's HANDOFF, whose *"not completed"* section must say `None` rather than be skipped |
 | **Cost of +3** | A ceremony tax on every one-line change |
 | **Cost of −3** | *"It said it was done."* |
+| **Headline** | detail-only — an analyst's question, no DX reader. [`01-scorecard.md`](01-scorecard.md) §3 |
 
 Factor `X`.
 
@@ -273,6 +302,7 @@ Factor `X`.
 | **Anchors** | `+3` finding-classes promoting into standards; the llm-wiki pattern |
 | **Cost of +3** | Curation burden, drift, and rules that outlive the reason they were written |
 | **Cost of −3** | The same lesson relearned every quarter |
+| **Headline** | detail-only — and the axis most likely to go stale as a harness matures. [`01-scorecard.md`](01-scorecard.md) §3 |
 
 Factor `XI`, and Karpathy's test: ***does knowledge compound, or does it just get retrieved?***
 
@@ -286,6 +316,7 @@ Factor `XI`, and Karpathy's test: ***does knowledge compound, or does it just ge
 | **Rows** | `8d` `8c` `8b` |
 | **Cost of +3** | Instrumentation that only pays for itself at org scale |
 | **Cost of −3** | A system nobody can justify continuing to buy |
+| **Headline** | **DX-7** Cost visibility — pass-through, [`01-scorecard.md`](01-scorecard.md) |
 
 Factor `XIV`, and the sharpest finding in the research: practitioners are saturated with cost while **no
 published harness taxonomy gives it a row**. **This axis is expected to fail R6** — near-total clustering
@@ -319,15 +350,16 @@ the axis and it stays. Retired ids are never reused (R7).
 
 **Where it lives.** `spectrums/positions.md` — one table, harnesses down, the ten axes across, mirroring
 the grid genre. The YAML position blocks are the source of truth and sit beside it as
-`spectrums/positions/<harness>.yaml`. This keeps Template A untouched for the eleven existing profiles.
+`spectrums/positions/<harness>.yaml`. This keeps every profile untouched but for one card row (§5).
 
 **How it is authored.**
 
-- **Backfill** (existing profiles): read §A–§D of the profile only. R3 guarantees this is sufficient.
+- **Backfill** (existing profiles): read §1, §4, §5, §6 and §7 of the profile only. R3 guarantees this is sufficient.
   If it is not, the axis is wrong, not the profile.
-- **New teardowns**: a §G in Template A — *the position block, and nothing else*. It comes after §F, so
-  it is scored from a finished profile rather than steering one. **Skipped under `--sanity`**, like the
-  other four downstream obligations.
+- **New teardowns**: score after the profile is finished, never during. The position block goes in
+  `spectrums/positions/<harness>.yaml`; the profile gains **one card row** in §1 pointing at it, and
+  nothing else. Template v2 fixes a profile at ten numbered H2s, so there is no §11 and no in-profile
+  block. **Skipped under `--sanity`**, like the other four downstream obligations.
 
 **Obligations on adding a sheet** — the same shape as the teardown skill's step 9, and for the same
 reason (ISSUE-001 exists because obligations were advice):
@@ -373,4 +405,4 @@ that have a better end, and eight of these ten do not.
 
 ---
 
-*Companions: [`../comparisons/2026-08-research/05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md) — the fourteen rules these axes measure against · [`../skills/harness-teardown/SKILL.md`](../skills/harness-teardown/SKILL.md) — §A's inclusion test, which axes I–III make continuous · [`../maturity/AI-Native-Organizational-Maturity-Framework.md`](../maturity/AI-Native-Organizational-Maturity-Framework.md) — the instrument that does grade*
+*Companions: [`01-scorecard.md`](01-scorecard.md) — the seven headline dimensions read over these ten · [`../comparisons/2026-08-research/05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md) — the fourteen rules these axes measure against · [`../skills/harness-teardown/SKILL.md`](../skills/harness-teardown/SKILL.md) — §7's inclusion test, which axes I–III make continuous · [`../maturity/AI-Native-Organizational-Maturity-Framework.md`](../maturity/AI-Native-Organizational-Maturity-Framework.md) — the instrument that does grade*

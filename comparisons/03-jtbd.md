@@ -501,6 +501,25 @@ A comparison document that cites only supporters of its own category is marketin
 
 ---
 
+## 6. Candidates — jobs noticed, not yet admitted
+
+A job seen in the field that none of `J1`–`J17` carries. **NOTICED costs one line and no research**,
+per [`../docs/agents/intake.md`](../docs/agents/intake.md) §2. Admission is §1's convergence line,
+measured on both axes — practitioner attention and structural modelling — never asserted. A job admitted
+here syncs to **five** places: §2, §3's scorecard, the dependencies list, `CROSSWALK.md` §1's
+DERIVATION table, and the `**Job:**` line of whichever factor claims it.
+
+| Candidate | The job, in the imperative | Where seen | State | Why not yet |
+|---|---|---|---|---|
+| *(none)* | | | | The seventeen close over the components with zero orphans (`CROSSWALK.md` §1). The next candidate arrives from a teardown, not from this file |
+
+**Known structural gap, carried.** `CROSSWALK.md` §3.6 records `C-10`: the fourteen factors in
+[`2026-08-research/05-harness-factors.md`](./2026-08-research/05-harness-factors.md) cover only
+`J1`–`J12`. `J13`–`J17` have components and still have no factor. That is a **factor** candidate, not a
+job candidate — it routes to that file's §5.
+
+---
+
 ## Appendix A — how each system describes its own problem
 
 *Preserved from the first version of this document. These are vendor positioning statements —

@@ -9,7 +9,7 @@ provenance: DERIVED
 
 # The shape
 
-The instrument first, the range second, the layers third, the words last. Every noun links down.
+The instrument first, the scorecard second, the range third, the layers fourth, the words last. Every noun links down.
 The argument is in [`README.md`](README.md).
 
 ## 1. The instrument
@@ -37,7 +37,17 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 | HumanLayer · Deep Agents · Indigo HQ · QM · SageOx · gstack/gbrain | process layers | [`comparisons/systems/`](comparisons/systems/) | short teardowns, un-recut |
 | Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | [`fractal/workstreams/W4-teardowns.md`](fractal/workstreams/W4-teardowns.md) | queued, in that order |
 
-## 2. The range
+## 2. The scorecard and the sheet
+
+Where a harness sits, on axes with no good end. Seven headline dimensions for the reader who wants a
+thirty-second read; ten axes beneath them for the reader who will open an anchor. **Neither grades**
+— except one declared dimension, admitted by ruling.
+
+→ [`spectrums/01-scorecard.md`](spectrums/01-scorecard.md) — the seven DX dimensions, the character-sheet face
+→ [`spectrums/00-README.md`](spectrums/00-README.md) — the ten axes, and what makes one admissible
+→ [`spectrums/positions.md`](spectrums/positions.md) — the scored corpus, one card per harness
+
+## 3. The range
 
 Where a team is, and what breaks next. Six stages, from *resistant* to *AI-native*, with a
 commitment threshold between four and five.
@@ -46,7 +56,7 @@ commitment threshold between four and five.
 → [`maturity/grid.html`](maturity/grid.html) — the interactive grid
 → the graded-vs-catalogued split and the frontier past stage six: [`fractal/workstreams/W7-maturity-recut.md`](fractal/workstreams/W7-maturity-recut.md)
 
-## 3. The layers
+## 4. The layers
 
 Twelve layers, thirty-three components. IDs are `<layer><letter>`. The numbering is the original
 twelve; the 13-layer renumber proposed in the consolidated guide §1 was **struck** in W0 (2026-09-03).
@@ -89,7 +99,7 @@ flowchart BT
 → [`components/`](components/) — Tier-2 pages, one per component, empty until W5
 → source: [`assets/templates/layer-stack.mmd`](assets/templates/layer-stack.mmd)
 
-## 4. The words
+## 5. The words
 
 → [`vocabulary.md`](vocabulary.md) — term → concept (vendor's words) → who says it → our component → instances
 → [`comparisons/00-README.md`](comparisons/00-README.md) §1.2–1.4 — *harness* spans two altitudes; the inclusion test

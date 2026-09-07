@@ -14,7 +14,7 @@ without it; one word doing two jobs is worse. Filled in W3 (`fractal/workstreams
 from every profile's primitive table and every `●` in the two grids.
 
 **Rule.** The *concept* column is the vendor's words, cited. The *component* column is our
-classification, by the 33 IDs in `index.md` §3. Never let the two swap.
+classification, by the 33 IDs in [`index.md`](index.md#4-the-layers). Never let the two swap.
 
 **How to read a row.** `Where` names the profile and section the quote lives in (a profile is a primary
 read; `↪` marks a short teardown or a draft, not yet a Template profile). Flags: **COLLISION** one word,
@@ -111,6 +111,21 @@ does not move the category.
 | operator roles | creator · owner · participant; session *owner* "in the style of a GitHub issue assignee" | OpenClaw | `content/openclaw.md` §B `10b` | `10b` Org |
 | `rig` | "WHERE — an external project (usually a git repo) registered with the city" | Gas City | fixed in `content/gas-city.md` §C on 2026-09-03 | `6c` Estate |
 | the count itself | 8 + 3 on 2026-09-02, 5 + 3 on 2026-09-03, same sources | Pi | `content/pi.md` vs `content/pi-draft.md` | rule 4 re-run pending (W8c) |
+
+### 1.6 Candidates — noticed, not yet admitted
+
+A term seen in the wild that no row above carries yet. **NOTICED costs one line and no research** —
+that cheapness is the point, per [`docs/agents/intake.md`](docs/agents/intake.md) §2. A candidate is
+never a component request; most resolve into §1.1 or §1.2 above. Rejections stay here, dated, so the
+same argument is not re-run; ids are never reused.
+
+| Term | Concept (vendor's or ours) | Who | Where seen | State | Routes to |
+|---|---|---|---|---|---|
+| `spectrum` | Two referents in this repo: the **maturity framework** (`RULING-2026-09-02-spinout.md`, `W7-maturity-recut.md`, `maturity/…Framework.md`) and the **ten-axis sheet** (`spectrums/`). `spectrums/00-README.md` §0 renamed the first *"the maturity range"* with no ruling | ours | four files, 2026-09-04 | **NOTICED** 2026-09-07 — awaiting KD's ruling ([`RULINGS.md`](RULINGS.md)) | §1.1 COLLISION either way; a rename needs a ruling |
+| `posture` | Three referents: the *Permission posture* synonym set (§1.1), QM's own primitive `posture`, and axis VII *Control posture* | QM · ours | `vocabulary.md` §1.1, §2; `spectrums/00-README.md` §3 VII | **NOTICED** 2026-09-07 — recorded, no action. The DX scorecard avoided the word rather than adding a fourth | §1.1 |
+| `ecosystem` | *How much world exists around a harness* — registries, marketplaces, third-party extensions, a co-published standard | ours (DX-5) | `spectrums/01-scorecard.md` §4 | **CLAIMED** 2026-09-07 — previously used only for external bodies (AAIF); now a named dimension | not a component — an instrument's dimension |
+| `footprint` | *How much of the working world a harness touches* — surfaces, environments, delivery, telemetry | ours (DX-3) | `spectrums/01-scorecard.md` §4 | **CLAIMED** 2026-09-07 — zero prior occurrences | not a component |
+| `constraint form` | *Whether intent is imposed by inference or by machine* | ours (DX-2) | `spectrums/01-scorecard.md` §4 | **CLAIMED** 2026-09-07 — zero prior occurrences as a phrase | not a component |
 
 ---
 
