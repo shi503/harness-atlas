@@ -24,10 +24,14 @@ shows a **fill** `▰▰▰▰▱`. The seven dimensions are read over ten axes;
 
 ## 1. The corpus
 
-| Harness | Fingerprint · DX-1…DX-7 | 1 Operator | 2 Constraint | 3 Footprint | 4 Domain | 5 Eco † | 6 Ownership | 7 Cost | Scored |
-|---|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---|
-| [Claude Code](#2-claude-code) | `+1 · +1 · +3 · −2 · +3† · −3 · +3` | +1 | +1 | +3 | −2 | +3 | −3 | +3 | 2026-09-07 |
-| Pi · Hermes · OpenClaw · OpenCode · Grok · Codex · Gas City · LoomWarp · FRACTAL | — | | | | | | | | **not yet** — scored as W8b restructures each profile to Template v2 |
+| Harness | 1 Operator | 2 Constraint | 3 Footprint | 4 Domain | 5 Eco † | 6 Ownership | 7 Cost | Scored |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---|
+| [Claude Code](#2-claude-code) | +1 | +1 | +3 | −2 | +3 | −3 | +3 | 2026-09-07 |
+| Pi · Hermes · OpenClaw · OpenCode · Grok · Codex · Gas City · LoomWarp · FRACTAL | | | | | | | | **not yet** — scored as W8b restructures each profile to Template v2 |
+
+The fingerprint — the seven values as one line, `+1 · +1 · +3 · −2 · +3† · −3 · +3` — heads each
+harness's own section below. It is not repeated as a column here: at nine columns it wrapped to four
+lines on github.com and stopped being a fingerprint (checked 2026-09-07).
 
 **Ten of eleven are unscored, and that is a scope statement, not an absence.** The remaining profiles
 are Template A; W8b renumbers their sections, which would invalidate every evidence path written now.
