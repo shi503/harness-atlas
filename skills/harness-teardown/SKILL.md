@@ -229,7 +229,7 @@ template: v2
 ***<One sentence: what it is, its defining move, and what it optimises for.>***
 ```
 
-### `## 1. At a glance` [≤ 14]
+### `## 1. At a glance` [≤ 45, the three parts together]
 
 A two-column table with an empty header, rows in this fixed order, every value ≤ 14 words, every
 value linking to the row or section that carries it:
@@ -249,6 +249,27 @@ value linking to the row or section that carries it:
 | **Source** | <repo> @ <tag> (<sha>) · <docs root> · read <date> |
 | **Unverified** | <count> items → [§10](#10-unverified) |
 ```
+
+Then two `###` subsections, in this order. They are **subsections of §1, not new H2s** — the page is
+still ten numbered H2s.
+
+**`### 1a. Positioning stats`** — the harness's DX fingerprint, then the seven-row character sheet
+copied from `spectrums/positions.md`, then the links out (the rendered card, the scoring YAML, the
+scorecard definitions, the ten axes), then one italic line giving the scoring date and the profile
+read date it was scored against.
+
+**This table is the one sanctioned echo of the scorecard**, on the same grounds as §6's `<summary>`
+echo of §4: both are derived from one source, so they match by construction. The YAML in
+`spectrums/positions/<harness>.yaml` is the source of truth. **Re-score there, never here.** Write the
+echo line into the profile so a later editor knows which copy is authoritative.
+
+Omit `1a` entirely when the harness is unscored — an empty positioning block is worse than none.
+`● ◐ ○` never appear here; the position and fill glyphs never appear anywhere else in the profile.
+
+**`### 1b. Contents`** — a single `·`-separated line of links to §1–§10 (plus `1a`), then, **only when
+a `content/<name>/` folder exists**, a **Deep read** paragraph linking every document in it by name.
+This is the profile's own table of contents; it is not a substitute for the deep-read folder's
+`00-README.md`, which stays the folder's index.
 
 ### `## 2. System map` [≤ 45]
 

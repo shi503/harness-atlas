@@ -20,7 +20,7 @@ template: v2
 | | |
 |---|---|
 | **Altitude** | Runtime, plus an org-policy layer over many single-operator runtimes → [§7](#7-identity-and-inclusion-test) |
-| **Primitives** | 7–8, ⚠️ contestable — skill · subagent · hook · plugin · MCP server · agent team · dynamic workflow · (instruction file) → [§5](#5-primitives) |
+| **Primitives** | 8, ⚠️ contestable — skill · subagent · hook · plugin · MCP server · agent team · dynamic workflow · (instruction file) → [§5](#5-primitives) |
 | **Structured output** | The `claude_code.interaction` OTel trace, whose `claude_code.tool` spans carry the `tool_decision` permission-audit record → [8c](#8c-observability) |
 | **Binds mechanically?** | Partly — permission rules, sandbox and managed settings bind; CLAUDE.md and auto memory are prose only → [2c](#2c-enforcement) |
 | **State persists** | `CLAUDE.md` (git, per-scope) and auto memory (`~/.claude/projects/<project>/memory/*.md`, machine-local) → [5a](#5a-individual-memory) |
@@ -30,6 +30,54 @@ template: v2
 | **Deep read** | [`content/claude-code/`](claude-code/00-README.md) — 13-document extensibility reference (2026-08-10 read, relayed here) |
 | **Source** | anthropics/claude-code @ v2.1.261 (`d7dbd9a09f5977…`) · code.claude.com/docs/en/ · read 2026-09-04 |
 | **Unverified** | 9 items → [§10](#10-unverified) |
+
+### 1a. Positioning stats
+
+`+1 · +1 · +3 · −2 · +3† · −3 · +3` — the seven DX dimensions, in order.
+
+| | | | | |
+|:-:|---|---:|:-:|---|
+| **1** | Operator scale | single operator | `────●──` | multi-tenant, many teams |
+| **2** | Constraint form | prose-led | `────●──` | machine-led |
+| **3** | Footprint | one surface | `──────●` | many surfaces, environments, deployments |
+| **4** | Domain breadth | one named use case | `─●─────` | general-purpose |
+| **5** | Ecosystem **†** | tribal, proprietary | `▰▰▰▰▰` | wide adoption, extensive plugins |
+| **6** | Ownership | rented | `●──────` | yours |
+| **7** | Cost visibility | unmetered | `──────●` | attributed to the unit of work |
+
+**†** the one **graded** dimension; every other row is a position, not a score. **Neither end is
+better.** Ten axes sit beneath these seven — `I +1 · II 0 · III +3 · IV +3 · V 0 · VI +1 · VII 0 ·
+VIII 0 · IX 0 · X +3` — and five of them feed no cell above by design.
+
+→ the rendered card and the reasoning per dimension:
+[`spectrums/positions.md`](../spectrums/positions.md#2-claude-code) ·
+the scored source of truth: [`positions/claude-code.yaml`](../spectrums/positions/claude-code.yaml) ·
+what each dimension means: [`spectrums/01-scorecard.md`](../spectrums/01-scorecard.md) ·
+the ten axes: [`spectrums/00-README.md`](../spectrums/00-README.md)
+
+*Scored 2026-09-07 against this profile as read 2026-09-04. This table is the **one sanctioned echo**
+of the scorecard — it is derived from the same YAML that renders `positions.md`, so the two match by
+construction. Re-score in the YAML, never here.*
+
+### 1b. Contents
+
+[§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) ·
+[§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) ·
+[§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) ·
+[§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) ·
+[§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
+
+**Deep read** — [`content/claude-code/`](claude-code/00-README.md), a 12-document extensibility
+reference set at a finer grain than §6: [extension surfaces](claude-code/01-extension-surfaces.md) ·
+[skills](claude-code/02-skills.md) · [hooks](claude-code/03-hooks.md) ·
+[subagents](claude-code/04-subagents.md) ·
+[multi-agent orchestration](claude-code/05-multi-agent-orchestration.md) ·
+[plugins and distribution](claude-code/06-plugins-and-distribution.md) ·
+[context and memory](claude-code/07-context-and-memory.md) ·
+[policy and governance](claude-code/08-policy-and-governance.md) ·
+[telemetry and evidence](claude-code/09-telemetry-and-evidence.md) ·
+[programmatic and SDK](claude-code/10-programmatic-and-sdk.md) ·
+[the consolidated guide](claude-code/20-consolidated-guide.md)
 
 ## 2. System map
 

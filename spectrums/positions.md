@@ -47,7 +47,8 @@ are Template A; W8b renumbers their sections, which would invalidate every evide
 `+1 · +1 · +3 · −2 · +3† · −3 · +3`
 
 [`content/claude-code.md`](../content/claude-code.md#1-at-a-glance) · profile read 2026-09-04 ·
-scored 2026-09-07 · [`positions/claude-code.yaml`](positions/claude-code.yaml)
+scored 2026-09-07 · [`positions/claude-code.yaml`](positions/claude-code.yaml) ·
+back: [§1a Positioning stats](../content/claude-code.md#1a-positioning-stats)
 
 | | | | | |
 |:-:|---|---:|:-:|---|
