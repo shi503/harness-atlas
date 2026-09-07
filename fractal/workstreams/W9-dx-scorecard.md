@@ -28,7 +28,7 @@ discriminates only if it takes ≥3 distinct values) is untestable at one scored
    `because_grades:` and `contested_by:` both mandatory so the exception stays retirable.
 2. **`spectrums/00-README.md` corrected** — the Template-A sweep (`§A/§B/§C/§D`, `§G`, `codex` →
    Template v2 section numbers), R3's stale enumeration fixed to include §7, an R7 dated revision line,
-   `headline: false` on the four detail-only axes, and a new optional `gap:` field rule.
+   a `Headline` row on all ten axes, and new optional `split:` and `gap:` field rules.
 3. **`docs/agents/intake.md`** — sibling to `issue-tracker.md`/`triage-labels.md`/`domain.md`. Four
    triggers, five states (NOTICED → RESEARCHED → PROBATION → ADMITTED → REJECTED/RETIRED, generalized
    from `spectrums/00-README.md` §4), and a routing table covering nine kinds of new thing with the
@@ -41,7 +41,7 @@ discriminates only if it takes ≥3 distinct values) is untestable at one scored
    the **two peers shipping it as a named primitive** test that `comparisons/04-harness-alignment.md`
    already states and nobody connected to `SKILL.md`'s *"Do not add a 34th row."* Seeded from the four
    objects ISSUE-007 names.
-6. **Candidates sections** — `vocabulary.md` §1.6, `comparisons/03-jtbd.md` §5,
+6. **Candidates sections** — `vocabulary.md` §1.6, `comparisons/03-jtbd.md` §6,
    `comparisons/2026-08-research/05-harness-factors.md` §5, `spectrums/01-scorecard.md` §4.
 7. **The scoring pass** — `spectrums/positions/claude-code.yaml` (`schema_version: 2`) scoring ten
    axes, three probation axes and seven dimensions, plus `spectrums/positions.md` carrying the corpus
@@ -75,9 +75,16 @@ discriminates only if it takes ≥3 distinct values) is untestable at one scored
 - **AC-8** Rendered on github.com from the branch: the position strips align down the column, `†` is
   visible on DX-5 without opening anything, the fingerprint reads in under three seconds. Browser and
   date recorded, per the W8a precedent.
-- **AC-9** No new mark system escapes: `▰▱` and `─●` appear only under `spectrums/`;
-  `● ◐ ○ n/a` and `✅ ↪ ⚠️` are untouched everywhere.
-- **AC-10** `spectrums/00-README.md` contains zero occurrences of `§A`, `§B`, `§C`, `§D`, `§G` or `codex`.
+- **AC-9** No new mark system escapes: the scorecard glyphs are **used** only under `spectrums/`;
+  `● ◐ ○ n/a` and `✅ ↪ ⚠️` are untouched everywhere. *(Amended during execution: this PRD and its
+  HANDOFF name the glyphs in order to state the rule. Naming a mark is not using one — the test is
+  whether a glyph carries a claim about a harness outside `spectrums/`, and none does.)*
+- **AC-10** `spectrums/00-README.md` cites no Template-A section as if it were current, and names no
+  v1 profile as its worked example. *(Amended during execution: the original wording — zero occurrences
+  of `§A`…`§G` — is unsatisfiable, because the §1 note that **maps** Template A onto Template v2 must
+  quote the old names to be useful, and eight profiles are still Template A until W8b. Two occurrences
+  remain, both inside that mapping sentence. A checkable restatement: no Template-A reference outside
+  the one dated mapping note.)*
 
 ## Do NOT
 

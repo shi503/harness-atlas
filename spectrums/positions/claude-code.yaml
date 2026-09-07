@@ -1,0 +1,181 @@
+# Claude Code — spectrum positions and DX scorecard.
+#
+# schema_version 2 adds the `scorecard:` block, plus the `split:` and `gap:` field
+# rules. Nothing was ever written at v1, so v2 is free — see 00-README.md §2.3.
+#
+# Every `evidence` entry points at a section or component id of the profile named
+# below. Never at a URL: the profile already holds the citation.
+
+spectrums:
+  schema_version: 2
+  harness: claude-code
+  profile: content/claude-code.md
+  profile_read: "2026-09-04"      # the profile's own read date, not the scoring date
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  # All ten are scored, always. `headline` governs display only (01-scorecard.md §3).
+  positions:
+
+    - id: operator-scale
+      value: 1
+      mark: direct
+      evidence: ["§7 · serves more than one person", "10b", "10a", "3d", "4b"]
+      because: "Managed settings and named org roles are enforced over sessions; no tenancy, scope or room object exists."
+      split: "Scored at the org-policy layer, which the profile states verbatim. The session layer alone is −3; §7's altitude is dual and rule 7 says record both."
+
+    - id: state-durability
+      value: 0
+      mark: direct
+      evidence: ["5a", "5b", "7a", "§7 · does state persist"]
+      because: "File-backed and machine-local: CLAUDE.md in git, auto memory not shared across machines, TodoWrite session-scoped."
+
+    - id: binding-force
+      value: 3
+      mark: direct
+      evidence: ["2c", "3d", "4b", "§7 · binds mechanically or only by prose"]
+      because: "Managed settings and an OS sandbox sit outside the prompt; rules are enforced by Claude Code, not by the model."
+      gap: "Whether bypassPermissions defeats the OS sandbox is not in the profile. If it does, the 'no mode bypasses' half of the +3 anchor weakens."
+
+    - id: loop-ownership
+      value: 3
+      dual: null
+      mark: direct
+      evidence: ["§7 · loop question", "0a", "2a"]
+      because: "Runs the agentic loop itself and ships no adapter into another harness's loop; every surface shares one engine."
+
+    - id: substrate-portability
+      value: 0
+      mark: direct
+      evidence: ["0a", "2a", "3e"]
+      because: "Provider swap is configuration across five hosts; the model family is not swappable at all."
+      split: "Host portability is +1-ish, model-family portability is −3. Scored 0 on the 0a row, which states both in one sentence."
+      gap: "Whether the CLI can run a non-Anthropic model is not stated anywhere in the profile. A yes would move this to +2."
+
+    - id: primitive-discipline
+      value: 1
+      mark: direct
+      evidence: ["§5 count and verdict"]
+      because: "Eight named units, one past the healthy band; the vendor publishes no canonical set and no refusal list."
+      # `⚠️ contestable` in §5 is a rule-4 count modifier, NOT a source mark, so the
+      # "inherit the weakest mark" rule does not fire here. Precedent, 2026-09-07.
+
+    - id: control-posture
+      value: 0
+      mark: direct
+      evidence: ["3a", "2c", "9c", "7a"]
+      because: "Deny→ask→allow with a read-only plan mode is the default; unattended modes exist and are opt-in."
+      # Axis VII's shape is contested (polar vs centred). On this harness both readings
+      # produce 0, so the first scored profile does not settle it. Recorded, untested.
+
+    - id: proof-ceremony
+      value: 0
+      mark: direct
+      evidence: ["8b", "8c", "9d"]
+      because: "A named permission-audit event and OTel traces exist; both are opt-in and nothing requires an artifact per unit."
+
+    - id: improvement-loop
+      value: 0
+      mark: direct
+      evidence: ["9a", "9d", "9e", "5c"]
+      because: "Auto memory captures corrections per machine; no core pipeline promotes a lesson into a shared reviewed rule."
+
+    - id: cost-visibility
+      value: 3
+      mark: direct
+      evidence: ["8d", "8c", "8b"]
+      because: "/usage attributes cost per skill, subagent, plugin and MCP server; OTel spans join spend to the run."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  # Scored so R6 has data. Excluded from the fingerprint until promoted.
+  probation:
+
+    - id: surface-breadth
+      value: 3
+      mark: direct
+      evidence: ["11a", "6b"]
+      because: "Six first-party surfaces on one engine, with 'the same underlying Claude Code engine' as a stated source of truth."
+
+    - id: routing-determinism
+      value: -1
+      mark: direct
+      evidence: ["3b"]
+      because: "Per-role model assignment resolves without the model; which agent handles a message has no resolver at all."
+      split: "Model routing is deterministic; agent routing is absent. Scored on the latter, which is the axis's own question."
+
+    - id: knowledge-depth
+      value: -1
+      mark: direct
+      evidence: ["5c"]
+      because: "MCP resources and connectors surface external data; nothing curates, retrieves or cites it as knowledge."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # Authored, never computed (01-scorecard.md §1 R8).
+  scorecard:
+
+    - id: operator-scale
+      dx: 1
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: +1"]
+        profile: ["§7 Q2", "10b", "10a", "3d"]
+      because: "Pass-through of axis I. Org policy is enforced; tenancy is not modelled."
+
+    - id: constraint-form
+      dx: 2
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["binding-force: +3", "primitive-discipline: +1 — read inverted, direction only"]
+        profile: ["2c", "3a", "2b", "3e", "§7 Q3"]
+      because: "Mechanical at the tool-call boundary, prose everywhere upstream of it — context, not enforced configuration."
+
+    - id: footprint
+      dx: 3
+      value: 3
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: +3 (probation)"]
+        profile: ["11a", "6b", "6d", "8c", "1a"]
+      because: "Six surfaces on one engine, four execution environments, CI and review, and telemetry out."
+
+    - id: domain-breadth
+      dx: 4
+      value: -2
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 · what it says it is, verbatim", "Genre row (04-harness-alignment §1)", "§5 · no refusal list"]
+      because: "Names one domain in its own first sentence — an agentic coding tool — but refuses no adjacent use."
+
+    - id: ecosystem
+      dx: 5
+      value: 3
+      grades: true
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars 144,088", "§7 Repo created 2025-02-22", "§7 213 tags", "4a", "2a", "3e"]
+      because: "Marketplaces with SHA pinning, a co-published open standard, MCP, and 144k stars at the read date."
+      gap: "No plugin or marketplace-entry count appears in the profile. A count would confirm or weaken the extension-market half of +3."
+
+    - id: ownership
+      dx: 6
+      value: -3
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: 0"]
+        profile: ["§7 License — no OSS licence, license: null", "§7 Install — compiled binary", "0a", "6b"]
+      because: "No OSS licence, a compiled binary, one vendor's model family. All three anchors of −3 are met."
+      split: "Where it runs is portable — five providers, self-hosted environments. What runs is not ownable. Scored on the licence, which §7 states verbatim."
+
+    - id: cost-visibility
+      dx: 7
+      value: 3
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: +3"]
+        profile: ["8d", "8c"]
+      because: "Pass-through of axis X. Per-skill, per-subagent, per-plugin and per-MCP-server attribution, plus spend limits."
