@@ -45,8 +45,10 @@ average, a sum, or any function of axis values. `reads:` names what a scorer *op
 formula *consumes*.
 
 **The reason, stated here because a rule without its reason gets optimised away.** Axes VI and VII are
-`shape: centred` — `0` is the healthy place and `|value|` is distance from it, not a position. No
-arithmetic maps a centred axis onto a polar one. `VI = +3` means **accommodation failure, twelve or
+**Axis VI is** `shape: centred` — `0` is the healthy place and `|value|` is distance from it, not a
+position. No arithmetic maps a centred axis onto a polar one. (Axis VII was also `centred` until
+2026-09-07, when Pi's `+2` falsified the marking — ruling `2026-09-07-axis-vii-polar`. VI is now the
+only one, and R8 stands on it alone.) `VI = +3` means **accommodation failure, twelve or
 more sanctioned ways, undisciplined**; a roll-up that averaged it into DX-2 would read it as "heavy"
 and report something the axis never said. DX-2 does read axis VI — but for **bulk only**, under a
 mandatory `reads.note`, which is a person's judgement and not a function. The next contributor who
@@ -215,7 +217,7 @@ vocabulary is how a different kind of claim announces itself.
 |---|---|---|
 | **II** State durability | Splits across DX-1 and DX-6 without belonging to either. A headline cell would have to name a place, not a position | [§3 II](00-README.md) |
 | **IV** Loop ownership | `dual_allowed: true` — it can hold two values at once, and **a headline cell structurally cannot**. Not a taste call | [§3 IV](00-README.md) |
-| **VII** Control posture | *What may run unattended* is orthogonal to DX-2: a heavyweight harness can run unattended, and a lightweight one can be approval-first. Its shape is also still contested | [§3 VII](00-README.md) |
+| **VII** Control posture | *What may run unattended* is orthogonal to DX-2: a heavyweight harness can run unattended, and a lightweight one can be approval-first. **Its shape is no longer contested** — ruled `polar` 2026-09-07 — so it is now detail-only by scope alone, and eligible for a dimension if one ever needs it | [§3 VII](00-README.md) |
 | **IX** Improvement loop | *What happens to a lesson* is an analyst's question, and it is the axis most likely to move as a harness matures — so a headline cell would go stale fastest | [§3 IX](00-README.md) |
 
 **Axis VIII was detail-only until 2026-09-07 and is not any more.** The old reason was that *how is
@@ -276,7 +278,9 @@ cost, expected rigor, and the production quality of what comes out.
 > it would turn a `+3` into a criticism. A refusal list (`VI = −3`) is likewise not evidence of a light
 > harness: refusing to ship a unit is a heavy-weight move. **Score the count; discard the verdict.**
 > Axis VIII, by contrast, is polar and is read directly: receipt-bound is heavy, assertion is light.
-> Axis VII is `centred` and is **not read here at all** — see §3. This note is what makes "authored" a
+> Axis VII is **not read here at all** — see §3. It was `centred` until 2026-09-07 and is now `polar`,
+> which makes it *eligible* to be read by a dimension; that it still is not is a scoping decision, not
+> a shape constraint. This note is what makes "authored" a
 > design rather than an excuse.
 
 **What replaced what.** `constraint-form` asked *is intent imposed by inference, or by machine?* That
@@ -467,7 +471,7 @@ Candidates are recorded here and routed by [`../docs/agents/intake.md`](../docs/
 - **If two dimensions score the same sentence of a profile**, one of them is redundant. This nearly
   happened to DX-3 and DX-5 on 2026-09-07 and was fixed by narrowing DX-5; if it recurs anywhere else,
   the fix is a boundary note in both, or a retirement.
-- **If a scorer needs a formula**, R8's reason was wrong and the centred axes are reconcilable after all.
+- **If a scorer needs a formula**, R8's reason was wrong and the centred axis is reconcilable after all.
 - **If `contested_by` on DX-5 is never argued in either direction**, the exception was not a ruling but
   a shrug.
 - **If a card sits at `verified: false` across the whole corpus indefinitely**, R11 is a disclaimer

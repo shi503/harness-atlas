@@ -166,7 +166,7 @@ fix, not a rule change.
 
 ## ISSUE-012 — axis VII `Control posture` is marked `centred`, and the second scored harness argues it is `polar`
 
-**Severity:** WARN · **Found:** 2026-09-07, W8b Pi pilot · **Assigned:** none yet — KD to rule
+**Severity:** WARN · **Found:** 2026-09-07, W8b Pi pilot · **Assigned:** ✅ RULED 2026-09-07, `2026-09-07-axis-vii-polar` — the axis is `polar`; see `RULINGS.md`
 
 `spectrums/00-README.md` §3 VII marks the axis `centred` — `0` is healthy, `|value|` is distance from
 health — and flags the shape itself as *"the one shape call in the sheet that is a judgement, not a
@@ -183,3 +183,39 @@ Recommendation: **retire the `centred` marking; axis VII is `polar`.** The axis'
 says the shape is the contested part, and this is the evidence it asked for. Note the consequence:
 `centred` axes cannot be read by a DX dimension without an inversion note (R8), so a polar axis VII
 becomes eligible to feed a dimension — which is a separate decision, not part of this ruling.
+
+
+---
+
+## ISSUE-011 addendum, 2026-09-07 — the proposed fix does not hold; a narrower one is ruled instead
+
+**Severity:** WARN · **Found:** 2026-09-07, applying the ruling · **Assigned:** partially ruled, `2026-09-07-split-before-anchor`; the fuller question stays open for KD
+
+The entry above offered option (b) — *R11 already settles it, because the observed artifact wins* — as
+the likely answer. **On inspection it does not.** R11 adjudicates **positioning against artifact**.
+None of Pi's five splits is that shape: every one is **artifact against artifact**, at two different
+layers of the same system. *"Runs with the permissions of the user that launched it"* and
+*"`.pi/settings.json` can be shared with your team"* are both observed facts; R11 has nothing to
+choose between them.
+
+Worse, the three obvious tie-breaks each fail on a case already scored:
+
+| Proposed tie-break | Fails on |
+|---|---|
+| Score the **default**, not the configured | Claude Code axis I would drop to `−3`. Its managed settings are a shipped org mechanism an admin configures — the harness genuinely serves orgs |
+| Score the **weakest** half | Would force Pi axis IX to `−3` and discard a real, vendor-stated promotion path |
+| Score the **stated posture** | Contradicts R11's own direction of travel |
+
+**What the five cases actually show is that the split was reached too early.** Pi axis I: the `0`
+anchor already reads *"A second person can copy the files; no mechanism knows they exist"* — which is
+Pi exactly, both halves at once. No split was needed; the anchor had already absorbed the tension.
+The same is true of axis III, whose `0` anchor is *"A gate exists and the model can reach it."*
+
+**Ruled now, narrowly:** re-read the anchor before recording a `split:`; a split is for two states
+**simultaneously true at different anchors**, not for uncertainty between two readings of one anchor.
+`2026-09-07-split-before-anchor`.
+
+**Left open for KD:** whether Pi's five splits should be re-scored against their anchors under that
+rule. Three of them (axes I, III, IX) look like they collapse to a single anchor value on re-read,
+which would move Pi's fingerprint. **Recorded and not acted on** — a re-score is KD's call, and the
+values as written are defensible under the rule that was in force when they were made.

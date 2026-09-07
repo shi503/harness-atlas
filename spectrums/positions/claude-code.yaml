@@ -92,8 +92,8 @@ spectrums:
       mark: direct
       evidence: ["3a", "2c", "9c", "7a"]
       because: "Deny→ask→allow with a read-only plan mode is the default; unattended modes exist and are opt-in."
-      # Axis VII's shape is contested (polar vs centred). On this harness both readings
-      # produce 0, so the first scored profile does not settle it. Recorded, untested.
+      # Axis VII was ruled `polar` on 2026-09-07 (Pi's +2 falsified the centred marking).
+      # This value is unchanged: 0 reads the same under either shape.
 
     - id: proof-ceremony
       value: 0

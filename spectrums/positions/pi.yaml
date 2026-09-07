@@ -88,7 +88,8 @@ spectrums:
       evidence: ["2c", "3a", "§7 · binds mechanically or only by prose", "7a"]
       because: "No approval gate of any kind by default — no popups, no plan mode, no permission system; the operator accepts the risk at launch."
       split: "Unattended is the default *posture*, but nothing *bounds* an unattended run, which the +3 anchor requires. Scored +2 rather than +3 for the missing bound."
-      # This is the harness axis VII's contested shape needs. See positioning.md §4.
+      # This is the value that settled axis VII's shape: +2 reads as a two-notch defect under
+      # `centred`, and Pi defends the position at length. Ruled `polar` 2026-09-07. Value unchanged.
 
     - id: proof-ceremony
       value: 1

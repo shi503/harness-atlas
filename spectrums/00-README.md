@@ -262,11 +262,11 @@ choice hurt.** A `+3` here is usually evidence of a past `−3`.
 | **Cost of −3** | Use cases it simply cannot serve, and will not |
 | **Headline** | **DX-2** Weight class — read for **bulk only**, verdict discarded; see that dimension's `reads.note` |
 
-**The one centred axis in the core set.** The repo already holds the opinion — *5–7 healthy · 12+
+**The only centred axis in the core set**, since axis VII was ruled `polar` on 2026-09-07. The repo already holds the opinion — *5–7 healthy · 12+
 accommodation failure · refusal list* — so here `|value|` is distance from health, not a position. It
 is included because it is free: §5 already produces the verdict, and the sheet only has to carry it.
 
-### VII · Control posture — *what may run unattended?* **`centred`** ⚠️ *shape contested*
+### VII · Control posture — *what may run unattended?* `polar` ✅ *shape ruled 2026-09-07*
 
 | | |
 |---|---|
@@ -278,10 +278,26 @@ is included because it is free: §5 already produces the verdict, and the sheet 
 | **Cost of −3** | The human is the throughput ceiling |
 | **Headline** | detail-only — orthogonal to DX-2: a heavyweight harness can run unattended, a lightweight one can be approval-first. [`01-scorecard.md`](01-scorecard.md) §3 |
 
-Marked `centred` because the outside literature converges on the asymmetric boundary as the answer.
-**This is the one shape call in the sheet that is a judgement, not a reading** — if `+3` is a
-legitimate destination rather than an overshoot, this axis is `polar` and the marking is wrong. Flagged
-for ruling.
+**✅ RULED 2026-09-07 — this axis is `polar`.** Ruling `2026-09-07-axis-vii-polar`, on the evidence the
+axis itself asked for.
+
+*The original marking, retained as the argument the ruling answers:* it was marked `centred` because
+the outside literature converges on the asymmetric boundary as the answer, and the file recorded it as
+**the one shape call in the sheet that is a judgement, not a reading** — *"if `+3` is a legitimate
+destination rather than an overshoot, this axis is `polar` and the marking is wrong."*
+
+**Pi is that case.** It scores `+2` — no permission system, no popups, no plan mode, nothing gated by
+default. Under `centred` that reads as two notches from health, i.e. a defect. But Pi's own docs defend
+the position at length: *"This is intentional… A partial in-process sandbox would be easy to
+misunderstand as a security boundary… Real isolation needs to come from the operating system or a
+virtualization/container boundary."* **An axis that scores a defended, argued design choice as a
+failure is measuring the wrong thing.** The asymmetric boundary is a good default, not the only
+legitimate destination — which is precisely what `polar` means and `centred` denies.
+
+**No score changes.** Both scored harnesses read the same number under either shape (Claude Code `0`,
+Pi `+2`); what changes is what the number *claims*. **One consequence, deliberately not taken here:**
+a `polar` axis VII becomes eligible to feed a DX dimension without R8's inversion note. Whether it
+should is a separate decision — see `01-scorecard.md` §3.
 
 ### VIII · Proof ceremony — *how is completion known?* `polar`
 
