@@ -442,6 +442,22 @@ harness-atlas`. Step 11 reduces to re-pointing every existing grid citation for 
 new anchors and setting the `index.md` state cell to `v2 (restructured, diagrams pending)`. Delete
 nothing: git history is the archive.
 
+**Scoring rides along with a restructure.** The profile is finished and you are already in it, so
+score it in the same unit rather than in a second pass: write `spectrums/positions/<harness>.yaml`
+(the ten axes, the probation axes, the seven dimensions, and a `verification:` block with
+`verified: false`), add `### 1a. Positioning stats` and `### 1b. Contents` to §1, and add the
+harness's row and card to the positioning page. **Nothing in scoring opens a source** — that is R3,
+and a restructure has no source reads at all.
+
+**Two things a v1 profile will make you want to keep, and must not.** The opening *"Why this file
+exists"* paragraph, and any comparison to another harness, are rule-9 violations that predate rule 9.
+Delete both. Material about *this* harness inside them may move to the thesis line or §7; the corpus
+placement moves to §9's **Placement** line, which is where it belongs.
+
+**Expect `split:` more often than you think.** A harness defined by what it refuses reads differently
+as a **posture** than as a **mechanism**, and the two can be several notches apart on the same axis.
+Record both halves and say which you scored.
+
 ## Do NOT
 
 - Read the 33 rows from any file at runtime — they are above, and they are the checklist.

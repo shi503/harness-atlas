@@ -138,3 +138,48 @@ Corrected in `content/claude-code.md` (the card and §9) by W9. Still stale in
 (line 46), which W6 owns. `content/claude-code/00-README.md` §table still lists the thirteenth row and
 that is **correct** — it links out to the file's LoomWarp home rather than claiming a local copy;
 only the *count* is wrong. Archived copies and the superseded draft are left alone as historical record.
+
+---
+
+## ISSUE-011 — R10 is under-specified: "the half stated most directly" is ambiguous when both halves are stated
+
+**Severity:** WARN · **Found:** 2026-09-07, W8b Pi pilot · **Assigned:** none yet — KD to rule
+
+`spectrums/01-scorecard.md` §1 R10 says: where two halves of a harness disagree, *"score the half the
+profile states most directly."* On Claude Code that was workable — the profile stated one half verbatim
+and left the other unanswered. On **Pi it fired five times** (axes I, III, V, VII, IX) and the tie-break
+did not decide any of them, because Pi states **both** halves equally clearly and by design.
+
+The pattern is one distinction repeated: **posture versus mechanism.** Pi's stated posture is
+single-operator, no enforcement, no capture; its shipped mechanism is a shareable settings file, a
+`--tools` allowlist, and a real promotion path. A harness whose identity is a published refusal list
+will always read this way, so this is a class of case, not a one-off.
+
+Options: (a) score the **posture** by default, since it is what the vendor asserts and R11 says a
+position is derived from how a harness presents itself; (b) score the **mechanism** by default, since
+R11 also says the observed artifact wins where the two disagree — which arguably already settles it;
+(c) leave R10 as judgement and require `split:` to name both, which is what happened here.
+**(b) appears to be the existing answer** and R10 simply does not cite R11. If so this is an editorial
+fix, not a rule change.
+
+---
+
+## ISSUE-012 — axis VII `Control posture` is marked `centred`, and the second scored harness argues it is `polar`
+
+**Severity:** WARN · **Found:** 2026-09-07, W8b Pi pilot · **Assigned:** none yet — KD to rule
+
+`spectrums/00-README.md` §3 VII marks the axis `centred` — `0` is healthy, `|value|` is distance from
+health — and flags the shape itself as *"the one shape call in the sheet that is a judgement, not a
+reading."* It asked to be falsified by a harness that is unambiguously autonomous-by-default.
+
+**Pi is that harness.** It scores `+2`: no permission system, no popups, no plan mode, nothing gated by
+default. Under `centred` that is *two notches from healthy* — a defect. But Pi's own docs defend the
+position at length: *"This is intentional… A partial in-process sandbox would be easy to misunderstand
+as a security boundary… Real isolation needs to come from the operating system or a virtualization
+boundary."* An axis that scores a defended, argued design choice as a failure is measuring the wrong
+thing.
+
+Recommendation: **retire the `centred` marking; axis VII is `polar`.** The axis's own §3 text already
+says the shape is the contested part, and this is the evidence it asked for. Note the consequence:
+`centred` axes cannot be read by a DX dimension without an inversion note (R8), so a polar axis VII
+becomes eligible to feed a dimension — which is a separate decision, not part of this ruling.
