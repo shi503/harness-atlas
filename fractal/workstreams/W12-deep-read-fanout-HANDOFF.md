@@ -1,9 +1,9 @@
-# HANDOFF: W12-deep-read-fanout (phases 1–2)
+# HANDOFF: W12-deep-read-fanout
 
 **Completed:** 2026-09-08
 **Epic:** harness-atlas — the re-cut
 **Branch:** `deep-read-fanout`. **PRD:** `W12-deep-read-fanout.md`.
-**Phases 1 and 2 are complete. Phase 3 — the eight remaining harnesses — is not started.**
+**All three phases complete.** Phase 3 landed 2026-09-08 on KD's ruling to dispatch all eight at once.
 
 ## What landed
 
@@ -68,3 +68,69 @@ different subjects.
 - **`wiki-nav` has still never been run**, and there is now a thirteenth folder for it to cover.
 - **Nothing is committed.** The branch `deep-read-fanout` holds the work; no commit was made, per the
   standing rule that commits happen when you ask.
+
+
+---
+
+# Phase 3 — the eight, 2026-09-08
+
+**87 documents, 20,033 lines.** With Claude Code and Codex: **118 documents, 23,850 lines, ten of ten
+harnesses.** Gate green at 3,456 links / 1,241 anchors. `git status` clean.
+
+| Harness | Docs | Lines | Depth | What the run turned up |
+|---|--:|--:|---|---|
+| OpenClaw | 21 | 4,737 | Exhaustive | Re-pinned to a release published that morning; 12 drift figures; the team version the 2026-09-07 ruling predicted is present |
+| Hermes | 13 | 3,070 | Standard+ | Re-pinned to a release published the previous day; the corpus's sharpest refusal quote |
+| Grok | 13 | 2,665 | Standard | Two products held apart by four redundant markers per document; two claim ledgers, two claim walks |
+| Gas City | 12 | 2,261 | Standard | Resolved two of the profile's §10 unverified items; found the docs host 301-redirects |
+| FRACTAL | 10 | 1,904 | Standard | **Ran the code.** See below |
+| LoomWarp | 10 | 1,587 | Standard | **15 doc/code disagreements, inheritance proven by hash** |
+| OpenCode | 9 | 1,443 | Standard | Nine-rung config chain assembled; four same-version vendor self-disagreements |
+| Pi | 5 | 919 | Standard | Declined the Index option and argued why |
+
+## Four things that are yours
+
+**1 · Two bugs in your own systems, both reproduced.**
+
+`router.py`'s gate is *weaker than `content/fractal.md` claims*. The card says it gates on a HANDOFF's
+pasted build output without checking whether that output is true. It **never looks for a HANDOFF at
+all** — `cmd_update` checks that the name is a key in `.state.json` and that the status is one of three
+strings. The string `HANDOFF` does not occur in the file. Reproduced: `NOT_STARTED → COMPLETE`, exit 0,
+in a directory with no `workstreams/`, no HANDOFF, no PULSE. **`init` has no guard either** — re-running
+wipes every `COMPLETE`, exit 0, no prompt, no backup, and `BEST-PRACTICES.md` §4 records that this
+already happened once in production.
+
+LoomWarp's HANDOFF classifier is **inverted**. `classify()` matches `\|\s*PASS\b[^|]*\|` — a cell
+*beginning* with PASS. Run against the shipped files: both HANDOFF templates, placeholders intact,
+classify **COMPLETE**; both real HANDOFFs write `| **PASS** |`, which starts with `**`, so
+`any_pass=False` → **UNKNOWN**. Unfilled templates pass; finished work does not. The doctrine in the
+same repo warns that *"the word 'FAIL' in a sentence flips the result"* — the real failure is its exact
+inverse.
+
+**2 · A second phantom source in the FRACTAL profile.** `content/fractal.md` says it was *"re-checked
+against HEAD `60393054`"*; that SHA returns **HTTP 422, no commit found**, confirmed independently. The
+primary pin `6398f6db` resolves, so the `U` reading stands — but the drift re-check and its
+*"+32,875/−3,853 across 303 files"* figure are fictional (actual: 4 commits, 16 files, +1,506/−230), and
+**three of §10's unverified items rest on it**. With the vanished `generic-cerebro`, one profile now
+cites two sources nobody can open. ISSUE-024 and its addendum.
+
+**3 · Three fabricated quotations, found by audit, all corrected.** Two in the committed Codex set and
+one in Pi, where six refusals that appear as six headings with prose between them had been published as
+a single `·`-joined sentence. The cause is now a rule: **a summarising fetch tool returns paraphrase,
+and paraphrase inside quotation marks is fabrication.** Capture from raw source. An audit script lives
+in the session scratchpad; it is a heuristic, not a gate, and it cannot resolve repo-file citations.
+
+**4 · The skill was wrong in thirty-six places and is now 381 lines.** ISSUE-025 has the record. Seven
+defects were found independently by three or more agents, which is the only evidence available that
+they are real rather than one agent's taste. Two of the falsified heuristics were written by me: §2's
+claim that a published refusal list suggests an Index read (backwards — it is the surface most needing a
+page), and the phase-3 map's claim that coverage predicts depth (independent — Pi has the thinnest
+coverage and the largest single doc file in the corpus).
+
+## Not done
+
+- **Two skill questions stay open** (ISSUE-025): depth does not compose across products, and §5's link
+  contract assumes one document per §6 row where Grok needed two on nine of seventeen.
+- **`wiki-nav` has still never been run**, and there are now ten deep-read folders for it to cover.
+- **The profiles are not re-read.** Every drift found here is carried in the deep reads with both dates,
+  per ruling `2026-09-04-w3-q3`. Ten profiles now have a newer companion; that is a queue, not a defect.
