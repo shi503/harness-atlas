@@ -679,3 +679,32 @@ and `graded:` is worth having either way, so the field is set and the grid is un
 `scripts/gen-grid-rows.mjs`. That script does not exist — see ISSUE-009, struck in the same commit as
 this entry. So the ruling's own record of its execution is unreliable, and whoever settles this should
 re-read `grid.html` rather than trust either document about what it currently does.
+
+---
+
+## ISSUE-001 update, 2026-09-08 — the substance is largely discharged by Tier 2; the columns are not, and should not be filled unattended
+
+**Severity:** WARN → MINOR · **Assigned:** W6, still open for the two grid columns
+
+The entry's complaint was that HumanLayer's and Deep Agents' *"findings live only in prose."* That is
+now much less true: **all 33 Tier-2 pages carry a cited peer entry for each of them**, per component,
+with the vendor's own words and a citation — 66 entries, which is finer-grained than the grid cell the
+issue asked for.
+
+**What is still open is the two columns**, and W11's evening run deliberately did not fill them. Adding
+them to `comparisons/04-harness-alignment.md` §2 means **66 coverage marks derived from prose**, and
+the prose does not carry a mark. Roughly a third is unambiguous in both directions — *"Nothing here,
+stated by its own teardown"* is plainly `○`, *"the most explicit implementation in the corpus"* is
+plainly `●`. The middle band is not: **"the nearest published thing", "the nearest approach", "routed
+to a separate paid product", "hooks *as* middleware"** each sit between `◐` and `○`, and the choice
+changes what the grid claims.
+
+**Why that is a stop rather than a judgment call.** A wrong grid cell is the corpus's cardinal defect —
+it is the artifact everything else is compared through, and a mark carries no citation to argue with.
+The sheet already has the right mechanism for a scored-but-unreviewed claim (R11,
+*drafted-until-verified*) and the grids deliberately do not use it. Filling 66 cells overnight and
+labelling them drafted would import that mechanism into the one place the corpus chose not to have it.
+
+**The cheap next step for a person:** the marks are derivable in one sitting *from the 33 pages that
+now exist*, which did not exist when this issue was written. That is a reading pass, not a re-read of
+two 385-line teardowns.
