@@ -89,4 +89,4 @@ lifecycle rule against its own callers.
 driver; only one is current.
 
 For the full method list and the SDK wrappers, the vendor's pages are the source that stays correct:
-[Build with Codex](https://learn.chatgpt.com/docs/build-with-codex).
+[the Codex SDK reference](https://learn.chatgpt.com/docs/codex-sdk).
