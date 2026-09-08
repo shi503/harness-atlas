@@ -61,7 +61,7 @@ Sync costs are **counted, not estimated**. Read the cost before proposing the th
 
 | Kind | Admission test | Source of truth | Candidates recorded in | Sync cost | Ruler |
 |---|---|---|---|:-:|---|
-| **Component** (a 34th row) | **Two peers shipping it as a named primitive** — `comparisons/04-harness-alignment.md` §1's own evidence rule for its `emerging`/`claimed`/`bet` markers. Reused, not invented | `skills/harness-teardown/SKILL.md` §4 checklist — it owns the anchor slugs | `spec/v1-framework/CROSSWALK.md` §3.13 | **24** | KD |
+| **Component** (a 34th row) | **Two peers shipping it as a named primitive** — `comparisons/04-harness-alignment.md` §1's own evidence rule for its `emerging`/`claimed`/`bet` markers. Reused, not invented | `skills/harness-teardown/SKILL.md` §4 checklist — it owns the anchor slugs | `components/CROSSWALK.md` §3.13 | **24** | KD |
 | **Axis** (an 11th) | R1–R7, all seven | `spectrums/00-README.md` §3 | `spectrums/00-README.md` §4 | 3 + one per scored harness | KD |
 | **DX dimension** (an 8th) | R1–R3, R6, and R8–R10 | `spectrums/01-scorecard.md` §4 | `spectrums/01-scorecard.md` §5 | 3 + one per scored harness | KD |
 | **Job** (a `J18`) | `comparisons/03-jtbd.md` §1's convergence line, measured on both axes | `comparisons/03-jtbd.md` §2 | `comparisons/03-jtbd.md` §6 | **5** | KD |

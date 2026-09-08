@@ -24,9 +24,11 @@ changed a rule, an id or a name — the text stays where it was written),
 standardized core-concept diagrams, `projects/<harness>/` for per-harness ones; `.mmd` is canonical,
 pages embed a copy, a `.png` beside it is an optional render).
 
-Component IDs are the **original twelve layers** (`0a`…`11a`, per `spec/v1-framework/CROSSWALK.md`
-§0). The 13-layer renumber in the consolidated guide §1 was struck in W0 on 2026-09-03: the landscape
-moves too fast to keep re-minting IDs.
+Component IDs are the **original twelve layers** (`0a`…`11a`). The register is
+`components/00-README.md`; the derivation is `archive/spec/v1-framework/CROSSWALK.md` §0, which is
+where this line used to point — an argument for the ID space, not a list of it. The 13-layer renumber
+in the consolidated guide §1 was struck in W0 on 2026-09-03: the landscape moves too fast to keep
+re-minting IDs.
 
 Un-recut material lives under `spec/`, `comparisons/`, `craft/`. History lives under `archive/`.
 `RULING-2026-09-02-spinout.md` says what came from where.

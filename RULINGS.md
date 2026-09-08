@@ -16,8 +16,9 @@ what it decided in one line, and where to read it.
 
 **Why an index and not a migration.** All three existing homes are legitimate: a root
 `RULING-<date>-<slug>.md` for a repo-wide decision; a `### N ✅ RULED <date> — …` heading inside
-[`spec/v1-framework/CROSSWALK.md`](spec/v1-framework/CROSSWALK.md) §3, where it sits with the gap it
-closes; a section of a HANDOFF for a decision made in a session. Normalizing them would be large,
+[`components/CROSSWALK.md`](components/CROSSWALK.md) §3, where it sits with the gap it
+closes (carried out of `spec/v1-framework/` on 2026-09-08 when the specification was archived — a
+live rule cannot live in the archive; headings verbatim, so the anchors did not move); a section of a HANDOFF for a decision made in a session. Normalizing them would be large,
 low-value churn and would break the `✅ RULED` convention §3 is organized around. The defect was never
 the formats — it was **findability**: [`fractal/ISSUES.md`](fractal/ISSUES.md) cites *"KD's ruling,
 W3 Q3"* and *"W3 Q4"* with nothing to click.
@@ -34,12 +35,12 @@ archaeology. **A ruling that is not indexed here is a defect** — append it to 
 
 | Date | Id | What it decided | Where the text is | Status |
 |---|---|---|---|---|
-| 2026-08-31 | `2026-08-31-rituals-cadence` | `9b` Rituals and `9c` Cadence are separate components; `C-7` is narrowed, not reversed. Layer 9 keeps six | [CROSSWALK §3.1](spec/v1-framework/CROSSWALK.md#31--ruled-2026-08-31--9b-rituals-and-9c-cadence-are-separate-components) | PERMANENT |
-| 2026-08-31 | `2026-08-31-anti-fragile` | `9d` Anti-fragile Lifecycle is the closed loop, a peer of Learning / Rituals / Cadence, not their umbrella | [CROSSWALK §3.2](spec/v1-framework/CROSSWALK.md#32--ruled-2026-08-31--9d-anti-fragile-lifecycle-is-the-closed-loop) | PERMANENT |
-| 2026-09-01 | `2026-09-01-warp-threads` | `O-6` — the Grid's warp threads are the 12 layers; the 33 components are drill-down | [CROSSWALK §3.7](spec/v1-framework/CROSSWALK.md#37--ruled-2026-09-01--o-6-the-grids-warp-threads-are-the-12-layers-the-33-are-drill-down) | PERMANENT |
-| 2026-09-01 | `2026-09-01-decision-ledger` | The decision ledger is the governed tier of `5b` Team Memory. No new component; the count stays 33 | [CROSSWALK §3.9](spec/v1-framework/CROSSWALK.md#39--ruled-2026-09-01--the-decision-ledger-is-the-governed-tier-of-5b-team-memory) | PERMANENT |
-| 2026-09-01 | `2026-09-01-layers-navigation` | Lineage Ruling 1 reconciled: the layers are navigation, the components are the primitive set | [CROSSWALK §3.10](spec/v1-framework/CROSSWALK.md#310--ruled-2026-09-01--lineage-ruling-1-reconciled-the-layers-are-navigation-the-components-are-the-primitive-set) | PERMANENT |
-| 2026-09-01 | `2026-09-01-component-named` | The gradeable unit is named `component`; `sub-layer` retires | [CROSSWALK §3.12](spec/v1-framework/CROSSWALK.md#312--ruled-2026-09-01--the-gradeable-unit-is-named-component-and-sub-layer-retires) | PERMANENT |
+| 2026-08-31 | `2026-08-31-rituals-cadence` | `9b` Rituals and `9c` Cadence are separate components; `C-7` is narrowed, not reversed. Layer 9 keeps six | [CROSSWALK §3.1](components/CROSSWALK.md#31--ruled-2026-08-31--9b-rituals-and-9c-cadence-are-separate-components) | PERMANENT |
+| 2026-08-31 | `2026-08-31-anti-fragile` | `9d` Anti-fragile Lifecycle is the closed loop, a peer of Learning / Rituals / Cadence, not their umbrella | [CROSSWALK §3.2](components/CROSSWALK.md#32--ruled-2026-08-31--9d-anti-fragile-lifecycle-is-the-closed-loop) | PERMANENT |
+| 2026-09-01 | `2026-09-01-warp-threads` | `O-6` — the Grid's warp threads are the 12 layers; the 33 components are drill-down | [CROSSWALK §3.7](components/CROSSWALK.md#37--ruled-2026-09-01--o-6-the-grids-warp-threads-are-the-12-layers-the-33-are-drill-down) | PERMANENT |
+| 2026-09-01 | `2026-09-01-decision-ledger` | The decision ledger is the governed tier of `5b` Team Memory. No new component; the count stays 33 | [CROSSWALK §3.9](components/CROSSWALK.md#39--ruled-2026-09-01--the-decision-ledger-is-the-governed-tier-of-5b-team-memory) | PERMANENT |
+| 2026-09-01 | `2026-09-01-layers-navigation` | Lineage Ruling 1 reconciled: the layers are navigation, the components are the primitive set | [CROSSWALK §3.10](components/CROSSWALK.md#310--ruled-2026-09-01--lineage-ruling-1-reconciled-the-layers-are-navigation-the-components-are-the-primitive-set) | PERMANENT |
+| 2026-09-01 | `2026-09-01-component-named` | The gradeable unit is named `component`; `sub-layer` retires | [CROSSWALK §3.12](components/CROSSWALK.md#312--ruled-2026-09-01--the-gradeable-unit-is-named-component-and-sub-layer-retires) | PERMANENT |
 | 2026-09-02 | `2026-09-02-spinout` | The harness framework spins out of LoomWarp into this repo; a maturity spectrum and a primitive catalog are un-fused | [`RULING-2026-09-02-spinout.md`](RULING-2026-09-02-spinout.md) | PERMANENT |
 | 2026-09-03 | `2026-09-03-original-twelve` | The 13-layer renumber proposed in the consolidated guide §1 is **struck**. Component IDs stay the original twelve layers | [`CLAUDE.md`](CLAUDE.md) · [`index.md`](index.md#4-the-layers) | PERMANENT |
 | 2026-09-04 | `2026-09-04-w3-q3` | An UNDERCOUNT is flagged in the vocabulary ledger; the profile is corrected when it is next re-read, not retro-fitted | [W3 HANDOFF · KD's rulings](fractal/workstreams/W3-vocabulary-ledger-HANDOFF.md#kds-rulings-the-corrections-log) | PERMANENT |
@@ -63,4 +64,4 @@ archaeology. **A ruling that is not indexed here is a defect** — append it to 
 | Raised | Question | Where the argument is |
 |---|---|---|
 | 2026-09-07 | **`spectrum` names two instruments.** Four files call the *maturity* framework "the spectrum"; `spectrums/00-README.md` §0 silently renamed it *"the maturity range"* with no ruling and no ledger row. Retire `spectrum` from maturity in favour of `range`, or keep the collision and record it? | [`vocabulary.md` §1.1](vocabulary.md#11-collisions--one-row-per-referent) |
-| 2026-08-31 | Six gaps in `CROSSWALK` §3 carry no `✅` — the Briefing has no component, `OPEN-9` stewardship, RBAC over context, dispositions carried in, `AC-3`'s length floor, and the two gaps recorded 2026-09-01 | [CROSSWALK §3](spec/v1-framework/CROSSWALK.md#3-recorded-gaps) |
+| 2026-08-31 | Six gaps in `CROSSWALK` §3 carry no `✅` — the Briefing has no component, `OPEN-9` stewardship, RBAC over context, dispositions carried in, `AC-3`'s length floor, and the two gaps recorded 2026-09-01 | [CROSSWALK §3](components/CROSSWALK.md#3-recorded-gaps) |

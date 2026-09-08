@@ -95,9 +95,9 @@ flowchart BT
   people(("people")) --- L11
 ```
 
-→ [`spec/v1-framework/00-README.md`](spec/v1-framework/00-README.md) — the specification, with each component's argument
-→ [`spec/v1-framework/00-consolidated-guide-and-mental-model.md`](spec/v1-framework/00-consolidated-guide-and-mental-model.md) — the mental model, un-recut
-→ [`components/`](components/) — Tier-2 pages, one per component, empty until W5
+→ [`components/00-README.md`](components/00-README.md) — **the roster**: all 33, the question each answers, and the profile anchor it lands on
+→ [`components/`](components/) — Tier-2, one page per component: what it is, the best example, and a peer table
+→ [`components/CROSSWALK.md`](components/CROSSWALK.md) — the recorded gaps, six rulings, and the candidates register
 → source: [`assets/templates/layer-stack.mmd`](assets/templates/layer-stack.mmd)
 
 ## 5. The words
