@@ -1,5 +1,14 @@
 ---
-title: "LoomWarp — a control plane with a stated primitive count of zero" tier: reference project: harness-atlas created: "2026-09-03" updated: "2026-09-07" status: DRAFT owner: FeatureLead-LoomWarp (W4 #3) source: "shi503/loomwarp-team-system @ 8844df6f4bc48f8a563340eb3163401792e000d5 (branch `master`, private) · README.md, docs/*.md, fractal/, standards/, skills/, control/, policy/, context/, registry/, vendor/ at repo root · read 2026-09-03" provenance: OBSERVED template: "v2 (restructured from v1 read of 2026-09-03, no re-read)"
+title: "LoomWarp — a control plane with a stated primitive count of zero"
+tier: reference
+project: harness-atlas
+created: "2026-09-03"
+updated: "2026-09-07"
+status: DRAFT
+owner: FeatureLead-LoomWarp (W4 #3)
+source: "shi503/loomwarp-team-system @ 8844df6f4bc48f8a563340eb3163401792e000d5 (branch `master`, private) · README.md, docs/*.md, fractal/, standards/, skills/, control/, policy/, context/, registry/, vendor/ at repo root · read 2026-09-03"
+provenance: OBSERVED
+template: "v2 (restructured from v1 read of 2026-09-03, no re-read)"
 ---
 
 # LoomWarp — KD (`shi503`)
@@ -179,7 +188,9 @@ flowchart TD
 <details>
 <summary>◐ Claude Code only, model per agent role; own spec calls portability undecided</summary>
 
-**Ships.** Claude Code only; model chosen per agent role via `model:` in `.claude/agents/*.md` frontmatter — opus for architect/strategist/loomwarp-cto-architect, sonnet for feature-lead/sub-agent. No portability adapter of its own. **Path.** `.claude/agents/*.md` frontmatter **Source.** ✅ `REPO/.claude/agents/*.md`; ↪ `V1/00-README.md` ("Adapter: … LoomWarp: undecided")
+**Ships.** Claude Code only; model chosen per agent role via `model:` in `.claude/agents/*.md` frontmatter — opus for architect/strategist/loomwarp-cto-architect, sonnet for feature-lead/sub-agent. No portability adapter of its own.
+**Path.** `.claude/agents/*.md` frontmatter
+**Source.** ✅ `REPO/.claude/agents/*.md`; ↪ `V1/00-README.md` ("Adapter: … LoomWarp: undecided")
 
 </details>
 
@@ -189,7 +200,9 @@ flowchart TD
 <details>
 <summary>◐ Shell, filesystem, git, GitHub; no declared inventory beyond a two-repo registry</summary>
 
-**Ships.** Shell via subprocess to the `claude` binary (past a common alias trap, `resolve_claude_binary()`), the filesystem (`context/`, `registry/`, `.claude/fractal/`), git (submodule status, `git reset --hard && git clean -fd` on reset), GitHub (`gh pr list`, named in the demo script as a manual check). No declared environment manifest beyond the two-repo registry. **Path.** `control/dispatch.py` (`resolve_claude_binary`, `cmd_reset`); `registry/repositories.yaml` **Source.** ✅ same
+**Ships.** Shell via subprocess to the `claude` binary (past a common alias trap, `resolve_claude_binary()`), the filesystem (`context/`, `registry/`, `.claude/fractal/`), git (submodule status, `git reset --hard && git clean -fd` on reset), GitHub (`gh pr list`, named in the demo script as a manual check). No declared environment manifest beyond the two-repo registry.
+**Path.** `control/dispatch.py` (`resolve_claude_binary`, `cmd_reset`); `registry/repositories.yaml`
+**Source.** ✅ same
 
 </details>
 
@@ -199,7 +212,9 @@ flowchart TD
 <details>
 <summary>◐ One adapter — a <code>claude -p</code> CLI invocation; no MCP, no ACP</summary>
 
-**Ships.** One adapter: a CLI invocation of `claude -p` with `--agent`, `--permission-mode`, `--output-format json`, `--max-budget-usd`. No MCP, no ACP, no protocol beyond that CLI surface. **Path.** `control/dispatch.py` (`dispatch_headless`) **Source.** ✅ same
+**Ships.** One adapter: a CLI invocation of `claude -p` with `--agent`, `--permission-mode`, `--output-format json`, `--max-budget-usd`. No MCP, no ACP, no protocol beyond that CLI surface.
+**Path.** `control/dispatch.py` (`dispatch_headless`)
+**Source.** ✅ same
 
 </details>
 
@@ -207,7 +222,9 @@ flowchart TD
 <details>
 <summary>○ Checked <code>.claude/settings.local.json</code>, <code>policy/tier-*.json</code>; none of its own</summary>
 
-**Nothing here** — checked `.claude/settings.local.json` (`{"outputStyle": "Concise"}` only), `policy/tier-*.json` (permission lists, not lifecycle hooks), and grepped the tree for `PreToolUse`/`PostToolUse` definitions of LoomWarp's own; none found. **Path.** — **Source.** ✅ (absence, direct grep + file read)
+**Nothing here** — checked `.claude/settings.local.json` (`{"outputStyle": "Concise"}` only), `policy/tier-*.json` (permission lists, not lifecycle hooks), and grepped the tree for `PreToolUse`/`PostToolUse` definitions of LoomWarp's own; none found.
+**Path.** —
+**Source.** ✅ (absence, direct grep + file read)
 
 </details>
 
@@ -215,7 +232,9 @@ flowchart TD
 <details>
 <summary>◐ Four risk-tier deny lists; the one live dispatch bypassed all of them</summary>
 
-**Ships.** Four risk-tier permission files (`policy/tier-{1,2,3,4-auto}.json`), Claude-Code-`settings.json`-shaped allow/deny lists. `tier-1.json` is real and would bind mechanically (`Bash(rm -rf *)`, `.env` reads denied) — but the one live dispatch used `--permission-mode bypassPermissions`, which skips all of it, a limitation the vendor's own code comment names directly. **Path.** `policy/tier-1.json`; `control/dispatch.py` lines 183–190 **Source.** ✅ (doctrine ≠ code) same
+**Ships.** Four risk-tier permission files (`policy/tier-{1,2,3,4-auto}.json`), Claude-Code-`settings.json`-shaped allow/deny lists. `tier-1.json` is real and would bind mechanically (`Bash(rm -rf *)`, `.env` reads denied) — but the one live dispatch used `--permission-mode bypassPermissions`, which skips all of it, a limitation the vendor's own code comment names directly.
+**Path.** `policy/tier-1.json`; `control/dispatch.py` lines 183–190
+**Source.** ✅ (doctrine ≠ code) same
 
 </details>
 
@@ -225,7 +244,9 @@ flowchart TD
 <details>
 <summary>◐ <code>router.py</code>+<code>dispatch.py</code>; the classifier is a regex over a markdown table</summary>
 
-**Ships.** `router.py` (vendored, unmodified, model-free dependency resolver) plus `dispatch.py` (additive: prompt assembly, subprocess dispatch, outcome classification, evidence write, conditional state update). Deterministic decomposition and dispatch — but outcome classification itself is a regex over markdown (`re.search(r"\|\s*FAIL\s*\|", content)`), not structured evidence, against the vendor's own evaluation doctrine. **Path.** `fractal/router.py`; `control/dispatch.py` (`classify()`) **Source.** ✅ (doctrine ≠ code) same
+**Ships.** `router.py` (vendored, unmodified, model-free dependency resolver) plus `dispatch.py` (additive: prompt assembly, subprocess dispatch, outcome classification, evidence write, conditional state update). Deterministic decomposition and dispatch — but outcome classification itself is a regex over markdown (`re.search(r"\|\s*FAIL\s*\|", content)`), not structured evidence, against the vendor's own evaluation doctrine.
+**Path.** `fractal/router.py`; `control/dispatch.py` (`classify()`)
+**Source.** ✅ (doctrine ≠ code) same
 
 </details>
 
@@ -233,7 +254,9 @@ flowchart TD
 <details>
 <summary>○ Static BLUEPRINT fields only; no resolver</summary>
 
-**Nothing here** as a resolver — checked the BLUEPRINT schema and `registry/repositories.yaml`. What exists instead: a BLUEPRINT entry's `repo` and `target_agent` fields fix which sibling and agent role handle a workstream, author-time and static. **Path.** `fractal/BLUEPRINT-*.yaml`; `registry/repositories.yaml` **Source.** ✅ same
+**Nothing here** as a resolver — checked the BLUEPRINT schema and `registry/repositories.yaml`. What exists instead: a BLUEPRINT entry's `repo` and `target_agent` fields fix which sibling and agent role handle a workstream, author-time and static.
+**Path.** `fractal/BLUEPRINT-*.yaml`; `registry/repositories.yaml`
+**Source.** ✅ same
 
 </details>
 
@@ -241,7 +264,9 @@ flowchart TD
 <details>
 <summary>◐ Five role files; the composition runtime itself is Claude Code's</summary>
 
-**Ships.** Five role files in `.claude/agents/` (architect, feature-lead, loomwarp-cto-architect, strategist, sub-agent); `feature-lead.md` documents delegating up to 2 Sub-Agent sessions. Composition itself is Claude Code's native mechanism — LoomWarp supplies the role files, not the runtime. **Path.** `.claude/agents/*.md` **Source.** ✅ same
+**Ships.** Five role files in `.claude/agents/` (architect, feature-lead, loomwarp-cto-architect, strategist, sub-agent); `feature-lead.md` documents delegating up to 2 Sub-Agent sessions. Composition itself is Claude Code's native mechanism — LoomWarp supplies the role files, not the runtime.
+**Path.** `.claude/agents/*.md`
+**Source.** ✅ same
 
 </details>
 
@@ -249,7 +274,9 @@ flowchart TD
 <details>
 <summary>◐ BLUEPRINT YAML, router-read vs. dispatch-only fields; no managed-settings layer</summary>
 
-**Ships.** BLUEPRINT YAML with two field classes, explicit in every blueprint's header comment: standard fields (`feature_lead`, `model`, `prd`, `dependencies`) read by the unmodified router; additive fields (`repo`, `target_agent`, `target_mode`, `kebab`, `context_bundle`) read only by `dispatch.py`, *"silently ignored by router.py."* No managed-settings/org-override layer of its own. **Path.** `fractal/BLUEPRINT-*.yaml`; `.claude/settings.local.json` **Source.** ✅ same
+**Ships.** BLUEPRINT YAML with two field classes, explicit in every blueprint's header comment: standard fields (`feature_lead`, `model`, `prd`, `dependencies`) read by the unmodified router; additive fields (`repo`, `target_agent`, `target_mode`, `kebab`, `context_bundle`) read only by `dispatch.py`, *"silently ignored by router.py."* No managed-settings/org-override layer of its own.
+**Path.** `fractal/BLUEPRINT-*.yaml`; `.claude/settings.local.json`
+**Source.** ✅ same
 
 </details>
 
@@ -257,7 +284,9 @@ flowchart TD
 <details>
 <summary>● <b>Standards tier</b> — seven guides, a stated inheritance contract</summary>
 
-**Ships.** Seven guides under `standards/` (engineering-principles, architecture-patterns, definition-of-done, testing-patterns, evaluation-doctrine, ci-cd, process-improvement-model — 927 lines plus a 43-line index), with a stated three-tier inheritance contract: *"Reference, never copy... Tighten, never contradict."* The most developed row in this profile. **Path.** `standards/README.md`; `standards/*.md` **Source.** ✅ same
+**Ships.** Seven guides under `standards/` (engineering-principles, architecture-patterns, definition-of-done, testing-patterns, evaluation-doctrine, ci-cd, process-improvement-model — 927 lines plus a 43-line index), with a stated three-tier inheritance contract: *"Reference, never copy... Tighten, never contradict."* The most developed row in this profile.
+**Path.** `standards/README.md`; `standards/*.md`
+**Source.** ✅ same
 
 </details>
 
@@ -267,7 +296,9 @@ flowchart TD
 <details>
 <summary>◐ Seven skills, synced by <code>cp -r</code>; a documented removal defect</summary>
 
-**Ships.** Seven skills (`commit-summarize`, `cross-repo-dispatch` — documentation-only, `fractal-init`, `gap-analysis`, `handoff`, `pulse`, `quality-pass`), distributed to sibling repos by a `cp -r` sync script; the self-assessment names a known defect — a deleted skill stays installed — not independently re-verified this pass. **Path.** `skills/*/SKILL.md`; `docs/DEMO-SCRIPT.md` (`sync-skills.sh`) **Source.** ✅ (skills, direct); ↪ (removal defect, `SELF`)
+**Ships.** Seven skills (`commit-summarize`, `cross-repo-dispatch` — documentation-only, `fractal-init`, `gap-analysis`, `handoff`, `pulse`, `quality-pass`), distributed to sibling repos by a `cp -r` sync script; the self-assessment names a known defect — a deleted skill stays installed — not independently re-verified this pass.
+**Path.** `skills/*/SKILL.md`; `docs/DEMO-SCRIPT.md` (`sync-skills.sh`)
+**Source.** ✅ (skills, direct); ↪ (removal defect, `SELF`)
 
 </details>
 
@@ -275,7 +306,9 @@ flowchart TD
 <details>
 <summary>○ Tiers gate actions, not who may invoke a skill</summary>
 
-**Nothing here** — checked every `SKILL.md` frontmatter and `policy/tier-*.json`; no mechanism scopes *who* may invoke a given skill or agent role once it is copied in. Permission tiers gate actions (shell commands, file reads), not capability access. **Path.** — **Source.** ✅ (absence, direct)
+**Nothing here** — checked every `SKILL.md` frontmatter and `policy/tier-*.json`; no mechanism scopes *who* may invoke a given skill or agent role once it is copied in. Permission tiers gate actions (shell commands, file reads), not capability access.
+**Path.** —
+**Source.** ✅ (absence, direct)
 
 </details>
 
@@ -285,7 +318,9 @@ flowchart TD
 <details>
 <summary>○ No operator-scoped object; own spec defers this to Claude Code's default</summary>
 
-**Nothing here** as a LoomWarp-owned object — checked `context/org/`, `context/domain/`, `context/evidence/`, `context/memory/` in full; all team- or repo-scoped, none per-operator. The framework's own spec defers this layer explicitly to Claude Code's native default. **Path.** — **Source.** ✅ (absence, direct); ↪ (the deferral, `V1/00-README.md`)
+**Nothing here** as a LoomWarp-owned object — checked `context/org/`, `context/domain/`, `context/evidence/`, `context/memory/` in full; all team- or repo-scoped, none per-operator. The framework's own spec defers this layer explicitly to Claude Code's native default.
+**Path.** —
+**Source.** ✅ (absence, direct); ↪ (the deferral, `V1/00-README.md`)
 
 </details>
 
@@ -293,7 +328,9 @@ flowchart TD
 <details>
 <summary>◐ Schema-validated decision ledger; five ADRs, a real SQLite index</summary>
 
-**Ships.** `context/org/PRINCIPLES.md`, `context/domain/taskflow-platform/CONVENTIONS.md` (read into every dispatched prompt via a workstream's `context_bundle`), and `context/memory/decision-ledger/` — a genuine schema-validated ADR store (`schema/schema.yaml`, `schema/validate.ts`, atomic writes, locks, a SQLite index, a CLI with `list`/`audit`), five ADRs on disk. **Path.** `context/org/PRINCIPLES.md`; `context/domain/taskflow-platform/CONVENTIONS.md`; `context/memory/decision-ledger/` **Source.** ✅ same, direct read of schema + store
+**Ships.** `context/org/PRINCIPLES.md`, `context/domain/taskflow-platform/CONVENTIONS.md` (read into every dispatched prompt via a workstream's `context_bundle`), and `context/memory/decision-ledger/` — a genuine schema-validated ADR store (`schema/schema.yaml`, `schema/validate.ts`, atomic writes, locks, a SQLite index, a CLI with `list`/`audit`), five ADRs on disk.
+**Path.** `context/org/PRINCIPLES.md`; `context/domain/taskflow-platform/CONVENTIONS.md`; `context/memory/decision-ledger/`
+**Source.** ✅ same, direct read of schema + store
 
 </details>
 
@@ -301,7 +338,9 @@ flowchart TD
 <details>
 <summary>○ Nothing distinct from the context fabric and decision ledger</summary>
 
-**Nothing here** — checked `context/`, `skills/`, `standards/` and grepped for "RAG," "embedding," "knowledge base," "retriev*"; nothing distinct from the authored context fabric (5b). The framework's own spec calls the equivalent object (the Briefing) *"designed... no implementation was demonstrated"* — this pass finds the same. **Path.** — **Source.** ✅ (absence, direct); ↪ (the Briefing's status)
+**Nothing here** — checked `context/`, `skills/`, `standards/` and grepped for "RAG," "embedding," "knowledge base," "retriev*"; nothing distinct from the authored context fabric (5b). The framework's own spec calls the equivalent object (the Briefing) *"designed... no implementation was demonstrated"* — this pass finds the same.
+**Path.** —
+**Source.** ✅ (absence, direct); ↪ (the Briefing's status)
 
 </details>
 
@@ -311,7 +350,9 @@ flowchart TD
 <details>
 <summary>○ No statement of what its own output may not become</summary>
 
-**Nothing here** — no statement of what an agent's output may not become for LoomWarp's own deliverable was found; `registry/repositories.yaml`'s `role`/`notes` fields describe sibling repos, not directives on shape. The framework's own spec marks this layer `bet` horizon and *"owed"* for its own instance. **Path.** — **Source.** ✅ (absence, direct)
+**Nothing here** — no statement of what an agent's output may not become for LoomWarp's own deliverable was found; `registry/repositories.yaml`'s `role`/`notes` fields describe sibling repos, not directives on shape. The framework's own spec marks this layer `bet` horizon and *"owed"* for its own instance.
+**Path.** —
+**Source.** ✅ (absence, direct)
 
 </details>
 
@@ -319,7 +360,9 @@ flowchart TD
 <details>
 <summary>◐ Local subprocess only, wall-clock-timeout-wrapped; no container layer</summary>
 
-**Ships.** Local subprocess execution only: `dispatch.py` spawns `claude` via `subprocess.run` inside a Python venv, wall-clock-timeout-wrapped (`LOOMWARP_DISPATCH_TIMEOUT_SEC`, default 600s). No container, remote execution, or Kubernetes layer; git submodules are the only isolation between siblings. **Path.** `control/dispatch.py`; `.venv/` **Source.** ✅ same
+**Ships.** Local subprocess execution only: `dispatch.py` spawns `claude` via `subprocess.run` inside a Python venv, wall-clock-timeout-wrapped (`LOOMWARP_DISPATCH_TIMEOUT_SEC`, default 600s). No container, remote execution, or Kubernetes layer; git submodules are the only isolation between siblings.
+**Path.** `control/dispatch.py`; `.venv/`
+**Source.** ✅ same
 
 </details>
 
@@ -327,7 +370,9 @@ flowchart TD
 <details>
 <summary>◐ <code>registry/repositories.yaml</code>, two entries; omits the control repo itself</summary>
 
-**Ships.** `registry/repositories.yaml` — a real, if thin, inventory schema: `name`, `path`, `origin`, `visibility`, `owner`, `role`, `modified_by_this_project`, `fractal_installed`, `notes`, per repo. Two entries at this read. The control repo itself is absent from its own registry despite being a dispatch target — a named, open defect. **Path.** `registry/repositories.yaml`; `fractal/ISSUES.md` (`ISSUE-001`) **Source.** ✅ same
+**Ships.** `registry/repositories.yaml` — a real, if thin, inventory schema: `name`, `path`, `origin`, `visibility`, `owner`, `role`, `modified_by_this_project`, `fractal_installed`, `notes`, per repo. Two entries at this read. The control repo itself is absent from its own registry despite being a dispatch target — a named, open defect.
+**Path.** `registry/repositories.yaml`; `fractal/ISSUES.md` (`ISSUE-001`)
+**Source.** ✅ same
 
 </details>
 
@@ -335,7 +380,9 @@ flowchart TD
 <details>
 <summary>○ No CI/CD of its own; <code>ci-cd.md</code> is doctrine, not a wired gate</summary>
 
-**Nothing here** as a wired pipeline — `find .github -type f` returns no matches. The demo script references `git push`/`gh pr` as a tier-3-permitted action and a manual `gh pr list` check between rehearsals; `standards/ci-cd.md` is prescriptive doctrine, not a gate here. **Path.** `docs/DEMO-SCRIPT.md`; `standards/ci-cd.md` **Source.** ✅ same
+**Nothing here** as a wired pipeline — `find .github -type f` returns no matches. The demo script references `git push`/`gh pr` as a tier-3-permitted action and a manual `gh pr list` check between rehearsals; `standards/ci-cd.md` is prescriptive doctrine, not a gate here.
+**Path.** `docs/DEMO-SCRIPT.md`; `standards/ci-cd.md`
+**Source.** ✅ same
 
 </details>
 
@@ -345,7 +392,9 @@ flowchart TD
 <details>
 <summary>● <b>Work contract</b> — a BLUEPRINT entry + PRD, named in the current spec</summary>
 
-**Ships.** The **work contract** — a BLUEPRINT entry (`feature_lead`, `model`, `prd`, `dependencies`, plus additive `repo`/`target_agent`/`target_mode`/`kebab`/`context_bundle` fields) paired with a workstream PRD file. The framework's own current spec names this object directly as the one genuinely surviving, concrete primitive at this layer — `router.py`/`dispatch.py` are named machinery, explicitly not graded. **Path.** `fractal/BLUEPRINT-*.yaml`; `fractal/workstreams/*.md` **Source.** ✅ same; ↪ (the machinery/primitive split, `V1/00-README.md`)
+**Ships.** The **work contract** — a BLUEPRINT entry (`feature_lead`, `model`, `prd`, `dependencies`, plus additive `repo`/`target_agent`/`target_mode`/`kebab`/`context_bundle` fields) paired with a workstream PRD file. The framework's own current spec names this object directly as the one genuinely surviving, concrete primitive at this layer — `router.py`/`dispatch.py` are named machinery, explicitly not graded.
+**Path.** `fractal/BLUEPRINT-*.yaml`; `fractal/workstreams/*.md`
+**Source.** ✅ same; ↪ (the machinery/primitive split, `V1/00-README.md`)
 
 </details>
 
@@ -355,7 +404,9 @@ flowchart TD
 <details>
 <summary>◐ A real five-layer doctrine; the shipped classifier is the anti-pattern it forbids</summary>
 
-**Ships.** The vendor's own doctrine (`standards/evaluation-doctrine.md`) specifies a genuine five-layer model (L1 Deterministic → L5 Outcome) with hard rules — *"Never trust the exit code... Never parse prose for structure... Two-attempt maximum"* — but the shipped classifier this repo actually runs (`dispatch.py`'s `classify()`) is exactly the anti-pattern the doctrine names: a regex over a HANDOFF's markdown table. **Path.** `standards/evaluation-doctrine.md`; `control/dispatch.py` (`classify()`) **Source.** ✅ (doctrine ≠ code), both direct
+**Ships.** The vendor's own doctrine (`standards/evaluation-doctrine.md`) specifies a genuine five-layer model (L1 Deterministic → L5 Outcome) with hard rules — *"Never trust the exit code... Never parse prose for structure... Two-attempt maximum"* — but the shipped classifier this repo actually runs (`dispatch.py`'s `classify()`) is exactly the anti-pattern the doctrine names: a regex over a HANDOFF's markdown table.
+**Path.** `standards/evaluation-doctrine.md`; `control/dispatch.py` (`classify()`)
+**Source.** ✅ (doctrine ≠ code), both direct
 
 </details>
 
@@ -363,7 +414,9 @@ flowchart TD
 <details>
 <summary>◐ <code>context/evidence/&lt;workstream&gt;/</code>, populated at run time for dispatched work only</summary>
 
-**Ships.** `context/evidence/<workstream>/{run.json, <OUTCOME>.md}`, populated at dispatch time with exit code, duration, and the classifying HANDOFF/PULSE text verbatim — real, and genuinely populated (three named workstream directories at this read). **Path.** `context/evidence/`; `control/dispatch.py` (`dispatch_headless`) **Source.** ✅ same
+**Ships.** `context/evidence/<workstream>/{run.json, <OUTCOME>.md}`, populated at dispatch time with exit code, duration, and the classifying HANDOFF/PULSE text verbatim — real, and genuinely populated (three named workstream directories at this read).
+**Path.** `context/evidence/`; `control/dispatch.py` (`dispatch_headless`)
+**Source.** ✅ same
 
 </details>
 
@@ -371,7 +424,9 @@ flowchart TD
 <details>
 <summary>◐ <code>events.jsonl</code>, 13 lines, three types; no schema file anywhere</summary>
 
-**Ships.** `control/events.jsonl` — one append-only, one-JSON-object-per-line log every dispatch writes to, described in the product's own words as *"CloudEvents-shaped."* Verified at this read: 13 lines, three event types (`dispatch_start`, `dispatch_end`, `dispatch_printed`). **No schema file of any kind exists anywhere in this repository** (`find . -iname "*.schema.json"` — zero hits), against the vendor's own stated bar: *"An unvalidated event stream is a log, not evidence."* This is the card's structured output, by its own rule not yet earned. **Path.** `control/events.jsonl` **Source.** ✅ same; ✅ `find . -iname "*.schema.json"` (no matches); ✅ `standards/evaluation-doctrine.md` §3 (quoted)
+**Ships.** `control/events.jsonl` — one append-only, one-JSON-object-per-line log every dispatch writes to, described in the product's own words as *"CloudEvents-shaped."* Verified at this read: 13 lines, three event types (`dispatch_start`, `dispatch_end`, `dispatch_printed`). **No schema file of any kind exists anywhere in this repository** (`find . -iname "*.schema.json"` — zero hits), against the vendor's own stated bar: *"An unvalidated event stream is a log, not evidence."* This is the card's structured output, by its own rule not yet earned.
+**Path.** `control/events.jsonl`
+**Source.** ✅ same; ✅ `find . -iname "*.schema.json"` (no matches); ✅ `standards/evaluation-doctrine.md` §3 (quoted)
 
 </details>
 
@@ -379,7 +434,9 @@ flowchart TD
 <details>
 <summary>◐ One crude spend cap, explicitly unmeasured; no aggregate reporting</summary>
 
-**Ships.** One crude cap: `LOOMWARP_DISPATCH_MAX_BUDGET` (default `5`), passed straight through as `--max-budget-usd`. The module's own docstring says this number is not evidence-based: *"this is a starting point, not a measured value; re-tune it from the actual spike run's real cost."* No aggregate cost reporting across workstreams. **Path.** `control/dispatch.py` (module docstring, `MAX_BUDGET_USD`) **Source.** ✅ same
+**Ships.** One crude cap: `LOOMWARP_DISPATCH_MAX_BUDGET` (default `5`), passed straight through as `--max-budget-usd`. The module's own docstring says this number is not evidence-based: *"this is a starting point, not a measured value; re-tune it from the actual spike run's real cost."* No aggregate cost reporting across workstreams.
+**Path.** `control/dispatch.py` (module docstring, `MAX_BUDGET_USD`)
+**Source.** ✅ same
 
 </details>
 
@@ -389,7 +446,9 @@ flowchart TD
 <details>
 <summary>○ No promotion mechanism; own spec calls this layer designed only</summary>
 
-**Nothing here** as a running mechanism — the framework's own spec marks this layer *"designed only"* for LoomWarp, and `standards/process-improvement-model.md` is prescriptive doctrine about how improvement should flow, not a wired promotion pipeline. **Path.** — **Source.** ✅ (absence, direct); ↪ (the "designed only" framing, `SELF`)
+**Nothing here** as a running mechanism — the framework's own spec marks this layer *"designed only"* for LoomWarp, and `standards/process-improvement-model.md` is prescriptive doctrine about how improvement should flow, not a wired promotion pipeline.
+**Path.** —
+**Source.** ✅ (absence, direct); ↪ (the "designed only" framing, `SELF`)
 
 </details>
 
@@ -397,7 +456,9 @@ flowchart TD
 <details>
 <summary>○ No cron, standup, or retro object of its own</summary>
 
-**Nothing here** — grepped `standards/`, `skills/`, `fractal/`, `context/`, `docs/` for "cron," "standup," "retro," "ritual"; no recurring human-practice object of LoomWarp's own was found. **Path.** — **Source.** ✅ (absence, direct grep)
+**Nothing here** — grepped `standards/`, `skills/`, `fractal/`, `context/`, `docs/` for "cron," "standup," "retro," "ritual"; no recurring human-practice object of LoomWarp's own was found.
+**Path.** —
+**Source.** ✅ (absence, direct grep)
 
 </details>
 
@@ -405,7 +466,9 @@ flowchart TD
 <details>
 <summary>○ Dispatch is manually invoked only; no scheduler</summary>
 
-**Nothing here** as an automatic scheduler — `dispatch.py run`/`reset` are invoked manually per the demo script's own commands; no cron, hook-triggered, or scheduled-session mechanism was found anywhere in the tree. **Path.** `docs/DEMO-SCRIPT.md` **Source.** ✅ same
+**Nothing here** as an automatic scheduler — `dispatch.py run`/`reset` are invoked manually per the demo script's own commands; no cron, hook-triggered, or scheduled-session mechanism was found anywhere in the tree.
+**Path.** `docs/DEMO-SCRIPT.md`
+**Source.** ✅ same
 
 </details>
 
@@ -413,7 +476,9 @@ flowchart TD
 <details>
 <summary>● <b>Defect ledger</b> — <code>ISSUES.md</code>, eight dated entries with required fix</summary>
 
-**Ships.** `fractal/ISSUES.md` — an append-only defect ledger, eight entries at this read (`ISSUE-001`–`004`, `OBS-005`, `FINDING-006`/`007`, `ISSUE-008`), each carrying Severity, Found-date, Assigned workstream, Consequence, Why-it-was-missed, Interim mitigation, Required fix. A genuine anti-fragile mechanism, not a changelog-as-narrative substitute. **Path.** `fractal/ISSUES.md` **Source.** ✅ same
+**Ships.** `fractal/ISSUES.md` — an append-only defect ledger, eight entries at this read (`ISSUE-001`–`004`, `OBS-005`, `FINDING-006`/`007`, `ISSUE-008`), each carrying Severity, Found-date, Assigned workstream, Consequence, Why-it-was-missed, Interim mitigation, Required fix. A genuine anti-fragile mechanism, not a changelog-as-narrative substitute.
+**Path.** `fractal/ISSUES.md`
+**Source.** ✅ same
 
 </details>
 
@@ -421,7 +486,9 @@ flowchart TD
 <details>
 <summary>◐ <code>standards/</code> plus a bootstrap skill; no retirement mechanism for a second way</summary>
 
-**Ships.** `standards/` itself (vetted starting templates) plus `skills/fractal-init/SKILL.md` (a bootstrap checklist for a new epic session) function as raise-the-floor starting points; no per-output guardrail beyond the standards tier's own prose was found. **Path.** `standards/README.md`; `skills/fractal-init/SKILL.md` **Source.** ✅ same
+**Ships.** `standards/` itself (vetted starting templates) plus `skills/fractal-init/SKILL.md` (a bootstrap checklist for a new epic session) function as raise-the-floor starting points; no per-output guardrail beyond the standards tier's own prose was found.
+**Path.** `standards/README.md`; `skills/fractal-init/SKILL.md`
+**Source.** ✅ same
 
 </details>
 
@@ -429,7 +496,9 @@ flowchart TD
 <details>
 <summary>○ No throughput measurement; own spec calls this unprovided by anyone</summary>
 
-**Nothing here** — no throughput measurement or bottleneck-diagnosis tool was found; the framework's own spec explicitly says this function has no provider — *"nobody"* — and that finding held for LoomWarp's own instance too on this pass. **Path.** — **Source.** ✅ (absence, direct); ↪ (the "nobody" framing, `V0` §6)
+**Nothing here** — no throughput measurement or bottleneck-diagnosis tool was found; the framework's own spec explicitly says this function has no provider — *"nobody"* — and that finding held for LoomWarp's own instance too on this pass.
+**Path.** —
+**Source.** ✅ (absence, direct); ↪ (the "nobody" framing, `V0` §6)
 
 </details>
 
@@ -439,7 +508,9 @@ flowchart TD
 <details>
 <summary>◐ Five role files; own field-level analysis calls the function unprovided by anyone</summary>
 
-**Ships.** `.claude/agents/*.md` — five role files (architect, feature-lead, loomwarp-cto-architect, strategist, sub-agent), each with a model tier and description. A genuine "who exists" list for LoomWarp's own control plane — though the framework's own field-level analysis, scoring the field including itself, calls this function unprovided by anyone, a tension recorded rather than resolved ([§10](#10-unverified)). **Path.** `.claude/agents/*.md` **Source.** ✅ same
+**Ships.** `.claude/agents/*.md` — five role files (architect, feature-lead, loomwarp-cto-architect, strategist, sub-agent), each with a model tier and description. A genuine "who exists" list for LoomWarp's own control plane — though the framework's own field-level analysis, scoring the field including itself, calls this function unprovided by anyone, a tension recorded rather than resolved ([§10](#10-unverified)).
+**Path.** `.claude/agents/*.md`
+**Source.** ✅ same
 
 </details>
 
@@ -447,7 +518,9 @@ flowchart TD
 <details>
 <summary>◐ A thin, schema-validated RACI registry — two entries</summary>
 
-**Ships.** `context/memory/decision-ledger/schema/people.yaml` — a small RACI-shaped registry (`KD`: Owner, default RACI `A`; `AGENT`: Implementer, default RACI `R`), validated by the ledger's own `validate.ts`. Thin but real and mechanically checked, ahead of the framework's own field-level finding that "nobody" ships this either. **Path.** `context/memory/decision-ledger/schema/people.yaml`; `.../validate.ts` **Source.** ✅ same
+**Ships.** `context/memory/decision-ledger/schema/people.yaml` — a small RACI-shaped registry (`KD`: Owner, default RACI `A`; `AGENT`: Implementer, default RACI `R`), validated by the ledger's own `validate.ts`. Thin but real and mechanically checked, ahead of the framework's own field-level finding that "nobody" ships this either.
+**Path.** `context/memory/decision-ledger/schema/people.yaml`; `.../validate.ts`
+**Source.** ✅ same
 
 </details>
 
@@ -457,7 +530,9 @@ flowchart TD
 <details>
 <summary>◐ CLI only — headless dispatch or a human-run second window; markdown is the record</summary>
 
-**Ships.** CLI only: `claude -p` (headless) or an interactive `claude` session opened by a human from a printed command; `HANDOFF.md`/`PULSE.md` markdown files are the surface work is judged from. No dashboard or web UI. Stated source-of-truth default, quoted as the framework's own recommendation: *"Markdown plans and specs in the repository are the source of truth... they flow outward... which are views."* **Path.** `control/dispatch.py` (`dispatch_human`); `docs/DEMO-SCRIPT.md` **Source.** ✅ same; ↪ (the SoT quote, `V0/09-context-layer.md`, relayed via `V1/00-README.md`)
+**Ships.** CLI only: `claude -p` (headless) or an interactive `claude` session opened by a human from a printed command; `HANDOFF.md`/`PULSE.md` markdown files are the surface work is judged from. No dashboard or web UI. Stated source-of-truth default, quoted as the framework's own recommendation: *"Markdown plans and specs in the repository are the source of truth... they flow outward... which are views."*
+**Path.** `control/dispatch.py` (`dispatch_human`); `docs/DEMO-SCRIPT.md`
+**Source.** ✅ same; ↪ (the SoT quote, `V0/09-context-layer.md`, relayed via `V1/00-README.md`)
 
 </details>
 
