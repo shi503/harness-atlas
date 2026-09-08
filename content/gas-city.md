@@ -13,11 +13,7 @@ template: "v2 (restructured from v1 read 2026-09-03, no re-read)"
 
 # Gas City — Gas Town Hall
 
-***A Go orchestration SDK, extracted out of the earlier, more opinionated Gas Town product, that runs
-fleets of external coding-agent CLIs as managed sessions coordinated entirely through a shared,
-Dolt-backed work store — hardcoding zero roles, built from six named primitives gated by a documented
-admission test, and refusing to be a sandbox: command execution is stated as a trusted-operator
-feature, not a security boundary.***
+***A Go orchestration SDK, extracted out of the earlier, more opinionated Gas Town product, that runs fleets of external coding-agent CLIs as managed sessions coordinated entirely through a shared, Dolt-backed work store — hardcoding zero roles, built from six named primitives gated by a documented admission test, and refusing to be a sandbox: command execution is stated as a trusted-operator feature, not a security boundary.***
 
 ## 1. At a glance
 
@@ -52,29 +48,19 @@ feature, not a security boundary.***
 | **6** | Ownership | rented | `─────●─` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `─●─────` | observability, efficiency, routing |
 
-**†** graded; every other row is a position, not a score. Ten axes beneath: `I −1 · II +3 · III −2 ·
-IV 0/−3(dual) · V +2 · VI 0 · VII +2 · VIII +2 · IX 0 · X −3` — four feed no cell above, by design.
+**†** graded; every other row is a position, not a score. Ten axes beneath: `I −1 · II +3 · III −2 · IV 0/−3(dual) · V +2 · VI 0 · VII +2 · VIII +2 · IX 0 · X −3` — four feed no cell above, by design.
 
-→ [`positions/gas-city.yaml`](../spectrums/positions/gas-city.yaml) · [`01-scorecard.md`](../spectrums/01-scorecard.md) · [`00-README.md`](../spectrums/00-README.md).
-*A `spectrums/positioning.md` row is an outstanding downstream obligation, out of write manifest (§9).
-Scored 2026-09-07 against the 2026-09-03 read; re-score in the YAML, never here.*
+→ [`positions/gas-city.yaml`](../spectrums/positions/gas-city.yaml) · [`01-scorecard.md`](../spectrums/01-scorecard.md) · [`00-README.md`](../spectrums/00-README.md). *A `spectrums/positioning.md` row is an outstanding downstream obligation, out of write manifest (§9). Scored 2026-09-07 against the 2026-09-03 read; re-score in the YAML, never here.*
 
 ### 1b. Contents
 
-[§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) ·
-[§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) ·
-[§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) ·
-[§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) ·
-[§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
+[§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-No deep-read folder exists. `content/gas-city-draft.md` is a superseded `--sanity` draft, kept as
-history, not a reading path.
+No deep-read folder exists; `content/gas-city-draft.md` is a superseded `--sanity` draft (history only).
 
 ## 2. System map
 
-Gas City's own docs carry this diagram where the six primitives are introduced
-(`docs/getting-started/how-gas-city-works.md` @ 4071143, source `primitives.excalidraw`; confirmed
-unchanged since the 2026-09-03 sanity read). It pictures the **primitive set**, not the **loop**.
+Gas City's own docs carry this diagram where the six primitives are introduced (`docs/getting-started/how-gas-city-works.md` @ 4071143, source `primitives.excalidraw`; confirmed unchanged since the 2026-09-03 sanity read). It pictures the **primitive set**, not the **loop**.
 
 ```mermaid
 %% Redrawn in house notation from Gas City's own diagram, embedded in
@@ -108,26 +94,18 @@ flowchart TD
   Bead -.->|fires| Event
 ```
 
-**How it thinks about work.** A unit of work is a **Bead** that a **Formula** operates over, fanning
-work to **Agents** executing inside a registered **Rig**; a **Pack** declares which agents, formulas
-and orders exist, and an **Event** fires for humans and agents to observe. This diagram is the
-*primitive set*, not the *loop*: the control loop (`internal/dispatch`, health patrol, the session
-reconciler) sits one layer beneath, closing through the bead store and event bus, never a callback.
+**How it thinks about work.** A unit of work is a **Bead** that a **Formula** operates over, fanning work to **Agents** executing inside a registered **Rig**; a **Pack** declares which agents, formulas and orders exist, and an **Event** fires for humans and agents to observe. This diagram is the *primitive set*, not the *loop*: the control loop (`internal/dispatch`, health patrol, the session reconciler) sits one layer beneath, closing through the bead store and event bus, never a callback.
 
 ## 3. Workflows
 
-**Not written at the 2026-09-03 read — pending the diagram pass (W8c).** A recorded gap. Three
-sequences a workflow pass should draw, each already evidenced in §6 and needing no new source read:
+**Not written at the 2026-09-03 read — pending the diagram pass (W8c).** A recorded gap. Three sequences a workflow pass should draw, evidenced already in §6:
 
 1. **A formula run over a convoy** — an Order pairs a trigger with a Formula; the Formula operates
-   over a Bead/Convoy, fanning work to Agents, which execute in a Rig; a Bead fires an Event
-   ([3a](#3a-control), [9c](#9c-cadence), [§2](#2-system-map)).
+over a Bead/Convoy, fanning work to Agents, which execute in a Rig; a Bead fires an Event ([3a](#3a-control), [9c](#9c-cadence), [§2](#2-system-map)).
 2. **Session lifecycle through the shared store** — the orchestrator spawns, stops and restarts a
-   session, reading progress from the bead store and event bus, not a direct callback
-   ([2a](#2a-adapters--middleware), [8c](#8c-observability), [9d](#9d-anti-fragile-lifecycle)).
+session, reading progress from the bead store and event bus, not a direct callback ([2a](#2a-adapters--middleware), [8c](#8c-observability), [9d](#9d-anti-fragile-lifecycle)).
 3. **Skill materialization into a provider's own convention** — a pack/role skill is symlinked into
-   `.claude/skills/`, `.agents/skills/`, `.gemini/skills/`, `.opencode/skills/`; `gc hook` injects mail
-   into a running agent's context each turn ([4a](#4a-capability), [2b](#2b-hooks)).
+`.claude/skills/`, `.agents/skills/`, `.gemini/skills/`, `.opencode/skills/`; `gc hook` injects mail into a running agent's context each turn ([4a](#4a-capability), [2b](#2b-hooks)).
 
 ## 4. Component matrix
 
@@ -150,7 +128,7 @@ sequences a workflow pass should draw, each already evidenced in §6 and needing
 | [3b](#3b-routing) | Routing | ● | `sling_query` stamps `gc.routed_to`; per-agent `scale_check` pool sizing |
 | [3c](#3c-composition) | Composition | ◐ | No sub-agent delegation; composition happens by **importing packs** |
 | [3d](#3d-configuration) | Configuration | ● | [**Pack**](#5-primitives) `pack.toml` + city `city.toml`, scoped inheritance |
-| [3e](#3e-standards) | Standards | ○ ⚠️ mark and detail disagree at the v1 read | Generated schemas + OpenAPI 3.1 + a wire-typing refusal list exist, scoped narrowly |
+| [3e](#3e-standards) | Standards | ○ | Generated schemas + OpenAPI 3.1 + a wire-typing refusal list exist, scoped narrowly ⚠️ mark and detail disagree at the v1 read |
 | **4 · Capabilities** | | | |
 | [4a](#4a-capability) | Capability | ● | [**Pack**](#5-primitives) bundles agents/formulas/orders/skills; `gascity-packs` registry |
 | [4b](#4b-capability-permissions) | Capability Permissions | ◐ | City-wide vs role-local scope; webhook visibility default-closed to `tenant` |
@@ -200,22 +178,16 @@ sequences a workflow pass should draw, each already evidenced in §6 and needing
 | (supporting) **Provider** | `agent.toml` `provider` field | the named coding-agent-CLI backend an Agent runs on (claude, codex, gemini, …) | ✅ `DOCS/guides/harness-recipes.md` |
 | (supporting) **Skill** | pack/role `skills/<name>/` | materialized into each provider's own skill convention; "it doesn't translate them" | ✅ `DOCS/guides/capabilities-for-coding-agent-users.md` |
 
-**Count:** 6 primitives, 5 supporting. **Verdict:** 5–7, healthy. The vendor names a decision
-framework for what may join the SDK layer, and a documented instance of a primitive *removed* rather
-than accreted — a prior "Agent Protocol" interface named until commit `dd90ac0a` (2026-03-08), folded
-into `internal/session`/`internal/runtime` (not independently re-verified — shallow clone, §10).
+**Count:** 6 primitives, 5 supporting. **Verdict:** 5–7, healthy. The vendor names a decision framework for what may join the SDK layer, and a documented instance of a primitive *removed* rather than accreted — a prior "Agent Protocol" interface named until commit `dd90ac0a` (2026-03-08), folded into `internal/session`/`internal/runtime` (not independently re-verified — shallow clone, §10).
 
-**No published refusal list for the primitive count.** Instead a narrower admission test gates
-whether a *capability* joins the SDK layer versus the consumer layer:
+**No published refusal list for the primitive count.** Instead a narrower admission test gates whether a *capability* joins the SDK layer versus the consumer layer:
 
 > "A capability belongs in the SDK **only if all three hold** ... **1. Atomicity** — can two agents
 > hit this operation simultaneously? **2.** Does it become MORE useful as models improve? **3. Is it
 > transport or cognition?** — does any line of Go contain a judgment call? If yes, it belongs in the
 > prompt, not the code." — ✅ `ENGDOCS/contributors/primitive-test.md`
 
-Two primary sources describe this test differently — `nine-concepts.md` frames it as gating new
-primitives, which the canonical `primitive-test.md` never states. Recorded, not resolved; the
-six-primitive count is unaffected, since it is stated directly in `how-gas-city-works.md`.
+Two primary sources describe this test differently — `nine-concepts.md` frames it as gating new primitives, which the canonical `primitive-test.md` never states. Recorded, not resolved; the six-primitive count is unaffected, since it is stated directly in `how-gas-city-works.md`.
 
 ## 6. Details
 
@@ -226,10 +198,7 @@ six-primitive count is unaffected, since it is stated directly in `how-gas-city-
 <details>
 <summary>● 15 named provider CLIs; per-agent <code>provider</code>/<code>option_defaults</code>/<code>upstream</code></summary>
 
-**Ships.** A `provider` field per agent selects the underlying coding-agent CLI (15 named, incl.
-claude/codex/gemini/grok/pi); `option_defaults.model`/`upstream` pick model and endpoint. Moving
-harness or model is a config edit, no code.
-**Path/Source.** `agents/<name>/agent.toml` · ✅ `DOCS/guides/harness-recipes.md`, `DOCS/reference/config.md`
+**Ships.** A `provider` field per agent selects the underlying coding-agent CLI (15 named, incl. claude/codex/gemini/grok/pi); `option_defaults.model`/`upstream` pick model/endpoint — a config edit. **Path/Source.** `agents/<name>/agent.toml` · ✅ `DOCS/guides/harness-recipes.md`, `DOCS/reference/config.md`
 
 </details>
 
@@ -238,10 +207,7 @@ harness or model is a config edit, no code.
 <details>
 <summary>◐ Shell, rig filesystem, HTTP+SSE API, GitHub, k8s, Dolt — no declared inventory</summary>
 
-**Ships.** Shell (via `work_query`, `scale_check`, hooks, order `exec`), the registered rig's
-filesystem, an HTTP+SSE API, GitHub (`gh`, optional), Kubernetes as a runtime backend, Dolt as storage.
-No declared systems inventory beyond this "Execution Surfaces" table.
-**Path/Source.** ✅ `DOCS/reference/trust-boundaries.md` "Execution Surfaces" table
+**Ships.** Shell (via hooks, order `exec`), the rig's filesystem, an HTTP+SSE API, GitHub (`gh`, optional), Kubernetes as a runtime backend, Dolt as storage — no declared systems inventory. **Path/Source.** ✅ `DOCS/reference/trust-boundaries.md` "Execution Surfaces" table
 
 </details>
 
@@ -250,10 +216,7 @@ No declared systems inventory beyond this "Execution Surfaces" table.
 <details>
 <summary>● <code>runtime.Provider</code> (tmux/subprocess/exec/ACP/k8s/herdr); MCP catalog-only</summary>
 
-**Ships.** A `runtime.Provider` interface (tmux/subprocess/exec/ACP/k8s/herdr) for sessions, separate
-from the model `provider`. MCP is catalog-only — *"list-only today... you wire the servers
-yourself"* — not a managed client.
-**Path/Source.** `internal/runtime/` · ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/reference/herdr-provider.md`
+**Ships.** A `runtime.Provider` interface (tmux/subprocess/exec/ACP/k8s/herdr) for sessions, separate from the model `provider`. MCP is catalog-only — *"list-only... you wire the servers yourself."* **Path/Source.** `internal/runtime/` · ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/reference/herdr-provider.md`
 
 </details>
 
@@ -261,10 +224,7 @@ yourself"* — not a managed client.
 <details>
 <summary>● <code>on_boot</code>/<code>pre_start</code>/<code>session_*</code>/<code>work_query</code>/order triggers/<code>gc hook</code></summary>
 
-**Ships.** `on_boot`/`on_death` (pool lifecycle), `pre_start`, `session_setup*`, `work_query`,
-`scale_check`, order `check`/`exec` triggers, `gc hook` — all shell-command templates. Pool hook
-failures log and continue; the OpenAPI-regen pre-commit hook fails closed.
-**Path/Source.** ✅ `DOCS/reference/trust-boundaries.md`, `REPO/CONTRIBUTING.md`
+**Ships.** `on_boot`/`on_death`, `pre_start`, `session_setup*`, `work_query`, `scale_check`, order `check`/`exec`, `gc hook` — shell-command templates; pool failures log and continue, the OpenAPI hook fails closed. **Path/Source.** ✅ `DOCS/reference/trust-boundaries.md`, `REPO/CONTRIBUTING.md`
 
 </details>
 
@@ -272,11 +232,7 @@ failures log and continue; the OpenAPI-regen pre-commit hook fails closed.
 <details>
 <summary>◐ No sandbox on agent tool calls, stated non-goal; secret-stripping, CSRF bind</summary>
 
-**Ships.** No sandbox around agent tool calls — a deliberate non-goal (§7, §8). What binds by
-default: secret-shaped env vars stripped, a same-origin CSRF header on dashboard mutations, a
-non-loopback dashboard bind without `allow_mutations` is read-only, public-webhook grants need a
-content-digest match.
-**Path/Source.** ✅ `DOCS/reference/trust-boundaries.md`, `DOCS/reference/config.md`
+**Ships.** No sandbox around agent tool calls — a deliberate non-goal (§7, §8). What binds by default: secret-shaped env vars stripped, a same-origin CSRF header, non-loopback read-only binds, digest-matched webhook grants. **Path/Source.** ✅ `DOCS/reference/trust-boundaries.md`, `DOCS/reference/config.md`
 
 </details>
 
@@ -285,10 +241,7 @@ content-digest match.
 <details>
 <summary>◐ v2 control beads (<code>check</code>,<code>retry</code>,<code>fanout</code>,<code>drain</code>) gate steps on <code>needs</code> edges</summary>
 
-**Ships.** Formula compiler contracts (v1 inert-after-apply, v2 graph-native); v2 control beads gate
-each step on `needs` edges before it's visible to any agent; `gc sling` creates and routes a bead in
-one motion. No interactive per-action approval gate — starting work is dependency-gated config.
-**Path/Source.** ✅ `DOCS/reference/specs/formula-spec-v2.md`, `DOCS/guides/understanding-formulas.md`
+**Ships.** Formula compiler contracts (v1 inert-after-apply, v2 graph-native); v2 control beads gate each step on `needs` edges before it's visible; `gc sling` creates+routes a bead — no approval gate, only dependency-gated config. **Path/Source.** ✅ `DOCS/reference/specs/formula-spec-v2.md`, `DOCS/guides/understanding-formulas.md`
 
 </details>
 
@@ -296,10 +249,7 @@ one motion. No interactive per-action approval gate — starting work is depende
 <details>
 <summary>● <code>sling_query</code> stamps <code>gc.routed_to</code>; per-agent <code>scale_check</code> pool sizing</summary>
 
-**Ships.** `sling_query` stamps a bead with `gc.routed_to=<qualified-name>`; per-agent `scale_check`
-sizes a pool between min/max active sessions. Routing is config the operator writes — *"the
-orchestrator hardcodes zero roles."*
-**Path/Source.** ✅ `DOCS/reference/config.md`, `DOCS/getting-started/how-gas-city-works.md`
+**Ships.** `sling_query` stamps a bead with `gc.routed_to=<qualified-name>`; per-agent `scale_check` sizes a pool. Routing is config the operator writes — *"the orchestrator hardcodes zero roles."* **Path/Source.** ✅ `DOCS/reference/config.md`, `DOCS/getting-started/how-gas-city-works.md`
 
 </details>
 
@@ -307,9 +257,7 @@ orchestrator hardcodes zero roles."*
 <details>
 <summary>◐ No sub-agent delegation; composition happens by <b>importing packs</b></summary>
 
-**Ships.** No in-session sub-agent delegation — an agent *role* is a folder (`agents/<name>/`), and
-multi-agent composition happens by importing packs, not delegating within a turn.
-**Path/Source.** ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/guides/understanding-packs.md`
+**Ships.** No in-session sub-agent delegation — an agent *role* is a folder (`agents/<name>/`), and multi-agent composition happens by importing packs, not delegating within a turn. **Path/Source.** ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/guides/understanding-packs.md`
 
 </details>
 
@@ -317,22 +265,15 @@ multi-agent composition happens by importing packs, not delegating within a turn
 <details>
 <summary>● <b>Pack</b> <code>pack.toml</code> + city <code>city.toml</code>, scoped inheritance</summary>
 
-**Ships.** Two-file split: `pack.toml` (reusable definition) vs `city.toml` (this deployment) —
-"Pack config **is** the feature flag." Scoped inheritance ladder: agent → rig → workspace caps. No
-OS-level managed-settings/MDM channel found.
-**Path/Source.** ✅ `ENGDOCS/architecture/nine-concepts.md` §4, `DOCS/reference/config.md`
+**Ships.** Two-file split: `pack.toml` (reusable) vs `city.toml` (this deployment) — "Pack config **is** the feature flag." Scoped inheritance: agent → rig → workspace. No managed-settings/MDM channel. **Path/Source.** ✅ `ENGDOCS/architecture/nine-concepts.md` §4, `DOCS/reference/config.md`
 
 </details>
 
 #### 3e Standards
 <details>
-<summary>○ ⚠️ mark and detail disagree at the v1 read Generated schemas + OpenAPI 3.1 + a wire-typing refusal list exist, scoped narrowly</summary>
+<summary>○ Generated schemas + OpenAPI 3.1 + a wire-typing refusal list exist, scoped narrowly ⚠️ mark and detail disagree at the v1 read</summary>
 
-**Ships.** Auto-generated JSON Schemas for `city.toml`/`pack.toml`/events; an OpenAPI 3.1 contract from
-the same Go structs; formula/pack/service-protocol specs. A refusal list exists, scoped to
-wire-typing only (untyped proxy, HTTP, storage serialization, Go client, WebSocket). **The copied
-matrix mark is `○`**; this row's evidence argues for at least `◐` — flagged, not resolved.
-**Path/Source.** ✅ `DOCS/reference/schema/`, `ENGDOCS/architecture/invariants.md` §7
+**Ships.** Auto-generated JSON Schemas + an OpenAPI 3.1 contract from the same Go structs; formula/pack/service-protocol specs; a refusal list scoped to wire-typing only. **The copied matrix mark is `○`**; this row's evidence argues for at least `◐` — flagged, not resolved. **Path/Source.** ✅ `DOCS/reference/schema/`, `ENGDOCS/architecture/invariants.md` §7
 
 </details>
 
@@ -341,11 +282,7 @@ matrix mark is `○`**; this row's evidence argues for at least `◐` — flagge
 <details>
 <summary>● <b>Pack</b> bundles agents/formulas/orders/skills; <code>gascity-packs</code> registry</summary>
 
-**Ships.** **Skills** (authored at pack/role scope, symlinked into each provider's own skill
-directory — Claude Code, Codex, Gemini CLI, OpenCode confirmed); **Packs** are the travel unit
-(agents+formulas+orders+skills+commands+MCP); a public registry (`gascity-packs`) ships `gascity`,
-`gastown`, `cass`, `discord`, `github`, Slack variants.
-**Path/Source.** ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/guides/registry-showcase.md`
+**Ships.** **Skills** (authored at pack/role scope, symlinked into each provider's skill directory — Claude Code, Codex, Gemini CLI, OpenCode confirmed); **Packs** bundle agents+formulas+orders+skills; a public registry (`gascity-packs`) ships `gascity`, `gastown`, `cass`, `discord`, `github`, Slack. **Path/Source.** ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/guides/registry-showcase.md`
 
 </details>
 
@@ -353,10 +290,7 @@ directory — Claude Code, Codex, Gemini CLI, OpenCode confirmed); **Packs** are
 <details>
 <summary>◐ City-wide vs role-local scope; webhook visibility default-closed to <code>tenant</code></summary>
 
-**Ships.** Skill/agent scope is city-wide or role-local; rig- vs. city-scoped agent instantiation;
-webhook `visibility` default-closed to `tenant` unless digest-pinned `allow_public` grant exists. No
-human-facing RBAC — single-tier "trusted operator code."
-**Path/Source.** ✅ `DOCS/reference/config.md`, `DOCS/reference/trust-boundaries.md`
+**Ships.** Skill/agent scope is city-wide or role-local; rig- vs. city-scoped instantiation; webhook `visibility` default-closed to `tenant`. No human-facing RBAC — single-tier "trusted operator code." **Path/Source.** ✅ `DOCS/reference/config.md`, `DOCS/reference/trust-boundaries.md`
 
 </details>
 
@@ -365,10 +299,7 @@ human-facing RBAC — single-tier "trusted operator code."
 <details>
 <summary>◐ Per-agent session logs, <code>wake_mode</code>; Beads' <code>bd remember</code>/<code>bd prime</code> one layer down</summary>
 
-**Ships.** Per-agent session logs; `wake_mode=resume` reuses the provider's own session key across
-sleep/wake, `wake_mode=fresh` starts new ("the polecat pattern"). One layer down, **Beads** ships
-`bd remember`/`bd prime` and memory decay — via Gas City's Bead primitive, not Gas-City-specific.
-**Path/Source.** ✅ `DOCS/reference/config.md` (`wake_mode`), `BEADS/README.md`
+**Ships.** Per-agent session logs; `wake_mode=resume` reuses the provider's session key, `=fresh` starts new ("polecat pattern"). One layer down, **Beads** ships `bd remember`/`bd prime` + memory decay. **Path/Source.** ✅ `DOCS/reference/config.md` (`wake_mode`), `BEADS/README.md`
 
 </details>
 
@@ -376,10 +307,7 @@ sleep/wake, `wake_mode=fresh` starts new ("the polecat pattern"). One layer down
 <details>
 <summary>◐ The shared bead store itself — Dolt-backed, survives any agent's crash</summary>
 
-**Ships.** The shared bead store: Dolt-backed, survives any agent's crash or restart, and is what
-packs let a team "reuse... without copying files." Mail (a `message`-type bead) threads and persists
-across sessions that share no session — real, work-item-shaped, team memory.
-**Path/Source.** ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/guides/understanding-packs.md`
+**Ships.** The shared bead store: Dolt-backed, survives any agent's crash, and is what packs let a team "reuse... without copying files." Mail (a `message`-type bead) persists across sessions. **Path/Source.** ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/guides/understanding-packs.md`
 
 </details>
 
@@ -387,10 +315,7 @@ across sessions that share no session — real, work-item-shaped, team memory.
 <details>
 <summary>○ Nothing here — checked guides and reference indexes</summary>
 
-**Nothing here** — checked `docs/guides/index.md`, `docs/reference/index.md`, grepped `docs/` for
-"RAG," "embedding," "knowledge base," "retriev*"; no curated/cited-context feature distinct from
-Bead/mail/skill above.
-**Source.** ✅ (absence, checked 2026-09-03)
+**Nothing here** — checked guide/reference indexes, grepped `docs/` for "RAG," "embedding," "knowledge base," "retriev*"; nothing distinct from Bead/mail/skill above. **Source.** ✅ (absence, checked 2026-09-03)
 
 </details>
 
@@ -399,9 +324,7 @@ Bead/mail/skill above.
 <details>
 <summary>○ Work lands as commits/PRs; no "must not become" statement found</summary>
 
-**Nothing here** as a boundary statement — checked `DOCS/getting-started/`, `DOCS/guides/`. Work lands
-as commits/PRs against the registered rig's git repo.
-**Source.** ✅ (absence, checked 2026-09-03)
+**Nothing here** as a boundary statement — checked getting-started/guides. Work lands as commits/PRs against the registered rig's git repo. **Source.** ✅ (absence, checked 2026-09-03)
 
 </details>
 
@@ -409,10 +332,7 @@ as commits/PRs against the registered rig's git repo.
 <details>
 <summary>● tmux/subprocess/exec/k8s/herdr runtime backends; <code>gc supervisor</code> host process</summary>
 
-**Ships.** Runtime backends: tmux (default), subprocess, exec, Kubernetes, third-party `herdr`;
-Docker Compose install path; `gc supervisor` is the always-on host process serving every registered
-city; Dolt is the storage runtime.
-**Path/Source.** ✅ `DOCS/reference/herdr-provider.md`, `REPO/README.md`
+**Ships.** Runtime backends: tmux (default), subprocess, exec, Kubernetes, third-party `herdr`; Docker Compose install; `gc supervisor` is the always-on host process for every registered city. **Path/Source.** ✅ `DOCS/reference/herdr-provider.md`, `REPO/README.md`
 
 </details>
 
@@ -420,10 +340,7 @@ city; Dolt is the storage runtime.
 <details>
 <summary>◐ <code>gc rig add</code> registers a repo; namespace/scope per rig on one shared store</summary>
 
-**Ships.** `gc rig add <path>` registers an external git repo with the city; each rig gets its own
-bead namespace and agent scope — a city's rig list is the team's estate inventory, isolated by
-bead-ID prefix on one shared store rather than a separate database per repo.
-**Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`
+**Ships.** `gc rig add <path>` registers an external git repo; each rig gets its own bead namespace and agent scope — the rig list is the estate inventory, isolated by bead-ID prefix on one store. **Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`
 
 </details>
 
@@ -431,10 +348,7 @@ bead-ID prefix on one shared store rather than a separate database per repo.
 <details>
 <summary>◐ Strong self-delivery (CI, SBOM, attestations); thin agent-work delivery guidance</summary>
 
-**Ships.** Rich evidence for how Gas City ships itself: a pre-commit spec-regen hook, dozens of
-Actions workflows, releases with SHA-256 checksums, SBOMs and attestations. Thinner for shipping
-agent-produced work — no dedicated PR-automation guide; `gh` is an optional dependency only.
-**Path/Source.** ✅ `REPO/CONTRIBUTING.md`, `REPO/.github/workflows/`, `REPO/SECURITY.md`
+**Ships.** Rich self-delivery: a pre-commit spec-regen hook, dozens of Actions workflows, releases with SHA-256 checksums, SBOMs, attestations. Thinner for agent-produced work — no PR-automation guide. **Path/Source.** ✅ `REPO/CONTRIBUTING.md`, `REPO/.github/workflows/`, `REPO/SECURITY.md`
 
 </details>
 
@@ -443,9 +357,7 @@ agent-produced work — no dedicated PR-automation guide; `gh` is an optional de
 <details>
 <summary>● <b>Bead</b> <code>open</code>→<code>in_progress</code>→<code>closed</code>; <b>Convoy</b> groups related work</summary>
 
-**Ships.** The Bead itself, moving `open` → `in_progress` → `closed`; a Convoy is a container bead
-grouping related work; blocking `needs` edges order work "with no central scheduler."
-**Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`
+**Ships.** The Bead, moving `open` → `in_progress` → `closed`; a Convoy groups related work; `needs` edges order work "with no central scheduler." **Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`
 
 </details>
 
@@ -454,10 +366,7 @@ grouping related work; blocking `needs` edges order work "with no central schedu
 <details>
 <summary>○ Nothing here — only a <code>retry-eval</code> control-bead <i>kind</i>, not a quality gate</summary>
 
-**Nothing here** as a quality gate — checked `DOCS/guides/`, `DOCS/reference/`, tutorials index,
-grepped "eval," "benchmark," "judge," "rubric"; only the `retry-eval` control-bead *kind* (a retry
-mechanism) and `ScaleCheck`'s demand "evaluation" surfaced. Nothing gates output against a rubric.
-**Source.** ✅ (absence, checked 2026-09-03)
+**Nothing here** as a quality gate — grepped guides/reference/tutorials for "eval," "benchmark," "judge," "rubric"; only `retry-eval` (a retry mechanism) and `ScaleCheck`'s "evaluation" surfaced. **Source.** ✅ (absence, checked 2026-09-03)
 
 </details>
 
@@ -465,11 +374,7 @@ mechanism) and `ScaleCheck`'s demand "evaluation" surfaced. Nothing gates output
 <details>
 <summary>● Per-bead audit trail, per-session logs, city-wide event log, release attestations</summary>
 
-**Ships.** Per-bead audit trail (`bd show <id>`); per-session logs; a city-wide, append-only,
-sequenced event log; SBOM + GitHub attestations on Gas City's own releases (the tool's supply chain,
-not agent work). **This is the card's structured output** — the Bead every other primitive writes
-through.
-**Path/Source.** ✅ `BEADS/README.md`, `REPO/SECURITY.md`, `ENGDOCS/architecture/nine-concepts.md`
+**Ships.** Per-bead audit trail (`bd show <id>`); per-session logs; a city-wide sequenced event log; SBOM + GitHub attestations on Gas City's own releases. **This is the card's structured output.** **Path/Source.** ✅ `BEADS/README.md`, `REPO/SECURITY.md`, `ENGDOCS/architecture/nine-concepts.md`
 
 </details>
 
@@ -477,10 +382,7 @@ through.
 <details>
 <summary>● Event Bus (<code>events.Provider</code>); optional <code>gascity-otel</code> OpenTelemetry stack</summary>
 
-**Ships.** The Event Bus (`events.Provider`; storage `.gc/events.jsonl`) underlies `gc events`, the
-SSE API, and the dashboard's live view. A separate, optional repo (`gascity-otel`) adds an
-OpenTelemetry stack — not bundled.
-**Path/Source.** ✅ `DOCS/reference/events.md`, `gh api repos/gastownhall/gascity-otel`
+**Ships.** The Event Bus (`events.Provider`; `.gc/events.jsonl`) underlies `gc events`, the SSE API, the dashboard's live view. A separate optional repo (`gascity-otel`) adds OpenTelemetry — not bundled. **Path/Source.** ✅ `DOCS/reference/events.md`, `gh api repos/gastownhall/gascity-otel`
 
 </details>
 
@@ -488,11 +390,7 @@ OpenTelemetry stack — not bundled.
 <details>
 <summary>◐ (proposal) <code>usage-facts-v0.md</code> proposed; no shipped top-level cost command</summary>
 
-**Ships.** Nothing shipped. A design doc (*"Status: proposal, adversarially reviewed"*) specs a
-`UsageFact` record — tokens, wall-clock, list-price cost per run. The Gas Town→Gas City command map:
-*"`gt costs` → No matching top-level cost accounting command today."* Model spend is never
-intermediated by Gas City itself.
-**Path/Source.** ✅ `ENGDOCS/design/usage-facts-v0.md`, `DOCS/reference/gastown-command-map.md`
+**Ships.** Nothing shipped. A design doc (*"proposal, adversarially reviewed"*) specs a `UsageFact` record — tokens, wall-clock, cost per run. Command map: *"`gt costs` → no matching command today."* **Path/Source.** ✅ `ENGDOCS/design/usage-facts-v0.md`, `DOCS/reference/gastown-command-map.md`
 
 </details>
 
@@ -501,10 +399,7 @@ intermediated by Gas City itself.
 <details>
 <summary>○ Hand-authored skills only; no auto-capture pipeline found</summary>
 
-**Nothing here** as capture — checked capabilities guide, `BEADS/README.md`. Skills are hand-authored
-once and shared by scope — deliberate, human-curated, not an automatic capture pipeline. No mechanism
-promotes a finding into a skill without a human writing it.
-**Source.** ✅ checked `docs/guides/index.md`
+**Nothing here** as capture — checked capabilities guide, `BEADS/README.md`. Skills are hand-authored and shared by scope — human-curated; no mechanism promotes a finding without a human writing it. **Source.** ✅ checked `docs/guides/index.md`
 
 </details>
 
@@ -512,10 +407,7 @@ promotes a finding into a skill without a human writing it.
 <details>
 <summary>○ Nothing here; Gas Town's role ladder is a sibling-product example</summary>
 
-**Nothing here** — checked `CONTRIBUTING.md`, contributors index, guides index, grepped "retro,"
-"postmortem," "standup." Gas Town documents an Escalation role ladder, but framed as one optional
-example pack, not a Gas City mechanism (rule 8).
-**Source.** ✅ (absence, checked 2026-09-03)
+**Nothing here** — checked `CONTRIBUTING.md`, contributors/guides indexes, grepped "retro," "postmortem," "standup." Gas Town's Escalation ladder is one optional example pack (rule 8). **Source.** ✅ (absence, checked 2026-09-03)
 
 </details>
 
@@ -523,10 +415,7 @@ example pack, not a Gas City mechanism (rule 8).
 <details>
 <summary>● <b>Order</b> pairs a trigger with a Formula; health patrol ticks</summary>
 
-**Ships.** Orders pair a trigger (cooldown, cron, condition, event, manual) with a Formula to fire —
-"no human runs a verb." Health patrol is "one kind of order: each tick the orchestrator evaluates due
-triggers and fires them."
-**Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`, `ENGDOCS/architecture/health-patrol.md`
+**Ships.** Orders pair a trigger (cooldown, cron, condition, event, manual) with a Formula — "no human runs a verb." Health patrol is "one kind of order: each tick, due triggers fire." **Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`, `ENGDOCS/architecture/health-patrol.md`
 
 </details>
 
@@ -534,10 +423,7 @@ triggers and fires them."
 <details>
 <summary>◐ Changelog narrates fixes in prose; no formal defect ledger</summary>
 
-**Nothing here** as a dedicated mechanism — checked for "defect ledger," "postmortem," "blameless."
-`CHANGELOG.md` narrates bugs and fixes in prose — an incident record, not a formal ledger. Gas Town's
-Escalation ladder is the nearest analogue and is explicitly optional, not a Gas City primitive.
-**Source.** ✅ (checked 2026-09-03)
+**Nothing here** as a dedicated mechanism — checked "defect ledger," "postmortem," "blameless." `CHANGELOG.md` narrates bugs in prose — an incident record, not a ledger. Gas Town's ladder is optional. **Source.** ✅ (checked 2026-09-03)
 
 </details>
 
@@ -545,10 +431,7 @@ Escalation ladder is the nearest analogue and is explicitly optional, not a Gas 
 <details>
 <summary>◐ <code>gc agent add</code>/<code>gc init</code> scaffolding; vetted first-party pack registry</summary>
 
-**Ships.** `gc agent add` scaffolds a new agent; `gc init` scaffolds a runnable city; tutorials ship
-named starters (`mayor`, `reviewer`, `worker`); the first-party pack registry is vetted starting
-points. Raises the floor for getting started, not for output quality — no per-output guardrail found.
-**Path/Source.** ✅ `DOCS/reference/cli.md`, `DOCS/guides/registry-showcase.md`
+**Ships.** `gc agent add` scaffolds a new agent; `gc init` a runnable city; tutorials ship named starters; the first-party pack registry is vetted starting points — for getting started, not output quality. **Path/Source.** ✅ `DOCS/reference/cli.md`, `DOCS/guides/registry-showcase.md`
 
 </details>
 
@@ -556,9 +439,7 @@ points. Raises the floor for getting started, not for output quality — no per-
 <details>
 <summary>◐ Dashboard health view (system/tool/store/Dolt); <code>gc convoy</code> batch tracking</summary>
 
-**Ships.** Narrow but real: the dashboard's health view surfaces system, tool, per-rig store, and
-Dolt-trend health; `gc convoy` tracks a batch of related work as a unit.
-**Path/Source.** ✅ `DOCS/reference/cli.md`, `DOCS/getting-started/dashboard.md`
+**Ships.** Narrow but real: the dashboard's health view surfaces system/tool/store/Dolt-trend health; `gc convoy` tracks a batch of related work. **Path/Source.** ✅ `DOCS/reference/cli.md`, `DOCS/getting-started/dashboard.md`
 
 </details>
 
@@ -567,10 +448,7 @@ Dolt-trend health; `gc convoy` tracks a batch of related work as a unit.
 <details>
 <summary>● <b>Agent</b> folder is the roster entry; Gastown pack ships an example roster</summary>
 
-**Ships.** The Agent primitive *is* the roster entry (`agents/<name>/`); `gc session list` shows who's
-live. The Gastown pack ships an example seven-role roster (Mayor, Deacon, Witness, Refinery, Polecat,
-Crew, Dog), explicitly "an example operating model, not a type system."
-**Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`, `DOCS/getting-started/coming-from-gastown.md`
+**Ships.** The Agent primitive *is* the roster entry (`agents/<name>/`); `gc session list` shows who's live. The Gastown pack ships an example seven-role roster, "not a type system." **Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`, `DOCS/getting-started/coming-from-gastown.md`
 
 </details>
 
@@ -578,11 +456,7 @@ Crew, Dog), explicitly "an example operating model, not a type system."
 <details>
 <summary>◐ Config-level nesting exists; hosted identity refuses an org/tenant field</summary>
 
-**Ships.** Config nesting: agent → rig → workspace caps inherit downward. But the hosted identity
-layer refuses tenancy: *"There is no org or tenant field... the wire carries no tenancy identity."*
-Webhook `visibility: tenant` is a real enum value — "tenant" means different things on the config
-schema and the auth wire, a vocabulary seam (rule 3).
-**Path/Source.** ✅ `DOCS/reference/config.md`, `DOCS/reference/specs/service-protocol-v0.md`
+**Ships.** Config nesting: agent → rig → workspace inherit downward. But hosted identity refuses tenancy: *"no org or tenant field... no tenancy identity."* Webhook `visibility: tenant` still exists — a vocabulary seam (rule 3). **Path/Source.** ✅ `DOCS/reference/config.md`, `DOCS/reference/specs/service-protocol-v0.md`
 
 </details>
 
@@ -591,11 +465,7 @@ schema and the auth wire, a vocabulary seam (rule 3).
 <details>
 <summary>● <code>gc session attach</code> TUI, web dashboard, HTTP+SSE API, <code>gc</code>/<code>bd</code> CLIs</summary>
 
-**Ships.** `gc session attach` (interactive terminal, tmux-backed); a web dashboard (TypeScript SPA,
-reading the supervisor's typed API "so it reflects live state"); an HTTP+SSE API letting chat clients
-act as session participants; the `gc`/`bd` CLIs. Bead store + event bus is the one source of truth
-every surface projects from.
-**Path/Source.** ✅ `DOCS/getting-started/dashboard.md`, `DOCS/guides/connected-clients.md`
+**Ships.** `gc session attach` (tmux-backed TUI); a web dashboard (TypeScript SPA reading the supervisor's typed API); an HTTP+SSE API for chat clients; `gc`/`bd` CLIs. Bead store + event bus is the one source of truth. **Path/Source.** ✅ `DOCS/getting-started/dashboard.md`, `DOCS/guides/connected-clients.md`
 
 </details>
 
@@ -620,36 +490,15 @@ every surface projects from.
 | Website / docs | `docs.gascityhall.com` (Mintlify, rooted at `docs/`) ✅ |
 | What it says it is, verbatim | **"Orchestration-builder SDK for multi-agent coding workflows"**; README: **"Composable orchestration infrastructure for multi-agent coding workflows"** — extracting Gas Town's infrastructure into a toolkit with runtime providers, routing, formulas, orders, health patrol, city config ✅ |
 
-**Does state persist across sessions?** **Yes.** Every unit of work is a **bead**, Dolt-backed (or
-file store) under `.gc/`, queried live: *"Sessions come and go; the beads remain."* Events are a
-separate append-only `.gc/events.jsonl`. ✅ `ENGDOCS/architecture/nine-concepts.md`
+**Does state persist across sessions?** **Yes.** Every unit of work is a **bead**, Dolt-backed (or file store) under `.gc/`, queried live: *"Sessions come and go; the beads remain."* Events are a separate `.gc/events.jsonl`. ✅ `ENGDOCS/architecture/nine-concepts.md`
 
-**Does it serve more than one person? — per layer (rule 7).** Local CLI/dashboard: *"intended for
-local, single-operator use."* Many agents through the shared store: yes, no session-to-session link
-needed — the point of Mail and the Event Bus. The hosted Service Protocol v0 supports an account but
-pointedly not an org: *"There is no org or tenant field... the wire carries no tenancy identity."* ✅
-`DOCS/getting-started/dashboard.md`, `DOCS/reference/specs/service-protocol-v0.md`
+**Does it serve more than one person? — per layer (rule 7).** Local CLI/dashboard: *"intended for local, single-operator use."* Many agents via the shared store: yes — the point of Mail/Event Bus. The hosted Service Protocol v0 supports an account, pointedly not an org: *"no org or tenant field... no tenancy identity."* ✅ `DOCS/reference/specs/service-protocol-v0.md`
 
-**Does it bind mechanically, or only by prose?** **Mostly prose, by design.** *"Gas City intentionally
-runs operator-configured commands. Those commands are a feature, not a sandbox... treat [them] as
-trusted code with the same review expectations as shell scripts committed to the repository."* A few
-things do bind: secret-shaped env vars stripped, CSRF on dashboard mutations, non-loopback dashboard
-read-only without `allow_mutations`, digest-pinned public webhooks. None sandboxes the agent's own
-tool calls — that belongs to whichever coding-agent CLI Gas City drives. ✅ `DOCS/reference/trust-boundaries.md`
+**Does it bind mechanically, or only by prose?** **Mostly prose, by design.** *"Those commands are a feature, not a sandbox... treat [them] as trusted code with the same review expectations as shell scripts committed to the repository."* A few things bind: secret-stripping, CSRF, non-loopback read-only binds, digest-pinned webhooks — none sandboxes the agent's own tool calls (whichever CLI Gas City drives). ✅ `DOCS/reference/trust-boundaries.md`
 
-**Loop question.** Gas City runs a **controller/orchestrator loop** (`internal/dispatch`, health
-patrol, the session reconciler) ticking on its own schedule, reconciling "desired state to running
-state." It does not run the coding loop — it starts/stops/restarts sessions running external
-coding-agent CLIs, and never calls back directly: *"reads their progress from the bead store and
-event bus rather than being called back directly. The loop closes through shared state."* That is a
-**host**. The nested exception: skills are symlinked into each provider's own convention, and `gc
-hook` injects mail each turn through that provider's own hook mechanism — "install into a loop," in
-miniature, nested inside the host architecture. No adapter runs the reverse direction. ✅
-`ENGDOCS/architecture/nine-concepts.md`, `DOCS/getting-started/how-gas-city-works.md`
+**Loop question.** Gas City runs a **controller/orchestrator loop** (`internal/dispatch`, health patrol, the session reconciler), reconciling "desired state to running state." It does not run the coding loop — it starts/stops/restarts sessions running external CLIs, never calling back directly: *"reads progress from the bead store and event bus... closes through shared state."* That is a **host**. Nested exception: skills are symlinked into each provider's convention, and `gc hook` injects mail each turn — "install into a loop," nested inside the host. No adapter runs the reverse direction. ✅ `ENGDOCS/architecture/nine-concepts.md`
 
-**Altitude: Gateway/host** — many independent coding-agent sessions, coordinated through the shared
-bead store and event bus. **Altitude (nested): installs into the loop** — skills and `gc hook`, a
-narrower mechanism nested inside the host architecture (rule 7: both recorded, neither forced).
+**Altitude: Gateway/host** — many coding-agent sessions, coordinated through the shared store/event bus. **Altitude (nested): installs into the loop** — skills and `gc hook` (rule 7: both recorded).
 
 </details>
 
@@ -685,17 +534,9 @@ narrower mechanism nested inside the host architecture (rule 7: both recorded, n
 **`engdocs/design/usage-facts-v0.md`**
 > Status: **proposal, adversarially reviewed**
 
-**`docs/guides/understanding-formulas.md`**
-> Container dependencies have a v2 gap. Under v1 a step that `needs` a parent waits for all of that
-> parent's children; the v2 compiler creates no parent-child edges yet, so the dependency gates only
-> on the parent step.
-
 **`engdocs/architecture/invariants.md` §7**
 > What is out of scope: the `/svc/*` proxy; outbound HTTP; storage-layer (de)serialization; the
 > generated Go client as a Go SDK surface; WebSocket transport.
-
-**`CONTRIBUTING.md`**
-> Gas City is experimental software, but the repo is now structured for external contributors.
 
 </details>
 
@@ -706,31 +547,15 @@ narrower mechanism nested inside the host architecture (rule 7: both recorded, n
 
 **All primary sources accessed 2026-09-03; none re-read at the 2026-09-07 restructure.**
 
-**Primary — GitHub API.** `gh api repos/gastownhall/gascity`; `.../{gastown,beads}`; `orgs/gastownhall`
-and `public_members` (`[]`); `.../releases --paginate`, `.../tags`; `git/refs/tags/{edge,v1.4.1}`;
-`commits/main`; `.../contributors`; `search/code?q="Factory+Worker+Protocol"+org:gastownhall` (zero
-hits); `search/code?q="FWP"+org:gastownhall` (5 incidental lockfile hits); `repos/gastownhall/gascity-otel`.
+**Primary — GitHub API.** `gh api repos/gastownhall/gascity`; `.../{gastown,beads}`; `orgs/gastownhall` + `public_members` (`[]`); `.../releases --paginate`, `.../tags`; `git/refs/tags/{edge,v1.4.1}`; `commits/main`; `.../contributors`; `search/code?q="Factory+Worker+Protocol"` (zero hits); `search/code?q="FWP"` (5 incidental lockfile hits); `repos/gastownhall/gascity-otel`.
 
-**Primary — files**, cloned at `gascity` HEAD `4071143`: `README.md`, `CONTRIBUTING.md`,
-`SECURITY.md`, `CHANGELOG.md`, `LICENSE`; `docs/getting-started/*`; `docs/guides/*`;
-`docs/reference/*` incl. `specs/*`; `engdocs/architecture/*`, `engdocs/contributors/primitive-test.md`,
-`engdocs/design/usage-facts-v0.md`; `internal/bootstrap/packs/core/formulas/mol-review-quorum.toml`;
-`.github/workflows/` (listing); `gastown`/`beads`/`wasteland` READMEs; `docs/docs.json`.
+**Primary — files**, cloned at `gascity` HEAD `4071143`: `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`, `LICENSE`; `docs/{getting-started,guides,reference}/*` (incl. `specs/*`); `engdocs/architecture/*`, `engdocs/contributors/primitive-test.md`, `engdocs/design/usage-facts-v0.md`; `internal/bootstrap/packs/core/formulas/mol-review-quorum.toml`; `.github/workflows/` (listing); `gastown`/`beads`/`wasteland` READMEs; `docs/docs.json`.
 
-**Secondary (↪, not re-verified this run).** Two Gas City/Gas Town blog posts (sellsbrothers.com,
-steve-yegge.medium.com); yegge.ai/gastown; Maggie Appleton, "Gas Town's Agent Patterns"; Software
-Engineering Daily, "Gas Town, Beads, and the Rise of Agentic Development."
+**Secondary (↪).** Two Gas City/Gas Town blog posts (sellsbrothers.com, steve-yegge.medium.com); yegge.ai/gastown; Maggie Appleton, "Gas Town's Agent Patterns"; Software Engineering Daily.
 
-**Placement.** Short-profiles row: [`90-short-profiles.md`](../comparisons/systems/90-short-profiles.md)
-§1 · grid columns: [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and
-[`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md).
-**A `spectrums/positioning.md` row is not yet added** — out of this restructure's write manifest.
+**Placement.** Short-profiles: [`90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2, [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index: [`index.md`](../index.md). **A `spectrums/positioning.md` row is not yet added** — out of this restructure's write manifest.
 
-**Diagrams not redrawn.** Sixteen `.excalidraw` sources exist beyond `primitives.excalidraw`:
-`bead-lifecycle`, `convoy-tracks-membership`, `cooldown-vs-cron`, `coordination-through-store`,
-`formula-apply-pipeline`, `formula-drain-fanout`, `formula-v1-vs-v2`, `formula-whole-job`,
-`gastown-agents-by-scope`, `hand-rolled-to-city`, `import-binding-namespace`, `json-discover-validate`,
-`pack-loading`, `pancakes-dag`, `work-lifecycle`. Only the one nearest the loop question is redrawn.
+**Diagrams not redrawn.** Sixteen `.excalidraw` sources exist beyond `primitives.excalidraw` (bead-lifecycle, convoy-tracks-membership, cooldown-vs-cron, coordination-through-store, formula-apply-pipeline/drain-fanout/v1-vs-v2/whole-job, gastown-agents-by-scope, hand-rolled-to-city, import-binding-namespace, json-discover-validate, pack-loading, pancakes-dag, work-lifecycle) — only the one nearest the loop question is redrawn.
 
 </details>
 
@@ -739,24 +564,14 @@ Engineering Daily, "Gas Town, Beads, and the Rise of Agentic Development."
 <details>
 <summary>7 items</summary>
 
-- **`primitive-test.md` vs. `nine-concepts.md`'s characterization of it** (§5) — "Atomicity" (SDK
-  concurrency safety) is not the same test as the latter's paraphrase (primitive decomposability),
-  though it cites the former as source. Both primary, same repo, two readings. Count unaffected. ⚠️
-- **Whether Steve Yegge holds any formal maintainer role in `gastownhall`.** `public_members` is
-  empty; commit count is the only signal — top committer on `gastown`, lighter on `gascity`. ⚠️
-- **Whether Wasteland integrates with Gas City specifically**, vs. Gas Town. Its README says
-  "federation protocol for Gas Towns"; neither `wasteland`'s docs nor `gascity`'s code were opened. ⚠️
-- **Whether `mol-review-quorum.toml` matches a prior short profile's three-way Codex/Claude/Gemini
-  claim.** Read verbatim, it is two provider/model lanes plus a synthesis step, not three. ◐/⚠️
-- **The "Agent Protocol" deletion commit (`dd90ac0a`)**, quoted from `nine-concepts.md`, not
-  independently re-verified — the clone is `--depth 1`, no history beyond `main` HEAD. ◐
-- **`docs/reference/specs/identity-separator-contract-v1.md`** — surfaced in `docs.json`'s nav but
-  not opened; unclear if it bears on 10b Org or the Service Protocol's identity model. ⚠️
-- **The exact SVG connector endpoints for the primitives diagram** (§2) — reconstructed from the
-  docs page's prose caption, not raw SVG path coordinates. ⚠️
+- **`primitive-test.md` vs. `nine-concepts.md`'s characterization** (§5) — "Atomicity" isn't the same test as the latter's paraphrase. Count unaffected. ⚠️
+- **Whether Steve Yegge holds any formal maintainer role** — `public_members` empty; commit count (top on `gastown`, lighter on `gascity`) is the only signal. ⚠️
+- **Whether Wasteland integrates with Gas City specifically**, vs. Gas Town — its README says "federation protocol for Gas Towns"; neither codebase was opened. ⚠️
+- **Whether `mol-review-quorum.toml` matches a prior profile's three-way claim** — read verbatim it is two provider/model lanes plus synthesis, not three. ◐/⚠️
+- **The "Agent Protocol" deletion commit (`dd90ac0a`)**, quoted from `nine-concepts.md`, not independently re-verified — clone is `--depth 1`, no history beyond `main` HEAD. ◐
+- **`identity-separator-contract-v1.md`** — surfaced in `docs.json`'s nav but not opened; unclear if it bears on 10b Org or the identity model. ⚠️
+- **The exact SVG connector endpoints for the primitives diagram** (§2) — reconstructed from the docs page's prose caption, not raw path coordinates. ⚠️
 
-**A removal, not an unverified item.** A prior short profile named a "Factory Worker Protocol"/"FWP"
-as a seventh primitive. `gh api search/code` found zero hits for the full name and only incidental
-lockfile matches for "FWP." It appears nowhere on this page outside this note (`ISSUES.md` ISSUE-004).
+**A removal, not an unverified item.** A prior short profile named a "Factory Worker Protocol"/"FWP" as a seventh primitive; `gh api search/code` found zero hits for the name, only incidental lockfile matches for "FWP." It appears nowhere on this page outside this note (`ISSUES.md` ISSUE-004).
 
 </details>

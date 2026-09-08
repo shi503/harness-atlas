@@ -1,0 +1,197 @@
+# Gas City — spectrum positions and DX scorecard.
+#
+# Scored against the profile as restructured to Template v2 on 2026-09-07 from
+# the source read of 2026-09-03. No source was opened at scoring time (R3).
+# Every `evidence` entry points at a section or component id of that profile.
+
+# ---------------------------------------------------------------- R11 verification
+verification:
+  derived_from:
+    - "Gas City's own docs (docs/, engdocs/) — read 2026-09-03 via the profile"
+    - "repo README, CHANGELOG, LICENSE and release/tag history — gastownhall/gascity"
+    - "the Gas Town→Gas City command map and the usage-facts-v0 design doc, quoted verbatim in §8"
+  grounded_against:
+    - "§4 component matrix — 33 rows, ● 13 · ◐ 14 · ○ 6, copied from the 04 grid column"
+    - "§5 primitives — 6 named units + 5 supporting, 5-7 healthy verdict"
+    - "§7 identity table — MIT licence, 1,219 stars, repo created 2026-02-22, v1.4.1"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    Gas City's altitude is dual by the vendor's own account — a host that also installs into
+    each provider's own skill/hook conventions — and axis IV carries both values rather than a
+    forced single position (skill rule 7). One disagreement is recorded rather than resolved:
+    the copied §4 matrix mark for 3e Standards is `○`, but this profile's own detail row
+    documents generated schemas, an OpenAPI 3.1 contract and a scoped refusal list that argue
+    for at least `◐` — flagged in §6, not re-derived, per the restructure rule. No score below
+    depends on that one cell.
+
+spectrums:
+  schema_version: 2
+  harness: gas-city
+  profile: content/gas-city.md
+  profile_read: "2026-09-03"      # the source read; the restructure added no facts
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  positions:
+
+    - id: operator-scale
+      value: -1
+      mark: direct
+      evidence: ["§7 · serves more than one person", "10b", "6c", "3d"]
+      because: "Local CLI/dashboard is stated single-operator; the shared bead store lets many agents coordinate, and config nests agent→rig→workspace, but the hosted layer refuses tenancy."
+      gap: "No human-facing multi-user model exists anywhere in the product; a future read confirming the account layer stays account-only, never org-shaped, would move this toward -2."
+
+    - id: state-durability
+      value: 3
+      mark: direct
+      evidence: ["5b", "7a", "8b", "§7 · does state persist"]
+      because: "Dolt-backed bead store any authorized session can resume, query and join — the +3 anchor's own example (beads) is Gas City's own substrate."
+
+    - id: binding-force
+      value: -2
+      mark: direct
+      evidence: ["2c", "§7 · binds mechanically or only by prose", "4b"]
+      because: "Stated non-goal for agent tool calls — 'a feature, not a sandbox' — with a few things that do bind by default (secret-stripping, CSRF, digest-pinned webhooks)."
+      split: "Default for agent tool calls is -3 — no sandbox, by explicit design. A handful of dashboard/webhook mechanisms bind at 0. Scored between; neither half touches what the model itself can do."
+
+    - id: loop-ownership
+      value: 0
+      dual: -3
+      mark: direct
+      evidence: ["§7 · loop question", "2a", "0a"]
+      because: "Hosts many independent coding-agent CLI sessions through shared state (0) and installs into each one's own skill/hook conventions (-3) — skill rule 7 requires both, not a forced single value."
+      dual_because: "Skills are symlinked into each provider's own skill directory and `gc hook` injects mail each turn through that provider's own hook mechanism — a genuine, narrower install-into-a-loop mechanism nested inside the host architecture."
+
+    - id: substrate-portability
+      value: 2
+      mark: direct
+      evidence: ["0a", "2a", "§5"]
+      because: "Fifteen named provider CLIs via a config-only `provider` field, but MCP is catalog-only ('list-only today... you wire the servers yourself') rather than a managed client."
+      split: "Model/harness portability is close to +3 — a config edit moves you. Protocol portability is held down by the unmanaged MCP catalog. Scored +2 on the pair."
+
+    - id: primitive-discipline
+      value: 0
+      mark: direct
+      evidence: ["§5 count and verdict"]
+      because: "Six named primitives plus five supporting objects — the 5-7 healthy band, with a documented instance of a primitive removed rather than accreted."
+
+    - id: control-posture
+      value: 2
+      mark: direct
+      evidence: ["3a", "9c", "2c", "§7 · binds mechanically or only by prose"]
+      because: "No interactive per-action approval gate: orders fire on triggers with no human running a verb, and health patrol ticks unattended — bounded only by dependency-gated config, not an enforced spend or blast-radius limit."
+
+    - id: proof-ceremony
+      value: 2
+      mark: direct
+      evidence: ["8b", "8a", "7a"]
+      because: "Every bead carries an audit trail and moves through explicit states, backed by a city-wide sequenced event log — strong receipts, short of a mandatory per-unit validation gate (evals are dev-facing, not a ship gate)."
+
+    - id: improvement-loop
+      value: 0
+      mark: direct
+      evidence: ["9a", "4a", "9d"]
+      because: "No capture of a session's finding — skills are entirely hand-authored — against a real, shareable promotion path (a pack, once written, travels through the registry)."
+      split: "Capture is close to -3; the authoring-to-pack promotion path is a real +2/+3 mechanism once a human has written the skill. Scored 0 on the pair, matching the axis's own question: nothing notices a lesson happened."
+
+    - id: cost-visibility
+      value: -3
+      mark: direct
+      evidence: ["8d", "8b", "8c"]
+      because: "Cost accounting is a reviewed proposal (`usage-facts-v0.md`), not a shipped mechanism; the Gas Town→Gas City command map states plainly there is no top-level cost command today."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  probation:
+
+    - id: surface-breadth
+      value: 1
+      mark: direct
+      evidence: ["11a", "6b"]
+      because: "TUI, web dashboard, HTTP+SSE API and two CLIs, all projecting from one source of truth (the bead store plus event bus); no IDE surface found."
+
+    - id: routing-determinism
+      value: 0
+      mark: direct
+      evidence: ["3b"]
+      because: "`sling_query` and `scale_check` are operator-written config, not a model decision and not an automatic resolver — the same third pole Pi's read named."
+
+    - id: knowledge-depth
+      value: -3
+      mark: direct
+      evidence: ["5c"]
+      because: "No RAG, embeddings or wiki of any kind — checked and confirmed absent at the 2026-09-03 read."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # The revised seven (ruling `2026-09-07-dx-revision`). Authored, never computed (R8).
+  scorecard:
+
+    - id: org-scale
+      dx: 1
+      value: -1
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: -1"]
+        profile: ["§7 Q2", "10b", "6c", "3d"]
+      because: "Pass-through of axis I. Single-operator dashboard, a shared work store for agents, and a hosted account layer that pointedly refuses an org concept."
+
+    - id: weight-class
+      dx: 2
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["proof-ceremony: +2 — direct", "primitive-discipline: 0 — BULK ONLY, verdict discarded"]
+        profile: ["§5 count and verdict", "§1 Structured output", "§3 Workflows", "8b", "8a"]
+      because: "Real structure — dependency-gated formulas, a per-bead audit trail — held off heavier by no rubric-based ship gate; evals are dev-facing only."
+
+    - id: surfaces-extendability
+      dx: 3
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: +1 (probation)"]
+        profile: ["2b — hooks/lifecycle events", "4a — pack registry", "2a", "6b", "11a", "8c"]
+        note: "Scored above its surface-breadth input. The axis reads surfaces alone; this dimension also reads hooks and packages, where Gas City is stronger — a public first-party registry and five runtime backends."
+      because: "A genuine platform on the extension side — hooks, packs, a registry, five execution environments — held off +3 by thin agent-work delivery tooling and an unbundled telemetry pipe."
+
+    - id: domain-specialization
+      dx: 4
+      value: 0
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 · what it says it is", "Genre row (04-harness-alignment §1)", "§3 Workflows", "§5"]
+      because: "Names 'multi-agent coding workflows' in its own description, but the six primitives (Agent, Bead, Formula, Rig, Pack, Event) are domain-agnostic orchestration concepts — positioned toward coding, not built exclusively for it."
+
+    - id: ecosystem
+      dx: 5
+      value: -1
+      grades: true
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars 1,219", "§7 Repo created 2026-02-22", "§7 Latest v1.4.1", "4a — gascity-packs registry"]
+      because: "Modest adoption next to its own sibling products (Gas Town 17,921 stars, Beads 26,863) and a repo under seven months old at this read; a real first-party pack registry exists, but no adoption count was found for it."
+      gap: "The gascity-packs registry's size (distinct from Pi's stated 5,618) was not captured at this read; a count would firm this position in either direction."
+
+    - id: ownership
+      dx: 6
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: +2"]
+        profile: ["§7 License — MIT", "§7 Install", "0a", "6b"]
+      because: "MIT-licensed, source-buildable, fifteen pluggable provider CLIs and five runtime backends — real openness, without a stated stay-MIT or no-CLA governance promise like Pi's."
+
+    - id: cost-controls
+      dx: 7
+      value: -2
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: -3 — the observability third", "routing-determinism: 0 (probation) — the routing third"]
+        profile: ["8d", "8c", "8b", "3b"]
+      because: "Cost accounting is an unshipped proposal and spend is never intermediated by Gas City itself; config-driven pool sizing is the only thing resembling routing to pull on."
