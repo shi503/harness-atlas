@@ -317,3 +317,35 @@ withdrawn. **Nothing needs trimming.**
 are concurrently writing measures a moment, not a result. Byte counts confirm it — all seven profiles
 sit between 45 KB and 54 KB, within 20% of each other, so no profile was ever an outlier in substance.
 Audit after the writers stop.
+
+---
+
+## ISSUE-016 — `git add -A` during a fan-out swept half-written agent files into an unrelated commit
+
+**Severity:** WARN · **Found:** 2026-09-07, reported by the LoomWarp feature-lead during the W8b fan-out · **Assigned:** closed by this note; the rule below is the fix
+
+Commit `1b29f7a`, whose message is *"withdraw the Codex/Grok trim assignment — it was a mid-flight
+measurement"*, actually contains five files: the intended `fractal/ISSUES.md` change, **plus
+`content/gas-city.md`, `content/grok.md`, `content/loomwarp.md` and a whole new
+`spectrums/positions/loomwarp.yaml`** — 281 insertions the message does not mention. All four were
+being written by feature-leads at that moment.
+
+**Cause.** The architect ran `git add -A` while eight agents shared one uninsulated working tree. The
+agents behaved correctly: none of them ran `git add` or `git commit`, exactly as instructed. The
+architect's own staging was the only thing that touched their files.
+
+**Consequences, in order of seriousness.** A commit message that does not describe its diff is a
+corrupted record, and this repo's whole bar is *"links resolve and git is clean"* — a clean tree that
+was made clean by capturing someone else's unfinished work is not the property that rule is asking
+for. Two profiles were captured mid-edit, so the snapshot in that commit is of files in a state no
+one intended to publish; the LoomWarp lead's subsequent corrections (a joined-frontmatter bug and
+Ships/Path/Source lines that had been collapsed) landed after it.
+
+**The rule, and it is narrow enough to keep.** **While any agent is writing, stage by explicit path,
+never `-A`.** The architect commits only files it wrote itself, and commits an agent's output only
+after that agent has reported. Nothing else about the fan-out design was wrong: per-harness file
+manifests kept the *agents* from colliding, and they did not collide. The collision was between the
+architect and the agents, which the manifests never covered.
+
+**Not rewritten.** `1b29f7a` stands, per *archive by ruling, never by deletion*. This note is the
+correction; the history keeps the mistake.
