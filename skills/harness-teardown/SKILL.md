@@ -207,7 +207,7 @@ so every anchor is stable. Budgets in brackets; **frontmatter through §5 ≤ 27
 re-cut. The profiles did not get worse; the ruler did.* A
 harness that cannot fit links out to `content/<name>/`; it does not grow.
 
-### Frontmatter [≤ 11]
+### Frontmatter [≤ 22]
 
 ```yaml
 ---
@@ -221,8 +221,23 @@ owner: <who ran the skill>
 source: "<repo> @ <tag> (<sha>) · <docs root> · read <YYYY-MM-DD>"
 provenance: OBSERVED
 template: v2
+verification:
+  derived_from: ["<the vendor's docs, repo, release notes and product copy>"]
+  grounded_against: ["<what was opened directly at write time>"]
+  drafted_by: "<exact model id, captured at write time — or a person's initials>"
+  drafted_on: "<YYYY-MM-DD>"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: ~
 ---
 ```
+
+**`verification:` is the corpus's drafted-until-verified block, and a profile carries it for the same
+reason a position does: a reader cannot tell an interpretation from a measurement unless the page says
+which it is.** `drafted_by` is **captured, never assumed** — the model actually running, at the moment
+of writing. A backfilled value that was never captured says so in `note:`. `verified: false` renders
+the drafted banner in §1a; only a human review pass flips it.
 
 ### H1 and the thesis [3]
 

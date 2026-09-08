@@ -109,6 +109,15 @@ age, not a re-render, not a second model.
 **Absence of verification is recorded, never inferred.** A card with no `verification:` block at all is
 malformed, not verified. This is the repo's standing rule applied to the sheet's own provenance.
 
+> **Scope extended 2026-09-08 — this block is no longer the sheet's alone.** Ruling
+> [`2026-09-08-authorship-provenance`](../RULING-2026-09-08-authorship-provenance.md) carries
+> `verification:` to **every authored analysis in the corpus**: the profiles at `content/*.md` and the
+> deep-read folders at `content/<name>/`, which previously recorded a read date but never who read it
+> or on what. The fields and the semantics are unchanged — only R11's reach. Two clarifications came
+> with it: `drafted_by` is **captured at write time, never assumed**, and where a value was backfilled
+> onto a file whose author was never recorded, `note:` says it is an attestation rather than a
+> capture.
+
 ---
 
 ## 2. The schema
