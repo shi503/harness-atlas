@@ -72,6 +72,22 @@ the SaaS, the data systems, the execution environments — has never had a home 
 | **HumanLayer** | The most concrete peer instance, and it is four files: `rpi-coordination-template` grants `permissions.additionalDirectories: ["../repo1", "../repo2"]` and its `CLAUDE.md` *lists the repos and their descriptions*. **A declared inventory of two entries, with descriptions and no owners** — and its own README retires it into the product's Workspaces feature | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5 |
 | **LoomWarp** | `registry/repositories.yaml` with a schema — built, two repos, one of them a private submodule that blocks a clean clone. **That is the Estate row of the inventory and nothing else**: no SaaS, no data systems, no execution environments, no auth model | [`loomwarp.md`](../content/loomwarp.md#1a-environment) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 0 · ◐ 9 · ○ 1** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#1a-environment) | ◐ | `additionalDirectories`/`--add-dir` + sandbox domain allowlist — reach configured, not a declared systems inventory |
+| [Codex](../content/codex.md#1a-environment) | ◐ | Local shell/filesystem under OS sandbox; network proxy; `exec-server` remote mode — no declared inventory |
+| [FRACTAL](../content/fractal.md#1a-environment) | ◐ | Local shell/filesystem via the host harness; no environment manifest |
+| [Gas City](../content/gas-city.md#1a-environment) | ◐ | Shell, rig filesystem, HTTP+SSE API, GitHub, k8s, Dolt — no declared inventory |
+| [Grok](../content/grok.md#1a-environment) | ◐ | Local shell + FS (Build); cloud VM (Bot); no declared inventory |
+| [Hermes](../content/hermes.md#1a-environment) | ◐ | Seven terminal backends declare where shell runs; no systems inventory |
+| [LoomWarp](../content/loomwarp.md#1a-environment) | ◐ | Shell, filesystem, git, GitHub; no declared inventory beyond a two-repo registry |
+| [OpenClaw](../content/openclaw.md#1a-environment) | ◐ | Shell/filesystem/browser/network tools; `tools.exec.host` declares where, not an inventory |
+| [OpenCode](../content/opencode.md#1a-environment) | ◐ | Local shell/filesystem/web tools; `references` mounts dirs; no sandbox shipped |
+| [Pi](../content/pi.md#1a-environment) | ○ | Local shell and filesystem at the launching user's permissions; no declared inventory |
+
 **Horizon:** `bet` — `11-architecture.md` §5.1 — *"Nothing in `F0`–`F11` holds a declared inventory of systems the team works across."* No peer declares the environment before the call. Said out loud: this is ours and uncorroborated
 
 **The consequence.** A harness that learns what exists by trying to touch it can act, and cannot plan.

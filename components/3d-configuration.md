@@ -85,6 +85,22 @@ component's. Beyond Context Files, Skills, Subagents, Rules and Settings, *"no o
 | **HumanLayer** | The only peer that ships a **discipline for the surface** rather than more surface: the `improve-claude-md` skill states the mechanism — *"the more content that isn't applicable to the current task, the more likely Claude is to ignore everything"* — and the rule, *"if it's relevant to 90%+ of tasks, leave it bare. If it's relevant to a specific kind of work, wrap it"* | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5 |
 | **LoomWarp** | Agent definitions and a settings file, and **nothing on most of the other mechanisms** — no skills directory, no commands, no hooks, no rules. A configuration surface adopted at whatever its default was | [`loomwarp.md`](../content/loomwarp.md#3d-configuration) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 8 · ◐ 2 · ○ 0** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#3d-configuration) | ● | [**Instruction file**](../content/claude-code.md#5-primitives) (`CLAUDE.md`) load order + settings-layer precedence + managed policy |
+| [Codex](../content/codex.md#3d-configuration) | ● | [**AGENTS.md**](../content/codex.md#5-primitives) + config.toml at 5+ scopes; `requirements.toml` floor |
+| [FRACTAL](../content/fractal.md#3d-configuration) | ◐ | BLUEPRINT YAML + project `CLAUDE.md`; R has no BLUEPRINT schema |
+| [Gas City](../content/gas-city.md#3d-configuration) | ● | [**Pack**](../content/gas-city.md#5-primitives) `pack.toml` + city `city.toml`, scoped inheritance |
+| [Grok](../content/grok.md#3d-configuration) | ● | Three config files — user · fleet · signed pin, different authors |
+| [Hermes](../content/hermes.md#3d-configuration) | ● | [**Context file**](../content/hermes.md#5-primitives) + `config.yaml` / managed `/etc/hermes/` precedence |
+| [LoomWarp](../content/loomwarp.md#3d-configuration) | ◐ | BLUEPRINT YAML, router-read vs. dispatch-only fields; no managed-settings layer |
+| [OpenClaw](../content/openclaw.md#3d-configuration) | ● | Strict-schema config + [**Workspace bootstrap files**](../content/openclaw.md#5-primitives), two-bucket precedence |
+| [OpenCode](../content/opencode.md#3d-configuration) | ● | [**Rules**](../content/opencode.md#5-primitives) + nine-rung config ladder to managed settings/MDM |
+| [Pi](../content/pi.md#3d-configuration) | ● | [**Context file**](../content/pi.md#5-primitives) + [**Settings**](../content/pi.md#5-primitives) with project-over-global merge |
+
 **Horizon:** `shipped` — `07-verified-inventories.md` §1 — eight configuration mechanisms across five tools and 2,853 repositories (Galster et al., arXiv:2602.14690v5); Context Files at 90.6% adoption, Skills in all five tools
 
 **The consequence.** A team that has not chosen its configuration surface has still chosen one — the

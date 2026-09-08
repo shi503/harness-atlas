@@ -82,6 +82,22 @@ one**, and anything this file can only say by borrowing is evidence against its 
 | **HumanLayer** | The strongest published **argument that this loop cannot close**, from the nearest competitor — the impossibility claim itself is quoted and answered at [`8b`](./8b-evidence.md). What belongs here is its **response**: it does not build the circuit, it **routes around it**, moving humans upstream to research and plan where a mistake is cheap to catch and accepting that retroactive attribution is unavailable. **That is the cheaper answer, and it is the one this bet has to beat** | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §2, §10 |
 | **LoomWarp** | `○` on every edge, honestly. Four of the five nodes are unbuilt, so the wiring has nothing to connect — **which makes this the one row where its own grade carries no information yet**, and recording that is worth more than a number | [`loomwarp.md`](../content/loomwarp.md#9d-anti-fragile-lifecycle) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 2 · ◐ 7 · ○ 1** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#9d-anti-fragile-lifecycle) | ○ |  |
+| [Codex](../content/codex.md#9d-anti-fragile-lifecycle) | ◐ | Leased retry on memory jobs; compaction hooks; resumable `response_id` |
+| [FRACTAL](../content/fractal.md#9d-anti-fragile-lifecycle) | ● | [**ISSUES.md**](../content/fractal.md#5-primitives) — append-only defect ledger, OPEN→resolved |
+| [Gas City](../content/gas-city.md#9d-anti-fragile-lifecycle) | ◐ | Changelog narrates fixes in prose; no formal defect ledger |
+| [Grok](../content/grok.md#9d-anti-fragile-lifecycle) | ◐ | Resume/fork/rewind, doom-loop resample; VM recover/reset |
+| [Hermes](../content/hermes.md#9d-anti-fragile-lifecycle) | ◐ | Fallback chains, s6 auto-restart, checkpoints/rollback; no defect ledger |
+| [LoomWarp](../content/loomwarp.md#9d-anti-fragile-lifecycle) | ● | [**Defect ledger**](../content/loomwarp.md#5-primitives) — `ISSUES.md`, eight dated entries with required fix |
+| [OpenClaw](../content/openclaw.md#9d-anti-fragile-lifecycle) | ◐ | Restart recovery + failover + `doctor --fix`; no defect ledger |
+| [OpenCode](../content/opencode.md#9d-anti-fragile-lifecycle) | ◐ | Resume/fork/undo, `doom_loop` guard, staged migrations; no defect ledger |
+| [Pi](../content/pi.md#9d-anti-fragile-lifecycle) | ◐ | Retry budgets, auto-compaction recovery, staged `pi update` with rollback |
+
 **Horizon:** `bet` — ours, uncorroborated. No peer ships a closed improvement loop; **LangSmith Engine** is the nearest — it clusters traces into issues, writes fixes, opens PRs, and builds a trace→fix→eval loop — and it **proposes** rather than promotes: a human approves at every decision point (langchain.com/langsmith/engine, verified 2026-09-01; the teardown `systems/langchain-deepagents.md` predates Engine coverage — §8 records the absence of the autonomous claim)
 
 **The consequence.** Until some system meets that condition, **every team in this landscape improves

@@ -68,6 +68,22 @@ the work about the code is visible, and the two disagree constantly.
 | **HumanLayer** | The sharpest **shared** surface in the corpus and it is sold as one — *"The Multiplayer Coding Agent Workspace"*, seated and priced, with sessions and artifacts as product primitives. Its human contact reaches Slack, email, CLI and web, and `resolved` exists as a state precisely because **a control plane never owns every channel** | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §1, §6, §7 |
 | **LoomWarp** | The **SoT decision made and codified** — markdown plans in the repo, flowing outward as views — which is one of only two consequential decisions this system forces anyone to take. ⚠️ And nothing else in the row: no channel, no project board, no communication surface, all three recorded `○` | [`loomwarp.md`](../content/loomwarp.md#11a-surfaces) · [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 7 · ◐ 3 · ○ 0** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#11a-surfaces) | ● | CLI, VS Code, JetBrains, Desktop, web, Slack — *"the same underlying Claude Code engine"* |
+| [Codex](../content/codex.md#11a-surfaces) | ● | CLI/TUI, app-server embedding several IDEs, desktop app, Codex Web, SDK, MCP |
+| [FRACTAL](../content/fractal.md#11a-surfaces) | ◐ | CLI/IDE session + HANDOFF/PULSE markdown; no dashboard or web UI |
+| [Gas City](../content/gas-city.md#11a-surfaces) | ● | `gc session attach` TUI, web dashboard, HTTP+SSE API, `gc`/`bd` CLIs |
+| [Grok](../content/grok.md#11a-surfaces) | ● | TUI + ACP into 4 editors (Build); desktop + iOS apps (Bot) |
+| [Hermes](../content/hermes.md#11a-surfaces) | ● | CLI/TUI/desktop/dashboard/API/ACP/MCP/A2A/voice + 35-platform gateway |
+| [LoomWarp](../content/loomwarp.md#11a-surfaces) | ◐ | CLI only — headless dispatch or a human-run second window; markdown is the record |
+| [OpenClaw](../content/openclaw.md#11a-surfaces) | ● | CLI/TUI/Control UI/mobile/~30 channels/RPC/HTTP/MCP; no IDE |
+| [OpenCode](../content/opencode.md#11a-surfaces) | ● | TUI, desktop, web, server, SDK, IDE ext, ACP, GitHub/GitLab, Slack |
+| [Pi](../content/pi.md#11a-surfaces) | ◐ | TUI · print · JSON · RPC · SDK · experimental remote protocol; no IDE shipped |
+
 **Horizon:** `emerging` — `03-jtbd.md` §2 `J11` *"Who"* — four peers, four names: QM **rooms**, Claude Tag *"one shared Claude per channel"*, Superconductor *"every agent session shared and addressable"*, SageOx *"multiplayer by default"*. `multiplayer` 6, narrow and consistently meaning concurrent humans
 
 **The consequence.** This is the layer a team sees first and builds last, and the failure is not that

@@ -61,6 +61,22 @@ nobody can replay. It is not `8d`, which reads the same stream for **cost** rath
 | **HumanLayer** | The one architecture in which this row costs nothing. `fold`'s session model — enumerated at [`3c`](./3c-composition.md), where it is an assembly choice — has a consequence that belongs here: a session that **is** a log folded into state **makes reconstruction free rather than instrumented.** ⚠️ And its own teardown notes the system does not currently use it that way, which is a shipped capability nobody has pointed at the problem | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §6 |
 | **LoomWarp** | `◐` — a structured event stream exists and the agent tree does not. Eight events, no schema validation, and no parent/child keys, so a multi-tier dispatch cannot be reassembled from what it emitted. **The tier structure is the thing it has and the thing the trace cannot show** | [`loomwarp.md`](../content/loomwarp.md#8c-observability) · [`fractal.md`](../content/fractal.md#8c-observability) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 6 · ◐ 3 · ○ 1** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#8c-observability) | ● | OTel metrics/events + beta distributed traces, `agent_id`/`workflow.run_id` |
+| [Codex](../content/codex.md#8c-observability) | ● | `codex-otel` OTLP traces/logs/metrics; `SessionTelemetry`; `analytics.enabled` |
+| [FRACTAL](../content/fractal.md#8c-observability) | ○ | Nothing here — no event log, span, or metrics object |
+| [Gas City](../content/gas-city.md#8c-observability) | ● | Event Bus (`events.Provider`); optional `gascity-otel` OpenTelemetry stack |
+| [Grok](../content/grok.md#8c-observability) | ● | External OTEL (alpha, content-free by default) + dashboard usage |
+| [Hermes](../content/hermes.md#8c-observability) | ● | OTLP gateway plane, *"content-free by construction"*; Langfuse plugin |
+| [LoomWarp](../content/loomwarp.md#8c-observability) | ◐ | `events.jsonl`, 13 lines, three types; no schema file anywhere |
+| [OpenClaw](../content/openclaw.md#8c-observability) | ● | OTel spans + Prometheus; no telemetry unless opted in |
+| [OpenCode](../content/opencode.md#8c-observability) | ◐ | OpenTelemetry in source, undocumented; logs; SSE `/event` stream |
+| [Pi](../content/pi.md#8c-observability) | ◐ | `pi-telemetry` vendor-neutral contracts — **no exporter shipped** |
+
 **Horizon:** `shipped` — `03-jtbd.md` §2 `J8` *"Who"* and *"Corpus"* — `trace` 65 · `audit` 39; Claude Code ships OTel metrics, events and spans, Gas City ships the Event Stream
 
 **The consequence.** This is the most-shipped row in Trust and the one teams most often adopt without

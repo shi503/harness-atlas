@@ -66,6 +66,22 @@ authoring a standard and retiring its competitor are different maturities on the
 | **HumanLayer** | The corpus's one natural experiment in what a floor survives: when the multi-repo orchestration was absorbed into the product, the canon it carried outlived the machinery around it — **the survival result itself is [`3e`](./3e-standards.md)'s**, and what it demonstrates *here* is that a floor and the system enforcing it can be retired independently, which is the condition a ratchet has to operate in | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5 |
 | **LoomWarp** | `○`, and the gap is precisely the compounding half of its strongest row. The standards tier is real; **the mechanism that feeds it is not** — named review finding-classes that any review may append to and that promote into canon once hardened is the half of that row the prior art had and LoomWarp does not | [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 — *Reading the three rows that matter* |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 0 · ◐ 10 · ○ 0** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#9e-raise-the-floor) | ◐ | `/doctor`, `/init`, curated official plugin marketplace |
+| [Codex](../content/codex.md#9e-raise-the-floor) | ◐ | Managed-config fallback to a compatible value; no `doctor`/init wizard |
+| [FRACTAL](../content/fractal.md#9e-raise-the-floor) | ◐ | PRD/eval templates + agent-overlay mechanism; no retirement path |
+| [Gas City](../content/gas-city.md#9e-raise-the-floor) | ◐ | `gc agent add`/`gc init` scaffolding; vetted first-party pack registry |
+| [Grok](../content/grok.md#9e-raise-the-floor) | ◐ | `grok inspect`/`doctor`, Claude-settings import; onboarding wizard |
+| [Hermes](../content/hermes.md#9e-raise-the-floor) | ◐ | `hermes setup`/`doctor`; profile distributions; no retirement mechanism |
+| [LoomWarp](../content/loomwarp.md#9e-raise-the-floor) | ◐ | `standards/` plus a bootstrap skill; no retirement mechanism for a second way |
+| [OpenClaw](../content/openclaw.md#9e-raise-the-floor) | ◐ | `onboard`, `doctor --fix`, security-audit `--fix`; templates for every file |
+| [OpenCode](../content/opencode.md#9e-raise-the-floor) | ◐ | `/init`, agent/MCP/GitHub wizards, `$schema`; no `doctor` command |
+| [Pi](../content/pi.md#9e-raise-the-floor) | ◐ | Installer, `/login`, `/settings`, `pi config` TUI; no `doctor`, no `init` |
+
 **Horizon:** `bet` — `03-jtbd.md` §2 `J16` — *"Nobody as a job."* CNCF's golden paths are the nearest and are an artifact, not a ratchet. **`stagnat` scores 0** — harness decay is not being discussed at all. Said out loud
 
 **The consequence.** Decay is the only failure in this framework with no event: nothing breaks, no

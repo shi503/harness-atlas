@@ -70,6 +70,22 @@ named constraint. It is not [`9e`](./9e-raise-the-floor.md), which acts on what 
 | **HumanLayer** | The one peer that reaches this altitude in prose, and it names the discipline outright — its keynote closes on a section titled *"a theory of constraints (2026 edition)"*: *"Models are good at some things, not so good at others. How do you optimize your process in light of those constraints?"* **An argument, published, with no instrument under it** | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §2 |
 | **LoomWarp** | **The one row where it ships the mechanism and everyone else ships the observation.** `s-neck` computes the binding constraint from the minimum across warp threads, with the woven-fabric SVG marking `TEARS HERE` on the weakest. ⚠️ And the honest half: it runs on a self-grade a person types in, so the diagnosis is real and the measurement feeding it is not | [`references/grid.html`](../maturity/grid.html) · [`loomwarp.md`](../content/loomwarp.md#9f-diagnose-the-bottleneck) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 0 · ◐ 5 · ○ 5** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#9f-diagnose-the-bottleneck) | ◐ | `/insights` (friction points) + analytics' PRs-per-user chart |
+| [Codex](../content/codex.md#9f-diagnose-the-bottleneck) | ○ | Nothing here; no self-scorecard |
+| [FRACTAL](../content/fractal.md#9f-diagnose-the-bottleneck) | ○ | Nothing here — `router.py status` is progress %, not bottleneck diagnosis |
+| [Gas City](../content/gas-city.md#9f-diagnose-the-bottleneck) | ◐ | Dashboard health view (system/tool/store/Dolt); `gc convoy` batch tracking |
+| [Grok](../content/grok.md#9f-diagnose-the-bottleneck) | ◐ | Session self-diagnostics only; no maturity scoring |
+| [Hermes](../content/hermes.md#9f-diagnose-the-bottleneck) | ◐ | Self-diagnostics only (`doctor`, `/context`); no maturity scoring |
+| [LoomWarp](../content/loomwarp.md#9f-diagnose-the-bottleneck) | ○ | No throughput measurement; own spec calls this unprovided by anyone |
+| [OpenClaw](../content/openclaw.md#9f-diagnose-the-bottleneck) | ◐ | Maturity scorecard — for itself, not a user's deployment |
+| [OpenCode](../content/opencode.md#9f-diagnose-the-bottleneck) | ○ | Nothing beyond `opencode stats`; no maturity scoring |
+| [Pi](../content/pi.md#9f-diagnose-the-bottleneck) | ○ | Nothing here; `/session` stats are the nearest |
+
 **Horizon:** `bet` — `03-jtbd.md` §2 `J17` — *"No harness taxonomy"* names it, and *"Nobody, as a named capability"* ships it; DX and Jellyfish instrument throughput without naming the constraint. `bottleneck` 37 · `constraint` 26. Said out loud
 
 **The consequence.** What a team loses without this row is not insight but **sequencing**. Everything

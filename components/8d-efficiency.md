@@ -66,6 +66,22 @@ diagnosis is a judgement, and collapsing them is how a dashboard becomes a subst
 | **HumanLayer** | The corpus's **only published per-team cost figure** — *"about $12k on opus per month"* for a team of three — reported in prose rather than instrumented, alongside a named two-week failure on a race condition. Not a system; a **register**, and the one nobody else in this landscape has adopted | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3 |
 | **LoomWarp** | `○`. Cost is invisible: no per-workstream accounting, no budget, and no figure of its own to put beside the one above. The dispatch record exists and carries no spend, which is this row's stage-1 cell exactly — *"cost is invisible"* | [`loomwarp.md`](../content/loomwarp.md#8d-efficiency) · [`03-maturity.md`](../archive/v0/03-maturity.md) §4 |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 4 · ◐ 4 · ○ 1** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#8d-efficiency) | ● | `/usage`, prompt-cache stats, `modelPricing`, spend limits, effort levels |
+| [Codex](../content/codex.md#8d-efficiency) | ◐ | Reasoning-effort/verbosity knobs; token usage per turn; no spend cap |
+| [FRACTAL](../content/fractal.md#8d-efficiency) | ○ | Nothing here — no cost cap or aggregate spend accounting |
+| [Gas City](../content/gas-city.md#8d-efficiency) | n/a |  |
+| [Grok](../content/grok.md#8d-efficiency) | ● | Compaction, pruning, `/goal --budget <tokens>`, no spend cap |
+| [Hermes](../content/hermes.md#8d-efficiency) | ● | 50% `ContextCompressor`, prompt caching, `/usage`; no spend cap |
+| [LoomWarp](../content/loomwarp.md#8d-efficiency) | ◐ | One crude spend cap, explicitly unmeasured; no aggregate reporting |
+| [OpenClaw](../content/openclaw.md#8d-efficiency) | ● | Compaction + cache-TTL + per-goal budget; no spend cap |
+| [OpenCode](../content/opencode.md#8d-efficiency) | ◐ | Auto-compaction, `small_model`, `steps` cap, `opencode stats`; no spend cap |
+| [Pi](../content/pi.md#8d-efficiency) | ◐ | Token/cost/cache footer, compaction, cache retention, thinking budgets; **no spend limits** |
+
 **Horizon:** `emerging` — `03-jtbd.md` §2 `J12` — two implementations, and they disagree on the unit: Claude Code attributes cost per agent, skill, plugin and MCP server; DX/Jellyfish instrument org throughput. **No harness taxonomy names budget as a function.** `cost` 70 · `budget` 23
 
 **The consequence.** A team that cannot price a unit of work cannot retire one, so every capability it

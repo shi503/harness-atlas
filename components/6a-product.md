@@ -64,6 +64,22 @@ maintains. It is not [`6d`](./6d-delivery.md), which is the **path** to producti
 | **HumanLayer** | The one peer with a named object in this space: **artifact**, alongside task, session, worktree and repository. It is *the output of a session*, not *the thing the team ships*, and the difference is the component — an artifact accumulates per run; a deliverable is what the runs are for | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §6 |
 | **LoomWarp** | **The directive KD names is real and is nowhere on disk.** The honesty register it does keep is about *implementation status* — BUILT / PARTIAL / DESIGNED-ONLY tagging — which is a directive on the documentation, not on the product | [`loomwarp.md`](../content/loomwarp.md#6a-product) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 0 · ◐ 0 · ○ 10** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#6a-product) | ○ |  |
+| [Codex](../content/codex.md#6a-product) | ○ |  |
+| [FRACTAL](../content/fractal.md#6a-product) | ○ | Nothing here — no statement of what output may not become |
+| [Gas City](../content/gas-city.md#6a-product) | ○ | Work lands as commits/PRs; no "must not become" statement found |
+| [Grok](../content/grok.md#6a-product) | ○ | No PRD/spec object; closest is `plan.md`'s Context section |
+| [Hermes](../content/hermes.md#6a-product) | ○ | Nothing PRD-like |
+| [LoomWarp](../content/loomwarp.md#6a-product) | ○ | No statement of what its own output may not become |
+| [OpenClaw](../content/openclaw.md#6a-product) | ○ | Nothing PRD-shaped; goals and Workboard both disclaim the role |
+| [OpenCode](../content/opencode.md#6a-product) | ○ | No PRD/spec object |
+| [Pi](../content/pi.md#6a-product) | ○ |  |
+
 **Horizon:** `bet` — `11-architecture.md` §5.1 `F15` — *"The largest hole. There is no layer for where outcomes land."* No peer names the deliverable or its directives as a harness function. Said out loud
 
 **The consequence.** A team that has not written its directives still has them — held by whoever last

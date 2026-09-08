@@ -61,6 +61,22 @@ one level down.
 | **HumanLayer** | Method distributed as capability: published prompts as real files, 27 slash commands including `create_handoff` and `resume_handoff`, and a skills repo carried separately from the product | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3, §7 |
 | **LoomWarp** | `◐` — a `cp -r` loop **with a known removal defect where a deleted skill stays installed forever.** The catalog is the immature half of a function whose other half is its strongest row | [`loomwarp.md`](../content/loomwarp.md#4a-capability) · [`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J10` |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 9 · ◐ 1 · ○ 0** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#4a-capability) | ● | [**Skill**](../content/claude-code.md#5-primitives) + MCP + [**Plugin**](../content/claude-code.md#5-primitives) bundling both |
+| [Codex](../content/codex.md#4a-capability) | ● | [**Skill**](../content/codex.md#5-primitives) + [**Plugin**](../content/codex.md#5-primitives) bundling skills/MCP; ten dogfooded project skills |
+| [FRACTAL](../content/fractal.md#4a-capability) | ● | 7 first-class `SKILL.md` files at U |
+| [Gas City](../content/gas-city.md#4a-capability) | ● | [**Pack**](../content/gas-city.md#5-primitives) bundles agents/formulas/orders/skills; `gascity-packs` registry |
+| [Grok](../content/grok.md#4a-capability) | ● | [**Skill**](../content/grok.md#5-primitives) + [**Plugin / Marketplace**](../content/grok.md#5-primitives), SHA-pinnable |
+| [Hermes](../content/hermes.md#4a-capability) | ● | [**Skill**](../content/hermes.md#5-primitives) — `SKILL.md`, agentskills.io-compatible, eight install sources |
+| [LoomWarp](../content/loomwarp.md#4a-capability) | ◐ | Seven skills, synced by `cp -r`; a documented removal defect |
+| [OpenClaw](../content/openclaw.md#4a-capability) | ● | [**Skill**](../content/openclaw.md#5-primitives) + [**Plugin**](../content/openclaw.md#5-primitives) + ClawHub registry |
+| [OpenCode](../content/opencode.md#4a-capability) | ● | [**Skill**](../content/opencode.md#5-primitives) · [**Plugin**](../content/opencode.md#5-primitives) · [**Tool**](../content/opencode.md#5-primitives) · [**MCP server**](../content/opencode.md#5-primitives) · [**Reference**](../content/opencode.md#5-primitives); no marketplace |
+| [Pi](../content/pi.md#4a-capability) | ● | [**Pi package**](../content/pi.md#5-primitives) bundling [**skill**](../content/pi.md#5-primitives) · extension · prompt template · theme |
+
 **Horizon:** `shipped` — `03-jtbd.md` §2 `J10` *"Who"* — Claude Code plugins, marketplaces, SHA pinning, semver; gstack `--host` install; Indigo's Rust sync app
 
 **The consequence.** Every published harness taxonomy omits distribution, and every real system builds

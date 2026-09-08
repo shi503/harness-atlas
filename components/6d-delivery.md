@@ -58,7 +58,23 @@ route it takes to get there.
 | **Deep Agents** | The only peer whose agent reaches production by **the same road a person's change does**: `dcode` runs headless in GitHub Actions, so the delivery path is the repository's existing pipeline rather than a parallel one. **That is the agent-equivalence test passed in a config file.** What the CI surface *restricts* once it is there is enforcement and is graded at [`2c`](./2c-enforcement.md) | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §5 *Distribution* |
 | **MCP** | **Nothing here.** It is a call-time connection mechanism with no notion of a release, a gate or a rollback. Naming it in this row would be stretching a tool surface into a pipeline | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
 | **HumanLayer** | Delivery expressed as **where work is allowed to happen**: only implementation runs in a worktree and *"we tend to do everything else on main"*, so the route to production is defined by which stage of the work you are in rather than by a pipeline. **A phase gate, not a path** — which answers the singularity question and leaves the rollback question untouched | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3 |
-| **LoomWarp** | `standards/ci-cd.md` — **the bar written and the path unbuilt.** Seven standards guides describe what good delivery looks like; no repository in the estate is wired to a route that enforces any of it, and the one live run bypassed the controls it did have | [`loomwarp.md`](../content/loomwarp.md#6d-delivery), §*Credibility check* |
+| **LoomWarp** | `standards/ci-cd.md` — **the bar written and the path unbuilt.** Seven standards guides describe what good delivery looks like; no repository in the estate is wired to a route that enforces any of it, and the one live run bypassed the controls it did have | [`loomwarp.md`](../content/loomwarp.md#6d-delivery) |
+
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 1 · ◐ 5 · ○ 4** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#6d-delivery) | ● | GitHub Actions/GitLab CI/CD + Code Review (non-blocking) |
+| [Codex](../content/codex.md#6d-delivery) | ◐ | `codex exec` named CI entry; dogfood skills for PR flow, not a shipped primitive |
+| [FRACTAL](../content/fractal.md#6d-delivery) | ○ | Nothing here — no CI/CD pipeline of its own |
+| [Gas City](../content/gas-city.md#6d-delivery) | ◐ | Strong self-delivery (CI, SBOM, attestations); thin agent-work delivery guidance |
+| [Grok](../content/grok.md#6d-delivery) | ◐ | Git ACP methods, headless CI; no PR/deploy flow |
+| [Hermes](../content/hermes.md#6d-delivery) | ◐ | GitHub skill + webhook `deliver: github_comment`; no built-in pipeline |
+| [LoomWarp](../content/loomwarp.md#6d-delivery) | ○ | No CI/CD of its own; `ci-cd.md` is doctrine, not a wired gate |
+| [OpenClaw](../content/openclaw.md#6d-delivery) | ○ | No built-in pipeline; `pull-request-review-flow` is OpenClaw's own repo |
+| [OpenCode](../content/opencode.md#6d-delivery) | ◐ | GitHub Action + GitLab CI/Duo open PRs/MRs from a comment |
+| [Pi](../content/pi.md#6d-delivery) | ○ | Nothing built in; git examples only |
 
 **Horizon:** `bet` — No harness taxonomy names delivery of the **product**. Debois's CDLC names *distribute* (`03-jtbd.md` §0) and means delivery of **capability**, which is `4a`. `standards/ci-cd.md` exists in this repo with no function to hang it on. Said out loud
 

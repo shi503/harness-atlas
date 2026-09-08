@@ -62,6 +62,22 @@ policy at all. Grading them together is how a team with rich automation and no g
 | **HumanLayer** | The clearest demonstration that a hook is a **binding** and not an automation: `thoughts/` is enforced by a *"pre-commit hook — prevents `thoughts/` from being committed to your code repo"* and a *"post-commit hook — syncs thoughts changes to your thoughts repository."* **Not prose. Hooks.** Plus `fold`'s four-phase `HookPhase` type | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §4, §6 |
 | **LoomWarp** | **`○`, recorded against itself**: no hooks, no handler bound at any lifecycle point. Every convention the repository holds is held by somebody remembering it | [`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J5` |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 8 · ◐ 0 · ○ 2** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#2b-hooks) | ● | [**Hook**](../content/claude-code.md#5-primitives) — 33 events, fail-open by default, 5 handler types |
+| [Codex](../content/codex.md#2b-hooks) | ● | [**Hook**](../content/codex.md#5-primitives) — 11 named lifecycle events; MCP-tool hooks fail open |
+| [FRACTAL](../content/fractal.md#2b-hooks) | ○ | Nothing here — no hook system of its own, any instance |
+| [Gas City](../content/gas-city.md#2b-hooks) | ● | `on_boot`/`pre_start`/`session_*`/`work_query`/order triggers/`gc hook` |
+| [Grok](../content/grok.md#2b-hooks) | ● | [**Hook**](../content/grok.md#5-primitives) — 15 named events; fail open |
+| [Hermes](../content/hermes.md#2b-hooks) | ● | [**Hook**](../content/hermes.md#5-primitives) — plugin, shell (Claude-Code-compatible) and gateway events |
+| [LoomWarp](../content/loomwarp.md#2b-hooks) | ○ | Checked `.claude/settings.local.json`, `policy/tier-*.json`; none of its own |
+| [OpenClaw](../content/openclaw.md#2b-hooks) | ● | Two typed tiers + webhooks — internal observe-only, plugin [**Hook**](../content/openclaw.md#5-primitives) can block |
+| [OpenCode](../content/opencode.md#2b-hooks) | ● | [**Plugin**](../content/opencode.md#5-primitives) — 20 typed hook keys + ~25 bus events, JS/TS |
+| [Pi](../content/pi.md#2b-hooks) | ● | ~40 typed lifecycle events, TypeScript handlers; `tool_call` can block |
+
 **Horizon:** `shipped` — `07-verified-inventories.md` §1 Table 1, row 6 — *"scripts executed at specific agent lifecycle points"*, shipped with published configuration paths in **four of the five tools surveyed** across 2,853 repositories
 
 **The consequence.** A convention that depends on someone remembering it is a convention that survives

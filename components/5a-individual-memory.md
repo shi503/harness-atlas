@@ -75,6 +75,22 @@ cross-repo**. That closes `OPEN-5`'s first axis as visible structure; the `proje
 | **HumanLayer** | The sharpest shape in the corpus, and it is a **directory**: `thoughts/<user>/` against `thoughts/shared/`, crossed with per-repo `repos/<project>/` against `global/`. **A real 2×2**, strictly more expressive than the three peers that treat individual-versus-team as one axis | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §4 |
 | **LoomWarp** | `○`. The individual/team boundary is one of three concepts the component matrix records as treated as first-class by peers and not covered by this framework's component model at all | [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · [`loomwarp.md`](../content/loomwarp.md#5a-individual-memory) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 5 · ◐ 1 · ○ 4** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#5a-individual-memory) | ● | `CLAUDE.md` + auto memory (`MEMORY.md`) + subagent `memory:` scopes |
+| [Codex](../content/codex.md#5a-individual-memory) | ● | Automatic two-phase memory pipeline; git-baselined `~/.codex/memories/` |
+| [FRACTAL](../content/fractal.md#5a-individual-memory) | ○ | Nothing here — defers to the host harness's own default |
+| [Gas City](../content/gas-city.md#5a-individual-memory) | ◐ | Per-agent session logs, `wake_mode`; Beads' `bd remember`/`bd prime` one layer down |
+| [Grok](../content/grok.md#5a-individual-memory) | ● | Bot memory (opaque); Build's memory off by default |
+| [Hermes](../content/hermes.md#5a-individual-memory) | ● | [**Memory**](../content/hermes.md#5-primitives) — `MEMORY.md`/`USER.md` under hard char caps, auto-nudged |
+| [LoomWarp](../content/loomwarp.md#5a-individual-memory) | ○ | No operator-scoped object; own spec defers this to Claude Code's default |
+| [OpenClaw](../content/openclaw.md#5a-individual-memory) | ● | Workspace Markdown + hybrid `memory_search`; dreaming promotes it |
+| [OpenCode](../content/opencode.md#5a-individual-memory) | ○ | No memory feature; SQLite session history + `AGENTS.md` only |
+| [Pi](../content/pi.md#5a-individual-memory) | ○ | No memory feature — grep of docs and README found none |
+
 **Horizon:** `emerging` — `02-functions.md` §0.3 — four peers make the individual boundary a first-class primitive under four names: gbrain `brain × source`, Indigo `personal/`, generic-cerebro `_dev/<username>/`, gstack per-project slug
 
 **The consequence.** Without this row a team has one store, and every private note in it is a claim the

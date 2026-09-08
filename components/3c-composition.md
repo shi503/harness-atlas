@@ -63,6 +63,22 @@ all.
 | **HumanLayer** | `fold` composes a session as **an event log plus a projection** — `EventLog`, `Projection`, `Compaction`, `StopConditions`. A session is a log you fold into state, which makes reconstruction free and is a genuinely different assembly model from a middleware stack | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §6 |
 | **LoomWarp** | Agent definitions exist and score `●` in its own matrix; **the assembly does not**. There is no declared stack, no protected core, and no statement of what shares a context with what | [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 6 · ◐ 4 · ○ 0** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#3c-composition) | ● | [**Subagent**](../content/claude-code.md#5-primitives) + [**Agent team**](../content/claude-code.md#5-primitives) (experimental, off by default) |
+| [Codex](../content/codex.md#3c-composition) | ● | [**Subagent**](../content/codex.md#5-primitives) TOML roles; thread-spawn graph persists delegation |
+| [FRACTAL](../content/fractal.md#3c-composition) | ◐ | Four tier-agent role files; overlay mechanism (`*.local.md`) |
+| [Gas City](../content/gas-city.md#3c-composition) | ◐ | No sub-agent delegation; composition happens by **importing packs** |
+| [Grok](../content/grok.md#3c-composition) | ● | [**Agent / Subagent / Persona / Role**](../content/grok.md#5-primitives) — three objects |
+| [Hermes](../content/hermes.md#3c-composition) | ● | [**Profile**](../content/hermes.md#5-primitives) = agent; Bot Mode; `delegate_task` subagents, depth 1 |
+| [LoomWarp](../content/loomwarp.md#3c-composition) | ◐ | Five role files; the composition runtime itself is Claude Code's |
+| [OpenClaw](../content/openclaw.md#3c-composition) | ● | [**Agent**](../content/openclaw.md#5-primitives) config entries + sub-agents + experimental swarm |
+| [OpenCode](../content/opencode.md#3c-composition) | ● | [**Agent**](../content/opencode.md#5-primitives) — Markdown + frontmatter, `mode: primary\|subagent\|all` |
+| [Pi](../content/pi.md#3c-composition) | ◐ | No sub-agents; the shipped `subagent/` example spawns separate `pi` processes |
+
 **Horizon:** `emerging` — `11-architecture.md` §3.1 — two peers, no shared word: Claude Code's 29 lifecycle events and DeepAgents' middleware stack, *"the same design reached independently"*
 
 **The consequence.** A team that owns its parts and not their arrangement can add a capability and

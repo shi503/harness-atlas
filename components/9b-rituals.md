@@ -73,6 +73,22 @@ happens to a finding a ritual produced.
 | **HumanLayer** | **The strongest instance in the corpus, and it is the product.** RPI — research → plan → implement — is a named, shipped, documented, skill-distributed phase set with a published prompt and an artifact per phase, a human checkpoint at each, and stated variants. ⚠️ It also carries the corpus's clearest vocabulary drift: the keynote names four phases, the docs three, the marketing site six. **Three phase vocabularies from one company inside one quarter** | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3, §6 |
 | **LoomWarp** | The **HANDOFF** gate — a real ritual with a required artifact, arrived at independently by three peers, and *"three peers reached it independently"* is the strongest structural signal in the corpus after the adapter finding. ⚠️ And the exact inverse of gstack: high control, no retro. It ships a gate between tiers and no recurring practice around it | [`fractal.md`](../content/fractal.md#9b-rituals) · [`NEXT-STEPS.md`](../archive/sessions/NEXT-STEPS.md) §4 `B-3` |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 0 · ◐ 4 · ○ 6** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#9b-rituals) | ◐ | Code Review triggers on PR open/push as an automated review ritual |
+| [Codex](../content/codex.md#9b-rituals) | ○ | Nothing encoded; dogfood review skills are examples, not rituals |
+| [FRACTAL](../content/fractal.md#9b-rituals) | ○ | Nothing here — no recurring human-practice object of its own |
+| [Gas City](../content/gas-city.md#9b-rituals) | ○ | Nothing here; Gas Town's role ladder is a sibling-product example |
+| [Grok](../content/grok.md#9b-rituals) | ◐ | `review-changes` workflow; use-case templates, not rituals |
+| [Hermes](../content/hermes.md#9b-rituals) | ◐ | Bundled rituals-as-skills (weekly-review, sdlc-review); no standup object |
+| [LoomWarp](../content/loomwarp.md#9b-rituals) | ○ | No cron, standup, or retro object of its own |
+| [OpenClaw](../content/openclaw.md#9b-rituals) | ◐ | Bootstrap ritual + heartbeat + Custodian playbook; no human rituals |
+| [OpenCode](../content/opencode.md#9b-rituals) | ○ | Nothing shipped; users encode as [**Command**](../content/opencode.md#5-primitives)s or agents |
+| [Pi](../content/pi.md#9b-rituals) | ○ | Nothing encoded; user-authored prompt templates only |
+
 **Horizon:** `emerging` — four peers ship a named ritual set under four names, and none share vocabulary: gstack's sprint loop · Indigo's Ralph loop · FRACTAL's HANDOFF · HumanLayer's **RPI** (`systems/humanlayer.md` §3), which is sold as the product
 
 **The consequence.** What a team loses without this row is not culture but **placement**. Human

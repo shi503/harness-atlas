@@ -60,6 +60,22 @@ be reviewed at all.
 | **HumanLayer** | A **named set** rather than a rule: six purpose-built subagents — `codebase-locator`, `codebase-analyzer`, `codebase-pattern-finder`, `thoughts-locator`, `thoughts-analyzer`, `web-search-researcher`. Naming the destinations is most of the work; the selection is still the model's | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §7 |
 | **LoomWarp** | `router.py` — a deterministic resolver, and one of the few things in its column that is genuinely built. ⚠️ It resolves against a blueprint, **not against a roster**, because no roster exists — which makes it a sequencer wearing a router's name | [`loomwarp.md`](../content/loomwarp.md#3b-routing) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 3 · ◐ 4 · ○ 3** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#3b-routing) | ◐ | Per-role model assignment + `availableModels` substitution; no message→agent resolver |
+| [Codex](../content/codex.md#3b-routing) | ◐ | Subagent model/effort routing only; no general job-to-model resolver |
+| [FRACTAL](../content/fractal.md#3b-routing) | ○ | Static author-time field only; no runtime resolver |
+| [Gas City](../content/gas-city.md#3b-routing) | ● | `sling_query` stamps `gc.routed_to`; per-agent `scale_check` pool sizing |
+| [Grok](../content/grok.md#3b-routing) | ◐ | Manual model routing; `spawn_subagent` picks a type, no resolver |
+| [Hermes](../content/hermes.md#3b-routing) | ● | `gateway.profile_routes` most-specific-first; price/latency provider routing |
+| [LoomWarp](../content/loomwarp.md#3b-routing) | ○ | Static BLUEPRINT fields only; no resolver |
+| [OpenClaw](../content/openclaw.md#3b-routing) | ● | `bindings[]` specificity ladder — [**Channel + Binding**](../content/openclaw.md#5-primitives) |
+| [OpenCode](../content/opencode.md#3b-routing) | ◐ | Per-agent `model`/`small_model`; manual selection, no resolver |
+| [Pi](../content/pi.md#3b-routing) | ○ | Manual model routing only; no automatic delegation rules |
+
 **Horizon:** `emerging` — `03-jtbd.md` §2 `J3` — *"Nobody, as a named function."* Three peers build it and disagree on the word: Gas City `formulas → beads → orders`, QM scope-based, generic-cerebro's project architect
 
 **The consequence.** Three peers built this and none of them named it, which is precisely the condition

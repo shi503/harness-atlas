@@ -69,6 +69,22 @@ say nothing.
 | **HumanLayer** | **task** as a first-class product primitive alongside session, artifact, worktree and repository — and the contract distributed as files rather than held in a runtime: a published prompt per phase, with the plan required to be *"super precise about the testing / verification steps in each phase"*. **The done-condition is written into the artifact**, which is the property this row grades | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3, §6 |
 | **LoomWarp** | A **work-contract schema** and the workstream PRD behind it — the object this row grades, and one of the few things in its column that is genuinely built. ⚠️ The contract is real; what has never been exercised is the graph around it, which is `3a`'s row and a different grade | [`loomwarp.md`](../content/loomwarp.md#7a-workflow-tasks) · [`fractal.md`](../content/fractal.md#7a-workflow-tasks) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 4 · ◐ 5 · ○ 1** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#7a-workflow-tasks) | ◐ | `TodoWrite` + agent-team shared task list — session/team-scoped, not durable |
+| [Codex](../content/codex.md#7a-workflow-tasks) | ◐ | Cloud-task object at the product layer; no local CLI task primitive |
+| [FRACTAL](../content/fractal.md#7a-workflow-tasks) | ● | [**Workstream (PRD)**](../content/fractal.md#5-primitives) — the stated unit of work |
+| [Gas City](../content/gas-city.md#7a-workflow-tasks) | ● | [**Bead**](../content/gas-city.md#5-primitives) `open`→`in_progress`→`closed`; **Convoy** groups related work |
+| [Grok](../content/grok.md#7a-workflow-tasks) | ◐ | `plan.json`/`todo_write`; routine run history; no ticket object |
+| [Hermes](../content/hermes.md#7a-workflow-tasks) | ● | [**Kanban task**](../content/hermes.md#5-primitives) — SQLite board, *"owns lifecycle truth"* |
+| [LoomWarp](../content/loomwarp.md#7a-workflow-tasks) | ● | [**Work contract**](../content/loomwarp.md#5-primitives) — a BLUEPRINT entry + PRD, named in the current spec |
+| [OpenClaw](../content/openclaw.md#7a-workflow-tasks) | ◐ | Six task-shaped objects, vendor concedes the overlap itself |
+| [OpenCode](../content/opencode.md#7a-workflow-tasks) | ◐ | `todowrite` tool + [**Command**](../content/opencode.md#5-primitives) templates; no ticket/plan object |
+| [Pi](../content/pi.md#7a-workflow-tasks) | ○ | Deliberately none — *"They confuse models. Use a TODO.md file"* |
+
 **Horizon:** `emerging` — `11-architecture.md` §4 — the work contract is the configurable primitive and the resolver is machinery (`C-24`). Peers ship the unit under three names: Gas City `beads`/`orders`, FRACTAL's workstream PRD, QM's per-scope tasks
 
 **The consequence.** A layer whose only artifact is a resolver grades a team on whether it installed

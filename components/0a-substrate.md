@@ -63,6 +63,22 @@ a set of profiles rather than one verdict.
 | **HumanLayer** | `fold` — a provider-agnostic agent core — plus the sharpest published argument for why this layer is consequential: *"the first time a lab trained a model against the exact tools they were going to ship it with,"* and the corollary that a team owning the harness but not the weights *"will always be at a disadvantage"* | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §1, §2 |
 | **LoomWarp** | **Claude Code only, portability posture undecided.** Recorded rather than deferred | [`loomwarp.md`](../content/loomwarp.md#0a-substrate) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 8 · ◐ 2 · ○ 0** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#0a-substrate) | ● | Model swap (Sonnet/Opus/Fable) + 5-provider substrate (API, Bedrock, Vertex, Foundry, Claude Platform on AWS) |
+| [Codex](../content/codex.md#0a-substrate) | ● | OpenAI Responses API wire protocol; 31+ providers via `model_providers`; OAuth/API-key/enterprise-token auth |
+| [FRACTAL](../content/fractal.md#0a-substrate) | ◐ | Per-agent model in agent-file frontmatter; no portability adapter |
+| [Gas City](../content/gas-city.md#0a-substrate) | ● | 15 named provider CLIs; per-agent `provider`/`option_defaults`/`upstream` |
+| [Grok](../content/grok.md#0a-substrate) | ● | Model-pluggable, 31+ backends; Bot's model choice fully managed |
+| [Hermes](../content/hermes.md#0a-substrate) | ● | Nous Portal + 40+ providers; two-tier main + `auxiliary.<task>` models |
+| [LoomWarp](../content/loomwarp.md#0a-substrate) | ◐ | Claude Code only, model per agent role; own spec calls portability undecided |
+| [OpenClaw](../content/openclaw.md#0a-substrate) | ● | 70+ providers + failover; utility/image/media slots — model-pluggable, not named |
+| [OpenCode](../content/opencode.md#0a-substrate) | ● | 75+ providers via the AI SDK + models.dev; first-party Zen/Go gateways |
+| [Pi](../content/pi.md#0a-substrate) | ● | 31 API-key providers + subscriptions + local llama.cpp; custom providers via extension |
+
 **Horizon:** `shipped` — `03-jtbd.md` §2 `J13` *"Who"* — three peers ship substrate selection as a named primitive: gstack `--host`, Gas City's Factory Worker Protocol, QM's per-scope adapters
 
 **The consequence.** Every layer above this one is chosen on top of an answer given here, usually

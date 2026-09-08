@@ -63,6 +63,22 @@ ship — which is adjacent and different: **it tells you the order, not the bar.
 | **HumanLayer** | The most instructive evidence in the corpus, and it is a **survival result**: when the multi-repo coordination template was absorbed into the product, what its own README says still justifies the repo is *"shared `AGENTS.md`, skills, etc."* — **the orchestration got absorbed; the canon did not.** Separately, 12-Factor Agents at 25.6k★ is the most-adopted principle manifesto in the space, at single-agent altitude | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5, §1 |
 | **LoomWarp** | Seven guides, roughly 970 lines, behind a real inheritance contract — *reference never copy, tighten never contradict*. **The one row in the component matrix where it is alone.** ⚠️ And the row has a second half it does not have: named review finding-classes that any review may append to and that **promote into canon once hardened** | [`loomwarp.md`](../content/loomwarp.md#3e-standards) · [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 — *Reading the three rows that matter* |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 1 · ◐ 1 · ○ 8** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#3e-standards) | ◐ | Agent Skills open standard (co-published) + JSON Schema for structured output |
+| [Codex](../content/codex.md#3e-standards) | ○ | No rules-pack artifact; execpolicy's `justification` field is the nearest |
+| [FRACTAL](../content/fractal.md#3e-standards) | ○ | Nothing here at the pinned commit; C ships six guides |
+| [Gas City](../content/gas-city.md#3e-standards) | ○ | Generated schemas + OpenAPI 3.1 + a wire-typing refusal list exist, scoped narrowly ⚠️ mark and detail disagree at the v1 read |
+| [Grok](../content/grok.md#3e-standards) | ○ | No opinionated standard shipped; rules + pinned plugins are the vehicle |
+| [Hermes](../content/hermes.md#3e-standards) | ○ | No versioned rules-pack primitive; skills and distributions carry practice |
+| [LoomWarp](../content/loomwarp.md#3e-standards) | ● | [**Standards tier**](../content/loomwarp.md#5-primitives) — seven guides, a stated inheritance contract |
+| [OpenClaw](../content/openclaw.md#3e-standards) | ○ | No versioned rules-pack for user projects; templates only |
+| [OpenCode](../content/opencode.md#3e-standards) | ○ | No shipped rules pack; formatters and LSP are the vehicles |
+| [Pi](../content/pi.md#3e-standards) | ○ | No rules pack shipped; prompt templates and pinned packages are the vehicles |
+
 **Horizon:** `bet` — `02-functions.md` §6 `F5` — *"Nobody ships the Standards system. Not Claude Code, not gstack, not Gas City, not QM."* gstack encodes process opinion, which is adjacent and different: it tells you the sequence, not the bar. Said out loud
 
 **The consequence.** The marker is a `bet`, and the falsifier is cheap and dated: if a peer ships an

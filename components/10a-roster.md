@@ -71,6 +71,22 @@ actor this list names.
 | **HumanLayer** | **The only peer holding both halves of the list, in two systems that do not meet.** The agent half is a named set — enumerated at [`3b`](./3b-routing.md), where it is a routing destination — and the human half is the product's **seats**, priced and administered. Neither knows about the other, so nothing pairs an agent with the person accountable for it, which is the join this row is | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §7, §8 |
 | **LoomWarp** | `○` — **no list of any kind.** Agent definitions exist and score `●` in its own matrix, humans appear nowhere, and no artifact pairs an actor with an accountable person. The cost of that lands one row over and is recorded at [`3b`](./3b-routing.md); what belongs here is simply that **the chart the resolver presumes was never written** | [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · [`loomwarp.md`](../content/loomwarp.md#10a-roster) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 4 · ◐ 5 · ○ 1** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#10a-roster) | ◐ | Built-in subagents (Explore/Plan/general-purpose) + team `members` array — session-scoped |
+| [Codex](../content/codex.md#10a-roster) | ◐ | `agent-roles` + `agent-identity`; three built-in roles — no unified roster doc |
+| [FRACTAL](../content/fractal.md#10a-roster) | ◐ | Four tier-agent role files; no accountable-human-per-role field |
+| [Gas City](../content/gas-city.md#10a-roster) | ● | [**Agent**](../content/gas-city.md#5-primitives) folder is the roster entry; Gastown pack ships an example roster |
+| [Grok](../content/grok.md#10a-roster) | ● | [**Bot**](../content/grok.md#5-primitives) roster (≤50) + Build's agent dashboard |
+| [Hermes](../content/hermes.md#10a-roster) | ● | Bot Mode — *"a roster of named Bots,"* one per profile |
+| [LoomWarp](../content/loomwarp.md#10a-roster) | ◐ | Five role files; own field-level analysis calls the function unprovided by anyone |
+| [OpenClaw](../content/openclaw.md#10a-roster) | ● | Named [**Agent**](../content/openclaw.md#5-primitives) identities + Custodian + default persona |
+| [OpenCode](../content/opencode.md#10a-roster) | ◐ | Named agents (build/plan/general/explore/scout); no identity/registry beyond the name |
+| [Pi](../content/pi.md#10a-roster) | ○ | Nothing built in; the subagent example uses Markdown personas |
+
 **Horizon:** `emerging` — `03-jtbd.md` §2 `J14` *"Who"* — three peers, three names: QM's per-scope identity with a central core, Factory's *"agents as employees"*, Indigo's worker registry. `identity` 29 · `roster` 1 — the concept is attested, the word is not
 
 **The consequence.** This is the cheapest row in the framework to fill — it is a file — and the most

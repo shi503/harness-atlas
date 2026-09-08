@@ -72,6 +72,22 @@ which decides *which* of these parts a given agent is assembled from.
 | **HumanLayer** | The one shipped **context adapter** in the corpus: `thoughts/` is a separate git repository mounted into every code repo, and `thoughts/CLAUDE.md` is **auto-generated** — the context layer writes the harness's own instruction file. The component matrix added that row with the note that its emptiness *was* the finding | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §4 · [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 |
 | **LoomWarp** | **`○` on both adapter rows** — harness adapter and context adapter — in its own matrix, with Claude Code as the single supported runtime | [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · [`loomwarp.md`](../content/loomwarp.md#2a-adapters--middleware) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 8 · ◐ 1 · ○ 1** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#2a-adapters--middleware) | ● | [**MCP server**](../content/claude-code.md#5-primitives) — 4 transports; no ACP found |
+| [Codex](../content/codex.md#2a-adapters--middleware) | ● | [**MCP server**](../content/codex.md#5-primitives) client + app-server JSON-RPC + SDK; `mcp-server` deprecated |
+| [FRACTAL](../content/fractal.md#2a-adapters--middleware) | ○ | Nothing here — no MCP/ACP/protocol client of its own |
+| [Gas City](../content/gas-city.md#2a-adapters--middleware) | ● | `runtime.Provider` (tmux/subprocess/exec/ACP/k8s/herdr); MCP catalog-only |
+| [Grok](../content/grok.md#2a-adapters--middleware) | ● | [**MCP server**](../content/grok.md#5-primitives) + plugin; Claude/Cursor compat readers |
+| [Hermes](../content/hermes.md#2a-adapters--middleware) | ● | [**Plugin**](../content/hermes.md#5-primitives) API + MCP client — 70+ tools, ~28 toolsets |
+| [LoomWarp](../content/loomwarp.md#2a-adapters--middleware) | ◐ | One adapter — a `claude -p` CLI invocation; no MCP, no ACP |
+| [OpenClaw](../content/openclaw.md#2a-adapters--middleware) | ● | [**Plugin**](../content/openclaw.md#5-primitives) SDK + MCP client/server + Code Mode |
+| [OpenCode](../content/opencode.md#2a-adapters--middleware) | ● | [**MCP server**](../content/opencode.md#5-primitives) + plugin `tool`/hook registry; AI SDK abstraction |
+| [Pi](../content/pi.md#2a-adapters--middleware) | ● | [**Extension**](../content/pi.md#5-primitives) `ExtensionAPI` + SDK + RPC + JSON — **no MCP, by refusal** |
+
 **Horizon:** `shipped` — `11-architecture.md` §3.1 — Claude Code's 29 lifecycle events and DeepAgents' middleware, *"the same design reached independently"*; `03-jtbd.md` KD-notes #6 records the adapter as the tell that separates a process layer from a harness
 
 **The consequence.** A team with no adapter has not chosen its harness — it has married it, and will find

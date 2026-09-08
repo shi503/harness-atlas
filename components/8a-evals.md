@@ -73,6 +73,22 @@ a fact, and a team can have immaculate telemetry over a bar nobody set.
 | **HumanLayer** | The clearest published **argument against over-investing here**, from the company that sells review: models are rewarded on `FAIL_TO_PASS` / `PASS_TO_PASS` and *"there is no penalty for bad design"*, because *"tests give you feedback in seconds, but the cost function of bad architecture is measured in weeks."* Its answer is to move the human upstream rather than to build a better sensor | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §2 |
 | **LoomWarp** | `standards/definition-of-done.md` and `standards/evaluation-doctrine.md` — **the bar written, the sensor absent.** The doctrine describes an eval pyramid that a vendor has since implemented and LoomWarp has not; `events.jsonl` classifies outcomes by regexing markdown, which is a reading rather than a gate | [`loomwarp.md`](../content/loomwarp.md#8a-evals) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 0 · ◐ 8 · ○ 2** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#8a-evals) | ◐ | Code Review's multi-agent verification pipeline — explicitly non-blocking |
+| [Codex](../content/codex.md#8a-evals) | ◐ | `guardian-context` review/scoring gate; not a benchmark harness |
+| [FRACTAL](../content/fractal.md#8a-evals) | ◐ | Four-layer model (Deterministic→LLM→Persona→Benchmark), dev-facing |
+| [Gas City](../content/gas-city.md#8a-evals) | ○ | Nothing here — only a `retry-eval` control-bead *kind*, not a quality gate |
+| [Grok](../content/grok.md#8a-evals) | ◐ | No eval harness; `/goal`'s independent evidence review is nearest |
+| [Hermes](../content/hermes.md#8a-evals) | ◐ | `evals/` dir, ~17k tests; dev-facing, no ship-gate for skills |
+| [LoomWarp](../content/loomwarp.md#8a-evals) | ◐ | A real five-layer doctrine; the shipped classifier is the anti-pattern it forbids |
+| [OpenClaw](../content/openclaw.md#8a-evals) | ◐ | Personal-agent benchmark pack; dev-facing, not a ship gate |
+| [OpenCode](../content/opencode.md#8a-evals) | ○ | Nothing shipped for users; project's own CI/tests only |
+| [Pi](../content/pi.md#8a-evals) | ◐ | `packages/evals` with baseline/candidate lift — dev-facing, not a ship gate |
+
 **Horizon:** `shipped` — `03-jtbd.md` §2 `J6` *"Who"* — generic-cerebro's four layers with the bottom two blocking and a false-positive register; Indigo's CI as back-pressure; Claude Code's `skill-creator` eval harness; Gas City's multi-model adversarial review. `eval` 263, the most-discussed term in the corpus
 
 **The consequence.** This is the loudest row in the field and the one where volume is least

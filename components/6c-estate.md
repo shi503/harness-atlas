@@ -66,6 +66,22 @@ matters — is argued there rather than here.
 | **HumanLayer** | The most instructive result, because it is a **verdict**: the multi-repo coordination template listed its repos and their descriptions in a context file, and its own README then retired that arrangement into the product's Workspaces feature. **A hand-written estate description was the part that did not survive contact with a real workspace primitive** — what did survive is `3e`'s claim, and is read there | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5 |
 | **LoomWarp** | `registry/repositories.yaml` behind a schema, with registry-driven clone — **genuinely built, and two repos wide.** Ownership is recorded; impact analysis is not, so the differentiated third of the function is the third it does not have | [`loomwarp.md`](../content/loomwarp.md#6c-estate) · [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 0 · ◐ 7 · ○ 3** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#6c-estate) | ◐ | Monorepo per-directory config + worktrees; no declared repo/service inventory |
+| [Codex](../content/codex.md#6c-estate) | ◐ | Git worktrees at the product layer; no cross-repo inventory |
+| [FRACTAL](../content/fractal.md#6c-estate) | ○ | Nothing here — single-repo by explicit design constraint |
+| [Gas City](../content/gas-city.md#6c-estate) | ◐ | `gc rig add` registers a repo; namespace/scope per rig on one shared store |
+| [Grok](../content/grok.md#6c-estate) | ○ | No multi-repo model; one repo discovered at a time |
+| [Hermes](../content/hermes.md#6c-estate) | ◐ | `hermes project` multi-folder + worktrees; no cross-repo impact analysis |
+| [LoomWarp](../content/loomwarp.md#6c-estate) | ◐ | `registry/repositories.yaml`, two entries; omits the control repo itself |
+| [OpenClaw](../content/openclaw.md#6c-estate) | ◐ | Managed worktrees only; no multi-repo model documented |
+| [OpenCode](../content/opencode.md#6c-estate) | ◐ | [**Reference**](../content/opencode.md#5-primitives) — aliased external dirs/repos; no cross-repo impact analysis |
+| [Pi](../content/pi.md#6c-estate) | ○ | No multi-repo model; sessions keyed per working directory |
+
 **Horizon:** `emerging` — `02-functions.md` §6 `F2` — native workspace resolution ships (`additionalDirectories`, `--add-dir`, `worktree.sparsePaths`, nested discovery); **cross-repo impact analysis ships nowhere**. The object is real, the vocabulary is not — workspace vs estate vs virtual monorepo
 
 **The consequence.** The reach is free and the map is not, so most teams arrive at multi-repo work

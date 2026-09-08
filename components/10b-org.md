@@ -71,6 +71,22 @@ it off.
 | **HumanLayer** | The most complete implementation of the **escalation half** in the corpus, and what makes it one is the routing rather than the decision: **contact channels across Slack, email, CLI and web**, so the escalation reaches a person where they already are instead of waiting in a terminal nobody is watching. **A destination, not a pause** — the approval mechanism itself is graded at [`2c`](./2c-enforcement.md) | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §7 |
 | **LoomWarp** | A **decision-rights table for six roles across the twelve layers, written and unwired.** It is a real artifact and the only one of its kind in the corpus; nothing reads it, nothing enforces it, and no agent in the repository has an escalation target that resolves to a person | [`04-decision-layers.md`](../archive/v0/04-decision-layers.md) §3 · [`loomwarp.md`](../content/loomwarp.md#10b-org) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 2 · ◐ 6 · ○ 2** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#10b-org) | ◐ | Owner/Primary Owner/Admin/Billing/Developer roles; no custom-role mechanism |
+| [Codex](../content/codex.md#10b-org) | ◐ | `managed_config.toml` over user config; `requirements.toml` pin; roles page unread |
+| [FRACTAL](../content/fractal.md#10b-org) | ○ | Nothing here — no RACI, tenancy or scoping object of its own |
+| [Gas City](../content/gas-city.md#10b-org) | ◐ | Config-level nesting exists; hosted identity refuses an org/tenant field |
+| [Grok](../content/grok.md#10b-org) | ● | Three-file config ownership (Build) + team/org admin roles (Bot) |
+| [Hermes](../content/hermes.md#10b-org) | ◐ | Admin/Regular tiers, managed scope; no RACI or agent-org registry |
+| [LoomWarp](../content/loomwarp.md#10b-org) | ◐ | A thin, schema-validated RACI registry — two entries |
+| [OpenClaw](../content/openclaw.md#10b-org) | ● | (supporting) [**Operator roles / scopes**](../content/openclaw.md#5-primitives) + session owner/participant |
+| [OpenCode](../content/opencode.md#10b-org) | ◐ | `ask` permissions + enterprise SSO/MDM/Zen roles; no RACI |
+| [Pi](../content/pi.md#10b-org) | ○ | Single operator; no ownership, RACI or escalation |
+
 **Horizon:** `claimed` — `03-jtbd.md` §2 `J14` *"Named by"* — Chan's *Identity Binding* and AAIF's *Identity & Trust* WG name delegation protocols and how permissions flow across agents. The absence: `02-functions.md` §6 `F9` records the provider as **nobody**, and `04-decision-layers.md` §3 carries a decision-rights table with no implementation behind it
 
 **The consequence.** Decision rights are the one thing on this list a tool cannot supply, which is why

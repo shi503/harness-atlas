@@ -72,6 +72,22 @@ at [`5a`](./5a-individual-memory.md) rather than here.
 | **HumanLayer** | **Every approval is an evidence record**, because the decision carries prose rather than a bit — the approval API is enumerated at [`2c`](./2c-enforcement.md), where it is the mechanism. What is `8b`'s is the consequence: a ledger whose entries explain *why*, produced as a side effect of the gate rather than as a separate logging step | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §7 |
 | **LoomWarp** | `events.jsonl`, CloudEvents-shaped — **8 real events, none schema-validated, and the outcome regexed out of markdown.** It is nonetheless the only column in the matrix already holding *both halves* of the join, an inherited decision store and a structured run-event stream: **for everyone else the join is a build; here it is an integration that has not happened** | [`loomwarp.md`](../content/loomwarp.md#8b-evidence) · [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 7 · ◐ 3 · ○ 0** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#8b-evidence) | ● | `claude_code.tool_decision` permission-audit event |
+| [Codex](../content/codex.md#8b-evidence) | ● | Rollout JSONL+SQLite; `agent-identity` signs per-agent `AgentAssertion` headers |
+| [FRACTAL](../content/fractal.md#8b-evidence) | ◐ | [**HANDOFF**](../content/fractal.md#5-primitives) — pasted build/test output, reviewed not parsed |
+| [Gas City](../content/gas-city.md#8b-evidence) | ● | Per-bead audit trail, per-session logs, city-wide event log, release attestations |
+| [Grok](../content/grok.md#8b-evidence) | ● | [**Session**](../content/grok.md#5-primitives) — `updates.jsonl` authoritative, per-turn cost |
+| [Hermes](../content/hermes.md#8b-evidence) | ● | Exportable sessions, trajectory files, cron ledger, approval history |
+| [LoomWarp](../content/loomwarp.md#8b-evidence) | ◐ | `context/evidence/<workstream>/`, populated at run time for dispatched work only |
+| [OpenClaw](../content/openclaw.md#8b-evidence) | ● | (supporting) [**Audit ledger**](../content/openclaw.md#5-primitives) — metadata-only by construction |
+| [OpenCode](../content/opencode.md#8b-evidence) | ◐ | Share pages, `/export`+`import`, `run --format json`; no receipt-bound gate |
+| [Pi](../content/pi.md#8b-evidence) | ● | [**Session**](../content/pi.md#5-primitives) JSONL tree — the receipt, with per-entry `usage` and `cost` |
+
 **Horizon:** `shipped` — `03-jtbd.md` §2 `J8` *"Who"* — Claude Code OTel with full attribution; Gas City's Event Stream; SageOx's Ledger; QM's durable Postgres. ⚠️ The **join** to context is a separate marker and stays `claimed` — `12-horizon.md` §3.3
 
 **The consequence.** The ledger is the cheapest row in Trust to reach and the easiest to mistake for

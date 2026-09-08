@@ -67,6 +67,22 @@ are graded apart.
 | **HumanLayer** | Cadence bound to a **phase boundary rather than to a clock**: status is compacted back into the plan file after each *verified* phase. The trigger is the work reaching a checkpoint — a legitimate and under-modelled third answer beside cron and lifecycle events, and the one that emits by construction, because the artifact the phase updates **is** the record | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3 |
 | **LoomWarp** | `○` — nothing runs on a schedule and no handler is bound at any lifecycle point. Every recurring check the repository holds runs because somebody remembered it, which is stage 1 of this row's ladder: *"nothing runs on a schedule"* | [`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J5` · [`03-maturity.md`](../archive/v0/03-maturity.md) §4 |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 5 · ◐ 0 · ○ 5** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#9c-cadence) | ● | `/loop`, cron tools, Routines (cloud), Desktop scheduled tasks |
+| [Codex](../content/codex.md#9c-cadence) | ○ | No cron/schedule primitive in the CLI |
+| [FRACTAL](../content/fractal.md#9c-cadence) | ○ | Nothing here — router commands invoked manually, no scheduler |
+| [Gas City](../content/gas-city.md#9c-cadence) | ● | [**Order**](../content/gas-city.md#5-primitives) pairs a trigger with a Formula; health patrol ticks |
+| [Grok](../content/grok.md#9c-cadence) | ● | [**Routine**](../content/grok.md#5-primitives) (Bot) + `/loop`/scheduler (Build) |
+| [Hermes](../content/hermes.md#9c-cadence) | ● | [**Cron job**](../content/hermes.md#5-primitives) — `jobs.json` + `executions.db` attempt ledger |
+| [LoomWarp](../content/loomwarp.md#9c-cadence) | ○ | Dispatch is manually invoked only; no scheduler |
+| [OpenClaw](../content/openclaw.md#9c-cadence) | ● | [**Automation (cron) / Heartbeat**](../content/openclaw.md#5-primitives) inside the Gateway process |
+| [OpenCode](../content/opencode.md#9c-cadence) | ○ | No scheduler; event-triggered via GitHub/GitLab/Slack only |
+| [Pi](../content/pi.md#9c-cadence) | ○ | Nothing here; `pi -p` from cron is the external route |
+
 **Horizon:** `shipped` — `02-functions.md` §2 `C-7` — cron-triggered reviews and scheduled quality checks ship natively (hooks, scheduled sessions) and as Gas City's trigger-driven orders; `transcri` 12 is what made the emitted artifact machine-readable
 
 **The consequence.** The trigger is the cheapest thing in this layer and the emission is the whole

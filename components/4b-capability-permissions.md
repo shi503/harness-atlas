@@ -62,6 +62,22 @@ grant travels with the package rather than with the enumeration of what exists t
 | **HumanLayer** | Grants a **workspace**, not a capability: `permissions.additionalDirectories: ["../repo1", "../repo2"]` is the whole authorisation model of the multi-repo template. Its finer-grained control is human approval at call time, which is a different mechanism at a different layer | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5, §7 |
 | **LoomWarp** | Risk tiers scoped to **action classes rather than to capabilities**, so installing a capability into a new repo grants nothing and forbids nothing. The grant does not travel with the package | [`loomwarp.md`](../content/loomwarp.md#4b-capability-permissions) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 6 · ◐ 2 · ○ 2** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#4b-capability-permissions) | ● | `allowed-tools`/`disallowedTools` + `skillOverrides` + `strictPluginOnlyCustomization` |
+| [Codex](../content/codex.md#4b-capability-permissions) | ● | Per-MCP `enabled_tools`; `skills.config`; admin `allowed_permission_profiles` |
+| [FRACTAL](../content/fractal.md#4b-capability-permissions) | ○ | Nothing here — no per-user or per-skill ACL of its own |
+| [Gas City](../content/gas-city.md#4b-capability-permissions) | ◐ | City-wide vs role-local scope; webhook visibility default-closed to `tenant` |
+| [Grok](../content/grok.md#4b-capability-permissions) | ● | Per-tool, per-skill, org allowlists on the same [**permission rule**](../content/grok.md#5-primitives) |
+| [Hermes](../content/hermes.md#4b-capability-permissions) | ● | Per-platform toolsets, per-package MCP allowlist, skill trust levels |
+| [LoomWarp](../content/loomwarp.md#4b-capability-permissions) | ○ | Tiers gate actions, not who may invoke a skill |
+| [OpenClaw](../content/openclaw.md#4b-capability-permissions) | ● | Per-agent skill/tool allowlists; `before_install` can block |
+| [OpenCode](../content/opencode.md#4b-capability-permissions) | ● | `permission.skill`/`tools` globs; per-agent frontmatter; MCP tool gating |
+| [Pi](../content/pi.md#4b-capability-permissions) | ◐ | Skill `allowed-tools`, per-package filtering, per-scope enable/disable; no per-user ACLs |
+
 **Horizon:** `emerging` — `03-jtbd.md` §2 `J5` *"Who"* — scoped to the capability rather than the action, two peers and no shared word: QM's per-scope keychain view and permissions, Indigo's hook profiles
 
 **The consequence.** Every peer here has built a grant and none of them attaches it to the unit a team

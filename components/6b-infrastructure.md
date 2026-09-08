@@ -68,6 +68,22 @@ machine that built it"*; delivery fails as *"it never reaches production the sam
 | **HumanLayer** | The sharpest shape for a multi-repo team, and it is **four files**: `rpi:setup-worktree` builds `workspaces/<task-slug>/` containing a worktree of every participating repo *plus the coordination repo*, all on one branch. **A unit of work is N worktrees on one branch** — a virtual monorepo per task. And the discipline that makes it cheap: only implementation happens in a worktree, *"we tend to do everything else on main"* | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3, §5 |
 | **LoomWarp** | **Nothing at all, and the absence has a name in its own credibility check**: a private submodule means a stranger cannot `git clone --recursive`, so the environment cannot be created a second time by anyone. That is this row failing at stage 1, not at the margins | [`loomwarp.md`](../content/loomwarp.md#6b-infrastructure) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 6 · ◐ 3 · ○ 1** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#6b-infrastructure) | ● | Sandbox, cloud environments, self-hosted environments, devcontainers |
+| [Codex](../content/codex.md#6b-infrastructure) | ● | Per-task cloud container; proxy-gated egress; remote `code-mode`/`exec-server` |
+| [FRACTAL](../content/fractal.md#6b-infrastructure) | ○ | Nothing here — local execution only, no container or remote runner |
+| [Gas City](../content/gas-city.md#6b-infrastructure) | ● | tmux/subprocess/exec/k8s/herdr runtime backends; `gc supervisor` host process |
+| [Grok](../content/grok.md#6b-infrastructure) | ● | [**Computer**](../content/grok.md#5-primitives) (Bot's cloud VM) + sandbox profile (Build) |
+| [Hermes](../content/hermes.md#6b-infrastructure) | ● | Six terminal backends incl. Docker/singularity/modal; egress firewall |
+| [LoomWarp](../content/loomwarp.md#6b-infrastructure) | ◐ | Local subprocess only, wall-clock-timeout-wrapped; no container layer |
+| [OpenClaw](../content/openclaw.md#6b-infrastructure) | ● | Sandbox backends, [**Node**](../content/openclaw.md#5-primitives), cloud workers, experimental fleet |
+| [OpenCode](../content/opencode.md#6b-infrastructure) | ◐ | Local by default; `serve`+`attach`; experimental workspace-adapter API |
+| [Pi](../content/pi.md#6b-infrastructure) | ◐ | Gondolin micro-VM, Docker, NVIDIA OpenShell, SSH — all delegated outward |
+
 **Horizon:** `emerging` — `12-horizon.md` §3.2 — three peers, three names: QM `scope` with a durable sandbox (`systems/qm.md` §26), HumanLayer `worktree` (`systems/humanlayer.md` §5), Deep Agents `SandboxBackendProtocol.id` (`systems/langchain-deepagents.md` §2)
 
 **The consequence.** An environment nobody can rebuild is a person, not infrastructure — and the tell

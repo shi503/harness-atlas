@@ -75,6 +75,22 @@ a left side.
 | **HumanLayer** | `thoughts/shared/` per repo and `global/shared/` across them — **the team half of the 2×2**, and the only peer whose team store is scoped per-repo *and* across repos at the same time | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §4 |
 | **LoomWarp** | Two tiers, and the previous grade only saw one: the convention tier is a `context/` tree of org → domain layers — **83 lines of markdown** — and the governed tier is **live at `context/memory/decision-ledger/`**: five ADRs on a v2.0 schema with required RACI attribution, a TypeScript storage engine with atomic writes, an append-only audit and a derived SQLite index. **A grade that counted the markdown and missed the ledger was right for the wrong reason.** The resolver that would enforce version, hash and expiry over both was specified and does not exist | [`loomwarp.md`](../content/loomwarp.md#5b-team-memory) · [`systems/context-providers/03-decision-ledger.md`](../comparisons/systems/context-providers/03-decision-ledger.md) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 0 · ◐ 4 · ○ 6** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#5b-team-memory) | ◐ | Project `CLAUDE.md` is shared instructions, not shared learnings; auto memory is machine-local |
+| [Codex](../content/codex.md#5b-team-memory) | ○ | No shared/team memory object; `AGENTS.md` is shared config, not memory |
+| [FRACTAL](../content/fractal.md#5b-team-memory) | ○ | Nothing here at U; C ships a schema-validated decision ledger |
+| [Gas City](../content/gas-city.md#5b-team-memory) | ◐ | The shared bead store itself — Dolt-backed, survives any agent's crash |
+| [Grok](../content/grok.md#5b-team-memory) | ○ | Nothing shared across people; config travels by VCS, not memory |
+| [Hermes](../content/hermes.md#5b-team-memory) | ○ | Kanban is shared work state, not memory; no team tier |
+| [LoomWarp](../content/loomwarp.md#5b-team-memory) | ◐ | Schema-validated decision ledger; five ADRs, a real SQLite index |
+| [OpenClaw](../content/openclaw.md#5b-team-memory) | ◐ | Shared sessions + provenance; no governed person-to-person promotion |
+| [OpenCode](../content/opencode.md#5b-team-memory) | ○ | Committed `AGENTS.md` + org remote config; no shared learning |
+| [Pi](../content/pi.md#5b-team-memory) | ○ | Project `.pi/` shared via VCS; nothing team-aware |
+
 **Horizon:** `emerging` — `02-functions.md` §0.3 — three peers, three names: QM `scope`, SageOx's shared Ledger, gbrain's team brain. `03-jtbd.md` §2 `J2` records the disagreement: no two agree on which scope cells exist. The governed tier is `emerging` on its own evidence: SageOx ships a Ledger and its teardown grades it at Evidence (`systems/sageox.md` §*Primitives*), while the routing doctrine files it under Context — **the placement disagreement between shipping systems is itself the `emerging` tell**
 
 **The consequence.** This is the store every system in the landscape has, which makes it the row where

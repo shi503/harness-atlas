@@ -57,6 +57,22 @@ assembles all three stores per job; its own gap is recorded at
 | **HumanLayer** | `thoughts/searchable/` — a **hard-link tree**, read-only, built *"to allow AI tools to search your thoughts content without needing to follow symlinks."* A retrieval affordance designed for the agent rather than for the human, which is the addressee move this corpus argues for elsewhere and rarely sees implemented | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §4 |
 | **LoomWarp** | **No distinct corpus at all** — the same `context/` tree graded at `5b` is doing both jobs, team convention and domain knowledge in one place, with no index and no versioned read. **The one row in layer 5 where a peer is ahead on the property LoomWarp claims** | [`loomwarp.md`](../content/loomwarp.md#5c-knowledge) |
 
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 1 · ◐ 4 · ○ 5** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#5c-knowledge) | ◐ | MCP resources/prompts/connectors surface external data; no dedicated knowledge component |
+| [Codex](../content/codex.md#5c-knowledge) | ◐ | `web_search` retrieval; SQLite FTS over own rollouts only |
+| [FRACTAL](../content/fractal.md#5c-knowledge) | ○ | Nothing here at U; no glossary or retrieval of its own |
+| [Gas City](../content/gas-city.md#5c-knowledge) | ○ | Nothing here — checked guides and reference indexes |
+| [Grok](../content/grok.md#5c-knowledge) | ◐ | Hybrid BM25+vector memory search; `/deep-research` verifier shard |
+| [Hermes](../content/hermes.md#5c-knowledge) | ◐ | FTS5 over own sessions; `llm-wiki` skill; RAG needs external provider |
+| [LoomWarp](../content/loomwarp.md#5c-knowledge) | ○ | Nothing distinct from the context fabric and decision ledger |
+| [OpenClaw](../content/openclaw.md#5c-knowledge) | ● | `memory-wiki` — structured claims with evidence and provenance |
+| [OpenCode](../content/opencode.md#5c-knowledge) | ○ | No RAG/embeddings; grep/glob/LSP symbols + `references` + community MCPs |
+| [Pi](../content/pi.md#5c-knowledge) | ○ | No RAG, embeddings or wiki; SQLite FTS over own sessions in a separate package |
+
 **Horizon:** `shipped` — `12-horizon.md` §3.1 — two teardowns cited: SageOx's `ox agent prime` (`systems/sageox.md`) and HumanLayer's `thoughts` (`systems/humanlayer.md` §4), a separate repo mounted into every code repo, hook-enforced
 
 **The consequence.** This is the most-built component in the whole framework and the one where our own

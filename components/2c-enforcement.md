@@ -72,7 +72,23 @@ nobody notices.
 | **Deep Agents** | `allow` \| `deny` \| `interrupt` as **one mode field on one rule** — a three-level posture that costs a value rather than three subsystems. ⚠️ And the corpus's **first counter-example to deny-wins**: resolution is *first-match-wins with an `allow` default*, so a permissive rule listed first silently defeats a later deny | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Permissions — a real policy primitive, and it is not deny-wins* |
 | **MCP** | **Nothing here, and it is the reason enforcement cannot live at the connection layer.** MCP is *"external tool or data connections"*; what an agent may do with a connection is decided by the harness around it | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
 | **HumanLayer** | Enforcement as a **record rather than a bit**: approvals carry `ApproveToolCall(id, comment)` and `DenyToolCall(id, reason)`, with `resolved` as a distinct terminal state for approvals settled outside the system — the honest admission that a control plane never owns every channel | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §7 |
-| **LoomWarp** | **Policy theatre, caught in its own repo.** Four tier files, risk tiers designed, **one wired** — and the only live run used `bypassPermissions`, which skips deny rules entirely, while the shipped diagram claimed otherwise | [`loomwarp.md`](../content/loomwarp.md#2c-enforcement), §*Credibility check* |
+| **LoomWarp** | **Policy theatre, caught in its own repo.** Four tier files, risk tiers designed, **one wired** — and the only live run used `bypassPermissions`, which skips deny rules entirely, while the shipped diagram claimed otherwise | [`loomwarp.md`](../content/loomwarp.md#2c-enforcement) |
+
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 6 · ◐ 4 · ○ 0** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#2c-enforcement) | ● | Permission rules (deny→ask→allow) + OS sandbox (Seatbelt/bwrap) + managed settings |
+| [Codex](../content/codex.md#2c-enforcement) | ● | `sandbox_mode` + [**Permission profile**](../content/codex.md#5-primitives) coexist; native OS sandbox; [**Execpolicy rule**](../content/codex.md#5-primitives) |
+| [FRACTAL](../content/fractal.md#2c-enforcement) | ◐ | Permission-tier JSON shipped as reference, never installed |
+| [Gas City](../content/gas-city.md#2c-enforcement) | ◐ | No sandbox on agent tool calls, stated non-goal; secret-stripping, CSRF bind |
+| [Grok](../content/grok.md#2c-enforcement) | ● | [**Permission rule / mode**](../content/grok.md#5-primitives) + kernel sandbox, off by default |
+| [Hermes](../content/hermes.md#2c-enforcement) | ● | Deny globs + hardline blocklist YOLO cannot bypass; fail-closed hooks |
+| [LoomWarp](../content/loomwarp.md#2c-enforcement) | ◐ | Four risk-tier deny lists; the one live dispatch bypassed all of them |
+| [OpenClaw](../content/openclaw.md#2c-enforcement) | ● | [**Tool policy / Exec approvals / Sandbox**](../content/openclaw.md#5-primitives) — role-required sandbox never degrades to host |
+| [OpenCode](../content/opencode.md#2c-enforcement) | ● | [**Permission**](../content/opencode.md#5-primitives) allow/ask/deny, survives `--auto`; [**Policy**](../content/opencode.md#5-primitives) for providers |
+| [Pi](../content/pi.md#2c-enforcement) | ◐ | No built-in permission system or sandbox; `--tools` allowlist and project trust are the levers |
 
 **Horizon:** `shipped` — `03-jtbd.md` §2 `J5` *"Who"* — Claude Code deny rules, hooks, managed settings, sandbox; Indigo hook profiles `minimal/standard/strict`; QM `strict/auto/dangerous` with monotonic narrowing
 
