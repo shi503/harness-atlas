@@ -32,13 +32,13 @@ template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
 
 ### 1a. Positioning stats
 
-`1 · 2 · 3 · 0 · 1† · 3 · 2` — the seven DX dimensions, in order.
+`0 · +2 · +3 · 0 · +1† · +3 · +2` — the seven DX dimensions, in order.
 
 > **⚠️ Drafted 2026-09-07, not yet verified.** Derived from OpenClaw's own README, VISION.md and docs site — grounded against §4, §5 and §7 below. No person has re-read these seven values yet. [`01-scorecard.md`](../spectrums/01-scorecard.md) §1 R11 says how the banner comes off.
 
 | | | | | |
 |:-:|---|---:|:-:|---|
-| **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
+| **1** | Org scale | single operator | `───●───` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `─────●─` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `──────●` | many surfaces, environments, a platform |
 | **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
@@ -46,7 +46,7 @@ template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
 | **6** | Ownership | rented | `──────●` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `─────●─` | observability, efficiency, routing |
 
-**†** the one **graded** dimension; every other row is a position, not a score. **Neither end is better.** Ten axes sit beneath these seven — `I 1 · II 2 · III 3 · IV 0 (dual +3) · V 3 · VI 3 · VII 0 · VIII 0 · IX 2 · X 2` — and four of them feed no cell above by design.
+**†** the one **graded** dimension; every other row is a position, not a score. **Neither end is better.** Ten axes sit beneath these seven — `I 0 · II 2 · III 3 · IV 0 (dual +3) · V 3 · VI 3 · VII 0 · VIII 0 · IX 2 · X 2` — and four of them feed no cell above by design.
 
 → [`spectrums/positioning.md`](../spectrums/positioning.md) · [`positions/openclaw.yaml`](../spectrums/positions/openclaw.yaml) · [`01-scorecard.md`](../spectrums/01-scorecard.md) · [`00-README.md`](../spectrums/00-README.md)
 

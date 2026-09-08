@@ -43,12 +43,16 @@ spectrums:
   positions:
 
     - id: operator-scale
-      value: 1
+      value: 0
       mark: direct
       evidence: ["10b", "§7 · serves more than one person", "3d", "4b"]
-      because: "Named session owner, participant and per-scope roles for a shared team gateway — a real team object, short of the enterprise multi-tenant boundary it explicitly disclaims."
-      split: "Default posture is −3 — 'a personal assistant for one trusted operator,' out of the box. Shipped mechanism for a team gateway is closer to +2 — roles, scopes and session ownership are config objects, not just shareable files. Scored between, per R10; both halves are in §7 verbatim."
-      gap: "00-README.md's own axis-I corpus_anchor cites OpenClaw at −3 ('designed for a single operator'); this profile's fuller read shows team machinery the anchor quote doesn't reflect. Worth reconciling at the next axis revision rather than silently diverging."
+      because: "A personal assistant for one trusted operator, reachable by others through a messaging gateway; the roles and scopes are permissions on that channel, not tenants."
+      # RE-SCORED 2026-09-07 from +1, ruling `2026-09-07-openclaw-permissions-not-tenancy`.
+      # KD: "initially it's ranked more as an individual agent, and the gateway messaging is
+      # permissions." The +1 read session owner / participant / per-scope roles as a team object;
+      # they are access control on one operator's assistant. A mechanism does know a second person
+      # exists, which keeps this off −3; what it knows is a permission scope, which keeps it off +1.
+      gap: "OpenClaw released a team version after this profile's 2026-09-02 read. Nothing about it is in the profile and R3 forbids opening a source to find out. A re-read could move this materially — the strongest re-read candidate in the corpus."
 
     - id: state-durability
       value: 2
@@ -136,8 +140,9 @@ spectrums:
 
     - id: org-scale
       dx: 1
-      value: 1
+      value: 0
       mark: direct
+      # Re-scored with axis I, 2026-09-07 — see the operator-scale note above.
       reads_opened:
         axes: ["operator-scale: 1"]
         profile: ["§7 Q2", "10b", "10a", "3d", "4b"]

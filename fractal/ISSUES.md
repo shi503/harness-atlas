@@ -272,7 +272,7 @@ thing to keep correct.
 
 ## ISSUE-015 — axis I's `−3` corpus anchor is OpenClaw, and the OpenClaw teardown scores it `+1`
 
-**Severity:** WARN · **Found:** 2026-09-07, reported by the OpenClaw feature-lead during the W8b fan-out · **Assigned:** none yet — KD to rule
+**Severity:** WARN · **Found:** 2026-09-07, reported by the OpenClaw feature-lead during the W8b fan-out · **Assigned:** ✅ RULED 2026-09-07, `2026-09-07-openclaw-permissions-not-tenancy` — and the addendum below supersedes the analysis
 
 `spectrums/00-README.md` §2.1 and §3 I both cite **OpenClaw** as the corpus anchor for
 `operator-scale −3`, quoting *"designed for a single operator."* The W8b restructure read the fuller
@@ -403,3 +403,44 @@ the `**Ships.** / **Path.** / **Source.**` shape is one line per field by design
 `content/pi.md` has 24 prose lines over 400 characters, so the style the skill teaches *already*
 defeats a raw line count. Either count bytes, or say plainly that the cap is a soft signal and joining
 lines to meet it is allowed. **Do not raise the number again without saying what it measures.**
+
+
+---
+
+## ISSUE-015 addendum, 2026-09-07 — ruled, and the finding is larger than the entry described
+
+**Severity:** WARN · **Found:** 2026-09-07, applying KD's ruling · **Assigned:** open — the vacant-pole half is not resolved
+
+**KD ruled the OpenClaw half.** Its session owner, participant and per-scope roles are *"permissions"*
+on a messaging gateway, not tenancy: the harness is *"more of an individual agent"*. Axis I and DX-1
+re-scored `+1` → `0` — a mechanism does know a second person exists, which keeps it off `−3`; what it
+knows is a permission scope, which keeps it off `+1`. Recorded as
+`2026-09-07-openclaw-permissions-not-tenancy`.
+
+**The entry above asked whether axis I's minus pole was vacant. Measured across all ten scored
+harnesses, both poles are:**
+
+| | |
+|---|---|
+| `−2` | LoomWarp · FRACTAL |
+| `−1` | Gas City · Pi |
+| `0` | OpenClaw · Hermes |
+| `+1` | Grok · Claude Code · OpenCode · Codex |
+
+Range **`−2` to `+1`** — four distinct values, all of them in the middle four notches of a seven-notch
+axis. R6 passes; **R1 does not.** No harness in the scored corpus sits at either end, and R1 says an
+axis with a vacant pole *"is an aspiration, i.e. a grade."*
+
+**The likely cause is the corpus, not the axis.** The `+3` anchor describes a multi-tenant platform
+with per-tenant policy the harness enforces, and the cited example — **QM** — has never been torn
+down; it is a short teardown in `comparisons/systems/`, not a scored profile. The `−3` anchor
+describes a design where *nothing contemplates a second person*, and every one of these ten
+contemplates one somehow, even Pi through a shared settings file.
+
+**Three ways out, and the choice is KD's:** (a) tear down QM and let it anchor `+3` — the honest fix
+if the anchors are right and the corpus is short; (b) narrow both anchors to the range developer
+harnesses actually occupy, and accept that the axis stops describing platforms; (c) publish the
+vacancy as the finding — *no developer harness in this corpus is either solipsistic or multi-tenant*
+— which is defensible and is what `cost-visibility` does with its own expected clustering.
+
+**Not acted on.** Nothing here changes a score beyond the OpenClaw ruling already applied.

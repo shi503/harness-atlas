@@ -59,7 +59,7 @@ pass is the only thing that clears it** — not age, not a re-render, not a seco
 | [Claude Code](#2-claude-code) | +1 | +1 | +3 | +2 | +2 | −3 | +3 | ⚠️ no |
 | [Pi](#3-pi) | −1 | −2 | +2 | 0 | +2 | +3 | +1 | ⚠️ no |
 | [Hermes](#4-hermes) | 0 | +2 | +3 | −3 | +2 | +3 | +2 | ⚠️ no |
-| [OpenClaw](#5-openclaw) | +1 | +2 | +3 | 0 | +1 | +3 | +2 | ⚠️ no |
+| [OpenClaw](#5-openclaw) | 0 | +2 | +3 | 0 | +1 | +3 | +2 | ⚠️ no |
 | [OpenCode](#6-opencode) | +1 | +1 | +2 | 0 | +2 | +2 | +1 | ⚠️ no |
 | [Codex CLI](#7-codex-cli) | +1 | +2 | +3 | 0 | +2 | +1 | 0 | ⚠️ no |
 | [Grok (Build)](#8-grok-build) | +1 | +1 | +2 | −3 | 0 | +3 | +1 | ⚠️ no |
@@ -146,7 +146,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 ## 5. OpenClaw
 
-`+1 · +2 · +3 · 0 · +1† · +3 · +2`
+`0 · +2 · +3 · 0 · +1† · +3 · +2`
 
 [`content/openclaw.md`](../content/openclaw.md#1-at-a-glance) · scored 2026-09-07 · [`positions/openclaw.yaml`](positions/openclaw.yaml) · back: [§1a](../content/openclaw.md#1a-positioning-stats)
 
@@ -154,7 +154,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 | | | | | |
 |:-:|---|---:|:-:|---|
-| **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
+| **1** | Org scale | single operator | `───●───` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `─────●─` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `──────●` | many surfaces, environments, a platform |
 | **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
@@ -162,7 +162,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **6** | Ownership | rented | `──────●` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `─────●─` | observability, efficiency, routing |
 
-**Ten axes beneath.** `I +1` · `II +2` · `III +3` · `IV 0` · `V +3` · `VI +3` · `VII 0` · `VIII 0` · `IX +2` · `X +2`
+**Ten axes beneath.** `I 0` · `II +2` · `III +3` · `IV 0` · `V +3` · `VI +3` · `VII 0` · `VIII 0` · `IX +2` · `X +2`
 
 ---
 
