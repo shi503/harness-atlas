@@ -35,6 +35,7 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 | FRACTAL (upstream · generic-cerebro fork · this repo) | process layer | [`content/fractal.md`](content/fractal.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
 | Claude Code | runtime | [`content/claude-code.md`](content/claude-code.md) | v2 (2026-09-04); deep read at [`content/claude-code/`](content/claude-code/00-README.md), 12 docs |
 | HumanLayer · Deep Agents · Indigo HQ · QM · SageOx · gstack/gbrain | process layers | [`comparisons/systems/`](comparisons/systems/) | short teardowns, un-recut |
+| QM (Quartermaster) | multi-tenant — **claimed, unmeasured** | [`comparisons/systems/qm.md`](comparisons/systems/qm.md) | short teardown only; **promoted to the front of the queue** — it anchors axis I's `+3` and has never been scored |
 | Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | [`fractal/workstreams/W4-teardowns.md`](fractal/workstreams/W4-teardowns.md) | queued, in that order |
 
 ## 2. The scorecard and the sheet
