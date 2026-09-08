@@ -1,12 +1,13 @@
 %% Redrawn in house notation from Anthropic's own diagram at
 %% https://code.claude.com/docs/en/how-claude-code-works ("The agentic loop"),
+%% repo anthropics/claude-code @ v2.1.261 (d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b).
 %% alt text: "Diagram of the agentic loop: Your prompt leads to Claude gathering
 %% context, taking action, verifying results, and repeating until task complete.
-%% You can interrupt at any point." Accessed 2026-09-03.
+%% You can interrupt at any point." Re-read 2026-09-04. No node or edge not in the original.
 %% NOTE: this is the docs' own picture of the loop -- three phases, not the
 %% "seven insertion points" synthesis in this repo's content/claude-code/20-
 %% consolidated-guide.md §1, which is a repo-original reading across many pages,
-%% not a diagram lifted from Anthropic's docs. See claude-code-draft.md §F.
+%% not a diagram lifted from Anthropic's docs. See content/claude-code.md §9.
 flowchart LR
   prompt(["your prompt"]) --> gather["gather context<br/><i>search, read files, explore</i>"]
   gather --> act["take action<br/><i>edit, run commands, call tools</i>"]

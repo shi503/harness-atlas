@@ -5,7 +5,9 @@ fixed component grid, and places them on a maturity range.** Every profile is bu
 the harness's own documentation, code and configuration, so that an engineer can *grok* a harness —
 its loop, its primitives, its limits — from one page, and compare it to the next one cell for cell.
 
-Start at [`index.md`](index.md) for the whole map. This page is the argument, and the highlights.
+**Start here** — [the map](index.md) · [one profile](content/claude-code.md) · [the grid](comparisons/02-component-matrix.md) · [one component, every harness](components/2b-hooks.md) · [the scorecard](spectrums/01-scorecard.md)
+
+This page is the argument, and the highlights.
 
 ---
 
@@ -79,25 +81,30 @@ this repo's own synthesis — generalised from the "seven insertion points" read
 [`content/claude-code/20-consolidated-guide.md`](content/claude-code/20-consolidated-guide.md) §1,
 which is itself a synthesis, not a vendor diagram. Vendor diagrams, redrawn, live under
 [`assets/projects/`](assets/projects/). The twelve layers those component IDs belong to are drawn in
-[`index.md`](index.md) §3.*
+[`index.md`](index.md#4-the-layers).*
 
 ## How to read a profile
 
 Every page under [`content/`](content/) has the same shape, produced by
 [`skills/harness-teardown/SKILL.md`](skills/harness-teardown/SKILL.md):
 
-1. **Three paragraphs at the top** — *why this file exists · in one screen · what it does not claim.*
-   Read only these and you have the thesis.
-2. **Identity, and three tests.** Does state persist across sessions, and where? Does it serve more
-   than one person? Does it bind mechanically, or only by prose? Then the loop question: does it run
-   the loop itself, host other loops, or install into one — which fixes its **altitude**.
-3. **Thirty-three rows**, one per component, each with a path, a source and a mark
-   (`✅` direct · `◐` relayed · `⚠️` unverified). Absence is written *"Nothing here — checked README,
-   docs index, settings, examples"*. **Never inferred.**
+1. **Thirty seconds.** A one-line thesis and an **at-a-glance card**: altitude, primitives, the
+   one structured output it optimises for, whether it binds mechanically, where state lives, who it
+   serves, what it refuses, and a coverage count.
+2. **The picture.** The vendor's own **system map**, redrawn, with one paragraph on how it thinks
+   about work; then one to three **workflows** transcribed from the vendor's docs — the turn,
+   delegation, the signature flow. Never invented: a harness with no vendor diagram gets a
+   clearly-labelled overlay of the atlas anatomy, or an absence line.
+3. **The matrix.** Thirty-three components under twelve layers, one mark each — `●` named
+   primitive · `◐` present, not first-class · `○` absent · `n/a` — with the primitive's name or a
+   ten-word note. Every row links to its detail.
 4. **The primitive set** — the vendor's own names and definitions, verbatim, counted. Five to seven
    is healthy; twelve-plus is accommodation failure; a published refusal list is the strongest form.
-5. **Stated limitations**, quoted without commentary; **sources**, down to the `gh api` commands run;
-   and **what could not be verified** — mandatory, never empty.
+5. **Open what you need.** Details per component (what it ships, the path, the source — `✅` direct ·
+   `↪` relayed · `⚠️` unverified), then identity and the inclusion test, stated limits quoted without
+   commentary, sources down to the `gh api` commands run, and what could not be verified — all
+   collapsed, all mandatory. Absence is written *"Nothing here — checked README, docs index,
+   settings, examples"*. **Never inferred.**
 
 ## Highlights
 
@@ -106,7 +113,7 @@ are in [`index.md`](index.md) §1.
 
 | Harness | Altitude | In one line | Its structured output | Profile |
 |---|---|---|---|---|
-| **Claude Code** | runtime | An agent loop with seven insertion points; every choice is *when does it load* × *who enforces it* | OTel spans + `tool_decision` audit records | [`content/claude-code/`](content/claude-code/20-consolidated-guide.md) *(pre-template deep read; template profile pending)* |
+| **Claude Code** | runtime | An agent loop wrapped in an "agentic harness"; it optimises for a single operator's turn binding mechanically at the tool-call boundary, everything upstream shaping behaviour by prose | the `claude_code.interaction` OTel trace, whose `claude_code.tool` spans carry the `tool_decision` permission-audit record — verified 2026-09-04 | [`content/claude-code.md`](content/claude-code.md) |
 | **Pi** | runtime | Defined by subtraction — *"No MCP. No sub-agents. No permission popups."* — each shipped as an example extension instead; holds at eight primitives | the session JSONL *tree*, which doubles as the run receipt | [`content/pi.md`](content/pi.md) |
 | **Hermes** | gateway / host | Makes *learning* the headline: authors skills from experience, caps memory files, ages skills out; hosts the Codex app-server as an alternate loop | the kanban that owns *"lifecycle truth"* | [`content/hermes.md`](content/hermes.md) |
 | **Gas City** | gateway / host, with an install-into-a-loop mechanism nested inside | Yegge's *software factory*: six declared primitives with a published admission test for adding one — and a documented deletion of one — driving fifteen-plus coding-agent CLIs through shared state | the Bead — the one substrate every other primitive writes through | [`content/gas-city.md`](content/gas-city.md) *(supersedes the short profile, whose "seven" and "Factory Worker Protocol" did not survive a primary-source read)* |

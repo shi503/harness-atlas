@@ -299,4 +299,4 @@ The manifest preserves asymmetry rather than remediating it — a workstream wit
 
 ---
 
-*Companion: [`01-the-composition-contract.md`](./01-the-composition-contract.md) — why these shapes exist · [`07-transfer-manifest.md`](./07-transfer-manifest.md) — which to adopt · [`adr-seeds/`](./adr-seeds) — the decisions that would adopt them*
+*Companion: [`01-the-composition-contract.md`](./01-the-composition-contract.md) — why these shapes exist · [`07-transfer-manifest.md`](./07-transfer-manifest.md) — which to adopt · [`adr-seeds/`](../../../archive/adr-seeds/README.md) — the decisions that would adopt them*

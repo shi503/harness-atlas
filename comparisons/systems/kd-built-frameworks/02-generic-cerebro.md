@@ -105,7 +105,7 @@ What survives all of it: the contracts, the routing doctrine, the compounding lo
 
 ## What to steal from ourselves
 
-Ranked, and expanded with sequencing in [`ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md).
+Ranked, and expanded with sequencing in `loomwarp-team-system` `references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md` (private).
 
 | # | Pattern | For |
 |---|---|---|
@@ -122,4 +122,4 @@ Ranked, and expanded with sequencing in [`ENRICHMENT-PLAN.md`](https://github.co
 
 ---
 
-*Companion: [`01-the-composition-contract.md`](./01-the-composition-contract.md) · [`07-transfer-manifest.md`](./07-transfer-manifest.md) · [`../loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/loomwarp.md) — the successor's own unflattering summary*
+*Companion: [`01-the-composition-contract.md`](./01-the-composition-contract.md) · [`07-transfer-manifest.md`](./07-transfer-manifest.md) · `loomwarp-team-system` `references/comparisons/systems/loomwarp.md` (private) — the successor's own unflattering summary*

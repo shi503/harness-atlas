@@ -1,0 +1,204 @@
+# FRACTAL — spectrum positions and DX scorecard.
+#
+# Scored against the profile as restructured to Template v2 on 2026-09-07 from
+# the source read of 2026-09-03. No source was opened at scoring time (R3).
+# Every `evidence` entry points at a section or component id of that profile.
+# Three instances exist (U upstream · C the generic-cerebro fork · R this repo);
+# the UPSTREAM (U) instance is scored as the primary subject, per the workstream
+# PRD. Fork divergence is recorded in `split:` only where it changes the half
+# actually scored.
+
+# ---------------------------------------------------------------- R11 verification
+verification:
+  derived_from:
+    - "the profile's own §7 identity table, README quotes and ISSUES.md entries — read 2026-09-03"
+    - "repo README, LICENSE and tag/release history — shi503/fractal-agent-system at the pinned commit"
+    - "this repo's own CLAUDE.md § Workstreams, quoted verbatim in §8 of the profile"
+  grounded_against:
+    - "§4 component matrix — 33 rows, ● 3 · ◐ 11 · ○ 19, copied from the 04 grid column (field 12)"
+    - "§5 primitives — 5 named units, ⚠️ contestable, never gathered into one vendor list"
+    - "§7 identity table — MIT licence, 3 stars, repo created 2026-03-05, no tagged release"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    Scored the upstream (U) instance as the primary subject. Two axes carry the sharpest
+    tension found in this profile: binding-force (router.py's own state transitions are
+    mechanical; whether a HANDOFF's claims are true binds nowhere in code, and the fork and
+    this repo both inherit or deepen that gap) and operator-scale (the four-tier design
+    assumes distinct roles; every instance observed — U, the fork, and this repo — is one
+    human operating all of them in sequence). Proof-ceremony is scored at the anchor value
+    (+3) because this profile's own HANDOFF is the corpus's stated example of that anchor.
+    Fork (C) divergence is recorded only where it changes the scored half; C's independent
+    convergence on machinery U's own pinned commit already shipped (rather than adding it)
+    is the profile's sharpest finding and is carried forward, not re-litigated here.
+
+spectrums:
+  schema_version: 2
+  harness: fractal
+  profile: content/fractal.md
+  profile_read: "2026-09-03"      # the source read; the restructure added no facts
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  positions:
+
+    - id: operator-scale
+      value: -2
+      mark: direct
+      evidence: ["§7 · serves more than one person", "10a", "10b", "3d", "4b"]
+      because: "Four tiers assume distinct roles by design, but no tenancy, scope or RACI object exists anywhere, and every instance observed is one human across all roles."
+      gap: "Whether a real multi-human run (a separate Strategist, Architect and Feature Lead as distinct people) would surface any mechanism recognizing them was not tested — no such run exists in the sources read."
+
+    - id: state-durability
+      value: 0
+      mark: direct
+      evidence: ["§7 · does state persist", "7a", "8b", "5a"]
+      because: "File-backed and local at every instance — .state.json (U only), HANDOFF/PULSE markdown, workstream PRDs — resumable by the same human, no shared or queryable store."
+      gap: "U's .state.json is a flat map with no dependency edges, a documented defect (ISSUE at C's own ISSUES.md); whether that ever corrupts resumability enough to read as -1 was not tested against a live run."
+
+    - id: binding-force
+      value: -2
+      mark: direct
+      evidence: ["§7 · binds mechanically or only by prose", "2c", "3a", "8b"]
+      because: "router.py's state transitions are mechanical, but nothing checks whether a HANDOFF's claims are true — router.py update COMPLETE accepts any string — and R ships no router at all."
+      gap: "Whether upstream ever intends to parse or validate a HANDOFF's evidence table mechanically (versus leaving it to LLM review by design) was not stated anywhere read."
+
+    - id: loop-ownership
+      dual: null
+      value: -3
+      mark: direct
+      evidence: ["§7 · loop question", "2a", "0a"]
+      because: "Process layer at all three instances — no runtime of its own, and unlike LoomWarp's dispatch.py, router.py never spawns an agent session itself; work happens inside whatever harness's session is already open."
+
+    - id: substrate-portability
+      value: -2
+      mark: direct
+      evidence: ["0a", "2a"]
+      because: "Model choice is a hand-edited frontmatter field per agent file; no MCP/ACP adapter, no provider abstraction layer of FRACTAL's own at any instance."
+
+    - id: primitive-discipline
+      value: 0
+      mark: direct
+      evidence: ["§5 count and verdict"]
+      because: "Five vendor-named objects, never gathered into one list by the vendor itself — inside the 5–7 healthy band despite being assembled rather than stated."
+      gap: "A future re-read should settle whether the seven shipped SKILL.md files (4a) deserve their own row in §5 — they are real and first-class but were not counted among the five at the 2026-09-03 read."
+
+    - id: control-posture
+      value: 0
+      mark: direct
+      evidence: ["2c", "3a", "9c"]
+      because: "No approval gate of its own; the one irreversible action (router.py init wiping all state) is stopped only by an instruction Feature Leads are told never to run, not by code."
+
+    - id: proof-ceremony
+      value: 3
+      mark: direct
+      evidence: ["8b", "7a", "§1 Structured output"]
+      because: "No workstream advances without a HANDOFF whose Verification Evidence table is pasted command output, and the template requires a stated 'None' rather than an omission where nothing was left undone."
+
+    - id: improvement-loop
+      value: 0
+      mark: direct
+      evidence: ["9a", "9d", "9e"]
+      because: "ISSUES.md captures defects with a real, stated lifecycle (OPEN → resolved by a HANDOFF), but nothing promotes a captured lesson into a new skill or standard automatically — the Architect triages by hand."
+
+    - id: cost-visibility
+      value: -3
+      mark: direct
+      evidence: ["8d", "8c", "8b"]
+      because: "No cost cap, no spend attribution, no event log of any kind at any instance — confirmed absent by grep for 'budget'/'cost' across router.py and the agent files."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  probation:
+
+    - id: surface-breadth
+      value: -2
+      mark: direct
+      evidence: ["11a"]
+      because: "Markdown files (HANDOFF, PULSE) and whatever CLI/IDE session is hosting it are the only surfaces; no dashboard, no dedicated UI of FRACTAL's own."
+
+    - id: routing-determinism
+      value: 0
+      mark: direct
+      evidence: ["3b"]
+      because: "Feature Lead assignment is a static, author-time field in the BLUEPRINT/PRD; nothing resolves or reassigns work at runtime."
+      gap: "This axis's poles are 'the model decides' and 'a resolver decides'. Static author-time assignment is neither — the same gap Pi's score notes on this axis."
+
+    - id: knowledge-depth
+      value: -3
+      mark: direct
+      evidence: ["5c"]
+      because: "No retrieval, glossary or knowledge base of FRACTAL's own at U or R; C's lexical index over its own documents was not independently re-verified this pass."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # The revised seven (ruling `2026-09-07-dx-revision`). Authored, never computed (R8).
+  scorecard:
+
+    - id: org-scale
+      dx: 1
+      value: -2
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: −2"]
+        profile: ["§7 Q2", "10a", "10b", "3d", "4b"]
+      because: "Pass-through of axis I. Roles are divided by design across four tiers; nothing enforces tenancy, and every instance observed is one human operating all of them."
+
+    - id: weight-class
+      dx: 2
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["proof-ceremony: +3 — direct", "primitive-discipline: 0 — BULK ONLY, verdict discarded"]
+        profile: ["§5 count and verdict", "7a", "8b", "§3 Workflows"]
+      because: "Every unit of work is gated on a HANDOFF whose evidence table must say 'None' rather than omit — real ceremony — even though the mechanism itself (router.py, five primitives) is thin everywhere else."
+
+    - id: surfaces-extendability
+      dx: 3
+      value: -1
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: −2 (probation)"]
+        profile: ["2a", "2b", "4a", "11a", "6d"]
+      because: "Seven real skills are the one extension point; no hooks, no adapters, no protocol of its own — thin machinery, not a market."
+
+    - id: context
+      dx: 4
+      value: -3
+      mark: direct
+      supersedes: domain-specialization
+      reads_opened:
+        axes: ["state-durability: +0"]
+        profile: ["5a", "5b", "5c"]
+      because: "Nothing in layer 5 at all; context lives in the PRD and HANDOFF files a human writes, not in anything the harness keeps."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
+    - id: ecosystem
+      dx: 5
+      value: -3
+      grades: true
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars", "§7 Repo created", "§7 First release", "§7 Owner / maintainer"]
+      because: "Three stars, one fork, no tagged release, and one human contributor across 47 commits at the pinned repo — no second author found."
+
+    - id: ownership
+      dx: 6
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: −2"]
+        profile: ["§7 License", "§7 Install", "0a"]
+      because: "MIT, no binary — a .claude/ tree copied into your own repo — but model choice is hardcoded per agent file with no provider abstraction to swap easily."
+
+    - id: cost-controls
+      dx: 7
+      value: -3
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: −3 — the observability third", "routing-determinism: 0 (probation) — the routing third"]
+        profile: ["8d", "8c", "3b"]
+      because: "No cost cap, no spend attribution, no efficiency machinery of its own at any instance; routing is a static author-time field, not a lever."

@@ -1,12 +1,13 @@
 ---
 title: "NEXT-STEPS — spin the harness framework out into its own repo"
 tier: pm
-project: loomwarp
+project: harness-atlas
 created: "2026-09-02"
 status: ARCHIVED
 owner: KD
 audience: "Fable-level architect agent"
 session: "https://claude.ai/code/session_015DgCNbVrPEc51m5NiGJv3Y"
+provenance: AUTHORED
 ---
 
 # Handoff — spin the harness framework out into its own repo
@@ -21,7 +22,7 @@ session: "https://claude.ai/code/session_015DgCNbVrPEc51m5NiGJv3Y"
 
 **The framework cannot grade LoomWarp honestly while it lives inside LoomWarp.** [`references/comparisons/02-component-matrix.md`](../../comparisons/02-component-matrix.md) already records LoomWarp's primitive set as *"— unstated. Artifacts exist; a set does not"* and its column as mostly `○`/`◐`. That reading is correct and it is uncomfortable to hold inside the product's own repo.
 
-**Two artifacts got fused.** A *maturity spectrum* — a diagnostic answering *where are we, what breaks next* — and a *primitive catalog* — an ontology answering *what are the parts, who ships one*. The rule that every component must be a gradeable row forces a six-rung ladder onto things that only have an answer. [`specs/v1-framework/content/component-01-substrate.md`](../../spec/v1-framework/content/component-01-substrate.md) is the worked example: it holds four unrelated decisions (which model, which harness, the portability trade, how far out of distribution the work is) held together by a numbering scheme, and carries its own name under protest.
+**Two artifacts got fused.** A *maturity spectrum* — a diagnostic answering *where are we, what breaks next* — and a *primitive catalog* — an ontology answering *what are the parts, who ships one*. The rule that every component must be a gradeable row forces a six-rung ladder onto things that only have an answer. [`specs/v1-framework/content/component-01-substrate.md`](../../components/0a-substrate.md) is the worked example: it holds four unrelated decisions (which model, which harness, the portability trade, how far out of distribution the work is) held together by a numbering scheme, and carries its own name under protest.
 
 **The shape got buried in prose.** The most effective artifact in this corpus is a grid — `02-component-matrix.md`. The least effective is a 500-line guide. The re-cut is a **wiki of short linked pages**, not a document.
 
@@ -246,7 +247,7 @@ Mark each component as having maturity stages or only an answer. Working hypothe
 
 ## 12. Findings to carry, so they are not rediscovered
 
-- **The corpus is dense in contrasts and sparse in dependencies.** All 33 components state what they are *not*; [`specs/v1-framework/06-relations.md`](../../spec/v1-framework/06-relations.md) found **13 citable `requires` edges** between them. The consequence is sharp: **_minimum governs_ is currently unfalsifiable in practice** — with a sparse graph you cannot show what a zero at `3c` actually breaks. A denser cited `requires` graph is what turns it from a posture into a prediction, and that is a better argument for the map than *"the layer list is not a system map."*
+- **The corpus is dense in contrasts and sparse in dependencies.** All 33 components state what they are *not*; [`specs/v1-framework/06-relations.md`](../spec/v1-framework/06-relations.md) found **13 citable `requires` edges** between them. The consequence is sharp: **_minimum governs_ is currently unfalsifiable in practice** — with a sparse graph you cannot show what a zero at `3c` actually breaks. A denser cited `requires` graph is what turns it from a posture into a prediction, and that is a better argument for the map than *"the layer list is not a system map."*
 - **`3c` Composition performs no job, is required by nothing, and requires one thing** — the weakest node on the seeded graph and the first target for a deletion test.
 - **The `shipped` horizon rule is met by one marker in twelve.** `12-horizon.md` §2 requires two teardowns cited by file and section; only `5c` Knowledge does. Eleven cite a synthesis document that names peers without pointing at their teardowns. Relax the rule and record the relaxation, or re-cite eleven.
 - **LoomWarp's primitive set is blank** — the one system in the matrix we cannot currently evaluate is ours.
@@ -255,4 +256,4 @@ Mark each component as having maturity stages or only an answer. Working hypothe
 
 ---
 
-*The plan this executes was authored 2026-09-02 in the session linked in the frontmatter. The corpus it migrates: [`00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md) · the framework: [`specs/v1-framework/00-README.md`](../../spec/v1-framework/00-README.md) · the mental model in flight: [`specs/v1-framework/00-consolidated-guide-and-mental-model.md`](../../spec/v1-framework/00-consolidated-guide-and-mental-model.md) · the open register: [`specs/v1-framework/CROSSWALK.md`](../../spec/v1-framework/CROSSWALK.md) §3*
+*The plan this executes was authored 2026-09-02 in the session linked in the frontmatter. The corpus it migrates: `loomwarp-team-system` `00-MAP.md` (private) · the framework: [`specs/v1-framework/00-README.md`](../spec/v1-framework/00-README.md) · the mental model in flight: [`specs/v1-framework/00-consolidated-guide-and-mental-model.md`](../spec/v1-framework/00-consolidated-guide-and-mental-model.md) · the open register: [`specs/v1-framework/CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §3*

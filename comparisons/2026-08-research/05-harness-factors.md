@@ -281,6 +281,20 @@ change a decision, `XIV` is decoration. **A factor nobody could disprove is a sl
 
 ---
 
+## 5. Candidates — factors noticed, not yet admitted
+
+A rule seen in practice that none of `I`–`XIV` states. **NOTICED costs one line and no research**, per
+[`../../docs/agents/intake.md`](../../docs/agents/intake.md) §2. Admission is §4's count argument — no
+factor was invented to reach a round number — plus the falsification test: a factor that cannot be
+disproven is a slogan. A factor admitted here syncs to **three** places, all in this file: §1, the two
+renderings in §2 and §3, and §4's count.
+
+| Candidate | The rule, in the imperative | Job | Where seen | State |
+|---|---|---|---|---|
+| *(open)* | A factor covering `J13`–`J17` | `J13` `J14` `J15` `J16` `J17` | `CROSSWALK.md` §3.6, `C-10` | **NOTICED**, carried since 2026-08-31. The fourteen cover only `J1`–`J12`; five jobs have components and no factor. Factor `I` maps to no job at all |
+
+---
+
 *Companion: [`04-primitives-ontology-platform.md`](./04-primitives-ontology-platform.md) — why primitives
 are the unit · [`../03-jtbd.md`](../03-jtbd.md) — the jobs these serve ·
 [`02-harness-taxonomies.md`](./02-harness-taxonomies.md) — the published lists these extend*

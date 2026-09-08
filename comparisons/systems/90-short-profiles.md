@@ -25,7 +25,7 @@ These run the agent loop. LoomWarp installs *into* one of these; it is not one.
 
 | System | Owner | Note | Src |
 |---|---|---|---|
-| **Claude Code** | Anthropic | Full pointer at [`claude-code.md`](./claude-code.md) | `[V]` |
+| **Claude Code** | Anthropic | **Torn down 2026-09-04** — [`content/claude-code.md`](../../content/claude-code.md#1-at-a-glance), Template v2. An agent loop wrapped in an "agentic harness"; 7–8 contestable primitives; structured output is the `claude_code.interaction` OTel trace carrying the `tool_decision` permission-audit record | `[V]` |
 | **Codex CLI** | OpenAI | **Torn down 2026-09-03** — [`content/codex.md`](../../content/codex.md). A runtime split into an engine and a wire protocol (the app-server); Hermes and OpenClaw both embed it. Contestable 8-primitive set, mid-migration on two fronts (`sandbox_mode`/`[permissions]`; `codex mcp-server` deprecated for the app-server) | `[V]` |
 | **Gas City** | Gas Town Hall (`gastownhall`) | **Torn down 2026-09-03** — [`content/gas-city.md`](../../content/gas-city.md), replacing this section's prior entry (`comparisons/systems/gas-city.md`, now `SUPERSEDED`). A gateway/host over 15+ coding-agent CLIs, six primitives (Agent, Bead, Formula, Rig, Pack, Event) gated by a documented SDK-admission test, and a documented deletion of a prior primitive. The short profile's two claims — a seven-item primitive count and a "Factory Worker Protocol" — did not survive the primary-source read: the real count is six, and no FWP was found under any name | `[V]` |
 | **LoomWarp** | KD (`shi503`) | **Torn down 2026-09-03** — [`content/loomwarp.md`](../../content/loomwarp.md). A process layer sitting in this table by the same exception Gas City does: it installs *into* Claude Code (agent files, skills) rather than running a loop itself. Zero primitives named in its own current words — a superseded six-primitive table did not survive the rewrite into its current framework, and two of the six (work contract, capability package) are the only ones still named concretely. Private, unreleased, single-contributor, one live dispatch run, which bypassed its own policy tier | `[V]` |
@@ -39,11 +39,11 @@ These run the agent loop. LoomWarp installs *into* one of these; it is not one.
 | **Pi** | Mario Zechner · Earendil | **Torn down 2026-09-02** — [`harnesses/pi.md`](../../content/pi.md). The runtime under QM; refuses MCP, subagents, permissions, plan mode and to-dos by design | `[V]` |
 | **OpenCode** | Anomaly | **Torn down 2026-09-02** — [`harnesses/opencode.md`](../../content/opencode.md). Coding-harness control case; nine-rung config precedence ending in MDM | `[V]` |
 | **Grok Bot / Grok Build** | SpaceXAI | **Torn down 2026-09-02** — [`harnesses/grok.md`](../../content/grok.md). Hosted always-on teammate (beta 2026-08-11) paired with the Apache-2.0 Rust harness; whether one runs on the other is ⚠️ unstated at source | `[V]` |
-| **Amp** | Sourcegraph | Abstracted by Gas City's FWP; SageOx ships a plugin for it | `[S]` |
-| **Gemini CLI · Droid · Aider · Windsurf · Cline** | various | Appear in SageOx's support matrix and Gas City's FWP list. Not separately assessed | `[S]` |
+| **Amp** | Sourcegraph | Named in Gas City's `provider` list; SageOx ships a plugin for it ⚠️ *was "Gas City's FWP" — ISSUE-004* | `[S]` |
+| **Gemini CLI · Droid · Aider · Windsurf · Cline** | various | Appear in SageOx's support matrix and Gas City's `provider` list ⚠️ *was "FWP list" — ISSUE-004*. Not separately assessed | `[S]` |
 
 **Why most got no teardown — and why four now have.** The harness layer is not where LoomWarp
-competes, and Claude Code — the one we run on — already has 13 documents of analysis. That held for
+competes, and Claude Code — the one we run on — already has 12 documents of analysis. That held for
 the seventeen-function model. v1's upper-layer markers (`emerging`, `claimed`, `bet`) need peer
 citations the process layers could not supply, so on 2026-09-02 Hermes, Pi, OpenClaw, OpenCode and
 Grok Bot / Grok Build were read at source against all thirty-three components. The synthesis — including where the

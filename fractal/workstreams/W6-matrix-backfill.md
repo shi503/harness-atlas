@@ -18,7 +18,7 @@ Every teardown in the corpus has its column, and the grid's own prose describes 
   W3's ledger: a row, or a stated altitude, never silently absorbed.
 - The stale *"eighteen concept rows"* prose fixed: the grid has 19 rows and 14 columns at the time
   of writing; count again before writing the number.
-- The `shipped` horizon rule: `spec/v1-framework/12-horizon.md` §2 requires two teardowns cited by
+- The `shipped` horizon rule: `archive/spec/v1-framework/12-horizon.md` §2 requires two teardowns cited by
   file and section; only `5c` Knowledge meets it. Either re-cite the eleven or relax the rule **and
   record the relaxation** in a dated note.
 
@@ -32,9 +32,16 @@ Every teardown in the corpus has its column, and the grid's own prose describes 
 - **AC-2** Every new `●` cites a primitive by name and file; every `○` names the pages checked.
 - **AC-3** The count prose matches `wc` of the table.
 
+> **Amended 2026-09-04 by W3.** A `●` with no nameable primitive in any teardown (the list is
+> ISSUE-008 and `vocabulary.md` §2) becomes `◐` with a dated note — a **correction** under the
+> sourcing rule ("every `●` traces to a cited primitive"), not a re-score. `0a` Substrate keeps `●`
+> under the stated convention *`●` at 0a = model-pluggable, not named*. Under Template v2 the
+> profile's §4 matrix is the source of truth and `04-harness-alignment.md` §2 copies it; apply the
+> downgrade in the profile first where a v2 profile exists.
+
 ## Do NOT
 
-- Re-score an existing column. Add a component row.
+- Re-score an existing column (a downgrade under ISSUE-008 is a correction, see above). Add a component row.
 
 ---
 

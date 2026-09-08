@@ -11,19 +11,32 @@ one peer column here, scored by the same rules, with no special status.
 | 0 · the manifesto | `README.md` | The argument and the highlights, what GitHub renders first. KD's problem statement verbatim, the five-minute script, the anatomy diagram, a curated reel — never the full list |
 | 1 · the shape | `index.md` | One screen. The grid first, the maturity range second, the layers, the words. Every noun links down, including every profile. No prose walls |
 | 2 · components | `components/<id>-<name>.md` | One page per component, ~80 lines: what it is, the single best example, the comparison table with a `structured output` row, every cell linking into a Tier-3 anchor |
-| 3 · profiles | `content/<name>.md` | One page per harness, in the shape `skills/harness-teardown/SKILL.md` prescribes. Anchored per section. (Was `harnesses/` until 2026-09-03 — renamed in W0 to match the 12-factor-agents page architecture and to sidestep harness-vs-agent naming) |
+| 3 · profiles | `content/<name>.md` | One page per harness, in the shape `skills/harness-teardown/SKILL.md` prescribes (Template v2 since 2026-09-04: card → system map → workflows → `●◐○` matrix → primitives → collapsed details). Anchored per component: `content/<name>.md#<id>-<slug>`, e.g. `#2b-hooks`. A deep-read folder `content/<name>/` may sit beside the page and is linked out to, never inlined. (Was `harnesses/` until 2026-09-03 — renamed in W0 to match the 12-factor-agents page architecture) |
 
 Cross-cutting: `vocabulary.md` (term → concept → who says it → our component → instances),
+`spectrums/` (the sheet's two faces — `01-scorecard.md`, seven DX dimensions for a thirty-second read,
+over `00-README.md`'s ten `−3…+3` axes; scores in `positions/<harness>.yaml`, rendered in
+`positioning.md`, which says where a harness sits relative to the industry and how that was derived.
+Neither grades, bar one declared dimension. Every card carries a **drafted-until-verified** banner
+until a person signs it off — R11), `RULINGS.md` (the index of decisions that
+changed a rule, an id or a name — the text stays where it was written),
 `maturity/` (the range argument and `grid.html`, the instrument), and `assets/` (`templates/` for the
 standardized core-concept diagrams, `projects/<harness>/` for per-harness ones; `.mmd` is canonical,
 pages embed a copy, a `.png` beside it is an optional render).
 
-Component IDs are the **original twelve layers** (`0a`…`11a`, per `spec/v1-framework/CROSSWALK.md`
-§0). The 13-layer renumber in the consolidated guide §1 was struck in W0 on 2026-09-03: the landscape
-moves too fast to keep re-minting IDs.
+Component IDs are the **original twelve layers** (`0a`…`11a`). The register is
+`components/00-README.md`; the derivation is `archive/spec/v1-framework/CROSSWALK.md` §0, which is
+where this line used to point — an argument for the ID space, not a list of it. The 13-layer renumber
+in the consolidated guide §1 was struck in W0 on 2026-09-03: the landscape moves too fast to keep
+re-minting IDs.
 
-Un-recut material lives under `spec/`, `comparisons/`, `craft/`. History lives under `archive/`.
-`RULING-2026-09-02-spinout.md` says what came from where.
+Supporting material lives under `comparisons/` — the grids, the jobs, the concept ledger and the short
+teardowns the recut profiles superseded. **History lives under `archive/`**, and since 2026-09-08 that
+includes the whole v1 specification, `craft/`, and the ADR drafts: `RULING-2026-09-08-archival.md` says
+what moved and why, `RULING-2026-09-02-spinout.md` says what came from where. The distinction the old
+version of this line drew — *un-recut* versus *history* — did not survive the re-cut finishing: once
+the specification's components became Tier 2, what was left of it was argument about a settled
+decision, which is history.
 
 ## Standing rules
 
@@ -33,6 +46,8 @@ Un-recut material lives under `spec/`, `comparisons/`, `craft/`. History lives u
 - **Do not borrow a word and change its referent.** The vocabulary ledger exists so two systems doing the same thing under different names stay classifiable.
 - **Archive by ruling, never by deletion.** A vocabulary retires by writing a ruling, publishing a crosswalk, and re-heading the loser.
 - **Vendor's words only** in a teardown's primitives table. Verbatim, cited, dated.
+- **Coverage marks and source marks never share a table.** `● ◐ ○ n/a` say how much of a component a system ships and live in the grids and a profile's matrix; `✅ ↪ ⚠️` say whose words a claim rests on and live in a profile's details and provenance. `◐` is never a source mark.
+- **High signal, low noise.** A profile describes its harness and nothing else — no corpus placement, no "why this file exists", no comparison to another harness. The grids compare.
 
 ## Frontmatter
 
@@ -61,6 +76,12 @@ store. See `docs/agents/issue-tracker.md`.
 
 Default five-role vocabulary (needs-triage, needs-info, ready-for-agent, ready-for-human, wontfix),
 applied as a `Status:` line in a PRD's header. See `docs/agents/triage-labels.md`.
+
+### Intake
+
+How a newly-discovered thing is recorded and routed: four triggers, five states (NOTICED → RESEARCHED
+→ PROBATION → ADMITTED → REJECTED), and a routing table naming each source of truth and its sync cost.
+A 34th component costs 24 edits, which is why probation exists. See `docs/agents/intake.md`.
 
 ### Domain docs
 

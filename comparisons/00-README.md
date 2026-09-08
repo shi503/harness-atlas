@@ -98,7 +98,7 @@ file leaves the `broaderTerm` field — the one that would record which contains
 
 **The tell is that every system in this category ships an adapter**, and you do not write an adapter
 for the thing you are: gstack has `--host`, QM has per-user and per-room adapters, Gas City has the
-Factory Worker Protocol, Indigo has the `AGENTS.md`↔`CLAUDE.md` symlink.
+Gas City's `provider` field (15 named CLIs), Indigo has the `AGENTS.md`↔`CLAUDE.md` symlink. ⚠️ *was cited as "Factory Worker Protocol" until 2026-09-08; the primary-source read found zero matches for that name — ISSUE-004*
 
 This is **the one term in this repository we invent rather than adopt**, and it is offered as a
 proposed resolution to the altitude collision above — with the evidence attached — not as house
@@ -154,11 +154,11 @@ Adapted from the Indigo landscape analysis, which is the clearest published vers
 
 | Treatment | Systems | Why |
 |---|---|---|
-| **Full teardown** | [gstack/gbrain](./systems/gstack-gbrain.md) · [Gas City](./systems/gas-city.md) · [Indigo HQ](./systems/indigo-hq.md) · [SageOx](./systems/sageox.md) · [LoomWarp](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/loomwarp.md) | Direct peers with primary sources available |
+| **Full teardown** | [gstack/gbrain](./systems/gstack-gbrain.md) · [Gas City](./systems/gas-city.md) · [Indigo HQ](./systems/indigo-hq.md) · [SageOx](./systems/sageox.md) · `loomwarp-team-system` `references/comparisons/systems/loomwarp.md` (private) | Direct peers with primary sources available |
 | **Full teardown — context providers** | [`systems/context-providers/`](./systems/context-providers) — 5 teardowns + a 25-row provider matrix | Components inside **one function** (`F3`), scored against one contract. A different axis from the columns of this corpus: those are process layers, these are what plugs into a function |
 | **Full teardown — prior art** | [generic-cerebro](./systems/kd-built-frameworks) — 9 documents + 22 ADR seeds + an enrichment plan | Not a peer: no licence, no releases, one operator. It is the system LoomWarp descends from, with primary sources fully available, and it holds mechanisms four of the notes below were already asking about |
-| **Full teardown — harnesses** (added 2026-09-02) | [`systems/harnesses/`](../content) — Hermes · Pi · OpenClaw · OpenCode · Grok Bot / Grok Build, each against all 33 v1 components · synthesis at [`04-harness-alignment.md`](./04-harness-alignment.md) | Not peers — they run the loop. Read because v1's upper-layer markers need peer citations, and because two of them (OpenClaw, Hermes) **host other harnesses**, which breaks §1.3's adapter tell and §1.4's test. `04` §4.1 proposes a third altitude |
-| **By reference** | [Claude Code](./systems/claude-code.md) · [QM](./systems/qm.md) · [FRACTAL](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/fractal.md) | Deep analysis already exists in this repo; these link rather than duplicate |
+| **Full teardown — harnesses** (added 2026-09-02) | [`content/`](../content) — Hermes · Pi · OpenClaw · OpenCode · Grok Bot / Grok Build, each against all 33 v1 components · synthesis at [`04-harness-alignment.md`](./04-harness-alignment.md) | Not peers — they run the loop. Read because v1's upper-layer markers need peer citations, and because two of them (OpenClaw, Hermes) **host other harnesses**, which breaks §1.3's adapter tell and §1.4's test. `04` §4.1 proposes a third altitude |
+| **By reference** | [Claude Code](./systems/claude-code.md) · [QM](./systems/qm.md) · `loomwarp-team-system` `references/comparisons/systems/fractal.md` (private) | Deep analysis already exists in this repo; these link rather than duplicate |
 | **Short profile** | Harnesses, other "agentOS" senses, adjacent categories, the standards layer | [`systems/90-short-profiles.md`](./systems/90-short-profiles.md) |
 
 LoomWarp gets the identical template to the competitors, including the credibility check. A
@@ -294,7 +294,7 @@ Consolidated from the teardowns, highest value first.
 | 9 | **Documentation drift as a CI failure** | QM | FM-3 — and F-6 above is the case for it |
 | 10 | **The stated-limitation register** | QM · SageOx · Anthropic | Everything |
 
-Ten more from the prior-art teardown, ranked and sequenced in [`systems/kd-built-frameworks/ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md). The four that would land soonest:
+Ten more from the prior-art teardown, ranked and sequenced in `loomwarp-team-system` `references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md` (private). The four that would land soonest:
 
 | # | Pattern | From | For |
 |---|---|---|---|

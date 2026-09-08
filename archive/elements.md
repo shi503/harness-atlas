@@ -1,12 +1,13 @@
 ---
 title: "The LoomWarp Elements and the Grid (superseded)"
 tier: reference
-project: loomwarp
+project: harness-atlas
 created: "2026-08-04"
 updated: "2026-08-27"
-status: SUPERSEDED
+status: ARCHIVED
 superseded_by: archive/v0/02-functions.md
 owner: KD
+provenance: AUTHORED
 ---
 
 # The LoomWarp Elements and the Grid

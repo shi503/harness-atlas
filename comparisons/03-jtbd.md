@@ -111,7 +111,7 @@ Decided once, rarely revisited, and it constrains everything below it.
 |---|---|
 | **Named by** | Nobody, *as a job*. Every taxonomy treats the substrate as a given and starts above it |
 | **Function** | `F0 Substrate` |
-| **Who** | Everyone does it; almost nobody records it. gstack `--host` · Gas City's Factory Worker Protocol · QM's per-scope adapters · Indigo's `AGENTS.md`↔`CLAUDE.md` symlink |
+| **Who** | Everyone does it; almost nobody records it. gstack `--host` · Gas City's `provider` field (15 named CLIs) ⚠️ *was cited as "Factory Worker Protocol" until 2026-09-08; the primary-source read found zero matches for that name — ISSUE-004* · QM's per-scope adapters · Indigo's `AGENTS.md`↔`CLAUDE.md` symlink |
 | **Why it is a job** | `Agent = Model + Harness` makes the substrate a *choice*, and choosing badly constrains every job below it. **Adapters are the maturity tell** — you write one only after the first choice hurt |
 | **Corpus** | `harness` 113 — the layer is discussed constantly; *selecting* it is discussed as a given |
 
@@ -501,6 +501,25 @@ A comparison document that cites only supporters of its own category is marketin
 
 ---
 
+## 6. Candidates — jobs noticed, not yet admitted
+
+A job seen in the field that none of `J1`–`J17` carries. **NOTICED costs one line and no research**,
+per [`../docs/agents/intake.md`](../docs/agents/intake.md) §2. Admission is §1's convergence line,
+measured on both axes — practitioner attention and structural modelling — never asserted. A job admitted
+here syncs to **five** places: §2, §3's scorecard, the dependencies list, `CROSSWALK.md` §1's
+DERIVATION table, and the `**Job:**` line of whichever factor claims it.
+
+| Candidate | The job, in the imperative | Where seen | State | Why not yet |
+|---|---|---|---|---|
+| *(none)* | | | | The seventeen close over the components with zero orphans (`CROSSWALK.md` §1). The next candidate arrives from a teardown, not from this file |
+
+**Known structural gap, carried.** `CROSSWALK.md` §3.6 records `C-10`: the fourteen factors in
+[`2026-08-research/05-harness-factors.md`](./2026-08-research/05-harness-factors.md) cover only
+`J1`–`J12`. `J13`–`J17` have components and still have no factor. That is a **factor** candidate, not a
+job candidate — it routes to that file's §5.
+
+---
+
 ## Appendix A — how each system describes its own problem
 
 *Preserved from the first version of this document. These are vendor positioning statements —
@@ -512,7 +531,7 @@ must do. KD's notes are retained inline.*
 
 > When I am cycling between terminals re-injecting context and guardrails by hand, I want a factory that runs multi-agent workflows unattended, so I can build software at a scale my attention does not bound.
 
-Yegge's problem statement is babysitting, and every primitive answers it: formulas make the workflow declarative, orders make it trigger-driven, the Factory Worker Protocol makes the worker substitutable, the Event Stream tells you what happened while you were not watching. The framing is industrial — *"a system for building, validating, deploying, operating, and maintaining production software."*
+Yegge's problem statement is babysitting, and every primitive answers it: formulas make the workflow declarative, orders make it trigger-driven, the `provider` field makes the worker substitutable ⚠️ *was "Factory Worker Protocol" — ISSUE-004*, the Event Stream tells you what happened while you were not watching. The framing is industrial — *"a system for building, validating, deploying, operating, and maintaining production software."*
 
 ### SageOx — *stop losing the conversation*
 

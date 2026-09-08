@@ -1,13 +1,14 @@
 ---
 title: "The elements — a harness from first principles (ARCHIVED)"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-11"
 updated: "2026-08-27"
 archived: "2026-08-27"
 status: ARCHIVED
 superseded_by: archive/v0/02-functions.md
 owner: KD
+provenance: AUTHORED
 ---
 
 > ## ⛔ ARCHIVED — superseded by [`../v0/02-functions.md`](./v0/02-functions.md)

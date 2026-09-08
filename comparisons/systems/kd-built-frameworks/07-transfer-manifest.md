@@ -11,7 +11,7 @@ owner: KD
 
 **What this is.** Every mechanism in `generic-cerebro`, with two verdicts: whether the harness now supplies it natively, and what LoomWarp should therefore do about it.
 
-**Why two verdicts.** [`../../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md) established that for five of seven elements the harness now supplies substantial native mechanism, with verdicts of *adopt* or *re-found*. A mechanism that Claude Code already provides must not be ported from a predecessor — porting it means maintaining a worse version of something free. So the first question for every row is not *"is this good?"* but *"is this still ours to build?"*
+**Why two verdicts.** `loomwarp-team-system` `references/claude-code/30-gap-analysis-loomwarp.md` (private) established that for five of seven elements the harness now supplies substantial native mechanism, with verdicts of *adopt* or *re-found*. A mechanism that Claude Code already provides must not be ported from a predecessor — porting it means maintaining a worse version of something free. So the first question for every row is not *"is this good?"* but *"is this still ours to build?"*
 
 **The headline.** Almost everything executable is superseded. Almost everything contractual is not.
 
@@ -175,4 +175,4 @@ They are not competitors; they are two instruments at different altitudes, and [
 
 ---
 
-*Companion: [`01-the-composition-contract.md`](./01-the-composition-contract.md) — the highest-value rows · [`ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md) — the same rows, sequenced and decidable · [`../../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md) — the native-coverage verdicts*
+*Companion: [`01-the-composition-contract.md`](./01-the-composition-contract.md) — the highest-value rows · `loomwarp-team-system` `references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md` (private) — the same rows, sequenced and decidable · `loomwarp-team-system` `references/claude-code/30-gap-analysis-loomwarp.md` (private) — the native-coverage verdicts*

@@ -9,9 +9,11 @@ owner: KD
 
 # Claude Code — Anthropic
 
-> **This is a pointer, not a teardown.** The full analysis is 13 documents in
-> [`../../claude-code/`](../../content/claude-code), read from the official docs on 2026-08-10 and covering
-> the extension layer through v2.1.224. That work is not duplicated here.
+> **This is a pointer, not a teardown.** The Template v2 profile is
+> [`content/claude-code.md`](../../content/claude-code.md), torn down 2026-09-04 at v2.1.261. The
+> 13-document extensibility reference this page used to point to is now that profile's own deep
+> read, at [`../../claude-code/`](../../content/claude-code), read from the official docs on
+> 2026-08-10 and covering the extension layer through v2.1.224. That work is not duplicated here.
 
 **Category.** A **harness** — the only entry in this corpus that is one. Everything else in
 `systems/` is a process layer installed into it or into a peer.
@@ -74,4 +76,4 @@ QM makes the same move about its command policy. Both are the honest register th
 Docs: <https://code.claude.com/docs/en/> · index at `/docs/llms.txt` · any page's raw markdown by
 appending `.md`. Full reading: [`../../claude-code/`](../../content/claude-code) (13 documents, 2026-08-10)
 and the function-by-function gap analysis at
-[`../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md).
+`loomwarp-team-system` `references/claude-code/30-gap-analysis-loomwarp.md` (private).

@@ -1,0 +1,84 @@
+---
+title: "5c · Knowledge"
+tier: components
+created: "2026-08-31"
+status: DRAFT
+provenance: INHERITED
+owner: KD
+layer: "5 Context"
+sublayer: "5c"
+function: "F3.3"
+job: "J1"
+horizon: "shipped"
+graded: true
+requires: []
+---
+
+[← the roster](./00-README.md) — all 33, and the graded split · [CROSSWALK](./CROSSWALK.md) — recorded gaps and the rulings that closed them · [RELATIONS](./RELATIONS.md) — the `requires` graph
+
+### 5c · Knowledge
+
+**Layer 5 Context** · function `F3.3` · job `J1`
+
+> **Where does an agent go to find out what we know?**
+>
+> `5c` is the retrievable body — the llm-wiki, the domain corpus, the indexed reference an agent reads
+> **on demand rather than on load**. `F3.3` in the dotted notation introduced at
+> [`5a`](./5a-individual-memory.md). Its distinguishing property is not size. It is that **you
+> can say which version was read.**
+
+**Memory is routed by owner; knowledge is retrieved by need.** `5a` and `5b` are *what was learned, and
+whose it is*. This is *what is true about the domain, and where to look it up* — a different write path,
+a different failure mode, and the reason the three are graded apart rather than as one context score.
+
+**The property that makes this gradeable is the version, not the volume.** A wiki an agent can read is
+table stakes; a wiki that can tell you **which revision produced an answer** is the thing that turns
+retrieval into evidence. The strongest published implementation makes that concrete at claim
+granularity — and it stops one step short of the join, which is where our own claim lives.
+
+**Retrieval is not compounding, and the boundary matters.** Karpathy's bar is the sharpest in the
+category — ***does knowledge compound, or does it just get retrieved?*** — and it is a question about
+`9a` Learning, not about this store. **`5c` is where knowledge lives; whether it appreciates is graded
+one layer at a time above.** A team can have an excellent corpus and no ratchet, and the framework should
+show that as two rows, not one average.
+
+**What this layer is not.** It is not `5b` Team Memory — that is convention **and the governed
+decision ledger**, loaded every session; a decision cached here is a copy, and the ledger wins. It is not `6c` Estate — that is *what code exists*. **And it is not the Briefing**, which
+assembles all three stores per job; its own gap is recorded at
+[`5a`](./5a-individual-memory.md).
+
+**How do we work?** *"There is one place an agent retrieves what we know about this domain, and we can show which version it read."*
+
+**Peer implementations**
+
+| Peer | What it ships here | Cited at |
+|---|---|---|
+| **Claude Code** | Nested context files with lazy loading — a **load-time** mechanism, not a retrieval one. It ships no corpus, no index and no versioned read; the building blocks for reporting what loaded exist and nothing writes the joined record | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Context row, §*What it does not provide* |
+| **Deep Agents** | `openwiki/` — a machine-maintained code wiki with **claim-level evidence pinning**: 27 sidecar files, **515 claims**, each with a page-version hash and a **drift-tolerant line fingerprint** that hashes the first and last cited lines plus three lines of context either side, so a citation *"fails loudly when the cited region itself moves"*. The run manifest pins the commit, the model and the timestamp. **Hashing ✅ · version pinning ✅ · reconstruction ✅ · owner attribution ✗ · join to outcome ✗** — and the unit is a **page**, where ours is a **run** | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §4 |
+| **MCP** | The field's default retrieval plumbing — *"external tool or data connections"*, resolved per call. It reaches a corpus and returns no version you can point at afterwards, which is precisely the gap between retrieval and evidence | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | `thoughts/searchable/` — a **hard-link tree**, read-only, built *"to allow AI tools to search your thoughts content without needing to follow symlinks."* A retrieval affordance designed for the agent rather than for the human, which is the addressee move this corpus argues for elsewhere and rarely sees implemented | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §4 |
+| **LoomWarp** | **No distinct corpus at all** — the same `context/` tree graded at `5b` is doing both jobs, team convention and domain knowledge in one place, with no index and no versioned read. **The one row in layer 5 where a peer is ahead on the property LoomWarp claims** | [`loomwarp.md`](../content/loomwarp.md#5c-knowledge) |
+
+**Across the corpus** — every scored harness on this component, its own mark and its own words.
+**● 1 · ◐ 4 · ○ 5** of ten. Each row links to that harness's detail.
+
+| Harness | | What it ships here |
+|---|:-:|---|
+| [Claude Code](../content/claude-code.md#5c-knowledge) | ◐ | MCP resources/prompts/connectors surface external data; no dedicated knowledge component |
+| [Codex](../content/codex.md#5c-knowledge) | ◐ | `web_search` retrieval; SQLite FTS over own rollouts only |
+| [FRACTAL](../content/fractal.md#5c-knowledge) | ○ | Nothing here at U; no glossary or retrieval of its own |
+| [Gas City](../content/gas-city.md#5c-knowledge) | ○ | Nothing here — checked guides and reference indexes |
+| [Grok](../content/grok.md#5c-knowledge) | ◐ | Hybrid BM25+vector memory search; `/deep-research` verifier shard |
+| [Hermes](../content/hermes.md#5c-knowledge) | ◐ | FTS5 over own sessions; `llm-wiki` skill; RAG needs external provider |
+| [LoomWarp](../content/loomwarp.md#5c-knowledge) | ○ | Nothing distinct from the context fabric and decision ledger |
+| [OpenClaw](../content/openclaw.md#5c-knowledge) | ● | `memory-wiki` — structured claims with evidence and provenance |
+| [OpenCode](../content/opencode.md#5c-knowledge) | ○ | No RAG/embeddings; grep/glob/LSP symbols + `references` + community MCPs |
+| [Pi](../content/pi.md#5c-knowledge) | ○ | No RAG, embeddings or wiki; SQLite FTS over own sessions in a separate package |
+
+**Horizon:** `shipped` — `12-horizon.md` §3.1 — two teardowns cited: SageOx's `ox agent prime` (`systems/sageox.md`) and HumanLayer's `thoughts` (`systems/humanlayer.md` §4), a separate repo mounted into every code repo, hook-enforced
+
+**The consequence.** This is the most-built component in the whole framework and the one where our own
+position narrowed hardest: context assembly ships, at scale, funded. **What is still scarce is not the
+corpus but the receipt** — which version an agent read, under whose authority, and what came of it. A
+team that builds the store and not the record gets an agent that is well informed and unaccountable, and
+those are not the same problem solved twice.

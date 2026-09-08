@@ -1,10 +1,11 @@
 ---
 title: "Context layer — gap analysis"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-27"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # Context layer — gap analysis
@@ -13,7 +14,7 @@ owner: KD
 [`09-context-layer.md`](./09-context-layer.md) §6 and against the five providers torn down at
 [`context-providers/`](../../comparisons/systems/context-providers).
 
-**Predecessor.** [`../v1/01-gap-analysis.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/specs/v1/01-gap-analysis.md) — `GAP-01`…`GAP-23`, 9 at P0.
+**Predecessor.** `loomwarp-team-system` `specs/v1/01-gap-analysis.md` (private) — `GAP-01`…`GAP-23`, 9 at P0.
 
 > **ID note.** `GAP` IDs are one global sequence. `GAP-01`…`GAP-23` are keyed to the **superseded
 > seven-element** scheme; `GAP-24`+ are keyed to `F0`–`F11`. Nothing is renumbered.
@@ -78,7 +79,7 @@ matrix is that sentence, evidenced.
 | # | Claim | Reality | Verdict |
 |---|---|---|---|
 | **C-15** | `F3 Context` is at stage **2** | Graded per verb, `write` is **0**: no scope, no routing, no provenance field. The archived `02-elements.md` §5 already said *"`F3` graded '2' was hiding a zero"* — this makes it evidenced rather than asserted | **OVERSTATED** |
-| **C-16** | *"Nobody in the landscape has provenance. This is the whitespace. Opportunity, not gap"* — [`../v1/01-gap-analysis.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/specs/v1/01-gap-analysis.md), `F3` row | **Google's OKF v0.2** specifies `sources[]`, `generated`, `verified[]` → trust tiers, `stale_after`, `status`, and an Attested Computation type with `executor: {resource, receipt}`. The territory is named, attested (`context layer` = 13 in the corpus, against `provenance` = 9) and schema'd | **FALSE as written.** Narrows to: OKF specifies **per-document** provenance; the Briefing is **per-run** resolution. Different objects — see [`context-providers/02`](../../comparisons/systems/context-providers/02-okf-and-wiki-langgraph.md) §6, with a dated falsifier |
+| **C-16** | *"Nobody in the landscape has provenance. This is the whitespace. Opportunity, not gap"* — `loomwarp-team-system` `specs/v1/01-gap-analysis.md` (private), `F3` row | **Google's OKF v0.2** specifies `sources[]`, `generated`, `verified[]` → trust tiers, `stale_after`, `status`, and an Attested Computation type with `executor: {resource, receipt}`. The territory is named, attested (`context layer` = 13 in the corpus, against `provenance` = 9) and schema'd | **FALSE as written.** Narrows to: OKF specifies **per-document** provenance; the Briefing is **per-run** resolution. Different objects — see [`context-providers/02`](../../comparisons/systems/context-providers/02-okf-and-wiki-langgraph.md) §6, with a dated falsifier |
 | **C-17** | LoomWarp has no context/memory implementation *(implied by five `○` rows)* | 1,428 lines of working, git-tracked, schema-validated, lock-guarded TypeScript, running, with 5 ADRs in its store. **Never graded, never mentioned in any function body or matrix row** | **FALSE** |
 | **C-18** | The individual/team boundary is a routing and ownership question | It is **also an access-control question**, and that framing has a breach as its failure mode. [`03-jtbd.md`](../../comparisons/03-jtbd.md) §4 asked *"Is permission-aware context one job or two?"*, called it whitespace, and left it unassigned for four months | **INCOMPLETE** |
 | **C-19** | *"Adapters are a property of `F0`; you do not write an adapter for the thing you are"* | True for the harness. **`F3`'s Fabric provider is explicitly `native`** — we resolve against a context layer, we do not implement one. There is no `Context adapter` row anywhere in the corpus | **TRUE, but does not transfer to `F3`.** See `09` §8 |
@@ -171,4 +172,4 @@ only a confirmation pass over the author's term list.**
 
 *Contract: [`09-context-layer.md`](./09-context-layer.md) · Providers:
 [`context-providers/`](../../comparisons/systems/context-providers) · Model:
-[`02-functions.md`](./02-functions.md) · Predecessor: [`../v1/01-gap-analysis.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/specs/v1/01-gap-analysis.md)*
+[`02-functions.md`](./02-functions.md) · Predecessor: `loomwarp-team-system` `specs/v1/01-gap-analysis.md` (private)*

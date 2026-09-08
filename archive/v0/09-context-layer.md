@@ -1,10 +1,11 @@
 ---
 title: "The context layer — F3 specified as a pluggable function"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-27"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # The context layer
@@ -201,7 +202,7 @@ defensible and has not been argued out.
 **A team context layer that a whole org can read is not a team context layer; it is a public one.** By
 `AC-2`, LoomWarp's `context/` tree today has **no access control at all** — everything in it is readable
 by anyone who can clone. That is correct and harmless while the corpus is public by design
-([`STRATEGIST-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/fractal/STRATEGIST-loomwarp.md) §4). It stops being harmless the
+(`loomwarp-team-system` `fractal/STRATEGIST-loomwarp.md` (private) §4). It stops being harmless the
 first time an adopting team puts something in a team cell that not all of them may read.
 
 **This is why `AC-2` is a MUST in §6 even though nothing today violates it.** The constraint has to exist
@@ -316,7 +317,7 @@ in the window."*
 > join: *"for everyone else the join is a build; here it is an integration."* Second function, same
 > sentence.
 
-**The doctrine row.** [`architecture-patterns.md`](https://github.com/shi503/loomwarp-team-system/blob/master/standards/architecture-patterns.md) §4:
+**The doctrine row.** `loomwarp-team-system` `standards/architecture-patterns.md` (private) §4:
 *"Every external system is reached through exactly one adapter that owns all calls to it… **an adapter
 that leaks its vendor's types into the domain has failed at its only job.**"* A context provider adapter
 that returns gbrain page types, or OKF frontmatter, to the rest of the harness has failed this test. The

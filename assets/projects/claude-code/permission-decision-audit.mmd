@@ -1,0 +1,18 @@
+%% Transcribed from Anthropic's own permission-rule evaluation order and the
+%% telemetry event it produces, https://code.claude.com/docs/en/permissions
+%% ("Rules are evaluated in order: deny, then ask, then allow") and
+%% https://code.claude.com/docs/en/monitoring-usage (claude_code.tool_decision
+%% event; claude_code.interaction/tool span hierarchy), repo anthropics/claude-code
+%% @ v2.1.261 (d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b), read 2026-09-04.
+%% No node or edge not in the original; this is the structured-output-producing path.
+flowchart LR
+  call["tool call proposed"] --> rule{"permission rules<br/>deny → ask → allow"}
+  rule -->|"deny"| blocked(["blocked, no tool_decision"])
+  rule -->|"ask, no rule"| classifier{"auto mode?"}
+  classifier -->|"yes"| verdict["classifier verdict"]
+  classifier -->|"no"| human["you approve / deny"]
+  rule -->|"allow"| run["tool runs"]
+  verdict -->|"approved"| run
+  human -->|"approved"| run
+  run --> span["claude_code.tool span"]
+  span --> decision["claude_code.tool_decision event<br/><i>permission audit record</i>"]

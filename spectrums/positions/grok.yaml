@@ -1,0 +1,230 @@
+# Grok Bot / Grok Build — spectrum positions and DX scorecard.
+#
+# Scored against the profile as restructured to Template v2 on 2026-09-07 from
+# the source read of 2026-09-02. No source was opened at scoring time (R3).
+# Every `evidence` entry points at a section or component id of that profile.
+#
+# THE PAIR PROBLEM. Grok is two products under one vendor name — Grok Build
+# (Apache-2.0 Rust runtime) and Grok Bot (closed, hosted teammate) — and the
+# sheet has no schema for two products in one harness file. Grok Build is
+# scored as the primary subject throughout, per the corpus's own grid column
+# (comparisons/04-harness-alignment.md treats "Grok" as one column, weighted
+# to whichever product ships the row). Grok Bot's divergence is recorded in
+# `split:` on every axis where the two differ materially. Where a split
+# records two states TRUE OF DIFFERENT PRODUCTS AT ONCE (not one harness's
+# posture vs. its mechanism), that is the legitimate reading ruling
+# `2026-09-07-split-before-anchor` names: two anchors, both true simultaneously,
+# because there are genuinely two things being scored under one file.
+
+# ---------------------------------------------------------------- R11 verification
+verification:
+  derived_from:
+    - "Grok Build's repo (github.com/xai-org/grok-build @ 72a6125, 2026-09-01, no tags) and its in-tree user guide — read 2026-09-02 via the profile"
+    - "docs.x.ai/grok-bot (beta, launched 2026-08-11) and x.ai/news — read 2026-09-02 via the profile"
+    - "the v1 profile's own §A identity fields, §B 33-row table, §C primitive tables, §D limitations"
+  grounded_against:
+    - "§4 component matrix — 33 rows copied verbatim from the harness-alignment grid, ● 19 · ◐ 10 · ○ 4"
+    - "§5 primitives — Build 8 named + second-tier objects, ⚠️ contestable; Bot 6 named, healthy"
+    - "§7 identity table and A.3/A.4 — two altitudes, one unverified relationship (A.5) between them"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    This file scores a PAIR on ONE member. Grok Build is the primary subject — it is the runtime,
+    and it is the product the corpus's grid column is weighted toward. Every axis was checked for
+    material Build/Bot divergence; where the two differ by a full notch or more, `split:` records
+    both positions and states which was scored. The starkest split is DX-6 Ownership: Build is
+    Apache-2.0 and self-hostable (+3), Bot is closed and hosted with model choice "fully managed by
+    the product" (−3) — the same vendor at opposite poles of the same axis, at once, because Bot and
+    Build are different products, not one product read two ways. Axis I / DX-1 Org scale splits
+    almost as sharply: Build's org story is three config files written by different authors; Bot's
+    is per-member cloud computers with team and organization admin roles the product itself runs.
+    Whether Bot's own agent loop IS Grok Build is unverified at source (§7 A.5, ⚠️) — this file does
+    not assume it, and axis IV Loop ownership is scored on Build alone with that gap named rather
+    than resolved. No claim in this file is a posture-vs-mechanism disagreement of one system with
+    itself, per the 2026-09-07 ruling on when `split:` applies — every split here names two products.
+
+spectrums:
+  schema_version: 2
+  harness: grok
+  profile: content/grok.md
+  profile_read: "2026-09-02"      # the source read; the restructure added no facts
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  positions:
+
+    - id: operator-scale
+      value: 1
+      mark: direct
+      evidence: ["§7 · serves more than one person", "3d", "10b", "6b"]
+      because: "Build's org story is enforced config — a fleet default and a signed pin file users cannot override — but no named tenant or scope object."
+      split: "Bot sits materially higher, near +2/+3 — one cloud computer per member, with team-admin and organization-admin roles the product itself runs ('team admin rights are not enough' to remove a computer). Two products, two anchors, at once."
+
+    - id: state-durability
+      value: 0
+      mark: direct
+      evidence: ["5a", "8b", "§7 · does state persist"]
+      because: "Session JSONL and optional Markdown/SQLite memory, both on one machine, resumable by their author; no shared or queryable store."
+      gap: "Whether the cloud VM's per-Bot memory store can be queried by a second authorized session is undocumented — format is opaque throughout. If it can, Bot moves toward +1."
+
+    - id: binding-force
+      value: 0
+      mark: direct
+      evidence: ["2c", "§7 · binds mechanically or only by prose"]
+      because: "Deny/ask/allow rules plus PreToolUse hooks are the default; hooks fail open and a bypass mode exists, so nothing yet is unconditionally mechanical."
+      split: "Configured is +3 — the kernel sandbox (Landlock/Seatbelt) enforces at the OS level and no mode bypasses it, but it ships off by default. Scored on the default. Bot sits lower still, near −1: approval cards plus a model-based Auto Review the vendor itself calls 'not a security boundary.'"
+
+    - id: loop-ownership
+      value: 3
+      dual: null
+      mark: direct
+      evidence: ["§7 · loop question", "2a", "0a"]
+      because: "Runs its own loop (xai-grok-shell) and exposes it via ACP/SDK; reads Claude and Cursor conventions live rather than hosting either harness."
+      gap: "Whether Grok Bot's reasoning loop is this same runtime is unverified at source (§7 A.5) — the repo ships a bot.* relay and a Computer Hub tool registry that talk to a Bot's box, but no primary source states the loop is shared. Scored on Build alone; Bot's own altitude is 'hosted product, loop not user-visible' per the corpus's own altitude table, not a numeric value on this axis."
+
+    - id: substrate-portability
+      value: 2
+      mark: direct
+      evidence: ["0a", "2a"]
+      because: "Many providers and backends, custom models via config, local inference supported — protocol-mediated but not every feature parity-complete across providers."
+      split: "Bot scores at the opposite pole, −3 — 'Model choice is fully managed by the product,' with no picker for admins or users. Two products genuinely at different anchors at once, not a posture-vs-mechanism disagreement of one."
+
+    - id: primitive-discipline
+      value: 1
+      mark: direct
+      evidence: ["§5 Build count and verdict"]
+      because: "Eight named units plus a second tier of five more (session, memory, workflow, plan, goal) and three config files — one notch over healthy, with no refusal posture to explain the excess."
+      split: "Bot's six sits inside the healthy band (0). Two products, two disciplines, scored separately in §5 rather than averaged."
+
+    - id: control-posture
+      value: 0
+      mark: direct
+      evidence: ["2c", "3a", "§7 · binds mechanically or only by prose"]
+      because: "Read-only commands auto-approve and the dangerous-command list always prompts; asymmetric by default, same shape as most peers in this corpus."
+      split: "Bot's routines are built to run unattended around the clock ('while your laptop is closed') — close to the +3 anchor's language — though 'no per-product spend cap exists yet' keeps it short of bounded. Scored near +2 for Bot; two notches above Build's interactive default."
+
+    - id: proof-ceremony
+      value: 2
+      mark: direct
+      evidence: ["8b", "3a · goal mode"]
+      because: "A full per-turn session ledger plus an independent evidence review before a goal is marked complete — stronger than a receipt, short of every unit being gated."
+      split: "Bot has no audit view yet ('an audit view of Bot actions is coming') — its record is the conversation plus 20 kept routine runs, closer to artifacts-on-demand (0). Build is the stronger half of the pair here."
+
+    - id: improvement-loop
+      value: 0
+      mark: direct
+      evidence: ["9a", "4a"]
+      because: "`/create-skill` and `/create-workflow` are a real promotion path, but nothing notices a lesson happened — capture is asked-for, not automatic."
+      split: "Bot's teach-by-demonstration is materially stronger — record a task once, review the drafted skill, save it as a routine — a complete capture-to-promotion path close to +2. Scored on Build; the pair's promotion machinery is uneven by design."
+
+    - id: cost-visibility
+      value: 2
+      mark: direct
+      evidence: ["8d", "8c", "8b"]
+      because: "Per-turn token and dollar cost in the ledger, `/usage`, and headless JSON cost fields — real attribution, joined to no spend limit."
+      gap: "Bot's dashboard usage page is read at nav level only in the profile — whether it attributes cost per Bot or per task the way Build's per-turn ledger does is not stated."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  probation:
+
+    - id: surface-breadth
+      value: 2
+      mark: direct
+      evidence: ["11a"]
+      because: "TUI, headless CLI and ACP into four editors (Zed, Neovim, Emacs, marimo) with JetBrains coming — several surfaces and a stated extension point; no chat-channel surface."
+      gap: "Bot's surfaces (desktop, iOS, web preview) are a different set, not obviously narrower — the profile does not give a basis to score them as one number with Build's."
+
+    - id: routing-determinism
+      value: -1
+      mark: direct
+      evidence: ["3b"]
+      because: "The model itself calls `spawn_subagent` with a `subagent_type` — closer to 'the model decides' than to a resolver, though model selection for the top-level session stays manual."
+      gap: "Same poles problem this axis already names: neither 'the model decides' nor 'a resolver decides' fits cleanly."
+
+    - id: knowledge-depth
+      value: 0
+      mark: direct
+      evidence: ["5c"]
+      because: "Hybrid BM25-plus-vector memory search, and `/deep-research` cross-checks structured claims against an independent verifier shard — curated and cited, short of a built RAG index over external corpora."
+      split: "Bot has no documented retrieval index at all — connectors and browsing only. Scored on Build; Bot sits near −3, the same place Pi does on this axis."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # The revised seven (ruling `2026-09-07-dx-revision`). Authored, never computed (R8).
+  scorecard:
+
+    - id: org-scale
+      dx: 1
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: +1"]
+        profile: ["§7 Q2", "3d", "10b", "6b"]
+      because: "Pass-through of axis I. Real fleet enforcement (signed pins, managed defaults) with no named tenant object."
+      split: "Bot diverges sharply — per-member cloud computers, team-admin and organization-admin roles the product runs. See axis I's split; the same two anchors apply here."
+
+    - id: weight-class
+      dx: 2
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["proof-ceremony: +2 — direct", "primitive-discipline: +1 — BULK ONLY, verdict discarded"]
+        profile: ["§5 count and verdict", "8b", "3a · goal mode", "2c"]
+      because: "Real rigor — kernel sandbox, a goal contract with independent evidence review, a full session ledger — without domain-specific or opinionated output checks of its own."
+      split: "Bot's weaker proof-ceremony (no audit view yet) and small, healthy primitive count place it nearer 0. Scored on Build, the heavier-weight half of the pair."
+
+    - id: surfaces-extendability
+      dx: 3
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: +2 (probation)"]
+        profile: ["2b — 15 named hook events", "4a — plugin marketplaces, pinned SHAs", "2a", "11a"]
+        note: "Scored above its surface-breadth input because hooks and a pinnable plugin/marketplace registry are read here, not there — Build's strongest dimension in the pair."
+      because: "Fifteen typed hook events, a marketplace with SHA-pinning and validation tooling, and ACP into four editors — a real extension platform, short of shipped delivery or telemetry export of its own."
+      gap: "Bot's plugin/connector story runs through the Cursor marketplace, not a hook or extension-point system of its own — the profile gives no basis to score it on this dimension separately."
+
+    - id: context
+      dx: 4
+      value: 0
+      mark: direct
+      supersedes: domain-specialization
+      reads_opened:
+        axes: ["state-durability: +0"]
+        profile: ["5a", "5b", "5c"]
+      because: "A named memory object, nothing team-aware, and knowledge that exists but is not curated for retrieval."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
+    - id: ecosystem
+      dx: 5
+      grades: true
+      value: 0
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars 26,383", "§7 Repo created 2026-07-14", "§7 Latest release — no tags"]
+      because: "Real adoption in under two months, but no releases or tags at all, and Bot has been in beta for under a month — longevity is entirely unproven on both halves."
+      gap: "No third-party author or plugin-marketplace-listing count is stated for either product, unlike Pi's gallery figure — this dimension could move either direction once one exists."
+
+    - id: ownership
+      dx: 6
+      value: 3
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: +2"]
+        profile: ["§7 License — Apache-2.0", "§7 Install — cargo run from source", "§8 — 'External contributions are not accepted'"]
+      because: "Apache-2.0, self-hostable from source, substrate-pluggable across 31+ providers — a fork is real even though upstream itself takes no outside patches."
+      split: "Bot sits at the opposite pole, −3 — closed, hosted, 'model choice is fully managed by the product,' operated on Cursor account infrastructure with nothing to fork or self-host. Not a posture-vs-mechanism disagreement: two shipped products, two licenses, at once (ruling 2026-09-07-split-before-anchor)."
+
+    - id: cost-controls
+      dx: 7
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: +2 — the observability third", "routing-determinism: −1 (probation) — the routing third"]
+        profile: ["8d", "8c", "8b", "3b"]
+      because: "Strong efficiency machinery — compaction, token budgets, a per-goal budget flag — and real per-turn attribution, with no spend bound and only model-call-level routing."
+      split: "Bot has usage visibility but no routing lever at all (model choice is fully managed) and states the same missing spend cap Build has — one notch lower overall, near 0."

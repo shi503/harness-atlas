@@ -128,7 +128,7 @@ vocabulary · ownership or RACI · injection defence.
 
 ## 6. What this does to LoomWarp's claim
 
-The claim under test, from [`../../../../specs/v1/01-gap-analysis.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/specs/v1/01-gap-analysis.md):
+The claim under test, from `loomwarp-team-system` `specs/v1/01-gap-analysis.md` (private):
 *"Claude Code has session transcripts but no versioned context manifest; **nobody in the landscape has
 provenance. This is the whitespace. Opportunity, not gap.**"*
 

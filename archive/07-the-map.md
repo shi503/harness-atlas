@@ -1,13 +1,14 @@
 ---
 title: "The map — the derivation behind the twelve elements"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-27"
 status: ARCHIVED
 archived: "2026-08-27"
 superseded_by: archive/v0/02-functions.md
 prior_status: "RESOLVED — adopted into 02-elements.md 2026-08-27; retained for the derivation"
 owner: KD
+provenance: AUTHORED
 ---
 
 # The map

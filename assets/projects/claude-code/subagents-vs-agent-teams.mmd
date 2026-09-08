@@ -1,0 +1,22 @@
+%% Transcribed from Anthropic's own comparison diagram at
+%% https://code.claude.com/docs/en/agent-teams ("Compare with subagents"), repo
+%% anthropics/claude-code @ v2.1.261 (d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b),
+%% read 2026-09-04. Alt text: "Diagram comparing subagent and agent team
+%% architectures. Subagents are spawned by the main agent, do work, and report
+%% results back. Agent teams coordinate through a shared task list, with
+%% teammates communicating directly with each other." No node or edge not in the original.
+flowchart LR
+  subgraph sub["Subagents"]
+    direction LR
+    main["main agent"] -->|"spawns"| worker["subagent"]
+    worker -->|"result"| main
+  end
+  subgraph team["Agent teams"]
+    direction LR
+    lead["team lead"] -->|"assigns / claims"| tasks[("shared task list")]
+    tasks --> mate1["teammate"]
+    tasks --> mate2["teammate"]
+    mate1 <-->|"message directly"| mate2
+    mate1 -->|"message"| lead
+    mate2 -->|"message"| lead
+  end

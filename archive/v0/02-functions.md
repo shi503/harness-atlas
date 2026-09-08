@@ -1,13 +1,14 @@
 ---
 title: "The functions — a harness from first principles"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-11"
 updated: "2026-08-27"
 respec: "2026-08-27"
 status: ARCHIVED
 owner: KD
 supersedes: archive/02-elements.md
+provenance: AUTHORED
 ---
 
 # The functions

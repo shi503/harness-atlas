@@ -23,7 +23,7 @@ Everything else follows. The index can be deleted and rebuilt losslessly. A cons
 
 The alternative — a database of record with markdown exports — was available and rejected. The reason is durability of the artifact: a markdown store survives the tool that wrote it, and a decision log whose readability depends on a running service is not a decision log.
 
-→ [`adr-seeds/ADR-016`](./adr-seeds/ADR-016.md)
+→ [`adr-seeds/ADR-016`](../../../archive/adr-seeds/ADR-016.md)
 
 ## 2. Entry types are configuration, not code
 
@@ -46,9 +46,9 @@ The RACI sub-schema is not optional decoration:
 
 All initials must resolve against a people registry. The minimum-one on `responsible` is annotated in the schema as a **guard against unowned decisions**, and it is worth pausing on: it is the only rule in the entire system that a machine actually enforces. Everything in [`01-the-composition-contract.md`](./01-the-composition-contract.md) is prose an agent may ignore. This one is a validator that fails.
 
-That asymmetry is the argument for the whole enforcement half of [`ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md). The one guard they built is the one guard that never degraded.
+That asymmetry is the argument for the whole enforcement half of `loomwarp-team-system` `references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md` (private). The one guard they built is the one guard that never degraded.
 
-→ [`adr-seeds/ADR-017`](./adr-seeds/ADR-017.md)
+→ [`adr-seeds/ADR-017`](../../../archive/adr-seeds/ADR-017.md)
 
 ## 4. One sanctioned write path
 
@@ -58,7 +58,7 @@ The second clause matters more than the first. A knowledge base accumulates stat
 
 Supporting machinery: a lock table with a five-minute TTL, an insert-only audit log recording actor, operation, before-hash and after-hash, a git pre-commit hook that gates both write paths against the lock table, and a conflict resolver that preserves both versions and flips the entry to a conflicted status rather than picking a winner.
 
-→ [`adr-seeds/ADR-018`](./adr-seeds/ADR-018.md)
+→ [`adr-seeds/ADR-018`](../../../archive/adr-seeds/ADR-018.md)
 
 ## 5. Where this lands on the matrix
 

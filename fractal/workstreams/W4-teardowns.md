@@ -29,7 +29,22 @@ four downstream obligations. Order:
 4. **FRACTAL** — KD-built, run un-routed in this very repo; the same peer rule as LoomWarp. The
    delta doc at `comparisons/systems/kd-built-frameworks/03-fractal-as-iterated.md` is a source,
    not the profile.
-5. The named-but-untorn: Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline.
+5. **QM (Quartermaster) — promoted to the front of the untorn queue, 2026-09-07.** It is cited in
+   `spectrums/00-README.md` as axis I's `+3` corpus anchor — *"per-scope rooms and adapters"* — and
+   **has never been torn down**; the only source is the short profile at
+   `comparisons/systems/qm.md`. ISSUE-015 measured axis I across ten scored harnesses at `−2` to
+   `+1`: **both poles vacant**, and R1 says an axis with a vacant pole is *"an aspiration, i.e. a
+   grade."* KD's ruling, 2026-09-07: *"this does need to be a teardown to prove it."* Until QM is a
+   scored profile, axis I's upper anchor rests on a harness the instrument has never measured.
+6. **The emerging multi-tenant motion — a category to watch, not yet a queue.** KD, 2026-09-07:
+   *"multi-tenant agent harnesses are definitely an emerging motion (see also Buzz, OpenClaw
+   Teams)."* Two of these already touch the corpus: **OpenClaw shipped a team version after its
+   2026-09-02 read** — recorded as the strongest re-read candidate in `positions/openclaw.yaml` —
+   and **Buzz** appears nowhere in this corpus except the World's Fair transcript data. If the
+   motion is real, axis I's `+3` anchor stops being vacant on its own, and the vacancy recorded in
+   ISSUE-015 is a **dated observation about 2026-09, not a permanent property of the category.**
+   Candidates for a later wave: Buzz · OpenClaw Teams (as a re-read) · QM.
+7. The named-but-untorn: Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline.
    goose drops off the priority list; it may rejoin here if someone makes the case.
 
 ## Acceptance criteria

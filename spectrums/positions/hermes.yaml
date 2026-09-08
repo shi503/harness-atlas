@@ -1,0 +1,198 @@
+# Hermes Agent — spectrum positions and DX scorecard.
+#
+# Scored against the profile as restructured to Template v2 on 2026-09-07 from
+# the source read of 2026-09-02. No source was opened at scoring time (R3).
+# Every `evidence` entry points at a section or component id of that profile.
+
+# ---------------------------------------------------------------- R11 verification
+verification:
+  derived_from:
+    - "Hermes's own README, SECURITY.md and AGENTS.md — read 2026-09-02 via the profile"
+    - "the docs site hermes-agent.nousresearch.com/docs, as carried into §6 and §8"
+    - "repo README, LICENSE and tag/release history — NousResearch/hermes-agent"
+  grounded_against:
+    - "§4 component matrix — 33 rows, ● 20 · ◐ 10 · ○ 3, copied from the 04 grid column"
+    - "§5 primitives — 9 named units, ⚠️ contestable; the Profile row's own definition is missing (v1 row truncated)"
+    - "§7 identity table — MIT licence, 239,705 stars, repo created 2025-07-22, v0.21.0"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    Hermes names itself "single-tenant" and "the only agent with a built-in learning loop," and
+    both claims hold up against §4/§6/§7 with real machinery behind them — the learning claim
+    especially, where autonomous skill_manage plus a Curator is the strongest capture-and-promotion
+    pair read in this corpus. The one place positioning and mechanism pull apart is operator scale:
+    the stated posture is single-tenant, but the gateway's enforced Admin/Regular tiers and a
+    managed scope a non-root user cannot override are real per-user machinery, not just
+    file-sharing — recorded as a split on operator-scale rather than resolved to either pole.
+
+spectrums:
+  schema_version: 2
+  harness: hermes
+  profile: content/hermes.md
+  profile_read: "2026-09-02"      # the source read; the restructure added no facts
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  positions:
+
+    - id: operator-scale
+      value: 0
+      mark: direct
+      evidence: ["§7 · does it serve more than one person", "10a", "10b", "3d"]
+      because: "Declared single-tenant, but enforced Admin/Regular tiers and a managed scope a non-root user cannot override are real per-user mechanism, short of a tenant object."
+      split: "Stated posture is -3 — SECURITY.md: 'single-tenant personal agent.' Mechanism reaches toward +1 — enforced tiers and a managed scope. Scored 0, between, since neither is a per-tenant policy object."
+
+    - id: state-durability
+      value: 1
+      mark: direct
+      evidence: ["5a", "5b", "7a", "8b"]
+      because: "state.db is file-backed and per-profile like a session tree, but kanban.db is a shared SQLite store any profile or human on the host can query and edit."
+      gap: "Kanban's own limitation says 'single-host only'; a cross-machine kanban store would move this further."
+
+    - id: binding-force
+      value: 3
+      mark: direct
+      evidence: ["2c", "§7 · binds mechanically or only by prose", "4b"]
+      because: "A hardline blocklist is checked before YOLO and explicitly cannot be bypassed by it; always-blocked write paths and fail-closed hook timeouts hold regardless of mode."
+      gap: "The vendor's own disclaimer that none of this is process containment (SECURITY.md) bears on a different question — what OS-level boundary exists — not on whether these binds are mechanical."
+
+    - id: loop-ownership
+      value: 3
+      dual: 0
+      dual_because: "model.openai_runtime: codex_app_server hands openai/* turns to the Codex CLI app-server 'instead of running its own tool loop' — a real, scoped host relationship, losing delegate_task/memory/session_search/todo while active."
+      mark: direct
+      evidence: ["§7 · loop question", "2a", "0a"]
+      because: "Runs its own AIAgent loop (~12k LOC) by default, one profile at a time; the Codex runtime swap is the dual case rule 7 requires recording."
+
+    - id: substrate-portability
+      value: 3
+      mark: direct
+      evidence: ["0a", "2a", "§7 · loop question"]
+      because: "40+ providers plus an MCP client and server, an ACP server, and an A2A client and server — protocol-mediated in every direction, with import adapters from three other harnesses and no refusal."
+
+    - id: primitive-discipline
+      value: 1
+      mark: direct
+      evidence: ["§5 count and verdict"]
+      because: "9 named primitives (profile, SOUL.md, skill, memory, plugin, hook, cron job, context file, kanban task), two past the 5-7 healthy band; no refusal list is published."
+
+    - id: control-posture
+      value: 0
+      mark: direct
+      evidence: ["3a", "2c", "§7 · binds mechanically or only by prose", "7a"]
+      because: "Default approvals.mode is 'smart' — read-only auto-approved, higher-risk gated by an auxiliary judge; YOLO is opt-in autonomy, not the default, and the hardline blocklist bounds even it."
+
+    - id: proof-ceremony
+      value: 1
+      mark: direct
+      evidence: ["8b", "8a", "3a"]
+      because: "Rich session export, trajectory files and a cron attempt ledger, plus an opt-in deterministic goal-gate (/goal gate add), but nothing requires either before a unit of work closes."
+
+    - id: improvement-loop
+      value: 3
+      mark: direct
+      evidence: ["9a", "4a", "9e"]
+      because: "skill_manage autonomously authors and patches skills from experience without being asked, and the Curator ages them active to archived — capture and promotion both shipped, the strongest pair read in this corpus."
+
+    - id: cost-visibility
+      value: 1
+      mark: direct
+      evidence: ["8d", "8b", "8c"]
+      because: "/usage and /insights show token/cost breakdown per session and dashboard analytics; no spend cap or budget was found (checked configuration, env-vars, insights)."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  probation:
+
+    - id: surface-breadth
+      value: 3
+      mark: direct
+      evidence: ["11a", "6b"]
+      because: "CLI, TUI, Electron desktop, web dashboard, API server, ACP for three IDEs, MCP server, A2A, voice mode, and a 35-platform messaging gateway — the widest surface set read in this corpus."
+      gap: "No single page states one surface as the stated source of truth the way Pi names the terminal; state.db and kanban.db are the backing stores but no vendor sentence names either as canonical."
+
+    - id: routing-determinism
+      value: 2
+      mark: direct
+      evidence: ["3b"]
+      because: "gateway.profile_routes routes messages to profiles by most-specific-match, and provider_routing/fallback_chain route model calls by price and latency — a real resolver, not manual selection."
+
+    - id: knowledge-depth
+      value: 0
+      mark: direct
+      evidence: ["5c"]
+      because: "A bundled llm-wiki skill (Karpathy's markdown-KB pattern) and a grounded-citations skill answer the axis's high end, but both are opt-in skills; built-in retrieval is FTS5 over one's own sessions, and RAG needs an external provider."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # The revised seven (ruling `2026-09-07-dx-revision`). Authored, never computed (R8).
+  scorecard:
+
+    - id: org-scale
+      dx: 1
+      value: 0
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: 0"]
+        profile: ["§7 Q2", "10a", "10b", "3d", "4b"]
+      because: "Pass-through of axis I. Single-tenant by declaration, with real enforced admin/user tiers short of a tenant object."
+
+    - id: weight-class
+      dx: 2
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["proof-ceremony: +1 — direct", "primitive-discipline: +1 — BULK ONLY, verdict discarded"]
+        profile: ["§5 count", "8b", "8a", "7a", "3a", "2c"]
+      because: "Kanban, a cron scheduler with an attempt ledger, an evals directory with ~17k tests, and an opt-in deterministic goal-gate are real structural weight, though nothing is a mandatory ship gate for every unit."
+
+    - id: surfaces-extendability
+      dx: 3
+      value: 3
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: +3 (probation)"]
+        profile: ["2b — three hook systems", "4a — eight skill sources", "2a", "6b", "11a", "8c", "6d"]
+      because: "Three hook systems, a plugin API with typed capabilities, MCP+ACP+A2A servers, six terminal-backend infra options, and 35 messaging-platform docs — the platform end of the axis, matching its own surface-breadth score."
+
+    - id: context
+      dx: 4
+      value: 0
+      mark: direct
+      supersedes: domain-specialization
+      reads_opened:
+        axes: ["state-durability: +1"]
+        profile: ["5a", "5b", "5c"]
+      because: "A named memory object, nothing team-aware, and knowledge that exists but is not curated for retrieval."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
+    - id: ecosystem
+      dx: 5
+      value: 2
+      grades: true
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars 239,705", "§7 Repo created 2025-07-22", "§7 Latest v0.21.0", "4a — four named skill registries"]
+      because: "239,705 stars and 48,999 forks — the largest in the read corpus — with four named third-party skill registries (skills.sh, ClawHub, LobeHub, browse.sh); repo is about 13 months old, so longevity is real but not yet decades-proven."
+      gap: "No single count of maintained third-party skills/plugins was found, unlike Pi's 5,618-package gallery figure; an author count would firm this up."
+
+    - id: ownership
+      dx: 6
+      value: 3
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: +3"]
+        profile: ["§7 License — MIT", "§7 Install", "0a", "6b"]
+      because: "MIT licensed, self-hostable via Docker/Nix, many providers including self-hosted-compatible OpenAI endpoints — no lock to one vendor's model family."
+
+    - id: cost-controls
+      dx: 7
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: +1 — the observability third", "routing-determinism: +2 (probation) — the routing third"]
+        profile: ["8d", "8c", "8b", "3b"]
+      because: "Automatic provider/model routing by price and latency, per-task auxiliary models, prompt caching and context compression, plus per-session cost breakdowns — strong efficiency and real routing, still no enforced spend cap."

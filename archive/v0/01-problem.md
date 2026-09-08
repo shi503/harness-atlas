@@ -1,10 +1,11 @@
 ---
 title: "v0-01 — The problem, from first principles"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-11"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # The problem, from first principles

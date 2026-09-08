@@ -60,7 +60,7 @@ Two of these are owned by you and unique; one is rented; one is chosen. Garry Ta
 
 ## 2. The category error worth fixing first
 
-**gstack, LoomWarp, FRACTAL, Indigo HQ and QM are not harnesses.** They are process layers installed *into* harnesses. The tell is that each one ships an adapter: gstack has `--host`, QM has adapters per user or room, Gas City has the Factory Worker Protocol, Indigo has the `AGENTS.md`↔`CLAUDE.md` symlink. You do not write an adapter for the thing you are.
+**gstack, LoomWarp, FRACTAL, Indigo HQ and QM are not harnesses.** They are process layers installed *into* harnesses. The tell is that each one ships an adapter: gstack has `--host`, QM has adapters per user or room, Gas City has the `provider` field ⚠️ *ISSUE-004*, Indigo has the `AGENTS.md`↔`CLAUDE.md` symlink. You do not write an adapter for the thing you are.
 
 The distinction matters because it changes what `F0 Substrate` is. As written, `F0` bundles "which runtime" and "what keeps our work portable" into one function — but those are decisions at two different layers, made by different people, with different reversal costs. Choosing Claude Code is a harness decision. Deciding your skills must survive a move off it is a process-layer decision.
 
@@ -100,7 +100,7 @@ One nuance the v0 set does not capture. Gas City runs its code-review formula ac
 | **Confused with** | The model above it, and the process layer installed into it                                                                                                     |
 | **v0 function**    | `F0 Substrate`                                                                                                                                                  |
 | **Covered?**      | ⚠️ Partially — `F0` conflates the runtime with the portability posture. See §2                                                                                  |
-| **Called**        | "harness" (Tan, Faros, the census) · "runtime" (Claude Code) · abstracted by "Factory Worker Protocol" (Gas City), "adapters" (QM, SageOx), "`--host`" (gstack) |
+| **Called**        | "harness" (Tan, Faros, the census) · "runtime" (Claude Code) · abstracted by the `provider` field (Gas City) ⚠️ *not "Factory Worker Protocol" — ISSUE-004*, "adapters" (QM, SageOx), "`--host`" (gstack) |
 
 Real harnesses in scope: Claude Code, Codex CLI, Cursor, OpenClaw, Hermes, goose, Gemini CLI, Amp, Droid, Aider, Pi, Windsurf, Cline, Antigravity, Kiro.
 
@@ -397,7 +397,7 @@ What each system calls the same concept. `—` means the system does not name it
 
 | Concept | Claude Code | gstack / gbrain | Gas City | QM | Indigo HQ | SageOx | generic-cerebro | LoomWarp |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Harness** | *is one* | `--host` | Factory Worker Protocol | adapters | AGENTS.md symlink | agent matrix | Claude Code only — no adapter | `F0` (undecided) |
+| **Harness** | *is one* | `--host` | `provider` field, 15 CLIs ⚠️ *ISSUE-004* | adapters | AGENTS.md symlink | agent matrix | Claude Code only — no adapter | `F0` (undecided) |
 | **Agent** | subagent | — | agents | — | workers | coworkers | 4 tiered agents, model-assigned | Feature Lead / Sub-Agent |
 | **Skills** | skills | skill files | formulas | skills | SKILL.md | — | 39 skills in 6 audience-cut plugins | skills / plugins |
 | **Individual memory** | auto-memory | personal brain | — | user scope | `personal/` | — | auto-memory **+ a routing rule** | (claude auto-memory) |
@@ -423,7 +423,7 @@ Full teardown of the new column: [`systems/kd-built-frameworks/`](./systems/kd-b
 
 **Stewardship gains its second real answer, and it is a different kind of answer.** One peer names its product after the role, one automates it away as a failure mode. The predecessor makes stewardship a property of the **content** — an editorial tier declared in frontmatter, carrying optimistic concurrency for capture and pessimistic concurrency for change-managed decisions over one corpus. That sidesteps the person-or-bot dichotomy the other two answers are trapped in, and it is the shape [`00-README.md`](./00-README.md) §F-2b was asking about.
 
-**Two rows are worth reading as a pair.** **Rituals** is populated by every process layer and empty for the harness — the correct shape, and evidence the concept belongs at our altitude rather than the runtime's. **Policy** is now the mirror image: populated for the harness and for the two systems that lean on it, and *empty for the predecessor* — which has 130 workstreams of authoring discipline and not one mechanical check. That single cell is the argument for [`systems/kd-built-frameworks/ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md) P-1.
+**Two rows are worth reading as a pair.** **Rituals** is populated by every process layer and empty for the harness — the correct shape, and evidence the concept belongs at our altitude rather than the runtime's. **Policy** is now the mirror image: populated for the harness and for the two systems that lean on it, and *empty for the predecessor* — which has 130 workstreams of authoring discipline and not one mechanical check. That single cell is the argument for `loomwarp-team-system` `references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md` (private) P-1.
 
 ### 4.1 Rows the crosswalk is missing
 

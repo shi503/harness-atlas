@@ -9,7 +9,7 @@ provenance: DERIVED
 
 # The shape
 
-The instrument first, the range second, the layers third, the words last. Every noun links down.
+The instrument first, the scorecard second, the range third, the layers fourth, the words last. Every noun links down.
 The argument is in [`README.md`](README.md).
 
 ## 1. The instrument
@@ -24,20 +24,31 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 
 | Harness | Altitude | Profile | State |
 |---|---|---|---|
-| Pi | runtime | [`content/pi.md`](content/pi.md) | template |
-| Hermes | gateway / host | [`content/hermes.md`](content/hermes.md) | template |
-| OpenClaw | gateway / host | [`content/openclaw.md`](content/openclaw.md) | template |
-| OpenCode | runtime | [`content/opencode.md`](content/opencode.md) | template |
-| Grok Bot / Grok Build | hosted product / runtime | [`content/grok.md`](content/grok.md) | template |
-| Codex CLI | runtime | [`content/codex.md`](content/codex.md) | template (W4 #1, 2026-09-03) |
-| Gas City | gateway / host, install-into-a-loop nested | [`content/gas-city.md`](content/gas-city.md) | template (W4 #2, 2026-09-03); short profile superseded |
-| LoomWarp | process layer | [`content/loomwarp.md`](content/loomwarp.md) | template (W4 #3, 2026-09-03); peer, primitive set 0 named |
-| FRACTAL (upstream · generic-cerebro fork · this repo) | process layer | [`content/fractal.md`](content/fractal.md) | template (W4 #4, 2026-09-03); peer, three instances, five named artifacts never stated as a set |
-| Claude Code | runtime | [`content/claude-code/`](content/claude-code/00-README.md) | pre-template deep read, 13 docs; template profile in the W2 sanity run |
+| Pi | runtime | [`content/pi.md`](content/pi.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Hermes | gateway / host | [`content/hermes.md`](content/hermes.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| OpenClaw | gateway / host | [`content/openclaw.md`](content/openclaw.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| OpenCode | runtime | [`content/opencode.md`](content/opencode.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Grok Bot / Grok Build | hosted product / runtime | [`content/grok.md`](content/grok.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Codex CLI | runtime | [`content/codex.md`](content/codex.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Gas City | gateway / host, install-into-a-loop nested | [`content/gas-city.md`](content/gas-city.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| LoomWarp | process layer | [`content/loomwarp.md`](content/loomwarp.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| FRACTAL (upstream · generic-cerebro fork · this repo) | process layer | [`content/fractal.md`](content/fractal.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Claude Code | runtime | [`content/claude-code.md`](content/claude-code.md) | v2 (2026-09-04); deep read at [`content/claude-code/`](content/claude-code/00-README.md), 12 docs |
 | HumanLayer · Deep Agents · Indigo HQ · QM · SageOx · gstack/gbrain | process layers | [`comparisons/systems/`](comparisons/systems/) | short teardowns, un-recut |
+| QM (Quartermaster) | multi-tenant — **claimed, unmeasured** | [`comparisons/systems/qm.md`](comparisons/systems/qm.md) | short teardown only; **promoted to the front of the queue** — it anchors axis I's `+3` and has never been scored |
 | Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | [`fractal/workstreams/W4-teardowns.md`](fractal/workstreams/W4-teardowns.md) | queued, in that order |
 
-## 2. The range
+## 2. The scorecard and the sheet
+
+Where a harness sits, on axes with no good end. Seven headline dimensions for the reader who wants a
+thirty-second read; ten axes beneath them for the reader who will open an anchor. **Neither grades**
+— except one declared dimension, admitted by ruling.
+
+→ [`spectrums/01-scorecard.md`](spectrums/01-scorecard.md) — the seven DX dimensions, the character-sheet face
+→ [`spectrums/00-README.md`](spectrums/00-README.md) — the ten axes, and what makes one admissible
+→ [`spectrums/positioning.md`](spectrums/positioning.md) — where each harness sits, one card per harness, and how we decided
+
+## 3. The range
 
 Where a team is, and what breaks next. Six stages, from *resistant* to *AI-native*, with a
 commitment threshold between four and five.
@@ -46,7 +57,7 @@ commitment threshold between four and five.
 → [`maturity/grid.html`](maturity/grid.html) — the interactive grid
 → the graded-vs-catalogued split and the frontier past stage six: [`fractal/workstreams/W7-maturity-recut.md`](fractal/workstreams/W7-maturity-recut.md)
 
-## 3. The layers
+## 4. The layers
 
 Twelve layers, thirty-three components. IDs are `<layer><letter>`. The numbering is the original
 twelve; the 13-layer renumber proposed in the consolidated guide §1 was **struck** in W0 (2026-09-03).
@@ -84,12 +95,12 @@ flowchart BT
   people(("people")) --- L11
 ```
 
-→ [`spec/v1-framework/00-README.md`](spec/v1-framework/00-README.md) — the specification, with each component's argument
-→ [`spec/v1-framework/00-consolidated-guide-and-mental-model.md`](spec/v1-framework/00-consolidated-guide-and-mental-model.md) — the mental model, un-recut
-→ [`components/`](components/) — Tier-2 pages, one per component, empty until W5
+→ [`components/00-README.md`](components/00-README.md) — **the roster**: all 33, the question each answers, and the profile anchor it lands on
+→ [`components/`](components/) — Tier-2, one page per component: what it is, the best example, and a peer table
+→ [`components/CROSSWALK.md`](components/CROSSWALK.md) — the recorded gaps, six rulings, and the candidates register
 → source: [`assets/templates/layer-stack.mmd`](assets/templates/layer-stack.mmd)
 
-## 4. The words
+## 5. The words
 
 → [`vocabulary.md`](vocabulary.md) — term → concept (vendor's words) → who says it → our component → instances
 → [`comparisons/00-README.md`](comparisons/00-README.md) §1.2–1.4 — *harness* spans two altitudes; the inclusion test

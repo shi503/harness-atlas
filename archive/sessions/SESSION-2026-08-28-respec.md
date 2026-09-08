@@ -1,10 +1,11 @@
 ---
 title: "Session record — the function re-spec, and why it churned"
 tier: reference
-project: loomwarp
+project: harness-atlas
 created: "2026-08-28"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # Session record — 2026-08-27/28, the function re-spec
@@ -263,4 +264,4 @@ this session's defects. And do not rewrite a quotation, ever, including by codem
 ---
 
 *Process fix: `fractal/workstreams/process-amendment.md` · Prior handoff:
-[`NEXT-STEPS.md`](./NEXT-STEPS.md) · Front door: [`00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md)*
+[`NEXT-STEPS.md`](./NEXT-STEPS.md) · Front door: `loomwarp-team-system` `00-MAP.md` (private)*

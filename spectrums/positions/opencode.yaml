@@ -1,0 +1,204 @@
+# OpenCode — spectrum positions and DX scorecard.
+#
+# Scored against the profile as restructured to Template v2 on 2026-09-07 from
+# the source read of 2026-09-02. No source was opened at scoring time (R3).
+# Every `evidence` entry points at a section or component id of that profile.
+
+# ---------------------------------------------------------------- R11 verification
+verification:
+  derived_from:
+    - "OpenCode's own docs site (opencode.ai/docs), README, CONTRIBUTING and package.json — read 2026-09-02 via the profile"
+    - "repo README, LICENSE, CHANGELOG-equivalent facts and tag history — anomalyco/opencode (formerly sst/opencode)"
+    - "the ecosystem page's community-project listing, read via the profile only"
+  grounded_against:
+    - "§4 component matrix — 33 rows, ● 10 · ◐ 13 · ○ 10, copied from the 04 grid column"
+    - "§5 primitives — 10 named units (8 core + 2 newer), ⚠️ contestable, no refusal list"
+    - "§7 identity table — MIT licence, 203,146 stars, repo created 2025-04-30, v1.18.26"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    OpenCode positions as an org-grade coding runtime and the observed machinery mostly agrees:
+    a real permission ladder that survives --auto, managed settings and MDM, and a Zen gateway
+    with admin/member roles. The one place positioning runs ahead of mechanism is ownership —
+    CONTRIBUTING.md gates UI/product PRs behind a "design review with the core team," which reads
+    as governance closer to a vendor-controlled OSS project than a fully community-owned one, and
+    the ownership axis is scored a notch below Pi's on that basis. The other tension is §5's primitive
+    count: 10 named keys with no refusal list is closer to accommodation than to Pi's disciplined
+    subtraction, and this profile records the count as contestable rather than resolving it.
+
+spectrums:
+  schema_version: 2
+  harness: opencode
+  profile: content/opencode.md
+  profile_read: "2026-09-02"      # the source read; the restructure added no facts
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  positions:
+
+    - id: operator-scale
+      value: 1
+      mark: direct
+      evidence: ["§7 · serves more than one person", "10b", "3d", "4b"]
+      because: "One operator per session process, but enterprise SSO, managed/MDM config and Zen's per-member admin roles are named, harness-enforced tenant objects."
+      split: "Per-process is −3 — one operator, one session, one basic-auth pair on `serve`. The org layer is +3 — Zen admin/member roles enforce per-member usage limits, MDM enforces org policy mechanically. Scored between, leaning toward the org layer since three separate mechanisms carry it (SSO, MDM, Zen roles)."
+
+    - id: state-durability
+      value: 1
+      mark: direct
+      evidence: ["5a", "8b", "§7 · does state persist"]
+      because: "SQLite `opencode.db` is queryable (`opencode db query`) and export/import plus share URLs let others view a session — beyond file-backed-only, short of a store more than one session can jointly write to."
+      gap: "Whether an `opencode serve` session can be concurrently joined by more than one authorized client, versus merely viewed through a share link, is not stated at the v1 read."
+
+    - id: binding-force
+      value: 2
+      mark: direct
+      evidence: ["2c", "§7 · binds mechanically or only by prose", "4b"]
+      because: "`deny` rules survive `--auto` and a global policy overrides a project's attempt to re-enable a denied provider — a control outside the prompt, though no OS sandbox is shipped."
+
+    - id: loop-ownership
+      value: 3
+      dual: null
+      mark: direct
+      evidence: ["§7 · loop question", "2a", "0a"]
+      because: "Runs its own Bun/TypeScript loop and installs into no other harness's loop; ACP, `serve` and the SDK are embeddable interfaces exposed outward, not adapters into another loop."
+
+    - id: substrate-portability
+      value: 3
+      mark: direct
+      evidence: ["0a", "2a", "3e"]
+      because: "75+ providers via the AI SDK and models.dev, MCP consumed as a client, ACP exposed as a server, plus a documented SDK — protocol-mediated in both directions, with no protocol refused."
+
+    - id: primitive-discipline
+      value: 2
+      mark: direct
+      evidence: ["§5 count and verdict"]
+      because: "Ten named keys (eight core plus two newer first-class ones) with no published refusal list — past the healthy band, short of full accommodation failure."
+      gap: "`references` and `policies` are recent additions; whether the set consolidates or keeps growing past ten is not observable from one read."
+
+    - id: control-posture
+      value: 2
+      mark: direct
+      evidence: ["2c", "3a", "7a"]
+      because: "Edit, write and bash default to *allow* — only `doom_loop`, `external_directory` (ask) and `.env` reads (deny) are gated by default; `--auto` widens further but a `deny` rule still survives it."
+      split: "The two gated operations read closer to asymmetric (0); the bulk of the tool surface defaults to allow, which is the autonomous end. Scored on the bulk of the tool surface, which is where most units of work fall."
+      # Axis VII is `polar` per ruling `2026-09-07-axis-vii-polar` — a defended asymmetric default is
+      # a position, not a two-notch defect. OpenCode's exceptions (env deny, doom_loop ask) are more
+      # bounded than Pi's "nothing gated by default," but both read the tool-call surface as the bulk.
+
+    - id: proof-ceremony
+      value: 0
+      mark: direct
+      evidence: ["8b", "8a", "7a"]
+      because: "Share pages, export/import and session diffs exist on demand; nothing requires an artifact before a unit of work is considered closed, and there is no eval gate for user work."
+
+    - id: improvement-loop
+      value: -2
+      mark: direct
+      evidence: ["9a", "4a"]
+      because: "No auto-capture and no stated promotion path from a lesson to an authored capability — `/init` only regenerates `AGENTS.md` once from a repo scan, unlike a vendor posture that invites building one."
+
+    - id: cost-visibility
+      value: 1
+      mark: direct
+      evidence: ["8d", "8c"]
+      because: "`opencode stats` breaks cost and tokens out by day, tool, model and project — real attribution, short of joining cost to a specific unit's outcome."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  probation:
+
+    - id: surface-breadth
+      value: 3
+      mark: direct
+      evidence: ["11a", "6b"]
+      because: "TUI, beta desktop, web, headless server, SDK, an IDE extension, ACP for four editors, GitHub Action, GitLab CI/Duo and a Slack bot — a stated source-of-truth terminal, and the deepest surface count read in this corpus so far."
+
+    - id: routing-determinism
+      value: 0
+      mark: direct
+      evidence: ["3b"]
+      because: "Per-agent `model`/`small_model` config plus description-based subagent selection by the calling agent — manual configuration, not a harness-side resolver."
+      gap: "This axis's poles are 'the model decides' and 'a resolver decides'. Description-based subagent selection sits closer to a resolver than pure manual choice, but the decision still runs inside the model, not the harness."
+
+    - id: knowledge-depth
+      value: -3
+      mark: direct
+      evidence: ["5c"]
+      because: "No RAG or embeddings shipped; retrieval is grep/glob/LSP symbols plus optional community MCP servers named only as doc examples."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # The revised seven (ruling `2026-09-07-dx-revision`). Authored, never computed (R8).
+  scorecard:
+
+    - id: org-scale
+      dx: 1
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: +1"]
+        profile: ["§7 Q2", "10b", "3d", "4b"]
+      because: "Pass-through of axis I. One operator per session process, with enterprise SSO, MDM and Zen's admin/member roles carrying the org layer above it."
+
+    - id: weight-class
+      dx: 2
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["proof-ceremony: 0 — direct", "primitive-discipline: +2 — BULK ONLY, verdict discarded"]
+        profile: ["§5 count", "8b", "8a", "2c", "3a"]
+      because: "Ten named keys and a real permission ladder are genuine structure, but nothing requires an artifact to close a unit and there is no dev-facing eval gate for user work."
+
+    - id: surfaces-extendability
+      dx: 3
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: +3 (probation)"]
+        profile: ["11a", "2b — 20 hook keys + ~25 events", "4a", "6b", "6d", "8c"]
+        note: "Strong on surfaces (ten distinct surfaces, including IDE extensions and ACP) and on hook density, held below +3 by no first-party marketplace — only a community ecosystem page listing 26 plugins."
+      because: "Ten shipped surfaces, a typed plugin/hook system and an experimental workspace-adapter API, without a built-in registry or marketplace of its own."
+
+    - id: context
+      dx: 4
+      value: -3
+      mark: direct
+      supersedes: domain-specialization
+      reads_opened:
+        axes: ["state-durability: +1"]
+        profile: ["5a", "5b", "5c"]
+      because: "Nothing in layer 5 at all: no memory object, nothing shared, nothing retrievable."
+      split: "Axis II is +1 — session state is more durable than plain transcripts — but none of it is memory, sharing or retrieval. Scored on layer 5."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
+    - id: ecosystem
+      dx: 5
+      value: 2
+      grades: true
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars 203,146", "§7 Repo created 2025-04-30", "§7 Latest v1.18.26", "4a — 26 community plugins, 11 projects, 2 agent packs"]
+      because: "The largest star count read in this corpus and steady weekly-or-faster releases over sixteen months, against a third-party ecosystem page that is dozens of listings, not thousands."
+      gap: "The ecosystem page's 26/11/2 counts are listings, not maintained-package or distinct-author counts; a registry the size of Pi's 5,618 would move this further without more adoption."
+
+    - id: ownership
+      dx: 6
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: +3"]
+        profile: ["§7 License — MIT", "§7 Install", "§8 CONTRIBUTING scope", "0a"]
+      because: "MIT, self-hostable and six install channels, held below full ownership by CONTRIBUTING's own gate — a UI or product PR bypassing design review 'will likely be closed.'"
+
+    - id: cost-controls
+      dx: 7
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: +1 — the observability third", "routing-determinism: 0 (probation) — the routing third"]
+        profile: ["8d", "8c", "8b", "3b", "5a"]
+      because: "Compaction, a cheap `small_model` lane and per-dimension cost stats, with no spend bound and no harness-side model routing to pull on."

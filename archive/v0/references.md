@@ -1,10 +1,11 @@
 ---
 title: "v0 — References: the agentOS landscape"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-11"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # References — the agentOS landscape

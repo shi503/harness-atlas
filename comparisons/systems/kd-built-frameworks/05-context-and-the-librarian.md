@@ -28,7 +28,7 @@ That table is the whole design. **Two different concurrency models over one corp
 
 This is a genuine primitive and the corpus has a row waiting for it. [`../../01-concepts.md`](../../01-concepts.md) §4's **Stewardship** row is populated for only two systems — one names its product after the role, one has a librarian — while a third *"bets that manual curation is the failure mode"* and automates it away. `generic-cerebro` is the fourth answer, and it is the only one that makes stewardship a property of the *content* rather than of a person or a bot.
 
-→ [`adr-seeds/ADR-019`](./adr-seeds/ADR-019.md)
+→ [`adr-seeds/ADR-019`](../../../archive/adr-seeds/ADR-019.md)
 
 ## 2. The pipeline
 
@@ -83,7 +83,7 @@ The system measured four retrieval backends over 25 developer-phrased queries wi
 
 That is a defensible trade, stated plainly, with the losing number published. **It is also the single most useful datapoint in this entire corpus for anyone building an Context story**, because no other system in [`../../02-component-matrix.md`](../../02-component-matrix.md) publishes a retrieval quality measurement at all. The transferable principle: *the retrieval floor must be the one every machine can actually run, and you should know exactly what that costs you in recall.*
 
-→ [`adr-seeds/ADR-020`](./adr-seeds/ADR-020.md)
+→ [`adr-seeds/ADR-020`](../../../archive/adr-seeds/ADR-020.md)
 
 **And then the distribution failed.** The index is gitignored. `.gitignore:69` excludes `bm25-index/*.sqlite`; `git ls-files` on that directory returns only the README. The 12 MB index sits on disk, untracked, while the decision record describes it as committed and zero-setup. Every teammate must rebuild it — which is the exact cost the decision was made to eliminate. The gitignore rule was written to stop two much larger indexes from being committed and swept this one up with them.
 
@@ -107,7 +107,7 @@ It then supplies its own smell test: **a `type: project` memory is almost always
 
 This is the piece to take verbatim. It is short, it is mechanism-shaped, it addresses a failure every agent system has, and LoomWarp has no equivalent — [`../../01-concepts.md`](../../01-concepts.md) §4 currently records LoomWarp's individual-memory answer as *"(claude auto-memory)"* in parentheses, which is the notation for a gap.
 
-→ [`adr-seeds/ADR-021`](./adr-seeds/ADR-021.md)
+→ [`adr-seeds/ADR-021`](../../../archive/adr-seeds/ADR-021.md)
 
 ## 6. What to take
 

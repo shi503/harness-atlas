@@ -1,10 +1,11 @@
 ---
 title: "The archive — superseded models, and the crosswalks that reach them"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-27"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # The archive
@@ -31,28 +32,53 @@ improvisation.
 | [`07-the-map.md`](./07-the-map.md) | never — a derivation | [`../v0/02-functions.md`](./v0/02-functions.md) | The `N→E` derivation, and the **precedent for how a vocabulary is retired here** |
 
 **The v0 corpus, archived whole 2026-09-01** — moved unedited by `git mv`, superseded by
-[`../v1-framework/`](../spec/v1-framework/00-README.md), whose
-[`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) resolves every `F0`–`F16` citation (§2, zero orphans)
+[`../v1-framework/`](./spec/v1-framework/00-README.md), whose
+[`CROSSWALK.md`](./spec/v1-framework/CROSSWALK.md) resolves every `F0`–`F16` citation (§2, zero orphans)
 and every job (§1):
 
 | File | Was canonical | Superseded by | Why it is still cited |
 |---|---|---|---|
-| [`v0/02-functions.md`](./v0/02-functions.md) | 2026-08-27 → 2026-09-01 | [`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §2 | The ancestor model. The vocabulary checker still parses its §1 map block for `F<n>` names; the successor re-argues every row rather than copying one |
+| [`v0/02-functions.md`](./v0/02-functions.md) | 2026-08-27 → 2026-09-01 | [`CROSSWALK.md`](./spec/v1-framework/CROSSWALK.md) §2 | The ancestor model. The vocabulary checker still parses its §1 map block for `F<n>` names; the successor re-argues every row rather than copying one |
 | [`v0/11-architecture.md`](./v0/11-architecture.md) | 2026-08-31 → 2026-09-01 | the twelve-layer structure, `CROSSWALK.md` §0 | §1 is KD's layer note — **the design the rebuild executed** |
 | [`v0/03-maturity.md`](./v0/03-maturity.md) | 2026-08-27 → 2026-09-01 | ❌ *rebuild pending* (`W7`+) | The six stages, *minimum governs*, the evidence rule, the 3→4 threshold — all carried forward |
 | [`v0/09-context-layer.md`](./v0/09-context-layer.md) | 2026-08-27 → 2026-09-01 | layer 5 (`5a`/`5b`/`5c`) | §4's routing doctrine entered `5b` by the 2026-09-01 ledger ruling; §7's conformance surface feeds the README's conformance spectrum |
 | [`v0/06-lineage.md`](./v0/06-lineage.md) | — a derivation | `CROSSWALK.md` §3.10 | §6's two rulings still constrain; Ruling 1 is honored in writing at §3.10. §2's loop-model survey feeds `harness-map-v1` |
-| [`v0/00-the-framework-from-agile.md`](./v0/00-the-framework-from-agile.md) · [`v0/01-problem.md`](./v0/01-problem.md) · [`v0/04-decision-layers.md`](./v0/04-decision-layers.md) · [`v0/05-preflight-spec.md`](./v0/05-preflight-spec.md) · [`v0/10-context-gap-analysis.md`](./v0/10-context-gap-analysis.md) · [`v0/references.md`](./v0/references.md) · [`v0/00-README.md`](./v0/00-README.md) | 2026-08 → 2026-09-01 | [`../v1-framework/00-README.md`](../spec/v1-framework/00-README.md) | Argument, gap registers and sources the component files cite by section |
+| [`v0/00-the-framework-from-agile.md`](./v0/00-the-framework-from-agile.md) · [`v0/01-problem.md`](./v0/01-problem.md) · [`v0/04-decision-layers.md`](./v0/04-decision-layers.md) · [`v0/05-preflight-spec.md`](./v0/05-preflight-spec.md) · [`v0/10-context-gap-analysis.md`](./v0/10-context-gap-analysis.md) · [`v0/references.md`](./v0/references.md) · [`v0/00-README.md`](./v0/00-README.md) | 2026-08 → 2026-09-01 | [`../v1-framework/00-README.md`](./spec/v1-framework/00-README.md) | Argument, gap registers and sources the component files cite by section |
 
 One exception left the corpus rather than entering the archive: `12-horizon.md` (authored 2026-08-31,
 new work, not the superseded model) moved to
-[`../v1-framework/12-horizon.md`](../spec/v1-framework/12-horizon.md).
+[`../v1-framework/12-horizon.md`](./spec/v1-framework/12-horizon.md).
 
 Also superseded, held in place rather than moved because it is linked from outside `specs/`:
 [`../../references/elements.md`](./elements.md) — the **seven-element** model
 (`E1 Workspace` … `E7 Learning`), carrying its own banner since 2026-08-27.
 
 ---
+
+**The v1 framework specification, archived whole 2026-09-08** — moved by `git mv` under the Tier-2
+re-cut, superseded by [`../components/`](../components/00-README.md), whose roster resolves every
+component ID and whose [`CROSSWALK.md`](../components/CROSSWALK.md) and
+[`RELATIONS.md`](../components/RELATIONS.md) carry the two registers that had to stay live. Full
+account and per-file table: [`spec/00-README.md`](./spec/00-README.md).
+
+| File | Was canonical | Superseded by | Why it is still cited |
+|---|---|---|---|
+| [`spec/v1-framework/CROSSWALK.md`](./spec/v1-framework/CROSSWALK.md) | 2026-08-31 → 2026-09-08 | §0 by [`components/00-README.md`](../components/00-README.md); §3 by [`components/CROSSWALK.md`](../components/CROSSWALK.md) | §1–§2 are the only map from a retired `F0`–`F16` citation to a live component |
+| [`spec/v1-framework/00-README.md`](./spec/v1-framework/00-README.md) | 2026-08-31 → 2026-09-08 | [`components/00-README.md`](../components/00-README.md) | Its 33-row index is superseded; its per-layer argument is reproduced nowhere else |
+| [`spec/v1-framework/06-relations.md`](./spec/v1-framework/06-relations.md) | 2026-08-31 → 2026-09-08 | §3 by [`components/RELATIONS.md`](../components/RELATIONS.md) | The relation model the `requires` graph is one part of — `performs`, `records-in`, the loop overlay |
+| [`spec/v1-framework/12-horizon.md`](./spec/v1-framework/12-horizon.md) | 2026-08-31 → 2026-09-08 | ❌ *nothing yet* | Every component's `horizon:` is scored against its §2 definitions |
+| [`spec/v1-framework/05-preflight.md`](./spec/v1-framework/05-preflight.md) · [`00-consolidated-guide-and-mental-model.md`](./spec/v1-framework/00-consolidated-guide-and-mental-model.md) · [`WALKTHROUGH.md`](./spec/v1-framework/WALKTHROUGH.md) · [`spec/EXPLAINER-PLAN.md`](./spec/EXPLAINER-PLAN.md) | 2026-08-27 → 2026-09-08 | the twelve-layer structure, `components/` | The preflight ordering rule `2a` cites; the mental model, never re-cut; the plan `README.md` superseded |
+
+**Three smaller archivals landed in the same ruling.** [`craft/`](./craft/01-source-hohpe.md) — the
+Hohpe source and the harness sizing lens — went because it is architect-craft material rather than
+harness anatomy, and it had **zero inbound markdown links**, so nothing pointed at it to break.
+[`adr-seeds/`](./adr-seeds/README.md), 22 store-format ADR drafts, went as unfinished internal
+decisions; the nine `kd-built-frameworks` documents that cite them stayed, so **eighteen live
+citations now point into the archive** — legal, and recorded here because it is unusual.
+[`claude-code-draft.md`](./claude-code-draft.md) and [`pi-draft.md`](./pi-draft.md) were
+pre-template drafts sitting in the shipped tier, superseded by the profiles that replaced them; both
+carry a `superseded_by:` pointer, which the 2026-09-01 whole-directory archival did not.
+
 
 ## 2. The crosswalk — `E<n>` → `F<n>`
 
@@ -115,6 +141,6 @@ check contract in the document itself rather than only in the script.
 
 ---
 
-*Canonical model: [`../v1-framework/00-README.md`](../spec/v1-framework/00-README.md) · the archived
+*Canonical model: [`../v1-framework/00-README.md`](./spec/v1-framework/00-README.md) · the archived
 ancestor: [`v0/02-functions.md`](./v0/02-functions.md) · the seven-element ancestor:
 [`../../references/elements.md`](./elements.md)*

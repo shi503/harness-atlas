@@ -1,10 +1,11 @@
 ---
 title: "Session record — the architecture rebuild that was designed and not built"
 tier: reference
-project: loomwarp
+project: harness-atlas
 created: "2026-08-28"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # Session record — 2026-08-27/28, the v0-framework architecture rebuild
@@ -287,4 +288,4 @@ checker's read surface.
 ---
 
 *Counterpart: [`SESSION-2026-08-28-respec.md`](./SESSION-2026-08-28-respec.md) · Process fix:
-`fractal/workstreams/process-amendment.md` · Front door: [`00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md)*
+`fractal/workstreams/process-amendment.md` · Front door: `loomwarp-team-system` `00-MAP.md` (private)*

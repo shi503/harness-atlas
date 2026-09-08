@@ -1,11 +1,12 @@
 ---
 title: "v0-03 — Maturity: two axes, three thresholds"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-11"
 status: ARCHIVED
 owner: KD
 prior_art: "generic-cerebro → wiki/synthesis/ai-native-maturity.md; references/AI-Native Organizational Maturity Framework.md"
+provenance: AUTHORED
 ---
 
 # Maturity: two axes, three thresholds

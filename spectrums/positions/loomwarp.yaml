@@ -1,0 +1,204 @@
+# LoomWarp — spectrum positions and DX scorecard.
+#
+# Scored against the profile as restructured to Template v2 on 2026-09-07 from
+# the source read of 2026-09-03. No source was opened at scoring time (R3).
+# Every `evidence` entry points at a section or component id of that profile.
+
+# ---------------------------------------------------------------- R11 verification
+verification:
+  derived_from:
+    - "LoomWarp's own repo, README, and specs — read 2026-09-03 via the profile"
+    - "the repo's standards/ tier, control/dispatch.py, and fractal/ISSUES.md, quoted verbatim in §6 and §8"
+    - "the product's own self-assessment (SELF), read in full and marked ↪ throughout"
+    - "the superseded V0 primitive spec and the current V1 framework spec, grepped for the six V0 names"
+  grounded_against:
+    - "§4 component matrix — 33 rows, ● 3 · ◐ 19 · ○ 11, copied from the 04 grid column"
+    - "§5 primitives — 0 named, current; six candidates recorded and quarantined from the count"
+    - "§7 identity table — no licence, 0 stars, private repo, one contributor, no releases"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    LoomWarp already speaks this atlas's own vocabulary — primitive, component, evidence — which
+    rule 8 of the teardown skill names as a hazard, not a shortcut: its self-classification is a
+    claim to verify against its files, not to import. §5's verdict and every axis below were read
+    from the files (router.py, dispatch.py, the standards tier, the decision ledger, ISSUES.md),
+    never from LoomWarp's own comparison-corpus self-entry, which stays a secondary (↪) citation
+    throughout. Two axes were scored on evidence the PRD specifically asked not to soften: DX-5
+    Ecosystem and DX-6 Ownership both land at the floor (−3) on a private, single-contributor,
+    unlicensed, zero-release repo — the same "no licence, no releases, one operator" reading this
+    repo's own comparisons corpus uses elsewhere, applied here without a discount for LoomWarp
+    being this atlas's point of origin.
+
+spectrums:
+  schema_version: 2
+  harness: loomwarp
+  profile: content/loomwarp.md
+  profile_read: "2026-09-03"      # the source read; the restructure added no facts
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  positions:
+
+    - id: operator-scale
+      value: -2
+      mark: direct
+      evidence: ["§7 · serves more than one person", "10b", "6c", "5b"]
+      because: "Design states independently-owned sibling repos; the run reality is one contributor with confirmed zero external adopters."
+      split: "Designed is roughly 0 — dispatch across independently owned repos is the stated mandate. Run is −3 — no external adopters, no second person has installed it. Scored between, weighted toward the confirmed run reality."
+
+    - id: state-durability
+      value: 0
+      mark: direct
+      evidence: ["§7 · does state persist", "8b", "5b", "6c"]
+      because: "Four file-backed stores, none the others' source of truth; one (.state.json) is gitignored and gets clobbered by a second blueprint's init."
+      gap: "The decision ledger's SQLite index and CLI (list/audit) suggest queryability beyond plain file-backed state; whether another session can join through it, rather than merely read it, is unclear — could move this toward +1."
+
+    - id: binding-force
+      value: 0
+      mark: direct
+      evidence: ["2c", "§7 · binds mechanically or only by prose", "3a"]
+      because: "Tier-1's deny list is real and would bind mechanically, but the one live dispatch used bypassPermissions, which the vendor's own code comment says skips it entirely — the exact auto-mode-bypass case this axis's 0 anchor names."
+
+    - id: loop-ownership
+      value: -3
+      dual: 0
+      dual_because: "dispatch.py starts, stops and classifies independent Claude Code sessions via filesystem evidence, holding no socket into any of them."
+      mark: direct
+      evidence: ["§7 · loop question", "3c", "2a"]
+      because: "Installs its own role files and skills into the Claude Code loop it also hosts — both readings evidenced (rule 7)."
+
+    - id: substrate-portability
+      value: -3
+      mark: direct
+      evidence: ["0a", "§7 · what it says it is"]
+      because: "Claude Code only, model chosen per agent role, no adapter of any kind; the framework's own spec marks its portability posture undecided."
+
+    - id: primitive-discipline
+      value: 3
+      mark: direct
+      evidence: ["§5 count and verdict"]
+      because: "Zero named, current — the vendor's own generic 33-component grading rule stands in for a bounded authoring set, the 'no published set' case this axis's own +3 anchor names."
+      gap: "This differs from a genuine 12+ accommodation-failure case: the deficit here is a vacated set (stated once in a superseded spec, dropped, not replaced) rather than proliferation. The axis's anchor text groups both under +3; a future revision might want to distinguish them."
+
+    - id: control-posture
+      value: 1
+      mark: direct
+      evidence: ["3a", "2c", "§7 · binds mechanically or only by prose"]
+      because: "target_mode picks per workstream between a genuinely bounded unattended run (wall-clock timeout) and a fully approval-first human mode; no single default."
+      split: "Headless is close to +2 — bounded, timed-out, but the DENY rules it should also carry are bypassed. Human mode is −3 — a printed command, nothing runs until a person does. Scored near centre since the harness commits to neither as its default."
+
+    - id: proof-ceremony
+      value: 1
+      mark: direct
+      evidence: ["8a", "3a", "8b"]
+      because: "Every workstream must close with a HANDOFF or PULSE file before the router advances state, but the classifier reading them is an unschema'd regex over markdown — the doctrine's own named anti-pattern."
+
+    - id: improvement-loop
+      value: 0
+      mark: direct
+      evidence: ["9d", "9a", "9e"]
+      because: "Capture is real and detailed (ISSUES.md, eight dated entries with required fix); promotion is doctrine only — process-improvement-model.md prescribes, nothing wires it automatically."
+
+    - id: cost-visibility
+      value: -2
+      mark: direct
+      evidence: ["8d", "8c"]
+      because: "A spend cap exists (--max-budget-usd, default 5, explicitly 'not a measured value') but nothing in the evidence trail records actual spend per run — a control with no meter behind it."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  probation:
+
+    - id: surface-breadth
+      value: -3
+      mark: direct
+      evidence: ["11a"]
+      because: "CLI only — headless dispatch or a human-run second window — with markdown as the stated surface of record; no published extension point."
+
+    - id: routing-determinism
+      value: 0
+      mark: direct
+      evidence: ["3b"]
+      because: "Static author-time BLUEPRINT fields assign work; neither the model nor a resolver decides — the same 'neither' case recorded on Pi's card."
+      gap: "Same poles-mismatch Pi's card flags: this axis assumes a decider exists. A third anchor may be needed if a third harness scores this way."
+
+    - id: knowledge-depth
+      value: -3
+      mark: direct
+      evidence: ["5c"]
+      because: "No RAG, embeddings or wiki; nothing distinct from the authored context fabric and the decision ledger."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # The revised seven (ruling `2026-09-07-dx-revision`). Authored, never computed (R8).
+  scorecard:
+
+    - id: org-scale
+      dx: 1
+      value: -2
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: −2"]
+        profile: ["§7 Q2", "10b", "6c", "5b"]
+      because: "Pass-through of axis I. Designed for independently-owned repos; run today by one contributor with zero external adopters."
+
+    - id: weight-class
+      dx: 2
+      value: -1
+      mark: direct
+      reads_opened:
+        axes: ["proof-ceremony: +1 — direct", "primitive-discipline: +3 — BULK ONLY, verdict discarded"]
+        profile: ["§5 count and verdict", "§1 Structured output", "3a", "8a", "8b"]
+        note: "Bulk reading of axis VI: zero current primitives is the smallest possible bulk in this corpus, pulling toward light. A real HANDOFF/PULSE receipt requirement pulls the other way, but the classifier reading them is the doctrine's own named anti-pattern, which discounts the pull."
+      because: "Near-zero primitive bulk and a receipt requirement undercut by an unschema'd, regex-based classifier — net light, since nothing is actually required to clear a check before it closes."
+
+    - id: surfaces-extendability
+      dx: 3
+      value: -3
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: −3 (probation)"]
+        profile: ["2b — none", "2a — one CLI adapter, no MCP/ACP", "4a — seven skills, cp -r, no registry", "11a"]
+      because: "CLI only, no hooks or plugin mechanism of its own, no registry or marketplace — the least-extensible column this corpus's grid records for this axis."
+
+    - id: context
+      dx: 4
+      value: -2
+      mark: direct
+      supersedes: domain-specialization
+      reads_opened:
+        axes: ["state-durability: +0"]
+        profile: ["5a", "5b", "5c"]
+      because: "Nothing individual, nothing curated; the only layer-5 presence is a partial shared-context notion with no store behind it."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
+    - id: ecosystem
+      dx: 5
+      value: -3
+      grades: true
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars — 0", "§7 License — none", "§7 Repo created 2026-08-04", "§7 First/Latest release — none"]
+      because: "Zero stars (private repo), a single contributor, no tags or releases across one month of history, and confirmed zero external adopters."
+      gap: "The repo is private by design at this read, which caps every adoption signal structurally, not only by immaturity — a public release would need to precede any ecosystem reading above this floor."
+
+    - id: ownership
+      dx: 6
+      value: -3
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: −3"]
+        profile: ["§7 License — none", "§7 Install — none published", "0a"]
+      because: "No LICENSE file, gh api reports license: null, a private submodule blocks even cloning it, and the repo is single-contributor — the least owned column this corpus records."
+
+    - id: cost-controls
+      dx: 7
+      value: -2
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: −2 — the observability third", "routing-determinism: 0 (probation) — the routing third"]
+        profile: ["8d", "8c", "3b"]
+      because: "A spend cap exists but is explicitly unmeasured and unattributed to any outcome, and routing is static author-time assignment with nothing to pull on."
