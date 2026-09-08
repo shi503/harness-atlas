@@ -162,15 +162,18 @@ spectrums:
         note: "Strong on surfaces (ten distinct surfaces, including IDE extensions and ACP) and on hook density, held below +3 by no first-party marketplace — only a community ecosystem page listing 26 plugins."
       because: "Ten shipped surfaces, a typed plugin/hook system and an experimental workspace-adapter API, without a built-in registry or marketplace of its own."
 
-    - id: domain-specialization
+    - id: context
       dx: 4
-      value: 0
+      value: -3
       mark: direct
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is", "Genre row (04-harness-alignment §1)", "§3 Workflows", "§5 refusal list"]
-      because: "Names coding in its own first sentence and ships nothing domain-specific — the 0 anchor verbatim, same reading as every other coding-genre harness in this corpus."
-
+        axes: ["state-durability: +1"]
+        profile: ["5a", "5b", "5c"]
+      because: "Nothing in layer 5 at all: no memory object, nothing shared, nothing retrievable."
+      split: "Axis II is +1 — session state is more durable than plain transcripts — but none of it is memory, sharing or retrieval. Scored on layer 5."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       value: 2

@@ -34,7 +34,7 @@ template: "v2 (restructured from v1 read 2026-09-03, no re-read)"
 
 ### 1a. Positioning stats
 
-`−2 · +2 · −1 · 0 · −3† · +2 · −3` — the seven DX dimensions, in order.
+`−2 · +2 · −1 · −3 · −3† · +2 · −3` — the seven DX dimensions, in order.
 
 > **⚠️ Drafted 2026-09-07, not yet verified.** Derived from this profile's own §7 identity table, README quotes and `ISSUES.md` entries as read 2026-09-03, grounded against §4, §5 and §7 below. No person has re-read these seven values yet. Scored against the **upstream (U)** instance as the primary subject, per the workstream PRD; fork (`C`) divergence is recorded in `split:` only where it changes the scored half. [`01-scorecard.md`](../spectrums/01-scorecard.md) §1 R11 says how the banner comes off.
 
@@ -43,7 +43,7 @@ template: "v2 (restructured from v1 read 2026-09-03, no re-read)"
 | **1** | Org scale | single operator | `─●─────` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `─────●─` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `──●────` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `●──────` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▱▱▱▱▱▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `─────●─` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `●──────` | observability, efficiency, routing |

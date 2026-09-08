@@ -157,15 +157,17 @@ spectrums:
         profile: ["2b — three hook systems", "4a — eight skill sources", "2a", "6b", "11a", "8c", "6d"]
       because: "Three hook systems, a plugin API with typed capabilities, MCP+ACP+A2A servers, six terminal-backend infra options, and 35 messaging-platform docs — the platform end of the axis, matching its own surface-breadth score."
 
-    - id: domain-specialization
+    - id: context
       dx: 4
-      value: -3
+      value: 0
       mark: direct
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is", "§3 Workflows", "9b — rituals span coding and life-admin"]
-      because: "Named 'personal AI agent,' not tied to one domain; bundled skills span coding delegation, weekly-review-planning, email-triage and competitor-monitoring — general-purpose by construction."
-
+        axes: ["state-durability: +1"]
+        profile: ["5a", "5b", "5c"]
+      because: "A named memory object, nothing team-aware, and knowledge that exists but is not curated for retrieval."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       value: 2

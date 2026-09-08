@@ -159,15 +159,17 @@ spectrums:
         note: "Scored above its surface-breadth input. The axis reads surfaces alone; this dimension also reads hooks, plugins and telemetry, where Codex is strongest — 11 named events, a plugin marketplace with UI-capable MCP connectors, and shipped OTLP exporters."
       because: "Hooks, a plugin marketplace, an app-server protocol, OTLP telemetry exporters, and cloud/container execution environments — the platform anchor's checklist, short only of a first-party CI/CD delivery primitive."
 
-    - id: domain-specialization
+    - id: context
       dx: 4
       value: 0
       mark: direct
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is", "§3 Workflows", "§5 refusal-list row (none)"]
-      because: "Names itself a coding agent in its own first sentence and ships nothing domain-specific beyond code — the 0 anchor verbatim."
-
+        axes: ["state-durability: +0"]
+        profile: ["5a", "5b", "5c"]
+      because: "A named memory object, nothing team-aware, and knowledge that exists but is not curated for retrieval."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       value: 2

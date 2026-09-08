@@ -187,15 +187,17 @@ spectrums:
       because: "Fifteen typed hook events, a marketplace with SHA-pinning and validation tooling, and ACP into four editors — a real extension platform, short of shipped delivery or telemetry export of its own."
       gap: "Bot's plugin/connector story runs through the Cursor marketplace, not a hook or extension-point system of its own — the profile gives no basis to score it on this dimension separately."
 
-    - id: domain-specialization
+    - id: context
       dx: 4
-      value: -3
+      value: 0
       mark: direct
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is", "Genre row (04-harness-alignment §1)", "§5 refusal-list row — none stated"]
-      because: "Both halves are general-purpose by construction — a coding agent, and a teammate whose use-case templates span sales, marketing and expense management, not one domain."
-
+        axes: ["state-durability: +0"]
+        profile: ["5a", "5b", "5c"]
+      because: "A named memory object, nothing team-aware, and knowledge that exists but is not curated for retrieval."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       grades: true

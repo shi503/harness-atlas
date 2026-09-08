@@ -36,14 +36,14 @@ template: "v2 (restructured from v1 read 2026-09-03, no re-read)"
 > no source was opened at scoring time (R3). [`01-scorecard.md`](../spectrums/01-scorecard.md) §1 R11
 > says how the banner comes off.
 
-`−1 · +1 · +2 · 0 · −1† · +2 · −2` — the seven DX dimensions, in order.
+`−1 · +1 · +2 · −1 · −1† · +2 · −2` — the seven DX dimensions, in order.
 
 | | | | | |
 |:-:|---|---:|:-:|---|
 | **1** | Org scale | single operator | `──●────` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `────●──` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `─────●─` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `──●────` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▱▱▱▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `─────●─` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `─●─────` | observability, efficiency, routing |

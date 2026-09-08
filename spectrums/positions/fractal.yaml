@@ -164,15 +164,17 @@ spectrums:
         profile: ["2a", "2b", "4a", "11a", "6d"]
       because: "Seven real skills are the one extension point; no hooks, no adapters, no protocol of its own — thin machinery, not a market."
 
-    - id: domain-specialization
+    - id: context
       dx: 4
-      value: 0
+      value: -3
       mark: direct
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is, verbatim", "§3 Workflows"]
-      because: "Names 'complex software development tasks' in its own description but ships nothing domain-specific — the BLUEPRINT/PRD/HANDOFF shape would fit any structured project."
-
+        axes: ["state-durability: +0"]
+        profile: ["5a", "5b", "5c"]
+      because: "Nothing in layer 5 at all; context lives in the PRD and HANDOFF files a human writes, not in anything the harness keeps."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       value: -3

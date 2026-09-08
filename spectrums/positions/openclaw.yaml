@@ -166,16 +166,17 @@ spectrums:
         profile: ["2b — ~45 events, two tiers", "4a — ClawHub + ~160 bundled plugins", "2a", "6b", "11a"]
       because: "Two hook systems, a plugin SDK with ~160 bundled extensions, a public registry, MCP both directions and ACP for eleven-plus harnesses — the strongest platform case read in this corpus."
 
-    - id: domain-specialization
+    - id: context
       dx: 4
-      value: 0
+      value: 2
       mark: direct
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is", "Genre row (04-harness-alignment §1)", "§5 refusal list — none", "8a benchmark pack"]
-      because: "Names 'AI assistant' and channels in its own first sentence, but the machinery — tools, skills, plugins, agent runtimes — is general-purpose; nothing about the loop itself is assistant-only."
-      gap: "The personal-agent-benchmark-pack (8a) is domain-shaped QA scored only against personal-assistant scenarios — a partial counter-argument a re-read should weigh against the 0."
-
+        axes: ["state-durability: +2"]
+        profile: ["5a", "5b", "5c"]
+      because: "Named memory plus real knowledge surfaces, and a session model that knows a second participant — the corpus's strongest layer 5."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       value: 1

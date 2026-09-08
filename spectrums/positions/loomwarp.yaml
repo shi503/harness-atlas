@@ -163,15 +163,17 @@ spectrums:
         profile: ["2b — none", "2a — one CLI adapter, no MCP/ACP", "4a — seven skills, cp -r, no registry", "11a"]
       because: "CLI only, no hooks or plugin mechanism of its own, no registry or marketplace — the least-extensible column this corpus's grid records for this axis."
 
-    - id: domain-specialization
+    - id: context
       dx: 4
-      value: 0
+      value: -2
       mark: direct
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is", "Genre row (04-harness-alignment §1)", "§3 Workflows"]
-      because: "Names a coordination framing in its own words — 'a distributed context harness for structuring many threads of work' — but ships no domain-specific validation beyond generic BLUEPRINT/PRD dispatch."
-
+        axes: ["state-durability: +0"]
+        profile: ["5a", "5b", "5c"]
+      because: "Nothing individual, nothing curated; the only layer-5 presence is a partial shared-context notion with no store behind it."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       value: -3

@@ -193,26 +193,17 @@ spectrums:
         Widened 2026-09-07. Hooks (2b), plugin bundling (4a) and adapters (2a) are now scored here
         rather than under DX-5. The value did not move; the evidence set grew.
 
-    - id: domain-specialization
+    - id: context
       dx: 4
-      value: 2
+      value: 1
       mark: direct
-      supersedes: domain-breadth
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is, verbatim", "Genre row (04-harness-alignment §1)", "6d · Code Review", "6c · monorepo config and worktrees", "§5 · no published refusal list"]
-      because: >
-        Positioned AND built for one domain. It names it in its own first sentence — "an agentic
-        coding tool that reads your codebase, edits files, runs commands" — and the machinery is
-        code-shaped rather than generic: 6d ships a hosted Code Review service and CI integration,
-        6c carries monorepo and worktree handling. Short of +3 because it refuses no adjacent use:
-        §5 finds no published refusal list, checked across glossary.md, overview.md and
-        how-claude-code-works.md.
-      note: >
-        POLARITY REVERSED 2026-09-07. This is the same reading as the superseded domain-breadth −2,
-        with the sign flipped and the "machinery is domain-shaped" half newly required. A reader
-        comparing +2 here against −2 in any pre-revision copy is looking at one observation, not two.
-
+        axes: ["state-durability: +0"]
+        profile: ["5a", "5b", "5c"]
+      because: "CLAUDE.md and auto memory are named units; project CLAUDE.md shares instructions rather than learnings, and MCP surfaces external data without curating it."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       value: 2

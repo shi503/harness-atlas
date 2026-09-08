@@ -33,7 +33,7 @@ template: v2
 
 ### 1a. Positioning stats
 
-`+1 · +1 · +3 · +2 · +2† · −3 · +3` — the seven DX dimensions, in order.
+`+1 · +1 · +3 · +1 · +2† · −3 · +3` — the seven DX dimensions, in order.
 
 > **⚠️ Drafted 2026-09-07, not yet verified.** Derived from Anthropic's documentation, the repo's
 > README and tag history, and the product page — grounded against §4, §5 and §7 below. No person has
@@ -45,7 +45,7 @@ template: v2
 | **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `────●──` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `──────●` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `─────●─` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `────●──` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▰▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `●──────` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `──────●` | observability, efficiency, routing |

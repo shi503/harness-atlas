@@ -164,15 +164,17 @@ spectrums:
         note: "Scored well above its surface-breadth input. The axis reads surfaces alone; this dimension also reads hooks, plugins and extension points, where Pi is strongest — ~40 typed events, a four-type package format, and a registry with 5,618 packages."
       because: "A genuine platform on the extension side — events, packages, a registry, four execution environments — held off +3 by no delivery and telemetry that ships contracts without an exporter."
 
-    - id: domain-specialization
+    - id: context
       dx: 4
-      value: 0
+      value: -3
       mark: direct
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is", "Genre row (04-harness-alignment §1)", "§3 Workflows", "§5 refusal list"]
-      because: "Names coding in its own first sentence and ships nothing domain-specific — the 0 anchor verbatim. Its refusals are about structure, not about domains."
-
+        axes: ["state-durability: +0"]
+        profile: ["5a", "5b", "5c"]
+      because: "Nothing in layer 5 at all — a grep of the docs for memory returned no feature, and the vendor says so."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       value: 2

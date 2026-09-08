@@ -158,15 +158,18 @@ spectrums:
         note: "Scored above its surface-breadth input. The axis reads surfaces alone; this dimension also reads hooks and packages, where Gas City is stronger — a public first-party registry and five runtime backends."
       because: "A genuine platform on the extension side — hooks, packs, a registry, five execution environments — held off +3 by thin agent-work delivery tooling and an unbundled telemetry pipe."
 
-    - id: domain-specialization
+    - id: context
       dx: 4
-      value: 0
+      value: -1
       mark: direct
+      supersedes: domain-specialization
       reads_opened:
-        axes: []
-        profile: ["§7 · what it says it is", "Genre row (04-harness-alignment §1)", "§3 Workflows", "§5"]
-      because: "Names 'multi-agent coding workflows' in its own description, but the six primitives (Agent, Bead, Formula, Rig, Pack, Event) are domain-agnostic orchestration concepts — positioned toward coding, not built exclusively for it."
-
+        axes: ["state-durability: +3"]
+        profile: ["5a", "5b", "5c"]
+      because: "Per-agent session logs and a sibling product's remember/prime, no knowledge component — little the harness itself knows about your project."
+      split: "Axis II is +3 — durable, queryable task state — while layer 5 reads 2 of 6. Durable state is not memory: the harness remembers the work graph, not the project. Scored on layer 5, which is this dimension's own question."
+      # RE-REFERENT 2026-09-07, ruling `2026-09-07-dx4-context`. domain-specialization
+      # measured an instance property; this reads layer 5, which no dimension read before.
     - id: ecosystem
       dx: 5
       value: -1

@@ -207,7 +207,7 @@ vocabulary is how a different kind of claim announces itself.
 
 ## 3. What the scorecard does not carry
 
-**Four of the ten axes feed no headline cell.** They are not dropped and not left unscored.
+**Three of the ten axes feed no headline cell.** They are not dropped and not left unscored.
 
 > **The scorecard is a face, not a filter.** All ten axes are scored for every harness, always, in
 > `positions/<harness>.yaml`. Detail-only governs **display**, never scoring. A harness with a
@@ -215,10 +215,15 @@ vocabulary is how a different kind of claim announces itself.
 
 | Axis | Why it has no headline cell | Read it at |
 |---|---|---|
-| **II** State durability | Splits across DX-1 and DX-6 without belonging to either. A headline cell would have to name a place, not a position | [§3 II](00-README.md) |
 | **IV** Loop ownership | `dual_allowed: true` — it can hold two values at once, and **a headline cell structurally cannot**. Not a taste call | [§3 IV](00-README.md) |
 | **VII** Control posture | *What may run unattended* is orthogonal to DX-2: a heavyweight harness can run unattended, and a lightweight one can be approval-first. **Its shape is no longer contested** — ruled `polar` 2026-09-07 — so it is now detail-only by scope alone, and eligible for a dimension if one ever needs it | [§3 VII](00-README.md) |
 | **IX** Improvement loop | *What happens to a lesson* is an analyst's question, and it is the axis most likely to move as a harness matures — so a headline cell would go stale fastest | [§3 IX](00-README.md) |
+
+**Axis II was detail-only until 2026-09-07 and is not any more.** The old reason was that it *"splits
+across DX-1 and DX-6 without belonging to either."* It now has a home of its own: **DX-4 Context**
+reads it directly. Detail-only drops from four axes to three. Note the two are not the same question —
+axis II asks *what survives the process*, DX-4 asks *what the harness knows about your work* — and Gas
+City is where they part company; see DX-4.
 
 **Axis VIII was detail-only until 2026-09-07 and is not any more.** The old reason was that *how is
 completion known* is an analyst's question no DX reader arrives with. Under DX-2 **Weight class** they
@@ -320,36 +325,42 @@ its left half is that axis and its right half is grid rows. Promotion still need
 *extensibility* because it is the word the dimension was named in. Recorded so it is not silently
 normalised later.
 
-### DX-4 · Domain specialization — *general-purpose, or specialized?* `polar` ⟲ *polarity reversed*
+### DX-4 · Context — *what does it remember about my project, and what can it look up?* `polar`
 
-`id: domain-specialization` · supersedes `domain-breadth` *(retired 2026-09-07)*
+`id: context` · supersedes `domain-specialization` *(retired 2026-09-07)*, which superseded
+`domain-breadth` *(retired the same day)*
 
 | | |
 |---|---|
-| **−3** | **General-purpose** by construction; the domain is whatever the operator brings |
-| **0** | **Positioned, not built.** It names a domain in its own words, but nothing in the machinery is domain-specific — it is usable outside that domain without ceremony |
-| **+3** | **Specialized.** It names one domain *and* ships domain-specific workflows, standards or validation for it; adjacent use is refused or unsupported |
-| **Reads · axes** | — none |
-| **Reads · profile** | §7 *"what it says it is, verbatim"* · the `Genre` row · §3 Workflows — are they domain-shaped? · §5's refusal list, if any |
-| **Cost of high** | Adjacent use cases it cannot serve, and a market it has chosen not to have |
-| **Cost of low** | Shallow everywhere; no domain-specific depth anyone would pay for |
+| **−3** | **Nothing survives.** No memory object, nothing shared, nothing retrievable. A session starts empty and ends empty |
+| **0** | **File-backed and local.** Instructions and transcripts persist for one operator on one machine; nothing is shared with anyone and nothing is curated for retrieval |
+| **+3** | **Shared, durable and retrievable.** Team-visible memory that survives its author, beside curated knowledge the agent can cite |
+| **Reads · axes** | `II state-durability` |
+| **Reads · profile** | `5a` Individual Memory · `5b` Team Memory · `5c` Knowledge |
+| **Cost of high** | A store to run and a schema to migrate; context outlives the reason it was written, and stale memory is worse than none |
+| **Cost of low** | Every session re-explains the project, and nothing one person learns reaches anyone else |
 
-**The polarity was reversed on 2026-09-07 and every earlier score is wrong by construction.** The old
-`domain-breadth` ran *specific → general*, so `+3` meant general-purpose. It now runs *general →
-specific*, so `+3` means specialized. Nothing about the underlying observation changed; the sign did.
-See §7 for what that invalidated.
+**Why this dimension exists, and what it replaced.** `domain-specialization` read `0` on **seven of
+ten** — every one of them the `0` anchor verbatim. KD's diagnosis, 2026-09-07: *"domain is largely
+project specific, and more an example of the guide / sensor convention we build into a project or
+agent's definition."* A domain is authored **into** a harness, and R3 requires a dimension be derivable
+from the **harness** profile. It was measuring the wrong altitude, and no re-anchoring fixes that.
 
-**Both halves are required for `+3`.** Positioning alone is `0`. This is the rule that keeps the
-dimension from measuring marketing: a harness that calls itself *the legal-tech agent* and ships a
-general-purpose tool loop is positioned, not specialized, and R11 exists precisely because that
-distinction is easy to lose at speed.
+**Why Context and not the broader cluster.** The proposal on the table was one vector covering domain,
+steering, observability, trust/safety and standards. Measured against the corpus, four of those five
+are already read or near-flat: observability is DX-7's, trust/safety is DX-2's, `3e Standards` is
+`○` on eight of ten, and steering (`3a` `3b` `3c`) puts six of ten at 5–6 of 6. Bundling them would
+rebuild the DX-3/DX-5 collision the same day's earlier revision was written to fix.
 
-**Prior art, and why it is not reused as a name.**
-[`../comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §1 carries a
-categorical `Genre` row — *"coding, terminal-first"*, *"personal assistant, channel-first"* — and its
-§3.1 argues genre **predicts which components are `●`**. That row stays exactly as it is: reusing the
-word `Genre` for a `−3…+3` scale would borrow a word and change its referent. This dimension is the
-continuous reading of the same observation, and cites it.
+**Layer 5 was read by nothing at all**, and it discriminates better than anything already on the sheet
+— **six distinct values across ten harnesses**, with Pi, OpenCode and FRACTAL at a clean floor. It is
+also the sharpest available reading of *context engineering*: the part of it that is a property of the
+harness rather than of the project.
+
+**On `state-durability` as the axis input.** Axis II asks *what survives the process*; this dimension
+asks *what the harness knows about your work*. They are close but not the same, and **Gas City is the
+case that proves it** — durable, queryable task state (axis II `+3`) beside no memory and no knowledge
+(`5a◐ 5b◐ 5c○`). Where the two disagree, score the layer-5 reading and record the axis in a `split:`.
 
 ### DX-5 · Ecosystem — *how many people have built on it?* **`graded †`**
 
@@ -492,6 +503,7 @@ remain house-owned and applied identically to every harness.
 | **2** | `constraint-form` · Constraint form | `weight-class` · **Weight class** | **Re-referent.** Different question, different reads. The old question returns to axis III |
 | **3** | `footprint` · Footprint | `surfaces-extendability` · **Surfaces & extendability** | **Widened.** Plugins and hooks are now scored here; a marketplace anchor added at `0` |
 | **4** | `domain-breadth` · Domain breadth | `domain-specialization` · **Domain specialization** | **Polarity reversed** — general→specific. Both positioning *and* machinery now required for `+3` |
+| **4** *(again, same day)* | `domain-specialization` | `context` · **Context** | **Re-referent.** It measured an instance property — a domain is authored *into* a harness, and R3 wants a harness property. Now reads layer 5, which no dimension read before. Ruling `2026-09-07-dx4-context` |
 | **5** | `ecosystem` · Ecosystem | `ecosystem` · Ecosystem | **Narrowed.** Marketplaces and standards move to DX-3; this reads adoption, third-party authorship and longevity only |
 | **6** | `ownership` · Ownership | `ownership` · Ownership | Unchanged |
 | **7** | `cost-visibility` · Cost visibility | `cost-controls` · **Cost controls & efficiency** | **Widened.** No longer a pass-through: adds efficiency mechanics and model routing to visibility |

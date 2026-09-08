@@ -54,33 +54,33 @@ pass is the only thing that clears it** — not age, not a re-render, not a seco
 
 ## 1. The corpus
 
-| Harness | 1 Org | 2 Weight | 3 Surfaces | 4 Domain | 5 Eco † | 6 Own | 7 Cost | Verified |
+| Harness | 1 Org | 2 Weight | 3 Surfaces | 4 Context | 5 Eco † | 6 Own | 7 Cost | Verified |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| [Claude Code](#2-claude-code) | +1 | +1 | +3 | +2 | +2 | −3 | +3 | ⚠️ no |
-| [Pi](#3-pi) | −1 | −2 | +2 | 0 | +2 | +3 | +1 | ⚠️ no |
-| [Hermes](#4-hermes) | 0 | +2 | +3 | −3 | +2 | +3 | +2 | ⚠️ no |
-| [OpenClaw](#5-openclaw) | 0 | +2 | +3 | 0 | +1 | +3 | +2 | ⚠️ no |
-| [OpenCode](#6-opencode) | +1 | +1 | +2 | 0 | +2 | +2 | +1 | ⚠️ no |
+| [Claude Code](#2-claude-code) | +1 | +1 | +3 | +1 | +2 | −3 | +3 | ⚠️ no |
+| [Pi](#3-pi) | −1 | −2 | +2 | −3 | +2 | +3 | +1 | ⚠️ no |
+| [Hermes](#4-hermes) | 0 | +2 | +3 | 0 | +2 | +3 | +2 | ⚠️ no |
+| [OpenClaw](#5-openclaw) | 0 | +2 | +3 | +2 | +1 | +3 | +2 | ⚠️ no |
+| [OpenCode](#6-opencode) | +1 | +1 | +2 | −3 | +2 | +2 | +1 | ⚠️ no |
 | [Codex CLI](#7-codex-cli) | +1 | +2 | +3 | 0 | +2 | +1 | 0 | ⚠️ no |
-| [Grok (Build)](#8-grok-build) | +1 | +1 | +2 | −3 | 0 | +3 | +1 | ⚠️ no |
-| [Gas City](#9-gas-city) | −1 | +1 | +2 | 0 | −1 | +2 | −2 | ⚠️ no |
-| [LoomWarp](#10-loomwarp) | −2 | −1 | −3 | 0 | −3 | −3 | −2 | ⚠️ no |
-| [FRACTAL](#11-fractal) | −2 | +2 | −1 | 0 | −3 | +2 | −3 | ⚠️ no |
+| [Grok (Build)](#8-grok-build) | +1 | +1 | +2 | 0 | 0 | +3 | +1 | ⚠️ no |
+| [Gas City](#9-gas-city) | −1 | +1 | +2 | −1 | −1 | +2 | −2 | ⚠️ no |
+| [LoomWarp](#10-loomwarp) | −2 | −1 | −3 | −2 | −3 | −3 | −2 | ⚠️ no |
+| [FRACTAL](#11-fractal) | −2 | +2 | −1 | −3 | −3 | +2 | −3 | ⚠️ no |
 
-All ten scored 2026-09-07, all **drafted and unverified** — see §0. The fingerprint, the seven
-values as one line, heads each harness's own section below; it is not repeated as a column here,
-because at nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
+All ten scored 2026-09-07, all **drafted and unverified** — see §0. The fingerprint, the seven values
+as one line, heads each harness's own section below; it is not repeated as a column here, because at
+nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
-> **R6 is satisfied.** Every dimension takes at least three distinct values across the corpus —
-> `cost-controls` takes six, `ecosystem` five, four dimensions take four. The sheet discriminates,
-> which two harnesses could not have shown and ten can. **One dimension is close to flat:**
-> `domain-specialization` reads `0` on **seven of ten** with nothing at `+3` — see §4.
+> **R6 is satisfied.** Every dimension takes at least three distinct values — `cost-controls` six,
+> `context` and `ecosystem` six and five, four dimensions four. **DX-4 was the exception until
+> 2026-09-07**, reading `0` on seven of ten as `domain-specialization`; re-referented to `context` it
+> reads six distinct values across `−3…+2`, and no harness reaches `+3`.
 
 ---
 
 ## 2. Claude Code
 
-`+1 · +1 · +3 · +2 · +2† · −3 · +3`
+`+1 · +1 · +3 · +1 · +2† · −3 · +3`
 
 [`content/claude-code.md`](../content/claude-code.md#1-at-a-glance) · scored 2026-09-07 · [`positions/claude-code.yaml`](positions/claude-code.yaml) · back: [§1a](../content/claude-code.md#1a-positioning-stats)
 
@@ -91,7 +91,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `────●──` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `──────●` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `─────●─` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `────●──` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▰▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `●──────` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `──────●` | observability, efficiency, routing |
@@ -102,7 +102,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 ## 3. Pi
 
-`−1 · −2 · +2 · 0 · +2† · +3 · +1`
+`−1 · −2 · +2 · −3 · +2† · +3 · +1`
 
 [`content/pi.md`](../content/pi.md#1-at-a-glance) · scored 2026-09-07 · [`positions/pi.yaml`](positions/pi.yaml) · back: [§1a](../content/pi.md#1a-positioning-stats)
 
@@ -113,7 +113,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `──●────` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `─●─────` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `─────●─` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `●──────` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▰▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `──────●` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `────●──` | observability, efficiency, routing |
@@ -124,7 +124,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 ## 4. Hermes
 
-`0 · +2 · +3 · −3 · +2† · +3 · +2`
+`0 · +2 · +3 · 0 · +2† · +3 · +2`
 
 [`content/hermes.md`](../content/hermes.md#1-at-a-glance) · scored 2026-09-07 · [`positions/hermes.yaml`](positions/hermes.yaml) · back: [§1a](../content/hermes.md#1a-positioning-stats)
 
@@ -135,7 +135,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `───●───` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `─────●─` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `──────●` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `●──────` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `───●───` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▰▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `──────●` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `─────●─` | observability, efficiency, routing |
@@ -146,7 +146,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 ## 5. OpenClaw
 
-`0 · +2 · +3 · 0 · +1† · +3 · +2`
+`0 · +2 · +3 · +2 · +1† · +3 · +2`
 
 [`content/openclaw.md`](../content/openclaw.md#1-at-a-glance) · scored 2026-09-07 · [`positions/openclaw.yaml`](positions/openclaw.yaml) · back: [§1a](../content/openclaw.md#1a-positioning-stats)
 
@@ -157,7 +157,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `───●───` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `─────●─` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `──────●` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `─────●─` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▱▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `──────●` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `─────●─` | observability, efficiency, routing |
@@ -168,7 +168,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 ## 6. OpenCode
 
-`+1 · +1 · +2 · 0 · +2† · +2 · +1`
+`+1 · +1 · +2 · −3 · +2† · +2 · +1`
 
 [`content/opencode.md`](../content/opencode.md#1-at-a-glance) · scored 2026-09-07 · [`positions/opencode.yaml`](positions/opencode.yaml) · back: [§1a](../content/opencode.md#1a-positioning-stats)
 
@@ -179,7 +179,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `────●──` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `─────●─` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `●──────` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▰▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `─────●─` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `────●──` | observability, efficiency, routing |
@@ -201,7 +201,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `─────●─` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `──────●` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `───●───` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▰▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `────●──` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `───●───` | observability, efficiency, routing |
@@ -212,7 +212,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 ## 8. Grok (Build)
 
-`+1 · +1 · +2 · −3 · 0† · +3 · +1`
+`+1 · +1 · +2 · 0 · 0† · +3 · +1`
 
 [`content/grok.md`](../content/grok.md#1-at-a-glance) · scored 2026-09-07 · [`positions/grok.yaml`](positions/grok.yaml) · back: [§1a](../content/grok.md#1a-positioning-stats)
 
@@ -223,7 +223,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `────●──` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `─────●─` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `●──────` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `───●───` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▱▱▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `──────●` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `────●──` | observability, efficiency, routing |
@@ -234,7 +234,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 ## 9. Gas City
 
-`−1 · +1 · +2 · 0 · −1† · +2 · −2`
+`−1 · +1 · +2 · −1 · −1† · +2 · −2`
 
 [`content/gas-city.md`](../content/gas-city.md#1-at-a-glance) · scored 2026-09-07 · [`positions/gas-city.yaml`](positions/gas-city.yaml) · back: [§1a](../content/gas-city.md#1a-positioning-stats)
 
@@ -245,7 +245,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `──●────` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `────●──` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `─────●─` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `──●────` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▰▰▱▱▱▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `─────●─` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `─●─────` | observability, efficiency, routing |
@@ -256,7 +256,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 ## 10. LoomWarp
 
-`−2 · −1 · −3 · 0 · −3† · −3 · −2`
+`−2 · −1 · −3 · −2 · −3† · −3 · −2`
 
 [`content/loomwarp.md`](../content/loomwarp.md#1-at-a-glance) · scored 2026-09-07 · [`positions/loomwarp.yaml`](positions/loomwarp.yaml) · back: [§1a](../content/loomwarp.md#1a-positioning-stats)
 
@@ -267,7 +267,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `─●─────` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `──●────` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `●──────` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `─●─────` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▱▱▱▱▱▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `●──────` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `─●─────` | observability, efficiency, routing |
@@ -278,7 +278,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 
 ## 11. FRACTAL
 
-`−2 · +2 · −1 · 0 · −3† · +2 · −3`
+`−2 · +2 · −1 · −3 · −3† · +2 · −3`
 
 [`content/fractal.md`](../content/fractal.md#1-at-a-glance) · scored 2026-09-07 · [`positions/fractal.yaml`](positions/fractal.yaml) · back: [§1a](../content/fractal.md#1a-positioning-stats)
 
@@ -289,7 +289,7 @@ because at nine columns it wrapped and stopped being a fingerprint (checked 2026
 | **1** | Org scale | single operator | `─●─────` | multi-tenant, many teams |
 | **2** | Weight class | light-weight | `─────●─` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `──●────` | many surfaces, environments, a platform |
-| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **4** | Context | nothing survives | `●──────` | shared, durable, retrievable |
 | **5** | Ecosystem **†** | tribal, low adoption | `▱▱▱▱▱▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `─────●─` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `●──────` | observability, efficiency, routing |
