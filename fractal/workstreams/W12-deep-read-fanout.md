@@ -54,10 +54,56 @@ before the first deep read was attempted:
 - Ten profiles backfilled with `verification:`, each marked as attested rather than captured.
 
 **Phase 3 — the fan-out.** ⏳ not started
-Eight remaining, as parallel `feature-lead` sub-agents per the W4 precedent, **re-reading the skill
-between each of the first few** rather than dispatching all eight at once (see ISSUE-023).
 
-Order: **OpenClaw** · OpenCode · Hermes · Grok · **Pi** · Gas City · **LoomWarp** · FRACTAL.
+### The eight, measured
+
+Coverage is the best available proxy for how much surface there is to document, and the primitive
+count for how much *vendor vocabulary* exists to cut by. Sources re-probed 2026-09-08: all six external
+repositories were pushed that day and all four documentation roots return `200`.
+
+| Harness | Coverage | Primitives | Sources | Depth | The thing that will bite |
+|---|---|---|---|---|---|
+| **Pi** | ● 6 · ◐ 11 · ○ 16 | 8 | `earendil-works/pi` (103k★, MIT) · `packages/coding-agent/docs` | **Index**, or a thin Standard | A **published refusal list**. If any harness is honestly `00` + `20`, it is this one — which is exactly what the amended §3 newly permits and nothing has tested |
+| **OpenClaw** | ● 20 · ◐ 10 · ○ 3 | 12+ | `openclaw/openclaw` (389k★) · `docs.openclaw.ai`, 590 pages with a `docs.json` | **Exhaustive** | The largest surface inventory in the corpus — ~30 channels, 11+ ACP runtimes. The `docs.json` is a machine-readable outline; use it rather than inferring one |
+| **Hermes** | ● 20 · ◐ 10 · ○ 3 | 9 | `NousResearch/hermes-agent` (243k★, MIT) · `hermes-agent.nousresearch.com` | Standard→Exhaustive | Self-authored skills and the Curator ageing capabilities out — the memory character caps are the grain worth assembling |
+| **OpenCode** | ● 10 · ◐ 13 · ○ 10 | 10 | `anomalyco/opencode` (205k★, MIT) · `opencode.ai/docs` | Standard | A nine-rung configuration chain and the `allow`/`ask`/`deny` ladder. Closest in shape to Codex's `01`+`06`, so the least likely to teach anything new |
+| **Grok** | ● 19 · ◐ 10 · ○ 4 | Build 8 · Bot 6 | `xai-org/grok-build` (26k★, Apache-2.0) · `docs.x.ai/grok-bot` | Standard | **Two products, no primary source resolving them into one** — Codex's scope question, but harder, because one is open-source and one is closed and hosted |
+| **Gas City** | ● 13 · ◐ 14 · ○ 6 | 6, healthy | `gastownhall/gascity` (1.2k★, MIT) · `docs/`, `engdocs/` | Standard | The cleanest run of the eight: six named primitives, a documented admission test, two in-repo doc trees |
+| **LoomWarp** | ● 3 · ◐ 19 · ○ 11 | **0 named** | Private repo, KD's | **Decide before dispatching** | See below |
+| **FRACTAL** | ● 3 · ◐ 11 · ○ 19 | 5 | Three instances, two public repos | **Decide before dispatching** | See below |
+
+### The fifth falsification, visible before it happens
+
+**The skill assumes a vendor, and two of these harnesses do not have one.** §4 requires a claim ledger
+drawn from *"the landing or product page, the repository README's pitch, the documentation's own
+introduction, the launch or announcement post."* LoomWarp and FRACTAL are KD's own systems. There is no
+marketing surface, no launch post, and nothing written to persuade — which is the exact thing §4 exists
+to quarantine.
+
+**The deeper problem is the cut itself.** A deep read is cut by *"the harness's own surfaces — whatever
+it calls them."* LoomWarp's profile records **zero named primitives, stated once and superseded**, and
+`◐ 19` — a system whose vocabulary is mostly borrowed. FRACTAL is `○ 19`. There may not be enough
+vendor vocabulary in either to cut a folder by, and forcing one would produce a set organised by *our*
+components wearing the vendor's numbering, which is the one thing §1 forbids.
+
+**Recommendation: neither is dispatched with the other six.** Both are decided on their own, after the
+public six are done and the skill has stopped changing.
+
+### Order, and why it inverted
+
+The earlier draft of this PRD put **OpenClaw first**, on richest-first logic. **ISSUE-023 argues
+against that**: falsification came from *difference*, not from more of the same. OpenClaw is Codex's
+shape, larger. Pi is a different shape entirely.
+
+| # | Harness | Mode | Why here |
+|---|---|---|---|
+| 1 | **Pi** | interactive | Cheap, and it tests the floor the amended §3 newly permits. If `00` + `20` is wrong, learn it on the smallest surface rather than after committing to a 20-document set |
+| 2 | **OpenClaw** | interactive | The Exhaustive proof. Nothing has exercised that depth setting |
+| 3–6 | **Gas City · OpenCode · Hermes · Grok** | **parallel `feature-lead` fan-out** | Conventional shapes, public docs, no open scope question except Grok's two products — which is settled the way Codex's was, by asking before reading |
+| 7–8 | **LoomWarp · FRACTAL** | decision, then perhaps interactive | Per the section above |
+
+**Re-read the skill after 1 and after 2.** Not after all eight — that is the mistake W10 made once
+already, and the four defects in ISSUE-023 are what it cost.
 
 ## Acceptance criteria
 
@@ -83,12 +129,20 @@ Order: **OpenClaw** · OpenCode · Hermes · Grok · **Pi** · Gas City · **Loo
 
 ## Open
 
-1. **Does LoomWarp get a deep read at all?** Its sources are a private repository, so no citation in the
-   set can resolve for a public reader. W11 established a backticked-provenance discipline for exactly
-   this, but a whole folder of unresolvable citations is a different proposition from 32 of them in a
-   profile. **Recommendation: last, and decided on its own once the other seven are done.**
-2. **Does `wiki-nav` run over the new folders?** It has never been run; its first run touches ~100 files.
-   Out of scope here, named so it is not forgotten.
+1. **Do LoomWarp and FRACTAL get deep reads at all?** Two problems, and the second is the real one.
+   LoomWarp's sources are private, so no citation in the set resolves for a public reader — W11's
+   backticked-provenance discipline covers 32 citations in a profile, not a whole folder of them. But
+   both harnesses also lack the thing the genre is cut by: **there is no vendor, no claim ledger to
+   capture, and — LoomWarp names zero primitives — very little surface vocabulary to organise a folder
+   around.** **Recommendation: decided on their own, after the public six, and a "no" is a legitimate
+   answer that should be written as a ruling rather than left as a gap.**
+2. **Does the skill need a self-authored variant?** Following from 1: if the answer to either is yes,
+   §4's claim ledger needs a defined behaviour when no marketing surface exists. Recording *"no claim
+   ledger — this system publishes no positioning copy; checked README, docs/ and the repository
+   description"* is the corpus-consistent form, but it is not written down.
+3. **Does `wiki-nav` run over the new folders?** It has never been run; its first run touches ~100 files,
+   and there are now two deep-read folders for it to cover. Out of scope here, named so it is not
+   forgotten.
 
 ---
 
