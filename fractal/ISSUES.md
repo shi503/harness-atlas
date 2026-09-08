@@ -708,3 +708,50 @@ labelling them drafted would import that mechanism into the one place the corpus
 **The cheap next step for a person:** the marks are derivable in one sitting *from the 33 pages that
 now exist*, which did not exist when this issue was written. That is a reading pass, not a re-read of
 two 385-line teardowns.
+
+## ISSUE-023 — the deep-read skill's first real run: four gaps the one-example version could not have shown
+
+**Severity:** MINOR · **Found:** 2026-09-08, W12 while producing `content/codex/` — the first exercise of
+`harness-deep-read` since it was written · **Assigned:** fixed in the same commit, recorded here because
+the *class* of defect matters more than the four instances
+
+`harness-deep-read` was derived from `content/claude-code/`, one folder, and W10's HANDOFF said plainly
+that this made it *"a hypothesis about a genre"*. Running it on a second harness falsified four parts of
+the hypothesis. Every one of them is a place where Claude Code's shape had been mistaken for the genre's.
+
+**1 · Depth is not the only thing to agree — scope is too.** §2 asked the commissioner how deep and
+stopped there. Codex publishes **three** different outlines: the repository's `docs/`, cut by CLI
+surface; `learn.chatgpt.com`'s Codex tree, cut by product across cloud, IDE, desktop and web; and ~120
+Rust crates, several documenting surfaces the other two never mention. Depth was answerable; *which
+outline* was not, and it changes the subject of the document rather than its length. Claude Code has one
+docs tree, so the question never arose. **Fixed:** §2 now agrees depth **and** scope in the same step.
+
+**2 · "The repository" is not one source class.** §7 ranked primary sources as *"the repository, the
+official docs, the changelog."* For Codex the repository's `docs/` is now **stubs** — a heading and a
+link, twice redirected — while the substantive text lives in `codex-rs/*/README.md`. Execpolicy's
+Starlark grammar and the memory pipeline's two phases exist **nowhere else**. A skill that says "the
+repository" without distinguishing its documentation directory from its source-tree READMEs will send a
+reader to the empty one. **Fixed:** §7 names source-tree READMEs as their own class.
+
+**3 · A claim can be out of scope rather than unmechanised, and §4 had no third outcome.** The claim
+test as written anticipated two results: a mechanism, or a recorded absence. Walking Codex's claims
+produced a third — *"start work from the web, GitHub, GitLab, Linear, or Slack"* is neither implemented
+by something in the set nor missing from the product; it is outside what the set was cut to cover.
+Recording it as an absence would have been false. The same shape appeared three times in the Claude Code
+retrofit. **Fixed:** §4 names the three outcomes, and requires scope-misses to say so.
+
+**4 · A deep read and its profile drift, and the drift is visible to a reader who clicks.** The Codex
+profile records **11** hook events from its 2026-09-03 read; the documentation lists **12** as of
+2026-09-08. Neither is wrong. But §6's row and the document it links to now contradict each other in the
+reader's face, and nothing in the skill said what to do about it. Re-reading the profile is out of scope
+for a deep read; silently matching the older number would be worse. **Fixed:** §5's link contract
+requires a linked-out row that disagrees with the set to carry both figures and both dates. Applied at
+`content/codex.md#2b-hooks`.
+
+**What this says about the fan-out.** All four are the same error: a genre inferred from one instance,
+where the instance's accidents read as the genre's rules. Eight harnesses remain, and the two most
+likely to falsify further are **Pi**, whose published refusals may make `00` + `20` the honest whole set,
+and **LoomWarp**, whose sources are private and cannot carry a resolvable citation. The skill should be
+re-read after each, not after all eight.
+
+---
