@@ -90,10 +90,10 @@ construction. Re-score in the YAML, never here.*
 [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) ·
 [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-**Deep read** — [`content/pi/`](pi/00-README.md), a 5-document extensibility reference set at a finer
-grain than §6: [the refusals](pi/01-the-refusals.md) · [extensions](pi/02-extensions.md) ·
-[resources, scope and trust](pi/03-resources-scope-and-trust.md) ·
-[the consolidated guide](pi/20-consolidated-guide.md)
+**Deep read** — [`content/pi/`](./pi/00-README.md), a 5-document extensibility reference set at a finer
+grain than §6: [the refusals](./pi/01-the-refusals.md) · [extensions](./pi/02-extensions.md) ·
+[resources, scope and trust](./pi/03-resources-scope-and-trust.md) ·
+[the consolidated guide](./pi/20-consolidated-guide.md)
 
 *Read 2026-09-08 at `v0.85.1`, six days and one tag after this profile's source read. Deliberately
 three surface documents: Pi's own `DOCS/` is thorough and well-navigated, so only the three things it
@@ -133,7 +133,7 @@ sequences a workflow pass should draw, each already evidenced in §6 and needing
 
 `● named primitive · ◐ partial, present-not-first-class · ○ absent (pages named in §6) · n/a does not apply at this altitude`
 
-**Marks copied verbatim from Pi's column in [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2; not re-derived at the restructure.**
+**Marks copied verbatim from Pi's column in [`04-harness-alignment.md`](../components/ALIGNMENT.md) §2; not re-derived at the restructure.**
 
 | # | Component | Mark | Primitive / note |
 |---|---|:-:|---|
@@ -256,7 +256,7 @@ verdict is not simply "accommodation":
 **Path.** `pi.*` ExtensionAPI · `--mode rpc|json` · `@earendil-works/pi-{protocol,client,server}`
 **Source.** ✅ `DOCS/extensions.md` §ExtensionAPI Methods · `CA/README.md` §Philosophy · package READMEs
 
-**More.** [`02-extensions.md`](pi/02-extensions.md) — the twenty-six `pi.*` methods grouped, both context objects, built-in tool override and the pluggable-operations path · [`01-the-refusals.md`](pi/01-the-refusals.md) §3 — **no MCP example ships**, naming what was checked
+**More.** [`02-extensions.md`](./pi/02-extensions.md) — the twenty-six `pi.*` methods grouped, both context objects, built-in tool override and the pluggable-operations path · [`01-the-refusals.md`](./pi/01-the-refusals.md) §3 — **no MCP example ships**, naming what was checked
 
 </details>
 
@@ -269,7 +269,7 @@ verdict is not simply "accommodation":
 **Path.** `~/.pi/agent/extensions/*.ts`, `.pi/extensions/*.ts`, `-e <path>`; `pi.on("<event>", handler)`
 **Source.** ✅ `DOCS/extensions.md` §Events, §Lifecycle Overview · `CA/CHANGELOG.md` 0.84.4
 
-**More.** [`02-extensions.md`](pi/02-extensions.md) — every event with what its handler may return, and the ordering rules each stated once. **Counts 36 events in eight groups as of 2026-09-08 at v0.85.1**; this row's "~40, seven groups" is the 2026-09-02 read at v0.84.4. Both stand
+**More.** [`02-extensions.md`](./pi/02-extensions.md) — every event with what its handler may return, and the ordering rules each stated once. **Counts 36 events in eight groups as of 2026-09-08 at v0.85.1**; this row's "~40, seven groups" is the 2026-09-02 read at v0.84.4. Both stand
 
 </details>
 
@@ -282,7 +282,7 @@ verdict is not simply "accommodation":
 **Path.** `pi.on("tool_call")` · `--tools` · `~/.pi/agent/trust.json`, `defaultProjectTrust`, `/trust`
 **Source.** ✅ `DOCS/extensions.md` §tool_call · `CA/README.md` §Tool Options · `DOCS/security.md`
 
-**More.** [`03-resources-scope-and-trust.md`](pi/03-resources-scope-and-trust.md) §§2–3 — exactly what trust gates, what it never gates, and the three-step resolution order · [`02-extensions.md`](pi/02-extensions.md) §2 — `tool_call`'s block contract, input mutation without re-validation, and the conditional `terminate`
+**More.** [`03-resources-scope-and-trust.md`](./pi/03-resources-scope-and-trust.md) §§2–3 — exactly what trust gates, what it never gates, and the three-step resolution order · [`02-extensions.md`](./pi/02-extensions.md) §2 — `tool_call`'s block contract, input mutation without re-validation, and the conditional `terminate`
 
 </details>
 
@@ -296,7 +296,7 @@ verdict is not simply "accommodation":
 **Path.** `EX/plan-mode/` · `--mode rpc` `prompt` · `steeringMode`/`followUpMode`
 **Source.** ✅ `CA/README.md` §Philosophy, §Message Queue · `EX/plan-mode/README.md` · `DOCS/rpc.md`
 
-**More.** [`01-the-refusals.md`](pi/01-the-refusals.md) §4 — the plan-mode example's full command allowlist and blocklist, and the refusal's stated reason from the 2025-11-30 post
+**More.** [`01-the-refusals.md`](./pi/01-the-refusals.md) §4 — the plan-mode example's full command allowlist and blocklist, and the refusal's stated reason from the 2025-11-30 post
 
 </details>
 
@@ -318,7 +318,7 @@ verdict is not simply "accommodation":
 **Path.** `EX/subagent/` · `~/.pi/agent/agents/*.md` · `agentScope`, `confirmProjectAgents`
 **Source.** ✅ `EX/subagent/README.md` · `CA/README.md` §Philosophy, §System Prompt
 
-**More.** [`01-the-refusals.md`](pi/01-the-refusals.md) §4 — the three tool modes, the caps (max 8 tasks, 4 concurrent, 50 KB per task), agent-frontmatter fields, model inheritance, and the manual symlink install
+**More.** [`01-the-refusals.md`](./pi/01-the-refusals.md) §4 — the three tool modes, the caps (max 8 tasks, 4 concurrent, 50 KB per task), agent-frontmatter fields, model inheritance, and the manual symlink install
 
 </details>
 
@@ -330,7 +330,7 @@ verdict is not simply "accommodation":
 **Path.** `~/.pi/agent/{settings,keybindings}.json` · `.pi/settings.json` · `pi config`
 **Source.** ✅ `CA/README.md` §Context Files, §Settings · `DOCS/settings.md` §Project Overrides
 
-**More.** [`03-resources-scope-and-trust.md`](pi/03-resources-scope-and-trust.md) §§1, 5 — the four resource types against all six sources, path resolution per settings file, and the merge rule
+**More.** [`03-resources-scope-and-trust.md`](./pi/03-resources-scope-and-trust.md) §§1, 5 — the four resource types against all six sources, path resolution per settings file, and the merge rule
 
 </details>
 
@@ -354,7 +354,7 @@ verdict is not simply "accommodation":
 **Path.** `pi install` · `~/.pi/agent/{npm,git}/` · `.pi/{npm,git}/` · https://pi.dev/packages
 **Source.** ✅ `DOCS/packages.md` · `DOCS/skills.md` · `CA/README.md` §Pi Packages
 
-**More.** [`03-resources-scope-and-trust.md`](pi/03-resources-scope-and-trust.md) §4 — the three source types with their install roots and pinning behaviour, the dependency rule, and cross-scope dedup. **The gallery showed 5,536 on 2026-09-08**; this row's 5,618 is the 2026-09-02 read
+**More.** [`03-resources-scope-and-trust.md`](./pi/03-resources-scope-and-trust.md) §4 — the three source types with their install roots and pinning behaviour, the dependency rule, and cross-scope dedup. **The gallery showed 5,536 on 2026-09-08**; this row's 5,618 is the 2026-09-02 read
 
 </details>
 
@@ -367,7 +367,7 @@ verdict is not simply "accommodation":
 **Path.** `SKILL.md` frontmatter · `settings.json` package objects · `pi config`
 **Source.** ✅ `DOCS/skills.md` §Frontmatter · `DOCS/packages.md` §Package Filtering
 
-**More.** [`03-resources-scope-and-trust.md`](pi/03-resources-scope-and-trust.md) §4 — the full filter grammar (`!`, `+path`, `-path`, `[]`) and why filters only ever narrow
+**More.** [`03-resources-scope-and-trust.md`](./pi/03-resources-scope-and-trust.md) §4 — the full filter grammar (`!`, `+path`, `-path`, `[]`) and why filters only ever narrow
 
 </details>
 
@@ -422,7 +422,7 @@ verdict is not simply "accommodation":
 **Path.** `EX/gondolin/` · `Dockerfile.pi` · `openshell sandbox create` · `--ssh`
 **Source.** ✅ `DOCS/containerization.md` · `DOCS/extensions.md` §Remote Execution
 
-**More.** [`01-the-refusals.md`](pi/01-the-refusals.md) §2 — `sandbox/` and `gondolin/` as the shipped answer to the permission refusal, and the fact that **neither carries a README**
+**More.** [`01-the-refusals.md`](./pi/01-the-refusals.md) §2 — `sandbox/` and `gondolin/` as the shipped answer to the permission refusal, and the fact that **neither carries a README**
 
 </details>
 
@@ -456,7 +456,7 @@ verdict is not simply "accommodation":
 **What exists instead.** The `todo.ts` example (*"Stateful tool with persistence"*) and the plan-mode example's `/todos` with `[DONE:n]` progress markers.
 **Source.** ✅ `CA/README.md` §Philosophy · `EX/plan-mode/README.md`
 
-**More.** [`01-the-refusals.md`](pi/01-the-refusals.md) §§1–2 — the refusal's stated reason, and the two shipped examples that supply to-dos anyway
+**More.** [`01-the-refusals.md`](./pi/01-the-refusals.md) §§1–2 — the refusal's stated reason, and the two shipped examples that supply to-dos anyway
 
 </details>
 
@@ -516,7 +516,7 @@ verdict is not simply "accommodation":
 **What exists instead, and it is a genuine posture.** Each capability doc opens with the same banner: *"pi can create extensions/skills/prompt templates/pi packages. Ask it to build one for your use case."* The promotion path from lesson to authored capability is real and stated; what is missing is anything that notices a lesson happened. Session sharing through `pi-share-hf` is framed as improving agents generally, not this install.
 **Source.** ✅ `DOCS/skills.md`, `DOCS/extensions.md`, `DOCS/packages.md` banners
 
-**More.** [`20-consolidated-guide.md`](pi/20-consolidated-guide.md) §5 — all five banners quoted, and the recorded absence of any scaffold, generator or `init` behind them
+**More.** [`20-consolidated-guide.md`](./pi/20-consolidated-guide.md) §5 — all five banners quoted, and the recorded absence of any scaffold, generator or `init` behind them
 
 </details>
 
@@ -689,7 +689,7 @@ verdict is not simply "accommodation":
 
 **Secondary (↪).** `earendil-works/pi-chat` README (sibling repo, README only) · `yc-software/qm` README, grepped raw for Pi and harness lines · search-result snippets for QM reviews and a Wikipedia entry, used for context and for no named feature.
 
-**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md#3-pi).
+**Placement.** Short-profiles row: [`archive/comparisons/systems/90-short-profiles.md`](../archive/comparisons/systems/90-short-profiles.md) §1 · grid columns: [`components/ALIGNMENT.md`](../components/ALIGNMENT.md) §2 and [`components/MATRIX.md`](../components/MATRIX.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md#3-pi).
 
 **Diagrams not redrawn.** **No diagram inventory was taken at the 2026-09-02 read.** Whether Pi's docs contain vendor diagrams is unknown and unrecorded — it is a gap in the read, not a finding about the vendor. The diagram pass (W8c) opens the sources and records what it finds.
 

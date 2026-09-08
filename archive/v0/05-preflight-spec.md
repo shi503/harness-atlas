@@ -95,7 +95,7 @@ than one targeting stage 5. Questions for functions above the target stage are c
 ## 4. The question set
 
 > **Four questions added 2026-08-27**, closing the two gaps
-> [`../../references/comparisons/02-component-matrix.md`](../../comparisons/02-component-matrix.md)
+> [`../../references/components/MATRIX.md`](../../components/MATRIX.md)
 > §2 flagged as *"cheap questions with expensive defaults"* and nobody added: the **individual/team
 > memory boundary** and the **project board**. Gas City forces *beads or Linear*; QM forces the scope
 > boundary; we forced neither. The answer set for the `F3` questions is

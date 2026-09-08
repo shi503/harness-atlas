@@ -75,20 +75,20 @@ verification:
 
 [§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-**Deep read** — [`content/grok/`](grok/00-README.md), a 13-document extensibility reference set at a
+**Deep read** — [`content/grok/`](./grok/00-README.md), a 13-document extensibility reference set at a
 finer grain than §6, **split by product because the two share a name and no codebase**. *Grok Build:*
-[harness compatibility](grok/01-build-harness-compatibility.md) ·
-[configuration and project rules](grok/02-build-configuration-and-project-rules.md) ·
-[hooks](grok/03-build-hooks.md) ·
-[permissions and sandbox](grok/04-build-permissions-and-sandbox.md) ·
-[skills, plugins and MCP](grok/05-build-skills-plugins-and-mcp.md) ·
-[sessions and memory](grok/06-build-sessions-and-memory.md) ·
-[subagents and plan mode](grok/07-build-subagents-and-plan-mode.md) ·
-[headless and agent mode](grok/08-build-headless-and-agent-mode.md). *Grok Bot:*
-[Bots and the Agent Computer](grok/09-bot-bots-and-the-agent-computer.md) ·
-[skills, routines and automations](grok/10-bot-skills-routines-and-automations.md) ·
-[approvals, security and teams](grok/11-bot-approvals-security-and-teams.md). *Both:*
-[the consolidated guide](grok/20-consolidated-guide.md).
+[harness compatibility](./grok/01-build-harness-compatibility.md) ·
+[configuration and project rules](./grok/02-build-configuration-and-project-rules.md) ·
+[hooks](./grok/03-build-hooks.md) ·
+[permissions and sandbox](./grok/04-build-permissions-and-sandbox.md) ·
+[skills, plugins and MCP](./grok/05-build-skills-plugins-and-mcp.md) ·
+[sessions and memory](./grok/06-build-sessions-and-memory.md) ·
+[subagents and plan mode](./grok/07-build-subagents-and-plan-mode.md) ·
+[headless and agent mode](./grok/08-build-headless-and-agent-mode.md). *Grok Bot:*
+[Bots and the Agent Computer](./grok/09-bot-bots-and-the-agent-computer.md) ·
+[skills, routines and automations](./grok/10-bot-skills-routines-and-automations.md) ·
+[approvals, security and teams](./grok/11-bot-approvals-security-and-teams.md). *Both:*
+[the consolidated guide](./grok/20-consolidated-guide.md).
 
 *Read 2026-09-08 at `xai-org/grok-build` commit `7581004` (**still no tags**) and `docs.x.ai/grok-bot`
 (beta, still unversioned), six days after this profile's source read. Two figures drifted in that
@@ -115,7 +115,7 @@ window and are carried with both dates at [10a](#10a-roster) and [8b](#8b-eviden
 
 `● named primitive · ◐ partial, present-not-first-class · ○ absent (pages named in §6) · n/a does not apply at this altitude`
 
-**Marks copied verbatim from Grok's single column in [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2; not re-derived at the restructure.** That grid holds one Grok column, not two — where Build and Bot diverge on a row, the note below carries the distinction; the mark is the one already published.
+**Marks copied verbatim from Grok's single column in [`04-harness-alignment.md`](../components/ALIGNMENT.md) §2; not re-derived at the restructure.** That grid holds one Grok column, not two — where Build and Bot diverge on a row, the note below carries the distinction; the mark is the one already published.
 
 | # | Component | Mark | Primitive / note |
 |---|---|:-:|---|
@@ -239,7 +239,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `[mcp_servers.<name>]`, `[plugins]` (Build); Settings → Plugins (Bot).
 **Source.** ✅ UG/07 · ✅ UG/09 §Reference · ✅ BOT/computer-and-apps §Connect an app
 
-**More.** [`05-build-skills-plugins-and-mcp.md`](grok/05-build-skills-plugins-and-mcp.md) — MCP transports, per-server timeouts, the 20 000-byte output cap and its precedence chain · [`01-build-harness-compatibility.md`](grok/01-build-harness-compatibility.md) — the four MCP config sources and their merge order (Build only; Bot has no compat surface)
+**More.** [`05-build-skills-plugins-and-mcp.md`](./grok/05-build-skills-plugins-and-mcp.md) — MCP transports, per-server timeouts, the 20 000-byte output cap and its precedence chain · [`01-build-harness-compatibility.md`](./grok/01-build-harness-compatibility.md) — the four MCP config sources and their merge order (Build only; Bot has no compat surface)
 
 </details>
 
@@ -251,7 +251,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `~/.grok/hooks/*.json`, `.grok/hooks/*.json`, plugin `hooks/hooks.json`.
 **Source.** ✅ UG/10 §Hook Events, §How a Hook Resolves
 
-**More.** [`03-build-hooks.md`](grok/03-build-hooks.md) — all fifteen events with their blocking status, ten config locations under folder trust, four-step resolution, the `allow`/`deny`/`ask`/`defer` vocabulary and `ask`'s exact ceiling (Grok Build only)
+**More.** [`03-build-hooks.md`](./grok/03-build-hooks.md) — all fifteen events with their blocking status, ten config locations under folder trust, four-step resolution, the `allow`/`deny`/`ask`/`defer` vocabulary and `ask`'s exact ceiling (Grok Build only)
 
 </details>
 
@@ -263,7 +263,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `[permission]`, `--sandbox`, `~/.grok/sandbox.toml` (Build); Settings → Auto-review (Bot).
 **Source.** ✅ UG/22 · ✅ UG/18 · ✅ BOT/approvals-security-and-privacy
 
-**More.** [`04-build-permissions-and-sandbox.md`](grok/04-build-permissions-and-sandbox.md) — the five-step pipeline, the read-only lists and their carve-outs, five sandbox profiles, the global-hook write-deny · [`11-bot-approvals-security-and-teams.md`](grok/11-bot-approvals-security-and-teams.md) — the approval card, Require Approval vs Always Allow, and what the vendor says is not a boundary
+**More.** [`04-build-permissions-and-sandbox.md`](./grok/04-build-permissions-and-sandbox.md) — the five-step pipeline, the read-only lists and their carve-outs, five sandbox profiles, the global-hook write-deny · [`11-bot-approvals-security-and-teams.md`](./grok/11-bot-approvals-security-and-teams.md) — the approval card, Require Approval vs Always Allow, and what the vendor says is not a boundary
 
 </details>
 
@@ -277,7 +277,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `/plan`, `~/.grok/sessions/<id>/plan.md`, `[goal]`, `.grok/workflows/*.rhai`.
 **Source.** ✅ UG/19 · ✅ UG/04 §`/goal` · ✅ BOT/skills-routines-and-automations §Test before enabling
 
-**More.** [`07-build-subagents-and-plan-mode.md`](grok/07-build-subagents-and-plan-mode.md) — plan mode's four states and three enforcement edges, `/goal`'s two drivers · [`10-bot-skills-routines-and-automations.md`](grok/10-bot-skills-routines-and-automations.md) §3 — what a Bot's test run is and is not
+**More.** [`07-build-subagents-and-plan-mode.md`](./grok/07-build-subagents-and-plan-mode.md) — plan mode's four states and three enforcement edges, `/goal`'s two drivers · [`10-bot-skills-routines-and-automations.md`](./grok/10-bot-skills-routines-and-automations.md) §3 — what a Bot's test run is and is not
 
 </details>
 
@@ -299,7 +299,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `.grok/agents/*.md`, `.grok/roles/*.toml`, `.grok/personas/*.toml` (Build); Edit Profile (Bot).
 **Source.** ✅ UG/16 §Agents vs Personas · ✅ BOT/bots
 
-**More.** [`07-build-subagents-and-plan-mode.md`](grok/07-build-subagents-and-plan-mode.md) — the agent/persona/role table, capability modes, the input/output contract, resolution order and the depth-one rule (Grok Build only)
+**More.** [`07-build-subagents-and-plan-mode.md`](./grok/07-build-subagents-and-plan-mode.md) — the agent/persona/role table, capability modes, the input/output contract, resolution order and the depth-one rule (Grok Build only)
 
 </details>
 
@@ -311,7 +311,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `~/.grok/config.toml`, `/etc/grok/{managed_config,requirements}.toml` (Build); dashboard (Bot).
 **Source.** ✅ UG/26 §How to configure · ✅ BOT/teams-and-enterprises §Team rules
 
-**More.** [`02-build-configuration-and-project-rules.md`](grok/02-build-configuration-and-project-rules.md) — the eight-layer chain, its per-key `pin`/`fleet` override table, the `GROK_CONFIG` allowlist, and a documented disagreement between the two pages that describe precedence
+**More.** [`02-build-configuration-and-project-rules.md`](./grok/02-build-configuration-and-project-rules.md) — the eight-layer chain, its per-key `pin`/`fleet` override table, the `GROK_CONFIG` allowlist, and a documented disagreement between the two pages that describe precedence
 
 </details>
 
@@ -335,7 +335,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `.grok/skills/`, `.grok/plugins/`, `[[marketplace.sources]]` (Build); Settings → Plugins (Bot).
 **Source.** ✅ UG/08 · ✅ UG/09 · ✅ BOT/skills-routines-and-automations §Teach a workflow by demonstration
 
-**More.** [`05-build-skills-plugins-and-mcp.md`](grok/05-build-skills-plugins-and-mcp.md) — `SKILL.md`'s fifteen frontmatter fields, plugin contents and trust, marketplace pinning · [`10-bot-skills-routines-and-automations.md`](grok/10-bot-skills-routines-and-automations.md) — Bot's skill, which shares the word and no format
+**More.** [`05-build-skills-plugins-and-mcp.md`](./grok/05-build-skills-plugins-and-mcp.md) — `SKILL.md`'s fifteen frontmatter fields, plugin contents and trust, marketplace pinning · [`10-bot-skills-routines-and-automations.md`](./grok/10-bot-skills-routines-and-automations.md) — Bot's skill, which shares the word and no format
 
 </details>
 
@@ -359,7 +359,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `~/.grok/memory/`, `[memory.*]` (Build); opaque per-Bot store (Bot).
 **Source.** ✅ UG/13 · ✅ BOT/bots §What a Bot remembers
 
-**More.** [`06-build-sessions-and-memory.md`](grok/06-build-sessions-and-memory.md) — the five-rung enablement, four writers (three silent), search weights, temporal decay and MMR · [`09-bot-bots-and-the-agent-computer.md`](grok/09-bot-bots-and-the-agent-computer.md) §3 — the eight pages checked for a Bot memory format, and what was found instead
+**More.** [`06-build-sessions-and-memory.md`](./grok/06-build-sessions-and-memory.md) — the five-rung enablement, four writers (three silent), search weights, temporal decay and MMR · [`09-bot-bots-and-the-agent-computer.md`](./grok/09-bot-bots-and-the-agent-computer.md) §3 — the eight pages checked for a Bot memory format, and what was found instead
 
 </details>
 
@@ -401,7 +401,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `--sandbox`, `.grok/sandbox.toml`, `grok clone` (Build); dashboard → computers (Bot).
 **Source.** ✅ UG/18 §Trade-offs · ✅ BOT/teams-and-enterprises §How isolation works
 
-**More.** [`04-build-permissions-and-sandbox.md`](grok/04-build-permissions-and-sandbox.md) §4 — the five profiles and the kernel write-deny · [`11-bot-approvals-security-and-teams.md`](grok/11-bot-approvals-security-and-teams.md) §5 — egress IPs, the destination allowlist, and the customer-supplied tunnel
+**More.** [`04-build-permissions-and-sandbox.md`](./grok/04-build-permissions-and-sandbox.md) §4 — the five profiles and the kernel write-deny · [`11-bot-approvals-security-and-teams.md`](./grok/11-bot-approvals-security-and-teams.md) §5 — egress IPs, the destination allowlist, and the customer-supplied tunnel
 
 </details>
 
@@ -422,7 +422,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `grok -p --output-format json`, `/workflow review-changes`.
 **Source.** ✅ UG/14 §Command-Line Options · ✅ UG/22 §Dangerous Commands
 
-**More.** [`08-build-headless-and-agent-mode.md`](grok/08-build-headless-and-agent-mode.md) — every headless flag, four output formats and their two stop-reason vocabularies, exit codes, the `x.ai/git/*` method set
+**More.** [`08-build-headless-and-agent-mode.md`](./grok/08-build-headless-and-agent-mode.md) — every headless flag, four output formats and their two stop-reason vocabularies, exit codes, the `x.ai/git/*` method set
 
 </details>
 
@@ -458,7 +458,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `~/.grok/sessions/<id>/updates.jsonl` (Build); conversation + Routines view (Bot).
 **Source.** ✅ UG/17 §Storage Layout · ✅ BOT/teams-and-enterprises §Audit
 
-**More.** [`06-build-sessions-and-memory.md`](grok/06-build-sessions-and-memory.md) §1 — the session directory file by file, plus the SQLite FTS5 search index · [`11-bot-approvals-security-and-teams.md`](grok/11-bot-approvals-security-and-teams.md) §4. **Bot's audit story moved between the two reads**: *"an audit view of Bot actions is coming"* is this row's 2026-09-02 read and was **not found on any page on 2026-09-08**, where an Enterprise-only audit log covering *"Admin, security, and authentication events"* appears instead. Both stand with their dates
+**More.** [`06-build-sessions-and-memory.md`](./grok/06-build-sessions-and-memory.md) §1 — the session directory file by file, plus the SQLite FTS5 search index · [`11-bot-approvals-security-and-teams.md`](./grok/11-bot-approvals-security-and-teams.md) §4. **Bot's audit story moved between the two reads**: *"an audit view of Bot actions is coming"* is this row's 2026-09-02 read and was **not found on any page on 2026-09-08**, where an Enterprise-only audit log covering *"Admin, security, and authentication events"* appears instead. Both stand with their dates
 
 </details>
 
@@ -492,7 +492,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `/create-skill`, `/create-workflow`, `/dream` (Build); Teach a task (Bot).
 **Source.** ✅ UG/08 §Creating Skills · ✅ BOT/skills-routines-and-automations §Teach a workflow by demonstration
 
-**More.** [`10-bot-skills-routines-and-automations.md`](grok/10-bot-skills-routines-and-automations.md) §1 — the ten-minute recording, the review step, and the rollout caveat
+**More.** [`10-bot-skills-routines-and-automations.md`](./grok/10-bot-skills-routines-and-automations.md) §1 — the ten-minute recording, the review step, and the rollout caveat
 
 </details>
 
@@ -514,7 +514,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `/loop`, `scheduler_*` (Build); Bot → Routines (Bot).
 **Source.** ✅ UG/20 §The /loop Command · ✅ BOT/skills-routines-and-automations §Create a routine
 
-**More.** [`10-bot-skills-routines-and-automations.md`](grok/10-bot-skills-routines-and-automations.md) §2 — routine triggers, the 50/20 caps, the single account timezone, and why editing one is desktop-only
+**More.** [`10-bot-skills-routines-and-automations.md`](./grok/10-bot-skills-routines-and-automations.md) §2 — routine triggers, the 50/20 caps, the single account timezone, and why editing one is desktop-only
 
 </details>
 
@@ -536,7 +536,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `grok inspect`, `/doctor`, `/tour` (Build); first-run onboarding (Bot).
 **Source.** ✅ UG/01 · ✅ UG/22 §Claude Code Compatibility · ✅ BOT/get-started
 
-**More.** [`01-build-harness-compatibility.md`](grok/01-build-harness-compatibility.md) §6 — `/import-claude`, the import marker's side effect on `.mcp.json`, and `grok inspect`'s third state, `compatibilityStatus: "unresolved"`
+**More.** [`01-build-harness-compatibility.md`](./grok/01-build-harness-compatibility.md) §6 — `/import-claude`, the import marker's side effect on `.mcp.json`, and `grok inspect`'s third state, `compatibilityStatus: "unresolved"`
 
 </details>
 
@@ -559,7 +559,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `/config-agents`, `/dashboard` (Build); sidebar (Bot).
 **Source.** ✅ UG/16 · ✅ BOT/bots
 
-**More.** [`09-bot-bots-and-the-agent-computer.md`](grok/09-bot-bots-and-the-agent-computer.md) — the Bot object, and why the computer is per-account rather than per-Bot. **The roster cap moved between the two reads**: this row's ≤50 Bots and group chats is the 2026-09-02 read; on 2026-09-08 the `bots` page states no number, only *"Pin active Bots to keep them at the top of the sidebar."* Both stand with their dates
+**More.** [`09-bot-bots-and-the-agent-computer.md`](./grok/09-bot-bots-and-the-agent-computer.md) — the Bot object, and why the computer is per-account rather than per-Bot. **The roster cap moved between the two reads**: this row's ≤50 Bots and group chats is the 2026-09-02 read; on 2026-09-08 the `bots` page states no number, only *"Pin active Bots to keep them at the top of the sidebar."* Both stand with their dates
 
 </details>
 
@@ -571,7 +571,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** config layers (Build); Cursor dashboard roles (Bot).
 **Source.** ✅ UG/26 §How to configure · ✅ BOT/teams-and-enterprises §Manage member computers
 
-**More.** [`02-build-configuration-and-project-rules.md`](grok/02-build-configuration-and-project-rules.md) §1–2 — the three files, three authors and the requirements-only keys · [`11-bot-approvals-security-and-teams.md`](grok/11-bot-approvals-security-and-teams.md) §4 — the two admin tiers, the inherited connector policy, and the model allowlist the vendor documents as unenforced
+**More.** [`02-build-configuration-and-project-rules.md`](./grok/02-build-configuration-and-project-rules.md) §1–2 — the three files, three authors and the requirements-only keys · [`11-bot-approvals-security-and-teams.md`](./grok/11-bot-approvals-security-and-teams.md) §4 — the two admin tiers, the inherited connector policy, and the model allowlist the vendor documents as unenforced
 
 </details>
 
@@ -585,7 +585,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 **Path.** `grok`, `grok agent stdio|serve|headless` (Build); desktop/iOS apps (Bot).
 **Source.** ✅ UG/15 §Compatible clients · ✅ BOT/get-started · ✅ BOT/mobile
 
-**More.** [`08-build-headless-and-agent-mode.md`](grok/08-build-headless-and-agent-mode.md) §4–5 — the three ACP transports and the `x.ai/*` extension surface · [`09-bot-bots-and-the-agent-computer.md`](grok/09-bot-bots-and-the-agent-computer.md) §5 — desktop and mobile, and what mobile cannot do
+**More.** [`08-build-headless-and-agent-mode.md`](./grok/08-build-headless-and-agent-mode.md) §4–5 — the three ACP transports and the `x.ai/*` extension surface · [`09-bot-bots-and-the-agent-computer.md`](./grok/09-bot-bots-and-the-agent-computer.md) §5 — desktop and mobile, and what mobile cannot do
 
 </details>
 
@@ -692,7 +692,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 
 **Secondary (↪).** `ai-sdk.dev/providers/ai-sdk-harnesses/grok-build` (Vercel's own docs for its Build adapter — primary for that adapter) · a blog comparing Bot/Automations/Build, checked only for the Bot↔Build claim and making none · WebSearch snippets used only to locate primary pages.
 
-**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md).
+**Placement.** Short-profiles row: [`archive/comparisons/systems/90-short-profiles.md`](../archive/comparisons/systems/90-short-profiles.md) §1 · grid columns: [`components/ALIGNMENT.md`](../components/ALIGNMENT.md) §2 and [`components/MATRIX.md`](../components/MATRIX.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md).
 
 **Diagrams not redrawn.** **No diagram inventory was taken at the 2026-09-02 read.** Whether either product's docs carry vendor diagrams is unknown and unrecorded — a gap in the read, not a finding about the vendor. The diagram pass (W8c) opens the sources and records what it finds.
 

@@ -14,8 +14,8 @@ harness read from its own sources and written into the same shape as the ten alr
 be compared to them cell for cell.
 
 This page tells you how that is done and what would get it merged. It is short because the actual
-instructions are in [`skills/harness-teardown/SKILL.md`](skills/harness-teardown/SKILL.md), which is
-the template every profile in [`content/`](content/) was produced by.
+instructions are in [`skills/harness-teardown/SKILL.md`](./skills/harness-teardown/SKILL.md), which is
+the template every profile in [`content/`](./content) was produced by.
 
 ---
 
@@ -51,7 +51,7 @@ sources and unverified items collapsed beneath.
 
 **The 33 rows are not negotiable, and you do not need to look them up** — they are inline in the
 skill. If you find something no row carries, that is a finding, not a licence to add a row: record it
-as a candidate in [`components/CROSSWALK.md`](components/CROSSWALK.md) §3.13. **A teardown never
+as a candidate in [`components/CROSSWALK.md`](./components/CROSSWALK.md) §3.13. **A teardown never
 admits a component; a ruling does**, because a 34th component costs 24 edits across the corpus.
 
 ---
@@ -73,7 +73,7 @@ green gate and unpublishable corpus.
 ## Disagreeing with something already here
 
 **Open an issue rather than editing the claim.** This corpus changes a rule, an id or a name by
-**writing a ruling** — see [`RULINGS.md`](RULINGS.md) — and it retires a vocabulary by publishing a
+**writing a ruling** — see [`rulings/00-README.md`](./rulings/00-README.md) — and it retires a vocabulary by publishing a
 crosswalk and re-heading the loser, never by deleting it. A correction that leaves no trace of what it
 corrected makes the next reader re-derive the argument.
 

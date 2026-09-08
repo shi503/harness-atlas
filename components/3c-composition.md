@@ -30,7 +30,7 @@ requires: ["2a"]
 Subagents *"operate in parallel to the central agent loop, in their own context"* and return results to
 the parent, **whereas skills execute within the calling agent's context**. That single sentence is the
 clearest statement of the boundary anywhere, and the boundary it draws is about **context isolation,
-not capability** ([`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1).
+not capability** ([`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1).
 Everything else in this component follows from it: composing an agent is deciding what shares a context
 window with what.
 
@@ -59,11 +59,11 @@ all.
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | Composition by **primitive**, not by stack: skills subsume custom commands and **can fork into subagents**; subagents carry isolated context, `memory:` scopes and worktree support. The parts are first-class and the assembly is not declared anywhere a reader can diff | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Skills and Subagents rows |
-| **Deep Agents** | The most explicit implementation in the corpus: a **default stack written in order**, with user middleware inserted at a named position, harness-profile middleware after it, and human-in-the-loop last so it wraps everything. Plus a **protected core** a profile may not strip, enforced with `ValueError` | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *The default stack, in order* |
-| **MCP** | Composition of the **tool surface** only — which servers are attached, and therefore which calls exist. It says nothing about what shares a context window, which is the decision this component is about | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | `fold` composes a session as **an event log plus a projection** — `EventLog`, `Projection`, `Compaction`, `StopConditions`. A session is a log you fold into state, which makes reconstruction free and is a genuinely different assembly model from a middleware stack | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §6 |
-| **LoomWarp** | Agent definitions exist and score `●` in its own matrix; **the assembly does not**. There is no declared stack, no protected core, and no statement of what shares a context with what | [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 |
+| **Claude Code** | Composition by **primitive**, not by stack: skills subsume custom commands and **can fork into subagents**; subagents carry isolated context, `memory:` scopes and worktree support. The parts are first-class and the assembly is not declared anywhere a reader can diff | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Skills and Subagents rows |
+| **Deep Agents** | The most explicit implementation in the corpus: a **default stack written in order**, with user middleware inserted at a named position, harness-profile middleware after it, and human-in-the-loop last so it wraps everything. Plus a **protected core** a profile may not strip, enforced with `ValueError` | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §2 *The default stack, in order* |
+| **MCP** | Composition of the **tool surface** only — which servers are attached, and therefore which calls exist. It says nothing about what shares a context window, which is the decision this component is about | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | `fold` composes a session as **an event log plus a projection** — `EventLog`, `Projection`, `Compaction`, `StopConditions`. A session is a log you fold into state, which makes reconstruction free and is a genuinely different assembly model from a middleware stack | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §6 |
+| **LoomWarp** | Agent definitions exist and score `●` in its own matrix; **the assembly does not**. There is no declared stack, no protected core, and no statement of what shares a context with what | [`02-component-matrix.md`](./MATRIX.md) §1 |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.
 **● 6 · ◐ 4 · ○ 0** of ten. Each row links to that harness's detail.
@@ -93,7 +93,7 @@ cannot be inherited by the next person, and cannot be given a floor.
 > **On the seeded graph this component performs no job and is required by nothing.** It carries one
 > outbound edge — it *requires* [`2a`](./2a-adapters-and-middleware.md) — and **zero inbound**: no
 > other component's argument says it cannot work without composition
-> ([`RELATIONS.md`](RELATIONS.md) §3.1, thirteen cited edges, none of them ending here). On a graph
+> ([`RELATIONS.md`](./RELATIONS.md) §3.1, thirteen cited edges, none of them ending here). On a graph
 > that sparse it is the weakest node in the set.
 >
 > **The test, and it is cheap:** delete `3c` and re-read the corpus. If every claim it carries can be

@@ -9,7 +9,7 @@ Severity: CRITICAL (blocks dispatch) · WARN (degrades correctness) · MINOR.
 **Severity:** WARN · **Found:** 2026-09-02, carried from the spin-out handoff §6 · **Assigned:** W6 matrix-backfill
 
 HumanLayer and LangChain Deep Agents each have a ~385-line teardown under `comparisons/systems/` and
-neither has a column in `comparisons/02-component-matrix.md` §1 or `comparisons/04-harness-alignment.md`
+neither has a column in `components/MATRIX.md` §1 or `components/ALIGNMENT.md`
 §2. Their findings live only in prose. The teardown skill (W2) encodes the three downstream obligations
 as steps so this cannot recur.
 
@@ -20,7 +20,7 @@ as steps so this cannot recur.
 **Severity:** MINOR · **Found:** 2026-09-02 · **Assigned:** none — accepted by KD at the spin-out interview
 
 Files were copied, not filtered, from `loomwarp-team-system` at `de3ce64`. `git blame` here starts at
-the spin-out commit. `RULING-2026-09-02-spinout.md` carries the source path for every file; the source
+the spin-out commit. `rulings/2026-09-02-spinout.md` carries the source path for every file; the source
 repo keeps the originals marked `SUPERSEDED`.
 
 ---
@@ -45,7 +45,7 @@ The Gas City profile (`content/gas-city.md`) found no "Factory Worker Protocol" 
 org (`gh api search/code`, zero hits). Two places outside the Gas City column still lean on it and were
 out of the feature-lead's write scope: (1) the **Amp** and **Gemini CLI** rows in
 `comparisons/systems/90-short-profiles.md` §1 cite "Gas City FWP" as the evidence they are supported
-hosts; (2) a design-principle callout in `comparisons/02-component-matrix.md` describes a three-way
+hosts; (2) a design-principle callout in `components/MATRIX.md` describes a three-way
 Codex/Claude/Gemini review formula that the primary sources show is two-lane. Re-source both from the
 providers Gas City actually documents, or downgrade the marks.
 
@@ -70,7 +70,7 @@ source was wrong about the author's own system. Re-head the delta doc or correct
 **Severity:** WARN · **Found:** 2026-09-04, KD's review of the first four W4 profiles · **Assigned:** W8 template-v2
 
 Inside a profile the legend reads `✅ direct · ◐ relayed · ⚠️ unverified`; in
-`comparisons/02-component-matrix.md` and `04-harness-alignment.md` the same glyph means *present but not
+`components/MATRIX.md` and `04-harness-alignment.md` the same glyph means *present but not
 a first-class primitive*. Rule 5's `◐ (proposal)` then mixed the two in one cell. Template v2 separates
 them: coverage marks `● ◐ ○ n/a` live only in a profile's component matrix; source marks become
 `✅ ↪ ⚠️` and live only in the details and provenance sections. Existing v1 profiles carry the
@@ -96,9 +96,9 @@ each with an `UNDERCOUNT` flag (KD's ruling, W3 Q3); the profiles are corrected 
 
 **Severity:** WARN · **Found:** 2026-09-04, W3 vocabulary harvest (AC-1) · **Assigned:** W6 matrix-backfill
 
-`comparisons/04-harness-alignment.md` §2: Hermes `2c` `3a` `3b` `6b` `8b` `8d` `10a` `11a`; OpenClaw `8b`
+`components/ALIGNMENT.md` §2: Hermes `2c` `3a` `3b` `6b` `8b` `8d` `10a` `11a`; OpenClaw `8b`
 `8d` `10b` `11a`; OpenCode `11a`; Grok `8c` `8d` `10b`; every harness at `0a`.
-`comparisons/02-component-matrix.md` §1: QM Multi-model · Skills · Distribution/sync; Indigo HQ Team
+`components/MATRIX.md` §1: QM Multi-model · Skills · Distribution/sync; Indigo HQ Team
 memory; SageOx Harness adapter · Distribution/sync; Claude Code Evidence/telemetry; Hermes
 Evidence/telemetry · Communication channel; gstack/gbrain Distribution/sync; generic-cerebro Skills ·
 Distribution/sync; FRACTAL Agent definitions (sibling-repo source); LoomWarp Agent definitions · Task
@@ -128,7 +128,7 @@ twenty-four places a new component must be synced by hand, and that count is onl
 **Severity:** MINOR · **Found:** 2026-09-07, W9 phase 1 while writing the profile's §1b deep-read links · **Assigned:** W6 matrix-backfill
 
 Five non-archive files outside `content/` say the Claude Code deep read is **13 documents**. The folder
-holds **12**. `RULING-2026-09-02-spinout.md` line 35 is explicit about why: *"`references/claude-code/**`
+holds **12**. `rulings/2026-09-02-spinout.md` line 35 is explicit about why: *"`references/claude-code/**`
 minus `30-gap-analysis-loomwarp.md` (12)"* moved to this repo, and line 45 lists that thirteenth file
 among the nine that **stayed with LoomWarp** — it is LoomWarp-specific gap analysis and correctly did
 not travel. The count was never updated to match.
@@ -166,7 +166,7 @@ fix, not a rule change.
 
 ## ISSUE-012 — axis VII `Control posture` is marked `centred`, and the second scored harness argues it is `polar`
 
-**Severity:** WARN · **Found:** 2026-09-07, W8b Pi pilot · **Assigned:** ✅ RULED 2026-09-07, `2026-09-07-axis-vii-polar` — the axis is `polar`; see `RULINGS.md`
+**Severity:** WARN · **Found:** 2026-09-07, W8b Pi pilot · **Assigned:** ✅ RULED 2026-09-07, `2026-09-07-axis-vii-polar` — the axis is `polar`; see `rulings/00-README.md`
 
 `spectrums/00-README.md` §3 VII marks the axis `centred` — `0` is healthy, `|value|` is distance from
 health — and flags the shape itself as *"the one shape call in the sheet that is a judgement, not a
@@ -692,7 +692,7 @@ with the vendor's own words and a citation — 66 entries, which is finer-graine
 issue asked for.
 
 **What is still open is the two columns**, and W11's evening run deliberately did not fill them. Adding
-them to `comparisons/04-harness-alignment.md` §2 means **66 coverage marks derived from prose**, and
+them to `components/ALIGNMENT.md` §2 means **66 coverage marks derived from prose**, and
 the prose does not carry a mark. Roughly a third is unambiguous in both directions — *"Nothing here,
 stated by its own teardown"* is plainly `○`, *"the most explicit implementation in the corpus"* is
 plainly `●`. The middle band is not: **"the nearest published thing", "the nearest approach", "routed

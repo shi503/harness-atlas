@@ -12,13 +12,13 @@ provenance: DERIVED
 # The DX scorecard
 
 **What this is.** Seven named dimensions, each `−3…+3`, that a reader can take in at a glance — the
-character-sheet face of [`00-README.md`](00-README.md)'s ten axes. It answers *what is this thing, and
+character-sheet face of [`00-README.md`](./00-README.md)'s ten axes. It answers *what is this thing, and
 what does adopting it cost me?* The ten axes answer *how does it behave?* Both are read from the same
 profile and stored in the same file, `positions/<harness>.yaml`.
 
 **It is not a fourth instrument.** The grid says what a harness ships; the sheet says where it sits;
 the range grades a team. This is the sheet's headline layer, not a new question — see
-[`00-README.md`](00-README.md) §0.
+[`00-README.md`](./00-README.md) §0.
 
 **Why seven and not ten.** Ten sliders is the readable limit for an analyst; seven is the limit for
 someone deciding whether to keep reading. The compression is uneven on purpose: **six of the seven
@@ -35,7 +35,7 @@ the answer here rather than infer one.
 
 ## 1. Requirements — four rules on top of R1–R7
 
-[`00-README.md`](00-README.md) §1's R1–R7 govern every dimension below, with the exception R9 names.
+[`00-README.md`](./00-README.md) §1's R1–R7 govern every dimension below, with the exception R9 names.
 These four are the scorecard's own.
 
 ### R8 · Authored, never computed
@@ -110,7 +110,7 @@ age, not a re-render, not a second model.
 malformed, not verified. This is the repo's standing rule applied to the sheet's own provenance.
 
 > **Scope extended 2026-09-08 — this block is no longer the sheet's alone.** Ruling
-> [`2026-09-08-authorship-provenance`](../RULING-2026-09-08-authorship-provenance.md) carries
+> [`2026-09-08-authorship-provenance`](../rulings/2026-09-08-authorship-provenance.md) carries
 > `verification:` to **every authored analysis in the corpus**: the profiles at `content/*.md` and the
 > deep-read folders at `content/<name>/`, which previously recorded a read date but never who read it
 > or on what. The fields and the semantics are unchanged — only R11's reach. Two clarifications came
@@ -159,7 +159,7 @@ from every axis id.** A future pass-through should mint its own id rather than b
 ### 2.2 Position — the `scorecard:` block
 
 Lives in the same `positions/<harness>.yaml` as the ten axes, under a sibling key. Field rules are
-[`00-README.md`](00-README.md) §2.3's, unchanged — including `split:` and `gap:`.
+[`00-README.md`](./00-README.md) §2.3's, unchanged — including `split:` and `gap:`.
 
 ```yaml
   scorecard:
@@ -191,7 +191,7 @@ verification:
 ```
 
 **Rendering.** `verified: false` renders the drafted banner on the card in
-[`positioning.md`](positioning.md). `verified: true` renders a one-line signature instead. There is no
+[`positioning.md`](./positioning.md). `verified: true` renders a one-line signature instead. There is no
 third state — a missing block is malformed.
 
 ### 2.4 Glyphs — and where they may appear
@@ -224,9 +224,9 @@ vocabulary is how a different kind of claim announces itself.
 
 | Axis | Why it has no headline cell | Read it at |
 |---|---|---|
-| **IV** Loop ownership | `dual_allowed: true` — it can hold two values at once, and **a headline cell structurally cannot**. Not a taste call | [§3 IV](00-README.md) |
-| **VII** Control posture | *What may run unattended* is orthogonal to DX-2: a heavyweight harness can run unattended, and a lightweight one can be approval-first. **Its shape is no longer contested** — ruled `polar` 2026-09-07 — so it is now detail-only by scope alone, and eligible for a dimension if one ever needs it | [§3 VII](00-README.md) |
-| **IX** Improvement loop | *What happens to a lesson* is an analyst's question, and it is the axis most likely to move as a harness matures — so a headline cell would go stale fastest | [§3 IX](00-README.md) |
+| **IV** Loop ownership | `dual_allowed: true` — it can hold two values at once, and **a headline cell structurally cannot**. Not a taste call | [§3 IV](./00-README.md) |
+| **VII** Control posture | *What may run unattended* is orthogonal to DX-2: a heavyweight harness can run unattended, and a lightweight one can be approval-first. **Its shape is no longer contested** — ruled `polar` 2026-09-07 — so it is now detail-only by scope alone, and eligible for a dimension if one ever needs it | [§3 VII](./00-README.md) |
+| **IX** Improvement loop | *What happens to a lesson* is an analyst's question, and it is the axis most likely to move as a harness matures — so a headline cell would go stale fastest | [§3 IX](./00-README.md) |
 
 **Axis II was detail-only until 2026-09-07 and is not any more.** The old reason was that it *"splits
 across DX-1 and DX-6 without belonging to either."* It now has a home of its own: **DX-4 Context**
@@ -239,7 +239,7 @@ completion known* is an analyst's question no DX reader arrives with. Under DX-2
 do arrive with it: *"expected rigor"* and *"heavy validation"* are the same question in a buyer's
 words. VIII is now read directly by DX-2 — see §7.
 
-Each of the ten axes carries a reciprocal **Headline** row in [`00-README.md`](00-README.md) §3, so
+Each of the ten axes carries a reciprocal **Headline** row in [`00-README.md`](./00-README.md) §3, so
 the fact is recorded in the file that owns the axes and not only in the file that declines them.
 
 ---
@@ -316,7 +316,7 @@ optimises for**, not the JSON-schema sense. Not *complexity*, which grades.
 | **−3** | **One surface.** One place work happens, often a CLI, and nothing else. No published extension point |
 | **0** | **A market.** Several surfaces, **or** a published extension mechanism with a marketplace or registry for plugins and skills |
 | **+3** | **A platform.** Many surfaces with a stated source of truth, several execution environments, published plugin / hook / protocol extension points, and delivery and telemetry out |
-| **Reads · axes** | `surface-breadth` *(probation — [`00-README.md`](00-README.md) §5)* |
+| **Reads · axes** | `surface-breadth` *(probation — [`00-README.md`](./00-README.md) §5)* |
 | **Reads · profile** | `11a` `6b` `6d` `8c` `1a` · `2b` hooks · `4a` capability and plugin bundling · `2a` adapters |
 | **Cost of high** | N surfaces to keep true, *"which version is true"* becomes a real question, and every extension point is a compatibility promise |
 | **Cost of low** | It cannot meet people where they already work, and nothing can be extended without forking it |
@@ -328,7 +328,7 @@ would collide on identical evidence — the exact failure §6 names as a falsifi
 
 **This dimension is the strongest live argument for promoting `surface-breadth` out of probation** —
 its left half is that axis and its right half is grid rows. Promotion still needs the R6 check
-[`00-README.md`](00-README.md) §5 asks for, which is untestable until more than one harness is scored.
+[`00-README.md`](./00-README.md) §5 asks for, which is untestable until more than one harness is scored.
 
 **On the spelling.** *Extendability*, KD's coinage 2026-09-07, kept over the more usual
 *extensibility* because it is the word the dimension was named in. Recorded so it is not silently
@@ -401,7 +401,7 @@ exception is scoped to this one dimension; R2 governs the ten axes and the other
 breaking changes in a version you do not control. If a future scorer can state that as a reason a
 buyer would choose `−3`, this dimension becomes polar and the exception retires."*
 
-**On the name.** `Ecosystem`, not *ecosystem maturity*. [`../maturity/`](../maturity/) grades a
+**On the name.** `Ecosystem`, not *ecosystem maturity*. [`../maturity/`](../maturity) grades a
 **team**; a harness dimension carrying the word *maturity* would collide with the one instrument in
 this repo that is allowed to grade — and this dimension already borrows that instrument's licence.
 Two collisions in one name is one too many.
@@ -455,7 +455,7 @@ a reason this dimension exists, not a thing this dimension measures.
 
 ## 5. Probation, promotion, retirement
 
-Identical in shape to [`00-README.md`](00-README.md) §4, and for the same reason. A probation dimension
+Identical in shape to [`00-README.md`](./00-README.md) §4, and for the same reason. A probation dimension
 is defined here with `status: probation`, is **excluded from the fingerprint**, and is scored so that
 R6 has data to judge it on.
 
@@ -486,7 +486,7 @@ Candidates are recorded here and routed by [`../docs/agents/intake.md`](../docs/
 - **If a reader takes longer to read seven dimensions than ten axes**, the compression failed and the
   layer is decoration.
 - **If two harnesses share a fingerprint and are obviously different choices**, the seven are the wrong
-  seven — the same falsifier [`00-README.md`](00-README.md) §6 states for the axes, and it fires here
+  seven — the same falsifier [`00-README.md`](./00-README.md) §6 states for the axes, and it fires here
   first because seven values collide sooner than ten.
 - **If two dimensions score the same sentence of a profile**, one of them is redundant. This nearly
   happened to DX-3 and DX-5 on 2026-09-07 and was fixed by narrowing DX-5; if it recurs anywhere else,
@@ -527,9 +527,9 @@ remain house-owned and applied identically to every harness.
 3. **Axis VIII's detail-only status** (§3), which DX-2 now reads.
 4. **The one scored harness.** Claude Code was re-scored in the same pass and its card carries both
    fingerprints, so the change is legible rather than silent — see
-   [`positioning.md`](positioning.md#2-claude-code).
+   [`positioning.md`](./positioning.md#2-claude-code).
 
-**What it did not touch.** The ten axes in [`00-README.md`](00-README.md) §3 are unchanged in
+**What it did not touch.** The ten axes in [`00-README.md`](./00-README.md) §3 are unchanged in
 definition, anchors and polarity. Only their `Headline` rows moved.
 
 **R11 was added in the same pass** and is not part of this revision's argument — it is a separate
@@ -537,8 +537,8 @@ ruling, `2026-09-07-drafted-until-verified`, recorded at §1.
 
 ---
 
-*Companions: [`00-README.md`](00-README.md) — the ten axes this reads over ·
-[`positioning.md`](positioning.md) — the scored corpus and the rendered cards ·
+*Companions: [`00-README.md`](./00-README.md) — the ten axes this reads over ·
+[`positioning.md`](./positioning.md) — the scored corpus and the rendered cards ·
 [`../docs/agents/intake.md`](../docs/agents/intake.md) — how a candidate dimension is recorded and routed ·
-[`../comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §1 — the flat
+[`../components/ALIGNMENT.md`](../components/ALIGNMENT.md) §1 — the flat
 identity table this compresses, kept as the prose inventory it is.*

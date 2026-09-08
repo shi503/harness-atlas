@@ -85,15 +85,15 @@ construction. Re-score in the YAML, never here.*
 [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) ·
 [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-**Deep read** — [`content/fractal/`](fractal/00-README.md), a 10-document process-layer reference set at
-a finer grain than §6: [install and repository layout](fractal/01-install-and-repository-layout.md) ·
-[the four tiers](fractal/02-the-four-tiers.md) ·
-[the BLUEPRINT and the workstream PRD](fractal/03-blueprint-and-workstream-prd.md) ·
-[`router.py`](fractal/04-router.md) · [HANDOFF and PULSE](fractal/05-handoff-and-pulse.md) ·
-[the four evaluation layers](fractal/06-the-evaluation-layers.md) ·
-[the un-routed instance](fractal/07-the-un-routed-instance.md) ·
-[the kernel](fractal/08-the-kernel.md) ·
-[the consolidated guide](fractal/20-consolidated-guide.md)
+**Deep read** — [`content/fractal/`](./fractal/00-README.md), a 10-document process-layer reference set at
+a finer grain than §6: [install and repository layout](./fractal/01-install-and-repository-layout.md) ·
+[the four tiers](./fractal/02-the-four-tiers.md) ·
+[the BLUEPRINT and the workstream PRD](./fractal/03-blueprint-and-workstream-prd.md) ·
+[`router.py`](./fractal/04-router.md) · [HANDOFF and PULSE](./fractal/05-handoff-and-pulse.md) ·
+[the four evaluation layers](./fractal/06-the-evaluation-layers.md) ·
+[the un-routed instance](./fractal/07-the-un-routed-instance.md) ·
+[the kernel](./fractal/08-the-kernel.md) ·
+[the consolidated guide](./fractal/20-consolidated-guide.md)
 
 *Read 2026-09-08 at the same pinned commit `6398f6db` this profile grades, five days after its source
 read. **Instance `C` was unreachable at that read** — `gh api repos/shi503/generic-cerebro` returns 404
@@ -148,7 +148,7 @@ flowchart TD
 
 `● named primitive · ◐ partial, present-not-first-class · ○ absent (pages named in §6) · n/a does not apply at this altitude`
 
-**Marks copied verbatim from FRACTAL's column (field 12) in [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2; not re-derived at the restructure.**
+**Marks copied verbatim from FRACTAL's column (field 12) in [`04-harness-alignment.md`](../components/ALIGNMENT.md) §2; not re-derived at the restructure.**
 
 | # | Component | Mark | Primitive / note |
 |---|---|:-:|---|
@@ -232,7 +232,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** U: model pinned per role in `.claude/agents/*.md` frontmatter (opus × 2, sonnet × 2); `model: inherit` is valid but unused in the shipped roles. No provider abstraction or protocol adapter of FRACTAL's own — model choice is a hand-edited text field. C and R carry the same frontmatter convention, models unchanged from U's template.
 **Path.** `.claude/agents/*.md` frontmatter (`model:` key)
 **Source.** ✅ all three, direct
-**More.** [`02-the-four-tiers.md`](fractal/02-the-four-tiers.md) §1 — every frontmatter key on all four role files, and what reads `model:`
+**More.** [`02-the-four-tiers.md`](./fractal/02-the-four-tiers.md) §1 — every frontmatter key on all four role files, and what reads `model:`
 
 </details>
 
@@ -245,7 +245,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** Shell (subprocess to `python3`/`claude`, invoked by hand, not by `router.py`) and filesystem (`.claude/fractal/`) at all three instances; no declared network or GitHub manifest. Single-repo only, stated as a design limitation (§8). C and R add nothing beyond a bigger filesystem tree.
 **Path.** `.claude/fractal/router.py`; README "Repository Structure"
 **Source.** ✅ same, all three
-**More.** [`01-install-and-repository-layout.md`](fractal/01-install-and-repository-layout.md) §1 — the two-command install and its one undeclared dependency
+**More.** [`01-install-and-repository-layout.md`](./fractal/01-install-and-repository-layout.md) §1 — the two-command install and its one undeclared dependency
 
 </details>
 
@@ -276,7 +276,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** U ships four permission-tier JSON files (`tier-{1,2,3,4-auto}.json`) — but under `docs/permission-templates/`, **not** `example-claude/`, so they are reference material never actually installed by the README's own copy step (confirmed by diffing the two trees). C and R ship no permission tiers at all.
 **Path.** `U/docs/permission-templates/*.json`; `U/docs/permissions-guide.md`
 **Source.** ✅ direct — shipped as reference, not installed
-**More.** [`01-install-and-repository-layout.md`](fractal/01-install-and-repository-layout.md) §2 — the three things in the repository tree that the copy step does not install
+**More.** [`01-install-and-repository-layout.md`](./fractal/01-install-and-repository-layout.md) §2 — the three things in the repository tree that the copy step does not install
 
 </details>
 
@@ -289,7 +289,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** U: `router.py`'s `next`/`update`/`status` — genuinely model-free dependency resolution over a flat state map with **no edge storage** (edges live only in the re-parsed BLUEPRINT each call). C runs the identical code across 156 workstreams, independently producing the exact stale-state failure §8 quotes. R: no resolver exists at all — what can start now is answered by the Architect reading PRDs and HANDOFFs by hand.
 **Path.** `.claude/fractal/router.py` (`cmd_next`)
 **Source.** ✅ same, all three
-**More.** [`04-router.md`](fractal/04-router.md) — the five commands, the exact state shape, and six behaviours reproduced by running the shipped code. **Both reads, carried:** this row and the card (2026-09-03) say `router.py` *"gates a workstream's advancement on a HANDOFF's pasted build output"* without checking its truth; the 2026-09-08 read of `cmd_update` at the same commit finds it never looks for a HANDOFF at all — two checks, a dict key and one of three strings — and the string `HANDOFF` does not occur in the file. Neither read is adjusted here
+**More.** [`04-router.md`](./fractal/04-router.md) — the five commands, the exact state shape, and six behaviours reproduced by running the shipped code. **Both reads, carried:** this row and the card (2026-09-03) say `router.py` *"gates a workstream's advancement on a HANDOFF's pasted build output"* without checking its truth; the 2026-09-08 read of `cmd_update` at the same commit finds it never looks for a HANDOFF at all — two checks, a dict key and one of three strings — and the string `HANDOFF` does not occur in the file. Neither read is adjusted here
 
 </details>
 
@@ -300,7 +300,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Nothing here** as a runtime resolver, at any instance. A BLUEPRINT/workstream entry names its `feature_lead` and optional `model`; nothing reassigns work at runtime. C's dual-schema `_normalize_blueprint()` (§9-C2) is a parsing accommodation, not a routing mechanism.
 **Path.** `router.py` (`cmd_next`, static field reads)
 **Source.** ✅ same, all three
-**More.** [`03-blueprint-and-workstream-prd.md`](fractal/03-blueprint-and-workstream-prd.md) §1 — every BLUEPRINT key, and which three of six the router reads
+**More.** [`03-blueprint-and-workstream-prd.md`](./fractal/03-blueprint-and-workstream-prd.md) §1 — every BLUEPRINT key, and which three of six the router reads
 
 </details>
 
@@ -311,7 +311,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** Four role files (`.claude/agents/{architect,strategist,feature-lead,sub-agent}.md`) at U, unchanged in count at C and R. U's README documents a real **agent overlay** mechanism — `*.local.md` files appended to a base agent's context — a customization primitive not present in C's or R's copies.
 **Path.** `.claude/agents/*.md`; `U/README.md` "Agent Overlay (Local Config)"
 **Source.** ✅ same, all three
-**More.** [`02-the-four-tiers.md`](fractal/02-the-four-tiers.md) §5 — the overlay, and the second document in the same tree that calls it speculative
+**More.** [`02-the-four-tiers.md`](./fractal/02-the-four-tiers.md) §5 — the overlay, and the second document in the same tree that calls it speculative
 
 </details>
 
@@ -322,7 +322,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** U: BLUEPRINT YAML (one schema — phases, `feature_lead`/`dependencies` keys) plus each project's own `CLAUDE.md`. C accepts **two** schemas via `_normalize_blueprint()` (legacy phased plus a flat `id:`/`depends_on:` shape), confirmed absent from U's router at the pinned commit. R has no BLUEPRINT schema at all — configuration is `CLAUDE.md` § Workstreams prose plus the PRD template's own structure.
 **Path.** `router.py` (`load_blueprint`); `R/CLAUDE.md` § Workstreams
 **Source.** ✅ same, all three
-**More.** [`03-blueprint-and-workstream-prd.md`](fractal/03-blueprint-and-workstream-prd.md) §1 · [`07-the-un-routed-instance.md`](fractal/07-the-un-routed-instance.md) §2 — the substitution table, one row per router command
+**More.** [`03-blueprint-and-workstream-prd.md`](./fractal/03-blueprint-and-workstream-prd.md) §1 · [`07-the-un-routed-instance.md`](./fractal/07-the-un-routed-instance.md) §2 — the substitution table, one row per router command
 
 </details>
 
@@ -345,7 +345,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** Seven real, first-class `SKILL.md` files at U (`fractal-init`, `pulse`, `handoff`, `gap-analysis`, `quality-pass`, `commit-summarize`, `claude-md-audit`) — proper frontmatter, `disable-model-invocation`, shipped once rather than synced repeatedly. C reports 39 skills across 6 plugins (↪, not independently re-counted this pass). R uses none of FRACTAL's skills — `pulse`/`handoff` are executed as bash per this repo's feature-lead agent file, not invoked as Claude Code skills.
 **Path.** `.claude/skills/*/SKILL.md`
 **Source.** ✅ U, direct; ↪ C, relayed
-**More.** [`01-install-and-repository-layout.md`](fractal/01-install-and-repository-layout.md) §2 — six skills install, seven exist, and the README names five
+**More.** [`01-install-and-repository-layout.md`](./fractal/01-install-and-repository-layout.md) §2 — six skills install, seven exist, and the README names five
 
 </details>
 
@@ -434,7 +434,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** The workstream — a BLUEPRINT entry (`feature_lead`, `model`, `prd`, `dependencies`) paired with a workstream PRD file — is the one object every instance names as its actual unit of work; U's own README states this is the object the whole design exists to protect from context drift. Same shape, unchanged, at C (156 instances) and R (PRDs in `fractal/workstreams/`, no BLUEPRINT wrapper).
 **Path.** `.claude/fractal/BLUEPRINT-*.yaml`; `docs/_PRD-template.md`; `R/fractal/workstreams/*.md`
 **Source.** ✅ same, all three
-**More.** [`03-blueprint-and-workstream-prd.md`](fractal/03-blueprint-and-workstream-prd.md) §2–3 — the PRD’s required sections, and the name mapping nothing performs
+**More.** [`03-blueprint-and-workstream-prd.md`](./fractal/03-blueprint-and-workstream-prd.md) §2–3 — the PRD’s required sections, and the name mapping nothing performs
 
 </details>
 
@@ -448,7 +448,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Not a mechanical gate** — the split remains real-vs-run, per [2c](#2c-enforcement) and [3a](#3a-control).
 **Path.** `.claude/fractal/EVAL_TEMPLATES/*.md`; `.claude/agents/architect.md` §"Evaluation Retry Policy"
 **Source.** ✅ same, all three
-**More.** [`06-the-evaluation-layers.md`](fractal/06-the-evaluation-layers.md) — what each of the four templates actually is, and why the reject path has no state
+**More.** [`06-the-evaluation-layers.md`](./fractal/06-the-evaluation-layers.md) — what each of the four templates actually is, and why the reject path has no state
 
 </details>
 
@@ -459,7 +459,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** The HANDOFF's Verification Evidence table — pasted command output, not self-report — is real at all three instances and the card's structured output. No instance validates the table's contents against an independent re-run automatically; the Architect's own re-run is itself an LLM session, not code.
 **Path.** `docs/HANDOFF.md` (template); `R/fractal/workstreams/*-HANDOFF.md`
 **Source.** ✅ same, all three
-**More.** [`05-handoff-and-pulse.md`](fractal/05-handoff-and-pulse.md) §1 — three HANDOFF templates with three different section lists
+**More.** [`05-handoff-and-pulse.md`](./fractal/05-handoff-and-pulse.md) §1 — three HANDOFF templates with three different section lists
 
 </details>
 
@@ -469,7 +469,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 
 **Nothing here** — no event log, span, or metrics object of FRACTAL's own at U (unlike LoomWarp's `events.jsonl`, which is a LoomWarp addition, not inherited from U). PULSE is a heartbeat for escalation, not an observability stream. C, R: same absence.
 **Source.** ✅ absence, direct
-**More.** [`20-consolidated-guide.md`](fractal/20-consolidated-guide.md) §5 — the absence, with `router.py` read in full
+**More.** [`20-consolidated-guide.md`](./fractal/20-consolidated-guide.md) §5 — the absence, with `router.py` read in full
 
 </details>
 
@@ -479,7 +479,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 
 **Nothing here** at U — no cost cap, no budget flag, no aggregate spend accounting anywhere in `router.py` or the agent files (contrast LoomWarp's `--max-budget-usd`, a LoomWarp-only addition). C, R: same absence, confirmed by grep.
 **Source.** ✅ absence, direct
-**More.** [`20-consolidated-guide.md`](fractal/20-consolidated-guide.md) §5 — the absence, and what the tree-wide grep did and did not hit
+**More.** [`20-consolidated-guide.md`](./fractal/20-consolidated-guide.md) §5 — the absence, and what the tree-wide grep did and did not hit
 
 </details>
 
@@ -519,7 +519,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships, real at U itself.** `.claude/fractal/ISSUES.md` ships **at the pinned commit**, with a template, three severities, and a stated lifecycle (OPEN → resolved by a HANDOFF) — contradicting a secondary document's framing of the ledger as something the fork "added." C's own ledger (14 entries) is the same object at scale, independently converging on the same recurring defect (§8). R's `fractal/ISSUES.md` (4 entries) is the same object again, one tier further removed from any router to report bugs *in*.
 **Path.** `.claude/fractal/ISSUES.md`
 **Source.** ✅ full read, all three
-**More.** [`06-the-evaluation-layers.md`](fractal/06-the-evaluation-layers.md) §6 · [`07-the-un-routed-instance.md`](fractal/07-the-un-routed-instance.md) §5 — the same ledger with two different resolution mechanisms
+**More.** [`06-the-evaluation-layers.md`](./fractal/06-the-evaluation-layers.md) §6 · [`07-the-un-routed-instance.md`](./fractal/07-the-un-routed-instance.md) §5 — the same ledger with two different resolution mechanisms
 
 </details>
 
@@ -530,7 +530,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** U's `docs/_PRD-template.md` and the four `EVAL_TEMPLATES/` files are real starting-point templates; the [Agent Overlay](#3c-composition) `*.local.md` mechanism is the nearest thing to a guardrail against drifting the base agent files. No retirement mechanism for a second way once it appears was found at any instance.
 **Path.** `docs/_PRD-template.md`; `.claude/fractal/EVAL_TEMPLATES/`
 **Source.** ✅ same, all three
-**More.** [`06-the-evaluation-layers.md`](fractal/06-the-evaluation-layers.md) §2 — the templates, including the hand-maintained false-positive list inside the Layer 2 prompt
+**More.** [`06-the-evaluation-layers.md`](./fractal/06-the-evaluation-layers.md) §2 — the templates, including the hand-maintained false-positive list inside the Layer 2 prompt
 
 </details>
 
@@ -553,7 +553,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** Four role files (`.claude/agents/{architect,strategist,feature-lead,sub-agent}.md`) at U, unchanged in count at R; C reports four agent tiers plus 39 skills' worth of capability, same roster shape. No accountable-human-per-role field exists at any instance — a role file names a job, not a person.
 **Path.** `.claude/agents/*.md`
 **Source.** ✅ same, all three
-**More.** [`02-the-four-tiers.md`](fractal/02-the-four-tiers.md) §2 — what each tier is forbidden from doing, and by what
+**More.** [`02-the-four-tiers.md`](./fractal/02-the-four-tiers.md) §2 — what each tier is forbidden from doing, and by what
 
 </details>
 
@@ -575,7 +575,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 **Ships.** CLI/IDE-session only at all three: Claude Code (first-class) or Cursor (community-supported, translation guide); `HANDOFF.md`/`PULSE.md` markdown are the surface of record. No dashboard or web UI at any instance.
 **Path.** `README.md` "Platform Support"; `SETUP-CURSOR.md`
 **Source.** ✅ same, all three
-**More.** [`01-install-and-repository-layout.md`](fractal/01-install-and-repository-layout.md) §6 — platform support, and what the second platform actually ships
+**More.** [`01-install-and-repository-layout.md`](./fractal/01-install-and-repository-layout.md) §6 — platform support, and what the second platform actually ships
 
 </details>
 
@@ -678,7 +678,7 @@ re-authored per workstream. No published refusal list was found — checked `U/R
 
 **Secondary (↪).** A LoomWarp-repo profile of upstream FRACTAL (every quote re-sourced to U directly above); two this-repo documents summarizing `generic-cerebro`'s architecture and its claimed delta from U — the delta claims were independently re-checked against both repos' actual files (§6, 9d, 3d) rather than repeated; two of five claimed fork-additions did not survive the check (see `fractal/ISSUES.md` ISSUE-005).
 
-**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md).
+**Placement.** Short-profiles row: [`archive/comparisons/systems/90-short-profiles.md`](../archive/comparisons/systems/90-short-profiles.md) §1 · grid columns: [`components/ALIGNMENT.md`](../components/ALIGNMENT.md) §2 and [`components/MATRIX.md`](../components/MATRIX.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md).
 
 **Diagrams not redrawn.** None outstanding — the one vendor diagram found (`README.md`'s `## Architecture`) was redrawn in §2; no second diagram exists anywhere else in the tree (`docs/`, both prose files — all prose or tables).
 

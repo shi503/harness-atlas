@@ -28,13 +28,13 @@ before the first deep read was attempted:
 | # | Decision | Where it is ruled |
 |---|---|---|
 | 1 | Pilot one harness, then fan out. **Codex CLI** first | this PRD |
-| 2 | **Drop the highlighted gate.** Depth is negotiated per commission | `RULING-2026-09-08-deep-read-claims.md` |
-| 3 | The vendor's claim ledger lives in `00-README.md`; the guide **maps claim → mechanism without grading** | `RULING-2026-09-08-deep-read-claims.md` |
+| 2 | **Drop the highlighted gate.** Depth is negotiated per commission | `rulings/2026-09-08-deep-read-claims.md` |
+| 3 | The vendor's claim ledger lives in `00-README.md`; the guide **maps claim → mechanism without grading** | `rulings/2026-09-08-deep-read-claims.md` |
 | 4 | Shape: **navigation fixed, content free** — `00` and `20` always, everything between is the vendor's | the skill |
 | 5 | Strip the exemplar's LoomWarp framing; add the claim block | this PRD |
 | 6 | **Line count is not a requirement**; conciseness is, via a deletion test | the skill |
-| 7 | Record **when an analysis ran, who ran it, and on what model** | `RULING-2026-09-08-authorship-provenance.md` |
-| 8 | Backfill existing files as opus, **marked as an attestation** | `RULING-2026-09-08-authorship-provenance.md` |
+| 7 | Record **when an analysis ran, who ran it, and on what model** | `rulings/2026-09-08-authorship-provenance.md` |
+| 8 | Backfill existing files as opus, **marked as an attestation** | `rulings/2026-09-08-authorship-provenance.md` |
 | 9 | Codex's scope: CLI/runtime **plus** the cloud and IDE surfaces | this PRD; disclosed in `content/codex/00-README.md` |
 
 ## Deliverables
@@ -44,7 +44,7 @@ before the first deep read was attempted:
   `AskUserQuestion` added, the claim requirement with three outcomes, the free shape, the deletion test,
   the authorship block, the drift rule.
 - `skills/harness-teardown/SKILL.md`: `verification:` added to the frontmatter spec, budget 11 → 22.
-- Two rulings, both indexed in `RULINGS.md`. R11's scope extension recorded in `spectrums/01-scorecard.md`.
+- Two rulings, both indexed in `rulings/00-README.md`. R11's scope extension recorded in `spectrums/01-scorecard.md`.
 
 **Phase 2 — the exemplar and the backfill.** ✅ complete
 - `content/claude-code/` stripped: nine `## LoomWarp notes` sections, one LoomWarp-specific policy

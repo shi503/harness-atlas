@@ -64,7 +64,7 @@ Agile never named context, scope, or trust — not from oversight, but because a
 - **The harness broadened to the team** because co-location broke. Claude Code, Codex and Cursor were built for one developer; every process layer in the landscape — gstack, Gas City, QM, Indigo HQ, SageOx — exists because that assumption failed at team scale.
 - **The llm-wiki appeared** because shared context broke. Karpathy named the pattern; at least five systems built it independently. Its acceptance test is the sharpest bar in the category: *does knowledge compound, or does it just get retrieved?*
 
-Sources and the full landscape: [`../../references/comparisons/`](../../comparisons).
+Sources and the full landscape: [`../../references/comparisons/`](../comparisons).
 
 ---
 
@@ -168,10 +168,10 @@ Recorded here rather than smoothed over.
 | # | Open |
 |---|---|
 | **Agents** | The frame produces a function agile already had as *roles*, and v0 has none. Function, or a system under Capability? |
-| **Rituals** | Same, for ceremonies. Reached independently at [`comparisons/01-concepts.md`](../../comparisons/01-concepts.md) §3.15 — two routes, one gap |
+| **Rituals** | Same, for ceremonies. Reached independently at [`comparisons/01-concepts.md`](../comparisons/01-concepts.md) §3.15 — two routes, one gap |
 | **Scope** | Which standards, policies and agents apply where. Four peer systems treat it as first-class; v0 has no function for it |
 | **The count** | **Twelve functions.** `OPEN-3` resolved as `C-12`: the count grew because the *jobs* grew from 12 to 17, not because the model inflated. This document still leads with the frame, not the count |
 
 ---
 
-*Next: [`01-problem.md`](./01-problem.md) — the derivation · [`02-functions.md`](./02-functions.md) — the twelve functions in full, with providers · [`03-maturity.md`](./03-maturity.md) — how a team grows · [`../../references/comparisons/`](../../comparisons) — the landscape this is positioned against*
+*Next: [`01-problem.md`](./01-problem.md) — the derivation · [`02-functions.md`](./02-functions.md) — the twelve functions in full, with providers · [`03-maturity.md`](./03-maturity.md) — how a team grows · [`../../references/comparisons/`](../comparisons) — the landscape this is positioned against*

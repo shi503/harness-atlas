@@ -26,11 +26,11 @@ Appended at the foot of an eligible file, between two markers that are the whole
 <!-- wiki-nav:start -->
 ---
 
-**[↑ Components](00-README.md)** · Layer 2 · Agent Harness
+**[↑ Components](./00-README.md)** · Layer 2 · Agent Harness
 
-**Siblings** — [`2a` Adapters & Middleware](2a-adapters-and-middleware.md) · **`2b` Hooks** · [`2c` Enforcement](2c-enforcement.md)
+**Siblings** — [`2a` Adapters & Middleware](./2a-adapters-and-middleware.md) · **`2b` Hooks** · [`2c` Enforcement](./2c-enforcement.md)
 
-**Related** — [the grid](../comparisons/02-component-matrix.md) · [`requires` graph](RELATIONS.md) · [every profile's `2b` detail](../index.md#1-the-instrument)
+**Related** — [the grid](../comparisons/02-component-matrix.md) · [`requires` graph](./RELATIONS.md) · [every profile's `2b` detail](../index.md#1-the-instrument)
 <!-- wiki-nav:end -->
 ```
 

@@ -28,7 +28,7 @@ restated as ours. The synthesis built on it is `DERIVED` and lives at
 > **One voice, not a field.** This is a single practitioner's opinion, captured
 > from one interview. It is evidence of how one well-regarded architect
 > describes the craft — not a measured claim about the field, and not comparable
-> in standing to [`../comparisons/03-jtbd.md`](../../comparisons/03-jtbd.md), whose
+> in standing to [`../comparisons/03-jtbd.md`](../comparisons/03-jtbd.md), whose
 > convergence line was measured against a committed 562-session corpus. Weight
 > it accordingly.
 ---

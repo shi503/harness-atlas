@@ -19,7 +19,7 @@ instances`. Every seeded row completed; every term used as a primitive in any fi
 
 ## Acceptance criteria
 
-- **AC-1** Every `●` in `comparisons/02-component-matrix.md` §1 has its primitive name in the ledger.
+- **AC-1** Every `●` in `components/MATRIX.md` §1 has its primitive name in the ledger.
 - **AC-2** The five orphan nouns — `session` · `gateway` · `runtime` · `sandbox` · `workspace` —
   each have a row that says either which component absorbs them or that they are an altitude, with
   the citation. **Harvested from each harness's own docs, code and natural-language instructions.

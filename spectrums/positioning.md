@@ -12,14 +12,14 @@ provenance: DERIVED
 # Positioning
 
 **Where a harness sits, and what shape it is, relative to the industry around it.** Seven dimensions,
-one card per harness. **The YAML files in [`positions/`](positions) are the source of truth**;
+one card per harness. **The YAML files in [`positions/`](./positions) are the source of truth**;
 everything below is rendered from them by hand and carries no claim the YAML does not.
 
 **How to read a row.** `−3…+3`, and **neither end is better** — except `5 Ecosystem`, marked `†`,
 which is the one dimension admitted as graded (ruling `2026-09-07-dx-scorecard`, see
-[`01-scorecard.md`](01-scorecard.md) §1 R9). Polar rows show a **position** `───●───`, seven cells,
+[`01-scorecard.md`](./01-scorecard.md) §1 R9). Polar rows show a **position** `───●───`, seven cells,
 the `●` at `value + 3`. The graded row shows a **fill** `▰▰▰▰▱`, six cells, `value + 3` filled. The
-seven dimensions are read over ten axes; the ten are in [`00-README.md`](00-README.md) and four of them
+seven dimensions are read over ten axes; the ten are in [`00-README.md`](./00-README.md) and four of them
 deliberately feed no cell here.
 
 ---
@@ -41,14 +41,14 @@ scorer reads here is a vendor describing itself, and the other half is what the 
 so a card names both, and says which one it scored.
 
 **One rule bounds the research.** No vendor source is opened at scoring time
-([`00-README.md`](00-README.md) §1 R3). A question the profile cannot answer becomes a recorded
+([`00-README.md`](./00-README.md) §1 R3). A question the profile cannot answer becomes a recorded
 `gap:` on the card, never a fresh search — which is why some cells carry a gap rather than a
 confident value.
 
 **How the banner comes off.** A person re-reads a harness's seven values against its profile, then
 sets `verified: true`, `verified_by` and `verified_on` in `positions/<harness>.yaml`. **That review
 pass is the only thing that clears it** — not age, not a re-render, not a second model. The rule is
-[`01-scorecard.md`](01-scorecard.md) §1 **R11**; ruling `2026-09-07-drafted-until-verified`.
+[`01-scorecard.md`](./01-scorecard.md) §1 **R11**; ruling `2026-09-07-drafted-until-verified`.
 
 ---
 
@@ -82,7 +82,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `+1 · +1 · +3 · +1 · +2† · −3 · +3`
 
-[`content/claude-code.md`](../content/claude-code.md#1-at-a-glance) · scored 2026-09-07 · [`positions/claude-code.yaml`](positions/claude-code.yaml) · back: [§1a](../content/claude-code.md#1a-positioning-stats)
+[`content/claude-code.md`](../content/claude-code.md#1-at-a-glance) · scored 2026-09-07 · [`positions/claude-code.yaml`](./positions/claude-code.yaml) · back: [§1a](../content/claude-code.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -104,7 +104,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `−1 · −2 · +2 · −3 · +2† · +3 · +1`
 
-[`content/pi.md`](../content/pi.md#1-at-a-glance) · scored 2026-09-07 · [`positions/pi.yaml`](positions/pi.yaml) · back: [§1a](../content/pi.md#1a-positioning-stats)
+[`content/pi.md`](../content/pi.md#1-at-a-glance) · scored 2026-09-07 · [`positions/pi.yaml`](./positions/pi.yaml) · back: [§1a](../content/pi.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -126,7 +126,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `0 · +2 · +3 · 0 · +2† · +3 · +2`
 
-[`content/hermes.md`](../content/hermes.md#1-at-a-glance) · scored 2026-09-07 · [`positions/hermes.yaml`](positions/hermes.yaml) · back: [§1a](../content/hermes.md#1a-positioning-stats)
+[`content/hermes.md`](../content/hermes.md#1-at-a-glance) · scored 2026-09-07 · [`positions/hermes.yaml`](./positions/hermes.yaml) · back: [§1a](../content/hermes.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -148,7 +148,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `0 · +2 · +3 · +2 · +1† · +3 · +2`
 
-[`content/openclaw.md`](../content/openclaw.md#1-at-a-glance) · scored 2026-09-07 · [`positions/openclaw.yaml`](positions/openclaw.yaml) · back: [§1a](../content/openclaw.md#1a-positioning-stats)
+[`content/openclaw.md`](../content/openclaw.md#1-at-a-glance) · scored 2026-09-07 · [`positions/openclaw.yaml`](./positions/openclaw.yaml) · back: [§1a](../content/openclaw.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -170,7 +170,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `+1 · +1 · +2 · −3 · +2† · +2 · +1`
 
-[`content/opencode.md`](../content/opencode.md#1-at-a-glance) · scored 2026-09-07 · [`positions/opencode.yaml`](positions/opencode.yaml) · back: [§1a](../content/opencode.md#1a-positioning-stats)
+[`content/opencode.md`](../content/opencode.md#1-at-a-glance) · scored 2026-09-07 · [`positions/opencode.yaml`](./positions/opencode.yaml) · back: [§1a](../content/opencode.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -192,7 +192,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `+1 · +2 · +3 · 0 · +2† · +1 · 0`
 
-[`content/codex.md`](../content/codex.md#1-at-a-glance) · scored 2026-09-07 · [`positions/codex.yaml`](positions/codex.yaml) · back: [§1a](../content/codex.md#1a-positioning-stats)
+[`content/codex.md`](../content/codex.md#1-at-a-glance) · scored 2026-09-07 · [`positions/codex.yaml`](./positions/codex.yaml) · back: [§1a](../content/codex.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -214,7 +214,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `+1 · +1 · +2 · 0 · 0† · +3 · +1`
 
-[`content/grok.md`](../content/grok.md#1-at-a-glance) · scored 2026-09-07 · [`positions/grok.yaml`](positions/grok.yaml) · back: [§1a](../content/grok.md#1a-positioning-stats)
+[`content/grok.md`](../content/grok.md#1-at-a-glance) · scored 2026-09-07 · [`positions/grok.yaml`](./positions/grok.yaml) · back: [§1a](../content/grok.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -236,7 +236,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `−1 · +1 · +2 · −1 · −1† · +2 · −2`
 
-[`content/gas-city.md`](../content/gas-city.md#1-at-a-glance) · scored 2026-09-07 · [`positions/gas-city.yaml`](positions/gas-city.yaml) · back: [§1a](../content/gas-city.md#1a-positioning-stats)
+[`content/gas-city.md`](../content/gas-city.md#1-at-a-glance) · scored 2026-09-07 · [`positions/gas-city.yaml`](./positions/gas-city.yaml) · back: [§1a](../content/gas-city.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -258,7 +258,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `−2 · −1 · −3 · −2 · −3† · −3 · −2`
 
-[`content/loomwarp.md`](../content/loomwarp.md#1-at-a-glance) · scored 2026-09-07 · [`positions/loomwarp.yaml`](positions/loomwarp.yaml) · back: [§1a](../content/loomwarp.md#1a-positioning-stats)
+[`content/loomwarp.md`](../content/loomwarp.md#1-at-a-glance) · scored 2026-09-07 · [`positions/loomwarp.yaml`](./positions/loomwarp.yaml) · back: [§1a](../content/loomwarp.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -280,7 +280,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 `−2 · +2 · −1 · −3 · −3† · +2 · −3`
 
-[`content/fractal.md`](../content/fractal.md#1-at-a-glance) · scored 2026-09-07 · [`positions/fractal.yaml`](positions/fractal.yaml) · back: [§1a](../content/fractal.md#1a-positioning-stats)
+[`content/fractal.md`](../content/fractal.md#1-at-a-glance) · scored 2026-09-07 · [`positions/fractal.yaml`](./positions/fractal.yaml) · back: [§1a](../content/fractal.md#1a-positioning-stats)
 
 > **⚠️ Drafted, not verified.** No person has re-read these values. See §0.
 
@@ -302,11 +302,11 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 1. **The DX-3/DX-5 collision was real, and narrowing it moved a score.** Before the revision, the same
    sentence — *marketplaces with SHA pinning, a co-published open standard, MCP* — was the evidence for
-   both `3 Footprint +3` and `5 Ecosystem +3`. [`01-scorecard.md`](01-scorecard.md) §6 names exactly
+   both `3 Footprint +3` and `5 Ecosystem +3`. [`01-scorecard.md`](./01-scorecard.md) §6 names exactly
    that as a falsifier. Assigning extension **points** to DX-3 and extension **adopters** to DX-5 drops
    Ecosystem to `+2`, because what remains is stars and tags — attention and longevity, with no count
    of anyone who actually built.
-2. **Axis X's R6 exemption is falsified on its first data point.** [`00-README.md`](00-README.md) §3 X
+2. **Axis X's R6 exemption is falsified on its first data point.** [`00-README.md`](./00-README.md) §3 X
    predicts *"near-total clustering at `−3`"* and retains the axis on the argument that *"the emptiness
    is the result."* Claude Code scores **`+3`**. One point does not overturn a prediction, but the
    prediction must now be **re-checked rather than repeated**.
@@ -340,7 +340,7 @@ nine columns it wrapped and stopped being a fingerprint (checked 2026-09-07).
 
 ## 13. The R3 falsification check
 
-[`00-README.md`](00-README.md) §6: *"If backfilling a profile requires opening a vendor source, R3 is
+[`00-README.md`](./00-README.md) §6: *"If backfilling a profile requires opening a vendor source, R3 is
 violated and that axis is a component request in disguise."*
 
 **Result, 2026-09-07: zero violations, across both the original scoring pass and the re-score.** Four
@@ -357,13 +357,13 @@ as a `gap:`, not by opening a source.
 **This pass produced a schema change.** R5 was all-or-nothing — score it, or `null` with
 `pages_checked` — with no way to say *"I scored it, and here is the question that would move it."*
 Dropping that silently is inference by omission, which the repo's standing rule forbids. The optional
-**`gap:`** field is now in [`00-README.md`](00-README.md) §2.3, and **a `gap:` recurring on the same
+**`gap:`** field is now in [`00-README.md`](./00-README.md) §2.3, and **a `gap:` recurring on the same
 axis across three harnesses is an R3 warning** that routes to
 [`../docs/agents/intake.md`](../docs/agents/intake.md) as a candidate component.
 
 ---
 
-*Companions: [`01-scorecard.md`](01-scorecard.md) — the seven dimensions, their anchors, and the
-2026-09-07 revision at §7 · [`00-README.md`](00-README.md) — the ten axes beneath them ·
-[`../comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 — the 33-component
+*Companions: [`01-scorecard.md`](./01-scorecard.md) — the seven dimensions, their anchors, and the
+2026-09-07 revision at §7 · [`00-README.md`](./00-README.md) — the ten axes beneath them ·
+[`../components/ALIGNMENT.md`](../components/ALIGNMENT.md) §2 — the 33-component
 grid these compress.*

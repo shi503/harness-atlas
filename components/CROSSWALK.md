@@ -17,12 +17,12 @@ register where a candidate for a thirty-fourth component waits.
 **Why it is here and not in the archive.** The other half of that file — §1 *derivation* (why each
 component exists) and §2 *supersession* (where every retired `F0`–`F16` citation lands) — argues for a
 decision already taken, so it reads as history and was archived with the rest of the specification on
-2026-09-08. **This half is not history.** [`../RULINGS.md`](../RULINGS.md) names it as one of three
+2026-09-08. **This half is not history.** [`../rulings/00-README.md`](../rulings/00-README.md) names it as one of three
 sanctioned homes for a ruling's text, and `CLAUDE.md` requires everything under `archive/` to be
 `ARCHIVED` or `SUPERSEDED` — a live rule cannot live there. The section headings below are carried
 **verbatim**, so every anchor that pointed into §3 still resolves; only the path changed.
 
-The roster of the 33 is [`00-README.md`](00-README.md). The derivation is
+The roster of the 33 is [`00-README.md`](./00-README.md). The derivation is
 [`../spec/v1-framework/CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §1–§2.
 
 ---
@@ -316,7 +316,7 @@ rename one"* and gave that prohibition no exit. This is the exit. It is not a re
 prohibition still binds every teardown, and admission is a ruling, not a judgement call.
 
 **The admission test already existed and nobody connected it.**
-[`../../comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §1 states the
+[`../../components/ALIGNMENT.md`](./ALIGNMENT.md) §1 states the
 evidence rule for the `emerging` / `claimed` / `bet` markers: ***two peers shipping it as a named
 primitive***. That is the test. It is cited, not re-invented.
 
@@ -351,6 +351,6 @@ proposed for admission**; they are recorded so the argument is not re-run from s
 ---
 
 *The design: [`../archive/v0/11-architecture.md`](../archive/v0/11-architecture.md) §1 · The jobs:
-[`../../references/comparisons/03-jtbd.md`](../comparisons/03-jtbd.md) · The ancestor,
+[`../../references/comparisons/03-jtbd.md`](../archive/comparisons/03-jtbd.md) · The ancestor,
 re-argued and never copied: [`../archive/v0/02-functions.md`](../archive/v0/02-functions.md) · The horizon rule:
 [`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §2*

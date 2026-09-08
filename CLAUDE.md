@@ -10,7 +10,7 @@ one peer column here, scored by the same rules, with no special status.
 |---|---|---|
 | 0 · the manifesto | `README.md` | The argument and the highlights, what GitHub renders first. KD's problem statement verbatim, the five-minute script, the anatomy diagram, a curated reel — never the full list |
 | 1 · the shape | `index.md` | One screen. The grid first, the maturity range second, the layers, the words. Every noun links down, including every profile. No prose walls |
-| 2 · components | `components/<id>-<name>.md` | One page per component, ~80 lines: what it is, the single best example, the comparison table with a `structured output` row, every cell linking into a Tier-3 anchor |
+| 2 · components | `components/<id>-<name>.md` | One page per component, ~80 lines: what it is, the single best example, the comparison table with a `structured output` row, every cell linking into a Tier-3 anchor. Four cross-component instruments sit beside them under uppercase names, not an `<id>-<name>`: `MATRIX.md` (the grid), `ALIGNMENT.md` (the 33-row harness view), `CROSSWALK.md`, `RELATIONS.md`. `00-README.md` is the ID register |
 | 3 · profiles | `content/<name>.md` | One page per harness, in the shape `skills/harness-teardown/SKILL.md` prescribes (Template v2 since 2026-09-04: card → system map → workflows → `●◐○` matrix → primitives → collapsed details). Anchored per component: `content/<name>.md#<id>-<slug>`, e.g. `#2b-hooks`. A deep-read folder `content/<name>/` may sit beside the page and is linked out to, never inlined. (Was `harnesses/` until 2026-09-03 — renamed in W0 to match the 12-factor-agents page architecture) |
 
 Cross-cutting: `vocabulary.md` (term → concept → who says it → our component → instances),
@@ -18,7 +18,7 @@ Cross-cutting: `vocabulary.md` (term → concept → who says it → our compone
 over `00-README.md`'s ten `−3…+3` axes; scores in `positions/<harness>.yaml`, rendered in
 `positioning.md`, which says where a harness sits relative to the industry and how that was derived.
 Neither grades, bar one declared dimension. Every card carries a **drafted-until-verified** banner
-until a person signs it off — R11), `RULINGS.md` (the index of decisions that
+until a person signs it off — R11), `rulings/00-README.md` (the index of decisions that
 changed a rule, an id or a name — the text stays where it was written),
 `maturity/` (the range argument and `grid.html`, the instrument), and `assets/` (`templates/` for the
 standardized core-concept diagrams, `projects/<harness>/` for per-harness ones; `.mmd` is canonical,
@@ -30,13 +30,23 @@ where this line used to point — an argument for the ID space, not a list of it
 in the consolidated guide §1 was struck in W0 on 2026-09-03: the landscape moves too fast to keep
 re-minting IDs.
 
-Supporting material lives under `comparisons/` — the grids, the jobs, the concept ledger and the short
-teardowns the recut profiles superseded. **History lives under `archive/`**, and since 2026-09-08 that
-includes the whole v1 specification, `craft/`, and the ADR drafts: `RULING-2026-09-08-archival.md` says
-what moved and why, `RULING-2026-09-02-spinout.md` says what came from where. The distinction the old
-version of this line drew — *un-recut* versus *history* — did not survive the re-cut finishing: once
-the specification's components became Tier 2, what was left of it was argument about a settled
-decision, which is history.
+**History lives under `archive/`**, and as of 2026-09-08 that is the whole v1 specification, `craft/`,
+and `comparisons/` — the grids, the jobs, the concept ledger and the short teardowns the recut profiles
+superseded. `rulings/2026-09-08-archival.md` says what moved and why,
+`rulings/2026-09-02-spinout.md` says what came from where. The distinction the old version of this line
+drew — *un-recut* versus *history* — did not survive the re-cut finishing: once the specification's
+components became Tier 2, what was left of it was argument about a settled decision, which is history.
+**`comparisons/` followed for the same reason**, once the 33 component pages shipped carrying the same
+comparison per component, live and anchored. **Two files were pulled back out** by ruling and are live in
+`components/`: `MATRIX.md` and `ALIGNMENT.md` — Tier 0's Start-here strip and `index.md` §1 both route to
+the grid, and the front door does not open onto history. What stayed archived is the second copy of a
+live answer, plus six short teardowns that were never recut and are still the sole source for six
+systems — a debt, which is why QM sits at the front of the teardown queue.
+
+**The ADR drafts are gone rather than archived**, deleted by KD on 2026-09-08. The nine
+`kd-built-frameworks` documents that cited them keep their prose with the citations de-linked — the one
+place in this repo where *archive by ruling, never by deletion* was set aside by its owner, recorded
+here rather than left to be inferred from a broken link.
 
 **Licence.** MIT (`LICENSE`), published for educational purposes; `NOTICE` carries the purpose
 statement and the third-party-quotation terms. Ruled `2026-09-08-mit-educational`.

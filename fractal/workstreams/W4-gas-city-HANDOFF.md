@@ -48,12 +48,12 @@ findings), and `content/codex.md` (the shape of a finished profile).
 6. **`comparisons/systems/gas-city.md`** — NOT deleted. Added a dated superseded notice at the top,
    set frontmatter `status: SUPERSEDED` and `superseded_by: content/gas-city.md`, naming both failed
    claims (seven-item primitive count; "Factory Worker Protocol").
-7. **`comparisons/04-harness-alignment.md`** §2 — a Gas City column added to the 33-row table (header,
+7. **`components/ALIGNMENT.md`** §2 — a Gas City column added to the 33-row table (header,
    separator, and all 33 rows), a dated addition note above the table explaining that several cells
    read as an *analogue* rather than a like-for-like instance because Gas City is not itself a runtime,
    and an updated "Column totals" line: **Gas City 13 / 14 / 6**. Every existing column
    (Hermes/Pi/OpenClaw/OpenCode/Grok/Codex) is byte-identical to before this run.
-8. **`comparisons/02-component-matrix.md`** §1 — the *existing* Gas City column re-checked cell by
+8. **`components/MATRIX.md`** §1 — the *existing* Gas City column re-checked cell by
    cell against the new profile, per the PRD ("do not re-score the others"). Three wrong cells
    corrected, each with a dated note in the callout above the table: **Individual memory** `○→◐`
    (session logs + Beads' `bd remember`/`bd prime`), **Team memory** `○→◐` (shared Dolt-backed bead
@@ -92,7 +92,7 @@ findings), and `content/codex.md` (the shape of a finished profile).
   hits for the name or "FWP" as a protocol). Not corrected — those rows are about Amp and Gemini CLI,
   not Gas City, and are outside this PRD's four listed downstream obligations. Flagged for the
   Architect; a one-line correction to each row is cheap once authorized.
-- **`comparisons/02-component-matrix.md` §2's decision row** ("Gas City: beads or Linear for work
+- **`components/MATRIX.md` §2's decision row** ("Gas City: beads or Linear for work
   tracking") and **§4's design-principle callout** ("Multi-model adversarial review... across Codex,
   Claude and Gemini in parallel") were **not** re-checked or corrected. The second is directly
   contradicted by this pass's primary-source read of `mol-review-quorum.toml`, the shipped core-pack

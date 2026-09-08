@@ -38,11 +38,11 @@ the `<details>` rules, the Do NOTs), `W8-template-v2.md`, `content/claude-code/0
 4. **Obligations (step 11):**
    - (a) `comparisons/systems/90-short-profiles.md` §1 — Claude Code row rewritten, *"Torn down
      2026-09-04"*, linking `content/claude-code.md#1-at-a-glance`.
-   - (b) `comparisons/04-harness-alignment.md` §2 — new Claude Code column, all 33 rows, verbatim copy
+   - (b) `components/ALIGNMENT.md` §2 — new Claude Code column, all 33 rows, verbatim copy
      of the profile's §4 marks; totals **17 / 14 / 2** match the card and the profile's §4 totals row.
      A dated addition note and a general "every column is a copy of its profile's §4" line added above
      the table, per the deliverable's instruction — this line did not exist before.
-   - (c) `comparisons/02-component-matrix.md` §1 — the existing Claude Code column re-checked cell by
+   - (c) `components/MATRIX.md` §1 — the existing Claude Code column re-checked cell by
      cell against the new profile. One cell corrected: **Communication channel** `○→◐` (Channels — a
      feature that did not exist at this file's 2026-08-11 read). The "primitive sets themselves" table's
      Claude Code row also corrected (dropped "settings" as `(supporting)`, added dynamic workflow and

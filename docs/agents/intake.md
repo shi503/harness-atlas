@@ -27,7 +27,7 @@ Most discoveries are **vocabulary rows**, not new components. Start here.
 | Two harnesses score identical fingerprints but are obviously different choices | A candidate **axis** or **dimension** | `spectrums/00-README.md` §4 or `01-scorecard.md` §5 |
 | A vendor names a unit its own docs treat as first-class, and the profile's §5 does not carry it | A **primitive** — the vendor's list, not ours | that profile's §5 candidates table |
 | The FRACTAL process itself misbehaved | A **defect**, not a candidate | `fractal/ISSUES.md` |
-| A decision changed a rule, an id, or a name | A **ruling** | write it, then index it in `RULINGS.md` |
+| A decision changed a rule, an id, or a name | A **ruling** | write it, then index it in `rulings/00-README.md` |
 
 ## 2. The five states
 
@@ -61,7 +61,7 @@ Sync costs are **counted, not estimated**. Read the cost before proposing the th
 
 | Kind | Admission test | Source of truth | Candidates recorded in | Sync cost | Ruler |
 |---|---|---|---|:-:|---|
-| **Component** (a 34th row) | **Two peers shipping it as a named primitive** — `comparisons/04-harness-alignment.md` §1's own evidence rule for its `emerging`/`claimed`/`bet` markers. Reused, not invented | `skills/harness-teardown/SKILL.md` §4 checklist — it owns the anchor slugs | `components/CROSSWALK.md` §3.13 | **24** | KD |
+| **Component** (a 34th row) | **Two peers shipping it as a named primitive** — `components/ALIGNMENT.md` §1's own evidence rule for its `emerging`/`claimed`/`bet` markers. Reused, not invented | `skills/harness-teardown/SKILL.md` §4 checklist — it owns the anchor slugs | `components/CROSSWALK.md` §3.13 | **24** | KD |
 | **Axis** (an 11th) | R1–R7, all seven | `spectrums/00-README.md` §3 | `spectrums/00-README.md` §4 | 3 + one per scored harness | KD |
 | **DX dimension** (an 8th) | R1–R3, R6, and R8–R10 | `spectrums/01-scorecard.md` §4 | `spectrums/01-scorecard.md` §5 | 3 + one per scored harness | KD |
 | **Job** (a `J18`) | `comparisons/03-jtbd.md` §1's convergence line, measured on both axes | `comparisons/03-jtbd.md` §2 | `comparisons/03-jtbd.md` §6 | **5** | KD |
@@ -69,7 +69,7 @@ Sync costs are **counted, not estimated**. Read the cost before proposing the th
 | **Vocabulary term** | Two systems one referent (SYNONYM), or one word two referents (COLLISION) | `vocabulary.md` §1.1–§1.5 | `vocabulary.md` §1.6 | **1 file, 2 places** — the right §1.x table and the §2 index | feature-lead; KD for a retirement |
 | **Primitive** | **Not repo-owned.** The vendor's own list, per the teardown skill's rule 4 | that harness's profile §5 | that profile's `candidates` table, which rule 4 already specifies | **5** | feature-lead |
 | **Defect** | It is a bug in the process, not the product | `fractal/ISSUES.md` | n/a — append-only, no candidate state | **1** | anyone |
-| **Ruling** | It changes a rule, an id, or a name | the ruling's own text, in one of three legitimate homes | n/a | **2** — the text and one `RULINGS.md` row | KD |
+| **Ruling** | It changes a rule, an id, or a name | the ruling's own text, in one of three legitimate homes | n/a | **2** — the text and one `rulings/00-README.md` row | KD |
 
 ### The 24 places a component touches
 
@@ -79,7 +79,7 @@ Ten full enumerations, twelve profile matrices, and two generated-looking artifa
 `00-consolidated-guide-and-mental-model.md` §4 · `skills/harness-teardown/SKILL.md` §4 (owns the anchor
 slugs) · `index.md`'s layer-stack mermaid · `assets/templates/layer-stack.mmd` (declares itself canonical) ·
 `maturity/grid.html` `sub:` fields (**hand-maintained** — its generator did not survive the spin-out,
-see ISSUE-009) · `comparisons/04-harness-alignment.md` §2 · `components/RELATIONS.md` §2
+see ISSUE-009) · `components/ALIGNMENT.md` §2 · `components/RELATIONS.md` §2
 (owns the `performs` edges) · one new `components/<id>-<name>.md` · **and the
 `## 4. Component matrix` of all twelve profiles under `content/`.**
 
@@ -105,5 +105,5 @@ Per `CLAUDE.md` — *markdown is not code*:
 - **No required frontmatter.** A candidate is one line in a table.
 
 The enforcement that does exist is structural: every SoT link in this file and every ruling target in
-`RULINGS.md` is a markdown link with a heading anchor, and the link checker resolves anchors. A row
+`rulings/00-README.md` is a markdown link with a heading anchor, and the link checker resolves anchors. A row
 that points nowhere breaks the one check the repo has.

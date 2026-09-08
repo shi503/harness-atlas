@@ -16,7 +16,7 @@ creating them upfront. The `/domain-modeling` skill (reached via `/grill-with-do
 `/improve-codebase-architecture`) creates them lazily when terms or decisions actually get resolved.
 
 This repo's own vocabulary ledger — `vocabulary.md` (term → concept → who says it → our component →
-instances) — is a separate, pre-existing artifact from `RULING-2026-09-02-spinout.md`'s spin-out. Treat
+instances) — is a separate, pre-existing artifact from `rulings/2026-09-02-spinout.md`'s spin-out. Treat
 it as authoritative alongside `CONTEXT.md` once one exists; don't duplicate its entries into
 `CONTEXT.md`.
 

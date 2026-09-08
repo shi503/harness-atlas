@@ -75,31 +75,31 @@ verification:
 
 [§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-**Deep read** — [`content/openclaw/`](openclaw/00-README.md), a 21-document surface reference set at a
-finer grain than §6: [the Gateway and configuration](openclaw/01-the-gateway-and-configuration.md) ·
-[agents, workspaces, and the context engine](openclaw/02-agents-workspaces-and-the-context-engine.md) ·
-[channels and bindings](openclaw/03-channels-and-bindings.md) ·
-[agent runtimes and hosted harnesses](openclaw/04-agent-runtimes-and-hosted-harnesses.md) ·
-[ACP and external harness sessions](openclaw/05-acp-and-external-harness-sessions.md) ·
-[sessions, compaction, and pruning](openclaw/06-sessions-compaction-and-pruning.md) ·
-[memory, dreaming, and the knowledge wiki](openclaw/07-memory-dreaming-and-the-knowledge-wiki.md) ·
-[skills and the Skill Workshop](openclaw/08-skills-and-the-skill-workshop.md) ·
-[plugins and the plugin SDK](openclaw/09-plugins-and-the-plugin-sdk.md) ·
-[ClawHub](openclaw/10-clawhub.md) ·
-[hooks — the two tiers](openclaw/11-hooks-internal-and-plugin.md) ·
-[tools and the tool catalog](openclaw/12-tools-and-the-tool-catalog.md) ·
-[tool policy, approvals, and sandboxing](openclaw/13-tool-policy-approvals-and-sandboxing.md) ·
-[automations, tasks, flows, and goals](openclaw/14-automations-tasks-and-goals.md) ·
-[sub-agents, Swarm, and delegation](openclaw/15-subagents-swarm-and-delegation.md) ·
-[the Gateway protocol and the HTTP APIs](openclaw/16-the-gateway-protocol-and-apis.md) ·
-[operators, roles, and multi-user](openclaw/17-operators-roles-and-multi-user.md) ·
-[nodes and companion devices](openclaw/18-nodes-and-companion-devices.md) ·
-[audit, observability, and recovery](openclaw/19-audit-observability-and-recovery.md) ·
-[the consolidated guide](openclaw/20-consolidated-guide.md)
+**Deep read** — [`content/openclaw/`](./openclaw/00-README.md), a 21-document surface reference set at a
+finer grain than §6: [the Gateway and configuration](./openclaw/01-the-gateway-and-configuration.md) ·
+[agents, workspaces, and the context engine](./openclaw/02-agents-workspaces-and-the-context-engine.md) ·
+[channels and bindings](./openclaw/03-channels-and-bindings.md) ·
+[agent runtimes and hosted harnesses](./openclaw/04-agent-runtimes-and-hosted-harnesses.md) ·
+[ACP and external harness sessions](./openclaw/05-acp-and-external-harness-sessions.md) ·
+[sessions, compaction, and pruning](./openclaw/06-sessions-compaction-and-pruning.md) ·
+[memory, dreaming, and the knowledge wiki](./openclaw/07-memory-dreaming-and-the-knowledge-wiki.md) ·
+[skills and the Skill Workshop](./openclaw/08-skills-and-the-skill-workshop.md) ·
+[plugins and the plugin SDK](./openclaw/09-plugins-and-the-plugin-sdk.md) ·
+[ClawHub](./openclaw/10-clawhub.md) ·
+[hooks — the two tiers](./openclaw/11-hooks-internal-and-plugin.md) ·
+[tools and the tool catalog](./openclaw/12-tools-and-the-tool-catalog.md) ·
+[tool policy, approvals, and sandboxing](./openclaw/13-tool-policy-approvals-and-sandboxing.md) ·
+[automations, tasks, flows, and goals](./openclaw/14-automations-tasks-and-goals.md) ·
+[sub-agents, Swarm, and delegation](./openclaw/15-subagents-swarm-and-delegation.md) ·
+[the Gateway protocol and the HTTP APIs](./openclaw/16-the-gateway-protocol-and-apis.md) ·
+[operators, roles, and multi-user](./openclaw/17-operators-roles-and-multi-user.md) ·
+[nodes and companion devices](./openclaw/18-nodes-and-companion-devices.md) ·
+[audit, observability, and recovery](./openclaw/19-audit-observability-and-recovery.md) ·
+[the consolidated guide](./openclaw/20-consolidated-guide.md)
 
 *Read 2026-09-08 at `v2026.9.3`, six days and one release after this profile's source read. Where a
 detail row below and the deep read disagree, both figures are carried with both dates — the deep
-read's [`00-README.md`](openclaw/00-README.md) collects them in one table.*
+read's [`00-README.md`](./openclaw/00-README.md) collects them in one table.*
 
 ## 2. System map
 
@@ -119,7 +119,7 @@ read's [`00-README.md`](openclaw/00-README.md) collects them in one table.*
 
 `● named primitive · ◐ partial, present-not-first-class · ○ absent (pages named in §6) · n/a does not apply at this altitude`
 
-**Marks copied verbatim from OpenClaw's column in [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2; not re-derived at the restructure.**
+**Marks copied verbatim from OpenClaw's column in [`04-harness-alignment.md`](../components/ALIGNMENT.md) §2; not re-derived at the restructure.**
 
 | # | Component | Mark | Primitive / note |
 |---|---|:-:|---|
@@ -189,7 +189,7 @@ read's [`00-README.md`](openclaw/00-README.md) collects them in one table.*
 | (supporting) Audit ledger | `~/.openclaw/state/openclaw.sqlite` `audit_events` | *"bounded, metadata-only audit ledger in the shared OpenClaw state database"* — *"never stores prompts, message bodies, tool arguments, tool results."* | ✅ `/gateway/audit` |
 | (supporting) Operator roles / scopes | `gateway.roles.definitions.<role>.{sessions,agents,scopes,sandbox}` | *"Session ownership, visibility, and presence are usability features, not security boundaries."* Session owner *"in the style of a GitHub issue assignee."* | ✅ `/gateway/operator-scopes` · `/concepts/multi-user` |
 
-**Count:** 12 primitives, 2 supporting *(as counted at the 2026-09-02 read; the two supporting rows are added at this restructure — see ISSUE-007)*. **Verdict:** 12+ named units — the corpus's own count ([`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §3.3) — puts OpenClaw past the 5–7 healthy band into **accommodation failure**, most visibly at `7a`, where six task-shaped objects (background tasks, task flow, goals, standing orders, standing intents, workboard) coexist and the vendor's own docs concede the overlap: *"A goal is not a task queue"*; the workboard *"is not a replacement for GitHub Issues, Linear, Jira."*
+**Count:** 12 primitives, 2 supporting *(as counted at the 2026-09-02 read; the two supporting rows are added at this restructure — see ISSUE-007)*. **Verdict:** 12+ named units — the corpus's own count ([`04-harness-alignment.md`](../components/ALIGNMENT.md) §3.3) — puts OpenClaw past the 5–7 healthy band into **accommodation failure**, most visibly at `7a`, where six task-shaped objects (background tasks, task flow, goals, standing orders, standing intents, workboard) coexist and the vendor's own docs concede the overlap: *"A goal is not a task queue"*; the workboard *"is not a replacement for GitHub Issues, Linear, Jira."*
 
 No published refusal list was found at the v1 read.
 
@@ -207,7 +207,7 @@ No published refusal list was found at the v1 read.
 **Path.** `agents.defaults.model.primary`; `models.providers.<id>.{baseUrl,api,apiKey,models}`
 **Source.** ✅ `/providers` · `/gateway/config-tools` · `/gateway/config-agents` · GitHub `extensions/`
 
-**More.** [`09-plugins-and-the-plugin-sdk.md`](openclaw/09-plugins-and-the-plugin-sdk.md) — the seventeen registrable capability types, the model/provider manifest fields, and the three install classes. **The generated inventory lists 153 plugins as of 2026-09-08**; this row's "~160 in `extensions/`" is the 2026-09-02 read
+**More.** [`09-plugins-and-the-plugin-sdk.md`](./openclaw/09-plugins-and-the-plugin-sdk.md) — the seventeen registrable capability types, the model/provider manifest fields, and the three install classes. **The generated inventory lists 153 plugins as of 2026-09-08**; this row's "~160 in `extensions/`" is the 2026-09-02 read
 
 </details>
 
@@ -221,7 +221,7 @@ No published refusal list was found at the v1 read.
 **Path.** `tools.*`; `tools.exec.host = gateway|node|sandbox|auto`
 **Source.** ✅ `/tools` · `/gateway/sandboxing` · `/nodes` · `/gateway/security`
 
-**More.** [`12-tools-and-the-tool-catalog.md`](openclaw/12-tools-and-the-tool-catalog.md) — the built-in categories and the two large-catalog carriers · [`13-tool-policy-approvals-and-sandboxing.md`](openclaw/13-tool-policy-approvals-and-sandboxing.md) — backend capability matrix, `workspaceAccess`, bind-mount validation
+**More.** [`12-tools-and-the-tool-catalog.md`](./openclaw/12-tools-and-the-tool-catalog.md) — the built-in categories and the two large-catalog carriers · [`13-tool-policy-approvals-and-sandboxing.md`](./openclaw/13-tool-policy-approvals-and-sandboxing.md) — backend capability matrix, `workspaceAccess`, bind-mount validation
 
 </details>
 
@@ -235,7 +235,7 @@ No published refusal list was found at the v1 read.
 **Path.** `mcp.servers`; `plugins.*`; `openclaw.plugin.json`; `tools.codeMode.enabled`
 **Source.** ✅ `/tools/mcp` · `/tools/plugin` · `/plugins/hooks` · `VISION.md`
 
-**More.** [`09-plugins-and-the-plugin-sdk.md`](openclaw/09-plugins-and-the-plugin-sdk.md) — the full registrar list the profile's §10 recorded as unverified: seventeen capability types, two exclusive slots, four tool/command registrars and 22 infrastructure registrars · [`16-the-gateway-protocol-and-apis.md`](openclaw/16-the-gateway-protocol-and-apis.md) — MCP in both directions
+**More.** [`09-plugins-and-the-plugin-sdk.md`](./openclaw/09-plugins-and-the-plugin-sdk.md) — the full registrar list the profile's §10 recorded as unverified: seventeen capability types, two exclusive slots, four tool/command registrars and 22 infrastructure registrars · [`16-the-gateway-protocol-and-apis.md`](./openclaw/16-the-gateway-protocol-and-apis.md) — MCP in both directions
 
 </details>
 
@@ -247,7 +247,7 @@ No published refusal list was found at the v1 read.
 **Path.** `<workspace>/hooks/<name>/HOOK.md`+`handler.ts`; plugin `api.on(...)`
 **Source.** ✅ `/automation/hooks` · `/plugins/hooks` · `/gateway/configuration`
 
-**More.** [`11-hooks-internal-and-plugin.md`](openclaw/11-hooks-internal-and-plugin.md) — both tiers in full: the internal events with wait behaviour, discovery precedence and selection rules; the plugin catalogue by group with execution contracts, timeouts and failure policy. **Counts 15 internal events and 42 plugin hooks as of 2026-09-08**; this row's "~45" is the 2026-09-02 read
+**More.** [`11-hooks-internal-and-plugin.md`](./openclaw/11-hooks-internal-and-plugin.md) — both tiers in full: the internal events with wait behaviour, discovery precedence and selection rules; the plugin catalogue by group with execution contracts, timeouts and failure policy. **Counts 15 internal events and 42 plugin hooks as of 2026-09-08**; this row's "~45" is the 2026-09-02 read
 
 </details>
 
@@ -259,7 +259,7 @@ No published refusal list was found at the v1 read.
 **Path.** `tools.exec.mode`, `tools.exec.ask`; `gateway.roles.definitions.<role>.sandbox: "required"`
 **Source.** ✅ `/tools/exec-approvals` · `/gateway/sandboxing` · `/gateway/security`
 
-**More.** [`13-tool-policy-approvals-and-sandboxing.md`](openclaw/13-tool-policy-approvals-and-sandboxing.md) — the three controls kept apart, thirteen tool groups, five exec modes, the allowlist field table and `argPattern`, standing grants, and the four properties of a role-required sandbox
+**More.** [`13-tool-policy-approvals-and-sandboxing.md`](./openclaw/13-tool-policy-approvals-and-sandboxing.md) — the three controls kept apart, thirteen tool groups, five exec modes, the allowlist field table and `argPattern`, standing grants, and the four properties of a role-required sandbox
 
 </details>
 
@@ -274,7 +274,7 @@ No published refusal list was found at the v1 read.
 **Path.** `tools.exec.ask`; `exec.askFallback`; `/goal`; `AGENTS.md`
 **Source.** ✅ `/tools/exec-approvals` · `/concepts/agent-loop` · `/tools/goal` · `/automation/standing-orders`
 
-**More.** [`14-automations-tasks-and-goals.md`](openclaw/14-automations-tasks-and-goals.md) — the six goal statuses and the token-budget contract · [`13-tool-policy-approvals-and-sandboxing.md`](openclaw/13-tool-policy-approvals-and-sandboxing.md) — the approval delivery path and standing grants
+**More.** [`14-automations-tasks-and-goals.md`](./openclaw/14-automations-tasks-and-goals.md) — the six goal statuses and the token-budget contract · [`13-tool-policy-approvals-and-sandboxing.md`](./openclaw/13-tool-policy-approvals-and-sandboxing.md) — the approval delivery path and standing grants
 
 </details>
 
@@ -286,7 +286,7 @@ No published refusal list was found at the v1 read.
 **Path.** `bindings[]`; `openclaw agents bind/unbind/bindings`
 **Source.** ✅ `/concepts/multi-agent` · `/gateway/config-agents` · `/tools/acp-agents`
 
-**More.** [`03-channels-and-bindings.md`](openclaw/03-channels-and-bindings.md) — the nine tiers with their match fields, session key shapes, DM route pinning, and broadcast groups. **Tier 9 is now "fallback owner" as of 2026-09-08** — *"routing does not pick the first roster entry"* — where this row's 2026-09-02 read recorded "default"
+**More.** [`03-channels-and-bindings.md`](./openclaw/03-channels-and-bindings.md) — the nine tiers with their match fields, session key shapes, DM route pinning, and broadcast groups. **Tier 9 is now "fallback owner" as of 2026-09-08** — *"routing does not pick the first roster entry"* — where this row's 2026-09-02 read recorded "default"
 
 </details>
 
@@ -299,7 +299,7 @@ No published refusal list was found at the v1 read.
 **Path.** `agents.entries.*`; `agents.defaults.subagents.*`
 **Source.** ✅ `/gateway/config-agents` · `/tools/subagents` · `/tools/swarm`
 
-**More.** [`15-subagents-swarm-and-delegation.md`](openclaw/15-subagents-swarm-and-delegation.md) — every `sessions_spawn` parameter, the depth table and its live tool policy, the announce chain, Swarm's collector contract and stated limits
+**More.** [`15-subagents-swarm-and-delegation.md`](./openclaw/15-subagents-swarm-and-delegation.md) — every `sessions_spawn` parameter, the depth table and its live tool policy, the announce chain, Swarm's collector contract and stated limits
 
 </details>
 
@@ -311,7 +311,7 @@ No published refusal list was found at the v1 read.
 **Path.** `openclaw config get/set/patch/validate`; `openclaw configure`
 **Source.** ✅ `/gateway/configuration` · `/concepts/agent-workspace`
 
-**More.** [`01-the-gateway-and-configuration.md`](openclaw/01-the-gateway-and-configuration.md) — the strict-schema startup gate, hot reload's three outcomes and the restart table, env and SecretRef precedence · [`02-agents-workspaces-and-the-context-engine.md`](openclaw/02-agents-workspaces-and-the-context-engine.md) — workspace resolution and the bootstrap budgets
+**More.** [`01-the-gateway-and-configuration.md`](./openclaw/01-the-gateway-and-configuration.md) — the strict-schema startup gate, hot reload's three outcomes and the restart table, env and SecretRef precedence · [`02-agents-workspaces-and-the-context-engine.md`](./openclaw/02-agents-workspaces-and-the-context-engine.md) — workspace resolution and the bootstrap budgets
 
 </details>
 
@@ -323,7 +323,7 @@ No published refusal list was found at the v1 read.
 **What exists instead.** Shipped templates only (AGENTS/SOUL/USER/IDENTITY/BOOTSTRAP/BOOT/HEARTBEAT); a default `AGENTS.md` (*"Don't dump directories or secrets into chat"*); custodian skills (Gather/Mutate/Repair/Prove/Report). The repo's own `AGENTS.md` is for contributors, not a product feature.
 **Source.** ✅ `/reference/AGENTS.default` · `/concepts/soul` · `/tools/custodian-skills`
 
-**More.** [`20-consolidated-guide.md`](openclaw/20-consolidated-guide.md) §7 — the absence re-checked at 2026-09-08, naming what was checked · [`08-skills-and-the-skill-workshop.md`](openclaw/08-skills-and-the-skill-workshop.md) — the Custodian library's fixed five-section contract
+**More.** [`20-consolidated-guide.md`](./openclaw/20-consolidated-guide.md) §7 — the absence re-checked at 2026-09-08, naming what was checked · [`08-skills-and-the-skill-workshop.md`](./openclaw/08-skills-and-the-skill-workshop.md) — the Custodian library's fixed five-section contract
 
 </details>
 
@@ -337,7 +337,7 @@ No published refusal list was found at the v1 read.
 **Path.** `<workspace>/skills/<name>/SKILL.md`; `openclaw skills install`; `openclaw plugins install`
 **Source.** ✅ `/tools/skills` · `/clawhub` · `/tools/plugin` · GitHub `skills/`, `extensions/`
 
-**More.** [`08-skills-and-the-skill-workshop.md`](openclaw/08-skills-and-the-skill-workshop.md) — the seven-tier loading ladder, `SKILL.md` frontmatter, `metadata.openclaw` gating · [`10-clawhub.md`](openclaw/10-clawhub.md) — the registry's two CLIs, four package families and three audit scales. **51 bundled skills and a 153-plugin inventory as of 2026-09-08**; this row's "~50" and "~160" are the 2026-09-02 read
+**More.** [`08-skills-and-the-skill-workshop.md`](./openclaw/08-skills-and-the-skill-workshop.md) — the seven-tier loading ladder, `SKILL.md` frontmatter, `metadata.openclaw` gating · [`10-clawhub.md`](./openclaw/10-clawhub.md) — the registry's two CLIs, four package families and three audit scales. **51 bundled skills and a 153-plugin inventory as of 2026-09-08**; this row's "~50" and "~160" are the 2026-09-02 read
 
 </details>
 
@@ -349,7 +349,7 @@ No published refusal list was found at the v1 read.
 **Path.** `agents.entries.<id>.skills`; `tools.byProvider.*`; `plugins.allow`
 **Source.** ✅ `/gateway/config-tools` · `/gateway/security` · `/nodes` · `/plugins/hooks`
 
-**More.** [`13-tool-policy-approvals-and-sandboxing.md`](openclaw/13-tool-policy-approvals-and-sandboxing.md) — the five policy layers, the thirteen tool groups, and the sandbox MCP allow gate · [`08-skills-and-the-skill-workshop.md`](openclaw/08-skills-and-the-skill-workshop.md) — allowlist merge rules and their stated non-boundary
+**More.** [`13-tool-policy-approvals-and-sandboxing.md`](./openclaw/13-tool-policy-approvals-and-sandboxing.md) — the five policy layers, the thirteen tool groups, and the sandbox MCP allow gate · [`08-skills-and-the-skill-workshop.md`](./openclaw/08-skills-and-the-skill-workshop.md) — allowlist merge rules and their stated non-boundary
 
 </details>
 
@@ -363,7 +363,7 @@ No published refusal list was found at the v1 read.
 **Path.** `~/.openclaw/workspace/MEMORY.md`, `memory/`; `memory.search.provider`
 **Source.** ✅ `/concepts/memory` · `/concepts/dreaming` · `/install/migrating-claude`
 
-**More.** [`07-memory-dreaming-and-the-knowledge-wiki.md`](openclaw/07-memory-dreaming-and-the-knowledge-wiki.md) — the five tiers, dreaming's two gates, both recall lanes with their thresholds, and the trigger/importance annotation format
+**More.** [`07-memory-dreaming-and-the-knowledge-wiki.md`](./openclaw/07-memory-dreaming-and-the-knowledge-wiki.md) — the five tiers, dreaming's two gates, both recall lanes with their thresholds, and the trigger/importance annotation format
 
 </details>
 
@@ -376,7 +376,7 @@ No published refusal list was found at the v1 read.
 **Path.** `plugins.entries.memory-core.config.dreaming.*`
 **Source.** ✅ `/concepts/memory-provenance` · `/concepts/dreaming` · `/start/teams`
 
-**More.** [`07-memory-dreaming-and-the-knowledge-wiki.md`](openclaw/07-memory-dreaming-and-the-knowledge-wiki.md) §3, §10 — the closed provenance sets, session-kind gating, turn taint, and what `memory forget` does not cover
+**More.** [`07-memory-dreaming-and-the-knowledge-wiki.md`](./openclaw/07-memory-dreaming-and-the-knowledge-wiki.md) §3, §10 — the closed provenance sets, session-kind gating, turn taint, and what `memory forget` does not cover
 
 </details>
 
@@ -388,7 +388,7 @@ No published refusal list was found at the v1 read.
 **Path.** `openclaw memory search`; `openclaw wiki *`; `<vault>/`
 **Source.** ✅ `/concepts/memory` · `/plugins/memory-wiki`
 
-**More.** [`07-memory-dreaming-and-the-knowledge-wiki.md`](openclaw/07-memory-dreaming-and-the-knowledge-wiki.md) §11 — the wiki as a non-exclusive corpus supplement, and the registrar it uses
+**More.** [`07-memory-dreaming-and-the-knowledge-wiki.md`](./openclaw/07-memory-dreaming-and-the-knowledge-wiki.md) §11 — the wiki as a non-exclusive corpus supplement, and the registrar it uses
 
 </details>
 
@@ -402,7 +402,7 @@ No published refusal list was found at the v1 read.
 **What exists instead.** **Goals** — *"one durable objective attached to the current OpenClaw session"*; *"A goal is not a task queue."* Workboard plugin Kanban cards — *"not a replacement for GitHub Issues, Linear, Jira."* Standing orders in prose.
 **Source.** ✅ `/tools/goal` · `/plugins/workboard`
 
-**More.** [`20-consolidated-guide.md`](openclaw/20-consolidated-guide.md) §7 — the absence re-checked at 2026-09-08, naming what was checked
+**More.** [`20-consolidated-guide.md`](./openclaw/20-consolidated-guide.md) §7 — the absence re-checked at 2026-09-08, naming what was checked
 
 </details>
 
@@ -414,7 +414,7 @@ No published refusal list was found at the v1 read.
 **Path.** `agents.defaults.sandbox.*`; `gateway.nodes.*`; `cloudWorkers.*`; `openclaw fleet create`
 **Source.** ✅ `/gateway/sandboxing` · `/nodes` · `/gateway/cloud-workers` · `/gateway/multi-tenant-hosting`
 
-**More.** [`18-nodes-and-companion-devices.md`](openclaw/18-nodes-and-companion-devices.md) — pairing scope escalation, the platform command allowlists, node-hosted MCP and skills · [`13-tool-policy-approvals-and-sandboxing.md`](openclaw/13-tool-policy-approvals-and-sandboxing.md) — the four sandbox backends and their capability matrix
+**More.** [`18-nodes-and-companion-devices.md`](./openclaw/18-nodes-and-companion-devices.md) — pairing scope escalation, the platform command allowlists, node-hosted MCP and skills · [`13-tool-policy-approvals-and-sandboxing.md`](./openclaw/13-tool-policy-approvals-and-sandboxing.md) — the four sandbox backends and their capability matrix
 
 </details>
 
@@ -427,7 +427,7 @@ No published refusal list was found at the v1 read.
 **Path.** `worktreeRoot`
 **Source.** ✅ `/concepts/managed-worktrees` · `/gateway/cloud-workers`
 
-**More.** [`15-subagents-swarm-and-delegation.md`](openclaw/15-subagents-swarm-and-delegation.md) — the `worktree` spawn parameters and their `visible: true` requirement
+**More.** [`15-subagents-swarm-and-delegation.md`](./openclaw/15-subagents-swarm-and-delegation.md) — the `worktree` spawn parameters and their `visible: true` requirement
 
 </details>
 
@@ -439,7 +439,7 @@ No published refusal list was found at the v1 read.
 **What exists instead.** Session rails surface "pull requests" in Control UI chat; git co-author credit on team gateways; `gh-issues`/`github` bundled skills; worktrees block cleanup on unpushed commits. The `pull-request-review-flow`/`ci` docs describe OpenClaw's *own* repo automation, not a user feature.
 **Source.** ✅ `/web/control-ui` · `/reference/pull-request-review-flow` · `VISION.md`
 
-**More.** [`20-consolidated-guide.md`](openclaw/20-consolidated-guide.md) §7 — the absence re-checked at 2026-09-08, naming what was checked
+**More.** [`20-consolidated-guide.md`](./openclaw/20-consolidated-guide.md) §7 — the absence re-checked at 2026-09-08, naming what was checked
 
 </details>
 
@@ -455,7 +455,7 @@ No published refusal list was found at the v1 read.
 **Path.** `~/.openclaw/state/openclaw.sqlite` `task_runs`, `flow_runs`; `openclaw tasks *`
 **Source.** ✅ `/automation/tasks` · `/automation/taskflow` · `/tools/goal` · `/plugins/workboard`
 
-**More.** [`14-automations-tasks-and-goals.md`](openclaw/14-automations-tasks-and-goals.md) — the vendor's own routing table for the six objects, five schedule kinds, the task lifecycle, eight flow statuses and six goal statuses. **Adds `blocked` as a terminal outcome distinct from status, as of 2026-09-08**; this row's state list is the 2026-09-02 read
+**More.** [`14-automations-tasks-and-goals.md`](./openclaw/14-automations-tasks-and-goals.md) — the vendor's own routing table for the six objects, five schedule kinds, the task lifecycle, eight flow statuses and six goal statuses. **Adds `blocked` as a terminal outcome distinct from status, as of 2026-09-08**; this row's state list is the 2026-09-02 read
 
 </details>
 
@@ -470,7 +470,7 @@ No published refusal list was found at the v1 read.
 **Path.** `qa/scenarios/personal/*.yaml`
 **Source.** ✅ `/help/testing` · `/concepts/personal-agent-benchmark-pack` · `/maturity/scorecard`
 
-**More.** [`19-audit-observability-and-recovery.md`](openclaw/19-audit-observability-and-recovery.md) §7 — the QA and CI surfaces, and the `qaRunners` manifest field plugins use to join them
+**More.** [`19-audit-observability-and-recovery.md`](./openclaw/19-audit-observability-and-recovery.md) §7 — the QA and CI surfaces, and the `qaRunners` manifest field plugins use to join them
 
 </details>
 
@@ -482,7 +482,7 @@ No published refusal list was found at the v1 read.
 **Path.** `state/openclaw.sqlite` `audit_events`; `openclaw audit`
 **Source.** ✅ `/gateway/audit` · `/concepts/session` · `/automation/tasks`
 
-**More.** [`19-audit-observability-and-recovery.md`](openclaw/19-audit-observability-and-recovery.md) §1 — the three record families, the `direct` classification rule, the pseudonym scheme and its stated non-anonymity, and the coverage limits · [`16-the-gateway-protocol-and-apis.md`](openclaw/16-the-gateway-protocol-and-apis.md) §5 — `audit.activity.list` params and its four event variants
+**More.** [`19-audit-observability-and-recovery.md`](./openclaw/19-audit-observability-and-recovery.md) §1 — the three record families, the `direct` classification rule, the pseudonym scheme and its stated non-anonymity, and the coverage limits · [`16-the-gateway-protocol-and-apis.md`](./openclaw/16-the-gateway-protocol-and-apis.md) §5 — `audit.activity.list` params and its four event variants
 
 </details>
 
@@ -494,7 +494,7 @@ No published refusal list was found at the v1 read.
 **Path.** `diagnostics.otel.*`; `logging.*`
 **Source.** ✅ `/logging` · `/gateway/opentelemetry` · `/gateway/telemetry`
 
-**More.** [`19-audit-observability-and-recovery.md`](openclaw/19-audit-observability-and-recovery.md) §2–3 — span and metric names with attributes, the `traceparent` propagation rule, and the split between the on-by-default update check and opt-in feature statistics
+**More.** [`19-audit-observability-and-recovery.md`](./openclaw/19-audit-observability-and-recovery.md) §2–3 — span and metric names with attributes, the `traceparent` propagation rule, and the split between the on-by-default update check and opt-in feature statistics
 
 </details>
 
@@ -507,7 +507,7 @@ No published refusal list was found at the v1 read.
 **Path.** `agents.defaults.compaction.*`; `agents.entries.*.params.cacheRetention`
 **Source.** ✅ `/concepts/compaction` · `/reference/token-use` · `/gateway/config-agents`
 
-**More.** [`06-sessions-compaction-and-pruning.md`](openclaw/06-sessions-compaction-and-pruning.md) — safeguard mode's validation contract, the compaction knobs, and the cache-TTL pruning parameters the profile's §10 recorded as unconfirmed · [`14-automations-tasks-and-goals.md`](openclaw/14-automations-tasks-and-goals.md) §4 — the goal token budget
+**More.** [`06-sessions-compaction-and-pruning.md`](./openclaw/06-sessions-compaction-and-pruning.md) — safeguard mode's validation contract, the compaction knobs, and the cache-TTL pruning parameters the profile's §10 recorded as unconfirmed · [`14-automations-tasks-and-goals.md`](./openclaw/14-automations-tasks-and-goals.md) §4 — the goal token budget
 
 </details>
 
@@ -523,7 +523,7 @@ No published refusal list was found at the v1 read.
 **Path.** `skills.workshop.*`; `plugins.entries.memory-core.config.dreaming.*`
 **Source.** ✅ `/tools/self-learning` · `/concepts/dreaming`
 
-**More.** [`08-skills-and-the-skill-workshop.md`](openclaw/08-skills-and-the-skill-workshop.md) §6–7 — the Workshop's seven proposal rules, its lifecycle, the three self-learning modes and the `prepare_patch` authorization contract
+**More.** [`08-skills-and-the-skill-workshop.md`](./openclaw/08-skills-and-the-skill-workshop.md) §6–7 — the Workshop's seven proposal rules, its lifecycle, the three self-learning modes and the `prepare_patch` authorization contract
 
 </details>
 
@@ -536,7 +536,7 @@ No published refusal list was found at the v1 read.
 **Path.** `BOOTSTRAP.md`; `agents.defaults.heartbeat`
 **Source.** ✅ `/concepts/agent-workspace` · `/gateway/heartbeat` · `/tools/custodian-skills`
 
-**More.** [`14-automations-tasks-and-goals.md`](openclaw/14-automations-tasks-and-goals.md) §5 — the heartbeat defaults, response contract and deferral rules · [`08-skills-and-the-skill-workshop.md`](openclaw/08-skills-and-the-skill-workshop.md) §8 — Custodian's five sections
+**More.** [`14-automations-tasks-and-goals.md`](./openclaw/14-automations-tasks-and-goals.md) §5 — the heartbeat defaults, response contract and deferral rules · [`08-skills-and-the-skill-workshop.md`](./openclaw/08-skills-and-the-skill-workshop.md) §8 — Custodian's five sections
 
 </details>
 
@@ -548,7 +548,7 @@ No published refusal list was found at the v1 read.
 **Path.** `cron.*`; `agents.defaults.heartbeat.*`
 **Source.** ✅ `/automation/cron-jobs` · `/gateway/heartbeat`
 
-**More.** [`14-automations-tasks-and-goals.md`](openclaw/14-automations-tasks-and-goals.md) §1 — five schedule kinds, stream-source batching, condition-trigger budgets, and the unattended-execution warning that `cron.triggers.enabled` switches off
+**More.** [`14-automations-tasks-and-goals.md`](./openclaw/14-automations-tasks-and-goals.md) §1 — five schedule kinds, stream-source batching, condition-trigger budgets, and the unattended-execution warning that `cron.triggers.enabled` switches off
 
 </details>
 
@@ -561,7 +561,7 @@ No published refusal list was found at the v1 read.
 **Path.** `openclaw doctor`; `openclaw backup`
 **Source.** ✅ `/gateway/restart-recovery` · `/concepts/retry` · `/gateway/doctor`
 
-**More.** [`19-audit-observability-and-recovery.md`](openclaw/19-audit-observability-and-recovery.md) §4–5 — the per-state recovery table, what is deliberately not resumed, and doctor's four modes · [`06-sessions-compaction-and-pruning.md`](openclaw/06-sessions-compaction-and-pruning.md) §3 — the three-attempt budget and its refresh conditions
+**More.** [`19-audit-observability-and-recovery.md`](./openclaw/19-audit-observability-and-recovery.md) §4–5 — the per-state recovery table, what is deliberately not resumed, and doctor's four modes · [`06-sessions-compaction-and-pruning.md`](./openclaw/06-sessions-compaction-and-pruning.md) §3 — the three-attempt budget and its refresh conditions
 
 </details>
 
@@ -573,7 +573,7 @@ No published refusal list was found at the v1 read.
 **Path.** `openclaw doctor`; `openclaw security audit`
 **Source.** ✅ `/gateway/doctor` · `/gateway/security` · `/web/control-ui`
 
-**More.** [`19-audit-observability-and-recovery.md`](openclaw/19-audit-observability-and-recovery.md) §5 — doctor's modes, the plugin doctor contract, and the security-audit collector surface
+**More.** [`19-audit-observability-and-recovery.md`](./openclaw/19-audit-observability-and-recovery.md) §5 — doctor's modes, the plugin doctor contract, and the security-audit collector surface
 
 </details>
 
@@ -586,7 +586,7 @@ No published refusal list was found at the v1 read.
 **Path.** `taxonomy.yaml`; `openclaw security audit`
 **Source.** ✅ `/maturity/scorecard` · `/maturity/taxonomy` · `/gateway/security`
 
-**More.** [`19-audit-observability-and-recovery.md`](openclaw/19-audit-observability-and-recovery.md) §6 — the five bands with their ranges, M0–M5 with promotion criteria, and the generation contract
+**More.** [`19-audit-observability-and-recovery.md`](./openclaw/19-audit-observability-and-recovery.md) §6 — the five bands with their ranges, M0–M5 with promotion criteria, and the generation contract
 
 </details>
 
@@ -600,7 +600,7 @@ No published refusal list was found at the v1 read.
 **Path.** `agents.entries.*.identity`; `IDENTITY.md`
 **Source.** ✅ `/gateway/config-agents` · `/concepts/agent-workspace` · `/start/lore`
 
-**More.** [`02-agents-workspaces-and-the-context-engine.md`](openclaw/02-agents-workspaces-and-the-context-engine.md) — the agent entry's fields and the workspace-resolution rule that catches multi-agent rosters
+**More.** [`02-agents-workspaces-and-the-context-engine.md`](./openclaw/02-agents-workspaces-and-the-context-engine.md) — the agent entry's fields and the workspace-resolution rule that catches multi-agent rosters
 
 </details>
 
@@ -612,7 +612,7 @@ No published refusal list was found at the v1 read.
 **Path.** `gateway.roles.definitions.*`; `operator.*` scopes
 **Source.** ✅ `/concepts/multi-user` · `/gateway/operator-scopes` · `/automation/standing-orders`
 
-**More.** [`17-operators-roles-and-multi-user.md`](openclaw/17-operators-roles-and-multi-user.md) — named roles' four closed policies, the three ownership layers, public access, and turn attribution's stated limits. **Named operator roles and an eighth scope (`operator.talk.secrets`) are present at 2026-09-08**; this row's seven scopes are the 2026-09-02 read, before the team version ruled on in `2026-09-07-openclaw-permissions-not-tenancy`
+**More.** [`17-operators-roles-and-multi-user.md`](./openclaw/17-operators-roles-and-multi-user.md) — named roles' four closed policies, the three ownership layers, public access, and turn attribution's stated limits. **Named operator roles and an eighth scope (`operator.talk.secrets`) are present at 2026-09-08**; this row's seven scopes are the 2026-09-02 read, before the team version ruled on in `2026-09-07-openclaw-permissions-not-tenancy`
 
 </details>
 
@@ -627,7 +627,7 @@ No published refusal list was found at the v1 read.
 **Path.** `gateway.controlUi.*`; `channels.*`
 **Source.** ✅ `/web/control-ui` · `/concepts/architecture` · `docs.json` nav
 
-**More.** [`16-the-gateway-protocol-and-apis.md`](openclaw/16-the-gateway-protocol-and-apis.md) — the WS frames, roles and scopes, and the three HTTP surfaces · [`03-channels-and-bindings.md`](openclaw/03-channels-and-bindings.md) — the channel catalog by install route. **32 catalog entries as of 2026-09-08**; this row's "~30" is the 2026-09-02 read
+**More.** [`16-the-gateway-protocol-and-apis.md`](./openclaw/16-the-gateway-protocol-and-apis.md) — the WS frames, roles and scopes, and the three HTTP surfaces · [`03-channels-and-bindings.md`](./openclaw/03-channels-and-bindings.md) — the channel catalog by install route. **32 catalog entries as of 2026-09-08**; this row's "~30" is the 2026-09-02 read
 
 </details>
 
@@ -714,7 +714,7 @@ No published refusal list was found at the v1 read.
 
 **Secondary (↪).** None read at the 2026-09-02 source read.
 
-**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md).
+**Placement.** Short-profiles row: [`archive/comparisons/systems/90-short-profiles.md`](../archive/comparisons/systems/90-short-profiles.md) §1 · grid columns: [`components/ALIGNMENT.md`](../components/ALIGNMENT.md) §2 and [`components/MATRIX.md`](../components/MATRIX.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md).
 
 **Diagrams not redrawn.** **No diagram inventory was taken at the 2026-09-02 read.** Whether OpenClaw's 590-page docs site carries vendor diagrams is unknown and unrecorded — it is a gap in the read, not a finding about the vendor. The diagram pass (W8c) opens the sources and records what it finds.
 

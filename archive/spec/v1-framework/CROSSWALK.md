@@ -78,7 +78,7 @@ treatment over their own children.
 ## 1. DERIVATION — `J1`–`J17` → component
 
 **Answers *why does this function exist*.** This is `B-1` executed: functions are job-derived. Source is
-[`../../references/comparisons/03-jtbd.md`](../../../comparisons/03-jtbd.md), whose §3 scorecard
+[`../../references/comparisons/03-jtbd.md`](../../comparisons/03-jtbd.md), whose §3 scorecard
 records **six jobs with no function** — `J7` `J11` `J12` `J14` `J16` `J17`.
 
 | Job | Band | Primary component | Also lands in | Was |
@@ -201,7 +201,7 @@ in `F0`–`F16`.
 | New | Argument for being new | Nearest thing that is not it |
 |---|---|---|
 | **`3c` Composition** | `F4` sequences **work**. This assembles the **system that does the work** — which middleware wraps which call, which subagent owns which context. Two peers built it independently and named it differently: *"Claude Code's 29 lifecycle events and DeepAgents' middleware are the same design reached independently"* ([`../archive/v0/11-architecture.md`](../../v0/11-architecture.md) §3.1) | `3a` Control — the graph, not the assembly |
-| **`3d` Configuration** | The only empirically-derived inventory in the corpus is an inventory of **exactly this**: eight configuration mechanisms across five tools and 2,853 repositories ([`07-verified-inventories.md`](../../../comparisons/2026-08-research/07-verified-inventories.md) §1). Nothing in `F0`–`F16` owns the configuration surface itself — `F13` owns adapters, `F3` owns what context files *contain* | ⚠️ `11-architecture.md` `OPEN-18` rules Configuration **fails the band test** — *"it attaches to other bands and has no lifecycle of its own."* **That test is for layers. It passes as a component**, and this is why it is `3d` and not a thirteenth layer |
+| **`3d` Configuration** | The only empirically-derived inventory in the corpus is an inventory of **exactly this**: eight configuration mechanisms across five tools and 2,853 repositories ([`07-verified-inventories.md`](../../comparisons/2026-08-research/07-verified-inventories.md) §1). Nothing in `F0`–`F16` owns the configuration surface itself — `F13` owns adapters, `F3` owns what context files *contain* | ⚠️ `11-architecture.md` `OPEN-18` rules Configuration **fails the band test** — *"it attaches to other bands and has no lifecycle of its own."* **That test is for layers. It passes as a component**, and this is why it is `3d` and not a thirteenth layer |
 | **`6b` Infrastructure** | Nothing in `F0`–`F16` holds the **runtime a project deploys into**. `F0` is what the *agent* runs on; `F12` is the declared inventory of what the team *reaches*; neither is the project's own environment. Three peers ship it under three names ([`12-horizon.md`](./12-horizon.md) §3.2) | `F0` Substrate · `F12` Environment |
 | **`6d` Delivery** | The path from a finished change to production. `standards/ci-cd.md` exists in this repo **with no function to hang it on** — the same shape that produced `F14` (`C-25`, a decision-rights table with no function) | `J10 distribute` ships **capability**; this ships **product**. Debois's CDLC names *distribute*, and means the first |
 | **`9b` Rituals** | ⚠️ **Contested. See §3.1.** `OPEN-8` was reopened by `03-jtbd.md` §4 and closed by `C-7` **into `F10 Cadence`**, on the same reframe that makes Rituals a candidate | `9c` Cadence — and the argument that they differ is not yet made |
@@ -213,7 +213,7 @@ in `F0`–`F16`.
 
 **This section is live and was carried out of this file**, to
 [`../../components/CROSSWALK.md`](../../../components/CROSSWALK.md), when the v1 specification was
-archived. Six of its thirteen subsections hold the **text of a ruling** — `RULINGS.md` names this
+archived. Six of its thirteen subsections hold the **text of a ruling** — `rulings/00-README.md` names this
 file as one of three sanctioned homes for one — and `CLAUDE.md` requires everything under `archive/`
 to be `ARCHIVED` or `SUPERSEDED`. A live rule cannot live in the archive, so the register left and
 the derivation stayed.

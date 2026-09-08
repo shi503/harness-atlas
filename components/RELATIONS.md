@@ -14,7 +14,7 @@ owner: KD
 somebody already wrote**, plus seven more that are structurally obvious and that nobody has argued.
 It is the source for the `requires:` frontmatter each component page carries.
 
-**Why it is here and not in the archive.** Same seam as [`CROSSWALK.md`](CROSSWALK.md): this is a live
+**Why it is here and not in the archive.** Same seam as [`CROSSWALK.md`](./CROSSWALK.md): this is a live
 register the component pages cite, so it left `spec/v1-framework/06-relations.md` on 2026-09-08 when
 the specification was archived. The other nine sections of that file — the six relation types, the
 `performs` and `records-in` models, the loop overlay, and the session's own open questions — argue
@@ -28,7 +28,7 @@ paragraph; almost none carries a *what this layer cannot work without*. A team's
 weakest component matters much less on a graph this thin — a weak node has almost nothing hanging off
 it — which is itself worth knowing before anyone builds a maturity argument on top of it.
 
-The roster of the 33 is [`00-README.md`](00-README.md). The retired relation model and the session
+The roster of the 33 is [`00-README.md`](./00-README.md). The retired relation model and the session
 that produced it are in
 [`../archive/spec/v1-framework/06-relations.md`](../archive/spec/v1-framework/06-relations.md).
 

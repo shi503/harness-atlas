@@ -12,7 +12,7 @@
 | 1 | Seven DX dimensions | `spectrums/01-scorecard.md` | New. R8/R9/R10; exactly one graded dimension |
 | 2 | The sheet, corrected | `spectrums/00-README.md` | Committed verbatim first (`e33ee3c`), then corrected. Template-A sweep, `split:` and `gap:` field rules, `Headline` row on all ten axes |
 | 3 | The intake process | `docs/agents/intake.md` | New. 4 triggers, 5 states, 9 kinds routed with counted sync costs |
-| 4 | Ruling index | `RULINGS.md` | New. 14 rulings indexed, 2 open questions. No ruling text moved |
+| 4 | Ruling index | `rulings/00-README.md` | New. 14 rulings indexed, 2 open questions. No ruling text moved |
 | 5 | Component ceremony | `CROSSWALK.md` §3.13 | New. Two-peers test cited from `04-harness-alignment.md`, not re-invented. 4 candidates seeded from ISSUE-007 |
 | 6 | Candidates sections | `vocabulary.md` §1.6 · `03-jtbd.md` §6 · `05-harness-factors.md` §5 · `01-scorecard.md` §5 | New in each |
 | 7 | **The scoring pass** | `spectrums/positions/claude-code.yaml` · `spectrums/positions.md` | **The first thing this repo has ever scored** |
@@ -65,7 +65,7 @@ github.com, branch `template-v2`, `spectrums/positions.md`, Chrome, 2026-09-07, 
 - **AC-1** Checker PASS — 1,580 links, 78 anchors. **Met.**
 - **AC-2** `git status` clean; `spectrums/` tracked. **Met.**
 - **AC-3** Seven dimensions, each with non-empty `reads:` and both anchor sets. Exactly one carries
-  `grades: true`, naming `2026-09-07-dx-scorecard`, which exists in `RULINGS.md`. **Met.**
+  `grades: true`, naming `2026-09-07-dx-scorecard`, which exists in `rulings/00-README.md`. **Met.**
 - **AC-4** Five detail-only axes in `01-scorecard.md` §3; `Headline` row on all ten in `00-README.md`
   §3; all ten scored. **Met, after correction** — see below.
 - **AC-5** 10 axes + 3 probation + 7 dimensions scored; zero URLs in `evidence`. **Met.**
@@ -119,7 +119,7 @@ github.com, branch `template-v2`, `spectrums/positions.md`, Chrome, 2026-09-07, 
 
 - **`spectrum` names two instruments.** Four files call the *maturity* framework "the spectrum"; the
   sheet's §0 silently renamed it *"the maturity range."* Recorded in `vocabulary.md` §1.6 and
-  `RULINGS.md` *Open*. **KD's ruling.**
+  `rulings/00-README.md` *Open*. **KD's ruling.**
 - **DX-5's `contested_by` is written and unargued.** If nobody ever argues it in either direction, the
   exception was a shrug rather than a ruling — `01-scorecard.md` §6 says so as a falsifier.
 - **`surface-breadth` promotion** is blocked on R6, which needs more scored harnesses.

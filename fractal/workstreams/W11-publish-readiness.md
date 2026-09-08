@@ -46,7 +46,7 @@ deep-links into permanent URLs.
 4. **`components/00-README.md`, the ID register**, reconciling the two sources the corpus actually
    ran on. `CLAUDE.md:27` had named a *derivation* as the authority. **`CROSSWALK` split at its seam**:
    §3 is a live register holding six ruling texts and moved to `components/CROSSWALK.md`; §1–§2 argue
-   for a settled decision and stay to be archived. Headings verbatim, so all seven `RULINGS.md`
+   for a settled decision and stay to be archived. Headings verbatim, so all seven `rulings/00-README.md`
    anchors still resolve.
 5. **The corpus table on every component page** — all ten harnesses, each cell that harness's own
    mark and own words from its §4 matrix, linking to its detail. This is `README.md`'s *"compare it to

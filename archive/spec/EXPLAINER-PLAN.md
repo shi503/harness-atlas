@@ -30,7 +30,7 @@ their order and their sources. The `git mv` option stays open.
 `> **How do we work?**` line under **every one of its twelve function bodies — 12 of 12** — adopted as
 a per-function framing device and never lifted to the title.
 
-And it is corroborated by a competitor. [`references/comparisons/03-jtbd.md`](../../comparisons/03-jtbd.md)
+And it is corroborated by a competitor. [`references/comparisons/03-jtbd.md`](../comparisons/03-jtbd.md)
 §5 records Ryan Cooke (WorkOS) defining the software factory as *"the way work gets planned, scoped,
 and verified, and the conventions and judgment calls that define your engineering culture"* — annotated
 in our own file as **"That is this project's thesis, published by someone else."**
@@ -48,7 +48,7 @@ tools that answer it.
 ### 1.1 The three forms, and why this is structural rather than a slogan
 
 The question takes a **different grammatical form in each of the three genres**
-([`references/comparisons/2026-08-research/06-frameworks-addendum.md`](../../comparisons/2026-08-research/06-frameworks-addendum.md) §0).
+([`references/comparisons/2026-08-research/06-frameworks-addendum.md`](../comparisons/2026-08-research/06-frameworks-addendum.md) §0).
 That is what makes it a spine and not a tagline.
 
 | Genre | Artifact | The question's form | Status |
@@ -104,7 +104,7 @@ shelf this is on. The question tells them why to pick it up.
 ## 3. The factor-file template
 
 One file per factor, per the `12-factor-agents` shape §2.2 adopts. Extends the existing
-[`references/comparisons/2026-08-research/05-harness-factors.md`](../../comparisons/2026-08-research/05-harness-factors.md)
+[`references/comparisons/2026-08-research/05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md)
 §1 structure with **two fields**, both of which the corpus already requires informally:
 
 ```markdown
@@ -166,7 +166,7 @@ transcription rather than design. It is the right choice for three reasons:
 `05-harness-factors.md` §4 calls it *"the sharpest finding in the whole analysis"*; it is the one **no
 published harness taxonomy gives a row**; and it now has a real citation from a competitor —
 HumanLayer's *"our team of three is averaging about $12k on opus per month"*
-([`references/comparisons/systems/humanlayer.md`](../../comparisons/systems/humanlayer.md) §3),
+([`references/comparisons/systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3),
 which is the only per-team cost figure anywhere in the corpus.
 
 Note the factor's own recorded qualification travels with it: *"zero published taxonomies contain it"*
@@ -256,5 +256,5 @@ shape of the twelve that already exist.
 
 *Companion: [`NEXT-STEPS.md`](../sessions/NEXT-STEPS.md) §2 — where the explainer is authored and the rule that
 protects the split · [`specs/v0/12-horizon.md`](./v1-framework/12-horizon.md) — the `Horizon:` field's values ·
-[`references/comparisons/2026-08-research/05-harness-factors.md`](../../comparisons/2026-08-research/05-harness-factors.md)
+[`references/comparisons/2026-08-research/05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md)
 — the fourteen factors this templates*

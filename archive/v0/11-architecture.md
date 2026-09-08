@@ -17,7 +17,7 @@ harness do*. This answers *what sits on what*, *what plugs in where*, and *which
 
 **Why it is separate from `02`.** They are different objects and the corpus's own rule applies:
 mapping one onto another is *"a translation, not an identity"*
-([`06-frameworks-addendum.md`](../../comparisons/2026-08-research/06-frameworks-addendum.md)
+([`06-frameworks-addendum.md`](../comparisons/2026-08-research/06-frameworks-addendum.md)
 §0). `02` is a **readiness grid** — rows you can be independently good or bad at. This is a **stack** —
 layers that constrain the layers above them. The crosswalk is §5.
 
@@ -187,7 +187,7 @@ per-call adapter cannot.
 `F13`'s attachment points are not ours to invent. They are published and empirically measured across
 2,853 repositories and five tools — the **eight configuration mechanisms**, reproduced with full
 per-tool paths in
-[`07-verified-inventories.md`](../../comparisons/2026-08-research/07-verified-inventories.md)
+[`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md)
 §1 (Galster et al., arXiv:2602.14690v5, ✅ read at source):
 
 | Mechanism | What attaches | Band it serves |
@@ -220,7 +220,7 @@ per-tool paths in
 ## 4. Primitives and machinery — the line we have not drawn
 
 Adopted from Gas City, which defines *primitive* not abstractly but **by contrast**
-([`07-verified-inventories.md`](../../comparisons/2026-08-research/07-verified-inventories.md) §2):
+([`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §2):
 
 > *"Three pieces of role-agnostic plumbing run the primitives, and you configure no role around any of
 > them… **None of this machinery knows what your agents do. It's the substrate the six primitives sit
@@ -320,6 +320,6 @@ in that file's map.
 
 *The model: [`02-functions.md`](./02-functions.md) · The first function spec:
 [`09-context-layer.md`](./09-context-layer.md) · The sourced inventories:
-[`07-verified-inventories.md`](../../comparisons/2026-08-research/07-verified-inventories.md)
+[`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md)
 · The design record:
 [`../../SESSION-2026-08-28-v0-framework-architecture-rebuild.md`](../sessions/SESSION-2026-08-28-v0-framework-architecture-rebuild.md)*

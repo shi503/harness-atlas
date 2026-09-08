@@ -20,7 +20,7 @@ provenance: AUTHORED
 
 ## 1. Why this split, in three sentences
 
-**The framework cannot grade LoomWarp honestly while it lives inside LoomWarp.** [`references/comparisons/02-component-matrix.md`](../../comparisons/02-component-matrix.md) already records LoomWarp's primitive set as *"— unstated. Artifacts exist; a set does not"* and its column as mostly `○`/`◐`. That reading is correct and it is uncomfortable to hold inside the product's own repo.
+**The framework cannot grade LoomWarp honestly while it lives inside LoomWarp.** [`references/components/MATRIX.md`](../../components/MATRIX.md) already records LoomWarp's primitive set as *"— unstated. Artifacts exist; a set does not"* and its column as mostly `○`/`◐`. That reading is correct and it is uncomfortable to hold inside the product's own repo.
 
 **Two artifacts got fused.** A *maturity spectrum* — a diagnostic answering *where are we, what breaks next* — and a *primitive catalog* — an ontology answering *what are the parts, who ships one*. The rule that every component must be a gradeable row forces a six-rung ladder onto things that only have an answer. [`specs/v1-framework/content/component-01-substrate.md`](../../components/0a-substrate.md) is the worked example: it holds four unrelated decisions (which model, which harness, the portability trade, how far out of distribution the work is) held together by a numbering scheme, and carries its own name under protest.
 

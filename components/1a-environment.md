@@ -42,12 +42,12 @@ cannot answer three questions a team asks constantly and a per-call adapter stru
 upgrades?*** An inventory without a version field describes a system that never changes underneath you,
 and no declared system has that property — **MCP itself is date-versioned**: no "MCP v2" exists, the
 spec an adapter speaks is a date, currently 2026-07-28
-([`90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §*Standards*).
+([`90-short-profiles.md`](../archive/comparisons/systems/90-short-profiles.md) §*Standards*).
 The peers already treat components this way — Claude Code ships **SHA pinning and semver dependencies**
 in its distribution surface and a `plugin_loaded` event that **reports versions**
-([`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides,
+([`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides,
 in one screen* — Distribution row); Deep Agents' CI docs say **pin a reviewed SHA rather than `main`**
-([`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md)
+([`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md)
 §5 *Distribution*). Our own record is the counter-example: the vendored `fractal/` machinery is *"pinned
 at a commit, not a version. No upgrade path is defined"*
 ([`fractal.md`](../content/fractal.md#1a-environment)) — the
@@ -68,10 +68,10 @@ the SaaS, the data systems, the execution environments — has never had a home 
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | Reach without inventory. `additionalDirectories`, `--add-dir`, `worktree.sparsePaths`, `symlinkDirectories` and upward discovery all extend *where the agent may look*; none of them is a declaration of what exists, who owns it, or what it costs to lose | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides, in one screen* — Estate row |
-| **Deep Agents** | The nearest published thing to a declared environment, and it is a **backend list** rather than an inventory: `state` · `store` · `filesystem` · `local_shell` · `sandbox` · `composite` · `context_hub` · `langsmith`. Its `THREAT_MODEL.md` goes further than anyone — **six named trust boundaries** and five data classifications — but that is a map of risk, not a map of systems | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Backends*, §5 *Policy* |
-| **MCP** | **Declared here, adapted at `2a`.** The mechanism is defined as *"external tool or data connections via the Model Context Protocol,"* configured per tool at `.mcp.json` and four other published per-tool paths. A server list is the closest the field comes to a declaration — and it is a list of **connections**, not of systems with owners | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | The most concrete peer instance, and it is four files: `rpi-coordination-template` grants `permissions.additionalDirectories: ["../repo1", "../repo2"]` and its `CLAUDE.md` *lists the repos and their descriptions*. **A declared inventory of two entries, with descriptions and no owners** — and its own README retires it into the product's Workspaces feature | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5 |
+| **Claude Code** | Reach without inventory. `additionalDirectories`, `--add-dir`, `worktree.sparsePaths`, `symlinkDirectories` and upward discovery all extend *where the agent may look*; none of them is a declaration of what exists, who owns it, or what it costs to lose | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides, in one screen* — Estate row |
+| **Deep Agents** | The nearest published thing to a declared environment, and it is a **backend list** rather than an inventory: `state` · `store` · `filesystem` · `local_shell` · `sandbox` · `composite` · `context_hub` · `langsmith`. Its `THREAT_MODEL.md` goes further than anyone — **six named trust boundaries** and five data classifications — but that is a map of risk, not a map of systems | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §2 *Backends*, §5 *Policy* |
+| **MCP** | **Declared here, adapted at `2a`.** The mechanism is defined as *"external tool or data connections via the Model Context Protocol,"* configured per tool at `.mcp.json` and four other published per-tool paths. A server list is the closest the field comes to a declaration — and it is a list of **connections**, not of systems with owners | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | The most concrete peer instance, and it is four files: `rpi-coordination-template` grants `permissions.additionalDirectories: ["../repo1", "../repo2"]` and its `CLAUDE.md` *lists the repos and their descriptions*. **A declared inventory of two entries, with descriptions and no owners** — and its own README retires it into the product's Workspaces feature | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §5 |
 | **LoomWarp** | `registry/repositories.yaml` with a schema — built, two repos, one of them a private submodule that blocks a clean clone. **That is the Estate row of the inventory and nothing else**: no SaaS, no data systems, no execution environments, no auth model | [`loomwarp.md`](../content/loomwarp.md#1a-environment) |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.

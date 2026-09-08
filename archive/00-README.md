@@ -72,13 +72,44 @@ account and per-file table: [`spec/00-README.md`](./spec/00-README.md).
 **Three smaller archivals landed in the same ruling.** [`craft/`](./craft/01-source-hohpe.md) — the
 Hohpe source and the harness sizing lens — went because it is architect-craft material rather than
 harness anatomy, and it had **zero inbound markdown links**, so nothing pointed at it to break.
-[`adr-seeds/`](./adr-seeds/README.md), 22 store-format ADR drafts, went as unfinished internal
-decisions; the nine `kd-built-frameworks` documents that cite them stayed, so **eighteen live
-citations now point into the archive** — legal, and recorded here because it is unusual.
+`adr-seeds/`, 22 store-format ADR drafts, went as unfinished internal decisions and were
+**deleted outright on 2026-09-08**; `git log -- archive/adr-seeds` is the only record, and the pages
+that cited them no longer do.
 [`claude-code-draft.md`](./claude-code-draft.md) and [`pi-draft.md`](./pi-draft.md) were
 pre-template drafts sitting in the shipped tier, superseded by the profiles that replaced them; both
 carry a `superseded_by:` pointer, which the 2026-09-01 whole-directory archival did not.
 
+
+### `comparisons/` — archived 2026-09-08
+
+The grids, the jobs, the concept ledger and the short teardowns. **43 documents**, moved whole.
+
+| File | Was canonical | Superseded by | Why it is still cited |
+|---|---|---|---|
+| [`components/MATRIX.md`](../components/MATRIX.md) | → 2026-09-08 | the 33 pages in [`components/`](../components/00-README.md) | The 19-row × 14-column grid. The component pages carry the same comparison per component, live and anchored |
+| [`components/ALIGNMENT.md`](../components/ALIGNMENT.md) | → 2026-09-08 | [`spectrums/01-scorecard.md`](../spectrums/01-scorecard.md) as a rubric; `components/` as a grid | §1 was already superseded-but-kept by ruling `2026-09-07-alignment-reference`; §2's 33-row harness view is what the component pages replaced |
+| [`comparisons/01-concepts.md`](./comparisons/01-concepts.md) | → 2026-09-08 | [`vocabulary.md`](../vocabulary.md) | §3.17's definition of a primitive is cited from live pages and reproduced nowhere else |
+| [`comparisons/systems/`](./comparisons/systems) (16) | → 2026-09-08 | [`content/`](../index.md#1-the-instrument) for the ten torn down | The six never recut — HumanLayer, Deep Agents, Indigo HQ, QM, SageOx, gstack/gbrain — exist **only** here. QM in particular still anchors axis I's `+3` |
+| [`comparisons/2026-08-research/`](./comparisons/2026-08-research) | — raw capture | — | Conference schedules and transcripts quoted by the concept ledger. Never canonical, never superseded, kept as sources |
+
+**Two files did not come here.** [`components/MATRIX.md`](../components/MATRIX.md) (was
+`02-component-matrix.md`) and [`components/ALIGNMENT.md`](../components/ALIGNMENT.md) (was
+`04-harness-alignment.md`) are **live**, in `components/`, beside `CROSSWALK.md` and `RELATIONS.md`.
+They are cross-component instruments rather than per-component pages, which is why they sit there and
+not under an `<id>-<name>.md` filename. KD ruled them out of this archival on 2026-09-08: the Start-here
+strip and `index.md` §1 both route to the grid, and Tier 0 should not open its front door onto history.
+
+**Why the rest moved.** `comparisons/` held the comparison instrument before Tier 2 existed. Once the 33
+component pages shipped — each carrying the same per-component comparison, anchored and linked from
+every profile — what remained was a second copy of a live answer plus the material that was never
+recut. The second copy is history; the never-recut material is the reason the directory is archived
+rather than deleted.
+
+**What did not move with it.** The six un-recut short teardowns are still the only source for six
+systems, and `index.md` still routes to them. **An archived path that is the sole source for a live
+claim is a debt, not a resolution** — it is why `QM` sits at the front of the teardown queue.
+
+---
 
 ## 2. The crosswalk — `E<n>` → `F<n>`
 

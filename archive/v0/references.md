@@ -18,9 +18,9 @@ function model directly. A reader should be able to check them.
 
 > **The analysis moved.** Per-system teardowns, the concept vocabulary, the component matrix and the
 > jobs-to-be-done view now live at
-> [`../../references/comparisons/`](../../comparisons) — outside `specs/` because the
+> [`../../references/comparisons/`](../comparisons) — outside `specs/` because the
 > landscape outlives any spec version. **Start at
-> [`comparisons/01-concepts.md`](../../comparisons/01-concepts.md)**, which defines
+> [`comparisons/01-concepts.md`](../comparisons/01-concepts.md)**, which defines
 > "agentOS", separates *harness* from *process layer*, and scores the function model against fifteen
 > concepts. Four of them turn out to have no function at all — and one of those, **rituals**, passes
 > v0's own two-question test and may subsume two of the others.
@@ -45,12 +45,12 @@ function model directly. A reader should be able to check them.
 
 > **Two systems added 2026-08-11.** Indigo HQ is the closest structural analogue to LoomWarp;
 > **SageOx is the closest competitor to `F3`'s Briefing** and its existence narrows a claim this
-> document previously made. Teardowns: [`indigo-hq.md`](../../comparisons/systems/indigo-hq.md)
-> · [`sageox.md`](../../comparisons/systems/sageox.md).
+> document previously made. Teardowns: [`indigo-hq.md`](../comparisons/systems/indigo-hq.md)
+> · [`sageox.md`](../comparisons/systems/sageox.md).
 >
 > **A category correction.** Of the systems above, only Claude Code is a *harness*. gstack, Gas City,
 > QM, Indigo, SageOx, FRACTAL and LoomWarp are **process layers installed into harnesses** — which is
-> why each ships an adapter. See [`comparisons/01-concepts.md`](../../comparisons/01-concepts.md) §2.
+> why each ships an adapter. See [`comparisons/01-concepts.md`](../comparisons/01-concepts.md) §2.
 
 ### The three findings that changed the model
 
@@ -116,14 +116,14 @@ session state — *"if your server needs to carry state across calls, mint an ex
 and have the model pass it back as an argument."* **MCP has deliberately closed the door on being a
 memory substrate.** Any design assuming it would grow into team memory must assume otherwise.
 
-Full detail: [`../../references/comparisons/2026-08-research/05-standards-layer.md`](../../comparisons/2026-08-research/05-standards-layer.md).
+Full detail: [`../../references/comparisons/2026-08-research/05-standards-layer.md`](../comparisons/2026-08-research/05-standards-layer.md).
 
 **The consequence, and it bears directly on `F0`:** *the formats are commoditized.* Nobody wins by
 owning a file format anymore, and the competition moved up-stack to sync, governance, secrets, memory
 and the capture loop. Riding the standards is now cheap — which strengthens the *portable-where-cheap*
 default in `05-preflight-spec.md` §4 and weakens any argument for a bespoke format.
 
-Sources and the full table: [`comparisons/systems/90-short-profiles.md`](../../comparisons/systems/90-short-profiles.md) §4.
+Sources and the full table: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §4.
 
 ---
 
@@ -310,7 +310,7 @@ Where each system concentrates. Nobody occupies all four.
 >
 > **Also worth noting:** claim 1 (the maturity diagnostic) survives untouched and is arguably the
 > better wedge — it costs an adopter nothing to try, whereas provenance is unbuilt. See
-> [`comparisons/03-jtbd.md`](../../comparisons/03-jtbd.md) §3.
+> [`comparisons/03-jtbd.md`](../comparisons/03-jtbd.md) §3.
 
 ---
 
@@ -345,7 +345,7 @@ second axis and the three named thresholds.
 | # | Thread | Status |
 |---|---|---|
 | **R-1** | Gas City's **Orders** (trigger-based automation) has no v0 function. Probably an F4 implementation detail expressible as hooks + scheduled tasks — confirm before the next revision | **Still open.** "Probably" has been the answer for two revisions; close it or name it |
-| **R-2** | QM's **scope** primitive is more precise than anything in v0. Its bundle — memory, files, keychain, permissions, crons, sandbox — cuts *across* F1/F3/F6. Worth evaluating whether v0 needs a scope concept or whether the bands cover it | **Answered: v0 needs it.** Scope is the individual-vs-team memory boundary, and three more systems have a primitive for it — gbrain's *brain × source*, Indigo's `core`/`personal`, SageOx's Knowledge Bubbles. See [`01-concepts.md`](../../comparisons/01-concepts.md) §3.6 |
+| **R-2** | QM's **scope** primitive is more precise than anything in v0. Its bundle — memory, files, keychain, permissions, crons, sandbox — cuts *across* F1/F3/F6. Worth evaluating whether v0 needs a scope concept or whether the bands cover it | **Answered: v0 needs it.** Scope is the individual-vs-team memory boundary, and three more systems have a primitive for it — gbrain's *brain × source*, Indigo's `core`/`personal`, SageOx's Knowledge Bubbles. See [`01-concepts.md`](../comparisons/01-concepts.md) §3.6 |
 | **R-3** | gstack's **artifact chain** (`/office-hours` → `/plan-eng-review` → `/qa`) is a Control pattern v0 does not name. Related to FRACTAL's HANDOFF | **Corroborated, still unnamed.** Indigo's Ralph loop uses CI as back-pressure between iterations — a third independent arrival at *work does not advance without a checkable artifact* |
 | **R-4** | Gas City's multi-provider *quality* argument (adversarial diversity across differently-trained models) is an F8 Learning technique, not just an F0 property. Not currently captured | **Recorded, deferred.** Presumes `F8` infrastructure that does not exist. Backlog against F8, not v1 |
 | **R-5** | Beads stores work units as JSON in git alongside code — a concrete answer to F1's SoT question that neither this repo nor the peers treat as settled | **Sharpened.** Beads is consistent with our own repo-markdown-as-SoT argument, and v0 has never made that consistency argument. Gas City forces *beads or Linear* as an explicit choice; `05-preflight-spec.md` has no project-board question |

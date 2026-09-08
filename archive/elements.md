@@ -148,7 +148,7 @@ Seven warp threads, six thread counts. Grade each row independently; the fabric 
 
 > **Where we differ from the market, deliberately (decided 2026-08-26).** Factory.ai's Agent Readiness places mechanical enforcement at **Level 3** — *"clear processes are defined, documented, and enforced through automation"* — which is our **Level 4** wording. **We hold enforcement at 4, and the reason is that the two are not the same enforcement.** Factory's Level 3 is CI automation: linters, builds and tests that run without being asked. Our column 4 requires a control **at a point the model cannot reach** — Macedo's `T4`, stated in the literature as a *membership condition* for being a harness at all. A test suite the agent can skip, disable, or route around is column 3 by our reading and column 3 is where it belongs: agreed, documented, and socially enforced.
 >
-> The consequence is that **our stage numbers are one column stricter than the market's from 3 upward**, and any cross-instrument comparison must say so. A translation row for adopters who hold both scores: **LoomWarp 4 ≈ Factory 3 ≈ Microsoft 300 (Defined)**. Evidence and the full Factory row set: [`comparisons/2026-08-research/06-frameworks-addendum.md`](../comparisons/2026-08-research/06-frameworks-addendum.md) §2.1.
+> The consequence is that **our stage numbers are one column stricter than the market's from 3 upward**, and any cross-instrument comparison must say so. A translation row for adopters who hold both scores: **LoomWarp 4 ≈ Factory 3 ≈ Microsoft 300 (Defined)**. Evidence and the full Factory row set: [`comparisons/2026-08-research/06-frameworks-addendum.md`](./comparisons/2026-08-research/06-frameworks-addendum.md) §2.1.
 
 ### The bridge to organizational maturity
 

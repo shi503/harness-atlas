@@ -12,7 +12,7 @@ provenance: AUTHORED
 
 **Scope.** `F3 Context`, graded against the provider contract at
 [`09-context-layer.md`](./09-context-layer.md) §6 and against the five providers torn down at
-[`context-providers/`](../../comparisons/systems/context-providers).
+[`context-providers/`](../comparisons/systems/context-providers).
 
 **Predecessor.** `loomwarp-team-system` `specs/v1/01-gap-analysis.md` (private) — `GAP-01`…`GAP-23`, 9 at P0.
 
@@ -79,9 +79,9 @@ matrix is that sentence, evidenced.
 | # | Claim | Reality | Verdict |
 |---|---|---|---|
 | **C-15** | `F3 Context` is at stage **2** | Graded per verb, `write` is **0**: no scope, no routing, no provenance field. The archived `02-elements.md` §5 already said *"`F3` graded '2' was hiding a zero"* — this makes it evidenced rather than asserted | **OVERSTATED** |
-| **C-16** | *"Nobody in the landscape has provenance. This is the whitespace. Opportunity, not gap"* — `loomwarp-team-system` `specs/v1/01-gap-analysis.md` (private), `F3` row | **Google's OKF v0.2** specifies `sources[]`, `generated`, `verified[]` → trust tiers, `stale_after`, `status`, and an Attested Computation type with `executor: {resource, receipt}`. The territory is named, attested (`context layer` = 13 in the corpus, against `provenance` = 9) and schema'd | **FALSE as written.** Narrows to: OKF specifies **per-document** provenance; the Briefing is **per-run** resolution. Different objects — see [`context-providers/02`](../../comparisons/systems/context-providers/02-okf-and-wiki-langgraph.md) §6, with a dated falsifier |
+| **C-16** | *"Nobody in the landscape has provenance. This is the whitespace. Opportunity, not gap"* — `loomwarp-team-system` `specs/v1/01-gap-analysis.md` (private), `F3` row | **Google's OKF v0.2** specifies `sources[]`, `generated`, `verified[]` → trust tiers, `stale_after`, `status`, and an Attested Computation type with `executor: {resource, receipt}`. The territory is named, attested (`context layer` = 13 in the corpus, against `provenance` = 9) and schema'd | **FALSE as written.** Narrows to: OKF specifies **per-document** provenance; the Briefing is **per-run** resolution. Different objects — see [`context-providers/02`](../comparisons/systems/context-providers/02-okf-and-wiki-langgraph.md) §6, with a dated falsifier |
 | **C-17** | LoomWarp has no context/memory implementation *(implied by five `○` rows)* | 1,428 lines of working, git-tracked, schema-validated, lock-guarded TypeScript, running, with 5 ADRs in its store. **Never graded, never mentioned in any function body or matrix row** | **FALSE** |
-| **C-18** | The individual/team boundary is a routing and ownership question | It is **also an access-control question**, and that framing has a breach as its failure mode. [`03-jtbd.md`](../../comparisons/03-jtbd.md) §4 asked *"Is permission-aware context one job or two?"*, called it whitespace, and left it unassigned for four months | **INCOMPLETE** |
+| **C-18** | The individual/team boundary is a routing and ownership question | It is **also an access-control question**, and that framing has a breach as its failure mode. [`03-jtbd.md`](../comparisons/03-jtbd.md) §4 asked *"Is permission-aware context one job or two?"*, called it whitespace, and left it unassigned for four months | **INCOMPLETE** |
 | **C-19** | *"Adapters are a property of `F0`; you do not write an adapter for the thing you are"* | True for the harness. **`F3`'s Fabric provider is explicitly `native`** — we resolve against a context layer, we do not implement one. There is no `Context adapter` row anywhere in the corpus | **TRUE, but does not transfer to `F3`.** See `09` §8 |
 
 ---
@@ -103,7 +103,7 @@ Effort: **XS** <1h · **S** <½d · **M** 1–2d · **L** 3–5d · **XL** >1w.
 | **GAP-31** | write | **No referential integrity on supersession pointers** — unimplemented by every provider examined. `P-18` | P1 | XS | ledger correctness |
 | **GAP-32** | write | No closed type root; the ledger has one `entry_type` and no primitive/subtype split. `P-19` | P2 | M | vocabulary sprawl at scale |
 | **GAP-33** | write | **The routing doctrine is not adopted**, though the corpus flags it *"the piece to take verbatim"* and it has sat unclaimed since 2026-08-11. `P-7` | **P1** | **XS** | `write`'s correctness |
-| **GAP-34** | — | The census omitted the category name (`context layer` = 13 uncounted against `provenance` = 9 counted) | P2 | XS | **Closed 2026-08-27** — [`01-worldsfair-2026-vocabulary.md`](../../comparisons/2026-08-research/01-worldsfair-2026-vocabulary.md) §2.4 |
+| **GAP-34** | — | The census omitted the category name (`context layer` = 13 uncounted against `provenance` = 9 counted) | P2 | XS | **Closed 2026-08-27** — [`01-worldsfair-2026-vocabulary.md`](../comparisons/2026-08-research/01-worldsfair-2026-vocabulary.md) §2.4 |
 
 **Two XS P0/P1s carry disproportionate value.** `GAP-24` is one constructor parameter and unlocks the
 entire scope model. `GAP-33` is adopting three rows of somebody else's table. **Neither is a build.**
@@ -143,7 +143,7 @@ the differentiator and never counted the category.**
 the census marked it *"Scarce."* Both were present on 2026-08-25; only one was counted. Nine sibling
 terms went uncounted with it, including **`team context` = 0** — the field has no word for the half of
 the boundary that
-[`01-concepts.md`](../../comparisons/01-concepts.md) §3.6 calls *"the largest single gap this
+[`01-concepts.md`](../comparisons/01-concepts.md) §3.6 calls *"the largest single gap this
 analysis found."*
 
 **The cause was structural.** The census tested terms the corpus already used, so it could confirm or
@@ -151,7 +151,7 @@ refute existing vocabulary and **could not discover any.** Two talks that refram
 Sankar's context-layer architecture and Gopal's breach argument — sat in the committed data, unread,
 for two days while a spec was written without them.
 
-Closed by [`01-worldsfair-2026-vocabulary.md`](../../comparisons/2026-08-research/01-worldsfair-2026-vocabulary.md)
+Closed by [`01-worldsfair-2026-vocabulary.md`](../comparisons/2026-08-research/01-worldsfair-2026-vocabulary.md)
 §2.4, with the method fix stated: **a census needs a discovery pass over the corpus's own n-grams, not
 only a confirmation pass over the author's term list.**
 
@@ -171,5 +171,5 @@ only a confirmation pass over the author's term list.**
 ---
 
 *Contract: [`09-context-layer.md`](./09-context-layer.md) · Providers:
-[`context-providers/`](../../comparisons/systems/context-providers) · Model:
+[`context-providers/`](../comparisons/systems/context-providers) · Model:
 [`02-functions.md`](./02-functions.md) · Predecessor: `loomwarp-team-system` `specs/v1/01-gap-analysis.md` (private)*

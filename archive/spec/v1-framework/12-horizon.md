@@ -40,7 +40,7 @@ the corpus has already had to narrow the provenance claim three times, each time
 could reasonably have taken *"unclaimed"* to mean the stronger thing.
 
 **And the discipline already exists — for competitive claims only.**
-[`references/comparisons/00-README.md`](../../../comparisons/00-README.md) §6 publishes a
+[`references/comparisons/00-README.md`](../../comparisons/00-README.md) §6 publishes a
 re-check schedule with dates and falsification conditions; §F-4 carries three dated narrowings.
 **HORIZON is that discipline applied to the architecture instead of only to the landscape.**
 
@@ -49,7 +49,7 @@ re-check schedule with dates and falsification conditions; §F-4 carries three d
 ## 2. The four values
 
 Each value carries an **evidence rule**, modelled on the sourcing rule in
-[`02-component-matrix.md`](../../../comparisons/02-component-matrix.md) §1 — *every `●` traces
+[`02-component-matrix.md`](../../../components/MATRIX.md) §1 — *every `●` traces
 to a cited primitive in that system's teardown.* A marker without its evidence is not a marker.
 
 | Horizon | Means | Evidence required to claim it |
@@ -89,8 +89,8 @@ of them.
 
 Two peers, both cited, both shipping context assembly as a named primitive:
 
-- SageOx's `ox agent prime` — [`references/comparisons/systems/sageox.md`](../../../comparisons/systems/sageox.md); the claim it forced is recorded at `00-README.md` §F-4
-- HumanLayer's `thoughts` — [`references/comparisons/systems/humanlayer.md`](../../../comparisons/systems/humanlayer.md) §4; a separate git repo mounted into every code repo, hook-enforced, generating the harness's own instruction file
+- SageOx's `ox agent prime` — [`references/comparisons/systems/sageox.md`](../../comparisons/systems/sageox.md); the claim it forced is recorded at `00-README.md` §F-4
+- HumanLayer's `thoughts` — [`references/comparisons/systems/humanlayer.md`](../../comparisons/systems/humanlayer.md) §4; a separate git repo mounted into every code repo, hook-enforced, generating the harness's own instruction file
 
 **Rule satisfied:** two teardowns, by file and section.
 
@@ -106,9 +106,9 @@ condition:
 
 | Peer | Its name | Source |
 |---|---|---|
-| QM | `scope` — memory, files, keychain, permissions, crons, **durable sandbox** | [`systems/qm.md`](../../../comparisons/systems/qm.md), "The primitives" |
-| HumanLayer | **worktree** — N repos + a coordination repo on one branch | [`systems/humanlayer.md`](../../../comparisons/systems/humanlayer.md) §5 |
-| Deep Agents | `SandboxBackendProtocol.id` — the handle a session reattaches to | [`systems/langchain-deepagents.md`](../../../comparisons/systems/langchain-deepagents.md) §2 |
+| QM | `scope` — memory, files, keychain, permissions, crons, **durable sandbox** | [`systems/qm.md`](../../comparisons/systems/qm.md), "The primitives" |
+| HumanLayer | **worktree** — N repos + a coordination repo on one branch | [`systems/humanlayer.md`](../../comparisons/systems/humanlayer.md) §5 |
+| Deep Agents | `SandboxBackendProtocol.id` — the handle a session reattaches to | [`systems/langchain-deepagents.md`](../../comparisons/systems/langchain-deepagents.md) §2 |
 
 **Rule satisfied:** three peers named, and their disagreement named — *scope* vs *worktree* vs
 *backend id* are three words for an addressable, durable, per-task work environment.
@@ -133,7 +133,7 @@ The absence, verified at source and this is the part that makes the marker hones
 `openwiki/.claims` ships content hashing, version pinning and reconstruction over 515 claims —
 **three of the four properties** — and has neither owner attribution nor a join to outcome. It pins
 what a *document* asserts about a repository; the join is over a *run*.
-[`08-humanlayer-and-deepagents-recheck.md`](../../../comparisons/2026-08-research/08-humanlayer-and-deepagents-recheck.md) §2.
+[`08-humanlayer-and-deepagents-recheck.md`](../../comparisons/2026-08-research/08-humanlayer-and-deepagents-recheck.md) §2.
 
 **Rule satisfied:** the claim cited, and the absence cited — including the nearest thing to an
 implementation and exactly where it stops.
@@ -272,5 +272,5 @@ components instead of the pre-rebuild vocabulary they were first written against
 
 *The model: [`02-functions.md`](../../v0/02-functions.md) · The manifesto this feeds:
 [`../../EXPLAINER-PLAN.md`](../EXPLAINER-PLAN.md) · The evidence discipline it copies:
-[`../../references/comparisons/02-component-matrix.md`](../../../comparisons/02-component-matrix.md) §1
-and [`../../references/comparisons/00-README.md`](../../../comparisons/00-README.md) §6*
+[`../../references/components/MATRIX.md`](../../../components/MATRIX.md) §1
+and [`../../references/comparisons/00-README.md`](../../comparisons/00-README.md) §6*

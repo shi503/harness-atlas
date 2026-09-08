@@ -23,11 +23,11 @@ the dispatch: `CLAUDE.md`, `W4-teardowns.md`, the skill, `docs/agents/issue-trac
    and §B, matching the placement convention in `content/gas-city-draft.md`.
 3. **`comparisons/systems/90-short-profiles.md`** §1 — the Codex CLI row updated in place (not
    duplicated) with *"Torn down 2026-09-03"*, linking to `content/codex.md`, and a one-line summary.
-4. **`comparisons/04-harness-alignment.md`** §2 — a Codex column added to the 33-row table (header,
+4. **`components/ALIGNMENT.md`** §2 — a Codex column added to the 33-row table (header,
    all 33 rows, and the "Column totals" line: **14 / 13 / 6**), plus a dated addition note before the
    table. Every existing cell in Hermes/Pi/OpenClaw/OpenCode/Grok is byte-identical to before this run;
    only new cells were added.
-5. **`comparisons/02-component-matrix.md`** §1 — a Codex column added to the main 18-row grid (placed
+5. **`components/MATRIX.md`** §1 — a Codex column added to the main 18-row grid (placed
    with the runtime/harness block, before `gstack / gbrain`), a Codex row added to "The primitive sets
    themselves" table, and a Codex line added to §5 "Ratings marked as inferred" (Secrets `◐?`, honestly
    flagged rather than guessed). A dated addition note precedes the table, matching the existing

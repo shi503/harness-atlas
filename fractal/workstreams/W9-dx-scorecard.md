@@ -35,10 +35,10 @@ discriminates only if it takes ≥3 distinct values) is untestable at one scored
    sync cost of each counted, not estimated. Discovery and research use `fractal/wayfinding/` as
    `docs/agents/issue-tracker.md` §"Wayfinding operations" already specifies; the durable record is a
    candidates table inside each SoT, in that SoT's own idiom.
-4. **`RULINGS.md`** — an index, not a store. Rulings keep their three existing homes; every
+4. **`rulings/00-README.md`** — an index, not a store. Rulings keep their three existing homes; every
    "where the text is" cell is an anchored link, so the existing link checker validates it.
 5. **`CROSSWALK.md` §3.13** — the probation/promotion/retirement ceremony ported to components, using
-   the **two peers shipping it as a named primitive** test that `comparisons/04-harness-alignment.md`
+   the **two peers shipping it as a named primitive** test that `components/ALIGNMENT.md`
    already states and nobody connected to `SKILL.md`'s *"Do not add a 34th row."* Seeded from the four
    objects ISSUE-007 names.
 6. **Candidates sections** — `vocabulary.md` §1.6, `comparisons/03-jtbd.md` §6,
@@ -52,11 +52,11 @@ discriminates only if it takes ≥3 distinct values) is untestable at one scored
 ## Acceptance criteria
 
 - **AC-1** `node scripts/check-doc-links.mjs` PASS with anchors resolved, now also covering every
-  `RULINGS.md` target and the `positions.md` → profile link. No new script.
+  `rulings/00-README.md` target and the `positions.md` → profile link. No new script.
 - **AC-2** `git status` clean; `spectrums/` tracked.
 - **AC-3** Every dimension definition carries a non-empty `reads:` and both anchor sets, and either
   both R2 cost fields **or** `grades: true` + `because_grades:` + `contested_by:`. **Exactly one**
-  carries `grades: true`, naming a ruling that exists in `RULINGS.md`.
+  carries `grades: true`, naming a ruling that exists in `rulings/00-README.md`.
 - **AC-4** The **five** detail-only axes — II, IV, **VII**, VIII, IX — each appear in
   `01-scorecard.md` §3 with a stated reason, and **all ten** carry a reciprocal `Headline` row in
   `00-README.md` §3 naming either the dimension they feed or their detail-only status. **All ten axes
@@ -92,7 +92,7 @@ discriminates only if it takes ≥3 distinct values) is untestable at one scored
   reports the opposite of the truth.
 - Add a second `grades: true` dimension without its own dated ruling.
 - Add a `## 11.` to any profile, or a 34th component row.
-- Re-head or archive `comparisons/04-harness-alignment.md` — KD's ruling 2026-09-07 keeps it as the
+- Re-head or archive `components/ALIGNMENT.md` — KD's ruling 2026-09-07 keeps it as the
   prose inventory and findings-generator. A pointer note only.
 - Put `▰▱` or `─●` anywhere outside `spectrums/`.
 - Write any script that checks counts, regenerates a table, or validates the YAML. The bar is the link
@@ -103,7 +103,7 @@ discriminates only if it takes ≥3 distinct values) is untestable at one scored
 ## Session shape
 
 1. **Phase 0** — no gate; reads the profile, never edits it. The draft committed verbatim, then
-   corrected; `01-scorecard.md`; `intake.md`; `RULINGS.md`; the rulings; `CROSSWALK` §3.13; the
+   corrected; `01-scorecard.md`; `intake.md`; `rulings/00-README.md`; the rulings; `CROSSWALK` §3.13; the
    candidates sections; wiring; ISSUE-009.
 2. **Phase 2** — the scoring pass. `positions/claude-code.yaml` and `positions.md`.
 3. **Phase 1** — gated on W8a AC-5, because it edits the exact artifact under KD's review: the

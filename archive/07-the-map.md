@@ -70,7 +70,7 @@ Both were made earlier in this corpus and are load-bearing.
 
 | | Ruling | Consequence here |
 |---|---|---|
-| **1** | *"The map we owe a reader is not a containment tree of abstract layers — it is **the set of primitives a harness needs, in the order a team comes to need them.**"* — [`04-primitives-ontology-platform.md`](../comparisons/2026-08-research/04-primitives-ontology-platform.md) §5 | §3 is ordered by **when a team first needs it**, not by conceptual tidiness. The bands in §1 are a reading aid, not a hierarchy |
+| **1** | *"The map we owe a reader is not a containment tree of abstract layers — it is **the set of primitives a harness needs, in the order a team comes to need them.**"* — [`04-primitives-ontology-platform.md`](./comparisons/2026-08-research/04-primitives-ontology-platform.md) §5 | §3 is ordered by **when a team first needs it**, not by conceptual tidiness. The bands in §1 are a reading aid, not a hierarchy |
 | **2** | Ontology-as-description **measurably fails** — ETH Zürich `arXiv:2602.11988` found repository overviews *"are not helpful"* while raising cost 20%+. What survives is **verb-bounding** | §7 gives every node typed relations and a config key. A node that cannot be written down as configuration does not belong on the map |
 
 **The test this document must pass:** a reader should be able to fill it in for their own team in
@@ -136,9 +136,9 @@ it does.**
 
 | Document | Said |
 |---|---|
-| [`01-concepts.md`](../comparisons/01-concepts.md) §1 | **MODEL** is the bedrock of the five-layer stack |
-| [`01-concepts.md`](../comparisons/01-concepts.md) §3.1 | *"None — it is an input to `E0`, **deliberately not an element**… ✅ Correctly excluded"* |
-| [`03-agentos-harness-multiplayer.md`](../comparisons/2026-08-research/03-agentos-harness-multiplayer.md) | *"stack diagram forces the answer: **model as bedrock, below Ground**; Substrate is the harness"* |
+| [`01-concepts.md`](./comparisons/01-concepts.md) §1 | **MODEL** is the bedrock of the five-layer stack |
+| [`01-concepts.md`](./comparisons/01-concepts.md) §3.1 | *"None — it is an input to `E0`, **deliberately not an element**… ✅ Correctly excluded"* |
+| [`03-agentos-harness-multiplayer.md`](./comparisons/2026-08-research/03-agentos-harness-multiplayer.md) | *"stack diagram forces the answer: **model as bedrock, below Ground**; Substrate is the harness"* |
 
 ### The exclusion, and why it is overturned
 
@@ -158,7 +158,7 @@ Four things make it a real, gradeable decision:
    definition is incomplete on its face.
 2. **`J3 route` and `J12 account` both hang off it.** Which model runs which job, at what cost, is
    the routing decision — and routing plus cost are two of the three slots
-   [`02-harness-taxonomies.md`](../comparisons/2026-08-research/02-harness-taxonomies.md)
+   [`02-harness-taxonomies.md`](./comparisons/2026-08-research/02-harness-taxonomies.md)
    §3 finds absent from every published taxonomy.
 3. **Model choice is already a quality technique, not only a portability property.** `01-concepts.md`
    §3.1 records the counter-evidence against its own verdict: Gas City runs its code-review formula
@@ -260,7 +260,7 @@ exist"* — one row, two systems, wildly different maturity.
 ### 4.2 Harness — three things wearing one word
 
 Weng nests **loop engineering, context engineering and evals inside harness engineering**. That is
-the altitude problem [`02-harness-taxonomies.md`](../comparisons/2026-08-research/02-harness-taxonomies.md)
+the altitude problem [`02-harness-taxonomies.md`](./comparisons/2026-08-research/02-harness-taxonomies.md)
 §4 names, and it is why *harness* felt oversized.
 
 | The word covers | On this map |
@@ -425,5 +425,5 @@ vendors are moving) · `09-config.md` (the schema, and the target function that 
 ---
 
 *Prior: [`06-lineage.md`](./v0/06-lineage.md) — the published models this places itself among.*
-*The jobs: [`../../references/comparisons/03-jtbd.md`](../comparisons/03-jtbd.md).*
+*The jobs: [`../../references/comparisons/03-jtbd.md`](./comparisons/03-jtbd.md).*
 *The current canonical elements: [`02-elements.md`](./02-elements.md) §1.*

@@ -30,7 +30,7 @@ requires: ["5b"]
 **The field observes runs thoroughly and does not join them, and the corpus can measure the gap.**
 Across the 562-session corpus: `trace` 65 · `audit` 39 · `evidence` 22 · `attribut` 14 — against
 **`provenance` 9 · `receipt` 4**. Observation is saturated; the join is not
-([`00-README.md`](../comparisons/00-README.md) §F-4).
+([`00-README.md`](../archive/comparisons/00-README.md) §F-4).
 
 **The claim is `claimed`, not `bet`, and the distinction is dated.** Govindarajan (OpenAI) named the
 **run receipt** on a conference stage — *"a model proposes, the harness commits, and the receipt
@@ -53,7 +53,7 @@ same words: ***"there's no way to backprop the incident to the decision that cau
 component is the affirmative form of that impossibility claim** — and its author's own answer is the
 cheaper one, moving humans upstream rather than building the join, which is the argument that has to
 be met at scale rather than dismissed
-([`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §2, §10).
+([`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §2, §10).
 
 **What this layer is not.** It is not [`8c`](./8c-observability.md) Observability — a trace
 shows *the steps*, a ledger holds *the claims*, and a team can watch every step of work whose
@@ -68,11 +68,11 @@ at [`5a`](./5a-individual-memory.md) rather than here.
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | The most complete raw material anywhere, and **nothing that writes the joined record.** OTel metrics, events and spans attributed by agent, skill, plugin, marketplace and MCP server; a full permission audit trail via `claude_code.tool_decision` carrying decision and source. The building blocks report *what loaded* and *what was decided*; the correlation keys exist; **nothing reconstructs the join** | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Evidence row, §*What it does not provide* |
-| **Deep Agents** | The closest thing in the corpus to **a run receipt somebody actually shipped**, and it is on a benchmark rather than on a unit of work: every scorecard number footnoted to a run ID, a date, a judge model, a harness SHA, the sandbox, the rollout count and the wall-clock — including the honest note that **14 of 246 errored trials are scored as failures**. A reproducibility manifest, published | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §4, §5 *Evidence* |
-| **MCP** | **Nothing here.** A per-call connection mechanism emits no durable record of its own; whatever is known about an MCP call is known because the harness around it wrote it down. That is why the attribution in the Claude Code row is keyed *by* MCP server rather than *from* one | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | **Every approval is an evidence record**, because the decision carries prose rather than a bit — the approval API is enumerated at [`2c`](./2c-enforcement.md), where it is the mechanism. What is `8b`'s is the consequence: a ledger whose entries explain *why*, produced as a side effect of the gate rather than as a separate logging step | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §7 |
-| **LoomWarp** | `events.jsonl`, CloudEvents-shaped — **8 real events, none schema-validated, and the outcome regexed out of markdown.** It is nonetheless the only column in the matrix already holding *both halves* of the join, an inherited decision store and a structured run-event stream: **for everyone else the join is a build; here it is an integration that has not happened** | [`loomwarp.md`](../content/loomwarp.md#8b-evidence) · [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 |
+| **Claude Code** | The most complete raw material anywhere, and **nothing that writes the joined record.** OTel metrics, events and spans attributed by agent, skill, plugin, marketplace and MCP server; a full permission audit trail via `claude_code.tool_decision` carrying decision and source. The building blocks report *what loaded* and *what was decided*; the correlation keys exist; **nothing reconstructs the join** | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Evidence row, §*What it does not provide* |
+| **Deep Agents** | The closest thing in the corpus to **a run receipt somebody actually shipped**, and it is on a benchmark rather than on a unit of work: every scorecard number footnoted to a run ID, a date, a judge model, a harness SHA, the sandbox, the rollout count and the wall-clock — including the honest note that **14 of 246 errored trials are scored as failures**. A reproducibility manifest, published | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §4, §5 *Evidence* |
+| **MCP** | **Nothing here.** A per-call connection mechanism emits no durable record of its own; whatever is known about an MCP call is known because the harness around it wrote it down. That is why the attribution in the Claude Code row is keyed *by* MCP server rather than *from* one | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | **Every approval is an evidence record**, because the decision carries prose rather than a bit — the approval API is enumerated at [`2c`](./2c-enforcement.md), where it is the mechanism. What is `8b`'s is the consequence: a ledger whose entries explain *why*, produced as a side effect of the gate rather than as a separate logging step | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §7 |
+| **LoomWarp** | `events.jsonl`, CloudEvents-shaped — **8 real events, none schema-validated, and the outcome regexed out of markdown.** It is nonetheless the only column in the matrix already holding *both halves* of the join, an inherited decision store and a structured run-event stream: **for everyone else the join is a build; here it is an integration that has not happened** | [`loomwarp.md`](../content/loomwarp.md#8b-evidence) · [`02-component-matrix.md`](./MATRIX.md) §1 |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.
 **● 7 · ◐ 3 · ○ 0** of ten. Each row links to that harness's detail.

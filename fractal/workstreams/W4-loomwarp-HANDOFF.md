@@ -9,7 +9,7 @@ read via a local clone plus authenticated `gh api`).
 peer rule for LoomWarp: same template as any other harness, no special status, and its primitive-set
 row stays blank until earned by the files, not assumed from the RULING or the self-assessment. Read
 first, in full: `CLAUDE.md`, `fractal/workstreams/W4-teardowns.md` (amended block, item 3's rule),
-`skills/harness-teardown/SKILL.md` (33 rows inline), `RULING-2026-09-02-spinout.md`,
+`skills/harness-teardown/SKILL.md` (33 rows inline), `rulings/2026-09-02-spinout.md`,
 `fractal/workstreams/W4-codex-HANDOFF.md` and `W4-gas-city-HANDOFF.md` (prior runs' skill findings),
 and `content/gas-city.md` (a finished profile, including the two-altitude convention).
 
@@ -34,7 +34,7 @@ and `content/gas-city.md` (a finished profile, including the two-altitude conven
    (*"all thirty-three components are configurable primitives"*) is a generic grading rule for any
    harness it scores, not a claim about LoomWarp's own authoring surface — confirmed by reading both
    documents in full, not inferred from the corpus's own prior claim. This repo's existing
-   `comparisons/02-component-matrix.md` §1 line (*"— unstated. Artifacts exist; a set does not"*) and
+   `components/MATRIX.md` §1 line (*"— unstated. Artifacts exist; a set does not"*) and
    `comparisons/00-README.md`'s inclusion-test-3 failure were both re-verified against the files and
    held.
 3. **`assets/projects/loomwarp/dispatch-loop.mmd`** — the "Dispatch sequence" diagram from
@@ -45,14 +45,14 @@ and `content/gas-city.md` (a finished profile, including the two-altitude conven
    marked *Torn down 2026-09-03*, linking to `content/loomwarp.md`, placed in the same table Gas City
    already sits in despite the section's own header line (*"These run the agent loop. LoomWarp installs
    into one of these; it is not one"*) — the row's text names that tension rather than hiding it.
-5. **`comparisons/04-harness-alignment.md`** §2 — a LoomWarp column added to the 33-row table (header,
+5. **`components/ALIGNMENT.md`** §2 — a LoomWarp column added to the 33-row table (header,
    all 33 rows, and the "Column totals" line: **LoomWarp 3 / 19 / 11**), plus a dated addition note
    above the table explaining the process-layer altitude and why several cells read as thinner
    analogues than Gas City's. Every existing column (Hermes/Pi/OpenClaw/OpenCode/Grok/Codex/Gas City)
    is byte-identical to before this run; only new cells were added. (Caught and fixed my own arithmetic
    error in the totals line before finalizing — first draft said 2/15/16 against a column that actually
    sums to 3/19/11.)
-6. **`comparisons/02-component-matrix.md`** §1 — the *existing* LoomWarp column re-checked cell by cell
+6. **`components/MATRIX.md`** §1 — the *existing* LoomWarp column re-checked cell by cell
    against the new profile's §B, per the PRD ("correct only wrong cells with dated notes"). One cell was
    wrong: **Context assembly** `○→◐` — `control/dispatch.py`'s `build_prompt_for()` genuinely
    concatenates a workstream's `context_bundle:` files into the dispatched prompt, a real mechanical

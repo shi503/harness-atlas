@@ -50,12 +50,12 @@ is the *harden* half — the vulnerability surface and the quality long tail. **
 it seriously is a measurement**: `security` scores **62** with its own conference track, and is
 **absent from every published harness taxonomy**. A team grading its output bar on permissions alone
 scores well while shipping the long tail
-([`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J15`).
+([`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §2 `J15`).
 
 **And the ceiling argument has to be answered here rather than deflected.** The strongest published
 attack on this component is that review agents *"don't move the ceiling, because the ceiling is
 whatever we managed to teach the model in RL"* — maintainability has no fast oracle, so it cannot be
-rewarded ([`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §2). **If
+rewarded ([`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §2). **If
 that holds, `8a` raises the floor and stops**, which is exactly why [`8b`](./8b-evidence.md)
 exists as a separate row and why the ordering of human review is [`9b`](./9b-rituals.md)'s.
 
@@ -69,10 +69,10 @@ a fact, and a team can have immaculate telemetry over a bar nobody set.
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | The `skill-creator` eval harness — isolated per-case runs, assertion grading **with evidence**, with/without benchmarking and blind A/B. Note what it grades: **the capability, not the work**. It is a working eval pyramid pointed at the skill, and nothing native points one at the output of a unit of work | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Learning row |
-| **Deep Agents** | The most complete answer in the corpus, and it is **two objects**. In the loop, `RubricMiddleware` grades at the moment the agent would finish, **per criterion**, on the vocabulary `satisfied` \| `needs_revision` \| `failed` — with a validator that **rejects a grader's own output when the overall verdict contradicts the per-criterion verdicts**, a consistency check on the judge itself. Out of it, 136 evals across 8 categories and a published cross-model scorecard. The *declaration* half of the rubric is a standard and is graded at [`3e`](./3e-standards.md); **the grading is the sensor, and it is this row** | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Rubric*, §5 *Evidence* |
-| **MCP** | **Nothing here, and the reason is the same one that keeps enforcement out of the connection layer.** A tool surface carries no opinion about whether its output is good. Every judgement in this row is made by the harness around it | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | The clearest published **argument against over-investing here**, from the company that sells review: models are rewarded on `FAIL_TO_PASS` / `PASS_TO_PASS` and *"there is no penalty for bad design"*, because *"tests give you feedback in seconds, but the cost function of bad architecture is measured in weeks."* Its answer is to move the human upstream rather than to build a better sensor | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §2 |
+| **Claude Code** | The `skill-creator` eval harness — isolated per-case runs, assertion grading **with evidence**, with/without benchmarking and blind A/B. Note what it grades: **the capability, not the work**. It is a working eval pyramid pointed at the skill, and nothing native points one at the output of a unit of work | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Learning row |
+| **Deep Agents** | The most complete answer in the corpus, and it is **two objects**. In the loop, `RubricMiddleware` grades at the moment the agent would finish, **per criterion**, on the vocabulary `satisfied` \| `needs_revision` \| `failed` — with a validator that **rejects a grader's own output when the overall verdict contradicts the per-criterion verdicts**, a consistency check on the judge itself. Out of it, 136 evals across 8 categories and a published cross-model scorecard. The *declaration* half of the rubric is a standard and is graded at [`3e`](./3e-standards.md); **the grading is the sensor, and it is this row** | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §2 *Rubric*, §5 *Evidence* |
+| **MCP** | **Nothing here, and the reason is the same one that keeps enforcement out of the connection layer.** A tool surface carries no opinion about whether its output is good. Every judgement in this row is made by the harness around it | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | The clearest published **argument against over-investing here**, from the company that sells review: models are rewarded on `FAIL_TO_PASS` / `PASS_TO_PASS` and *"there is no penalty for bad design"*, because *"tests give you feedback in seconds, but the cost function of bad architecture is measured in weeks."* Its answer is to move the human upstream rather than to build a better sensor | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §2 |
 | **LoomWarp** | `standards/definition-of-done.md` and `standards/evaluation-doctrine.md` — **the bar written, the sensor absent.** The doctrine describes an eval pyramid that a vendor has since implemented and LoomWarp has not; `events.jsonl` classifies outcomes by regexing markdown, which is a reading rather than a gate | [`loomwarp.md`](../content/loomwarp.md#8a-evals) |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.

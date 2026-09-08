@@ -11,8 +11,8 @@ Every teardown in the corpus has its column, and the grid's own prose describes 
 
 ## Deliverable
 
-- Columns for **HumanLayer** and **LangChain Deep Agents** in `comparisons/02-component-matrix.md`
-  §1 and `comparisons/04-harness-alignment.md` §2, sourced from their existing ~385-line teardowns
+- Columns for **HumanLayer** and **LangChain Deep Agents** in `components/MATRIX.md`
+  §1 and `components/ALIGNMENT.md` §2, sourced from their existing ~385-line teardowns
   under `comparisons/systems/`. Closes ISSUE-001.
 - The five orphan nouns (`session` · `gateway` · `runtime` · `sandbox` · `workspace`) resolved per
   W3's ledger: a row, or a stated altitude, never silently absorbed.

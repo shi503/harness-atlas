@@ -11,7 +11,7 @@
 |---|---|---|
 | The skill, amended | `skills/harness-deep-read/SKILL.md` | 135 → 256 lines; gate replaced, four post-pilot fixes applied |
 | The teardown skill | `skills/harness-teardown/SKILL.md` | `verification:` in the frontmatter spec; budget 11 → 22 |
-| Two rulings | `RULING-2026-09-08-deep-read-claims.md`, `RULING-2026-09-08-authorship-provenance.md` | Both indexed in `RULINGS.md`; R11's extension recorded in `01-scorecard.md` |
+| Two rulings | `rulings/2026-09-08-deep-read-claims.md`, `rulings/2026-09-08-authorship-provenance.md` | Both indexed in `rulings/00-README.md`; R11's extension recorded in `01-scorecard.md` |
 | The exemplar, stripped | `content/claude-code/` (12 files) | 77 LoomWarp mentions → 2, both inside the dated strip record |
 | Authorship, backfilled | 10 profiles + `content/claude-code/` | `verification:` blocks, marked attested |
 | **The pilot** | `content/codex/` (13 files, ~1,340 lines) | Standard depth; both directions wired |

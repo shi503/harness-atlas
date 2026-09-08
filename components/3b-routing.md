@@ -30,7 +30,7 @@ requires: ["10a"]
 task.** No published harness taxonomy elevates routing to a layer; it survives buried inside a *tool
 registry*, which is a different object — a catalogue of what can be called, not a rule about who calls
 it. Tan states the shape exactly: *"a resolver is an org chart. A task comes in and it decides which
-markdown file or who handles it"* ([`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J3`).
+markdown file or who handles it"* ([`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §2 `J3`).
 
 **A resolver is only as good as the list it resolves against**, and that list is `10a` Roster. The
 dependency is published — *"`J3 route` requires `J14 know who exists`. 'A resolver is an org chart'
@@ -43,7 +43,7 @@ subagent by name similarity.
 > here because the alternative is that a reader finds it. It does not follow that either component is
 > mis-placed — the roster is a *Teams & Agents* object by every other test — but the ordering claim is
 > weaker than the diagram implies, and **cardinality and placement are KD decisions, not taken here**
-> ([`03-jtbd.md`](../comparisons/03-jtbd.md) §3 *Dependencies between jobs*).
+> ([`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §3 *Dependencies between jobs*).
 
 **What makes it deterministic is what makes it gradeable.** A rule that resolves — `frontend-dev` work
 goes to the actor holding that bound, in the repo the estate says owns it — can be read, diffed and
@@ -56,10 +56,10 @@ be reviewed at all.
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | `◐` — agent teams claim work with **file locks**, which is contention control rather than routing: it decides *that only one teammate takes a unit*, not *which teammate should*. There is no roster to resolve against | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Orchestration row |
-| **Deep Agents** | Routing exists and is aimed at a different axis: `profiles/` resolves **which implementation for which model family** — the substrate question, graded at `0a`. Sub-agent selection itself is left to the model | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Profiles* |
-| **MCP** | The nearest published thing, and it is narrow: a call is routed to **a server**, declared per project. That is registry resolution — *which connection*, never *which actor* | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | A **named set** rather than a rule: six purpose-built subagents — `codebase-locator`, `codebase-analyzer`, `codebase-pattern-finder`, `thoughts-locator`, `thoughts-analyzer`, `web-search-researcher`. Naming the destinations is most of the work; the selection is still the model's | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §7 |
+| **Claude Code** | `◐` — agent teams claim work with **file locks**, which is contention control rather than routing: it decides *that only one teammate takes a unit*, not *which teammate should*. There is no roster to resolve against | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Orchestration row |
+| **Deep Agents** | Routing exists and is aimed at a different axis: `profiles/` resolves **which implementation for which model family** — the substrate question, graded at `0a`. Sub-agent selection itself is left to the model | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §2 *Profiles* |
+| **MCP** | The nearest published thing, and it is narrow: a call is routed to **a server**, declared per project. That is registry resolution — *which connection*, never *which actor* | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | A **named set** rather than a rule: six purpose-built subagents — `codebase-locator`, `codebase-analyzer`, `codebase-pattern-finder`, `thoughts-locator`, `thoughts-analyzer`, `web-search-researcher`. Naming the destinations is most of the work; the selection is still the model's | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §7 |
 | **LoomWarp** | `router.py` — a deterministic resolver, and one of the few things in its column that is genuinely built. ⚠️ It resolves against a blueprint, **not against a roster**, because no roster exists — which makes it a sequencer wearing a router's name | [`loomwarp.md`](../content/loomwarp.md#3b-routing) |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.

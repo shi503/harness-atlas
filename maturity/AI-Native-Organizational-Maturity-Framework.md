@@ -14,7 +14,7 @@ owner: KD
 > the source [`../specs/v0/03-maturity.md`](../archive/v0/03-maturity.md) regrounds on — three eras,
 > six stages, four dimensions, and an explicit commitment threshold.
 >
-> **Genericization boundary**, applied per [`comparisons/systems/kd-built-frameworks/00-README.md`](../comparisons/systems/kd-built-frameworks/00-README.md) §3:
+> **Genericization boundary**, applied per [`archive/comparisons/systems/kd-built-frameworks/00-README.md`](../archive/comparisons/systems/kd-built-frameworks/00-README.md) §3:
 > company, product and initiative names removed; teammate initials other than the author's removed;
 > identifier *shapes* (`D-NNN`, `CD-NN`) retained, since a decision log *has* stable IDs and dropping
 > them would make the mechanisms unreadable. Some claims are therefore weaker than their evidence —

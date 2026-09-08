@@ -57,7 +57,7 @@ W4-loomwarp-HANDOFF.md` (prior run, skill findings), and `content/loomwarp.md` (
    `.claude-plugin/` marketplace manifest, and `paths:`-scoped rule files — closing several of the exact
    gaps the referenced upstream profile's own credibility check names ("no standards tier," "no context
    provenance"). This is recorded in §A's Install field, §B row 3e, §F, and the dated notes added to
-   `comparisons/02-component-matrix.md` and `04-harness-alignment.md` §2 — and explicitly **never** used
+   `components/MATRIX.md` and `04-harness-alignment.md` §2 — and explicitly **never** used
    to change a §B/§C mark, per the PRD's instruction to pin at the vendored commit.
 6. **`assets/projects/fractal/tier-diagram.mmd`** — upstream's own `README.md` "## Architecture"
    `graph TB` diagram (byte-identical at the pinned commit and at `U-HEAD`, confirmed by diff), redrawn
@@ -68,13 +68,13 @@ W4-loomwarp-HANDOFF.md` (prior run, skill findings), and `content/loomwarp.md` (
    City already sit in by the same installs-into exception, per the PRD's instruction to place it where
    the file's structure puts process layers (no dedicated "process layers" section exists; this is
    where the file already puts them).
-8. **`comparisons/04-harness-alignment.md`** §2 — a FRACTAL column added to the 33-row table (header,
+8. **`components/ALIGNMENT.md`** §2 — a FRACTAL column added to the 33-row table (header,
    all 33 rows, and the "Column totals" line: **FRACTAL 3 / 11 / 19**), a dated addition note above the
    table explaining the grading is against the pinned commit (not LoomWarp's federated build on top of
    it) and naming the five rows where LoomWarp's own additions diverge from FRACTAL's bare substrate.
    Every existing column (Hermes/Pi/OpenClaw/OpenCode/Grok/Codex/Gas City/LoomWarp) is byte-identical to
    before this run; only new cells were added.
-9. **`comparisons/02-component-matrix.md`** §1 — the *existing* FRACTAL column re-checked cell by cell
+9. **`components/MATRIX.md`** §1 — the *existing* FRACTAL column re-checked cell by cell
    against the new profile's §B, per the PRD ("correct only wrong cells with dated notes"). Two cells
    were wrong: **Harness adapter** `○→◐` (`SETUP-CURSOR.md`'s documented Cursor translation path, the
    same shape as Hermes's `◐ᴴ`) and **Skills** `◐→●` (seven first-class `SKILL.md` files, installed

@@ -23,9 +23,9 @@ plugs in to perform it.
 | Vocabulary | Where | What it claimed to be |
 |---|---|---|
 | Elements `E0`–`E11` | that file, §6 | the model |
-| Jobs `J1`–`J17` | [`03-jtbd.md`](../../comparisons/03-jtbd.md) | *"Genre A: **functions**"* (its own §4) |
-| Components, 18 | [`02-component-matrix.md`](../../comparisons/02-component-matrix.md) | *"a function is something performed; a component is something present"* (its own §5) |
-| Concepts, 17 | [`01-concepts.md`](../../comparisons/01-concepts.md) §3.x | the definitions |
+| Jobs `J1`–`J17` | [`03-jtbd.md`](../comparisons/03-jtbd.md) | *"Genre A: **functions**"* (its own §4) |
+| Components, 18 | [`02-component-matrix.md`](../../components/MATRIX.md) | *"a function is something performed; a component is something present"* (its own §5) |
+| Concepts, 17 | [`01-concepts.md`](../comparisons/01-concepts.md) §3.x | the definitions |
 
 That distinction never survived contact with a reader, and the corpus said so out loud:
 *"element/concept/component are all trying to convey the same thing — a function and capability of the
@@ -37,7 +37,7 @@ wiki, or a decision ledger as **things that plug in**, and it defined no contrac
 A model that cannot say *what fills a function* cannot answer the question a team actually asks.
 
 **The order this is built in**, and it is deliberate: **primitives → functions → scopes → providers.**
-[`06-frameworks-addendum.md`](../../comparisons/2026-08-research/06-frameworks-addendum.md)
+[`06-frameworks-addendum.md`](../comparisons/2026-08-research/06-frameworks-addendum.md)
 §0 warns that mapping one kind of object onto another is *"a translation, not an identity."* Building
 them in order is how the translation stays visible.
 
@@ -68,7 +68,7 @@ None is deleted. Each is demoted to the view it was always doing well.
 
 | Was | Becomes | Why it survives |
 |---|---|---|
-| **Jobs `J1`–`J17`** | the **evidence layer** for a function — measured attention, modelled or not | The CORE/OURS line in [`03-jtbd.md`](../../comparisons/03-jtbd.md) was **measured against a 562-session corpus rather than asserted.** It is the least-invented artifact we have. Demote it as a *vocabulary*; never as evidence. **IDs unchanged** |
+| **Jobs `J1`–`J17`** | the **evidence layer** for a function — measured attention, modelled or not | The CORE/OURS line in [`03-jtbd.md`](../comparisons/03-jtbd.md) was **measured against a 562-session corpus rather than asserted.** It is the least-invented artifact we have. Demote it as a *vocabulary*; never as evidence. **IDs unchanged** |
 | **Components, 18** | **sub-functions** where they decompose a function; **provider coverage** where they score a system | The five context rows — `Individual memory`, `Team memory`, `Context assembly`, `Capture loop`, `Provenance → outcome join` — are sub-functions of `F3`, not peers of `Harness adapter` |
 | **Concepts, 17** | the **definitions layer** | Its *"confused with"* column is the most useful thing in the corpus for a new reader and has no substitute here |
 
@@ -82,7 +82,7 @@ for the right to be it. The jobs measure, the components decompose, the concepts
 
 **Scope is an axis, not a property of a store.** Four peer systems make the individual/team boundary a
 first-class primitive; the predecessor had nowhere to put it, which
-[`01-concepts.md`](../../comparisons/01-concepts.md) §3.6 records as *"the largest single gap
+[`01-concepts.md`](../comparisons/01-concepts.md) §3.6 records as *"the largest single gap
 this analysis found"* and `OPEN-5` has carried since.
 
 |  | **project** — this codebase | **org** — everywhere |
@@ -113,7 +113,7 @@ treats it as an axis can.** Hence the 2×2.
 
 > **A provider implements one or more functions, at one or more declared scopes, against a contract.**
 
-**A provider is not a system.** [`02-component-matrix.md`](../../comparisons/02-component-matrix.md)'s
+**A provider is not a system.** [`02-component-matrix.md`](../../components/MATRIX.md)'s
 columns — Claude Code, gstack, Gas City, QM, Indigo, SageOx, FRACTAL, generic-cerebro, LoomWarp — are
 **process layers**: whole systems compared against each other. A provider is a **component inside one
 function**. Different axis. Merging them is the genre error the addendum warns about, so the matrix does
@@ -232,7 +232,7 @@ are argued individually in [`11-architecture.md`](./11-architecture.md) §5.1. *
 provider contract**, so none may be described as pluggable (§0.4).
 
 `LIFECYCLE` **is the band every published instrument omits**, and omitting it is our own recorded
-error — `[03-jtbd.md](../../comparisons/03-jtbd.md)` notes that these jobs are *"Voss's
+error — `[03-jtbd.md](../comparisons/03-jtbd.md)` notes that these jobs are *"Voss's
 system and oversight loop"* and that **we reproduced the field's omission.** It is also the only band
 whose output re-enters the system.
 
@@ -250,7 +250,7 @@ Every contradiction found in the corpus as of 2026-08-27, with the ruling and wh
 | **C-2**  | **Is the model a function?** §1 of `01-concepts.md` puts **MODEL** at the bedrock; §3.1 excludes it as *"an input to* `F0`*… ✅ Correctly excluded"*; `03-agentos-harness-multiplayer.md` says *"model as bedrock, below Ground"* | **Named, inside** `F0`**, as an explicit sub-decision.** The exclusion is overturned                 | The field's own equation is `Agent = Model + Harness`. The old argument proved the model is *not built by us*; it never proved it is *not decided by us*, and a map records decisions. `J3 route` and `J12 account` both hang off it                                                                                                             |
 | **C-3**  | **Is** `Substrate` **the right name?**                                                                                                                                                                                           | **Kept, under protest, and recorded as debt**                                                        | ⚠️ `Substrate` is **unattested in any published stack diagram** — the field says *Models and Inference* (Perrone), *Compute and Foundation Models* (Menlo). Renaming costs 25 citations across 24 files and would re-open `C-1`'s ambiguity one week after closing it. **Deferred, not settled**                                                 |
 | **C-4**  | **Adapters: function or cross-cutting property?** `elements.md` called runtime-neutrality a deliberate non-element                                                                                                                | **A property of** `F0`**, not a peer function**                                                       | Three of three comparable systems build it, which overturned "non-element". But LangChain's *model profiles* show it is a **per-task** property, not a standalone thing you construct                                                                                                                                                            |
-| **C-5**  | `Agent = Model + Harness` (harness contains context) vs `Agent = harness + model + context` (context is a peer)                                                                                                                  | **Context is a peer.** `F3` stays separate from `F0`                                                 | LangChain states the three-part split directly; our structure already agreed. See `[../../references/comparisons/systems/langchain-deepagents.md](../../comparisons/systems/langchain-deepagents.md)` §2                                                                                                                              |
+| **C-5**  | `Agent = Model + Harness` (harness contains context) vs `Agent = harness + model + context` (context is a peer)                                                                                                                  | **Context is a peer.** `F3` stays separate from `F0`                                                 | LangChain states the three-part split directly; our structure already agreed. See `[../../references/comparisons/systems/langchain-deepagents.md](../comparisons/systems/langchain-deepagents.md)` §2                                                                                                                              |
 | **C-6**  | **Is our primitive set stated?** `01-concepts.md` §3.17 says *"unanswered"*; `06-frameworks-addendum.md` §4 lists six. **Both committed**                                                                                        | **§3 states it once.** The addendum's six are adopted with one correction                            | `02-component-matrix.md`: *"you cannot claim 'one way to do each thing' until you can name the things."* Leaving it blank was the finding; leaving it blank *twice, differently* is just drift                                                                                                                                                   |
 | **C-7**  | **Rituals** — dismissed on frequency (`standup` 0, `ceremon` 0, `ritual` 1), then reopened                                                                                                                                       | `F10 Cadence` **is a function**                                                                      | The dismissal answered the wrong question and applied **two thresholds to two concepts** — `multiplayer` (6) was called *"real"*, Rituals (1) dead. A ritual is not a meeting; it is **a scheduled loop that emits an artifact**, and the corpus supports that: cron reviews, scheduled checks, `transcri` 12. `J17` **has no input without it** |
 | **C-8**  | **Stewardship** — agent or gate? (`OPEN-9`)                                                                                                                                                                                      | **Agent, over an evidence corpus**                                                                   | No longer a design question. **LangSmith Engine is a shipped implementation**: a background agent that reads traces, files issues with linked evidence, and proposes changes to prompt, context and harness. `generic-cerebro`'s tier split (agent over `wiki/`, gate over `decision-log/`) remains the finer answer                             |
@@ -332,7 +332,7 @@ convention graduates (`J16`), not before.
 ## 4. The evidence layer — the jobs, and what they measure
 
 Genre A: **functions**. The seventeen jobs in
-`[03-jtbd.md](../../comparisons/03-jtbd.md)`, which were measured against a corpus rather
+`[03-jtbd.md](../comparisons/03-jtbd.md)`, which were measured against a corpus rather
 than asserted. Not repeated here; the mapping to functions is what this document owes.
 
 **All seventeen are now placed.** Six had no function and two were miscovered:
@@ -389,7 +389,7 @@ defines it** — see §9.
 
 LangChain is the only source that says **where in the loop** you customise, rather than what a
 harness contains. This is the verb-bounding that
-`[04-primitives-ontology-platform.md](../../comparisons/2026-08-research/04-primitives-ontology-platform.md)`
+`[04-primitives-ontology-platform.md](../comparisons/2026-08-research/04-primitives-ontology-platform.md)`
 §5 says is the durable half of ontology:
 
 
@@ -618,7 +618,7 @@ parent directories the way `CLAUDE.md` files are.
 > per-job manifest of what was actually resolved, not an authored overview.
 >
 > *Confirm the arXiv ID before external citation — two research briefs gave different numbers; see*
-> `[../../references/comparisons/2026-08-research/99-source-hygiene.md](../../comparisons/2026-08-research/99-source-hygiene.md)` *§2.*
+> `[../../references/comparisons/2026-08-research/99-source-hygiene.md](../comparisons/2026-08-research/99-source-hygiene.md)` *§2.*
 
 **This is the function where LoomWarp has a claim nobody else is making.** Native Claude Code has the
 building blocks — the `InstructionsLoaded` hook reports which instruction files loaded, when, and
@@ -946,7 +946,7 @@ experiment. Nobody measures what a *workstream* cost the team, or joins that to 
 
 Functions and factors are different objects, and the corpus is explicit about it: **functions are
 implemented and graded; factors are held.** Genre B and Genre C. The fourteen factors live in
-`[../../references/comparisons/2026-08-research/05-harness-factors.md](../../comparisons/2026-08-research/05-harness-factors.md)`;
+`[../../references/comparisons/2026-08-research/05-harness-factors.md](../comparisons/2026-08-research/05-harness-factors.md)`;
 what this document owes is the mapping.
 
 

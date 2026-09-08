@@ -17,7 +17,7 @@ job the other two cannot.
 **Why it is not a grade.** Every axis below has **two live poles and two stated costs**. `+3` on
 *operator scale* is not better than `−3`; it is a different harness for a different buyer, and it costs
 you solo velocity. An axis where you cannot name what the high end costs you is not a spectrum — it is
-a maturity grade wearing a slider, and it belongs in [`../maturity/`](../maturity/), not here.
+a maturity grade wearing a slider, and it belongs in [`../maturity/`](../maturity), not here.
 
 **Where the form came from.** Directly from the persona sheets: ten `−3…+3` meters, fixed across every
 persona, tuned per instance, rendered as sliders beside the long form. The compression is the point —
@@ -30,22 +30,22 @@ health-tech-specific; what is specific is *which* axes, and the derivation is in
 
 | Instrument | Where | Question | Verdict shape |
 |---|---|---|---|
-| **The grid** | [`../comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) · [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) | *What does it ship?* | `●` `◐` `○` per component |
+| **The grid** | [`../components/MATRIX.md`](../components/MATRIX.md) · [`04-harness-alignment.md`](../components/ALIGNMENT.md) | *What does it ship?* | `●` `◐` `○` per component |
 | **The spectrum sheet** | here | *Where does it sit?* | `−3…+3` per axis, **no good end** |
-| **The maturity range** | [`../maturity/`](../maturity/) | *How are we doing?* | 1–6, **minimum governs** |
+| **The maturity range** | [`../maturity/`](../maturity) | *How are we doing?* | 1–6, **minimum governs** |
 
 The grid says a harness has enforcement. The sheet says whether that enforcement is prose, a gate the
 model can route around, or a control outside the prompt. The range says whether your team is good
 enough yet. **Only the third one grades**, and it grades a team, not a harness.
 
 **The sheet has two faces, and they are one instrument.** Ten axes here — the detail layer, for the
-reader who will open an anchor. Seven authored dimensions at [`01-scorecard.md`](01-scorecard.md) —
+reader who will open an anchor. Seven authored dimensions at [`01-scorecard.md`](./01-scorecard.md) —
 the headline layer, for the reader who will not, revised 2026-09-07 and rendered at
-[`positioning.md`](positioning.md). One YAML file per harness holds both. The scorecard
+[`positioning.md`](./positioning.md). One YAML file per harness holds both. The scorecard
 is **not** a fourth instrument, and calling it one would re-fuse what
-[`../RULING-2026-09-02-spinout.md`](../RULING-2026-09-02-spinout.md) un-fused.
+[`../rulings/2026-09-02-spinout.md`](../rulings/2026-09-02-spinout.md) un-fused.
 
-**Vocabulary note — not "the heuristics".** In [`../comparisons/2026-08-research/05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md)
+**Vocabulary note — not "the heuristics".** In [`../comparisons/2026-08-research/05-harness-factors.md`](../archive/comparisons/2026-08-research/05-harness-factors.md)
 and in the outside literature (compaction rules, sandboxing by default, bounded iteration), a
 *heuristic* is an architectural **rule you hold**. This sheet is a **measurement you take**. Reusing the
 word would break the teardown skill's own rule 3. Proposed ledger row: `spectrum` → *a named continuum
@@ -81,7 +81,7 @@ original sentence simply predates Template v2. This is a correction of a stale e
 relaxation of the rule: R3's test is unchanged — *no new research*.
 
 **Dated revision — 2026-09-07.** The ten axes below are **unchanged**. A headline layer of seven
-authored dimensions was added at [`01-scorecard.md`](01-scorecard.md), per R7's *"fix the sheet in a
+authored dimensions was added at [`01-scorecard.md`](./01-scorecard.md), per R7's *"fix the sheet in a
 dated revision; do not fork it."* R7 is not relaxed: it forbids **per-harness** axes, and the seven
 are house-owned and applied identically to every harness. Ruling: `2026-09-07-dx-scorecard`.
 
@@ -89,7 +89,7 @@ are house-owned and applied identically to every harness. Ruling: `2026-09-07-dx
 polarity**. KD revised the seven dimensions above them (ruling `2026-09-07-dx-revision`), which moved
 four `Headline` rows in §3: axis VIII is promoted out of detail-only, axis III is demoted into it, and
 axes VI and X are now read partially rather than whole. Every change is a display decision about the
-headline layer; nothing below §3's anchors moved. See [`01-scorecard.md`](01-scorecard.md) §7.
+headline layer; nothing below §3's anchors moved. See [`01-scorecard.md`](./01-scorecard.md) §7.
 
 ---
 
@@ -183,10 +183,10 @@ spectrums:
 | **Anchors** | `−3` OpenClaw, *"designed for a single operator"* · `+3` QM's per-scope rooms |
 | **Cost of +3** | Every feature must be scoped before it ships; solo velocity drops |
 | **Cost of −3** | The second-user bottleneck — coordination, visibility, review, shared context |
-| **Headline** | **DX-1** Org scale — pass-through, and the only one left. [`01-scorecard.md`](01-scorecard.md) |
+| **Headline** | **DX-1** Org scale — pass-through, and the only one left. [`01-scorecard.md`](./01-scorecard.md) |
 
 This is the axis KD named ("team size"), and it is the spine of
-[`05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md) §2's SOLO → TEAM →
+[`05-harness-factors.md`](../archive/comparisons/2026-08-research/05-harness-factors.md) §2's SOLO → TEAM →
 MULTI-TEAM → ORG rendering. That rendering is the fuller reading; this is its compression.
 
 ### II · State durability — *what survives the process?* `polar`
@@ -200,7 +200,7 @@ MULTI-TEAM → ORG rendering. That rendering is the fuller reading; this is its 
 | **Anchors** | `+3` beads — dependency-aware task graph in a Dolt SQL database, atomic claiming |
 | **Cost of +3** | A schema to migrate and a store to run; state outlives the reason it was written |
 | **Cost of −3** | No resumption, no audit, no second reader |
-| **Headline** | detail-only — splits across DX-1 and DX-6 without belonging to either. [`01-scorecard.md`](01-scorecard.md) §3 |
+| **Headline** | detail-only — splits across DX-1 and DX-6 without belonging to either. [`01-scorecard.md`](./01-scorecard.md) §3 |
 
 ### III · Binding force — *what actually stops the model?* `polar`
 
@@ -213,7 +213,7 @@ MULTI-TEAM → ORG rendering. That rendering is the fuller reading; this is its 
 | **Anchors** | `+3` Macedo's **T4**, stated as a *membership condition* for being a harness at all |
 | **Cost of +3** | False stops and friction; the escape hatch becomes a design problem of its own |
 | **Cost of −3** | Every guardrail is a suggestion |
-| **Headline** | detail-only since 2026-09-07 — DX-2 was re-referented to *Weight class*, which reads axis VIII, not this. Binding force is now read at the detail layer alone. [`01-scorecard.md`](01-scorecard.md) §7 |
+| **Headline** | detail-only since 2026-09-07 — DX-2 was re-referented to *Weight class*, which reads axis VIII, not this. Binding force is now read at the detail layer alone. [`01-scorecard.md`](./01-scorecard.md) §7 |
 
 Factor `VII`. The `0` notch is the *doctrine ≠ code* case the teardown skill names as the normal case —
 the docs say a gate exists; the code says it was bypassed. Score the code.
@@ -229,7 +229,7 @@ the docs say a gate exists; the code says it was bypassed. Score the code.
 | **Anchors** | `−3` FRACTAL, LoomWarp · `0` Hermes, OpenClaw · `+3` Codex CLI, Pi, OpenCode |
 | **Cost of +3** | You own model churn, every adapter, and every regression in the substrate |
 | **Cost of −3** | You inherit every host's limits and cannot fix them |
-| **Headline** | detail-only — `dual_allowed`, and a headline cell structurally cannot hold two values. [`01-scorecard.md`](01-scorecard.md) §3 |
+| **Headline** | detail-only — `dual_allowed`, and a headline cell structurally cannot hold two values. [`01-scorecard.md`](./01-scorecard.md) §3 |
 
 The altitude taxonomy made ordinal. **Dual scoring is required, not tolerated**: Gas City both hosts
 loops and installs into them, and skill rule 7 says record both. A *hosted product* (loop not
@@ -245,7 +245,7 @@ user-visible) scores `+3` with `loop_visible: false` — it is not a fourth notc
 | **Rows** | `0a` `2a` `3e` |
 | **Cost of +3** | Lowest-common-denominator features; no substrate-specific depth |
 | **Cost of −3** | Lock-in — but you get everything the substrate has |
-| **Headline** | **DX-6** Ownership — [`01-scorecard.md`](01-scorecard.md) |
+| **Headline** | **DX-6** Ownership — [`01-scorecard.md`](./01-scorecard.md) |
 
 `J13`'s finding applies directly: **adapters are the maturity tell — you write one only after the first
 choice hurt.** A `+3` here is usually evidence of a past `−3`.
@@ -276,7 +276,7 @@ is included because it is free: §5 already produces the verdict, and the sheet 
 | **Rows** | `3a` `2c` `9c` `7a` |
 | **Cost of +3** | Blast radius, and a bill nobody watched accrue |
 | **Cost of −3** | The human is the throughput ceiling |
-| **Headline** | detail-only — orthogonal to DX-2: a heavyweight harness can run unattended, a lightweight one can be approval-first. [`01-scorecard.md`](01-scorecard.md) §3 |
+| **Headline** | detail-only — orthogonal to DX-2: a heavyweight harness can run unattended, a lightweight one can be approval-first. [`01-scorecard.md`](./01-scorecard.md) §3 |
 
 **✅ RULED 2026-09-07 — this axis is `polar`.** Ruling `2026-09-07-axis-vii-polar`, on the evidence the
 axis itself asked for.
@@ -310,7 +310,7 @@ should is a separate decision — see `01-scorecard.md` §3.
 | **Anchors** | `+3` FRACTAL's HANDOFF, whose *"not completed"* section must say `None` rather than be skipped |
 | **Cost of +3** | A ceremony tax on every one-line change |
 | **Cost of −3** | *"It said it was done."* |
-| **Headline** | **DX-2** Weight class — **direct**. Promoted out of detail-only 2026-09-07: *expected rigor* is a buyer's words for *how is completion known*. [`01-scorecard.md`](01-scorecard.md) §7 |
+| **Headline** | **DX-2** Weight class — **direct**. Promoted out of detail-only 2026-09-07: *expected rigor* is a buyer's words for *how is completion known*. [`01-scorecard.md`](./01-scorecard.md) §7 |
 
 Factor `X`.
 
@@ -325,7 +325,7 @@ Factor `X`.
 | **Anchors** | `+3` finding-classes promoting into standards; the llm-wiki pattern |
 | **Cost of +3** | Curation burden, drift, and rules that outlive the reason they were written |
 | **Cost of −3** | The same lesson relearned every quarter |
-| **Headline** | detail-only — an analyst's question, and the axis most likely to go stale as a harness matures. [`01-scorecard.md`](01-scorecard.md) §3 |
+| **Headline** | detail-only — an analyst's question, and the axis most likely to go stale as a harness matures. [`01-scorecard.md`](./01-scorecard.md) §3 |
 
 Factor `XI`, and Karpathy's test: ***does knowledge compound, or does it just get retrieved?***
 
@@ -339,7 +339,7 @@ Factor `XI`, and Karpathy's test: ***does knowledge compound, or does it just ge
 | **Rows** | `8d` `8c` `8b` |
 | **Cost of +3** | Instrumentation that only pays for itself at org scale |
 | **Cost of −3** | A system nobody can justify continuing to buy |
-| **Headline** | **DX-7** Cost controls & efficiency — **the observability third only**, not a pass-through since 2026-09-07. [`01-scorecard.md`](01-scorecard.md) §7 |
+| **Headline** | **DX-7** Cost controls & efficiency — **the observability third only**, not a pass-through since 2026-09-07. [`01-scorecard.md`](./01-scorecard.md) §7 |
 
 Factor `XIV`, and the sharpest finding in the research: practitioners are saturated with cost while **no
 published harness taxonomy gives it a row**. **This axis is expected to fail R6** — near-total clustering
@@ -428,4 +428,4 @@ that have a better end, and eight of these ten do not.
 
 ---
 
-*Companions: [`01-scorecard.md`](01-scorecard.md) — the seven headline dimensions read over these ten · [`../comparisons/2026-08-research/05-harness-factors.md`](../comparisons/2026-08-research/05-harness-factors.md) — the fourteen rules these axes measure against · [`../skills/harness-teardown/SKILL.md`](../skills/harness-teardown/SKILL.md) — §7's inclusion test, which axes I–III make continuous · [`../maturity/AI-Native-Organizational-Maturity-Framework.md`](../maturity/AI-Native-Organizational-Maturity-Framework.md) — the instrument that does grade*
+*Companions: [`01-scorecard.md`](./01-scorecard.md) — the seven headline dimensions read over these ten · [`../comparisons/2026-08-research/05-harness-factors.md`](../archive/comparisons/2026-08-research/05-harness-factors.md) — the fourteen rules these axes measure against · [`../skills/harness-teardown/SKILL.md`](../skills/harness-teardown/SKILL.md) — §7's inclusion test, which axes I–III make continuous · [`../maturity/AI-Native-Organizational-Maturity-Framework.md`](../maturity/AI-Native-Organizational-Maturity-Framework.md) — the instrument that does grade*

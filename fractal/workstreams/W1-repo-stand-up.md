@@ -12,7 +12,7 @@ feature-lead against a PRD without a router.
 
 ## Deliverable
 
-`RULING-2026-09-02-spinout.md` and the tree it describes: `index.md` stub, `harnesses/`,
+`rulings/2026-09-02-spinout.md` and the tree it describes: `index.md` stub, `harnesses/`,
 `comparisons/`, `maturity/`, `craft/`, `spec/`, `archive/`, `vocabulary.md` seed, `CLAUDE.md`,
 `.claude/agents/{architect,feature-lead}.md`, `fractal/ISSUES.md`, the eight PRDs,
 `scripts/check-doc-links.mjs` and the one-shot `scripts/rewrite-paths.mjs`.

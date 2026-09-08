@@ -46,7 +46,7 @@ verification:
 | **Serves** | One operator per session; managed settings, Code Review and analytics run org-wide → [10b](#10b-org) |
 | **Refuses** | No published refusal list — checked `glossary.md`, `overview.md`, `how-claude-code-works.md` → [§5](#5-primitives) |
 | **Coverage** | ● 17 · ◐ 14 · ○ 2 · n/a 0 → [§4](#4-component-matrix) |
-| **Deep read** | [`content/claude-code/`](claude-code/00-README.md) — 12-document extensibility reference (2026-08-10 read, relayed here) |
+| **Deep read** | [`content/claude-code/`](./claude-code/00-README.md) — 12-document extensibility reference (2026-08-10 read, relayed here) |
 | **Source** | anthropics/claude-code @ v2.1.261 (`d7dbd9a09f5977…`) · code.claude.com/docs/en/ · read 2026-09-04 |
 | **Unverified** | 9 items → [§10](#10-unverified) |
 
@@ -93,17 +93,17 @@ renders `positioning.md`, so the two match by construction. Re-score in the YAML
 [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) ·
 [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-**Deep read** — [`content/claude-code/`](claude-code/00-README.md), a 12-document extensibility
-reference set at a finer grain than §6: [extension surfaces](claude-code/01-extension-surfaces.md) ·
-[skills](claude-code/02-skills.md) · [hooks](claude-code/03-hooks.md) ·
-[subagents](claude-code/04-subagents.md) ·
-[multi-agent orchestration](claude-code/05-multi-agent-orchestration.md) ·
-[plugins and distribution](claude-code/06-plugins-and-distribution.md) ·
-[context and memory](claude-code/07-context-and-memory.md) ·
-[policy and governance](claude-code/08-policy-and-governance.md) ·
-[telemetry and evidence](claude-code/09-telemetry-and-evidence.md) ·
-[programmatic and SDK](claude-code/10-programmatic-and-sdk.md) ·
-[the consolidated guide](claude-code/20-consolidated-guide.md)
+**Deep read** — [`content/claude-code/`](./claude-code/00-README.md), a 12-document extensibility
+reference set at a finer grain than §6: [extension surfaces](./claude-code/01-extension-surfaces.md) ·
+[skills](./claude-code/02-skills.md) · [hooks](./claude-code/03-hooks.md) ·
+[subagents](./claude-code/04-subagents.md) ·
+[multi-agent orchestration](./claude-code/05-multi-agent-orchestration.md) ·
+[plugins and distribution](./claude-code/06-plugins-and-distribution.md) ·
+[context and memory](./claude-code/07-context-and-memory.md) ·
+[policy and governance](./claude-code/08-policy-and-governance.md) ·
+[telemetry and evidence](./claude-code/09-telemetry-and-evidence.md) ·
+[programmatic and SDK](./claude-code/10-programmatic-and-sdk.md) ·
+[the consolidated guide](./claude-code/20-consolidated-guide.md)
 
 ## 2. System map
 
@@ -335,7 +335,7 @@ flowchart LR
 <details>
 <summary>● <b>Hook</b> — 33 events, fail-open by default, 5 handler types</summary>
 
-**Ships.** 33 named lifecycle events (`SessionStart` through `ElicitationResult`, counted directly from the `###` headings in the raw reference page), five handler types (command, HTTP, MCP tool, prompt, agent), and a decision protocol where most events fail open (*"The hook can deny the call, but staying silent doesn't approve it"*) while `PreToolUse`/`UserPromptSubmit`/`Stop` and others fail closed on exit 2. Full event list and matcher syntax: [`content/claude-code/03-hooks.md`](claude-code/03-hooks.md) (↪, 2026-08-10 read, 29 events at that date — the count has grown).
+**Ships.** 33 named lifecycle events (`SessionStart` through `ElicitationResult`, counted directly from the `###` headings in the raw reference page), five handler types (command, HTTP, MCP tool, prompt, agent), and a decision protocol where most events fail open (*"The hook can deny the call, but staying silent doesn't approve it"*) while `PreToolUse`/`UserPromptSubmit`/`Stop` and others fail closed on exit 2. Full event list and matcher syntax: [`content/claude-code/03-hooks.md`](./claude-code/03-hooks.md) (↪, 2026-08-10 read, 29 events at that date — the count has grown).
 **Path.** `hooks` block in settings; `hooks/hooks.json` in a plugin
 **Source.** ✅ `hooks.md` (raw fetch) · ✅ `hooks-guide.md`
 
@@ -377,7 +377,7 @@ flowchart LR
 <details>
 <summary>● <b>Subagent</b> + <b>Agent team</b> (experimental, off by default)</summary>
 
-**Ships.** Subagents run in an isolated context window and report a summary back; agent teams (experimental, `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`, disabled by default) are peer sessions coordinating over a shared, file-locked task list and direct messaging. Forks share the parent's full context and prompt cache. Nesting capped at depth 3, concurrency at 20 subagents / one team per session. Full reference: [`content/claude-code/04-subagents.md`](claude-code/04-subagents.md), [`05-multi-agent-orchestration.md`](claude-code/05-multi-agent-orchestration.md) (↪, 2026-08-10).
+**Ships.** Subagents run in an isolated context window and report a summary back; agent teams (experimental, `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`, disabled by default) are peer sessions coordinating over a shared, file-locked task list and direct messaging. Forks share the parent's full context and prompt cache. Nesting capped at depth 3, concurrency at 20 subagents / one team per session. Full reference: [`content/claude-code/04-subagents.md`](./claude-code/04-subagents.md), [`05-multi-agent-orchestration.md`](./claude-code/05-multi-agent-orchestration.md) (↪, 2026-08-10).
 **Path.** `.claude/agents/*.md`; `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS`
 **Source.** ✅ `sub-agents.md` · ✅ `agent-teams.md`
 
@@ -409,7 +409,7 @@ flowchart LR
 <details>
 <summary>● <b>Skill</b> + MCP + <b>Plugin</b> bundling both</summary>
 
-**Ships.** Skills (model-invoked or `/name`-invoked, progressive disclosure — description always loads, body on demand), MCP servers, and plugins that bundle both plus hooks, subagents, LSP servers and monitors under one namespaced (`plugin-name:skill-name`) install. Official and community marketplaces distribute plugins pinned to a commit SHA. Full reference: [`content/claude-code/02-skills.md`](claude-code/02-skills.md), [`06-plugins-and-distribution.md`](claude-code/06-plugins-and-distribution.md) (↪, 2026-08-10).
+**Ships.** Skills (model-invoked or `/name`-invoked, progressive disclosure — description always loads, body on demand), MCP servers, and plugins that bundle both plus hooks, subagents, LSP servers and monitors under one namespaced (`plugin-name:skill-name`) install. Official and community marketplaces distribute plugins pinned to a commit SHA. Full reference: [`content/claude-code/02-skills.md`](./claude-code/02-skills.md), [`06-plugins-and-distribution.md`](./claude-code/06-plugins-and-distribution.md) (↪, 2026-08-10).
 **Path.** `.claude/skills/`, `.claude-plugin/plugin.json`
 **Source.** ✅ `skills.md` · ✅ `plugins.md`
 
@@ -525,7 +525,7 @@ flowchart LR
 <details>
 <summary>● <code>claude_code.tool_decision</code> permission-audit event</summary>
 
-**Ships.** `claude_code.tool_decision` is a named permission-decision audit event (accept/reject); `claude_code.permission_mode_changed` and `claude_code.auth` add adjacent audit events. Full attribute list: [`content/claude-code/09-telemetry-and-evidence.md`](claude-code/09-telemetry-and-evidence.md) (↪, 2026-08-10).
+**Ships.** `claude_code.tool_decision` is a named permission-decision audit event (accept/reject); `claude_code.permission_mode_changed` and `claude_code.auth` add adjacent audit events. Full attribute list: [`content/claude-code/09-telemetry-and-evidence.md`](./claude-code/09-telemetry-and-evidence.md) (↪, 2026-08-10).
 **Path.** OTel Logs/Events exporter
 **Source.** ✅ `monitoring-usage.md`
 
@@ -717,9 +717,9 @@ flowchart LR
 
 `gh api` commands run: `gh api repos/anthropics/claude-code`, `gh api repos/anthropics/claude-code/tags[?page=]`, `gh api repos/anthropics/claude-code/releases/latest`, `gh api repos/anthropics/claude-code/releases/tags/v2.0.73`, `gh api repos/anthropics/claude-code/git/refs/tags/v2.1.261`, `gh api repos/anthropics/claude-code/contents/LICENSE.md`, `gh api repos/anthropics/claude-code/git/trees/main`.
 
-**Secondary** (↪): [`content/claude-code/`](claude-code/00-README.md) — 12-document deep read, sourced 2026-08-10, used for full field/event tables this profile summarises and links out to; `comparisons/systems/claude-code.md` — the prior pointer page.
+**Secondary** (↪): [`content/claude-code/`](./claude-code/00-README.md) — 12-document deep read, sourced 2026-08-10, used for full field/event tables this profile summarises and links out to; `comparisons/systems/claude-code.md` — the prior pointer page.
 
-**Placement.** [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 (Claude Code column) · [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 (Claude Code column).
+**Placement.** [`archive/comparisons/systems/90-short-profiles.md`](../archive/comparisons/systems/90-short-profiles.md) §1 · [`components/ALIGNMENT.md`](../components/ALIGNMENT.md) §2 (Claude Code column) · [`components/MATRIX.md`](../components/MATRIX.md) §1 (Claude Code column).
 
 **Diagrams not redrawn:**
 - "Diagram of session continuity: resume continues the same session, fork creates a new branch with a new ID" — `how-claude-code-works.md#work-with-sessions`

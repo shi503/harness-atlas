@@ -89,7 +89,7 @@ and it breaks no promise, because a promise not made cannot break.
 
 | Tier | Contents | Rule |
 |---|---|---|
-| **T1 · ships** | `README.md` · `index.md` · `content/*.md` ×10 · `content/claude-code/` · `spectrums/` · `vocabulary.md` · `RULINGS.md` · `CLAUDE.md` · `assets/` | Must be clean of private links and of un-recut doors |
+| **T1 · ships** | `README.md` · `index.md` · `content/*.md` ×10 · `content/claude-code/` · `spectrums/` · `vocabulary.md` · `rulings/00-README.md` · `CLAUDE.md` · `assets/` | Must be clean of private links and of un-recut doors |
 | **T2 · ships when built** | `components/` ×33 · `maturity/` | Declared as forthcoming, or not declared |
 | **T3 · does not ship yet** | `spec/` · `comparisons/` · `craft/` · `archive/` · `fractal/` | Where 68 of 74 dead links and 100% of the LoomWarp bleed live. Recut or hold |
 

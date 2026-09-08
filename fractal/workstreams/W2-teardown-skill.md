@@ -30,7 +30,7 @@ the highest-leverage artifact in the epic.
 | frontmatter | `title · tier · project · created · status · owner · source (repo @ sha · docs · read <date>) · provenance: OBSERVED` | |
 | opener | `**Why this file exists.**` / `**In one screen.**` / `**What it does not claim.**` | fixed, bolded, three paragraphs |
 | legend | `✅ direct · ◐ relayed · ⚠️ unverified` | every factual cell carries one |
-| **A** Identity | 13-row field table · verbatim *"what it says it is"* quotes · the three-question inclusion test (does state persist, and where? does it serve more than one person? does it bind mechanically or only by prose?) · **the loop question** from `comparisons/04-harness-alignment.md` §4.1 (only it separates a host from a runtime) · harness-or-process-layer probe · primitive preview | |
+| **A** Identity | 13-row field table · verbatim *"what it says it is"* quotes · the three-question inclusion test (does state persist, and where? does it serve more than one person? does it bind mechanically or only by prose?) · **the loop question** from `components/ALIGNMENT.md` §4.1 (only it separates a host from a runtime) · harness-or-process-layer probe · primitive preview | |
 | **B** 33 rows | fixed order `0a`…`11a` | absence is written `**Nothing here** — checked README, docs index, settings, examples`. Never inferred |
 | **C** Primitives | `Primitive · path/key · project's own definition (verbatim) · source` | vendor's words only. Count them: 5–7 healthy, 12+ accommodation failure, a published refusal list is the strongest form |
 | **D** Limitations | blockquotes grouped by source doc | no commentary |
@@ -39,7 +39,7 @@ the highest-leverage artifact in the epic.
 
 **Downstream obligations, encoded as skill steps** because skipping them is a live bug (ISSUE-001):
 (a) a row in `comparisons/systems/90-short-profiles.md` marked *Torn down `<date>`*; (b) a column in
-`comparisons/04-harness-alignment.md` §2; (c) a column in `comparisons/02-component-matrix.md` §1;
+`components/ALIGNMENT.md` §2; (c) a column in `components/MATRIX.md` §1;
 (d) a `structured output` line — the one artifact this harness optimises.
 
 ## Acceptance criteria

@@ -34,7 +34,7 @@ paths — and it is closed.
    *"launders unreviewed scores as honestly-labelled unreviewed scores and then ships them anyway"* —
    an agent flipping that bit is the laundering.
 2. **The licence choice.** No `LICENSE` file was created. The argument and the ready text are in
-   [`LICENSING-RECOMMENDATION.md`](LICENSING-RECOMMENDATION.md): CC-BY-4.0 for the prose, MIT for
+   [`LICENSING-RECOMMENDATION.md`](./LICENSING-RECOMMENDATION.md): CC-BY-4.0 for the prose, MIT for
    `scripts/` and `skills/`, and a `NOTICE` covering quoted vendor docs and the redrawn diagrams.
    Applying it is three files and one decision.
 3. **The `status: DRAFT` → `ACTIVE` flip.** Not touched, for the same reason as R11 — it is the same
@@ -83,7 +83,7 @@ in the set. **AC-1's 100-line cap is recorded as breached, not widened:** pages 
 each carries the corpus table the same PRD asks for.
 
 **4 · The archival by ruling.** `spec/`, `craft/`, the ADR drafts and the two superseded profile
-drafts. `RULING-2026-09-08-archival.md`. All 33 Tier-2 nav banners re-pointed first, so no component
+drafts. `rulings/2026-09-08-archival.md`. All 33 Tier-2 nav banners re-pointed first, so no component
 page opens into the archive. The re-heading rule the precedent could not settle is now ruled: *a
 whole-directory archival re-heads by index and frontmatter, and banners only the files carrying
 inbound citations from live material.*

@@ -59,7 +59,7 @@ the grid must match.
 `status: SUPERSEDED` and `superseded_by:` pointing at the new page.~~ **Struck 2026-09-08 by W11.**
 The 33 are `git mv`'d out of `spec/` into `components/` *before* the rest of `spec/` is archived, so
 no residue is left behind to archive and no `superseded_by:` pointer is needed — the file **is** the
-successor, carried forward rather than copied. `RULING-2026-09-02-spinout.md` §*What moved* row 1
+successor, carried forward rather than copied. `rulings/2026-09-02-spinout.md` §*What moved* row 1
 anticipated *"re-cut source for W5, then archived"* on the assumption the re-cut was a rewrite; it is
 a move, so the second half does not apply.
 

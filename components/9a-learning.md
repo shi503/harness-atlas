@@ -31,7 +31,7 @@ requires: ["8a"]
 retrieved?* — and correctly declines to answer, because a store cannot. **The answer is a gate or it
 is nothing**: knowledge appreciates exactly to the degree that something decides a lesson is now
 canon, records who decided, and can undo it. Everything else in the loop is capture
-([`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J9`).
+([`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §2 `J9`).
 
 **The field disagrees about the failure mode, and both positions are funded.** SageOx bet $15M that
 **manual** curation is the failure — engineering around it in software and in hardware, because
@@ -44,7 +44,7 @@ built four ways and nobody has agreed what it is for.
 outcomes arrived natively. **Promotion with rollback, and retroactive invalidation of an accepted
 result, are shipped by nobody** — including by the peer that regenerates a machine-maintained wiki
 from its own repository, which *"does not promote a claim to canon or invalidate downstream work when
-a claim breaks"* ([`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §8).
+a claim breaks"* ([`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §8).
 
 **And promotion has an owner problem this row does not close.** *Who maintains the canon*, as distinct
 from who decides it, is `OPEN-9`, and it is recorded once — from the authority side, at
@@ -63,10 +63,10 @@ not [`8a`](./8a-evals.md), which produces the finding this consumes.
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | `◐` — the eval half is real and is enumerated at [`8a`](./8a-evals.md), and subagent `memory:` scopes give a lesson somewhere to land. **What is absent is the step between them**: nothing native takes a finding, writes it into canon under an owner's approval, and keeps a way back out. The corpus exists; the gate does not | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Learning row |
-| **Deep Agents** | `openwiki` is the nearest published loop and it is a **regeneration** rather than a promotion: an agent rewrites the wiki from git history under standing instructions, with per-claim evidence pinning. Its own teardown draws the boundary this row needs — *"no promotion, no rollback, no retroactive invalidation"* | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §4, §8 |
-| **MCP** | **Nothing here.** It can connect an agent to the store a lesson would land in, which makes it plumbing for the capture step and never an answer to the gate. Promotion is a decision, and a connection mechanism holds none | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | Learning as **mental alignment rather than artifact**, which is a real and under-argued position: the stated product of review is not correctness but that the team does not *"lose touch with what our product was and how it worked."* A loop that improves the people is measured differently from one that improves the canon, and this peer is explicit about which it is buying | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §2 |
+| **Claude Code** | `◐` — the eval half is real and is enumerated at [`8a`](./8a-evals.md), and subagent `memory:` scopes give a lesson somewhere to land. **What is absent is the step between them**: nothing native takes a finding, writes it into canon under an owner's approval, and keeps a way back out. The corpus exists; the gate does not | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Learning row |
+| **Deep Agents** | `openwiki` is the nearest published loop and it is a **regeneration** rather than a promotion: an agent rewrites the wiki from git history under standing instructions, with per-claim evidence pinning. Its own teardown draws the boundary this row needs — *"no promotion, no rollback, no retroactive invalidation"* | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §4, §8 |
+| **MCP** | **Nothing here.** It can connect an agent to the store a lesson would land in, which makes it plumbing for the capture step and never an answer to the gate. Promotion is a decision, and a connection mechanism holds none | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | Learning as **mental alignment rather than artifact**, which is a real and under-argued position: the stated product of review is not correctness but that the team does not *"lose touch with what our product was and how it worked."* A loop that improves the people is measured differently from one that improves the canon, and this peer is explicit about which it is buying | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §2 |
 | **LoomWarp** | `○` — **designed only, and labelled so in its own architecture record**, which is the honest register and not a grade. The eval doctrine that would feed the gate is written; nothing captures, nothing promotes, nothing rolls back | [`loomwarp.md`](../content/loomwarp.md#9a-learning) |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.

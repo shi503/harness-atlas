@@ -50,13 +50,13 @@ edited away.
 
 **The order this is built in**, and it is deliberate: **primitives → taxonomy → components →
 framework → factors.** Those are four different kinds of object, and
-`[../../references/comparisons/2026-08-research/06-frameworks-addendum.md](../comparisons/2026-08-research/06-frameworks-addendum.md)`
+`[../../references/comparisons/2026-08-research/06-frameworks-addendum.md](./comparisons/2026-08-research/06-frameworks-addendum.md)`
 §0 warns that mapping one onto another is *"a translation, not an identity."* Building them in order
 is how the translation stays visible.
 
 > **IDs are stable identifiers, not sort order.** `E0`–`E8` keep the numbers they have had since
 > 2026-08-11 so that ~250 citations across 24 files do not break. `E9`–`E11` are the additions. This
-> is the same rule `[../../references/comparisons/03-jtbd.md](../comparisons/03-jtbd.md)`
+> is the same rule `[../../references/comparisons/03-jtbd.md](./comparisons/03-jtbd.md)`
 > applies to jobs — *"J1–J12 keep their numbers… J13–J17 are the additions."* **Read the band table,
 > not the numbers, for order.**
 
@@ -98,7 +98,7 @@ know your Substrate.
 > 2. Renaming: GROUND -> FOUNDATION, MOTION -> PROCESS, IMPROVE -> LIFECYCLE
 
 `IMPROVE` **is the band every published instrument omits**, and omitting it is our own recorded
-error — `[03-jtbd.md](../comparisons/03-jtbd.md)` notes that these jobs are *"Voss's
+error — `[03-jtbd.md](./comparisons/03-jtbd.md)` notes that these jobs are *"Voss's
 system and oversight loop"* and that **we reproduced the field's omission.** It is also the only band
 whose output re-enters the system.
 
@@ -118,7 +118,7 @@ Every contradiction found in the corpus as of 2026-08-27, with the ruling and wh
 | **C-2**  | **Is the model an element?** §1 of `01-concepts.md` puts **MODEL** at the bedrock; §3.1 excludes it as *"an input to* `E0`*… ✅ Correctly excluded"*; `03-agentos-harness-multiplayer.md` says *"model as bedrock, below Ground"* | **Named, inside** `E0`**, as an explicit sub-decision.** The exclusion is overturned                 | The field's own equation is `Agent = Model + Harness`. The old argument proved the model is *not built by us*; it never proved it is *not decided by us*, and a map records decisions. `J3 route` and `J12 account` both hang off it                                                                                                             |
 | **C-3**  | **Is** `Substrate` **the right name?**                                                                                                                                                                                           | **Kept, under protest, and recorded as debt**                                                        | ⚠️ `Substrate` is **unattested in any published stack diagram** — the field says *Models and Inference* (Perrone), *Compute and Foundation Models* (Menlo). Renaming costs 25 citations across 24 files and would re-open `C-1`'s ambiguity one week after closing it. **Deferred, not settled**                                                 |
 | **C-4**  | **Adapters: element or cross-cutting property?** `elements.md` called runtime-neutrality a deliberate non-element                                                                                                                | **A property of** `E0`**, not a peer element**                                                       | Three of three comparable systems build it, which overturned "non-element". But LangChain's *model profiles* show it is a **per-task** property, not a standalone thing you construct                                                                                                                                                            |
-| **C-5**  | `Agent = Model + Harness` (harness contains context) vs `Agent = harness + model + context` (context is a peer)                                                                                                                  | **Context is a peer.** `E3` stays separate from `E0`                                                 | LangChain states the three-part split directly; our structure already agreed. See `[../../references/comparisons/systems/langchain-deepagents.md](../comparisons/systems/langchain-deepagents.md)` §2                                                                                                                              |
+| **C-5**  | `Agent = Model + Harness` (harness contains context) vs `Agent = harness + model + context` (context is a peer)                                                                                                                  | **Context is a peer.** `E3` stays separate from `E0`                                                 | LangChain states the three-part split directly; our structure already agreed. See `[../../references/comparisons/systems/langchain-deepagents.md](./comparisons/systems/langchain-deepagents.md)` §2                                                                                                                              |
 | **C-6**  | **Is our primitive set stated?** `01-concepts.md` §3.17 says *"unanswered"*; `06-frameworks-addendum.md` §4 lists six. **Both committed**                                                                                        | **§3 states it once.** The addendum's six are adopted with one correction                            | `02-component-matrix.md`: *"you cannot claim 'one way to do each thing' until you can name the things."* Leaving it blank was the finding; leaving it blank *twice, differently* is just drift                                                                                                                                                   |
 | **C-7**  | **Rituals** — dismissed on frequency (`standup` 0, `ceremon` 0, `ritual` 1), then reopened                                                                                                                                       | `E10 Cadence` **is an element**                                                                      | The dismissal answered the wrong question and applied **two thresholds to two concepts** — `multiplayer` (6) was called *"real"*, Rituals (1) dead. A ritual is not a meeting; it is **a scheduled loop that emits an artifact**, and the corpus supports that: cron reviews, scheduled checks, `transcri` 12. `J17` **has no input without it** |
 | **C-8**  | **Stewardship** — agent or gate? (`OPEN-9`)                                                                                                                                                                                      | **Agent, over an evidence corpus**                                                                   | No longer a design question. **LangSmith Engine is a shipped implementation**: a background agent that reads traces, files issues with linked evidence, and proposes changes to prompt, context and harness. `generic-cerebro`'s tier split (agent over `wiki/`, gate over `decision-log/`) remains the finer answer                             |
@@ -184,7 +184,7 @@ convention graduates (`J16`), not before.
 ## 4. Taxonomy — what a harness *does*
 
 Genre A: **functions**. The seventeen jobs in
-`[03-jtbd.md](../comparisons/03-jtbd.md)`, which were measured against a corpus rather
+`[03-jtbd.md](./comparisons/03-jtbd.md)`, which were measured against a corpus rather
 than asserted. Not repeated here; the mapping to elements is what this document owes.
 
 **All seventeen are now placed.** Six had no element and two were miscovered:
@@ -241,7 +241,7 @@ defines it** — see §9.
 
 LangChain is the only source that says **where in the loop** you customise, rather than what a
 harness contains. This is the verb-bounding that
-`[04-primitives-ontology-platform.md](../comparisons/2026-08-research/04-primitives-ontology-platform.md)`
+`[04-primitives-ontology-platform.md](./comparisons/2026-08-research/04-primitives-ontology-platform.md)`
 §5 says is the durable half of ontology:
 
 
@@ -470,7 +470,7 @@ parent directories the way `CLAUDE.md` files are.
 > per-job manifest of what was actually resolved, not an authored overview.
 >
 > *Confirm the arXiv ID before external citation — two research briefs gave different numbers; see*
-> `[../../references/comparisons/2026-08-research/99-source-hygiene.md](../comparisons/2026-08-research/99-source-hygiene.md)` *§2.*
+> `[../../references/comparisons/2026-08-research/99-source-hygiene.md](./comparisons/2026-08-research/99-source-hygiene.md)` *§2.*
 
 **This is the element where LoomWarp has a claim nobody else is making.** Native Claude Code has the
 building blocks — the `InstructionsLoaded` hook reports which instruction files loaded, when, and
@@ -798,7 +798,7 @@ experiment. Nobody measures what a *workstream* cost the team, or joins that to 
 
 Elements and factors are different objects, and the corpus is explicit about it: **elements are
 implemented and graded; factors are held.** Genre B and Genre C. The fourteen factors live in
-`[../../references/comparisons/2026-08-research/05-harness-factors.md](../comparisons/2026-08-research/05-harness-factors.md)`;
+`[../../references/comparisons/2026-08-research/05-harness-factors.md](./comparisons/2026-08-research/05-harness-factors.md)`;
 what this document owes is the mapping.
 
 

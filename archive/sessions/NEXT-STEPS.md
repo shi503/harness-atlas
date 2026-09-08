@@ -345,6 +345,6 @@ WORKSTREAM   the explainer — internal, public quality, vendor-neutral
 
 ---
 
-*Companion:* `[references/comparisons/](../../comparisons)` *— the landscape ·*
-`[references/comparisons/2026-08-research/](../../comparisons/2026-08-research)` *— the evidence ·*
+*Companion:* `[references/comparisons/](../comparisons)` *— the landscape ·*
+`[references/comparisons/2026-08-research/](../comparisons/2026-08-research)` *— the evidence ·*
 `[specs/v0/](../v0)` *— the framework being rewritten*

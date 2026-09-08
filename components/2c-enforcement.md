@@ -40,7 +40,7 @@ That is Böckeler's split, and the factor set already carries both halves as sep
 Factor `VII` *"The gate does not run on the model"* and Factor `VIII` *"Feedback is addressed to the
 machine"* ([`EXPLAINER-PLAN.md`](../archive/spec/EXPLAINER-PLAN.md) §3.1). The jobs record the same division
 from the same author: *Guides* under `J5 bound`, *Sensors* under `J6 validate`
-([`03-jtbd.md`](../comparisons/03-jtbd.md) §2).
+([`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §2).
 
 > **Trust keeps exactly four components. Enforcement is not a fifth.** Layer 8 grades Evals, Evidence,
 > Observability and Efficiency. The reason enforcement is not among them is that it is not a judgement —
@@ -57,7 +57,7 @@ by a peer: QM ships *no hooks at all*, and reaches genuinely unviolatable invari
 AST-level lint rule, route-auth conformance by enumeration, and tests that fail when the README stops
 matching the code. **The mechanism is *enforcement points*, and some invariants are better served by a
 lint rule than a hook — because a lint rule runs in CI for humans too**
-([`systems/qm.md`](../comparisons/systems/qm.md); originally argued in `loomwarp-team-system` `specs/v1/04-benchmark-qm.md`, private).
+([`systems/qm.md`](../archive/comparisons/systems/qm.md); originally argued in `loomwarp-team-system` `specs/v1/04-benchmark-qm.md`, private).
 
 **`J15 secure and harden` splits here and it splits honestly.** *Secure* — secrets, sandboxing,
 credentials an agent never holds — is a mechanism and lands at `2c`. *Harden* — vulnerability surface
@@ -71,10 +71,10 @@ nobody notices.
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | The four-rung ladder, complete: permission `deny` rules → `PreToolUse` hooks → managed settings → sandbox. And the honest register the corpus asks for — its own docs call managed settings *"a client-side control, not a security boundary"* | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Policy row, §*Register worth imitating* |
-| **Deep Agents** | `allow` \| `deny` \| `interrupt` as **one mode field on one rule** — a three-level posture that costs a value rather than three subsystems. ⚠️ And the corpus's **first counter-example to deny-wins**: resolution is *first-match-wins with an `allow` default*, so a permissive rule listed first silently defeats a later deny | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Permissions — a real policy primitive, and it is not deny-wins* |
-| **MCP** | **Nothing here, and it is the reason enforcement cannot live at the connection layer.** MCP is *"external tool or data connections"*; what an agent may do with a connection is decided by the harness around it | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | Enforcement as a **record rather than a bit**: approvals carry `ApproveToolCall(id, comment)` and `DenyToolCall(id, reason)`, with `resolved` as a distinct terminal state for approvals settled outside the system — the honest admission that a control plane never owns every channel | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §7 |
+| **Claude Code** | The four-rung ladder, complete: permission `deny` rules → `PreToolUse` hooks → managed settings → sandbox. And the honest register the corpus asks for — its own docs call managed settings *"a client-side control, not a security boundary"* | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Policy row, §*Register worth imitating* |
+| **Deep Agents** | `allow` \| `deny` \| `interrupt` as **one mode field on one rule** — a three-level posture that costs a value rather than three subsystems. ⚠️ And the corpus's **first counter-example to deny-wins**: resolution is *first-match-wins with an `allow` default*, so a permissive rule listed first silently defeats a later deny | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §2 *Permissions — a real policy primitive, and it is not deny-wins* |
+| **MCP** | **Nothing here, and it is the reason enforcement cannot live at the connection layer.** MCP is *"external tool or data connections"*; what an agent may do with a connection is decided by the harness around it | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | Enforcement as a **record rather than a bit**: approvals carry `ApproveToolCall(id, comment)` and `DenyToolCall(id, reason)`, with `resolved` as a distinct terminal state for approvals settled outside the system — the honest admission that a control plane never owns every channel | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §7 |
 | **LoomWarp** | **Policy theatre, caught in its own repo.** Four tier files, risk tiers designed, **one wired** — and the only live run used `bypassPermissions`, which skips deny rules entirely, while the shipped diagram claimed otherwise | [`loomwarp.md`](../content/loomwarp.md#2c-enforcement) |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.

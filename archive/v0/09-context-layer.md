@@ -19,7 +19,7 @@ that a provider can be plugged in, and that a check can tell you whether one sat
 
 **Why it is first.** `F3` is the function where LoomWarp's differentiation claim lives (the Briefing),
 where its largest recorded gap lives (the individual/team boundary,
-[`../../references/comparisons/01-concepts.md`](../../comparisons/01-concepts.md) §3.6 —
+[`../../references/comparisons/01-concepts.md`](../comparisons/01-concepts.md) §3.6 —
 *"the largest single gap this analysis found"*), and where it already runs 1,428 lines of code that no
 document grades. Three reasons pointing at one function.
 
@@ -50,7 +50,7 @@ Two systems, at very different maturity, which is why
 > specifically unhelpful**, while **instructions are well followed**.
 >
 > ⚠️ Two briefs gave different arXiv IDs (`2602.11988` vs `2604.21090`) —
-> [`99-source-hygiene.md`](../../comparisons/2026-08-research/99-source-hygiene.md) §2.
+> [`99-source-hygiene.md`](../comparisons/2026-08-research/99-source-hygiene.md) §2.
 > **Confirm before either number enters an externally published document.** The finding itself is
 > load-bearing and is not in doubt.
 
@@ -128,7 +128,7 @@ schema-validated, lock-guarded code are one parameter away from being scope-awar
 ## 4. Routing — where a fact goes
 
 Adopted **verbatim** from `generic-cerebro`, which
-[`05-context-and-the-librarian.md`](../../comparisons/systems/kd-built-frameworks/05-context-and-the-librarian.md)
+[`05-context-and-the-librarian.md`](../comparisons/systems/kd-built-frameworks/05-context-and-the-librarian.md)
 §5 flags as *"the piece to take verbatim… short, mechanism-shaped, addresses a failure every agent
 system has, and LoomWarp has no equivalent."* It has been sitting unclaimed since 2026-08-11.
 
@@ -166,7 +166,7 @@ the individual/team boundary in this corpus — §3.6, the routing doctrine, `J2
 different failure modes, and only one of them is a breach.
 
 **Tanmai Gopal (PromptQL)**, AI Engineer World's Fair 2026, `Claws & Personal Agents` Track 1
-([`data/aie-worldsfair-2026-schedule.md`](../../comparisons/2026-08-research/data/aie-worldsfair-2026-schedule.md),
+([`data/aie-worldsfair-2026-schedule.md`](../comparisons/2026-08-research/data/aie-worldsfair-2026-schedule.md),
 p. 34), deployed at Fortune 100 banks:
 
 > *"Everyone wants a shared 'company brain' … But it's nearly impossible to build one, because **the
@@ -186,7 +186,7 @@ His four sub-problems become four requirements on this function:
 ### 5.1 What this does to the model
 
 **`AC-3` and `AC-4` are `F3 isolate` × `F6 Policy`, and that intersection currently has no owner.**
-[`03-jtbd.md`](../../comparisons/03-jtbd.md) §4 asked the question — *"Is permission-aware
+[`03-jtbd.md`](../comparisons/03-jtbd.md) §4 asked the question — *"Is permission-aware
 context one job or two?"* — named it as whitespace, and left it unassigned.
 
 **This spec answers it: one function, `F3`, with the enforcement point in `F6`.** Context decides *what
@@ -313,7 +313,7 @@ in the window."*
 
 > **The Briefing does not need to be invented. It needs to be emitted from an event that already
 > exists.** That reclassifies `P-15` from an unbuilt design to **an integration** — the same move
-> [`02-component-matrix.md`](../../comparisons/02-component-matrix.md) §1 makes for the `F7`
+> [`02-component-matrix.md`](../../components/MATRIX.md) §1 makes for the `F7`
 > join: *"for everyone else the join is a build; here it is an integration."* Second function, same
 > sentence.
 

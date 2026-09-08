@@ -20,7 +20,7 @@ this team actually need, for this work, right now?** It takes the jobs a senior
 human architect is hired to do and asks, of each, whether a harness can
 *mechanize* it, only *scaffold* it, or cannot reach it at all.
 
-**Why the lens is useful.** [`../comparisons/03-jtbd.md`](../../comparisons/03-jtbd.md)
+**Why the lens is useful.** [`../comparisons/03-jtbd.md`](../comparisons/03-jtbd.md)
 enumerates seventeen jobs a harness does **for a unit of work** — compose
 context, decompose and sequence, validate, prove. This document enumerates eight
 jobs a senior human does **around the work** — framing the question, surfacing
@@ -159,7 +159,7 @@ the last to find out `[§2.8]`.
 
 ## §3. Crosswalk — where the seventeen jobs reach
 
-Mapping `A1`–`A8` onto [`../comparisons/03-jtbd.md`](../../comparisons/03-jtbd.md).
+Mapping `A1`–`A8` onto [`../comparisons/03-jtbd.md`](../comparisons/03-jtbd.md).
 `●` covered · `◐` partial · `○` absent.
 
 | | Architect job | Nearest harness job(s) | | What the harness job actually does instead |

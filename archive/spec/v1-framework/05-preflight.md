@@ -134,7 +134,7 @@ rungs now exist as data rather than as prose, so *materially shorter* is compute
 **Rule.** [`9f` Diagnose the Bottleneck](../../../components/9f-diagnose-the-bottleneck.md) is hidden until
 both `9b` Rituals and `8d` Efficiency have been answered at all — that is, until neither sits at stage 1.
 
-**Where it comes from.** [`03-jtbd.md`](../../../comparisons/03-jtbd.md) §2 `J17`, verbatim:
+**Where it comes from.** [`03-jtbd.md`](../../comparisons/03-jtbd.md) §2 `J17`, verbatim:
 *"**This is not a job a young harness can do.** You cannot detect a constraint without measurement, and
 measurement means ritualized, scheduled checks… **`J17` depends on rituals and on `J12 account`**, which is
 why it appears late on the scale axis and why it is **the only job here with a stated prerequisite**."*

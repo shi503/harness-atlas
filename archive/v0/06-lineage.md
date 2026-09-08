@@ -25,7 +25,7 @@ place itself against it.
 **Sourcing notation**, the corpus convention: **✅ direct** — primary source read · **◐ relayed** —
 reputable secondary only · **⚠️ unverified** — could not establish; do not build on it.
 
-> **Read [`../../references/comparisons/2026-08-research/99-source-hygiene.md`](../../comparisons/2026-08-research/99-source-hygiene.md)
+> **Read [`../../references/comparisons/2026-08-research/99-source-hygiene.md`](../comparisons/2026-08-research/99-source-hygiene.md)
 > before citing anything here.** It records two fabrications already circulating in this space —
 > a survey paper that does not exist, and a maturity model misattributed to Anthropic. Section 1
 > below documents how close this project came to producing a third.
@@ -39,8 +39,8 @@ does not duplicate them:
 
 | Where | What it holds |
 |---|---|
-| [`../../references/comparisons/2026-08-research/02-harness-taxonomies.md`](../../comparisons/2026-08-research/02-harness-taxonomies.md) | AAIF's five functions · Meng's `H = (E,T,C,S,L,V)` · Macedo's `T1–T4` · Böckeler's Guides and Sensors · Chan et al. · HumanLayer's 12-Factor Agents |
-| [`../../references/comparisons/2026-08-research/06-frameworks-addendum.md`](../../comparisons/2026-08-research/06-frameworks-addendum.md) | Factory.ai · Microsoft · Debois · Hassan · and the three-genre split that governs how any of them may be mapped onto another |
+| [`../../references/comparisons/2026-08-research/02-harness-taxonomies.md`](../comparisons/2026-08-research/02-harness-taxonomies.md) | AAIF's five functions · Meng's `H = (E,T,C,S,L,V)` · Macedo's `T1–T4` · Böckeler's Guides and Sensors · Chan et al. · HumanLayer's 12-Factor Agents |
+| [`../../references/comparisons/2026-08-research/06-frameworks-addendum.md`](../comparisons/2026-08-research/06-frameworks-addendum.md) | Factory.ai · Microsoft · Debois · Hassan · and the three-genre split that governs how any of them may be mapped onto another |
 
 **What is new here** is the third thing neither of those covers: the **loop models**, the **context
 engineering decompositions**, and the **published stack diagrams** — which is where the answers to
@@ -52,7 +52,7 @@ engineering decompositions**, and the **published stack diagrams** — which is 
 
 **Our own corpus recorded a framework that does not exist.**
 
-[`01-worldsfair-2026-vocabulary.md`](../../comparisons/2026-08-research/01-worldsfair-2026-vocabulary.md)
+[`01-worldsfair-2026-vocabulary.md`](../comparisons/2026-08-research/01-worldsfair-2026-vocabulary.md)
 §4 carried a row reading **"The five loops."** There is no published framework by that name.
 
 Voss's actual sentence is *"I counted at least **four** distinct architectures hiding behind that one
@@ -61,7 +61,7 @@ community compression that our corpus recorded as a proper noun — one citation
 the third fabrication in `99-source-hygiene.md`'s list.
 
 Corrected at source on 2026-08-27, along with its one downstream citation in
-[`../../references/comparisons/03-jtbd.md`](../../comparisons/03-jtbd.md) §IMPROVE.
+[`../../references/comparisons/03-jtbd.md`](../comparisons/03-jtbd.md) §IMPROVE.
 
 **Cite it as *Voss's loop taxonomy* or *the loopcraft stack*. Never as "the Five Loops."**
 
@@ -95,7 +95,7 @@ argument.**
 | 5 | **Oversight** | *"where goals get set, budgets get allocated, and work gets culled"* | **none** | **Voss's own addition.** *"The one ring where a human should live"* |
 
 **What we take.** The nesting relation, and the vocabulary for altitude. Our `IMPROVE` job layer
-already leans on it — [`../../references/comparisons/03-jtbd.md`](../../comparisons/03-jtbd.md)
+already leans on it — [`../../references/comparisons/03-jtbd.md`](../comparisons/03-jtbd.md)
 says the four `IMPROVE` jobs *"are Voss's system and oversight loop"* and that **we reproduced the
 field's omission**, which is the best available explanation for why `J12`, `J16` and `J17` are the
 least modelled jobs anywhere.
@@ -173,7 +173,7 @@ found a naming problem worth stating plainly.
 
 **What we take.** *Routing* and *evaluator-optimizer* are published names for two things we assert
 as ours — a useful check on `J3 route`, which
-[`02-harness-taxonomies.md`](../../comparisons/2026-08-research/02-harness-taxonomies.md)
+[`02-harness-taxonomies.md`](../comparisons/2026-08-research/02-harness-taxonomies.md)
 §3 records as absent from every *harness taxonomy*. It is absent as a **harness function**; it is not
 absent as a **workflow pattern**. Our claim must say which.
 
@@ -246,7 +246,7 @@ Directly relevant to *"we aren't labeling the foundation."*
 | **Menlo Ventures**, *The Modern AI Stack* | — | **Compute and Foundation Models** → Data → Deployment → Observability | ✅ |
 | **Letta**, *The AI Agents Stack* | 2024-11 | **LLM models & storage** → agent frameworks → agent hosting/serving | ✅ |
 | **a16z**, *Emerging Architectures for LLM Applications* | 2023-06 | not layered — a dataflow, with orchestration frameworks as the named middle | ✅ |
-| **Ours** — [`../../references/comparisons/01-concepts.md`](../../comparisons/01-concepts.md) §1 | 2026-08-11 | **MODEL** → HARNESS → PROCESS LAYER → CONTEXT → EVIDENCE | — |
+| **Ours** — [`../../references/comparisons/01-concepts.md`](../comparisons/01-concepts.md) §1 | 2026-08-11 | **MODEL** → HARNESS → PROCESS LAYER → CONTEXT → EVIDENCE | — |
 
 ⚠️ **No canonical Sequoia stack diagram was found.** Their AI writing is thesis prose, not a layer
 map. Do not cite Sequoia for one.
@@ -261,7 +261,7 @@ and Inference*, *Compute and Foundation Models*, and plain *harness*.
 **Our own stack already names the model, and our function list already excludes it.** `01-concepts.md`
 §1 puts **MODEL** at the bedrock; §3.1 then rules it *"✅ Correctly excluded"* from the functions as
 *"an input to `F0`."* And
-[`03-agentos-harness-multiplayer.md`](../../comparisons/2026-08-research/03-agentos-harness-multiplayer.md)
+[`03-agentos-harness-multiplayer.md`](../comparisons/2026-08-research/03-agentos-harness-multiplayer.md)
 already concluded the opposite: *"stack diagram forces the answer: **model as bedrock, below
 Ground**; Substrate is the harness."* **Three of our own documents disagree.** The field's own
 equation — **`Agent = Model + Harness`** — settles it toward naming the foundation. `07-the-map.md`
@@ -274,7 +274,7 @@ resolves this in writing, preserving the original argument.
 Both already made in this corpus. Honor them, or overturn them in writing with a reason.
 
 **Ruling 1 — the map is not a layer cake.**
-[`04-primitives-ontology-platform.md`](../../comparisons/2026-08-research/04-primitives-ontology-platform.md) §5:
+[`04-primitives-ontology-platform.md`](../comparisons/2026-08-research/04-primitives-ontology-platform.md) §5:
 
 > *"KD asked to let a hierarchy emerge rather than forcing one. **It did not emerge, and the reason
 > is the finding.** AAIF's taxonomy file leaves `broaderTerm` deliberately unfilled… everyone who has

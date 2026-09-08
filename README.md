@@ -5,7 +5,7 @@ fixed component grid, and places them on a maturity range.** Every profile is bu
 the harness's own documentation, code and configuration, so that an engineer can *grok* a harness —
 its loop, its primitives, its limits — from one page, and compare it to the next one cell for cell.
 
-**Start here** — [the map](index.md) · [one profile](content/claude-code.md) · [the grid](comparisons/02-component-matrix.md) · [one component, every harness](components/2b-hooks.md) · [the scorecard](spectrums/01-scorecard.md)
+**Start here** — [the map](./index.md) · [one profile](./content/claude-code.md) · [the grid](./components/MATRIX.md) · [one component, every harness](./components/2b-hooks.md) · [the scorecard](./spectrums/01-scorecard.md)
 
 This page is the argument, and the highlights.
 
@@ -76,17 +76,17 @@ flowchart TD
   package["packaging &amp; distribution<br/>plugins · packages · managed settings<br/><i>4a Capability · 3e Standards</i>"] -.-> load
 ```
 
-*Source: [`assets/templates/harness-loop.mmd`](assets/templates/harness-loop.mmd). This picture is
+*Source: [`assets/templates/harness-loop.mmd`](./assets/templates/harness-loop.mmd). This picture is
 this repo's own synthesis — generalised from the "seven insertion points" reading of Claude Code in
-[`content/claude-code/20-consolidated-guide.md`](content/claude-code/20-consolidated-guide.md) §1,
+[`content/claude-code/20-consolidated-guide.md`](./content/claude-code/20-consolidated-guide.md) §1,
 which is itself a synthesis, not a vendor diagram. Vendor diagrams, redrawn, live under
-[`assets/projects/`](assets/projects/). The twelve layers those component IDs belong to are drawn in
-[`index.md`](index.md#4-the-layers).*
+[`assets/projects/`](./assets/projects). The twelve layers those component IDs belong to are drawn in
+[`index.md`](./index.md#4-the-layers).*
 
 ## How to read a profile
 
-Every page under [`content/`](content/) has the same shape, produced by
-[`skills/harness-teardown/SKILL.md`](skills/harness-teardown/SKILL.md):
+Every page under [`content/`](./content) has the same shape, produced by
+[`skills/harness-teardown/SKILL.md`](./skills/harness-teardown/SKILL.md):
 
 1. **Thirty seconds.** A one-line thesis and an **at-a-glance card**: altitude, primitives, the
    one structured output it optimises for, whether it binds mechanically, where state lives, who it
@@ -109,16 +109,16 @@ Every page under [`content/`](content/) has the same shape, produced by
 ## Highlights
 
 Six of the profiles, chosen because each stakes a different position. The full set, and the queue,
-are in [`index.md`](index.md) §1.
+are in [`index.md`](./index.md) §1.
 
 | Harness | Altitude | In one line | Its structured output | Profile |
 |---|---|---|---|---|
-| **Claude Code** | runtime | An agent loop wrapped in an "agentic harness"; it optimises for a single operator's turn binding mechanically at the tool-call boundary, everything upstream shaping behaviour by prose | the `claude_code.interaction` OTel trace, whose `claude_code.tool` spans carry the `tool_decision` permission-audit record — verified 2026-09-04 | [`content/claude-code.md`](content/claude-code.md) |
-| **Pi** | runtime | Defined by subtraction — *"No MCP. No sub-agents. No permission popups."* — each shipped as an example extension instead; holds at eight primitives | the session JSONL *tree*, which doubles as the run receipt | [`content/pi.md`](content/pi.md) |
-| **Hermes** | gateway / host | Makes *learning* the headline: authors skills from experience, caps memory files, ages skills out; hosts the Codex app-server as an alternate loop | the kanban that owns *"lifecycle truth"* | [`content/hermes.md`](content/hermes.md) |
-| **Gas City** | gateway / host, with an install-into-a-loop mechanism nested inside | Yegge's *software factory*: six declared primitives with a published admission test for adding one — and a documented deletion of one — driving fifteen-plus coding-agent CLIs through shared state | the Bead — the one substrate every other primitive writes through | [`content/gas-city.md`](content/gas-city.md) *(supersedes the short profile, whose "seven" and "Factory Worker Protocol" did not survive a primary-source read)* |
-| **LoomWarp** | process layer | The system this atlas was cut out of, scored here as a peer with no special status — its primitive set reads **0 named**: stated once in a superseded spec, then dropped; six candidates listed apart from the verdict | `control/events.jsonl` — thirteen lines, three event types, none schema-validated | [`content/loomwarp.md`](content/loomwarp.md) |
-| **FRACTAL** | process layer | KD-built, graded by the same rules, read at three instances (upstream · a fork since removed from GitHub · this repo, un-routed): five named artifacts — STRATEGIST, BLUEPRINT, PRD, HANDOFF, PULSE — never stated as a set; this repo runs two of them | the `HANDOFF.md` — the mandatory terminal artifact every workstream writes before state advances | [`content/fractal.md`](content/fractal.md) |
+| **Claude Code** | runtime | An agent loop wrapped in an "agentic harness"; it optimises for a single operator's turn binding mechanically at the tool-call boundary, everything upstream shaping behaviour by prose | the `claude_code.interaction` OTel trace, whose `claude_code.tool` spans carry the `tool_decision` permission-audit record — verified 2026-09-04 | [`content/claude-code.md`](./content/claude-code.md) |
+| **Pi** | runtime | Defined by subtraction — *"No MCP. No sub-agents. No permission popups."* — each shipped as an example extension instead; holds at eight primitives | the session JSONL *tree*, which doubles as the run receipt | [`content/pi.md`](./content/pi.md) |
+| **Hermes** | gateway / host | Makes *learning* the headline: authors skills from experience, caps memory files, ages skills out; hosts the Codex app-server as an alternate loop | the kanban that owns *"lifecycle truth"* | [`content/hermes.md`](./content/hermes.md) |
+| **Gas City** | gateway / host, with an install-into-a-loop mechanism nested inside | Yegge's *software factory*: six declared primitives with a published admission test for adding one — and a documented deletion of one — driving fifteen-plus coding-agent CLIs through shared state | the Bead — the one substrate every other primitive writes through | [`content/gas-city.md`](./content/gas-city.md) *(supersedes the short profile, whose "seven" and "Factory Worker Protocol" did not survive a primary-source read)* |
+| **LoomWarp** | process layer | The system this atlas was cut out of, scored here as a peer with no special status — its primitive set reads **0 named**: stated once in a superseded spec, then dropped; six candidates listed apart from the verdict | `control/events.jsonl` — thirteen lines, three event types, none schema-validated | [`content/loomwarp.md`](./content/loomwarp.md) |
+| **FRACTAL** | process layer | KD-built, graded by the same rules, read at three instances (upstream · a fork since removed from GitHub · this repo, un-routed): five named artifacts — STRATEGIST, BLUEPRINT, PRD, HANDOFF, PULSE — never stated as a set; this repo runs two of them | the `HANDOFF.md` — the mandatory terminal artifact every workstream writes before state advances | [`content/fractal.md`](./content/fractal.md) |
 
 ## The deep reads
 
@@ -133,9 +133,9 @@ reads the deep read.
 Ten of ten harnesses, **118 documents**, each carrying the version it was read at, the date, and a
 ledger of what the vendor claims the thing is *for* — walked against the mechanisms actually found.
 
-→ [`content/openclaw/`](content/openclaw/00-README.md) is the largest at 21 documents ·
-[`content/pi/`](content/pi/00-README.md) the smallest at 5, because Pi ships less and documents it
-better · [`content/codex/`](content/codex/00-README.md) is the worked example the others were built
+→ [`content/openclaw/`](./content/openclaw/00-README.md) is the largest at 21 documents ·
+[`content/pi/`](./content/pi/00-README.md) the smallest at 5, because Pi ships less and documents it
+better · [`content/codex/`](./content/codex/00-README.md) is the worked example the others were built
 against.
 
 ## The map
@@ -166,15 +166,15 @@ flowchart LR
   assets -.-> content
 ```
 
-**Standing rules**, in full in [`CLAUDE.md`](CLAUDE.md): markdown is not code · absence is recorded,
+**Standing rules**, in full in [`CLAUDE.md`](./CLAUDE.md): markdown is not code · absence is recorded,
 never inferred · a primitive set is 5–7 and forces a choice · do not borrow a word and change its
 referent · archive by ruling, never by deletion · vendor's words only in a primitives table.
 
 ## Licence, and what "drafted" means on every page
 
-**MIT** — [`LICENSE`](LICENSE). Published **for educational purposes**: this is a research and teaching
+**MIT** — [`LICENSE`](./LICENSE). Published **for educational purposes**: this is a research and teaching
 instrument, not a buyer's guide and not an endorsement of any product. Quoted vendor documentation
-stays the property of its owners and is cited and dated on every page. See [`NOTICE`](NOTICE).
+stays the property of its owners and is cited and dated on every page. See [`NOTICE`](./NOTICE).
 
 **You will see a *drafted, not yet verified* banner on almost every page. That is the instrument
 working, not an unfinished draft.** Every profile, scorecard card and deep-read document records which
@@ -188,5 +188,5 @@ anything load-bearing at the source**, which is cited on the page for exactly th
 ---
 
 *Cut from `loomwarp-team-system/projects/loomwarp` on 2026-09-02; provenance in
-[`RULING-2026-09-02-spinout.md`](RULING-2026-09-02-spinout.md). Front page and structure agreed in
-[`fractal/workstreams/W0-alignment.md`](fractal/workstreams/W0-alignment.md), 2026-09-03.*
+[`rulings/2026-09-02-spinout.md`](./rulings/2026-09-02-spinout.md). Front page and structure agreed in
+[`fractal/workstreams/W0-alignment.md`](./fractal/workstreams/W0-alignment.md), 2026-09-03.*

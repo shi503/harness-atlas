@@ -14,7 +14,7 @@ without it; one word doing two jobs is worse. Filled in W3 (`fractal/workstreams
 from every profile's primitive table and every `●` in the two grids.
 
 **Rule.** The *concept* column is the vendor's words, cited. The *component* column is our
-classification, by the 33 IDs in [`index.md`](index.md#4-the-layers). Never let the two swap.
+classification, by the 33 IDs in [`index.md`](./index.md#4-the-layers). Never let the two swap.
 
 **How to read a row.** `Where` names the profile and section the quote lives in (a profile is a primary
 read; `↪` marks a short teardown or a draft, not yet a Template profile). Flags: **COLLISION** one word,
@@ -23,7 +23,7 @@ for · **UNDERCOUNT** the vendor names it, our profile's primitive table (§C in
 
 **Two standing lines.** `workspace` and `session` are collisions at four and five referents; **neither
 may name a future component.** `harness` is this atlas's category noun and an altitude
-(`comparisons/04-harness-alignment.md` §4.1); a vendor that uses it as a primitive gets its own row and
+(`components/ALIGNMENT.md` §4.1); a vendor that uses it as a primitive gets its own row and
 does not move the category.
 
 ---
@@ -52,7 +52,7 @@ does not move the category.
 | `command` | `hq run` — "Agents exec via `hq run` and never see raw credentials" — a credential-shielded execution wrapper | Indigo HQ ↪ | `comparisons/systems/indigo-hq.md` *Secrets* | `2c` Enforcement |
 | `policies` | "Policies control whether OpenCode may use configured resources like LLM providers" — distinct from permissions | OpenCode | `content/opencode.md` §5 *(experimental)* | `4b` Capability Permissions |
 | `policies` | Company-level configuration loaded from the multi-tenancy layer | Indigo HQ ↪ | `comparisons/systems/indigo-hq.md` | `3d` Configuration · `10b` Org |
-| `harness` | The category noun — a runtime, a gateway/host, a process layer, a hosted product | this atlas | `comparisons/04-harness-alignment.md` §4.1 | an altitude, not a component |
+| `harness` | The category noun — a runtime, a gateway/host, a process layer, a hosted product | this atlas | `components/ALIGNMENT.md` §4.1 | an altitude, not a component |
 | `harness` | "The wiring between model and context" — a named primitive | gstack / gbrain ↪ | `comparisons/systems/gstack-gbrain.md` | `2a` Adapters & Middleware |
 | `harness` | "the implementation that provides an agent runtime (code term)" — one level under the gateway | OpenClaw | `content/openclaw.md` §5 *Agent runtime* | an altitude (runtime) |
 | `bot` | "A Bot is a durable AI teammate with a name, a job, its own conversation, and working context" — a hosted product | Grok Bot | `content/grok.md` §5 | `10a` Roster |
@@ -115,13 +115,13 @@ does not move the category.
 ### 1.6 Candidates — noticed, not yet admitted
 
 A term seen in the wild that no row above carries yet. **NOTICED costs one line and no research** —
-that cheapness is the point, per [`docs/agents/intake.md`](docs/agents/intake.md) §2. A candidate is
+that cheapness is the point, per [`docs/agents/intake.md`](./docs/agents/intake.md) §2. A candidate is
 never a component request; most resolve into §1.1 or §1.2 above. Rejections stay here, dated, so the
 same argument is not re-run; ids are never reused.
 
 | Term | Concept (vendor's or ours) | Who | Where seen | State | Routes to |
 |---|---|---|---|---|---|
-| `spectrum` | Two referents in this repo: the **maturity framework** (`RULING-2026-09-02-spinout.md`, `W7-maturity-recut.md`, `maturity/…Framework.md`) and the **ten-axis sheet** (`spectrums/`). `spectrums/00-README.md` §0 renamed the first *"the maturity range"* with no ruling | ours | four files, 2026-09-04 | **NOTICED** 2026-09-07 — awaiting KD's ruling ([`RULINGS.md`](RULINGS.md)) | §1.1 COLLISION either way; a rename needs a ruling |
+| `spectrum` | Two referents in this repo: the **maturity framework** (`rulings/2026-09-02-spinout.md`, `W7-maturity-recut.md`, `maturity/…Framework.md`) and the **ten-axis sheet** (`spectrums/`). `spectrums/00-README.md` §0 renamed the first *"the maturity range"* with no ruling | ours | four files, 2026-09-04 | **NOTICED** 2026-09-07 — awaiting KD's ruling ([`rulings/00-README.md`](./rulings/00-README.md)) | §1.1 COLLISION either way; a rename needs a ruling |
 | `posture` | Three referents: the *Permission posture* synonym set (§1.1), QM's own primitive `posture`, and axis VII *Control posture* | QM · ours | `vocabulary.md` §1.1, §2; `spectrums/00-README.md` §3 VII | **NOTICED** 2026-09-07 — recorded, no action. The DX scorecard avoided the word twice — once for DX-2 *Constraint form*, again on 2026-09-07 when *postures* was considered and rejected as the name of `spectrums/positioning.md` | §1.1 |
 | `ecosystem` | *How many people have built on a harness* — adoption, third-party authorship, longevity, network economies | ours (DX-5) | `spectrums/01-scorecard.md` §4 | **CLAIMED** 2026-09-07 — previously used only for external bodies (AAIF); **narrowed** the same day: registries, marketplaces and co-published standards moved to DX-3 | not a component — an instrument's dimension |
 | `footprint` | *How much of the working world a harness touches* — surfaces, environments, delivery, telemetry | ours (DX-3) | `spectrums/01-scorecard.md` §4 | **RETIRED** 2026-09-07, claimed the same day. Superseded by `surfaces & extendability`; the id is never reused | not a component |

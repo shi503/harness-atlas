@@ -135,7 +135,7 @@ And the line neither thread has yet drawn:
 
 Gas City's machinery is *Orchestrator · Bead store · Event bus*. Ours is `router.py` and `dispatch.py`
 — **and we currently grade them as though they were configurable.** Full inventory:
-[`references/comparisons/2026-08-research/07-verified-inventories.md`](../../comparisons/2026-08-research/07-verified-inventories.md) §2.
+[`references/comparisons/2026-08-research/07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §2.
 
 ---
 

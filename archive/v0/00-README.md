@@ -51,11 +51,11 @@ Nothing in v1 was renumbered or edited by this pass.
 | 05 | [`05-preflight-spec.md`](./05-preflight-spec.md) | Spec for the install config generator — the onboarding wizard. Spec only; no HTML this pass |
 | 11 | [`11-architecture.md`](./11-architecture.md) | **The stack.** Nine bands bottom-up, the two layers that accumulate, ports-and-adapters, and the five functions `F12`–`F16` the graded model was missing |
 | — | [`references.md`](./references.md) | The sourced catalog: the systems, the standards layer, the maturity-model prior art |
-| — | [`../../references/comparisons/`](../../comparisons) | **The landscape analysis.** What "agentOS" means, the concept vocabulary, the component matrix, jobs-to-be-done, and per-system teardowns |
+| — | [`../../references/comparisons/`](../comparisons) | **The landscape analysis.** What "agentOS" means, the concept vocabulary, the component matrix, jobs-to-be-done, and per-system teardowns |
 
 **Read `00` if you read nothing else.** It is the only document written for someone who does not already care about this framework, and everything below it is elaboration.
 
-Read **00 → 01 → 02** for the argument. Read **02** alone if you want the full element list. Read **[`comparisons/01-concepts.md`](../../comparisons/01-concepts.md)** first if you want to know whether any of this is novel — it scores the element model against fifteen concepts and finds four with no element at all.
+Read **00 → 01 → 02** for the argument. Read **02** alone if you want the full element list. Read **[`comparisons/01-concepts.md`](../comparisons/01-concepts.md)** first if you want to know whether any of this is novel — it scores the element model against fifteen concepts and finds four with no element at all.
 
 > **A note on `00` versus `02`.** The twelve functions are a *diagnostic*: they exist to be graded, one at a time, so a team can find its thinnest thread. That makes `02-functions.md` an excellent reference and a poor introduction — the failure mode KD named is that it reads like a decomposition of an enterprise framework rather than something a team recognises as their own work. `00` is the fix, and it is deliberately a different shape: no grading, no providers, no `OPEN` markers in the body. Neither supersedes the other.
 
@@ -120,13 +120,13 @@ Posed deliberately, for KD to settle while editing. Each is marked `OPEN` at the
 
 ### Raised by the comparisons pass, 2026-08-11
 
-The landscape analysis at [`../../references/comparisons/`](../../comparisons) found four
+The landscape analysis at [`../../references/comparisons/`](../comparisons) found four
 things the element model does not cover and one claim that has to narrow. They are recorded as
 findings, **not acted on** — acting on them is the next pass.
 
 | # | Question | Where |
 |---|---|---|
-| **OPEN-4** | ~~`F0 Substrate` bundles *which harness* and *what keeps us portable*. Split?~~ | **RESOLVED as `C-4`** — [`02-functions.md`](./02-functions.md) §2: portability is **a property of `F0`, not a peer function.** `C-3` separately keeps the *name* `Substrate` under protest; that half stays open | [`comparisons/01-concepts.md`](../../comparisons/01-concepts.md) §2 |
+| **OPEN-4** | ~~`F0 Substrate` bundles *which harness* and *what keeps us portable*. Split?~~ | **RESOLVED as `C-4`** — [`02-functions.md`](./02-functions.md) §2: portability is **a property of `F0`, not a peer function.** `C-3` separately keeps the *name* `Substrate` under protest; that half stays open | [`comparisons/01-concepts.md`](../comparisons/01-concepts.md) §2 |
 | **OPEN-5** | ~~Individual vs. team memory is a first-class primitive in four peer systems and has no place in `F3`~~ | **RESOLVED 2026-08-27** — [`09-context-layer.md`](./09-context-layer.md) §3 makes scope a first-class axis: individual\|team × project\|org, with every provider required to declare its cells |
 | **OPEN-6** | ~~Communication and human-in-the-loop *placement* have no function~~ | **RESOLVED** — [`02-functions.md`](./02-functions.md) §4 places `J11 coordinate humans` at **`F1` (the channel) + `F10` (the rhythm)**. Absorbed, not a new function |
 | **OPEN-7** | The Briefing's claim has now narrowed **three times** — `ox agent prime` (SageOx), OpenAI's *run receipt*, and Google's **OKF v0.2** schema | **Narrowed, still ours.** [`10-context-gap-analysis.md`](./10-context-gap-analysis.md) `C-15`: OKF specifies **per-document** provenance; the Briefing is **per-run** resolution. Different objects. Falsifier dated **2026-12-01** |
@@ -153,6 +153,6 @@ Written 2026-08-11. Draws on:
 
 - `projects/loomwarp/references/elements.md` — the seven elements and the Grid, superseded in framing
 - `projects/loomwarp/references/claude-code/` — 13 documents on Claude Code's extension layer, read from the official docs on 2026-08-10
-- **`generic-cerebro`** — the author's prior agent-OS. Its six-stage AI-native maturity rubric is the direct ancestor of the Grid, and its architecture is inherited rather than merely cited. Teardown: [`comparisons/systems/kd-built-frameworks/`](../../comparisons/systems/kd-built-frameworks)
+- **`generic-cerebro`** — the author's prior agent-OS. Its six-stage AI-native maturity rubric is the direct ancestor of the Grid, and its architecture is inherited rather than merely cited. Teardown: [`comparisons/systems/kd-built-frameworks/`](../comparisons/systems/kd-built-frameworks)
 - [`../../references/AI-Native Organizational Maturity Framework.md`](../../../references/AI-Native Organizational Maturity Framework.md) — the source maturity model: three eras, six stages, four dimensions, and an explicit commitment threshold
 - The systems and essays catalogued in [`references.md`](./references.md)

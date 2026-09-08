@@ -50,7 +50,7 @@ one level down.
 > which the survey reads as *"static instructions rather than executable scripts."* **Any claim that
 > skills are a capability-*distribution* mechanism has to reckon with that**: most of what travels today
 > is instruction, and instruction is `5b`'s object, not this one
-> ([`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1).
+> ([`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1).
 
 **How do we work?** *"Any repo can install a capability we built, it stays pinned to a version, and removing it here removes it there."*
 
@@ -58,11 +58,11 @@ one level down.
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | The most complete catalog in the corpus: plugins, marketplaces, **SHA pinning**, semver dependencies, `validate --strict`, and `renames` — which is the removal path most implementations skip | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Distribution row |
-| **Deep Agents** | Distribution as **ordered overlay**: skill sources resolve *base → user → project → team*, last-one-wins, which makes the individual/team boundary a property of **list order** rather than a separate subsystem. Plus a headless CI entry point with the discipline stated — *pin a reviewed SHA rather than `main`* | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Skills*, §5 *Distribution* |
-| **MCP** | A genuine distribution channel for a **different unit**: it distributes *tools and data connections*, not *procedures*. A team can have every MCP server it needs and still have no way to ship its own review checklist | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | Method distributed as capability: published prompts as real files, 27 slash commands including `create_handoff` and `resume_handoff`, and a skills repo carried separately from the product | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3, §7 |
-| **LoomWarp** | `◐` — a `cp -r` loop **with a known removal defect where a deleted skill stays installed forever.** The catalog is the immature half of a function whose other half is its strongest row | [`loomwarp.md`](../content/loomwarp.md#4a-capability) · [`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J10` |
+| **Claude Code** | The most complete catalog in the corpus: plugins, marketplaces, **SHA pinning**, semver dependencies, `validate --strict`, and `renames` — which is the removal path most implementations skip | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Distribution row |
+| **Deep Agents** | Distribution as **ordered overlay**: skill sources resolve *base → user → project → team*, last-one-wins, which makes the individual/team boundary a property of **list order** rather than a separate subsystem. Plus a headless CI entry point with the discipline stated — *pin a reviewed SHA rather than `main`* | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §2 *Skills*, §5 *Distribution* |
+| **MCP** | A genuine distribution channel for a **different unit**: it distributes *tools and data connections*, not *procedures*. A team can have every MCP server it needs and still have no way to ship its own review checklist | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | Method distributed as capability: published prompts as real files, 27 slash commands including `create_handoff` and `resume_handoff`, and a skills repo carried separately from the product | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §3, §7 |
+| **LoomWarp** | `◐` — a `cp -r` loop **with a known removal defect where a deleted skill stays installed forever.** The catalog is the immature half of a function whose other half is its strongest row | [`loomwarp.md`](../content/loomwarp.md#4a-capability) · [`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §2 `J10` |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.
 **● 9 · ◐ 1 · ○ 0** of ten. Each row links to that harness's detail.

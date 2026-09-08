@@ -75,19 +75,19 @@ verification:
 
 [§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-**Deep read** — [`content/gas-city/`](gas-city/00-README.md), a 12-document orchestration reference
+**Deep read** — [`content/gas-city/`](./gas-city/00-README.md), a 12-document orchestration reference
 set at a finer grain than §6, cut by Gas City's own six primitives:
-[the six primitives and the admission test](gas-city/01-the-six-primitives-and-the-admission-test.md) ·
-[agent](gas-city/02-agent.md) · [bead](gas-city/03-bead.md) · [formula](gas-city/04-formula.md) ·
-[rig](gas-city/05-rig.md) · [pack](gas-city/06-pack.md) · [event](gas-city/07-event.md) ·
-[runtimes and exec providers](gas-city/08-runtimes-and-exec-providers.md) ·
-[skills, mail and MCP](gas-city/09-skills-mail-and-mcp.md) ·
-[trust boundaries](gas-city/10-trust-boundaries.md) ·
-[the consolidated guide](gas-city/20-consolidated-guide.md)
+[the six primitives and the admission test](./gas-city/01-the-six-primitives-and-the-admission-test.md) ·
+[agent](./gas-city/02-agent.md) · [bead](./gas-city/03-bead.md) · [formula](./gas-city/04-formula.md) ·
+[rig](./gas-city/05-rig.md) · [pack](./gas-city/06-pack.md) · [event](./gas-city/07-event.md) ·
+[runtimes and exec providers](./gas-city/08-runtimes-and-exec-providers.md) ·
+[skills, mail and MCP](./gas-city/09-skills-mail-and-mcp.md) ·
+[trust boundaries](./gas-city/10-trust-boundaries.md) ·
+[the consolidated guide](./gas-city/20-consolidated-guide.md)
 
 *Read 2026-09-08 at `042e965` (main/edge), five days after this profile's source read. Every
 document has a counterpart detail row here; the drift the two reads disagree on is listed in
-[`gas-city/00-README.md`](gas-city/00-README.md) §Provenance and flagged in the rows below.*
+[`gas-city/00-README.md`](./gas-city/00-README.md) §Provenance and flagged in the rows below.*
 `content/gas-city-draft.md` is a superseded `--sanity` draft (history only).
 
 ## 2. System map
@@ -143,7 +143,7 @@ session, reading progress from the bead store and event bus, not a direct callba
 
 `● named primitive · ◐ partial, present-not-first-class · ○ absent (pages named in §6) · n/a does not apply at this altitude`
 
-**Marks copied verbatim from Gas City's column in [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2; not re-derived at the restructure.**
+**Marks copied verbatim from Gas City's column in [`04-harness-alignment.md`](../components/ALIGNMENT.md) §2; not re-derived at the restructure.**
 
 | # | Component | Mark | Primitive / note |
 |---|---|:-:|---|
@@ -232,7 +232,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** A `provider` field per agent selects the underlying coding-agent CLI (15 named, incl. claude/codex/gemini/grok/pi); `option_defaults.model`/`upstream` pick model/endpoint — a config edit. **Path/Source.** `agents/<name>/agent.toml` · ✅ `DOCS/guides/harness-recipes.md`, `DOCS/reference/config.md`
 
-**More.** [`02-agent.md`](gas-city/02-agent.md) — the five axes (harness · model · upstream · transport · runtime), every harness's serving-env contract, abstract-vs-raw upstreams. **Sixteen harnesses as of 2026-09-08**; this row's fifteen is the 2026-09-03 read
+**More.** [`02-agent.md`](./gas-city/02-agent.md) — the five axes (harness · model · upstream · transport · runtime), every harness's serving-env contract, abstract-vs-raw upstreams. **Sixteen harnesses as of 2026-09-08**; this row's fifteen is the 2026-09-03 read
 
 </details>
 
@@ -252,7 +252,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** A `runtime.Provider` interface (tmux/subprocess/exec/ACP/k8s/herdr) for sessions, separate from the model `provider`. MCP is catalog-only — *"list-only... you wire the servers yourself."* **Path/Source.** `internal/runtime/` · ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/reference/herdr-provider.md`
 
-**More.** [`08-runtimes-and-exec-providers.md`](gas-city/08-runtimes-and-exec-providers.md) — the seventeen RPP operations, the shared exit-code contract, pack-declared runtimes, herdr's ignored per-agent pin · [`09-skills-mail-and-mcp.md`](gas-city/09-skills-mail-and-mcp.md) §3 — **two current vendor pages disagree about MCP** as of 2026-09-08; the generated CLI reference says `gc mcp list` shows what would be *projected into provider-native config*
+**More.** [`08-runtimes-and-exec-providers.md`](./gas-city/08-runtimes-and-exec-providers.md) — the seventeen RPP operations, the shared exit-code contract, pack-declared runtimes, herdr's ignored per-agent pin · [`09-skills-mail-and-mcp.md`](./gas-city/09-skills-mail-and-mcp.md) §3 — **two current vendor pages disagree about MCP** as of 2026-09-08; the generated CLI reference says `gc mcp list` shows what would be *projected into provider-native config*
 
 </details>
 
@@ -262,7 +262,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** `on_boot`/`on_death`, `pre_start`, `session_setup*`, `work_query`, `scale_check`, order `check`/`exec`, `gc hook` — shell-command templates; pool failures log and continue, the OpenAPI hook fails closed. **Path/Source.** ✅ `DOCS/reference/trust-boundaries.md`, `REPO/CONTRIBUTING.md`
 
-**More.** [`02-agent.md`](gas-city/02-agent.md) §4b — `gc hook`'s claim protocol and the `$GC_BEAD_ID` fallback chain · [`09-skills-mail-and-mcp.md`](gas-city/09-skills-mail-and-mcp.md) §2 — `install_agent_hooks`, its fourteen supported providers, and `hooks_installed`
+**More.** [`02-agent.md`](./gas-city/02-agent.md) §4b — `gc hook`'s claim protocol and the `$GC_BEAD_ID` fallback chain · [`09-skills-mail-and-mcp.md`](./gas-city/09-skills-mail-and-mcp.md) §2 — `install_agent_hooks`, its fourteen supported providers, and `hooks_installed`
 
 </details>
 
@@ -272,7 +272,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** No sandbox around agent tool calls — a deliberate non-goal (§7, §8). What binds by default: secret-shaped env vars stripped, a same-origin CSRF header, non-loopback read-only binds, digest-matched webhook grants. **Path/Source.** ✅ `DOCS/reference/trust-boundaries.md`, `DOCS/reference/config.md`
 
-**More.** [`10-trust-boundaries.md`](gas-city/10-trust-boundaries.md) — the five input classes, the twelve execution surfaces, the exact secret-key patterns stripped, and the four things that actually bind
+**More.** [`10-trust-boundaries.md`](./gas-city/10-trust-boundaries.md) — the five input classes, the twelve execution surfaces, the exact secret-key patterns stripped, and the four things that actually bind
 
 </details>
 
@@ -283,7 +283,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** Formula compiler contracts (v1 inert-after-apply, v2 graph-native); v2 control beads gate each step on `needs` edges before it's visible; `gc sling` creates+routes a bead — no approval gate, only dependency-gated config. **Path/Source.** ✅ `DOCS/reference/specs/formula-spec-v2.md`, `DOCS/guides/understanding-formulas.md`
 
-**More.** [`04-formula.md`](gas-city/04-formula.md) §3 — the compiled workflow shape, who executes control beads, and the two enumerations of the control-bead kinds that do not match
+**More.** [`04-formula.md`](./gas-city/04-formula.md) §3 — the compiled workflow shape, who executes control beads, and the two enumerations of the control-bead kinds that do not match
 
 </details>
 
@@ -293,7 +293,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** `sling_query` stamps a bead with `gc.routed_to=<qualified-name>`; per-agent `scale_check` sizes a pool. Routing is config the operator writes — *"the orchestrator hardcodes zero roles."* **Path/Source.** ✅ `DOCS/reference/config.md`, `DOCS/getting-started/how-gas-city-works.md`
 
-**More.** [`02-agent.md`](gas-city/02-agent.md) §4a — `sling_query`/`work_query` in full, including the three-tier default work query and what the controller sees without session context
+**More.** [`02-agent.md`](./gas-city/02-agent.md) §4a — `sling_query`/`work_query` in full, including the three-tier default work query and what the controller sees without session context
 
 </details>
 
@@ -311,7 +311,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** Two-file split: `pack.toml` (reusable) vs `city.toml` (this deployment) — "Pack config **is** the feature flag." Scoped inheritance: agent → rig → workspace. No managed-settings/MDM channel. **Path/Source.** ✅ `ENGDOCS/architecture/nine-concepts.md` §4, `DOCS/reference/config.md`
 
-**More.** [`06-pack.md`](gas-city/06-pack.md) §2 — the loading order verbatim, defaults-versus-patches, and the nine-level progressive capability model
+**More.** [`06-pack.md`](./gas-city/06-pack.md) §2 — the loading order verbatim, defaults-versus-patches, and the nine-level progressive capability model
 
 </details>
 
@@ -330,7 +330,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** **Skills** (authored at pack/role scope, symlinked into each provider's skill directory — Claude Code, Codex, Gemini CLI, OpenCode confirmed); **Packs** bundle agents+formulas+orders+skills; a public registry (`gascity-packs`) ships `gascity`, `gastown`, `cass`, `discord`, `github`, Slack. **Path/Source.** ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/guides/registry-showcase.md`
 
-**More.** [`09-skills-mail-and-mcp.md`](gas-city/09-skills-mail-and-mcp.md) §1 — the two skill scopes, the four provider sinks, and why `gc skill list` does not predict the materialized set · [`06-pack.md`](gas-city/06-pack.md) §6 — built-in packs as explicit pinned imports
+**More.** [`09-skills-mail-and-mcp.md`](./gas-city/09-skills-mail-and-mcp.md) §1 — the two skill scopes, the four provider sinks, and why `gc skill list` does not predict the materialized set · [`06-pack.md`](./gas-city/06-pack.md) §6 — built-in packs as explicit pinned imports
 
 </details>
 
@@ -349,7 +349,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** Per-agent session logs; `wake_mode=resume` reuses the provider's session key, `=fresh` starts new ("polecat pattern"). One layer down, **Beads** ships `bd remember`/`bd prime` + memory decay. **Path/Source.** ✅ `DOCS/reference/config.md` (`wake_mode`), `BEADS/README.md`
 
-**More.** [`02-agent.md`](gas-city/02-agent.md) §4 — `wake_mode`, `idle_timeout`, `max_session_age` and its stated credential-expiry motivation
+**More.** [`02-agent.md`](./gas-city/02-agent.md) §4 — `wake_mode`, `idle_timeout`, `max_session_age` and its stated credential-expiry motivation
 
 </details>
 
@@ -359,7 +359,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** The shared bead store: Dolt-backed, survives any agent's crash, and is what packs let a team "reuse... without copying files." Mail (a `message`-type bead) persists across sessions. **Path/Source.** ✅ `DOCS/guides/capabilities-for-coding-agent-users.md`, `DOCS/guides/understanding-packs.md`
 
-**More.** [`03-bead.md`](gas-city/03-bead.md) §2 — one Dolt server for the whole city, `issue_prefix` as a hard query filter, the four `gc.endpoint_origin` values, and the cross-rig read that reports "not found" · [`09-skills-mail-and-mcp.md`](gas-city/09-skills-mail-and-mcp.md) §4 — mail versus nudge, and the three history layers
+**More.** [`03-bead.md`](./gas-city/03-bead.md) §2 — one Dolt server for the whole city, `issue_prefix` as a hard query filter, the four `gc.endpoint_origin` values, and the cross-rig read that reports "not found" · [`09-skills-mail-and-mcp.md`](./gas-city/09-skills-mail-and-mcp.md) §4 — mail versus nudge, and the three history layers
 
 </details>
 
@@ -394,7 +394,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** `gc rig add <path>` registers an external git repo; each rig gets its own bead namespace and agent scope — the rig list is the estate inventory, isolated by bead-ID prefix on one store. **Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`
 
-**More.** [`05-rig.md`](gas-city/05-rig.md) — every `gc rig add` flag, the branch-detection ladder, why the rig *name* is an identity prefix and the *path* is not, the eighteen rig fields, and the three operator runbooks
+**More.** [`05-rig.md`](./gas-city/05-rig.md) — every `gc rig add` flag, the branch-detection ladder, why the rig *name* is an identity prefix and the *path* is not, the eighteen rig fields, and the three operator runbooks
 
 </details>
 
@@ -413,7 +413,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** The Bead, moving `open` → `in_progress` → `closed`; a Convoy groups related work; `needs` edges order work "with no central scheduler." **Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`
 
-**More.** [`03-bead.md`](gas-city/03-bead.md) §1 — every bead type observed, from `message` through wisp and control bead, each with the page that calls it a bead
+**More.** [`03-bead.md`](./gas-city/03-bead.md) §1 — every bead type observed, from `message` through wisp and control bead, each with the page that calls it a bead
 
 </details>
 
@@ -432,7 +432,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** Per-bead audit trail (`bd show <id>`); per-session logs; a city-wide sequenced event log; SBOM + GitHub attestations on Gas City's own releases. **This is the card's structured output.** **Path/Source.** ✅ `BEADS/README.md`, `REPO/SECURITY.md`, `ENGDOCS/architecture/nine-concepts.md`
 
-**More.** [`07-event.md`](gas-city/07-event.md) §1 — all fifty-one event types by prefix with their emitters, including two that are registered but never fired
+**More.** [`07-event.md`](./gas-city/07-event.md) §1 — all fifty-one event types by prefix with their emitters, including two that are registered but never fired
 
 </details>
 
@@ -442,7 +442,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** The Event Bus (`events.Provider`; `.gc/events.jsonl`) underlies `gc events`, the SSE API, the dashboard's live view. A separate optional repo (`gascity-otel`) adds OpenTelemetry — not bundled. **Path/Source.** ✅ `DOCS/reference/events.md`, `gh api repos/gastownhall/gascity-otel`
 
-**More.** [`07-event.md`](gas-city/07-event.md) §2 — the mode × scope envelope matrix, the three output modes, and what `--seq` returns instead of JSONL
+**More.** [`07-event.md`](./gas-city/07-event.md) §2 — the mode × scope envelope matrix, the three output modes, and what `--seq` returns instead of JSONL
 
 </details>
 
@@ -452,7 +452,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** Nothing shipped. A design doc (*"proposal, adversarially reviewed"*) specs a `UsageFact` record — tokens, wall-clock, cost per run. Command map: *"`gt costs` → no matching command today."* **Path/Source.** ✅ `ENGDOCS/design/usage-facts-v0.md`, `DOCS/reference/gastown-command-map.md`
 
-**More.** [`20-consolidated-guide.md`](gas-city/20-consolidated-guide.md) §6 — **`gc costs` ships as of 2026-09-08**, reading `.gc/usage.jsonl`, with `[usage] provider` and `ModelPricing` in the generated config reference; this row's *"nothing shipped"* is the 2026-09-03 read. The hand-written command map still says *"no matching top-level cost accounting command today"*
+**More.** [`20-consolidated-guide.md`](./gas-city/20-consolidated-guide.md) §6 — **`gc costs` ships as of 2026-09-08**, reading `.gc/usage.jsonl`, with `[usage] provider` and `ModelPricing` in the generated config reference; this row's *"nothing shipped"* is the 2026-09-03 read. The hand-written command map still says *"no matching top-level cost accounting command today"*
 
 </details>
 
@@ -479,7 +479,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** Orders pair a trigger (cooldown, cron, condition, event, manual) with a Formula — "no human runs a verb." Health patrol is "one kind of order: each tick, due triggers fire." **Path/Source.** ✅ `DOCS/getting-started/how-gas-city-works.md`, `ENGDOCS/architecture/health-patrol.md`
 
-**More.** [`04-formula.md`](gas-city/04-formula.md) §4 — the five trigger types, exec-versus-formula orders and their default timeouts, `ScopedName`, and the tracking bead
+**More.** [`04-formula.md`](./gas-city/04-formula.md) §4 — the five trigger types, exec-versus-formula orders and their default timeouts, `ScopedName`, and the tracking bead
 
 </details>
 
@@ -522,7 +522,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** Config nesting: agent → rig → workspace inherit downward. But hosted identity refuses tenancy: *"no org or tenant field... no tenancy identity."* Webhook `visibility: tenant` still exists — a vocabulary seam (rule 3). **Path/Source.** ✅ `DOCS/reference/config.md`, `DOCS/reference/specs/service-protocol-v0.md`
 
-**More.** [`10-trust-boundaries.md`](gas-city/10-trust-boundaries.md) §4 — the four scoped refusal lists, the tenancy refusal quoted in full, and the general refusal list that does not exist
+**More.** [`10-trust-boundaries.md`](./gas-city/10-trust-boundaries.md) §4 — the four scoped refusal lists, the tenancy refusal quoted in full, and the general refusal list that does not exist
 
 </details>
 
@@ -533,7 +533,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Ships.** `gc session attach` (tmux-backed TUI); a web dashboard (TypeScript SPA reading the supervisor's typed API); an HTTP+SSE API for chat clients; `gc`/`bd` CLIs. Bead store + event bus is the one source of truth. **Path/Source.** ✅ `DOCS/getting-started/dashboard.md`, `DOCS/guides/connected-clients.md`
 
-**More.** [`07-event.md`](gas-city/07-event.md) §2 — the four HTTP endpoints behind `gc events` and the DTO each returns
+**More.** [`07-event.md`](./gas-city/07-event.md) §2 — the four HTTP endpoints behind `gc events` and the DTO each returns
 
 </details>
 
@@ -621,7 +621,7 @@ Two primary sources describe this test differently — `nine-concepts.md` frames
 
 **Secondary (↪).** Two Gas City/Gas Town blog posts (sellsbrothers.com, steve-yegge.medium.com); yegge.ai/gastown; Maggie Appleton, "Gas Town's Agent Patterns"; Software Engineering Daily.
 
-**Placement.** Short-profiles: [`90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2, [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index: [`index.md`](../index.md). **A `spectrums/positioning.md` row is not yet added** — out of this restructure's write manifest.
+**Placement.** Short-profiles: [`90-short-profiles.md`](../archive/comparisons/systems/90-short-profiles.md) §1 · grid columns: [`04-harness-alignment.md`](../components/ALIGNMENT.md) §2, [`02-component-matrix.md`](../components/MATRIX.md) §1 · index: [`index.md`](../index.md). **A `spectrums/positioning.md` row is not yet added** — out of this restructure's write manifest.
 
 **Diagrams not redrawn.** Sixteen `.excalidraw` sources exist beyond `primitives.excalidraw` (bead-lifecycle, convoy-tracks-membership, cooldown-vs-cron, coordination-through-store, formula-apply-pipeline/drain-fanout/v1-vs-v2/whole-job, gastown-agents-by-scope, hand-rolled-to-city, import-binding-namespace, json-discover-validate, pack-loading, pancakes-dag, work-lifecycle) — only the one nearest the loop question is redrawn.
 

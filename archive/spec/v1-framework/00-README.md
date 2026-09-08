@@ -113,7 +113,7 @@ that checks it ([`3e`](../../../components/3e-standards.md)).
 
 The only empirically-derived inventory of where configuration attaches to an agent is Galster et al.'s
 eight mechanisms, read at source in
-[`07-verified-inventories.md`](../../../comparisons/2026-08-research/07-verified-inventories.md)
+[`07-verified-inventories.md`](../../comparisons/2026-08-research/07-verified-inventories.md)
 §1. Each binds to exactly one component — except MCP, whose two-layer split is pre-ruled and argued at `1a`. Where a
 binding revises the earlier band mapping at [`11-architecture.md`](../../v0/11-architecture.md) §3.1, that
 is deliberate: that mapping marked itself as its own claim, and two of its assignments predate the
@@ -163,7 +163,7 @@ Galster et al.'s headline is a direct challenge to this document's premise: *"Ha
 engineering in open source today is therefore mostly context engineering."* Their evidence is real —
 context files reach 90.6% of surveyed repositories, and beyond Context Files, Skills, Subagents, Rules
 and Settings, *"no other mechanism exceeds 20% adoption for Claude, Copilot, Cursor, or Gemini"*
-([`07-verified-inventories.md`](../../../comparisons/2026-08-research/07-verified-inventories.md) §1).
+([`07-verified-inventories.md`](../../comparisons/2026-08-research/07-verified-inventories.md) §1).
 
 **About open source today, the paper is right, and this framework's own evidence corroborates it**:
 our eight `bet`/`claimed` markers — the rows where no peer ships the object — concentrate at the top
@@ -233,7 +233,7 @@ own version of a decision, or your own product constraints.**
 ## Re-check register
 
 The claims above have shelf lives, in the register this corpus already keeps
-([`comparisons/00-README.md`](../../../comparisons/00-README.md) §6):
+([`comparisons/00-README.md`](../../comparisons/00-README.md) §6):
 
 | Claim | Dies if | By |
 |---|---|---|
@@ -245,6 +245,6 @@ The claims above have shelf lives, in the register this corpus already keeps
 ---
 
 *The mental model, in one read: [`00-consolidated-guide-and-mental-model.md`](./00-consolidated-guide-and-mental-model.md) · The derivation: [`CROSSWALK.md`](./CROSSWALK.md) · The jobs:
-[`03-jtbd.md`](../../../comparisons/03-jtbd.md) · The horizon rule:
+[`03-jtbd.md`](../../comparisons/03-jtbd.md) · The horizon rule:
 [`12-horizon.md`](./12-horizon.md) §2 · The design:
 [`11-architecture.md`](../../v0/11-architecture.md) §1*

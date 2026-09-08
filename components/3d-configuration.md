@@ -49,7 +49,7 @@ file that happens to be writing it is how a surface acquires a reading nobody ap
 2026-09-01)*. What is written on these surfaces is read by a harness that has a version, by plugins
 that declare **semver dependencies**, by skills whose portable frontmatter includes a
 **`compatibility`** field enforced as a hard error
-([`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides,
+([`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides,
 in one screen* — Distribution row, §*Two constraints*). A configuration artifact with no compatibility
 statement is an opinion addressed to whatever happens to read it — which is fine until the harness
 upgrades, and the upgrade is exactly the moment the team cannot afford the surfaces going silent. The
@@ -60,7 +60,7 @@ inventory question this attaches to is `1a`'s fourth question; the assertion mec
 > standalone absolute counts anywhere."* There is **no agent-loop diagram.** And the repository count is
 > **2,853** from v2 onward, not v1's 2,926. What the paper declines to say about *hook lifecycle points*
 > specifically is recorded at `2b`
-> ([`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1).
+> ([`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1).
 
 > ⚠️ **A discrepancy inside the recorded source, found by reading it and not resolved here.** The
 > reproduced Table 1 shows one tool with a published path in **all eight** rows, while the verbatim RQ1
@@ -81,10 +81,10 @@ component's. Beyond Context Files, Skills, Subagents, Rules and Settings, *"no o
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | The widest surveyed surface, with a published path for every mechanism the tool supports. ⚠️ Its own hard constraint belongs on this row: **project settings load only from the starting directory** and are *not* inherited from parent directories the way context files are — which breaks configuration designs that assume a hierarchy | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1 · [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*Two constraints that break control-plane designs* |
-| **Deep Agents** | **Configuration as code rather than as files**, which is a real divergence from the surveyed five: `profiles/`, middleware lists and backends are constructor arguments. It buys expressiveness and gives up the property the survey measures — that a stranger can read a repository and see the team's answers | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Profiles*, §2 *Backends* |
-| **MCP** | One of the eight, and the only one that is **split across two layers** — declared at `1a`, adapted at `2a`. Its configuration artifact is a server list per project | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | The only peer that ships a **discipline for the surface** rather than more surface: the `improve-claude-md` skill states the mechanism — *"the more content that isn't applicable to the current task, the more likely Claude is to ignore everything"* — and the rule, *"if it's relevant to 90%+ of tasks, leave it bare. If it's relevant to a specific kind of work, wrap it"* | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5 |
+| **Claude Code** | The widest surveyed surface, with a published path for every mechanism the tool supports. ⚠️ Its own hard constraint belongs on this row: **project settings load only from the starting directory** and are *not* inherited from parent directories the way context files are — which breaks configuration designs that assume a hierarchy | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1 · [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*Two constraints that break control-plane designs* |
+| **Deep Agents** | **Configuration as code rather than as files**, which is a real divergence from the surveyed five: `profiles/`, middleware lists and backends are constructor arguments. It buys expressiveness and gives up the property the survey measures — that a stranger can read a repository and see the team's answers | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §2 *Profiles*, §2 *Backends* |
+| **MCP** | One of the eight, and the only one that is **split across two layers** — declared at `1a`, adapted at `2a`. Its configuration artifact is a server list per project | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | The only peer that ships a **discipline for the surface** rather than more surface: the `improve-claude-md` skill states the mechanism — *"the more content that isn't applicable to the current task, the more likely Claude is to ignore everything"* — and the rule, *"if it's relevant to 90%+ of tasks, leave it bare. If it's relevant to a specific kind of work, wrap it"* | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §5 |
 | **LoomWarp** | Agent definitions and a settings file, and **nothing on most of the other mechanisms** — no skills directory, no commands, no hooks, no rules. A configuration surface adopted at whatever its default was | [`loomwarp.md`](../content/loomwarp.md#3d-configuration) |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.

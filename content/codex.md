@@ -75,16 +75,16 @@ verification:
 
 [§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-**Deep read** — [`content/codex/`](codex/00-README.md), a 12-document extensibility reference set at a
-finer grain than §6: [AGENTS.md and configuration](codex/01-agents-md-and-configuration.md) ·
-[skills and plugins](codex/02-skills-and-plugins.md) · [hooks](codex/03-hooks.md) ·
-[subagents](codex/04-subagents.md) · [MCP and the app-server](codex/05-mcp-and-the-app-server.md) ·
-[sandboxing and permissions](codex/06-sandboxing-and-permissions.md) ·
-[execpolicy](codex/07-execpolicy.md) · [non-interactive and CI](codex/08-non-interactive-and-ci.md) ·
-[memory and session state](codex/09-memory-and-session-state.md) ·
-[administration](codex/10-administration-and-enterprise.md) ·
-[beyond the CLI](codex/11-beyond-the-cli.md) ·
-[the consolidated guide](codex/20-consolidated-guide.md)
+**Deep read** — [`content/codex/`](./codex/00-README.md), a 12-document extensibility reference set at a
+finer grain than §6: [AGENTS.md and configuration](./codex/01-agents-md-and-configuration.md) ·
+[skills and plugins](./codex/02-skills-and-plugins.md) · [hooks](./codex/03-hooks.md) ·
+[subagents](./codex/04-subagents.md) · [MCP and the app-server](./codex/05-mcp-and-the-app-server.md) ·
+[sandboxing and permissions](./codex/06-sandboxing-and-permissions.md) ·
+[execpolicy](./codex/07-execpolicy.md) · [non-interactive and CI](./codex/08-non-interactive-and-ci.md) ·
+[memory and session state](./codex/09-memory-and-session-state.md) ·
+[administration](./codex/10-administration-and-enterprise.md) ·
+[beyond the CLI](./codex/11-beyond-the-cli.md) ·
+[the consolidated guide](./codex/20-consolidated-guide.md)
 
 *Read 2026-09-08 at `rust-v0.153.4`, five days after this profile's source read. `11-beyond-the-cli`
 covers cloud and IDE surfaces this profile's §7 excludes by scope, and has no detail row here.*
@@ -132,7 +132,7 @@ flowchart TD
 
 `● named primitive · ◐ partial, present-not-first-class · ○ absent (pages named in §6) · n/a does not apply at this altitude`
 
-**Marks copied verbatim from Codex's column in [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2; not re-derived at the restructure.**
+**Marks copied verbatim from Codex's column in [`04-harness-alignment.md`](../components/ALIGNMENT.md) §2; not re-derived at the restructure.**
 
 | # | Component | Mark | Primitive / note |
 |---|---|:-:|---|
@@ -242,7 +242,7 @@ There is no published refusal list for this harness.
 **Path.** `~/.codex/config.toml` `[mcp_servers.*]` · `codex app-server [--listen ...]` · `@openai/codex-sdk`
 **Source.** ✅ `LEARN/codex/extend/mcp` · ✅ `RS/app-server/README.md` · ✅ `LEARN/codex/codex-sdk` · ✅ `RS/connectors/src/lib.rs`
 
-**More.** [`05-mcp-and-the-app-server.md`](codex/05-mcp-and-the-app-server.md) — transport fields, tool-level approval modes, the app-server's thread-ownership rule
+**More.** [`05-mcp-and-the-app-server.md`](./codex/05-mcp-and-the-app-server.md) — transport fields, tool-level approval modes, the app-server's thread-ownership rule
 
 </details>
 
@@ -254,7 +254,7 @@ There is no published refusal list for this harness.
 **Path.** `~/.codex/hooks.json`, `.codex/hooks.json`, `[hooks]` in `config.toml`
 **Source.** ✅ `LEARN/codex/hooks` · ✅ `REPO/blob/main/docs/config.md`
 
-**More.** [`03-hooks.md`](codex/03-hooks.md) — all events with triggers, the four config locations, the `updatedInput` rewrite path, the trust rule. **Lists twelve as of 2026-09-08**; this row's eleven is the 2026-09-03 read
+**More.** [`03-hooks.md`](./codex/03-hooks.md) — all events with triggers, the four config locations, the `updatedInput` rewrite path, the trust rule. **Lists twelve as of 2026-09-08**; this row's eleven is the 2026-09-03 read
 
 </details>
 
@@ -266,7 +266,7 @@ There is no published refusal list for this harness.
 **Path.** `sandbox_mode`, `[permissions.<name>]`, `default_permissions` · `execpolicy check --rules <file>`
 **Source.** ✅ `RS/core/README.md` · ✅ `RS/execpolicy/README.md` · ✅ `LEARN/codex/sandboxing` · ✅ `LEARN/codex/enterprise/admin-setup`
 
-**More.** [`06-sandboxing-and-permissions.md`](codex/06-sandboxing-and-permissions.md) — per-platform mechanisms, `approvals_reviewer`, profile syntax · [`07-execpolicy.md`](codex/07-execpolicy.md) — the full Starlark grammar and basename-fallback semantics
+**More.** [`06-sandboxing-and-permissions.md`](./codex/06-sandboxing-and-permissions.md) — per-platform mechanisms, `approvals_reviewer`, profile syntax · [`07-execpolicy.md`](./codex/07-execpolicy.md) — the full Starlark grammar and basename-fallback semantics
 
 </details>
 
@@ -300,7 +300,7 @@ There is no published refusal list for this harness.
 **Path.** `~/.codex/agents/*.toml`, `.codex/agents/*.toml` · `agents.max_concurrent_threads_per_session`
 **Source.** ✅ `LEARN/codex/agent-configuration/subagents` · ✅ `RS/agent-roles/src/agent_role_config.rs` · ✅ `RS/agent-graph-store/src/types.rs`
 
-**More.** [`04-subagents.md`](codex/04-subagents.md) — required and optional keys, model/effort resolution order, concurrency caps
+**More.** [`04-subagents.md`](./codex/04-subagents.md) — required and optional keys, model/effort resolution order, concurrency caps
 
 </details>
 
@@ -312,7 +312,7 @@ There is no published refusal list for this harness.
 **Path.** `~/.codex/AGENTS.md`, `AGENTS.override.md` · `~/.codex/config.toml`, `.codex/config.toml`, `/etc/codex/config.toml`, `managed_config.toml`, `requirements.toml`
 **Source.** ✅ `LEARN/codex/agent-configuration/agents-md` · ✅ `LEARN/docs/config-file/{config-basic,config-advanced,config-reference}` · ✅ `LEARN/codex/enterprise/managed-configuration`
 
-**More.** [`01-agents-md-and-configuration.md`](codex/01-agents-md-and-configuration.md) — the `AGENTS.md` walk and its 32 KiB ceiling, all five layers, every top-level section
+**More.** [`01-agents-md-and-configuration.md`](./codex/01-agents-md-and-configuration.md) — the `AGENTS.md` walk and its 32 KiB ceiling, all five layers, every top-level section
 
 </details>
 
@@ -336,7 +336,7 @@ There is no published refusal list for this harness.
 **Path.** `.agents/skills/`, `~/.agents/skills/`, `/etc/codex/skills` · `.codex-plugin/plugin.json`
 **Source.** ✅ `LEARN/codex/build-skills` · ✅ `LEARN/codex/build-plugins` · ✅ `LEARN/codex/plugins` · ✅ `gh api repos/openai/codex/contents/.codex/skills`
 
-**More.** [`02-skills-and-plugins.md`](codex/02-skills-and-plugins.md) — `SKILL.md` fields, the six-scope discovery ladder, `agents/openai.yaml`
+**More.** [`02-skills-and-plugins.md`](./codex/02-skills-and-plugins.md) — `SKILL.md` fields, the six-scope discovery ladder, `agents/openai.yaml`
 
 </details>
 
@@ -360,7 +360,7 @@ There is no published refusal list for this harness.
 **Path.** `~/.codex/memories/` (git repo) · `codex-memories-read`, `codex-memories-write` crates
 **Source.** ✅ `RS/memories/README.md`
 
-**More.** [`09-memory-and-session-state.md`](codex/09-memory-and-session-state.md) — both phases in full, the lease/lock model, the git baseline
+**More.** [`09-memory-and-session-state.md`](./codex/09-memory-and-session-state.md) — both phases in full, the lease/lock model, the git baseline
 
 </details>
 
@@ -422,7 +422,7 @@ There is no published refusal list for this harness.
 **Path.** `.codex/skills/{codex-pr-body,babysit-pr,code-review*}`
 **Source.** ✅ `LEARN/codex/cli` · ✅ `gh api repos/openai/codex/contents/.codex/skills` · ⚠️ `docs/exec.md`, `LEARN/codex/exec` both 404
 
-**More.** [`08-non-interactive-and-ci.md`](codex/08-non-interactive-and-ci.md) — every `codex exec` flag, output formats, resume, CI patterns
+**More.** [`08-non-interactive-and-ci.md`](./codex/08-non-interactive-and-ci.md) — every `codex exec` flag, output formats, resume, CI patterns
 
 </details>
 
@@ -458,7 +458,7 @@ There is no published refusal list for this harness.
 **Path.** `RS/rollout/`, `RS/thread-store/README.md`, `RS/agent-identity/src/lib.rs`
 **Source.** ✅ (all three, direct file reads)
 
-**More.** [`09-memory-and-session-state.md`](codex/09-memory-and-session-state.md) — the thread store's history/metadata separation
+**More.** [`09-memory-and-session-state.md`](./codex/09-memory-and-session-state.md) — the thread store's history/metadata separation
 
 </details>
 
@@ -561,7 +561,7 @@ There is no published refusal list for this harness.
 **Path.** `requirements.toml`, `managed_config.toml`
 **Source.** ✅ `LEARN/codex/enterprise/admin-setup`, `LEARN/codex/enterprise/managed-configuration` · ⚠️ roles-and-workspace-permissions page not read
 
-**More.** [`10-administration-and-enterprise.md`](codex/10-administration-and-enterprise.md) — the floor, the administratively-only keys, the silent-failure case
+**More.** [`10-administration-and-enterprise.md`](./codex/10-administration-and-enterprise.md) — the floor, the administratively-only keys, the silent-failure case
 
 </details>
 
@@ -575,7 +575,7 @@ There is no published refusal list for this harness.
 **Path.** (see per-surface sources)
 **Source.** ✅ `LEARN/codex/ide` · ✅ `LEARN/codex/integrated-terminal` · ✅ `LEARN/codex/environments/local-environment` · ✅ `REPO/blob/main/README.md`
 
-**More.** [`11-beyond-the-cli.md`](codex/11-beyond-the-cli.md) — cloud, IDE, desktop and web. **Wider than this profile's scope**
+**More.** [`11-beyond-the-cli.md`](./codex/11-beyond-the-cli.md) — cloud, IDE, desktop and web. **Wider than this profile's scope**
 
 </details>
 
@@ -652,7 +652,7 @@ There is no published refusal list for this harness.
 
 **Secondary (↪), used only for orientation.** WebSearch snippets confirming which docs URLs to fetch directly; migration-tooling commentary (the migration mechanism claims rest on `RS/external-agent-migration/src/lib.rs`, read directly); a search-surfaced architecture-overview page, not opened.
 
-**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md).
+**Placement.** Short-profiles row: [`archive/comparisons/systems/90-short-profiles.md`](../archive/comparisons/systems/90-short-profiles.md) §1 · grid columns: [`components/ALIGNMENT.md`](../components/ALIGNMENT.md) §2 and [`components/MATRIX.md`](../components/MATRIX.md) §1 · index row: [`index.md`](../index.md).
 
 **Diagrams not redrawn.** **"Task Interrupt"** — the second sequence diagram in `codex-rs/docs/protocol_v1.md`, the same file as the redrawn "Basic UI Flow" — listed, not drawn, per the rule for multiple diagrams in one document. The diagram pass (W8c) draws it.
 

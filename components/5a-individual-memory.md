@@ -58,7 +58,7 @@ requires: []
 
 **The routing test is the cheapest thing in this layer, and it is not ours.** *"Would another teammate's
 agent need this to be correct about the project?"* If yes, it is not a memory — **it is team knowledge**,
-and it belongs at `5b` ([`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J2`).
+and it belongs at `5b` ([`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §2 `J2`).
 
 **The boundary is a 2×2, and only one axis is filled.** Four peers treat individual-versus-team as a
 first-class primitive, and the strongest of them crosses it with a second axis — **per-project versus
@@ -71,11 +71,11 @@ cross-repo**. That closes `OPEN-5`'s first axis as visible structure; the `proje
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | `◐` — auto memory, per-user, alongside nested context files. The individual store exists; the **boundary** between it and the team's does not, so the routing decision is left to whoever is typing | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Context row · [`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J2` |
-| **Deep Agents** | Memory as a **backend choice** — `store`, `context_hub` — plus `MemoryMiddleware` in the default stack, and the individual tier expressed as **list position**: skill sources resolve *base → user → project → team*, last-one-wins | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Backends*, §2 *Skills* |
-| **MCP** | **No memory model of its own.** It can connect an agent to a store somebody else owns, which makes it plumbing for this component and never an answer to it | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | The sharpest shape in the corpus, and it is a **directory**: `thoughts/<user>/` against `thoughts/shared/`, crossed with per-repo `repos/<project>/` against `global/`. **A real 2×2**, strictly more expressive than the three peers that treat individual-versus-team as one axis | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §4 |
-| **LoomWarp** | `○`. The individual/team boundary is one of three concepts the component matrix records as treated as first-class by peers and not covered by this framework's component model at all | [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · [`loomwarp.md`](../content/loomwarp.md#5a-individual-memory) |
+| **Claude Code** | `◐` — auto memory, per-user, alongside nested context files. The individual store exists; the **boundary** between it and the team's does not, so the routing decision is left to whoever is typing | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Context row · [`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §2 `J2` |
+| **Deep Agents** | Memory as a **backend choice** — `store`, `context_hub` — plus `MemoryMiddleware` in the default stack, and the individual tier expressed as **list position**: skill sources resolve *base → user → project → team*, last-one-wins | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §2 *Backends*, §2 *Skills* |
+| **MCP** | **No memory model of its own.** It can connect an agent to a store somebody else owns, which makes it plumbing for this component and never an answer to it | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | The sharpest shape in the corpus, and it is a **directory**: `thoughts/<user>/` against `thoughts/shared/`, crossed with per-repo `repos/<project>/` against `global/`. **A real 2×2**, strictly more expressive than the three peers that treat individual-versus-team as one axis | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §4 |
+| **LoomWarp** | `○`. The individual/team boundary is one of three concepts the component matrix records as treated as first-class by peers and not covered by this framework's component model at all | [`02-component-matrix.md`](./MATRIX.md) §1 · [`loomwarp.md`](../content/loomwarp.md#5a-individual-memory) |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.
 **● 5 · ◐ 1 · ○ 4** of ten. Each row links to that harness's detail.

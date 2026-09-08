@@ -30,7 +30,7 @@ requires: []
 names *distribute* and means the delivery of **capability** — getting a skill or a runbook to every
 repo and every person, which is [`4a`](./4a-capability.md)'s object. Nothing in `F0`–`F16`
 names the delivery of the **product**
-([`03-jtbd.md`](../comparisons/03-jtbd.md) §0, §2 `J10`). The evidence that this is
+([`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §0, §2 `J10`). The evidence that this is
 a real hole rather than a tidy one is sitting in this repository: `standards/ci-cd.md` exists **with
 no function to hang it on** — the same shape that produced `F14`, a decision-rights table with
 nothing to attach it to ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §2.2).
@@ -56,10 +56,10 @@ route it takes to get there.
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | `●` on distribution of **capability** — the mechanism is enumerated at [`4a`](./4a-capability.md) — and **nothing on delivery of a product**. The distinction this row rests on is visible in that one cell: the field's most complete shipping mechanism ships *the harness's own parts* and stops at the boundary its own docs draw | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Distribution row |
-| **Deep Agents** | The only peer whose agent reaches production by **the same road a person's change does**: `dcode` runs headless in GitHub Actions, so the delivery path is the repository's existing pipeline rather than a parallel one. **That is the agent-equivalence test passed in a config file.** What the CI surface *restricts* once it is there is enforcement and is graded at [`2c`](./2c-enforcement.md) | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §5 *Distribution* |
-| **MCP** | **Nothing here.** It is a call-time connection mechanism with no notion of a release, a gate or a rollback. Naming it in this row would be stretching a tool surface into a pipeline | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | Delivery expressed as **where work is allowed to happen**: only implementation runs in a worktree and *"we tend to do everything else on main"*, so the route to production is defined by which stage of the work you are in rather than by a pipeline. **A phase gate, not a path** — which answers the singularity question and leaves the rollback question untouched | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3 |
+| **Claude Code** | `●` on distribution of **capability** — the mechanism is enumerated at [`4a`](./4a-capability.md) — and **nothing on delivery of a product**. The distinction this row rests on is visible in that one cell: the field's most complete shipping mechanism ships *the harness's own parts* and stops at the boundary its own docs draw | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Distribution row |
+| **Deep Agents** | The only peer whose agent reaches production by **the same road a person's change does**: `dcode` runs headless in GitHub Actions, so the delivery path is the repository's existing pipeline rather than a parallel one. **That is the agent-equivalence test passed in a config file.** What the CI surface *restricts* once it is there is enforcement and is graded at [`2c`](./2c-enforcement.md) | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §5 *Distribution* |
+| **MCP** | **Nothing here.** It is a call-time connection mechanism with no notion of a release, a gate or a rollback. Naming it in this row would be stretching a tool surface into a pipeline | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | Delivery expressed as **where work is allowed to happen**: only implementation runs in a worktree and *"we tend to do everything else on main"*, so the route to production is defined by which stage of the work you are in rather than by a pipeline. **A phase gate, not a path** — which answers the singularity question and leaves the rollback question untouched | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §3 |
 | **LoomWarp** | `standards/ci-cd.md` — **the bar written and the path unbuilt.** Seven standards guides describe what good delivery looks like; no repository in the estate is wired to a route that enforces any of it, and the one live run bypassed the controls it did have | [`loomwarp.md`](../content/loomwarp.md#6d-delivery) |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.

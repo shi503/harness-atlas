@@ -67,10 +67,10 @@ brief held; nothing in the interview contested it. Additions are marked.
 
 | # | Asset | Form | Reason |
 |---|---|---|---|
-| 1 | `comparisons/02-component-matrix.md` | as-is | The most effective page in the corpus. Prose labels stale (ISSUE-003), W6 |
+| 1 | `components/MATRIX.md` | as-is | The most effective page in the corpus. Prose labels stale (ISSUE-003), W6 |
 | 2 | The five Template-A profiles → `content/{pi,hermes,openclaw,opencode,grok}.md` | as-is | Already the shape the skill codifies; the skill was derived from them |
 | 3 | `comparisons/01-concepts.md` §3.17 | as-is | The definition of a primitive; quoted in README |
-| 4 | `comparisons/04-harness-alignment.md` §2, §4.1 | as-is | The 33-row view and the loop question; §4.1's altitude table is now the README's "altitude" column |
+| 4 | `components/ALIGNMENT.md` §2, §4.1 | as-is | The 33-row view and the loop question; §4.1's altitude table is now the README's "altitude" column |
 | 5 | `maturity/AI-Native-Organizational-Maturity-Framework.md` + `grid.html` | as-is until W7 | The range; re-pointed to `graded:` components in W7 |
 | 6 | `content/claude-code/` (13 docs, 2026-08-10) *(added)* | as-is, as a **source** | Pre-template deep read. Its §1 "seven insertion points" seeded the harness-loop diagram. A template profile is the W2 sanity draft; promotion is a later call |
 | 7 | `spec/v1-framework/00-consolidated-guide-and-mental-model.md` | trimmed (mined) | The layer-stack drawing was lifted into a mermaid diagram with the **original** numbering; the rest stays un-recut. Its §1 renumber is now explicitly not canon |

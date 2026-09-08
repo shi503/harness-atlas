@@ -31,7 +31,7 @@ saturated with the topic — `cost` 70 · `budget` 23 · `spend` 22 · `throughp
 with an entire conference track — and **no published harness taxonomy treats budget as a named
 function**: not AAIF, Meng, Macedo, Böckeler, Chan or 12-Factor. *"A high-attention operational
 concern with no home in any model of what a harness is"* is a much stronger claim than having thought
-of it first ([`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J12`).
+of it first ([`03-jtbd.md`](../archive/comparisons/03-jtbd.md) §2 `J12`).
 
 **The claim was narrowed once, and the narrowed version is the one that ships.** *"Nobody joins cost
 to outcome"* is too strong: eval platforms already track feedback score, latency and tokens per
@@ -41,7 +41,7 @@ shipped ([`02-functions.md`](../archive/v0/02-functions.md) §6 `F11`).
 
 **And the field's only published per-team figure comes from a competitor, unprompted.** *"Our team of
 three is averaging about $12k on opus per month"*
-([`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3). That is one
+([`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §3). That is one
 number, from one team, in a marketing essay — and it is the entire corpus of per-team cost evidence,
 which says more about the row than any argument for it could.
 
@@ -62,10 +62,10 @@ diagnosis is a judgement, and collapsing them is how a dashboard becomes a subst
 
 | Peer | What it ships here | Cited at |
 |---|---|---|
-| **Claude Code** | The only native implementation, and it is **attribution without a unit**: OTel emits cost and tokens keyed by `agent.name`, `skill.name`, `plugin.name`, `marketplace.name` and `mcp_server.name`. That answers *which component spent it* completely and *what did this piece of work cost* not at all — the dimensions are the harness's parts, not the team's work | [`systems/claude-code.md`](../comparisons/systems/claude-code.md) §*What it provides* — Evidence row |
-| **Deep Agents** | **Nothing, and its own teardown says so in this row's words**: *"no per-unit-of-work cost accounting."* The harness has a full evaluation surface that reports latency and tokens **per experiment**, so the instrumentation exists and is pointed at the model rather than at the work — which is the unit distinction this row rests on, arriving as a design choice rather than as an omission | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §5, §8 |
-| **MCP** | **Nothing here, and it is a boundary rather than an omission.** MCP is a connection mechanism; the spend it causes is measured on the harness side, which is why the Claude Code row above can key cost *by* MCP server. There is no accounting inside the protocol to have | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
-| **HumanLayer** | The corpus's **only published per-team cost figure** — *"about $12k on opus per month"* for a team of three — reported in prose rather than instrumented, alongside a named two-week failure on a race condition. Not a system; a **register**, and the one nobody else in this landscape has adopted | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §3 |
+| **Claude Code** | The only native implementation, and it is **attribution without a unit**: OTel emits cost and tokens keyed by `agent.name`, `skill.name`, `plugin.name`, `marketplace.name` and `mcp_server.name`. That answers *which component spent it* completely and *what did this piece of work cost* not at all — the dimensions are the harness's parts, not the team's work | [`systems/claude-code.md`](../archive/comparisons/systems/claude-code.md) §*What it provides* — Evidence row |
+| **Deep Agents** | **Nothing, and its own teardown says so in this row's words**: *"no per-unit-of-work cost accounting."* The harness has a full evaluation surface that reports latency and tokens **per experiment**, so the instrumentation exists and is pointed at the model rather than at the work — which is the unit distinction this row rests on, arriving as a design choice rather than as an omission | [`systems/langchain-deepagents.md`](../archive/comparisons/systems/langchain-deepagents.md) §5, §8 |
+| **MCP** | **Nothing here, and it is a boundary rather than an omission.** MCP is a connection mechanism; the spend it causes is measured on the harness side, which is why the Claude Code row above can key cost *by* MCP server. There is no accounting inside the protocol to have | [`07-verified-inventories.md`](../archive/comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
+| **HumanLayer** | The corpus's **only published per-team cost figure** — *"about $12k on opus per month"* for a team of three — reported in prose rather than instrumented, alongside a named two-week failure on a race condition. Not a system; a **register**, and the one nobody else in this landscape has adopted | [`systems/humanlayer.md`](../archive/comparisons/systems/humanlayer.md) §3 |
 | **LoomWarp** | `○`. Cost is invisible: no per-workstream accounting, no budget, and no figure of its own to put beside the one above. The dispatch record exists and carries no spend, which is this row's stage-1 cell exactly — *"cost is invisible"* | [`loomwarp.md`](../content/loomwarp.md#8d-efficiency) · [`03-maturity.md`](../archive/v0/03-maturity.md) §4 |
 
 **Across the corpus** — every scored harness on this component, its own mark and its own words.
