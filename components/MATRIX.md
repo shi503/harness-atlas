@@ -17,96 +17,17 @@ read side by side.
 
 **Sourcing rule.** Every `●` traces to a cited primitive in that system's teardown under
 `[systems/](../archive/comparisons/systems)`. Where a rating is inferred rather than documented, it is marked `◐?` and
-listed in §4.
+listed in [§5](#5-ratings-marked-as-inferred).
+
+**Where each column came from** — the dated notes recording how every column was added, corrected or
+re-checked — is [§6](#6-column-change-log--how-each-column-got-here), below the grid. It sat above the
+grid until 2026-09-08 and pushed the table off the first screen.
 
 ---
 
 
 
 ## 1. Components × systems
-
-> **Two notes added 2026-08-27, after the** `F3` **re-spec.**
->
-> `Context adapter` **is a new row, and its emptiness is the finding.** Row 1 has been `Harness adapter`
-> since this matrix was written; there has never been a context equivalent, for us or for any peer. The
-> objection *"you do not write an adapter for the thing you are"* is about the **harness** — `F3`'s
-> Fabric provider is explicitly `native`, so we resolve against a context layer rather than being one.
-> See `[../../specs/v0/09-context-layer.md](../archive/v0/09-context-layer.md)` §8; tracked as `GAP-25`.
->
-> **Five rows below are sub-functions of** `F3`**, not peers of the rows around them** —
-> `Individual memory`, `Team memory`, `Context assembly`, `Capture loop`, and
-> `Provenance → outcome join`. Per `[../../specs/v0/02-functions.md](../archive/v0/02-functions.md)`
-> §0.1, matrix components decompose a function; they are not a rival vocabulary for one. Their
-> per-provider scoring lives at
-> `[systems/context-providers/00-README.md](../archive/comparisons/systems/context-providers/00-README.md)` §3.
->
-> **Columns stay process layers.** Providers are components *inside* one function and are a different
-> axis; merging them is the genre error
-> `[2026-08-research/06-frameworks-addendum.md](../archive/comparisons/2026-08-research/06-frameworks-addendum.md)` §0 names.
-
-> **Five harness columns added 2026-09-02** — Hermes · Pi · OpenClaw · OpenCode · Grok Bot / Grok
-> Build, placed beside Claude Code, which already set the precedent for a harness in this grid. The
-> Grok column pairs a hosted product with the open harness beside it, the way `gstack / gbrain` does;
-> whether Bot *runs on* Build is ⚠️ unstated at source, and the teardown says so. Every cell traces to the 33-row
-> table in that system's teardown under `[content/](../content)`; the 33-component
-> view is `[04-harness-alignment.md](./ALIGNMENT.md)` §2, and this grid is the same read
-> compressed onto the nineteen concept rows. **Read the harness columns as a block**: they answer *what
-> the loop ships natively*, and the process-layer columns answer *what gets installed into a loop*.
-> The `Harness adapter` row is the one place the two senses collide — `ᴴ` marks a cell where the
-> system is a **host** shipping adapters *for other harnesses* (OpenClaw's `agentRuntime` slot and
-> ACP plugin; Hermes's Codex app-server runtime and import adapters), not a layer shipping an adapter
-> *into* one. `04` §4.1 argues that is a third altitude.
->
-> **Codex column added 2026-09-03** — [`content/codex.md`](../content/codex.md), first in the W4 queue
-> because Hermes and OpenClaw both embed its app-server as a runtime (confirmed at Codex's own primary
-> source this pass: `external-agent-migration` reads *from* Claude Code and Cursor, one-way; nothing
-> ships an ACP crate). Placed with the runtime/harness block, before `gstack / gbrain`. No existing
-> column re-scored.
->
-> **Gas City column corrected 2026-09-03**, against [`content/gas-city.md`](../content/gas-city.md)
-> (W4 #2) — the existing column was re-checked cell by cell, not re-scored wholesale. Three cells were
-> wrong and are changed here, each traceable to the new profile's §B: **Individual memory** `○→◐`
-> (per-agent session logs plus the sibling **Beads** product's `bd remember`/`bd prime` project memory
-> are real, if one layer removed from a Gas-City-owned object — §B row 5a); **Team memory** `○→◐` (the
-> shared, Dolt-backed bead store plus Mail persist across sessions that share no session — §B row 5b);
-> **Context assembly** `○→◐` (agent context is seeded automatically per turn from the role's prompt
-> template plus live work items and mail — `docs/guides/capabilities-for-coding-agent-users.md`, §B
-> row 3c/5a). Every other Gas City cell in the grid below was checked against the same profile and
-> left unchanged. The primitive-set row (below, "The primitive sets themselves") is also corrected:
-> the prior text named "order" as a primitive and "Event Stream," and omitted Rig — the vendor's own
-> admission test and `how-gas-city-works.md` name six: Agent, Bead, Formula, Rig, Pack, Event.
->
-> **LoomWarp column corrected 2026-09-03**, against [`content/loomwarp.md`](../content/loomwarp.md)
-> (W4 #3) — re-checked cell by cell against the files, not against the product's own self-assessment.
-> One cell was wrong: **Context assembly** `○→◐`. `control/dispatch.py`'s `build_prompt_for()` reads a
-> workstream's `context_bundle:` file list (hand-curated per workstream in the BLUEPRINT) and
-> concatenates each file's text into the assembled prompt before the PRD — a real, mechanical
-> assembly step, thinner than a first-class object (no hashing, versioning, or owner attribution — the
-> unbuilt "Briefing" the framework names separately) but not absent. Every other LoomWarp cell in the
-> grid below was checked against `content/loomwarp.md` §6 and left unchanged — including `Standards
-> tier` (●, confirmed) and `Agent definitions` (●, confirmed: `.claude/agents/*.md`).
->
-> **FRACTAL column re-checked 2026-09-03**, against [`content/fractal.md`](../content/fractal.md)
-> (W4 #4), cell by cell against the pinned vendored commit (`6398f6db`), not against LoomWarp's own
-> federated build on top of it. Two cells were wrong: **Harness adapter** `○→◐` — `SETUP-CURSOR.md`
-> documents translating Claude Code agent files into Cursor rules, thin and "community-supported" but
-> a real, named second-harness path, the same shape as Hermes's `◐ᴴ`; **Skills** `◐→●` — seven
-> first-class `SKILL.md` files, installed once by the README's own copy step with no ongoing sync
-> script and none of LoomWarp's `cp -r` removal defect, the same standing every other `●` in this row
-> earns. Every other FRACTAL cell was checked against `content/fractal.md` §6 and left unchanged,
-> including **Standards tier** (○, confirmed absent at the pinned commit — `git ls-tree 6398f6db --
-> standards` is empty; a `standards/` directory now exists at upstream's current HEAD, outside this
-> pinned commit's scope, flagged in the profile's §F rather than changing this cell).
->
-> **Claude Code column re-checked 2026-09-04** against the new Template v2 profile,
-> [`content/claude-code.md`](../content/claude-code.md) §4. One cell corrected: **Communication
-> channel** ○→◐ — Channels (Telegram, Discord, iMessage, or a webhook, pushing events into a running
-> session, two-way where the integration supports it) did not exist in this matrix's 2026-08-11 read;
-> confirmed present today, research preview, not first-class → [`#11a-surfaces`](../content/claude-code.md#11a-surfaces). Every other cell was
-> checked against the profile's §4/§6 and left unchanged, including **Standards tier** (○ — Agent
-> Skills is a co-published technical schema, not the process-doctrine artifact this row asks for; see
-> [`#3e-standards`](../content/claude-code.md#3e-standards)) and **Provenance → outcome join** (○ — the profile's own card states the same gap
-> the corpus already recorded here).
 
 
 | Component                     | Claude Code | Hermes | Pi  | OpenClaw | OpenCode | Grok Bot / Build | Codex | gstack / gbrain | Gas City | QM  | Indigo HQ | SageOx | FRACTAL | generic-cerebro | LoomWarp |
@@ -316,3 +237,96 @@ primitives, and they should be corrected by anyone who knows better.
 ---
 
 *Next:* `[03-jtbd.md](../archive/comparisons/03-jtbd.md)` *— what each system says it is for.*
+
+---
+
+
+
+## 6. Column change log — how each column got here
+
+**Moved here 2026-09-08.** These notes sat above the grid in §1 and pushed the table off the first
+screen. The grid is what this file is for; the provenance of each column is what this section is for.
+Nothing was edited — the notes are verbatim, in the order they were written.
+
+> **Two notes added 2026-08-27, after the** `F3` **re-spec.**
+>
+> `Context adapter` **is a new row, and its emptiness is the finding.** Row 1 has been `Harness adapter`
+> since this matrix was written; there has never been a context equivalent, for us or for any peer. The
+> objection *"you do not write an adapter for the thing you are"* is about the **harness** — `F3`'s
+> Fabric provider is explicitly `native`, so we resolve against a context layer rather than being one.
+> See `[../../specs/v0/09-context-layer.md](../archive/v0/09-context-layer.md)` §8; tracked as `GAP-25`.
+>
+> **Five rows below are sub-functions of** `F3`**, not peers of the rows around them** —
+> `Individual memory`, `Team memory`, `Context assembly`, `Capture loop`, and
+> `Provenance → outcome join`. Per `[../../specs/v0/02-functions.md](../archive/v0/02-functions.md)`
+> §0.1, matrix components decompose a function; they are not a rival vocabulary for one. Their
+> per-provider scoring lives at
+> `[systems/context-providers/00-README.md](../archive/comparisons/systems/context-providers/00-README.md)` §3.
+>
+> **Columns stay process layers.** Providers are components *inside* one function and are a different
+> axis; merging them is the genre error
+> `[2026-08-research/06-frameworks-addendum.md](../archive/comparisons/2026-08-research/06-frameworks-addendum.md)` §0 names.
+
+> **Five harness columns added 2026-09-02** — Hermes · Pi · OpenClaw · OpenCode · Grok Bot / Grok
+> Build, placed beside Claude Code, which already set the precedent for a harness in this grid. The
+> Grok column pairs a hosted product with the open harness beside it, the way `gstack / gbrain` does;
+> whether Bot *runs on* Build is ⚠️ unstated at source, and the teardown says so. Every cell traces to the 33-row
+> table in that system's teardown under `[content/](../content)`; the 33-component
+> view is `[04-harness-alignment.md](./ALIGNMENT.md)` §2, and this grid is the same read
+> compressed onto the nineteen concept rows. **Read the harness columns as a block**: they answer *what
+> the loop ships natively*, and the process-layer columns answer *what gets installed into a loop*.
+> The `Harness adapter` row is the one place the two senses collide — `ᴴ` marks a cell where the
+> system is a **host** shipping adapters *for other harnesses* (OpenClaw's `agentRuntime` slot and
+> ACP plugin; Hermes's Codex app-server runtime and import adapters), not a layer shipping an adapter
+> *into* one. `04` §4.1 argues that is a third altitude.
+>
+> **Codex column added 2026-09-03** — [`content/codex.md`](../content/codex.md), first in the W4 queue
+> because Hermes and OpenClaw both embed its app-server as a runtime (confirmed at Codex's own primary
+> source this pass: `external-agent-migration` reads *from* Claude Code and Cursor, one-way; nothing
+> ships an ACP crate). Placed with the runtime/harness block, before `gstack / gbrain`. No existing
+> column re-scored.
+>
+> **Gas City column corrected 2026-09-03**, against [`content/gas-city.md`](../content/gas-city.md)
+> (W4 #2) — the existing column was re-checked cell by cell, not re-scored wholesale. Three cells were
+> wrong and are changed here, each traceable to the new profile's §B: **Individual memory** `○→◐`
+> (per-agent session logs plus the sibling **Beads** product's `bd remember`/`bd prime` project memory
+> are real, if one layer removed from a Gas-City-owned object — §B row 5a); **Team memory** `○→◐` (the
+> shared, Dolt-backed bead store plus Mail persist across sessions that share no session — §B row 5b);
+> **Context assembly** `○→◐` (agent context is seeded automatically per turn from the role's prompt
+> template plus live work items and mail — `docs/guides/capabilities-for-coding-agent-users.md`, §B
+> row 3c/5a). Every other Gas City cell in the grid below was checked against the same profile and
+> left unchanged. The primitive-set row (below, "The primitive sets themselves") is also corrected:
+> the prior text named "order" as a primitive and "Event Stream," and omitted Rig — the vendor's own
+> admission test and `how-gas-city-works.md` name six: Agent, Bead, Formula, Rig, Pack, Event.
+>
+> **LoomWarp column corrected 2026-09-03**, against [`content/loomwarp.md`](../content/loomwarp.md)
+> (W4 #3) — re-checked cell by cell against the files, not against the product's own self-assessment.
+> One cell was wrong: **Context assembly** `○→◐`. `control/dispatch.py`'s `build_prompt_for()` reads a
+> workstream's `context_bundle:` file list (hand-curated per workstream in the BLUEPRINT) and
+> concatenates each file's text into the assembled prompt before the PRD — a real, mechanical
+> assembly step, thinner than a first-class object (no hashing, versioning, or owner attribution — the
+> unbuilt "Briefing" the framework names separately) but not absent. Every other LoomWarp cell in the
+> grid below was checked against `content/loomwarp.md` §6 and left unchanged — including `Standards
+> tier` (●, confirmed) and `Agent definitions` (●, confirmed: `.claude/agents/*.md`).
+>
+> **FRACTAL column re-checked 2026-09-03**, against [`content/fractal.md`](../content/fractal.md)
+> (W4 #4), cell by cell against the pinned vendored commit (`6398f6db`), not against LoomWarp's own
+> federated build on top of it. Two cells were wrong: **Harness adapter** `○→◐` — `SETUP-CURSOR.md`
+> documents translating Claude Code agent files into Cursor rules, thin and "community-supported" but
+> a real, named second-harness path, the same shape as Hermes's `◐ᴴ`; **Skills** `◐→●` — seven
+> first-class `SKILL.md` files, installed once by the README's own copy step with no ongoing sync
+> script and none of LoomWarp's `cp -r` removal defect, the same standing every other `●` in this row
+> earns. Every other FRACTAL cell was checked against `content/fractal.md` §6 and left unchanged,
+> including **Standards tier** (○, confirmed absent at the pinned commit — `git ls-tree 6398f6db --
+> standards` is empty; a `standards/` directory now exists at upstream's current HEAD, outside this
+> pinned commit's scope, flagged in the profile's §F rather than changing this cell).
+>
+> **Claude Code column re-checked 2026-09-04** against the new Template v2 profile,
+> [`content/claude-code.md`](../content/claude-code.md) §4. One cell corrected: **Communication
+> channel** ○→◐ — Channels (Telegram, Discord, iMessage, or a webhook, pushing events into a running
+> session, two-way where the integration supports it) did not exist in this matrix's 2026-08-11 read;
+> confirmed present today, research preview, not first-class → [`#11a-surfaces`](../content/claude-code.md#11a-surfaces). Every other cell was
+> checked against the profile's §4/§6 and left unchanged, including **Standards tier** (○ — Agent
+> Skills is a co-published technical schema, not the process-doctrine artifact this row asks for; see
+> [`#3e-standards`](../content/claude-code.md#3e-standards)) and **Provenance → outcome join** (○ — the profile's own card states the same gap
+> the corpus already recorded here).
