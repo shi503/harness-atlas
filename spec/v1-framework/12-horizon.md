@@ -93,7 +93,7 @@ Two peers, both cited, both shipping context assembly as a named primitive:
 
 **Rule satisfied:** two teardowns, by file and section.
 
-**Confirmed live:** [`content/component-15-knowledge.md`](./content/component-15-knowledge.md) carries
+**Confirmed live:** [`content/component-15-knowledge.md`](../../components/5c-knowledge.md) carries
 `Horizon: shipped` and cites this section by number. `CROSSWALK.md` §2 decomposed `F3 Context` three
 ways under `O-3` — `F3.1` `5a` Individual Memory · `F3.2` `5b` Team Memory · `F3.3` `5c` Knowledge —
 and this example's evidence, context assembly as a named primitive, is the `5c` third.
@@ -114,7 +114,7 @@ condition:
 
 **Why the marker mattered here.** Workspaces was, at the time, the leading candidate for a new band.
 It became layer 6, "Workspaces ⟳" — and this specific claim, an addressable, durable, per-task work
-environment, landed at [`6b` Infrastructure](./content/component-17-infrastructure.md), whose own
+environment, landed at [`6b` Infrastructure](../../components/6b-infrastructure.md), whose own
 `Horizon:` line cites this section by number with the same three peers and the same three names.
 `CROSSWALK.md` §2.2 argues `6b` as new against exactly this evidence. Layer 6 did not converge on one
 word for everything in it either — `6a` Product, `6c` Estate and `6d` Delivery are three more
@@ -141,7 +141,7 @@ implementation and exactly where it stops.
 readable and defensible. Left unmarked, it reads as either *"nobody has thought of this"* (false since
 the keynote) or *"nobody has built it"* (true, and much narrower than the sentence suggests).
 
-**Confirmed live:** [`content/component-22-evidence.md`](./content/component-22-evidence.md) cites this
+**Confirmed live:** [`content/component-22-evidence.md`](../../components/8b-evidence.md) cites this
 section verbatim — *"The join to context is a separate marker and stays `claimed` —
 `12-horizon.md` §3.3."* `8b` Evidence's own base capability, the ledger and the OTel trace, is marked
 `shipped`; this join is the one sub-claim inside it that is not, and the component file keeps the two
@@ -155,7 +155,7 @@ us.
 **Rule satisfied:** said out loud.
 
 **Confirmed live:**
-[`content/component-28-anti-fragile-lifecycle.md`](./content/component-28-anti-fragile-lifecycle.md)
+[`content/component-28-anti-fragile-lifecycle.md`](../../components/9d-anti-fragile-lifecycle.md)
 carries `Horizon: bet` under the same name and the same reasoning — no peer ships a closed improvement
 loop; LangSmith Engine, the nearest, proposes rather than promotes. `CROSSWALK.md` §2.2 records `9d` as
 **contested** (`O-4` demotes it from umbrella to peer of Learning / Rituals / Cadence) — a live dispute

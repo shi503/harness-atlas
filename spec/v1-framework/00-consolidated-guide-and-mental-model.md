@@ -121,10 +121,10 @@ import what your team has learned or the product it has built.
 
 ***Is it a decision or a mechanism?*** The framework separates these deliberately and repeatedly, and
 almost every confused conversation about agent governance is the two collapsed into one. *What an
-agent may do* is a named bound at [`3a` Control](./content/component-06-control.md); *what stops it* is
-[`2c` Enforcement](./content/component-05-enforcement.md). *Who exists* is
-[`10a` Roster](./content/component-31-roster.md); *who answers* is
-[`10b` Org](./content/component-32-org.md). **A team can have precise bounds and no enforcement, or
+agent may do* is a named bound at [`3a` Control](../../components/3a-control.md); *what stops it* is
+[`2c` Enforcement](../../components/2c-enforcement.md). *Who exists* is
+[`10a` Roster](../../components/10a-roster.md); *who answers* is
+[`10b` Org](../../components/10b-org.md). **A team can have precise bounds and no enforcement, or
 comprehensive enforcement over bounds nobody named — and those are different failures with different
 fixes.**
 
@@ -173,27 +173,27 @@ of this framework's uncorroborated markers sit (§9).
 ## 3. The eight rules that matter most
 
 **Rule 1 — The minimum governs, not the mean.**
-A layer grades at its weakest component. A team sitting at stage 5 everywhere except Enforcement, which is at stage 1, is a stage-1 team — because the failure that will actually happen is the enforcement one. The practical consequence: **you never need to fix everything, and you never get to choose what to fix next.** `9f` [Diagnose the Bottleneck](./content/component-30-diagnose-the-bottleneck.md) is the component that makes this an operating practice rather than a slogan.
+A layer grades at its weakest component. A team sitting at stage 5 everywhere except Enforcement, which is at stage 1, is a stage-1 team — because the failure that will actually happen is the enforcement one. The practical consequence: **you never need to fix everything, and you never get to choose what to fix next.** `9f` [Diagnose the Bottleneck](../../components/9f-diagnose-the-bottleneck.md) is the component that makes this an operating practice rather than a slogan.
 
 **Rule 2 — If it must hold every time, it is not a prompt.**
 This is Macedo's `T4` — *a control mechanism independent of the model* — made a graded row.
-`3e` [Standards](./content/component-10-standards.md) shapes behaviour; it does not bind it.
-`2c` [Enforcement](./content/component-05-enforcement.md) binds. Writing a constraint into a rules file
+`3e` [Standards](../../components/3e-standards.md) shapes behaviour; it does not bind it.
+`2c` [Enforcement](../../components/2c-enforcement.md) binds. Writing a constraint into a rules file
 and calling it a control is the single most common category error in this space, and it is a category
 error precisely because the two are different components with different grades.
 
 **Rule 3 — Only two layers accumulate; everything else is configured or runs.**
 Context (5) and Workspaces (6) are the `⟳` pair. This is a **falsifiable** claim, not a slogan: the
 named losing condition is a third accumulating layer, and the named candidate is
-`8b` [Evidence](./content/component-22-evidence.md) — excluded today only because its entries feed
+`8b` [Evidence](../../components/8b-evidence.md) — excluded today only because its entries feed
 forward as *measurement*, never as *content an agent reads to do the next unit of work better*. Show
 an evidence store whose prior entries are retrieved as context for a new run and the pair becomes a
 triple.
 
 **Rule 4 — Declare the environment; derive the adapters.**
 MCP adapts per call and the harness never holds a model of what exists. So the inventory is
-**declared** at `1a` [Environment](./content/component-02-environment.md) — owner, interface, auth —
-and the reach is **derived** at `2a` [Adapters & Middleware](./content/component-03-adapters-and-middleware.md).
+**declared** at `1a` [Environment](../../components/1a-environment.md) — owner, interface, auth —
+and the reach is **derived** at `2a` [Adapters & Middleware](../../components/2a-adapters-and-middleware.md).
 They are graded apart because *a tool list discovered at call time is reach without inventory*, and a
 team can have excellent reach and no idea what it is reaching.
 
@@ -203,7 +203,7 @@ team can have excellent reach and no idea what it is reaching.
 
 All thirty-three components are configurable primitives; that is the membership test. Ours, named:
 `router.py` and `dispatch.py` are machinery and sit at `3a`; **the work contract they read is the
-primitive**, and it is graded one layer up at [7a](./content/component-20-workflow-tasks.md). A grid
+primitive**, and it is graded one layer up at [7a](../../components/7a-workflow-tasks.md). A grid
 that scores machinery has graded whether a team installed something.
 
 **Rule 6 — The decision and the mechanism are always separate rows.**
@@ -219,8 +219,8 @@ asymmetric on purpose: it is easier to lose ground than to take it.**
 
 **Rule 8 — The numbering is a reading order, not a dependency order, and the exception is published.**
 Layers are numbered in *the order a team comes to need them*. At least one dependency runs upward —
-`3b` [Routing](./content/component-07-routing.md) resolves against
-`10a` [Roster](./content/component-31-roster.md), seven layers above it — and other components publish
+`3b` [Routing](../../components/3b-routing.md) resolves against
+`10a` [Roster](../../components/10a-roster.md), seven layers above it — and other components publish
 storage and resolution relations that cross layers. **The typed-relations map that would carry those
 edges properly is owed and not written** (§10).
 

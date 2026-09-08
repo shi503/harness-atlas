@@ -96,19 +96,19 @@ for**, so this column should be read next to §3 rather than on its own.
 
 | From | requires | Because | Cited at |
 |---|---|---|---|
-| `2a` | `1a` | *"one **adapter** per system declared at `1a`"* — and the preflight forces the order: *"you cannot write an adapter for a system you have not declared"* | [`component-03`](./content/component-03-adapters-and-middleware.md) · [`05-preflight.md`](./05-preflight.md) §3 |
-| `3b` | `10a` | *"A resolver is only as good as the list it resolves against, and that list is `10a` Roster."* **The published upward edge**, drawn dashed in `img/000-the-twelve-layers.svg` | [`component-07`](./content/component-07-routing.md) |
-| `3a` | `7a` | *"The gradeable object is the work contract the resolver reads… A team does not configure a resolver; it configures the contract."* Control's machinery is inert without the primitive one layer up | [`component-06`](./content/component-06-control.md) |
-| `3a` | `10b` | *"An escalation needs a destination, and this is it… what `3a` cannot supply is"* the named authority | [`component-32`](./content/component-32-org.md) |
-| `2c` | `3a` | *"`3a` declares the bound"*, and *"comprehensive enforcement over bounds nobody named"* is named as a failure rather than as immaturity | [`component-05`](./content/component-05-enforcement.md) · [`component-06`](./content/component-06-control.md) |
-| `3c` | `2a` | *"It is not `2a`, which enumerates the insertion points a harness **offers**; this decides which of them a given agent **uses**."* | [`component-08`](./content/component-08-composition.md) |
-| `6b` | `1a` | *"`1a` says the system exists; `6b` is where a copy of it is stood up so work can happen against it."* | [`component-17`](./content/component-17-infrastructure.md) |
-| `8b` | `5b` | *"`8b`'s unbuilt join runs **to** this ledger, which must exist for the join to have a destination."* | [`component-14`](./content/component-14-team-memory.md) |
-| `8d` | `8c` | *"It is not `8d`, which reads the same stream for **cost** rather than for sequence."* One stream, two readings; the reading requires the stream | [`component-23`](./content/component-23-observability.md) · [`component-24`](./content/component-24-efficiency.md) |
-| `9f` | `8d` | *"It is not `8d` Efficiency, which produces the reading this consumes"* — and `9f` *"states its own dependency on this job explicitly"* | [`component-30`](./content/component-30-diagnose-the-bottleneck.md) |
-| `9f` | `9c` | *"The dependency is stated from `9f`'s side"* — without a scheduled refresh, *"a Grid computes a bottleneck that nothing refreshes"* | [`component-27`](./content/component-27-cadence.md) |
-| `9a` | `8a` | *"It is not `8a`, which produces the finding this consumes."* | [`component-25`](./content/component-25-learning.md) |
-| `9e` | `9f` | *"It is not `9e`, which acts on what this finds."* | [`component-30`](./content/component-30-diagnose-the-bottleneck.md) |
+| `2a` | `1a` | *"one **adapter** per system declared at `1a`"* — and the preflight forces the order: *"you cannot write an adapter for a system you have not declared"* | [`component-03`](../../components/2a-adapters-and-middleware.md) · [`05-preflight.md`](./05-preflight.md) §3 |
+| `3b` | `10a` | *"A resolver is only as good as the list it resolves against, and that list is `10a` Roster."* **The published upward edge**, drawn dashed in `img/000-the-twelve-layers.svg` | [`component-07`](../../components/3b-routing.md) |
+| `3a` | `7a` | *"The gradeable object is the work contract the resolver reads… A team does not configure a resolver; it configures the contract."* Control's machinery is inert without the primitive one layer up | [`component-06`](../../components/3a-control.md) |
+| `3a` | `10b` | *"An escalation needs a destination, and this is it… what `3a` cannot supply is"* the named authority | [`component-32`](../../components/10b-org.md) |
+| `2c` | `3a` | *"`3a` declares the bound"*, and *"comprehensive enforcement over bounds nobody named"* is named as a failure rather than as immaturity | [`component-05`](../../components/2c-enforcement.md) · [`component-06`](../../components/3a-control.md) |
+| `3c` | `2a` | *"It is not `2a`, which enumerates the insertion points a harness **offers**; this decides which of them a given agent **uses**."* | [`component-08`](../../components/3c-composition.md) |
+| `6b` | `1a` | *"`1a` says the system exists; `6b` is where a copy of it is stood up so work can happen against it."* | [`component-17`](../../components/6b-infrastructure.md) |
+| `8b` | `5b` | *"`8b`'s unbuilt join runs **to** this ledger, which must exist for the join to have a destination."* | [`component-14`](../../components/5b-team-memory.md) |
+| `8d` | `8c` | *"It is not `8d`, which reads the same stream for **cost** rather than for sequence."* One stream, two readings; the reading requires the stream | [`component-23`](../../components/8c-observability.md) · [`component-24`](../../components/8d-efficiency.md) |
+| `9f` | `8d` | *"It is not `8d` Efficiency, which produces the reading this consumes"* — and `9f` *"states its own dependency on this job explicitly"* | [`component-30`](../../components/9f-diagnose-the-bottleneck.md) |
+| `9f` | `9c` | *"The dependency is stated from `9f`'s side"* — without a scheduled refresh, *"a Grid computes a bottleneck that nothing refreshes"* | [`component-27`](../../components/9c-cadence.md) |
+| `9a` | `8a` | *"It is not `8a`, which produces the finding this consumes."* | [`component-25`](../../components/9a-learning.md) |
+| `9e` | `9f` | *"It is not `9e`, which acts on what this finds."* | [`component-30`](../../components/9f-diagnose-the-bottleneck.md) |
 
 **Thirteen cited edges over 33 nodes.** That is a sparse graph, and the sparseness is a finding rather
 than an omission in this file: the corpus states *contrasts* far more often than it states
@@ -177,7 +177,7 @@ which the map will make loudly visible."*
 
 | Component | run-by | Source |
 |---|---|---|
-| `9b` Rituals | **both** — *"the agent runs the interview; it does not answer it"* | [`component-26`](./content/component-26-rituals.md) |
+| `9b` Rituals | **both** — *"the agent runs the interview; it does not answer it"* | [`component-26`](../../components/9b-rituals.md) |
 | **the other 32** | **unassigned** | nothing in the corpus names a seat |
 
 **One of 33.** The framework can tell a team that Routing is its bottleneck and cannot tell it whose
@@ -195,7 +195,7 @@ lineage, not our spine.
 
 ### 7.1 The one loop the framework names
 
-[`9d` Anti-fragile Lifecycle](./content/component-28-anti-fragile-lifecycle.md) **is** a circuit, ruled
+[`9d` Anti-fragile Lifecycle](../../components/9d-anti-fragile-lifecycle.md) **is** a circuit, ruled
 so 2026-08-31, and it sits at Voss's **System** ring — the outer loop that studies and maintains the
 primary system.
 

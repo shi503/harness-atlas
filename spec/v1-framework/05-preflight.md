@@ -75,7 +75,7 @@ a security reviewer. The output *feeds* a CLI; the input should not require one.
 
 **Bottom-up, in layer order**, replacing the ancestor's five bands. The order is not a preference: it is
 the order [`00-README.md`](./00-README.md) is read in, and it is forced at least once — *"you cannot write an
-adapter for a system you have not declared"* ([`1a`](./content/component-02-environment.md)), which puts
+adapter for a system you have not declared"* ([`1a`](../../components/1a-environment.md)), which puts
 layer 1 before layer 2 for a structural reason rather than a stylistic one.
 
 ```
@@ -130,7 +130,7 @@ rungs now exist as data rather than as prose, so *materially shorter* is compute
 
 ### 4.2 The stated-prerequisite gate — and there is exactly one
 
-**Rule.** [`9f` Diagnose the Bottleneck](./content/component-30-diagnose-the-bottleneck.md) is hidden until
+**Rule.** [`9f` Diagnose the Bottleneck](../../components/9f-diagnose-the-bottleneck.md) is hidden until
 both `9b` Rituals and `8d` Efficiency have been answered at all — that is, until neither sits at stage 1.
 
 **Where it comes from.** [`03-jtbd.md`](../../comparisons/03-jtbd.md) §2 `J17`, verbatim:
@@ -149,7 +149,7 @@ committed on the one gate that claims to be derived rather than chosen.
 
 ### 4.3 The evidential gate
 
-**Rule.** The stage-6 rung of every layer is unavailable while [`8b` Evidence](./content/component-22-evidence.md)
+**Rule.** The stage-6 rung of every layer is unavailable while [`8b` Evidence](../../components/8b-evidence.md)
 sits below 4.
 
 **Where it comes from.** [`03-maturity.md`](../../archive/v0/03-maturity.md) §3's third threshold —
@@ -195,7 +195,7 @@ a layer that compounds is not deferred — **it is a decision taken by default a
   weigh a recommendation without the page weighing it for them.
 - **Machinery is not asked about at all.** `router.py` and `dispatch.py` are machinery, not configurable
   primitives; the question at layer 7 is about the **work contract**, which is the thing a team configures
-  (`AC-7`; [`7a`](./content/component-20-workflow-tasks.md)). A generator that asks a team to configure a
+  (`AC-7`; [`7a`](../../components/7a-workflow-tasks.md)). A generator that asks a team to configure a
   resolver has mistaken the graded object.
 
 ---
@@ -258,9 +258,9 @@ ancestor asked one question per function against a model of twelve and this fram
 its `F7` answers cover `8a` and `8c`; they need splitting, not inventing.
 
 **Four are not mechanical, because they are structure the ancestor had no question for at all:**
-[`1a` Environment](./content/component-02-environment.md),
-[`6a` Product](./content/component-16-product.md), [`6d` Delivery](./content/component-19-delivery.md) and
-[`10b` Org](./content/component-32-org.md). Note that layer 6 **did** have an ancestor question — `6c` Estate
+[`1a` Environment](../../components/1a-environment.md),
+[`6a` Product](../../components/6a-product.md), [`6d` Delivery](../../components/6d-delivery.md) and
+[`10b` Org](../../components/10b-org.md). Note that layer 6 **did** have an ancestor question — `6c` Estate
 carries `F2`'s registry default in the table above — so what is missing at layer 6 is its product and
 delivery halves, not the layer. `10b` is missing because *who answers for this* was nobody's question in
 the model the ancestor was written against.
@@ -323,7 +323,7 @@ ancestor's six are carried; two are added, and both are debts this rebuild creat
    with the rule and its citation one click away. The ancestor required this of Phase 0 (*"visible, so
    nothing feels hidden"*); with hiding promoted to the point of the tool, it applies to every gate.
 8. **NEW — the self-grade the whole page runs on is a person's opinion, and the page must say so.**
-   [`9f`](./content/component-30-diagnose-the-bottleneck.md) records this against the Grid in its own
+   [`9f`](../../components/9f-diagnose-the-bottleneck.md) records this against the Grid in its own
    implementation row: *"the diagnosis is real and the measurement feeding it is not."* A generator that
    inherits that input and hides its provenance has laundered an opinion into a plan.
 

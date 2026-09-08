@@ -173,7 +173,7 @@ check's seeded failure is pasted in `HANDOFF-W6.md`, and the generator's four fa
 |---|---|
 | [`00-README.md`](./00-README.md) | Navigation, the 33-row question table, the two dated answers, the five ideas, the conformance spectrum |
 | [`CROSSWALK.md`](./CROSSWALK.md) | The derivation (§1), the supersession (§2), the rulings-and-gaps register (§3) |
-| [`content/component-01…33`](./content/component-01-substrate.md) | The 33 components, bottom-up |
+| [`content/component-01…33`](../../components/0a-substrate.md) | The 33 components, bottom-up |
 | [`12-horizon.md`](./12-horizon.md) | The evidence axis and its rules |
 | [`05-preflight.md`](./05-preflight.md) | The Grid-as-input adoption questionnaire |
 | [`img/000-the-twelve-layers.svg`](./img/000-the-twelve-layers.svg) | The bottom-up diagram; the `⟳` pair visibly distinct |
