@@ -1,302 +1,651 @@
 ---
-title: "Grok Bot / Grok Build — the hosted teammate and the open harness beside it, read at source"
+title: "Grok Bot / Grok Build — one vendor's hosted teammate and its open-source runtime"
 tier: reference
-project: loomwarp
+project: harness-atlas
 created: "2026-09-02"
+updated: "2026-09-07"
 status: DRAFT
 owner: KD
 source: "github.com/xai-org/grok-build @ 72a6125 (2026-09-01, no tags) · docs.x.ai/grok-bot (beta, launched 2026-08-11) · x.ai/news · read 2026-09-02"
 provenance: OBSERVED
+template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
 ---
 
 # Grok Bot / Grok Build — SpaceXAI
 
-**Why this file exists.** Asked for by name on 2026-09-02 after the first four harness teardowns. It
-is one column, paired the way the matrix pairs gstack with gbrain: **Grok Bot** is the hosted
-always-on agent (a Bot has *"a name, a job, its own conversation, and working context"*, on a
-per-member cloud VM); **Grok Build** is the Apache-2.0 Rust coding harness and TUI the same company
-open-sourced on 2026-07-15. Read against the 33 components; synthesis at
-[`../../04-harness-alignment.md`](../comparisons/04-harness-alignment.md).
+***One vendor, two products, read as a pair because no primary source resolves them into one: Grok Build is an Apache-2.0 Rust runtime with the fullest compatibility surface in this corpus — reading Claude Code's and Cursor's config, hooks and permissions live — while Grok Bot is a closed, hosted teammate taught by demonstration on its own persistent cloud computer.***
 
-**Does Bot run on Build?** ⚠️ **Not stated anywhere at primary source.** What is ✅ direct: the
-Build repo ships a `bot.*` relay protocol (`bot.command`, `bot.roster`, `bot.vncDescriptor`…) and a
-"Computer Hub" tool registry exporting `GROK_BOT_TOOL_IDS`; and its docs say *"Grok's hosted cloud
-sandboxes do not run `grok agent serve`."* Reported as shared plumbing ✅, "Bot runs on Build" ⚠️.
-§A.5 below has the evidence both ways.
+## 1. At a glance
 
-**In one screen — Build.** A harness with the fullest **compatibility surface** in this corpus: it
-reads Claude Code's `CLAUDE.md`, `.claude/rules`, `.claude/skills`, `~/.claude.json` MCP servers,
-`.claude/settings.json` **permissions and hooks** (with tool aliases), `.claude-plugin/`
-marketplaces and `managed-settings.json`, plus Cursor's rules, skills, `mcp.json` and `hooks.json`.
-Enforcement is kernel-level (Landlock / Seatbelt) with `deny` that always wins; configuration is
-**three files written by three different people** — `config.toml` (user), `managed_config.toml`
-(fleet), signed `requirements.toml` (pins nobody can override). Fifteen named hook events that
-**fail open**. A plan mode with a state machine and an approval view. A `/goal` with a **token
-budget** and an independent evidence review. Memory as Markdown plus SQLite, off by default.
+| | |
+|---|---|
+| **Altitude** | Build: runtime, runs the loop itself · Bot: hosted product, loop not user-visible → [§7](#7-identity-and-inclusion-test) |
+| **Primitives** | Build 8 ⚠️ contestable · Bot 6 healthy — two products, two sets → [§5](#5-primitives) |
+| **Structured output** | ⚠️ not stated at the v1 read |
+| **Binds mechanically?** | Build: default no, configured yes (kernel sandbox) · Bot: partly, model-based Auto Review → [2c](#2c-enforcement) |
+| **State persists** | Build: session JSONL + Markdown/SQLite memory, off by default · Bot: opaque per-Bot store → [5a](#5a-individual-memory) |
+| **Serves** | Build: one operator + fleet-enforced config · Bot: one computer/member, team/org admin roles → [10b](#10b-org) |
+| **Refuses** | no published refusal list at the v1 read → [§5](#5-primitives) |
+| **Coverage** | ● 19 · ◐ 10 · ○ 4 → [§4](#4-component-matrix) |
+| **Source** | xai-org/grok-build @ 72a6125 (no tags) · docs.x.ai/grok-bot (beta) · read 2026-09-02 |
+| **Unverified** | 12 items → [§10](#10-unverified) |
 
-**In one screen — Bot.** Six things you configure: Bot, Computer, skill, routine, plugin/connector,
-approval/auto-review rule. Skills are saved by asking or **taught by demonstration** (a ≤10-minute
-browser recording becomes a draft skill you review). Routines run on a schedule or a Slack/GitHub
-event *"while your laptop is closed."* Secrets are brokered: *"masked, excluded from the transcript,
-and not shown to the model."* No model choice, no user-editable files, and *"an audit view of Bot
-actions is coming."*
+### 1a. Positioning stats
 
-**What it does not claim.** §D. The load-bearing lines: Build — *"External contributions are not
-accepted"*; hooks fail open; allow rules are not a closed allowlist; sandbox off by default. Bot —
-*"Do not use separate Bots as a security boundary"*; Auto Review *"is model-based"*; no spend cap
-yet.
+`+1 · +1 · +2 · −3 · 0† · +3 · +1` — the seven DX dimensions, in order.
 
----
+> **⚠️ Drafted 2026-09-07, not yet verified.** Derived from Grok Build's repo and in-tree user guide and from Grok Bot's docs and launch post, read 2026-09-02 — grounded against §4, §5 and §7 below. No person has re-read these seven values yet, and **this file scores a two-product pair on one member** (Grok Build); Grok Bot's divergence is recorded as `split:` in the YAML, not a second card. [`01-scorecard.md`](../spectrums/01-scorecard.md) §1 R11 says how the banner comes off.
 
-# Grok Bot / Grok Build — harness research (read at primary source)
+| | | | | |
+|:-:|---|---:|:-:|---|
+| **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
+| **2** | Weight class | light-weight | `────●──` | heavy-weight |
+| **3** | Surfaces & extendability | one surface | `─────●─` | many surfaces, environments, a platform |
+| **4** | Domain specialization | general-purpose | `●──────` | one named domain, with workflows to match |
+| **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▱▱▱` | wide adoption, longevity, network economies |
+| **6** | Ownership | rented | `──────●` | yours |
+| **7** | Cost controls & efficiency | unmetered, unrestricted | `────●──` | observability, efficiency, routing |
 
-Access date for every URL: **2026-09-02**. Marks: ✅ direct (read the primary source) · ◐ relayed (reputable secondary only) · ⚠️ unverified.
+**†** the one **graded** dimension; every other row is a position, not a score. **Neither end is better, and the pair is not scored twice** — Grok Build carries every value above; Grok Bot's divergence lives only in the YAML's `split:` fields, sharpest at **DX-6 Ownership** (Build +3 Apache-2.0 self-hostable, Bot −3 closed and hosted) and **DX-1 Org scale**. Ten axes sit beneath these seven — `I +1 · II 0 · III 0 · IV +3 · V +2 · VI +1 · VII 0 · VIII +2 · IX 0 · X +2` — and four of them feed no cell above by design.
 
-Column name for the corpus: **"Grok Bot / Grok Build"** — a hosted product (Bot) paired with the open-source coding-agent harness the same company ships (Build). Whether one literally runs on the other is addressed in A.5 and marked.
+→ [`spectrums/positioning.md`](../spectrums/positioning.md#grok) · [`positions/grok.yaml`](../spectrums/positions/grok.yaml) · [`01-scorecard.md`](../spectrums/01-scorecard.md) · [`00-README.md`](../spectrums/00-README.md)
 
-Shorthand used below: **UG/NN** = `https://github.com/xai-org/grok-build/blob/main/crates/codegen/xai-grok-pager/docs/user-guide/NN-*.md` (the user guide that ships in the repo; the same files are extracted to `~/.grok/docs/user-guide/` on launch per UG/05). **BOT/page** = `https://docs.x.ai/grok-bot/<page>`.
+*Scored 2026-09-07 against this profile as read 2026-09-02. This table is the **one sanctioned echo** of the scorecard — derived from the same YAML that renders `positioning.md`, so the two match by construction. Re-score in the YAML, never here.*
 
----
+### 1b. Contents
 
-## A. Identity
+[§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-### A.1 Grok Build (open-source harness)
+No deep-read folder exists for Grok.
 
-| Field | Value | Mark / source |
-|---|---|---|
-| Canonical name | **Grok Build** (binary `grok`; build artifact `xai-grok-pager`) | ✅ README: "The binary artifact is named `xai-grok-pager`; official installs ship it as `grok`." https://github.com/xai-org/grok-build |
-| Prior names | None found at primary source. The in-repo crate README (`crates/codegen/xai-grok-shell/README.md`) titles itself just "Grok — A terminal-based AI coding assistant and agentic harness." Secondary sources call the CLI "Grok CLI"; the docs use `grok-cli/<version>` as User-Agent (UG/07). | ✅ / ◐ |
-| Owner | **SpaceXAI** (GitHub org `xai-org`; site x.ai). The repo, news posts, and docs all say "SpaceXAI"; the brief's "xAI" is the prior/short name. | ✅ https://github.com/xai-org/grok-build ; https://x.ai/news/grok-build-open-source |
-| GitHub URL | https://github.com/xai-org/grok-build | ✅ |
-| License | **Apache-2.0** for first-party code; vendored/ported third-party code keeps its own licenses. README notes in-tree source ports of "openai/codex and sst/opencode tool implementations" (THIRD-PARTY-NOTICES). | ✅ README §License; `gh api` license.spdx_id = Apache-2.0 |
-| Stars | **26,383** (2026-09-02, `gh api repos/xai-org/grok-build`); forks 4,950 | ✅ |
-| Language | Rust | ✅ `gh api` language=Rust; README "Rust source" |
-| Repo created / first public | created_at **2026-07-14T20:04:23Z**; announced **2026-07-15** ("Grok Build is Now Open Source") | ✅ gh api; https://x.ai/news/grok-build-open-source |
-| Last commit | **2026-09-01T22:20:33Z**, sha `72a6125`, message "Synced from monorepo" (Source-Revision `a549186d…`) | ✅ gh api commits |
-| Latest release/version | **No GitHub releases or tags exist** (`gh api …/releases` and `/tags` both empty). The changelog lives at https://x.ai/build/changelog (HTTP 403 to my fetches). Version-pinning examples in UG/05 cite `0.2.100`–`0.2.200`. | ⚠️ version number unverified |
-| Install | `curl -fsSL https://x.ai/cli/install.sh \| bash` (macOS/Linux/Git Bash); `irm https://x.ai/cli/install.ps1 \| iex` (Windows); verify with `grok --version`. From source: `cargo run -p xai-grok-pager-bin` (needs Rust toolchain pinned in `rust-toolchain.toml`, DotSlash, protoc). | ✅ README |
-| Contributions | "External contributions are not accepted." "SpaceXAI develops this software internally. The public tree is published for source transparency and local builds." | ✅ CONTRIBUTING.md |
+## 2. System map
 
-**What it says it is (verbatim):** "**Grok Build** is SpaceXAI's terminal-based AI coding agent. It runs as a full-screen TUI that understands your codebase, edits files, executes shell commands, searches the web, and manages long-running tasks — interactively, headlessly for scripting/CI, or embedded in editors via the Agent Client Protocol (ACP)." (README) ✅. GitHub description: "SpaceXAI's coding agent harness and TUI. Fullscreen, mouse interactive, extensible." ✅. Launch post: "We're open-sourcing Grok Build, SpaceXAI's coding agent and TUI … Publishing the code is the most direct way to build toward a robust and reliable harness." ✅
+**Diagram inventory not done at the 2026-09-02 read — pending the diagram pass (W8c).** No `assets/projects/grok/` exists, and no vendor diagram was inventoried when the source read was taken. This is a recorded gap, not an absence: the read predates the diagram obligation.
 
-### A.2 Grok Bot (hosted product)
+**How it thinks about work.** Grok Build's unit of work is a session: `~/.grok/sessions/<cwd>/<id>/` holds `updates.jsonl` as *"the authoritative conversation log,"* alongside `plan.json`/`plan.md`, compaction checkpoints and rewind points. The loop is `xai-grok-shell`; a tool call is authorized by an ordered stack — a `PreToolUse` hook, then `deny`/`ask`/`allow` rules, then remembered grants, then mode policy — before it reaches the model. Grok Bot's unit of work is a task handed to a named teammate on its own persistent cloud computer: the Bot proposes an action, an approval card or an Auto Review rule decides, and the result lands in `/workspace`, a browser session, or a routine's run history. Neither product's docs say whether the same loop sits under both.
 
-| Field | Value | Mark / source |
-|---|---|---|
-| Canonical name | **Grok Bot**; a single agent is a **Bot** ("In the Docs and in the Grok Bot app, a Bot = a single persistent, named agent or one AI teammate.") | ✅ BOT/overview |
-| Prior names | "We built Grok Bot as an internal prototype, and it took off across the company." No prior public name. | ✅ https://x.ai/news/introducing-grok-bot |
-| Owner | SpaceXAI. Note: the product is operated on **Cursor** account infrastructure — "Grok Bot uses Cursor authentication and account data settings"; admin controls live in "the Cursor dashboard". | ✅ BOT/approvals-security-and-privacy ; BOT/teams-and-enterprises |
-| Source / license | Closed, hosted. No repo. | ✅ (absence: no repo linked from any x.ai/docs.x.ai page) |
-| Launch | **2026-08-11**, "Early beta" | ✅ https://x.ai/news/introducing-grok-bot ("Aug 11, 2026 … Early beta") |
-| Platforms | Desktop app macOS/Windows/Linux (download at x.ai/bot: Apple silicon/Intel, x64/Arm64, .deb/.rpm/AppImage); iOS companion (iPhone, iOS 18+); "Android and iPad aren't supported at launch." | ✅ BOT/get-started, BOT/faq, BOT/mobile |
-| Plans | SuperGrok Plus, SuperGrok Heavy, Cursor Pro+, Cursor Ultra, Cursor Teams Standard/Premium, or a one-time trial; enterprise "Rolling out." "Grok Bot comes with its own usage, separate from your Grok and Cursor plans." | ✅ BOT/teams-and-enterprises; x.ai/news/introducing-grok-bot |
-| Install | Download from x.ai/bot; sign in with Cursor account (SSO supported). | ✅ BOT/get-started |
+## 3. Workflows
 
-**What it says it is (verbatim):** "Bots are AI teammates you can give real work to. Bots can sign and use apps and websites just like you do on a persistent cloud computer." (BOT/overview) ✅. "Grok Bot is your team of always-on agents. They have their own computer, work inside tools and apps like you do, and keep working 24/7." (x.ai/news/introducing-grok-bot) ✅.
+**Not written at the 2026-09-02 read — pending the diagram pass (W8c).** A recorded gap. Three sequences a workflow pass should draw, each already evidenced in §6 and needing no new source read:
 
-### A.3 Three-question inclusion test
+1. **A Build turn's authorization stack** — prompt → `PreToolUse` hook (can deny) → permission rule
+   `deny`/`ask`/`allow` → remembered grant → mode policy → tool call → `PostToolUse` (can replace model-visible output) → `Stop` hook (can block, capped at 8 continuations) ([2b](#2b-hooks), [2c](#2c-enforcement)).
+2. **A Bot task from request to receipt** — request or routine trigger → proposed action → approval
+   card or Auto Review rule → execution on the cloud computer or under local-computer policy → result in the conversation, `/workspace`, or a routine run record ([3a](#3a-control), [8b](#8b-evidence)).
+3. **Teach-by-demonstration to a saved routine** — a browser recording (≤10 min) → a drafted skill →
+   human review → save → attach to a schedule or event trigger → run history kept for 20 runs ([9a](#9a-learning), [9c](#9c-cadence)).
 
-**Q1 — Does state persist across sessions? Where, in what format?**
+## 4. Component matrix
 
-- **Build: YES, ✅ direct.** (a) Sessions: every conversation is saved under `~/.grok/sessions/<encoded-cwd>/<session-id>/` with `summary.json`, `updates.jsonl` (ACP update stream, "the authoritative conversation log"), `chat_history.jsonl`, `plan.json`, `rewind_points.jsonl`, `signals.json`, `feedback.jsonl`, `compaction_checkpoints/`, `subagents/` (UG/17 §Storage Layout). (b) Memory (experimental, **off by default**): Markdown under `~/.grok/memory/MEMORY.md` (global), `~/.grok/memory/<project-slug>-<hash8>/MEMORY.md` (workspace), `…/sessions/` (per-session logs), plus an SQLite index (FTS5; vec0 when an embedding model is configured) (UG/13). (c) Remembered permission grants: `permission.toml` per project under the sessions dir (UG/22). (d) Trusted folders: `~/.grok/trusted_folders.toml` (UG/10).
-- **Bot: YES, ✅ direct.** "Named Bots keep memory, files, browser sessions, and preferences across turns. Context compounds instead of resetting to a fresh environment on every task." (BOT/overview). Files persist in a shared workspace at `/workspace` on the cloud computer (BOT/computer-and-apps). Memory format/location is not documented — it is an opaque per-Bot store: "A Bot can retain stable working preferences, important facts, and summaries from its work." (BOT/bots). ⚠️ format unknown.
+`● named primitive · ◐ partial, present-not-first-class · ○ absent (pages named in §6) · n/a does not apply at this altitude`
 
-**Q2 — Does it serve more than one person?**
+**Marks copied verbatim from Grok's single column in [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2; not re-derived at the restructure.** That grid holds one Grok column, not two — where Build and Bot diverge on a row, the note below carries the distinction; the mark is the one already published.
 
-- **Build: primarily one operator per install, with real org-level shared config, ✅ direct.** Multi-user mechanisms: `managed_config.toml` (fleet defaults, `/etc/grok/` or console-synced), signed `requirements.toml` (pins users cannot override, `/etc/grok/` or macOS MDM `ai.x.grok`), Claude-compatible `managed-settings.json` (marketplace/MCP allowlists), team OAuth (`auth.force_login_team_uuid`), workspace-synced "server" skills, ZDR at team level, and project-scoped `.grok/` config committed to the repo (UG/26 §How to configure; UG/09 §Distribute across an organization; UG/22). No shared session/memory across people: memory is under `$HOME`, grants are "personal, per-machine state".
-- **Bot: one member per computer; team administration exists, ✅ direct.** "Each member gets one dedicated cloud computer … All of that member's Bots share the same computer, so files, sign-in sessions, and permissions belong to the member, not to an individual Bot." Team/org admins manage it from the Cursor dashboard; "Team rules … apply to Grok Bot"; MCP allow/deny lists apply. Bots can be shared by public link, which copies configuration but "does not give them your computer, logins, or conversation history." (BOT/teams-and-enterprises; BOT/bots). Group chats are multi-Bot, not multi-human (docs describe "@everyone in a group" of Bots).
+| # | Component | Mark | Primitive / note |
+|---|---|:-:|---|
+| **0 · Foundation** | | | |
+| [0a](#0a-substrate) | Substrate | ● | Model-pluggable, 31+ backends; Bot's model choice fully managed |
+| **1 · Environment** | | | |
+| [1a](#1a-environment) | Environment | ◐ | Local shell + FS (Build); cloud VM (Bot); no declared inventory |
+| **2 · Agent Harness** | | | |
+| [2a](#2a-adapters--middleware) | Adapters & Middleware | ● | [**MCP server**](#5-primitives) + plugin; Claude/Cursor compat readers |
+| [2b](#2b-hooks) | Hooks | ● | [**Hook**](#5-primitives) — 15 named events; fail open |
+| [2c](#2c-enforcement) | Enforcement | ● | [**Permission rule / mode**](#5-primitives) + kernel sandbox, off by default |
+| **3 · System Stacks** | | | |
+| [3a](#3a-control) | Control | ● | Plan mode + [**Goal**](#5-primitives) — token budget, evidence review |
+| [3b](#3b-routing) | Routing | ◐ | Manual model routing; `spawn_subagent` picks a type, no resolver |
+| [3c](#3c-composition) | Composition | ● | [**Agent / Subagent / Persona / Role**](#5-primitives) — three objects |
+| [3d](#3d-configuration) | Configuration | ● | Three config files — user · fleet · signed pin, different authors |
+| [3e](#3e-standards) | Standards | ○ | No opinionated standard shipped; rules + pinned plugins are the vehicle |
+| **4 · Capabilities** | | | |
+| [4a](#4a-capability) | Capability | ● | [**Skill**](#5-primitives) + [**Plugin / Marketplace**](#5-primitives), SHA-pinnable |
+| [4b](#4b-capability-permissions) | Capability Permissions | ● | Per-tool, per-skill, org allowlists on the same [**permission rule**](#5-primitives) |
+| **5 · Context ⟳** | | | |
+| [5a](#5a-individual-memory) | Individual Memory | ● | Bot memory (opaque); Build's memory off by default |
+| [5b](#5b-team-memory) | Team Memory | ○ | Nothing shared across people; config travels by VCS, not memory |
+| [5c](#5c-knowledge) | Knowledge | ◐ | Hybrid BM25+vector memory search; `/deep-research` verifier shard |
+| **6 · Workspaces ⟳** | | | |
+| [6a](#6a-product) | Product | ○ | No PRD/spec object; closest is `plan.md`'s Context section |
+| [6b](#6b-infrastructure) | Infrastructure | ● | [**Computer**](#5-primitives) (Bot's cloud VM) + sandbox profile (Build) |
+| [6c](#6c-estate) | Estate | ○ | No multi-repo model; one repo discovered at a time |
+| [6d](#6d-delivery) | Delivery | ◐ | Git ACP methods, headless CI; no PR/deploy flow |
+| **7 · Workflow Tasks** | | | |
+| [7a](#7a-workflow-tasks) | Workflow Tasks | ◐ | `plan.json`/`todo_write`; routine run history; no ticket object |
+| **8 · Trust** | | | |
+| [8a](#8a-evals) | Evals | ◐ | No eval harness; `/goal`'s independent evidence review is nearest |
+| [8b](#8b-evidence) | Evidence | ● | [**Session**](#5-primitives) — `updates.jsonl` authoritative, per-turn cost |
+| [8c](#8c-observability) | Observability | ● | External OTEL (alpha, content-free by default) + dashboard usage |
+| [8d](#8d-efficiency) | Efficiency | ● | Compaction, pruning, `/goal --budget <tokens>`, no spend cap |
+| **9 · IMPROVE** | | | |
+| [9a](#9a-learning) | Learning | ● | [**Teach-by-demonstration**](#5-primitives) (Bot) + `/create-skill` (Build) |
+| [9b](#9b-rituals) | Rituals | ◐ | `review-changes` workflow; use-case templates, not rituals |
+| [9c](#9c-cadence) | Cadence | ● | [**Routine**](#5-primitives) (Bot) + `/loop`/scheduler (Build) |
+| [9d](#9d-anti-fragile-lifecycle) | Anti-fragile Lifecycle | ◐ | Resume/fork/rewind, doom-loop resample; VM recover/reset |
+| [9e](#9e-raise-the-floor) | Raise the Floor | ◐ | `grok inspect`/`doctor`, Claude-settings import; onboarding wizard |
+| [9f](#9f-diagnose-the-bottleneck) | Diagnose the Bottleneck | ◐ | Session self-diagnostics only; no maturity scoring |
+| **10 · Teams & Agents** | | | |
+| [10a](#10a-roster) | Roster | ● | [**Bot**](#5-primitives) roster (≤50) + Build's agent dashboard |
+| [10b](#10b-org) | Org | ● | Three-file config ownership (Build) + team/org admin roles (Bot) |
+| **11 · Surfaces** | | | |
+| [11a](#11a-surfaces) | Surfaces | ● | TUI + ACP into 4 editors (Build); desktop + iOS apps (Bot) |
+| **● 19 · ◐ 10 · ○ 4** | | | |
 
-**Q3 — Does it bind mechanically or only by prose?**
+## 5. Primitives
 
-- **Build: MECHANICALLY, ✅ direct.** Layers: `[permission]` `deny` > `ask` > `allow` rules ("`deny` always wins … regardless of order or source"); permission modes (`default`, `acceptEdits`, `plan`, `auto`, `dontAsk`, `bypassPermissions`); `PreToolUse` hooks that can deny ("A hook can deny a tool call before any other check"); `Stop`/`SubagentStop` hooks that can block the agent from stopping; OS-level sandbox via **Landlock (Linux) / Seatbelt (macOS)**, "irreversible once applied"; kernel-enforced `deny` globs in `sandbox.toml`; `[shell_environment_policy]` env scrubbing; admin `disable_bypass_permissions_mode = true` in signed `requirements.toml`; plan mode that "rejects outright" edits to any file but `plan.md` "in every permission mode, including always-approve." (UG/22, UG/10, UG/18, UG/19). Caveat the docs themselves state: hooks **fail open**; "Allow rules are not a closed allowlist"; read-only command list is "a convenience, not a security boundary."
-- **Bot: MECHANICALLY at the approval layer, with a model-based auto-review, ✅ direct.** Approval cards: "Allow once … Deny … Always allow can save a matching rule." Auto Review: "Require Approval rules always stop matching actions for you. Always Allow rules let matching actions proceed only when the automated review does not identify another reason to stop. If both kinds of rule match, Require Approval wins." Local-computer execution policy: Always require approval / Always allowed / Never allowed (default "Ask every time"). Secrets: "The value is masked, excluded from the transcript, and not shown to the model." But: "Auto Review is model-based and should complement, not replace, least privilege"; "Do not use separate Bots as a security boundary." (BOT/approvals-security-and-privacy). Team rules are prose ("For enforcement, use Auto-review instructions instead", BOT/teams-and-enterprises).
+**Grok Build — 8 primitives, second tier of 5 more plus 3 config files, ⚠️ contestable**
 
-### A.4 Harness or process layer? Adapters?
+| Primitive | Path / key | Project's own definition (verbatim) | Source |
+|---|---|---|---|
+| Project rules | `AGENTS.md` (+ aliases), `<dir>/.grok/rules/*.md`, `~/.grok/rules/` | *"Project rules are Markdown files that Grok reads and adds to its context… the primary mechanism for teaching Grok about your project's conventions."* | ✅ UG/12 |
+| Skill | `.grok/skills/`, `~/.grok/skills/`, `.agents/skills/`, compat dirs | *"A skill is a directory that contains a `SKILL.md` file… Use a skill for a repeatable procedure that's too specific for AGENTS.md but too long to retype."* | ✅ UG/08 |
+| Plugin / Marketplace | plugin dir + `hooks.json`/`.mcp.json`/`.lsp.json`; `.grok-plugin/marketplace.json` | *"A plugin bundles skills, slash commands, agents, hooks, and MCP servers into one installable unit."* | ✅ UG/09 |
+| Hook | `~/.grok/hooks/*.json`, `.grok/hooks/*.json`, TOML `hooks` table | *"A hook is a shell command or HTTP endpoint that Grok calls when a specific lifecycle event occurs."* | ✅ UG/10 |
+| MCP server | `[mcp_servers.<name>]`, `.mcp.json`, `grok mcp add` | *"An MCP server is a process that exposes tools to Grok over a standardized protocol."* | ✅ UG/07 |
+| Permission rule / mode | `[permission] allow/ask/deny`; `--allow`/`--deny` | *"**Modes** set how often Grok asks for approval… **Rules** set which tools are allowed, asked about, or blocked."* | ✅ UG/22 |
+| Sandbox profile | `--sandbox <profile>`; `~/.grok/sandbox.toml` | *"The kernel enforces these limits for the process lifetime"* (Landlock / Seatbelt). | ✅ UG/18 |
+| Agent / Subagent / Persona / Role | `.grok/agents/*.md`, `.grok/roles/*.toml`, `.grok/personas/*.toml` | *"An agent defines the session itself. A persona shapes how a subagent behaves within a session."* | ✅ UG/16 |
 
-- **Build RUNS the loop itself — it is a harness. ✅** "The published source includes: The agent loop: how context is assembled, how model responses are parsed, and how tool calls are dispatched" (x.ai/news/grok-build-open-source). Crates: `xai-grok-shell` = "Agent runtime + leader/stdio/headless entry points"; `xai-grok-tools`; `xai-grok-workspace` (README §Repository layout).
-- **Adapters Build ships for other harnesses' artifacts (not for running inside them): ✅** `[compat.claude]` and `[compat.cursor]` scan `~/.claude/skills/`, `.claude/rules/`, `CLAUDE.md`, `~/.claude.json` (MCP), `~/.claude/settings.json` (hooks + permissions), `~/.cursor/skills`, `.cursor/rules/`, `.cursor/mcp.json`, `.cursor/hooks.json`; `[compat.codex]` cells are "reserved and currently inert" (UG/05 §Harness compatibility). Also reads `.mcp.json`, `.claude-plugin/` marketplaces, `managed-settings.json`, Cursor camelCase hook event names (UG/10 §Cursor Hook Compatibility), and `MCP_TIMEOUT`/`MAX_MCP_OUTPUT_BYTES` env names "compatible with Claude Code". Build itself can be embedded via **ACP** (`grok agent stdio` / `serve` / `headless` / `leader`) into Zed, Neovim, Emacs, marimo; JetBrains "Coming soon" (UG/15).
-- **Other systems shipping an adapter for Build: ✅ (third-party primary)** Vercel AI SDK `@ai-sdk/harness-grok-build`: "connects `HarnessAgent` to the Grok Build CLI through the Agent Client Protocol (ACP)" (https://ai-sdk.dev/providers/ai-sdk-harnesses/grok-build). ◐ An omnigent-ai/omnigent issue #2881 requests Build as "a first-class harness" (GitHub search hit; not read in full).
-- **Bot: a hosted product; the loop is not user-visible. ✅** No SDK/API for the Bot loop is documented. Bots *consume* MCP servers and Cursor plugins; there is no documented way to run a Bot inside another harness.
+Second tier, also first-class in the docs but not user-authoring units: **Session** (`~/.grok/sessions/…`), **Memory** (`~/.grok/memory/`, experimental, off by default), **Workflow** (`.grok/workflows/*.rhai`), **Plan** (`plan.md`), **Goal** (`/goal`) — ✅ UG/13, UG/17, UG/19. Plus the three config files named at `3d`, *"written by different people."*
 
-### A.5 Does Grok Bot run on Grok Build? (sourcing mark)
+**Count:** 8 primitives, 5 second-tier + 3 config files (supporting). **Verdict:** ⚠️ contestable — one past the 5–7 healthy band, with no refusal posture to explain the excess, unlike Pi's disputed count (`ISSUE-007`), which at least has a stated refusal list behind it.
 
-- **⚠️ UNVERIFIED as a product claim.** No x.ai or docs.x.ai page says Grok Bot runs on, is built on, or shares its agent loop with Grok Build. The launch post lists Build only as a sibling product in the site nav. The docs.x.ai/build overview sidebar links to "Grok Bot Overview" as a neighbouring section (✅ nav link only). The only secondary that compares them (kingy.ai) treats them as separate products and cites no xAI source (◐).
-- **✅ DIRECT: the Build repo contains Grok-Bot-facing components.** `crates/common/xai-tool-protocol/src/bot_relay.rs` and `methods.rs` define a method set commented "`// bot_client ↔ service (bot relay)`": `bot.command`, `bot.vncDescriptor` ("Short-lived noVNC descriptor. May wake a hibernated box."), `bot.roster`, `bot.status`, `bot.transcript.offbox`, `bot.subscribe`/`bot.unsubscribe`, `bot.bindConversation`, `bot.event`. `crates/common/xai-computer-hub-core/src/lib.rs` ("xAI Computer Hub — transport + registry + resolver core") exports `GROK_BOT_TOOL_IDS`, `GROK_BOT_TOOL_DESCRIPTIONS`, `is_grok_bot_tool`, `grok_bot_tool_arguments_schema` from `bot_tools.rs`. Sibling crates: `xai-computer-hub-mcp-adapter`, `xai-computer-hub-sdk`. The 2026-09-01 sync commit includes "Advertise bot tool argument schemas" and "Allowlist setAgentNotificationsEnabled and avatar commands on bot relay". Config keys `[relay] enabled` ("Enable session relay sync"), `auth.grok_ws_url` ("Relay websocket URL"), `[harness] disable_workspace_teleport` ("Kill switch for per-turn workspace snapshots") exist in UG/26.
-- **✅ DIRECT counter-evidence for a naive "Bot = Build in the cloud":** UG/15: "This is a server you run yourself — Grok's hosted cloud sandboxes do not run `grok agent serve`." BOT/teams-and-enterprises: the Bot computer is "a managed Linux virtual machine" and "Cloud Agents … controls whether Grok Bot Bots can launch Cursor cloud agents."
-- **Reading:** the Build monorepo export ships the *client/relay/tool-registry* side of a "Computer Hub" that talks to a Bot's box, and the Bot product's tool schemas; whether the Bot's own reasoning loop is the `xai-grok-shell` runtime is not stated anywhere I could read. Report as: **shared codebase plumbing ✅; "Bot runs on Build" ⚠️.**
+**Grok Bot — 6 primitives, healthy**
 
-### A.6 Primitive sets — see Section C.
+| Primitive | Path / key | Project's own definition (verbatim) | Source |
+|---|---|---|---|
+| Bot | Sidebar → New; Bot actions → Edit Profile | *"A Bot is a durable AI teammate with a name, a job, its own conversation, and working context that develops over time."* | ✅ BOT/bots |
+| Computer (Agent Computer) | one per account; `/workspace` | *"Each Bot runs on a persistent cloud VM with a browser, filesystem, and terminal."* | ✅ BOT/overview |
+| Skill | ask the Bot, or Teach a task; Settings → Plugins → Yours | *"A skill is a reusable set of instructions for how to do a task."* | ✅ BOT/skills-routines-and-automations |
+| Routine | Bot → conversation details → Routines | *"A routine tells one Bot when to run a workflow — on a schedule or, where supported, after an event."* | ✅ BOT/skills-routines-and-automations |
+| Plugin / Connector | Settings → Plugins; Team Settings → MCP | *"Connectors give a Bot a structured way to work with supported services… shown as Plugins."* | ✅ BOT/computer-and-apps |
+| Approval / Auto-review rule | approval card; Settings → General → Auto-review | *"Require Approval rules always stop matching actions for you. Always Allow rules let matching actions proceed only when the automated review does not identify another reason to stop."* | ✅ BOT/approvals-security-and-privacy |
 
-### A.7 Stated limitations — see Section D.
+**Count:** 6 primitives, 0 supporting. **Verdict:** healthy — inside the 5–7 band.
 
----
+**No published refusal list for either product** — checked UG/01–27 and every BOT/ page; neither names what it will not ship the way Pi does.
 
-## B. The 33 components
+## 6. Details
 
-Each row gives **Build** and **Bot** sub-answers where they differ. "UG/NN §X" = section X of that user-guide file at the GitHub URL above.
+`✅ direct · ↪ relayed · ⚠️ unverified`
 
-| # | Component | What it ships — **Build** | What it ships — **Bot** | Path / mechanism | Source + date | Mark |
-|---|---|---|---|---|---|---|
-| 0a | Substrate | Default hosted models; "new sessions start with `grok-4.5`" (UG/11) while docs.x.ai/build/overview advertises `grok-4.6`. **Model is pluggable**: `[model.<name>]` with `base_url`, `api_backend` = `chat_completions` (default) \| `responses` \| `messages` (Anthropic); documented provider examples: Anthropic Claude, OpenAI, Ollama, Together, any OpenAI-compatible server; `[endpoints] models_base_url` for a corporate `/v1/models` gateway; `[model_providers.<id>]` shared blocks; per-subagent model routing `[subagents.models]`; fleet `allowed_models` pin in `requirements.toml`; `/model`, `/effort` (`low`…`xhigh`). Launch post: "point it at your own local inference". | "Model choice is fully managed by the product" — no model picker for admins or users. | Build: `~/.grok/config.toml` `[models]`, `[model.<id>]`, `[endpoints]`. Bot: none. | UG/11 §Supported API Backends, §Provider Examples; UG/05; BOT/teams-and-enterprises §Availability/limits; https://docs.x.ai/build/overview — 2026-09-02 | ✅ |
-| 1a | Environment | Local machine: built-in tools `read_file`/`search_replace`, `grep` (ripgrep), `list_dir`, `run_terminal_command` (fg/bg), `web_search`/`web_fetch` (SSRF fail-closed, domain allow/deny lists), `todo_write`, `spawn_subagent`, `memory_search`/`memory_get`, `monitor`, `scheduler_*`, `search_tool`/`use_tool` (MCP), optional `lsp` tool. No built-in browser tool (browser only via MCP e.g. Puppeteer). Remote: `grok agent serve` WebSocket server; WebSocket relay `--grok-ws-url`; `grok clone` mounts a Grove content store via NFS/FUSE. | Persistent cloud **Linux VM** per user with "a browser, filesystem, and terminal"; computer-use for "apps and websites without a clean API"; connectors (shown as **Plugins**) + MCP; optional **local-computer** execution on the user's Mac/Windows under an approval policy; files in `/workspace`; each Bot gets its own screen; "one Bot can run only one computer-use task on its screen at a time." Static egress IPs. | Build: `[toolset.*]` in config.toml; `--tools`/`--disallowed-tools` (headless). Bot: Settings → Plugins; Settings → General → Agent → Execution on Local Computer; Agent Computer view. | UG/01 §Tools; UG/05 §Tool configuration; UG/20; UG/27; BOT/computer-and-apps; BOT/teams-and-enterprises §How isolation works — 2026-09-02 | ✅ |
-| 2a | Adapters & Middleware | Tool registry in `xai-grok-tools` / `xai-grok-tools-api`; provider abstraction = three `api_backend` protocols; **MCP client** (stdio, HTTP/SSE, streamable HTTP with `{{session_id}}`, OAuth handled natively, tokens in `~/.grok/mcp_credentials.json` 0600); MCP tools namespaced `server__tool`, discovered by the model via `search_tool`/`use_tool`; supports MCP 2026-07-28 elicitation (commit log); `grok mcp add/remove/enable/disable/doctor/list`; extension API = **plugins** (skills+commands+agents+hooks+`.mcp.json`+`.lsp.json`) and **hooks** (command or HTTP); ACP `x.ai/*` extension methods (`x.ai/fs/*`, `x.ai/git/*`, `x.ai/git/worktree/*`, `x.ai/terminal/*`, `x.ai/session/*`); protobuf codegen (`bin/protoc`, `xai-tool-protocol` "Wire-protocol types for the xAI Computer Hub"). Compat readers for `.mcp.json`, `~/.claude.json`, `.cursor/mcp.json`. | Connectors/plugins from Settings → Plugins (Cursor plugin marketplace); MCP servers under team MCP policy; "Sign-in tokens for hosted MCP servers stay with Cursor's backend, which runs those tool calls on the computer's behalf." Event integrations ("Cursor account integrations") for Slack/GitHub triggers. | Build: `[mcp_servers.<name>]` in `~/.grok/config.toml` or `.grok/config.toml`; `[plugins]`; `~/.grok/hooks/*.json`. Bot: Settings → Plugins; Team Settings → MCP Configuration. | UG/07 (all sections); UG/09 §Reference; UG/15 §Extension methods; README §Building from source (protoc); BOT/computer-and-apps §Connect an app; BOT/teams-and-enterprises §Plugins and MCP policy — 2026-09-02 | ✅ |
-| 2b | Hooks | **Named events (verbatim table):** `SessionStart`, `UserPromptSubmit` (blocking), `PreToolUse` (blocking), `PostToolUse` (can replace output the model sees), `PostToolUseFailure`, `PermissionDenied`, `Stop` (blocking), `StopFailure`, `StopCancelled`, `Notification`, `SubagentStart`, `SubagentStop` (blocking; alias `SubagentEnd`), `PreCompact`, `PostCompact`, `SessionEnd`. Handler types `command` and `http`. Matchers are regexes on tool name / notification type / subagent type / start source / compaction trigger. Stop gate overridden after 8 continuations per turn. **All failures fail open.** Cursor camelCase names and Claude tool aliases (`Bash`→`run_terminal_command`, `Task`→`spawn_subagent`) accepted. Also separate `[[ui.notifications.hooks]]` (events `turn_complete`, `approval_required`, `session_ready`, `task_complete`, `agent_error`). | No user-authored lifecycle hooks documented. Closest: Auto-review rules evaluated "before they run" (a policy, not a script). | Build: `~/.grok/hooks/*.json` (global, always trusted), `<project>/.grok/hooks/*.json` (requires folder trust), `hooks` table in `config.toml`/`managed_config.toml`/`requirements.toml`, plugin `hooks/hooks.json`, compat `~/.claude/settings.json`, `~/.cursor/hooks.json`; `/hooks`, `/hooks-trust`. | UG/10 §Hook Events, §Hook Locations, §How a Hook Resolves, §HTTP Hooks; UG/05 §Notification hooks — 2026-09-02 | ✅ |
-| 2c | Enforcement | Authorization order: (1) `PreToolUse` hooks, (2) permission rules `deny` > `ask` > `allow`, (3) remembered grants, (4) built-in read-only auto-approvals, (5) mode policy. Modes: `default`/ask, `acceptEdits`, `plan`, `auto` (classifier), `dontAsk`, `bypassPermissions`/always-approve. Rule syntax `Bash(git *)`, `Read(src/**)`, `Edit(**/*.rs)`, `MCPTool(server__*)`, `WebFetch(domain:x)`. Dangerous-command list (`rm`, `chmod`, `chown`, `kill`, `git push`…) always prompts unless explicitly allowed. **Sandbox**: profiles `off` (default), `workspace`, `devbox`, `read-only`, `strict`; custom profiles in `~/.grok/sandbox.toml` / `.grok/sandbox.toml` with kernel-enforced `deny` globs; Landlock/bubblewrap/seccomp on Linux, Seatbelt on macOS; child-network block Linux-only. Admin lock: `[ui] disable_bypass_permissions_mode = true` in signed `requirements.toml`; `allowedMcpServers` / `strictKnownMarketplaces` in `managed-settings.json`; `[marketplace] require_sha`; `disabled_mcp_tools` per-server deny lists. Folder trust gate (`~/.grok/trusted_folders.toml`) for project hooks/MCP/LSP/permission rules. | Approval prompts (Allow once / Deny / Always allow); Auto Review rules (Require Approval beats Always Allow); local-computer policy (Ask / Always / Never); team MCP allow/deny lists, "Disable All MCP Commands", "Require Team Network Allowlist"; a coming "team-level ceiling on local execution". Bot runs "as a non-root user" on the VM. Explicit non-boundaries: separate Bots, share links. | Build: `[permission]` in `~/.grok/config.toml`, `.grok/config.toml` (every level), `.claude/settings(.local).json`; `--allow`/`--deny`; `--sandbox`, `GROK_SANDBOX`, `[sandbox] profile`; `/etc/grok/requirements.toml`. Bot: Settings → General → Auto-review; Team Settings. | UG/22 §How a tool call is authorized, §Configuring Permissions, §Rule Matching Reference; UG/18 §Built-in Profiles, §Custom Profiles; UG/09 §Distribute across an organization; BOT/approvals-security-and-privacy; BOT/teams-and-enterprises §Security — 2026-09-02 | ✅ |
-| 3a | Control | **Plan mode**: agent-initiated via `enter_plan_mode` (needs approval) or user via `/plan` / Shift+Tab; only `plan.md` in the session dir is editable; `exit_plan_mode` opens an approval view (approve / request changes / inline line comments / quit); state machine `Inactive`/`Pending`/`Active`/`ExitPending` persisted to disk. **Goal mode** `/goal <objective> [--budget <tokens>]` with `status`/`pause`/`resume`/`clear`; "only marks the goal complete after an independent evidence review confirms the claim". **Workflows** (`.rhai` scripts) with `agent_budget` caps, `/workflow pause|resume|stop|save`. Session contracts via ACP `session/new` `_meta` (`yoloMode`, `autoMode`, `rules`, `systemPromptOverride`, `agentProfile`, `pluginDirs`); headless `--max-turns`. Permission prompt per tool. | Boundaries stated in the request ("Do not change the campaign…"); approval checkpoints for consequential actions; "Test run" before enabling a routine; recommended 7-step ladder (define job → one task → refine → save skill → test → routine → keep external actions behind approval). Bot may "ask whether to keep routines running after a long period away". | Build: `~/.grok/sessions/<cwd>/<id>/plan.md`; `[goal] enabled`; `[workflows] enabled`; `.grok/workflows/*.rhai`. Bot: request text; routine Test run; approval cards. | UG/19 (all); UG/04 §`/goal`, §`/workflow`; UG/15 §Session `_meta` options; BOT/use-cases; BOT/skills-routines-and-automations §Test before enabling — 2026-09-02 | ✅ |
-| 3b | Routing | Model routing: per-subagent `[subagents.models.<type>]`, per-persona `model`, per-skill `model`/`effort` frontmatter, `web_search` model separate, `session/set_config_option` (`model`, `reasoning_effort`). Agent routing: model calls `spawn_subagent` with `subagent_type` (`general-purpose`, `explore`, `plan`, or user-defined); depth limit 1 ("A subagent cannot spawn its own subagents"); workflows fan out via `agent()` / `parallel()`; dashboard "dispatch" of new top-level agents; skills auto-invoked by `description`/`when-to-use` matching. | "You are not the router between tools": Bots "message each other, share context in threads or group chats, and pass ownership"; "@" to mention Bots/groups/routines/connectors; a "chief of staff" pattern with specialists per lane; existing Bots "can also suggest or create a focused Bot". No model routing. | Build: `[subagents.*]`, `SKILL.md` frontmatter, ACP config options. Bot: @mentions, group chats, Bot descriptions. | UG/16 §Built-in Agent Types, §Persona Resolution, §Depth Limits; UG/08 §Automatic Invocation; UG/15 §Session config options; BOT/overview; BOT/bots §Organize a team of Bots; x.ai/news/introducing-grok-bot §Work with many Bots — 2026-09-02 | ✅ |
-| 3c | Composition | **Agent definitions**: `.md` files with YAML frontmatter in `.grok/agents/` (project) or `~/.grok/agents/` (user); `[agent] definition`/`name`, `GROK_AGENT`, `--agent-profile`; frontmatter keys seen: `name`, `description`, `tools`, `mcpInheritance` (`all`/`none`/`named`/`except`), `permissionMode` (plugin agents may not set `bypassPermissions`, `mcpServers`, or hooks). **Roles**: `[subagents.roles.<name>]` or `.grok/roles/*.toml` (`default_capability_mode` `read-only`/`read-write`/`execute`/`all`, `model`, `prompt_file`). **Personas**: `[subagents.personas.<name>]` or `.grok/personas/*.toml` with `instructions`, `instructions_file`, `inputs`/`outputs` contracts, `model`, `reasoning_effort`, `default_isolation`. Built-ins `grok-build`, `explore`, `plan`; personas `researcher`, `concise`. `/config-agents` (alias `/agents`), `/personas`. Subagent `isolation: worktree`, `resume_from`, `background`. | A Bot = "a durable AI teammate with a name, a job, its own conversation, and working context"; profile = name, title, description, avatar; description holds durable rules; per-Bot enabled skills and routines; duplicate copies "profile, settings, enabled skills, routines, and avatar" but not memory/history; up to 50 Bots + group chats per account. | Build: `.grok/agents/*.md`, `~/.grok/agents/*.md`, `.grok/roles/*.toml`, `.grok/personas/*.toml`, config `[subagents]`. Bot: Bot actions → Edit Profile. | UG/16 §Agents vs Personas, §Personas, §Custom Roles and Personas; UG/26 §`agent`; UG/05 §File locations; BOT/bots (all) — 2026-09-02 | ✅ |
-| 3d | Configuration | **Instruction files** (loaded in this order per dir): `Agents.md`, `Claude.md`, `CLAUDE.md`, `CLAUDE.local.md`, `AGENT.md`, `AGENTS.md`; plus `.claude/CLAUDE.md`, `~/.claude/`, `~/.cursor/` named files (compat); rules dirs `<dir>/.grok/rules/*.md`, `.claude/rules/`, `.cursor/rules/`, `~/.grok/rules/`; loaded home → repo root → cwd, "deeper files take precedence"; no size cap; `--rules` appends, `--system-prompt-override` replaces. **Settings precedence** (highest first): CLI flags → env vars → signed `requirements.toml`/MDM → `GROK_CONFIG`/`GROK_CONFIG_PATH` overlay (allowlisted soft keys only) → `~/.grok/config.toml` → `managed_config.toml` → defaults. Project `.grok/config.toml` contributes only `[mcp_servers]`, `[plugins]`, `[permission]`, `[mcp] max_output_bytes`. UI in `~/.grok/pager.toml`. `grok inspect` shows which layer won. | Bot description (durable rules) + conversation messages (task rules); team rules from the Cursor dashboard, "Scope each rule to Cursor, Grok Bot, or both"; "Members personalize their Bots with memories rather than personal rules." No files. | Build: `AGENTS.md` etc., `~/.grok/config.toml`, `.grok/config.toml`, `/etc/grok/managed_config.toml`, `/etc/grok/requirements.toml`, `~/.grok/pager.toml`. Bot: Edit Profile; Team Settings → rules. | UG/12 §Supported File Names, §Rules Directories, §Deeper Files Take Precedence; UG/05 §Precedence, §Project-scoped configuration; UG/26 §How to configure; BOT/bots §Edit a Bot; BOT/teams-and-enterprises §Team rules — 2026-09-02 | ✅ |
-| 3e | Standards | Rules packs travel as: `.grok/rules/*.md` (committed), plugin-bundled skills/commands/agents via marketplaces (`.grok-plugin/marketplace.json`, `plugin-index.json`, `grok plugin validate`, `grok plugin tag`, `require_sha` pinning), managed workspace-synced skills ("`server` scope"), and org `managed_config.toml`. Example categories the docs suggest for AGENTS.md: coding conventions, build/test, style guides, PR/commit rules, architecture notes. No shipped opinionated style guide. | Team rules (short, few: "do not create personal access tokens"…); shared skills via Settings → Plugins; Bot share links (public copy of config). No versioned standards artifact. | Build: `.grok/rules/`, marketplace repos, `managed_config.toml`. Bot: dashboard team rules; plugin marketplace. | UG/12 §What to Put in Project Rules; UG/09 §Create your own marketplace, §Require pinned versions; UG/08 §Viewing Skill Details (`server` source); BOT/teams-and-enterprises §Team rules — 2026-09-02 | ✅ |
-| 4a | Capability | **Skills** = dir with `SKILL.md` (YAML frontmatter `name`, `description`, `when-to-use`, `allowed-tools`, `argument-hint`, `user-invocable`, `disable-model-invocation`, `model`, `effort`, `license`, `compatibility`, `metadata`); locations `./.grok/skills/`, `<repo>/.grok/skills/`, `~/.grok/skills/`, `.agents/skills/`, `~/.claude/skills/`, `.claude/skills/`, `~/.cursor/skills/`, `.cursor/skills/`, legacy `commands/*.md`; bundled skills cached in `~/.grok/bundled/skills/`; `/create-skill` wizard. **Plugins** = dir with `skills/`, `commands/`, `agents/`, `hooks/hooks.json`, `.mcp.json`, `.lsp.json`, optional `plugin.json`; **marketplaces** = git repo/local folder with `.grok-plugin/marketplace.json` (also `.claude-plugin/`); install by `owner/repo`, `owner/repo@sha`, `owner/repo#subdir`, git URL, local path; `grok plugin marketplace add/list/update/remove`, `grok plugin install --trust`, `update`, `enable/disable`, `details`, `validate`, `tag`; `[[marketplace.sources]]` in config; `extraKnownMarketplaces` in `~/.grok/settings.json`/`~/.claude/settings.json`. **Workflows** = `.grok/workflows/*.rhai` / `~/.grok/workflows/*.rhai`, `/create-workflow`. | **Skills**: "a reusable set of instructions for how to do a task" saved by asking the Bot ("Save the process we just used as a skill called …") or taught by demonstration (≤10-minute browser recording → draft skill); referenced with `/` in the composer; "Installed private skills can be enabled per Bot"; discovered/installed under Settings → Plugins → Yours. **Connectors** ("shown as Plugins") from the Cursor plugin marketplace; admins enable team plugins with plugin variables. No file format documented (no SKILL.md mention). | Build: paths above; `[skills] paths/ignore/disabled`; `[plugins] paths/enabled/disabled`. Bot: Settings → Plugins; `/` menu. | UG/08 (all); UG/09 (all); UG/04 §`/workflows`; BOT/skills-routines-and-automations §Save a skill, §Teach a workflow by demonstration; BOT/computer-and-apps §Connect an app — 2026-09-02 | ✅ (Bot skill format ⚠️) |
-| 4b | Capability Permissions | Per-tool: `[permission]` rules incl. `MCPTool(server__tool)` globs; `disabled_mcp_tools` per-server deny lists; `--tools`/`--disallowed-tools` incl. `Agent(explore, plan)`; per-skill `allowed-tools`, `disable-model-invocation`, `user-invocable`; per-agent `tools`, `mcpInheritance`; capability modes for subagents; plugin trust separate from enable ("its hooks, MCP servers, and LSP servers stay inactive until you trust it"); plugin agents cannot declare `mcpServers`/hooks/`bypassPermissions`; org `allowedMcpServers` (URL wildcards or `command`), `strictKnownMarketplaces`; "Always allow"/"never allow" remembered per project in `permission.toml`; `WebFetch(domain:…)` grants; fleet `allowed_models`. | Skills enabled per Bot; connectors "account-wide … not isolated to one Bot"; team MCP allowlist/denylist, member self-add toggle, network allowlist; blocked servers show "Disabled by team admin"; Auto-review "Always allow running git status in /workspace/reports". | Build: `[permission]`, `disabled_mcp_tools`, SKILL/agent frontmatter, `managed-settings.json`. Bot: Settings → Plugins → Yours; Team Settings → MCP Configuration; Auto-review rules. | UG/22 §MCP Rules, §Per-Command "Always Allow"; UG/14 §Tool Filtering; UG/08 §Optional Frontmatter Fields; UG/09 §Trust and security, §Restrict which MCP servers can run; UG/26 §`disabled_mcp_tools`; BOT/teams-and-enterprises §Plugins and MCP policy; BOT/approvals-security-and-privacy §Configure Auto Review — 2026-09-02 | ✅ |
-| 5a | Individual Memory | Experimental, **disabled by default** (`GROK_MEMORY=1` or `[memory] enabled = true`). Markdown: `~/.grok/memory/MEMORY.md` (global), `~/.grok/memory/<slug>-<hash8>/MEMORY.md` (workspace, keyed by `origin` remote so clones/worktrees share), `…/sessions/` daily logs. **Automatic**: session-end metadata summary (no LLM call; skipped for trivial sessions), pre-compaction `/flush` (LLM summary, `[compaction.memory_flush]`), idle flush, auto-`/dream` consolidation (gates `min_hours` 24, `min_sessions` 5), first-turn injection (`min_score` 0.9), re-search after compaction. **Manual**: "remember …", `/remember`, "forget …", `/flush`, `/dream`, `/memory` browser, direct file edits (watched + reindexed). SQLite FTS5 (+ vec0 if `[memory.embedding] model` set); temporal decay for session chunks; MMR; staleness notes. `grok memory clear [--workspace\|--global\|--all]`. | Per-Bot memory: "retain stable working preferences, important facts, and summaries from its work"; not copied on duplicate; "Memory is not a substitute for an authoritative source"; users "correct stale assumptions directly"; personalization "with memories rather than personal rules". Automatic; no manual file access; format/location undocumented. | Build: `~/.grok/memory/`, `[memory.*]`, `[compaction.memory_flush]`. Bot: opaque per-Bot store. | UG/13 (all sections); BOT/bots §What a Bot remembers; BOT/teams-and-enterprises §Team rules — 2026-09-02 | ✅ (Bot format ⚠️) |
-| 5b | Team Memory | **Nothing shared across people** at the memory layer: memory lives under `$HOME`; "User skills in `~/.grok/skills/` stay personal and unshared." Team-shareable knowledge travels only as committed `.grok/skills/`, `.grok/rules/`, `AGENTS.md`, plugins, and workspace-synced `server` skills — no promotion tier from personal memory to team. | Cross-**Bot** (same user) sharing: shared `/workspace` files, shared browser sessions, group chats, direct messages, "One Bot can continue from work another Bot saved." Cross-**person**: none documented except copying a Bot's configuration via public link (no memory/history). | Build: `.grok/` committed dirs. Bot: `/workspace`, group chats. | UG/13 §How Memory Is Stored; UG/08 §Best Practices #5; BOT/computer-and-apps §One computer, shared by all your Bots; BOT/bots §Share a Bot — 2026-09-02 | ✅ |
-| 5c | Knowledge | Memory search = hybrid BM25 (weight 0.3) + vector (0.7) over memory files with `memory_search`/`memory_get`; `[features] codebase_indexing = true` ("code graph indexing", crate `xai-codebase-graph`); `grep`/ripgrep; `web_search`/`web_fetch`; LSP diagnostics; `/deep-research` workflow ("gathers structured claims with source evidence, cross-checks each claim on an independent verifier shard"); session content search in `/resume` picker. No wiki/RAG over external corpora built in (MCP for that). | Web browsing, connectors (CRM, Slack, Databricks, etc. in examples), files in `/workspace`. No documented retrieval index. | Build: `[memory.search]`, `[memory.embedding]`, `[features] codebase_indexing`. | UG/13 §Memory Search; UG/05 §General settings; UG/04 §`/deep-research`; UG/17 §Resuming Sessions; BOT/overview §A good first handoff — 2026-09-02 | ✅ |
-| 6a | Product | Nothing PRD-shaped. Closest: `plan.md` per session with a required "Context" section, critical file paths, reuse notes, and a verification section; `/goal` objectives. | Bot "job" descriptions in operational terms; skills that state "When to use it / Required inputs and access / The sequence of work / How to validate the result / What to return / What requires approval". No product/spec object. | Build: `~/.grok/sessions/<cwd>/<id>/plan.md`. Bot: Bot description; skill text. | UG/19 §The Plan File; BOT/skills-routines-and-automations §Save a skill; BOT/bots §Give each Bot a clear job — 2026-09-02 | ✅ (nothing here beyond plan files) |
-| 6b | Infrastructure | Runs locally; optional OS sandbox (not a VM: "through Landlock or a mount namespace on Linux, and Seatbelt on macOS — not a separate VM"); git worktrees for subagents/forks (`x.ai/git/worktree/*`, `[worktree] auto_gc`, `[cli] worktree_type`); `grok agent serve` self-hosted server; leader process (`[cli] use_leader`) for config reload/MCP watches; `grok clone` (Grove content store, NFS/FUSE); `[harness] disable_workspace_teleport` "Kill switch for per-turn workspace snapshots" (purpose otherwise undocumented). "Grok's hosted cloud sandboxes do not run `grok agent serve`." | "Each computer is a managed Linux virtual machine dedicated to one member"; non-root user; durable storage survives Kill/Reset; Update/Recover/Reset Agent Computer; static egress IPs; iOS/desktop clients; Cloud Agents toggle (Cursor cloud agents). | Build: `--sandbox`, `.grok/sandbox.toml`, `grok agent serve`, `grok clone`. Bot: Settings → Beta (Update/Recover/Reset); dashboard → computers. | UG/18 §Trade-offs, §How It Works; UG/15 §Server mode; UG/26 §`harness`, §`worktree`; UG/27; BOT/teams-and-enterprises §How isolation works, §Manage member computers; BOT/computer-and-apps §Update, recover, or reset — 2026-09-02 | ✅ |
-| 6c | Estate | Per-repo scoping only: rules and `.grok/config.toml` discovered "from the repo root down to the current working directory"; memory keyed by `origin` remote; `[cli] session_picker_grouped` groups sessions by repo; dashboard groups by working directory. No multi-repo change-impact feature. | Nothing here; Bots work across apps, not repos. | — | UG/12 §How Discovery Works; UG/13 §How Memory Is Stored; UG/26 §`cli`; UG/23 — 2026-09-02 | ✅ nothing here |
-| 6d | Delivery | No built-in PR/deploy flow. Ships the pieces: read-only git commands auto-approved; `git push` on the dangerous list; ACP `x.ai/git/*` (`status`, `stage`, `commit`, `diffs`, `discard`); worktree `apply` merges child edits back; headless mode "for scripting/CI" with `--output-format json|streaming-json|streaming-messages-json`, `--max-turns`, `--allow 'Bash(gh *)'` examples; built-in workflow `review-changes` (`{"target":"origin/main...HEAD"}`); `/loop 2m Check the status of the GitHub Actions run`. | Examples only: an engineering Bot "reproducing a bug in the product UI, filing the ticket, and handing the fix off to a debugging Bot"; "Keep … production changes behind approval." | Build: `grok -p … --output-format json`; `/workflow review-changes`. | UG/14 §Command-Line Options; UG/15 §Extension methods; UG/22 §Dangerous Commands; UG/04 §`/workflow`; x.ai/news/introducing-grok-bot §A computer of its own — 2026-09-02 | ✅ |
-| 7a | Workflow Tasks | `todo_write` tool → `plan.json` in the session dir; todo pane (`Ctrl+T`); tasks pane (`Ctrl+G`) for subagents/background/monitors/loops; ACP `plan` session update; `plan.md`; `/goal` objectives; workflow runs dashboard (`/workflow runs`). No external ticket integration built in (Linear/GitHub via MCP; the docs list Linear, Sentry, GitHub MCP servers). | Conversations per Bot; routines with run history ("the app keeps the 20 most recent run records for each routine"); approval cards; no ticket object. | Build: `~/.grok/sessions/<cwd>/<id>/plan.json`, `plan.md`. Bot: View conversation details → Routines. | UG/17 §Storage Layout; UG/16 §The Tasks Pane; UG/15 §Streaming updates; UG/07 §Available MCP Servers; BOT/skills-routines-and-automations §Manage routines — 2026-09-02 | ✅ |
-| 8a | Evals | Nothing shipped as an eval harness for users. The docs position ACP/headless for "SDKs, eval harnesses, and custom apps" and `/goal` uses "an independent evidence review" / "adversarial verification on completion candidates"; `/deep-research` has "an independent verifier shard". Tests are per-crate `cargo test -p <crate>`. | "Test run" for routines ("A test run performs real work"); review checklist (current inputs, format, audit trail, stopped at approval point, explicit failure states). | Build: `/goal`, `/deep-research`. Bot: routine Test run. | UG/15 intro; UG/04 §`/goal`, §`/deep-research`; README §Development; BOT/skills-routines-and-automations §Test before enabling — 2026-09-02 | ✅ nothing here (evals) |
-| 8b | Evidence | Session record on disk (`updates.jsonl` authoritative, `chat_history.jsonl`, `signals.json`, `feedback.jsonl`, `compaction_checkpoints/`, sandbox event log under `~/.grok/sessions`); `/export`, `/copy` (backup `~/.grok/last-copy.txt`); `grok usage <session-id> [turn]` per-turn token/cost; headless JSON result with `sessionId`, `requestId`, `usage`, `total_cost_usd_ticks`; "The scrollback and the transcript keep the real output" even when a PostToolUse hook replaces what the model sees; session trace upload (`[telemetry] trace_upload`, `endpoints.trace_upload_bucket` gs://|s3://); subagent transcripts viewable. | Conversation shows "the proposed operation and its inputs"; Agent Computer preview; routine run records (20 kept); "Preserve source links and an action log for important decisions" (user practice). **"An audit view of Bot actions is coming"** — not yet available. | Build: `~/.grok/sessions/…`. Bot: conversation + Routines view. | UG/17 §Storage Layout; UG/04 §`/copy`, §`/export`; UG/14 §json; UG/10 §Security Notes; UG/18 §Event Logging; UG/26 §`endpoints`; BOT/approvals-security-and-privacy; BOT/teams-and-enterprises §Audit — 2026-09-02 | ✅ |
-| 8c | Observability | **External OpenTelemetry** (alpha, schema `grok_code.schema.version = v1`): double opt-in `GROK_EXTERNAL_OTEL=1` + `OTEL_METRICS_EXPORTER`/`OTEL_LOGS_EXPORTER`; OTLP http/protobuf or grpc; mTLS; content-free by default with gates `OTEL_LOG_USER_PROMPTS`, `OTEL_LOG_ASSISTANT_RESPONSES`, `OTEL_LOG_TOOL_DETAILS`, `OTEL_LOG_TOOL_CONTENT`; metrics `grok_code.session.count`, `token.usage`, `turn.count`, `tool.decision`, `tool.usage`, `error.count`, `startup.*`; events `session_start`, `session_end`, `user_prompt`, `assistant_response`, `turn_completed`, `api_request`, `api_error`, `tool_result`, `tool_decision`, `mcp_server_connection`, `permission_mode_changed`, `skill_activated`, `plugin_loaded`, `compaction`, `subagent`, `auth`, `internal_error`, `model_switched`; pinnable in `requirements.toml`. Separate first-party telemetry (`[features] telemetry`, Mixpanel, `[telemetry] events_url`), logs `~/.grok/logs/unified.jsonl`, `~/.grok/logs/mcp/<server>.stderr.log`, `GROK_LOG_FILE`/`RUST_LOG`, `grok --debug`; `/context` token breakdown; `/session-info`; crash reports `$GROK_HOME/crash/`. | "Spend and usage appear on the dashboard usage page"; Agent Computer live view; no audit log yet; no OTEL. | Build: `[telemetry] otel_*`, `OTEL_*` env. Bot: Cursor dashboard usage page. | UG/24 (all); UG/05 §Telemetry, §Logging; UG/04 §`/context`; UG/26 §`diagnostics`; BOT/teams-and-enterprises §Availability and Billing — 2026-09-02 | ✅ |
-| 8d | Efficiency | Auto-compact at `[session] auto_compact_threshold_percent` (85), `/compact [context]`, `[features] two_pass_compaction`, pre-compaction memory flush, tool-result pruning (`[compaction.pruning]` keep_last_n_turns 3, soft-trim, hard clear after 10 turns), MCP result cap `[mcp] max_output_bytes` (20 000), `/context` breakdown, `/usage` (alias `/cost`), `grok usage`, headless `usage`/`modelUsage`/`costUSD`/`cost_is_partial`, `--max-turns`, `/goal --budget <tokens>`, workflow `agent_budget` (default 128, 1–1024), `[models] max_retries`, `subagent_rate_limit_max_attempts`, `[subagents] sampling_limit`, `[tools.media_gen]` parallel caps, "Re-inject scheduled loops and live workflows on compaction" (commit log). No prompt-cache control exposed beyond `cache_read_input_tokens` reporting. | "Grok Bot comes with its own usage"; weekly allowance for team seats; "No per-product spend cap exists yet"; routines may be paused after a long absence "To control unattended usage"; advice to avoid broad event listeners because they "consume usage". | Build: `[session]`, `[compaction.*]`, `[mcp]`, `/usage`. Bot: dashboard usage page. | UG/04 §`/compact`, §`/context`, §`/usage`; UG/13 §Flush Settings, §Pruning Settings; UG/14 §json; UG/05; BOT/teams-and-enterprises; BOT/skills-routines-and-automations §Manage routines — 2026-09-02 | ✅ |
-| 9a | Learning | `/create-skill` (agent drafts `SKILL.md` from your description, picks project/user scope); `/create-workflow [description]` → `.grok/workflows/<name>.rhai`; `/workflow save` of a run's script; memory `/flush` + auto `/dream` ("consolidates scattered memory fragments into organized topics"); "remember …" appends to `MEMORY.md`; remembered per-command grants. No auto-skill-creation from sessions. | **Teach a task**: record a browser workflow (≤10 min) → "review the skill the Bot creates" → routine; "Save the process we just used as a skill"; "learn how you like things done, and get sharper the more you work together"; corrections stored as memory. | Build: `/create-skill`, `/create-workflow`, `/dream`. Bot: Teach a task; "Save … as a skill". | UG/08 §Creating Skills with /create-skill; https://docs.x.ai/build/modes-and-commands; UG/13 §Dream Consolidation; BOT/skills-routines-and-automations §Teach a workflow by demonstration; x.ai/news/introducing-grok-bot §Show a Bot how it's done — 2026-09-02 | ✅ |
-| 9b | Rituals | Built-in workflow `review-changes` (code review of a diff range); plan approval with inline comments; `/feedback`; `/btw` side-questions. No standup/retro/planning ritual encoded. | Use-case templates (Sales Outbound, Talent Scout, Paid Media, Expense Manager, Product Performance, Bug Reproduction, Account Health, Chief of Staff); a "Monday scoreboard" and "Weekly account health" appear as examples of routines, not shipped rituals. | Build: `/workflow review-changes`. Bot: suggested Bot types at onboarding. | UG/04 §`/workflow`; UG/19 §Reviewing the Plan; BOT/use-cases; BOT/get-started — 2026-09-02 | ✅ (nothing named beyond review) |
-| 9c | Cadence | `/loop [60s\|5m\|2h\|1d] <prompt>` (fires immediately then repeats; "auto-expire after 7 days"; "Maximum 50 scheduled tasks"); scheduler tools `scheduler_create` (`interval`, `prompt`, `fire_immediately`, `recurring`, `durable` = persist across sessions), `scheduler_list`, `scheduler_delete`; `monitor` tool streams each output line as a notification (`persistent: true`); background `run_terminal_command`; status-line `refresh_interval` re-runs a command row. Emits into the session conversation (and notification hooks). Only runs while a session process is alive. | **Routines**: schedule ("Every weekday at 8:00 AM … time zone") or **event** ("Cursor account integrations can start a routine from an event, such as a Slack message or a GitHub notification"); results "Post … in this conversation"; "Background routines can run while your laptop is closed"; up to 50 routines per Bot; 20 run records kept; editing/testing/deleting a routine is desktop-only; push notifications on iOS "still rolling out". | Build: `/loop`, `scheduler_*`, `monitor`. Bot: Bot → View conversation details → Routines. | UG/20 §The /loop Command, §The Scheduler, §The monitor Tool; UG/25; BOT/skills-routines-and-automations §Create a routine, §Trigger work from an event, §Manage routines; BOT/mobile — 2026-09-02 | ✅ |
-| 9d | Anti-fragile lifecycle | Resume (`/resume`, `grok --resume <id\|title>`, `-c`, ACP `session/load`), fork (`/fork`, `--fork-session`), rewind (`/rewind`/`/undo`; "does not restore files on disk"), compaction checkpoints, sandbox profile pinned to session on resume, `[doom_loop_recovery] enabled` ("Resample confident tool-call loops"), inference `max_retries` (8), `inference_idle_timeout_secs`, `StopFailure`/`StopCancelled` hooks with error categories (`rate_limit`, `authentication_failed`, `server_error`, `max_output_tokens`, `no_progress`), Stop-hook "keep working until tests pass", workflow pause/resume ("Runs interrupted by a process restart aren't resumed at all"; "resume is not exactly-once"), auto-wake on task/subagent completion, `GROK_EXIT_TIMEOUT_SECS`, crash handler, `grok update --version X` recovery, `/doctor fix`. | Recover/Update/Reset Agent Computer ("preserving durable state"); Kill VM by org admin keeps durable storage; routine failure policy is user-authored ("If the source data is unavailable, report the failure instead of using old data"; "Make retries idempotent where possible"); "Approvals … do not reverse work already completed." | Build: `~/.grok/sessions/`, `[doom_loop_recovery]`, hooks. Bot: Settings → Beta. | UG/17 (all); UG/18 §Resuming Sessions; UG/26 §`doom_loop_recovery`, §`models`; UG/10 §Hook Events, §Stop Decision Control; UG/04 §`/workflow`; BOT/computer-and-apps §Update, recover, or reset; BOT/skills-routines-and-automations §Design routines for trust — 2026-09-02 | ✅ |
-| 9e | Raise the floor | `grok inspect [--json]` ("project discovery": loaded rules, skills, MCP servers with vendor origin, plugins, compat status); `/doctor [fix]` (terminal/clipboard/color/input/notification/sandbox findings); `grok mcp doctor`; `grok plugin validate`; `/tour` (aliases `/onboarding`) topics incl. "switching from another agent tool"; **Ctrl+I "Import Claude settings"**; `/settings` pane; enterprise "complete config" template; `managed_config.toml` "Ship a starting point to a fleet"; built-in defaults so config.toml is optional; "Grok reloads skills when files change on disk". | Onboarding "collects information about tools the user employs to suggest Bot types"; suggested teammates; admin setup wizard (privacy mode, dedicated desktop, API pricing, pooled billing, model availability, premium seats); recommended Team Setup script for password manager. | Build: `grok inspect`, `/doctor`, `/tour`. Bot: first-run onboarding; dashboard Admin setup. | UG/01; UG/04 §`/doctor`, §`/tour`; UG/07 §CLI Management; UG/22 §3. Claude Code Compatibility; UG/05 §Enterprise deployment; BOT/get-started; BOT/teams-and-enterprises §Set up your team — 2026-09-02 | ✅ |
-| 9f | Diagnose the bottleneck | Only session-level self-diagnostics: `/doctor`, `grok inspect` (`compatibilityStatus: "unresolved"`), `/context`, `/session-info`, `grok mcp doctor`, OTEL `startup.phase_duration` / `stuck_in`. No maturity/readiness scoring. | Nothing here (Troubleshooting page exists for computer recovery; not read). | — | UG/04; UG/24 §Metrics; UG/05 §Harness compatibility — 2026-09-02 | ✅ nothing here (no scoring) |
-| 10a | Roster | Agent definitions (`.grok/agents/`, `~/.grok/agents/`), built-in types `grok-build`/`explore`/`plan`, personas, roles; **Agent Dashboard** (`grok dashboard`, `/dashboard`, `Ctrl+\`) lists every top-level session "grouped by state" with peek/reply/dispatch/pin/rename/stop; `[dashboard] grouping = state\|directory`; cross-process session registry (`[cli] session_registry`); `x.ai/session/*` and `bot.roster` (relay method "Cached agent roster"). Identity: `[agent] system_prompt_label`. | **Bots are the roster**: named, avatar'd, titled; "up to 50 Bots and group chats combined"; pin/hide; group chats; `@` mentions; `@everyone`; share by link ("Shared Bots are created by other users, not by SpaceXAI"). | Build: `/config-agents`, `/dashboard`. Bot: sidebar. | UG/16; UG/23; UG/26 §`dashboard`, §`agent`; repo `crates/common/xai-tool-protocol/src/methods.rs`; BOT/bots — 2026-09-02 | ✅ |
-| 10b | Org | Human-in-the-loop posture = permission modes (ask → acceptEdits → auto → dontAsk → always-approve) plus plan-mode gate and Stop-hook gates; org vs user split = `requirements.toml` (pin) vs `managed_config.toml` (fleet default) vs `config.toml` (user) vs `.grok/config.toml` (project); "your own `deny` and `ask` rules win over a managed `allow`"; team OAuth `principal_type = Team`; ZDR admin-only; version floors/ceilings. No RACI/escalation objects. | Roles: individual member, **team admin**, **organization admin** ("Team admin rights are not enough" to remove a computer); Bot job/ownership descriptions; "chief of staff" Bot over specialists; approval boundaries as the escalation path ("only pull you in for judgment calls"); enterprise waitlist. | Build: config layers; UG/26 "Who writes it" table. Bot: Cursor dashboard roles. | UG/26 §How to configure; UG/22 §Permission modes, §Configuring Permissions; UG/26 §`auth`; BOT/teams-and-enterprises §Manage member computers; x.ai/news/introducing-grok-bot §Work with many Bots — 2026-09-02 | ✅ |
-| 11a | Surfaces | Full-screen mouse-interactive **TUI** (`fullscreen` / `minimal` modes; themes; `pager.toml`); headless CLI (`grok -p`); **ACP** stdio/WebSocket server/relay for IDEs (Zed, Neovim, Emacs, marimo; JetBrains "Coming soon"; VS Code-family terminals detected); "Grok Desktop" listed in the notification matrix (native); terminal notifications OSC 9/99/777, ntfy/terminal-notifier hooks; `grok ssh` passthrough; voice (`[voice]`, `ui.voice_stt_language`); web UIs via relay ("browsers can't spawn local processes"). No chat-channel surface (Slack/Telegram/Discord/WhatsApp) built in. | Desktop app (macOS/Windows/Linux), **iOS** app (text, dictation, photos, approvals, computer view), Agent Computer (noVNC-style live desktop), group chats; Slack/GitHub as **event sources** via Cursor integrations; web preview of shared Bots on x.ai. No API. | Build: `grok`, `grok -p`, `grok agent stdio\|serve\|headless`. Bot: apps. | README; UG/04 §`/minimal` and `/fullscreen`; UG/15 §Compatible clients, §WebSocket relay; UG/05 §Terminal support matrix; UG/26 §`voice`; BOT/get-started; BOT/mobile; BOT/skills-routines-and-automations §Trigger work from an event — 2026-09-02 | ✅ |
+### 0 · Foundation
 
----
+#### 0a Substrate
+<details>
+<summary>● Model-pluggable, 31+ backends; Bot's model choice fully managed</summary>
 
-## C. Primitive set (name · path · project's own definition)
+**Ships.** Build defaults to hosted models (`grok-4.5`/`grok-4.6`, docs disagree) but is fully pluggable: `[model.<id>]` with `base_url`, three `api_backend` protocols (`chat_completions`, `responses`, Anthropic `messages`), documented examples for Claude, OpenAI, Ollama, Together, local llama.cpp-class servers, per-subagent model routing, and a fleet-pinned `allowed_models` list. Bot ships no model picker at all — *"Model choice is fully managed by the product."*
+**Path.** `~/.grok/config.toml` `[models]`, `[model.<id>]` (Build); none (Bot).
+**Source.** ✅ UG/11 §Supported API Backends · ✅ BOT/teams-and-enterprises §Availability
 
-### C.1 Grok Build — what you actually configure (8)
+</details>
 
-| Primitive | Path / key | Project's own definition (quoted) |
-|---|---|---|
-| **Project rules (AGENTS.md)** | `AGENTS.md`, `AGENT.md`, `CLAUDE.md`, `CLAUDE.local.md`, `Agents.md`, `Claude.md` at any dir; `<dir>/.grok/rules/*.md`; `~/.grok/rules/` | "Project rules are Markdown files that Grok reads and adds to its context. Grok follows their content for every interaction in that tree. This is the primary mechanism for teaching Grok about your project's conventions" (UG/12) ✅ |
-| **Skill** | `<dir>/SKILL.md` under `.grok/skills/`, `~/.grok/skills/`, `.agents/skills/`, `.claude/skills/`, `.cursor/skills/`, `commands/*.md`; `[skills]` | "A skill is a directory that contains a `SKILL.md` file. Its markdown body tells Grok how to handle a specific type of task … Use a skill for a repeatable procedure that's too specific for AGENTS.md but too long to retype." (UG/08) ✅ |
-| **Plugin / Marketplace** | plugin dir with `skills/`, `commands/`, `agents/`, `hooks/hooks.json`, `.mcp.json`, `.lsp.json`, `plugin.json`; marketplace `.grok-plugin/marketplace.json`; `[plugins]`, `[[marketplace.sources]]`; `~/.grok/plugins/`, `.grok/plugins/` | "A plugin bundles skills, slash commands, agents, hooks, and MCP servers into one installable unit." "A marketplace is a catalog of plugins that someone has published and shared." (UG/09) ✅ |
-| **Hook** | `~/.grok/hooks/*.json`, `.grok/hooks/*.json`, `hooks` table in TOML, plugin `hooks/hooks.json` | "A hook is a shell command or HTTP endpoint that Grok calls when a specific lifecycle event occurs." (UG/10) ✅ |
-| **MCP server** | `[mcp_servers.<name>]` in `~/.grok/config.toml` / `.grok/config.toml`; `.mcp.json`; `grok mcp add` | "An MCP server is a process that exposes tools to Grok over a standardized protocol. When you configure an MCP server, its tools become available to the model alongside Grok's built-in tools." (UG/07) ✅ |
-| **Permission rule / mode** | `[permission] allow/ask/deny/rules`; `[ui] permission_mode`; `--allow/--deny`; `.claude/settings.json` `permissions` | "**Modes** set how often Grok asks for approval … **Rules** set which tools are allowed, asked about, or blocked within that baseline." (UG/22) ✅ |
-| **Sandbox profile** | `--sandbox <off\|workspace\|devbox\|read-only\|strict\|custom>`; `[sandbox] profile`; `~/.grok/sandbox.toml`, `.grok/sandbox.toml` `[profiles.<name>]` | "Sandbox mode restricts what the agent process and its spawned commands can access on your filesystem and network using OS-level kernel primitives (Landlock on Linux, Seatbelt on macOS). The kernel enforces these limits for the process lifetime." (UG/18) ✅ |
-| **Agent / Subagent / Persona / Role** | `.grok/agents/*.md`, `~/.grok/agents/*.md`; `[subagents.*]`; `.grok/roles/*.toml`; `.grok/personas/*.toml` | "Subagents are independent child sessions that handle tasks in parallel. Each subagent has its own context window" … "An agent defines the session itself. A persona shapes how a subagent behaves within a session." (UG/16) ✅ |
+### 1 · Environment
 
-Second-tier named things (also first-class in the docs): **Session** (`~/.grok/sessions/…`), **Memory** (`~/.grok/memory/`), **Workflow** (`.grok/workflows/*.rhai`), **Plan** (`plan.md`), **Goal** (`/goal`), the three config files **`config.toml` / `managed_config.toml` / `requirements.toml`** ("Three files configure Grok Build, and they are written by different people." UG/26). ✅
+#### 1a Environment
+<details>
+<summary>◐ Local shell + FS (Build); cloud VM (Bot); no declared inventory</summary>
 
-### C.2 Grok Bot — what you actually configure (6)
+**Ships.** Build: local shell/filesystem tools (`read_file`, `run_terminal_command`, `web_search`/ `web_fetch` with SSRF fail-closed), no built-in browser tool (MCP only), plus a remote WebSocket server (`grok agent serve`) and a Grove NFS/FUSE mount (`grok clone`). Bot: a persistent Linux VM per user with browser, filesystem and terminal; optional local-computer execution on the member's own machine under an approval policy.
+**Nothing here** as a declared systems inventory for either product — checked UG/01, UG/05, UG/20, UG/27, BOT/computer-and-apps.
+**Path.** `[toolset.*]` (Build); Settings → General → Agent (Bot).
+**Source.** ✅ UG/01 §Tools · ✅ BOT/computer-and-apps
 
-| Primitive | Where | Project's own definition (quoted) |
-|---|---|---|
-| **Bot** | Sidebar → New → Create new agent; Bot actions → Edit Profile (name, title, description, avatar) | "A Bot is a durable AI teammate with a name, a job, its own conversation, and working context that develops over time." (BOT/bots) ✅ |
-| **Computer (Agent Computer)** | One per user account; `/workspace`; Settings → Beta (Update/Recover/Reset) | "Each Bot runs on a persistent cloud VM with a browser, filesystem, and terminal." "All of your Bots use the same persistent cloud computer." (BOT/overview) ✅ |
-| **Skill** | Ask the Bot to save one; Teach a task; `/` in composer; Settings → Plugins → Yours (enable per Bot) | "A skill is a reusable set of instructions for how to do a task." "A skill captures steps, decision rules, expected output, and safety boundaries." (BOT/skills-routines-and-automations) ✅ |
-| **Routine** | Bot → View conversation details → Routines (enable/pause, Test run, edit schedule/instructions, run history, delete) | "A routine tells one Bot when to run a workflow—on a schedule or, where supported, after an event." (BOT/skills-routines-and-automations) ✅ |
-| **Plugin / Connector (and MCP)** | Settings → Plugins; `@` in chat; Team Settings → MCP Configuration | "Connectors give a Bot a structured way to work with supported services. Connectors are shown as Plugins in the current app." (BOT/computer-and-apps) ✅ |
-| **Approval / Auto-review rule** | Approval card (Allow once / Deny / Always allow); Settings → General → Auto-review; Settings → General → Agent → Execution on Local Computer | "Require Approval rules always stop matching actions for you. Always Allow rules let matching actions proceed only when the automated review does not identify another reason to stop." (BOT/approvals-security-and-privacy) ✅ |
+</details>
 
-Also named: **Group chat** (Bots coordinating in one thread; counts toward the 50 cap), **Memory** (per-Bot, opaque), **Team rules** (dashboard, scoped to Cursor/Grok Bot/both). ✅
+### 2 · Agent Harness
 
----
+#### 2a Adapters & Middleware
+<details>
+<summary>● <b>MCP server</b> + plugin; Claude/Cursor compat readers</summary>
 
-## D. Stated limitations (quoted)
+**Ships.** MCP client (stdio, HTTP/SSE, streamable, native OAuth), tool namespacing `server__tool`, `grok mcp add/remove/enable/doctor`; plugins bundle skills+commands+agents+hooks+MCP; ACP `x.ai/*` extension methods (`fs`, `git`, `terminal`, `session`); compat readers for `.mcp.json`, `~/.claude.json`, `.cursor/mcp.json`. Bot: connectors/plugins from the Cursor marketplace, MCP under team policy — no adapter *for* another harness.
+**Path.** `[mcp_servers.<name>]`, `[plugins]` (Build); Settings → Plugins (Bot).
+**Source.** ✅ UG/07 · ✅ UG/09 §Reference · ✅ BOT/computer-and-apps §Connect an app
 
-### Grok Build
-- "External contributions are not accepted." / "The public tree is published for source transparency and local builds." (README, CONTRIBUTING.md) ✅
-- "Windows builds are best-effort and not currently tested from this tree." (README) ✅
-- "Memory is experimental and disabled by default." (UG/13) ✅
-- "Sandbox mode is off by default." "Child-network blocking is enforced on **Linux only** (via seccomp). On macOS it is a no-op." "Linux is best-effort: … Files created **later** that match a glob are **not** covered." "The sandbox enforces limits at the OS level … not a separate VM." (UG/18) ✅
-- "Hooks fail open. If a hook script crashes, times out, or is missing, the tool call proceeds as if the hook had allowed it." (UG/22) ✅
-- "Allow rules are not a closed allowlist. A command that matches no allow rule is not thereby denied — it falls through to the mode." "Treat the read-only command list as a convenience, not a security boundary." (UG/22) ✅
-- "`/rewind` does not restore files on disk. Only conversation history is truncated." (UG/17) ✅
-- "Only the top-level session spawns subagents. A subagent cannot spawn its own subagents: the maximum nesting depth is one." (UG/16) ✅
-- "Subagents are not covered by the parent session's plan-mode edit gate." "Bash commands are not inspected for file writes — plan mode blocks the edit tools, not shell redirection." (UG/19) ✅
-- "Runs interrupted by a process restart aren't resumed at all … And resume is not exactly-once." (UG/04 §`/workflow`) ✅
-- "Recurring tasks auto-expire after 7 days. Maximum 50 scheduled tasks can be active at once." (UG/20) ✅
-- "This is a server you run yourself — Grok's hosted cloud sandboxes do not run `grok agent serve`." (UG/15) ✅
-- "Status: alpha" (external OTEL); "There is no `cost.usage` metric"; "`lines_of_code.count` and `active_time.total` are planned for a later phase." (UG/24) ✅
-- "`permissions.additionalDirectories` is parsed but not supported." "Rules naming an unrecognized tool (for example `Agent(model:opus)`) are skipped with a warning." (UG/22) ✅
-- "Codex's `skills`, `rules`, `agents`, `mcps`, and `hooks` cells are reserved and currently inert." "sessions = true # staged; no scanner consumer yet" (UG/05) ✅
-- "Keyboard shortcuts are **not** configurable." (UG/05) ✅
-- "Boolean values are rejected; exposing boolean options is not implemented yet." (ACP config options, UG/15) ✅
-- JetBrains: "Coming soon" (UG/15) ✅
-- Marketplaces "do not install a program onto a machine … plugins deliver files, not runtimes or native binaries." (UG/09) ✅
+</details>
 
-### Grok Bot
-- "Grok Bot is in beta"; "Early beta"; "Enterprise users can join a waitlist for future access." (x.ai/news/introducing-grok-bot) ✅
-- "Do not use separate Bots as a security boundary." "Sharing a Bot is not a security boundary." "Auto Review is model-based and should complement, not replace, least privilege and explicit approval boundaries." "An approval controls the proposed action. It does not reverse work already completed." "Deleting a Bot does not remove shared-computer files or browser sessions." "Grok Bot requires data storage and does not support Legacy Privacy Mode." (BOT/approvals-security-and-privacy) ✅
-- "One Bot can run one computer-use task on its screen at a time." "Android and iPad aren't supported at launch." (BOT/faq) ✅
-- "A Bot can own up to 50 routines, and the app keeps the 20 most recent run records for each routine. Deleting a routine is immediate and has no undo." "Teach-by-demonstration may be enabled gradually." "It does not record microphone audio." (BOT/skills-routines-and-automations) ✅
-- "An account can have up to 50 Bots and group chats combined." (BOT/bots) ✅
-- "editing the schedule or instruction, viewing run history, testing, and deleting a routine currently require the desktop app"; "push delivery is still rolling out"; "some advanced desktop controls and teach-by-demonstration workflows are not available on iPhone." (BOT/mobile) ✅
-- "An audit view of Bot actions is coming." "Model choice is fully managed by the product." No Grok-Bot-specific spend cap yet. "Privacy Mode (Legacy) blocks Grok Bot entirely." "device-trust agents such as Okta FastPass are not available for it natively." "Grok Bot's computer is not by default enrolled in mobile device management." Team-level local-execution ceiling "Coming soon". "The mobile apps cannot reset a computer." (BOT/teams-and-enterprises) ✅
-- "Memory is not a substitute for an authoritative source." (BOT/bots) ✅
-- "It is not a general-purpose password manager." (secure secret request, BOT/approvals-security-and-privacy) ✅
+#### 2b Hooks
+<details>
+<summary>● <b>Hook</b> — 15 named events; fail open</summary>
 
----
+**Ships.** Fifteen named lifecycle events (`SessionStart`…`SessionEnd`, `PreToolUse` and `Stop` blocking, `PostToolUse` can replace model-visible output), handler types `command`/`http`, regex matchers, `Stop` capped at 8 continuations, Cursor camelCase names and Claude tool aliases accepted. *"All failures fail open."* Bot ships no user-authored hooks — Auto Review rules are evaluated before an action runs, but as policy, not a script.
+**Path.** `~/.grok/hooks/*.json`, `.grok/hooks/*.json`, plugin `hooks/hooks.json`.
+**Source.** ✅ UG/10 §Hook Events, §How a Hook Resolves
 
-## E. Sources (every URL fetched, access date 2026-09-02)
+</details>
 
-**Grok Build — primary**
-- https://github.com/xai-org/grok-build (repo page via WebFetch; metadata via `gh api repos/xai-org/grok-build`, `/commits`, `/releases`, `/tags`, `/contents/...`)
-- https://raw.githubusercontent.com/xai-org/grok-build/main/README.md
-- https://raw.githubusercontent.com/xai-org/grok-build/main/CONTRIBUTING.md
-- https://raw.githubusercontent.com/xai-org/grok-build/main/SECURITY.md
-- https://raw.githubusercontent.com/xai-org/grok-build/main/SOURCE_REV
-- https://github.com/xai-org/grok-build/tree/main/crates/codegen/xai-grok-pager/docs/user-guide/ — all 27 files + README.md downloaded raw and read: `01-getting-started`, `02-authentication`, `03-keyboard-shortcuts` (not read in full), `04-slash-commands`, `05-configuration`, `06-theming` (not read), `07-mcp-servers`, `08-skills`, `09-plugins`, `10-hooks`, `11-custom-models`, `12-project-rules`, `13-memory`, `14-headless-mode` (first ~200 lines), `15-agent-mode`, `16-subagents`, `17-sessions`, `18-sandbox`, `19-plan-mode`, `20-background-tasks`, `21-terminal-support` (not read), `22-permissions-and-safety`, `23-dashboard` (first 80 lines), `24-monitoring-usage`, `25-status-line` (not read), `26-config-reference` (first ~190 lines + grep), `27-grok-clone`
-- https://raw.githubusercontent.com/xai-org/grok-build/main/crates/codegen/xai-grok-shell/README.md (head + grep)
-- https://raw.githubusercontent.com/xai-org/grok-build/main/crates/common/xai-tool-protocol/src/methods.rs
-- https://raw.githubusercontent.com/xai-org/grok-build/main/crates/common/xai-tool-protocol/Cargo.toml
-- https://raw.githubusercontent.com/xai-org/grok-build/main/crates/common/xai-computer-hub-core/Cargo.toml and `src/lib.rs`
-- GitHub code search (`gh api search/code`): "bot relay", "relay path:crates/codegen/xai-grok-shell", "landlock"
-- https://x.ai/news/grok-build-open-source (WebFetch + curl)
-- https://docs.x.ai/ (index)
-- https://docs.x.ai/build/overview
-- https://docs.x.ai/build/enterprise
-- https://docs.x.ai/build/modes-and-commands
-- https://x.ai/build/changelog — **HTTP 403**
-- https://x.ai/open-source — **HTTP 403**
+#### 2c Enforcement
+<details>
+<summary>● <b>Permission rule / mode</b> + kernel sandbox, off by default</summary>
 
-**Grok Bot — primary**
-- https://x.ai/news/introducing-grok-bot (WebFetch + curl, full text)
-- https://x.ai/news (index)
-- https://x.ai/bot — **HTTP 403**
-- https://docs.x.ai/grok-bot/overview (WebFetch + curl full text)
-- https://docs.x.ai/grok-bot/get-started
-- https://docs.x.ai/grok-bot/use-cases
-- https://docs.x.ai/grok-bot/skills-routines-and-automations (curl full text)
-- https://docs.x.ai/grok-bot/computer-and-apps (curl full text)
-- https://docs.x.ai/grok-bot/approvals-security-and-privacy (curl full text)
-- https://docs.x.ai/grok-bot/teams-and-enterprises (curl, first ~10 KB)
-- https://docs.x.ai/grok-bot/bots (curl full text)
-- https://docs.x.ai/grok-bot/faq
-- https://docs.x.ai/grok-bot/mobile
-- https://docs.x.ai/grok-bot/skills-and-routines — **404** (wrong guess; correct page is `skills-routines-and-automations`)
+**Ships.** Authorization order: `PreToolUse` hook → `deny`/`ask`/`allow` rule → remembered grant → built-in read-only auto-approval → mode policy (`default`…`bypassPermissions`). Sandbox profiles (`workspace`/`devbox`/`read-only`/`strict`/custom) are kernel-enforced (Landlock/Seatbelt) but **off by default**; admin lock via signed `requirements.toml` can disable bypass mode. Bot: approval cards plus a model-based Auto Review (*"Require Approval… always wins"*); explicitly *"Do not use separate Bots as a security boundary."*
+**Path.** `[permission]`, `--sandbox`, `~/.grok/sandbox.toml` (Build); Settings → Auto-review (Bot).
+**Source.** ✅ UG/22 · ✅ UG/18 · ✅ BOT/approvals-security-and-privacy
 
-**Third-party / secondary (◐)**
-- https://ai-sdk.dev/providers/ai-sdk-harnesses/grok-build (Vercel's own docs for its Build adapter — primary for that adapter)
-- https://kingy.ai/blog/grok-bot-vs-grok-automations-vs-grok-build/ (checked only for the Bot↔Build claim; makes none)
-- WebSearch result snippets (vellum.ai, datacamp, composio, unite.ai, 9to5mac, venturebeat, sqmagazine, alphamatch) — used only to locate primary pages and for the "companies merging" context; no named feature taken from them.
+</details>
 
----
+### 3 · System Stacks
 
-## F. Things I could NOT verify
+#### 3a Control
+<details>
+<summary>● Plan mode + <b>Goal</b> — token budget, evidence review</summary>
 
-1. **Grok Build's current version number.** No GitHub releases/tags; changelog page returns 403. Only evidence: `0.2.1xx` example strings in version-pinning docs. ⚠️
-2. **That Grok Bot's agent loop is Grok Build.** Direct evidence stops at: Build's repo ships a `bot.*` relay protocol, a "Computer Hub" tool registry with `GROK_BOT_TOOL_IDS`, and relay/teleport config keys. No xAI page states the relationship; no reputable secondary asserts it either. ⚠️
-3. **Grok Bot skill file format / storage location** (whether it is SKILL.md-compatible). Docs never say. ⚠️
-4. **Grok Bot memory format/location.** Opaque. ⚠️
-5. **Whether `docs.x.ai/build/overview`'s sidebar link to "Grok Bot Overview" is anything more than navigation.** The fetch tool reported the sibling list as "likely"; treat as nav only. ⚠️
-6. **Default model discrepancy**: UG/11 says new sessions start with `grok-4.5`; docs.x.ai/build/overview says `grok-4.6`. Both read directly; which is current depends on build. ✅ both quoted, ⚠️ which applies.
-7. **Ownership naming**: everything at primary source says "SpaceXAI"; the brief says "xAI". I did not find a page explaining the rename; the "companies merging" (xAI + Cursor) context comes only from secondary snippets. ◐
-8. **`[harness] disable_workspace_teleport` / "per-turn workspace snapshots"** — key exists in the config reference; purpose beyond the one-line description is undocumented. ⚠️
-9. **Grok Bot "Troubleshooting" and "Settings and notifications" pages** — referenced by other Bot pages but not fetched. ⚠️
-10. **The `x.ai/open-source` page** (403) — could not confirm any additional architecture claims (e.g. protobuf tool definitions as a *stated* design) beyond what the repo itself shows (`bin/protoc`, `xai-tool-protocol`). Landlock/Seatbelt and ACP are ✅ from UG/18 and UG/15.
-11. **JetBrains support** — docs say "Coming soon"; no date. ⚠️
-12. **Bot pricing** — the brief mentioned $200/month; I found only plan-inclusion statements on primary pages, no price. Secondary snippets disagree with each other ($120 vs $200). ⚠️ not reported.
+**Ships.** Plan mode: a state machine (`Inactive`→`Active`→`ExitPending`) gating every file but `plan.md`, with an approval view (approve/request changes/inline comments). `/goal <objective> --budget <tokens>` *"only marks the goal complete after an independent evidence review confirms the claim"*; `.rhai` workflows carry an `agent_budget` cap. Bot: boundaries stated in the request, approval checkpoints, a recommended test-run-before-enabling ladder for routines.
+**Path.** `/plan`, `~/.grok/sessions/<id>/plan.md`, `[goal]`, `.grok/workflows/*.rhai`.
+**Source.** ✅ UG/19 · ✅ UG/04 §`/goal` · ✅ BOT/skills-routines-and-automations §Test before enabling
+
+</details>
+
+#### 3b Routing
+<details>
+<summary>◐ Manual model routing; <code>spawn_subagent</code> picks a type, no resolver</summary>
+
+**Ships.** Per-subagent, per-persona and per-skill model/effort settings; the model itself calls `spawn_subagent` with a `subagent_type`, depth-limited to one. Bot: no model routing — *"you are not the router between tools"*; Bots message each other and pass ownership by `@` mention, with a documented *"chief of staff"* pattern of specialists.
+**Path.** `[subagents.models.<type>]`, `SKILL.md` `model`/`effort` (Build); `@` mentions (Bot).
+**Source.** ✅ UG/16 §Built-in Agent Types · ✅ BOT/bots §Organize a team of Bots
+
+</details>
+
+#### 3c Composition
+<details>
+<summary>● <b>Agent / Subagent / Persona / Role</b> — three objects</summary>
+
+**Ships.** Agent definitions (`.md` + frontmatter), roles (`default_capability_mode`, model, prompt file), and personas (`instructions`, `inputs`/`outputs` contracts) are three separate objects where the row wants one; subagents are depth-limited to one, with `isolation: worktree` and `resume_from`. Bot's composition is the Bot itself — profile (name, title, description, avatar) plus per-Bot enabled skills and routines; duplication copies configuration, never memory or history.
+**Path.** `.grok/agents/*.md`, `.grok/roles/*.toml`, `.grok/personas/*.toml` (Build); Edit Profile (Bot).
+**Source.** ✅ UG/16 §Agents vs Personas · ✅ BOT/bots
+
+</details>
+
+#### 3d Configuration
+<details>
+<summary>● Three config files — user · fleet · signed pin, different authors</summary>
+
+**Ships.** *"Three files configure Grok Build, and they are written by different people"*: `config.toml` (user), `managed_config.toml` (fleet default), signed `requirements.toml` (pins nobody can override — `allowed_models`, `disable_bypass_permissions_mode`). Precedence: CLI flags → env → signed pins/MDM → env overlay → user config → managed default → built-in defaults; `grok inspect` shows which layer won. Instruction files load `AGENTS.md`/`CLAUDE.md`/aliases home→root→cwd, deeper wins. Bot: a Bot's own description (durable rules) plus team rules from the Cursor dashboard, scoped to Cursor/Bot/both — no files.
+**Path.** `~/.grok/config.toml`, `/etc/grok/{managed_config,requirements}.toml` (Build); dashboard (Bot).
+**Source.** ✅ UG/26 §How to configure · ✅ BOT/teams-and-enterprises §Team rules
+
+</details>
+
+#### 3e Standards
+<details>
+<summary>○ No opinionated standard shipped; rules + pinned plugins are the vehicle</summary>
+
+**Nothing here** as a shipped opinionated standard — checked UG/12, UG/09, BOT/teams-and-enterprises.
+**What exists instead.** Committed `.grok/rules/*.md`, SHA-pinnable marketplace plugins, workspace-synced *"server"*-scope skills, and org `managed_config.toml` are the vehicles; the docs suggest categories (build/test, style, PR rules) but ship none. Bot: a few short team rules from the dashboard, no versioned standards artifact.
+**Source.** ✅ UG/12 §What to Put in Project Rules · ✅ UG/09 §Require pinned versions
+
+</details>
+
+### 4 · Capabilities
+
+#### 4a Capability
+<details>
+<summary>● <b>Skill</b> + <b>Plugin / Marketplace</b>, SHA-pinnable</summary>
+
+**Ships.** Skills = `SKILL.md` with rich frontmatter (`allowed-tools`, `disable-model-invocation`, `model`, `effort`); locations span its own dirs plus Claude's and Cursor's. Plugins bundle skills+commands+agents+hooks+MCP; marketplaces (`.grok-plugin/marketplace.json`) install by owner/repo, git URL or local path, with `require_sha` pinning and `grok plugin validate`. Bot: skills are saved by asking, or **taught by demonstration** — a ≤10-minute browser recording becomes a draft skill you review — enabled per Bot, no documented file format.
+**Path.** `.grok/skills/`, `.grok/plugins/`, `[[marketplace.sources]]` (Build); Settings → Plugins (Bot).
+**Source.** ✅ UG/08 · ✅ UG/09 · ✅ BOT/skills-routines-and-automations §Teach a workflow by demonstration
+
+</details>
+
+#### 4b Capability Permissions
+<details>
+<summary>● Per-tool, per-skill, org allowlists on the same <b>permission rule</b></summary>
+
+**Ships.** `[permission]` globs down to `MCPTool(server__tool)`; `disabled_mcp_tools` per-server deny lists; per-skill `allowed-tools`/`disable-model-invocation`; per-agent `tools`/`mcpInheritance`; plugin agents cannot declare `bypassPermissions` or their own MCP servers; org `allowedMcpServers` and `strictKnownMarketplaces`. Bot: skills enabled per Bot, connectors account-wide (*"not isolated to one Bot"*), team MCP allow/deny with a self-add toggle.
+**Path.** `[permission]`, `disabled_mcp_tools`, `SKILL.md` frontmatter (Build); Team Settings → MCP (Bot).
+**Source.** ✅ UG/22 §MCP Rules · ✅ BOT/teams-and-enterprises §Plugins and MCP policy
+
+</details>
+
+### 5 · Context ⟳
+
+#### 5a Individual Memory
+<details>
+<summary>● Bot memory (opaque); Build's memory off by default</summary>
+
+**Ships.** Build: experimental, **disabled by default** (`GROK_MEMORY=1`); Markdown at `~/.grok/memory/MEMORY.md` (global) and per-workspace, SQLite FTS5 (+ vector when configured), automatic session-end summaries, idle flush, auto-`/dream` consolidation, manual `/remember`/`/flush`. Bot: *"named Bots keep memory, files, browser sessions, and preferences across turns"* — format and location undocumented; *"not a substitute for an authoritative source."*
+**Path.** `~/.grok/memory/`, `[memory.*]` (Build); opaque per-Bot store (Bot).
+**Source.** ✅ UG/13 · ✅ BOT/bots §What a Bot remembers
+
+</details>
+
+#### 5b Team Memory
+<details>
+<summary>○ Nothing shared across people; config travels by VCS, not memory</summary>
+
+**Nothing here** — memory lives under `$HOME` for Build; *"user skills… stay personal and unshared."* Cross-Bot sharing exists (shared `/workspace`, group chats, *"one Bot can continue from work another Bot saved"*) but cross-**person** sharing is only copying a Bot's configuration by public link, without memory or history.
+**Source.** ✅ UG/13 §How Memory Is Stored · ✅ BOT/bots §Share a Bot
+
+</details>
+
+#### 5c Knowledge
+<details>
+<summary>◐ Hybrid BM25+vector memory search; <code>/deep-research</code> verifier shard</summary>
+
+**Ships.** Build: `memory_search`/`memory_get` hybrid BM25 (0.3) + vector (0.7); codebase graph indexing; `/deep-research` *"gathers structured claims with source evidence, cross-checks each claim on an independent verifier shard."* No wiki/RAG over external corpora built in. Bot: web browsing and connectors only; no documented retrieval index.
+**Path.** `[memory.search]`, `[features] codebase_indexing`, `/deep-research`.
+**Source.** ✅ UG/13 §Memory Search · ✅ UG/04 §`/deep-research`
+
+</details>
+
+### 6 · Workspaces ⟳
+
+#### 6a Product
+<details>
+<summary>○ No PRD/spec object; closest is <code>plan.md</code>'s Context section</summary>
+
+**Nothing here** — checked UG/19, BOT/skills-routines-and-automations. Closest: `plan.md`'s required Context section and verification section (Build); a skill's stated *"When to use it / How to validate the result / What requires approval"* (Bot) — process shape, not a product/spec object.
+**Source.** ✅ UG/19 §The Plan File
+
+</details>
+
+#### 6b Infrastructure
+<details>
+<summary>● <b>Computer</b> (Bot's cloud VM) + sandbox profile (Build)</summary>
+
+**Ships.** Build runs locally with an optional OS-level sandbox (Landlock/Seatbelt, *"not a separate VM"*), git worktrees for subagents, a self-hosted `grok agent serve`, and a Grove NFS/FUSE mount. *"Grok's hosted cloud sandboxes do not run `grok agent serve`."* Bot: *"each computer is a managed Linux virtual machine dedicated to one member,"* non-root, durable storage across Kill/Reset/Update, static egress IPs.
+**Path.** `--sandbox`, `.grok/sandbox.toml`, `grok clone` (Build); dashboard → computers (Bot).
+**Source.** ✅ UG/18 §Trade-offs · ✅ BOT/teams-and-enterprises §How isolation works
+
+</details>
+
+#### 6c Estate
+<details>
+<summary>○ No multi-repo model; one repo discovered at a time</summary>
+
+**Nothing here** for either product — Build discovers rules/config *"from the repo root down to the current working directory,"* one repo at a time, memory keyed by `origin` remote; Bot works across apps, not repos.
+**Source.** ✅ UG/12 §How Discovery Works · ✅ UG/13 §How Memory Is Stored
+
+</details>
+
+#### 6d Delivery
+<details>
+<summary>◐ Git ACP methods, headless CI; no PR/deploy flow</summary>
+
+**Ships.** No built-in PR/deploy flow. ACP `x.ai/git/*` (status/stage/commit/diffs/discard); read-only git commands auto-approve, `git push` stays on the dangerous list; headless mode *"for scripting/ CI"* with JSON output formats; a built-in `review-changes` workflow. Bot: examples only — a Bot filing a ticket and handing off to another; *"keep production changes behind approval."*
+**Path.** `grok -p --output-format json`, `/workflow review-changes`.
+**Source.** ✅ UG/14 §Command-Line Options · ✅ UG/22 §Dangerous Commands
+
+</details>
+
+### 7 · Workflow Tasks
+
+#### 7a Workflow Tasks
+<details>
+<summary>◐ <code>plan.json</code>/<code>todo_write</code>; routine run history; no ticket object</summary>
+
+**Ships.** `todo_write` → `plan.json`, a todo pane and a tasks pane for subagents/background/loops; no external ticket integration built in (Linear/GitHub only via MCP). Bot: conversations per Bot, routines keeping the 20 most recent run records; no ticket object.
+**Path.** `~/.grok/sessions/<id>/plan.json` (Build); routine run history (Bot).
+**Source.** ✅ UG/17 §Storage Layout · ✅ BOT/skills-routines-and-automations §Manage routines
+
+</details>
+
+### 8 · Trust
+
+#### 8a Evals
+<details>
+<summary>◐ No eval harness; <code>/goal</code>'s independent evidence review is nearest</summary>
+
+**Ships.** Nothing shipped as a user-facing eval harness; ACP/headless is positioned *"for SDKs, eval harnesses, and custom apps."* `/goal`'s independent evidence review and `/deep-research`'s verifier shard are adversarial checks, not a gate every unit clears. Bot: a routine's *"Test run… performs real work"* plus a review checklist.
+**Path.** `/goal`, `/deep-research` (Build); routine Test run (Bot).
+**Source.** ✅ UG/04 §`/goal` · ✅ BOT/skills-routines-and-automations §Test before enabling
+
+</details>
+
+#### 8b Evidence
+<details>
+<summary>● <b>Session</b> — <code>updates.jsonl</code> authoritative, per-turn cost</summary>
+
+**Ships.** Session record on disk — `updates.jsonl` *"the authoritative conversation log,"* `chat_history.jsonl`, `feedback.jsonl`, compaction checkpoints; `grok usage <id>` per-turn token/cost; headless JSON carries `usage`/`total_cost_usd_ticks`; *"the scrollback and the transcript keep the real output"* even when a hook replaces what the model sees. Bot: the conversation shows the proposed action and its inputs; routine run records; *"an audit view of Bot actions is coming"* — not yet shipped.
+**Path.** `~/.grok/sessions/<id>/updates.jsonl` (Build); conversation + Routines view (Bot).
+**Source.** ✅ UG/17 §Storage Layout · ✅ BOT/teams-and-enterprises §Audit
+
+</details>
+
+#### 8c Observability
+<details>
+<summary>● External OTEL (alpha, content-free by default) + dashboard usage</summary>
+
+**Ships.** External OpenTelemetry (alpha), double opt-in, content-free by default with four gates (`OTEL_LOG_USER_PROMPTS`, `_ASSISTANT_RESPONSES`, `_TOOL_DETAILS`, `_TOOL_CONTENT`) that turn content on per class; events include `skill_activated`, `plugin_loaded`, `permission_mode_changed`, `compaction`. Separate first-party telemetry to Mixpanel and local logs. Bot: *"spend and usage appear on the dashboard usage page"*; no OTEL, no audit log yet.
+**Path.** `[telemetry] otel_*`, `OTEL_*` env (Build); Cursor dashboard usage page (Bot).
+**Source.** ✅ UG/24 · ✅ BOT/teams-and-enterprises §Availability and Billing
+
+</details>
+
+#### 8d Efficiency
+<details>
+<summary>● Compaction, pruning, <code>/goal --budget &lt;tokens&gt;</code>, no spend cap</summary>
+
+**Ships.** Auto-compact at 85% context, `/compact`, two-pass compaction, tool-result pruning, MCP output cap (20,000 bytes), `/context`/`/usage` breakdowns, `/goal --budget <tokens>`, workflow `agent_budget` (default 128, range 1–1024). Bot: its own usage plane, weekly team allowances; *"No per-product spend cap exists yet"*; routines may pause after a long absence *"to control unattended usage."*
+**Path.** `[session] auto_compact_threshold_percent`, `[compaction.*]` (Build); dashboard (Bot).
+**Source.** ✅ UG/13 §Pruning Settings · ✅ BOT/teams-and-enterprises
+
+</details>
+
+### 9 · IMPROVE
+
+#### 9a Learning
+<details>
+<summary>● <b>Teach-by-demonstration</b> (Bot) + <code>/create-skill</code> (Build)</summary>
+
+**Ships.** Build: `/create-skill` drafts a `SKILL.md` from a description; `/create-workflow` and `/workflow save` capture a run's script; memory `/dream` *"consolidates scattered memory fragments."* No auto-skill-creation from ordinary sessions. Bot: record a browser task (≤10 min), *"review the skill the Bot creates,"* attach it to a routine — capture from doing, not from a transcript.
+**Path.** `/create-skill`, `/create-workflow`, `/dream` (Build); Teach a task (Bot).
+**Source.** ✅ UG/08 §Creating Skills · ✅ BOT/skills-routines-and-automations §Teach a workflow by demonstration
+
+</details>
+
+#### 9b Rituals
+<details>
+<summary>◐ <code>review-changes</code> workflow; use-case templates, not rituals</summary>
+
+**Ships.** Build's built-in `review-changes` workflow and plan-mode's inline-comment approval are the nearest thing to an encoded ritual; no standup/retro object. Bot: use-case templates (Sales Outbound, Chief of Staff, Bug Reproduction…) and example routines (*"Monday scoreboard"*) are illustrations, not shipped rituals.
+**Path.** `/workflow review-changes` (Build); onboarding use-case list (Bot).
+**Source.** ✅ UG/04 §`/workflow` · ✅ BOT/use-cases
+
+</details>
+
+#### 9c Cadence
+<details>
+<summary>● <b>Routine</b> (Bot) + <code>/loop</code>/scheduler (Build)</summary>
+
+**Ships.** Build: `/loop [interval] <prompt>` (*"auto-expire after 7 days,"* 50-task cap), `scheduler_create`/`_list`/`_delete`, a `monitor` tool for streamed output — all die with the session process. Bot: **routines** on a schedule or an event (*"a Slack message or a GitHub notification"*), running *"while your laptop is closed,"* up to 50 per Bot, 20 run records kept.
+**Path.** `/loop`, `scheduler_*` (Build); Bot → Routines (Bot).
+**Source.** ✅ UG/20 §The /loop Command · ✅ BOT/skills-routines-and-automations §Create a routine
+
+</details>
+
+#### 9d Anti-fragile Lifecycle
+<details>
+<summary>◐ Resume/fork/rewind, doom-loop resample; VM recover/reset</summary>
+
+**Ships.** Build: `/resume`, `/fork`, `/rewind` (*"does not restore files on disk"*), compaction checkpoints, `[doom_loop_recovery]` *"resample confident tool-call loops,"* inference retries, typed `Stop` failure categories, `grok update`/`/doctor fix`. Bot: Recover/Update/Reset Agent Computer *"preserving durable state"*; user-authored routine failure policy (*"report the failure instead of using old data"*); *"approvals… do not reverse work already completed."*
+**Path.** `~/.grok/sessions/`, `[doom_loop_recovery]` (Build); Settings → Beta (Bot).
+**Source.** ✅ UG/17 · ✅ BOT/computer-and-apps §Update, recover, or reset
+
+</details>
+
+#### 9e Raise the Floor
+<details>
+<summary>◐ <code>grok inspect</code>/<code>doctor</code>, Claude-settings import; onboarding wizard</summary>
+
+**Ships.** `grok inspect` (loaded rules/skills/MCP/plugins by vendor origin), `/doctor [fix]`, `grok mcp doctor`, `/tour`, and **Ctrl+I "Import Claude settings."** Bot: onboarding *"collects information about tools the user employs to suggest Bot types"*; an admin setup wizard (privacy mode, billing, seats).
+**Path.** `grok inspect`, `/doctor`, `/tour` (Build); first-run onboarding (Bot).
+**Source.** ✅ UG/01 · ✅ UG/22 §Claude Code Compatibility · ✅ BOT/get-started
+
+</details>
+
+#### 9f Diagnose the Bottleneck
+<details>
+<summary>◐ Session self-diagnostics only; no maturity scoring</summary>
+
+**Ships.** Only session-level self-diagnostics for either product — `/doctor`, `grok inspect` (*"compatibilityStatus: unresolved"*), `/context`, OTEL `startup.phase_duration`. No maturity or readiness scoring.
+**Source.** ✅ UG/04 · ✅ UG/24 §Metrics
+
+</details>
+
+### 10 · Teams & Agents
+
+#### 10a Roster
+<details>
+<summary>● <b>Bot</b> roster (≤50) + Build's agent dashboard</summary>
+
+**Ships.** Build: agent definitions, built-in types (`grok-build`/`explore`/`plan`), personas and roles, plus an Agent Dashboard listing every top-level session grouped by state (peek/reply/dispatch/ pin/stop). Bot: *"the Bots are the roster"* — named, avatar'd, up to 50 Bots and group chats combined, pinnable, shareable by public link.
+**Path.** `/config-agents`, `/dashboard` (Build); sidebar (Bot).
+**Source.** ✅ UG/16 · ✅ BOT/bots
+
+</details>
+
+#### 10b Org
+<details>
+<summary>● Three-file config ownership (Build) + team/org admin roles (Bot)</summary>
+
+**Ships.** Build's ownership is a file boundary — `requirements.toml` (pin) beats `managed_config.toml` (fleet) beats `config.toml` (user) beats project config; *"your own `deny` and `ask` rules win over a managed `allow`."* Bot's ownership is a role — individual member, **team admin**, **organization admin**, with the explicit rung *"team admin rights are not enough"* to remove a computer. Neither ships RACI or escalation objects.
+**Path.** config layers (Build); Cursor dashboard roles (Bot).
+**Source.** ✅ UG/26 §How to configure · ✅ BOT/teams-and-enterprises §Manage member computers
+
+</details>
+
+### 11 · Surfaces
+
+#### 11a Surfaces
+<details>
+<summary>● TUI + ACP into 4 editors (Build); desktop + iOS apps (Bot)</summary>
+
+**Ships.** Build: full-screen mouse-interactive TUI, headless CLI, ACP stdio/WebSocket server/relay into Zed, Neovim, Emacs and marimo (JetBrains *"coming soon"*); no chat-channel surface built in. Bot: desktop app (macOS/Windows/Linux) and an iOS companion (text, dictation, photos, approvals, a noVNC-style Agent Computer view); Slack/GitHub only as event *sources*; no API.
+**Path.** `grok`, `grok agent stdio|serve|headless` (Build); desktop/iOS apps (Bot).
+**Source.** ✅ UG/15 §Compatible clients · ✅ BOT/get-started · ✅ BOT/mobile
+
+</details>
+
+## 7. Identity and inclusion test
+
+<details>
+<summary>Identity · inclusion test · loop question</summary>
+
+**Grok Build**
+
+| Field | Value |
+|---|---|
+| Canonical name | **Grok Build** (binary `grok`; build artifact `xai-grok-pager`) ✅ |
+| Prior names / homes | None found at primary source; secondary sources call it "Grok CLI" ✅/↪ |
+| Owner / maintainer | SpaceXAI (GitHub org `xai-org`) ✅ |
+| GitHub URL | `github.com/xai-org/grok-build` ✅ |
+| License | Apache-2.0 for first-party code; vendored ports keep their own licences ✅ |
+| Stars | 26,383 (2026-09-02); forks 4,950 ✅ |
+| Language | Rust ✅ |
+| Repo created | 2026-07-14; announced 2026-07-15 ✅ |
+| First release | ⚠️ no GitHub releases or tags exist; changelog page returned 403 |
+| Latest release | ⚠️ same — no tags; last commit 2026-09-01, sha `72a6125` ✅ (commit only) |
+| Install | `curl -fsSL https://x.ai/cli/install.sh \| bash`; `cargo run` from source ✅ |
+| Website / docs | `docs.x.ai/build` · in-repo user guide (`.../docs/user-guide/`) ✅ |
+| What it says it is, verbatim | *"SpaceXAI's terminal-based AI coding agent. It runs as a full-screen TUI that understands your codebase, edits files, executes shell commands, searches the web, and manages long-running tasks."* ✅ |
+
+**Grok Bot**
+
+| Field | Value |
+|---|---|
+| Canonical name | **Grok Bot**; one agent is a **Bot** ✅ |
+| Prior names / homes | *"an internal prototype"* before public launch; no prior public name ✅ |
+| Owner / maintainer | SpaceXAI; operated on Cursor account infrastructure ✅ |
+| GitHub URL | none — closed, hosted ✅ (absence) |
+| License | closed; no repo linked from any x.ai/docs.x.ai page ✅ (absence) |
+| Stars | n/a (no repo) |
+| Language | n/a (no repo) |
+| Repo created | n/a |
+| First release / launch | **2026-08-11**, *"Early beta"* ✅ |
+| Latest release | beta, unversioned at read ✅ |
+| Install | download at x.ai/bot; sign in with a Cursor account (SSO supported) ✅ |
+| Website / docs | `docs.x.ai/grok-bot` ✅ |
+| What it says it is, verbatim | *"AI teammates you can give real work to. Bots can sign and use apps and websites just like you do on a persistent cloud computer."* ✅ |
+
+**Does state persist across sessions, where, in what format?** **Yes, for both, differently.** Build: session JSONL under `~/.grok/sessions/…`, resumable/forkable; memory Markdown+SQLite, **off by default**. Bot: *"named Bots keep memory, files, browser sessions, and preferences across turns"* — files live in a shared `/workspace`; memory format is undocumented. ✅ UG/13, UG/17 · ✅ BOT/overview
+
+**Does it serve more than one person?** **Build: primarily one operator, with real org-enforced config** — `managed_config.toml`, signed `requirements.toml`, team OAuth — but no named tenant object; memory and grants stay under `$HOME`. **Bot: one computer per member**, with team-admin and organization-admin roles managing the fleet from the Cursor dashboard; a shared Bot copies configuration only, *"not your computer, logins, or conversation history."* ✅ UG/09, UG/22, UG/26 · ✅ BOT/teams-and-enterprises, BOT/bots
+
+**Does it bind mechanically, or only by prose?** **Build: mechanically by default order, with two stated failure modes.** `deny` rules always win the permission engine regardless of order; a kernel sandbox (Landlock/Seatbelt) is available and unbypassable by any mode **but ships off by default**; *"Hooks fail open. If a hook script crashes, times out, or is missing, the tool call proceeds as if the hook had allowed it."* **Bot: mechanically at the approval layer, with a model-based backstop** — *"Auto Review is model-based and should complement, not replace, least privilege"*; *"Do not use separate Bots as a security boundary."* ✅ UG/18, UG/22 · ✅ BOT/approvals-security-and-privacy
+
+**Loop question.** **Build runs the loop itself** — `xai-grok-shell` is *"agent runtime + leader/stdio/headless entry points"* — and exposes it via ACP and a self-hosted server; it reads Claude's and Cursor's conventions live rather than hosting either. **Bot is a hosted product whose loop is not user-visible.** **Whether Bot's loop is Build is unverified at source**: the Build repo ships a `bot.*` relay protocol and a Computer Hub tool registry (`GROK_BOT_TOOL_IDS`) that talk to a Bot's box, and its own docs say *"Grok's hosted cloud sandboxes do not run `grok agent serve`"* — shared plumbing ✅, "Bot runs on Build" ⚠️. No further primary source resolves it. ✅ repo `xai-tool-protocol`, `xai-computer-hub-core` · ✅ UG/15
+
+**Altitude.** **Build: runtime** — one loop, embeddable via ACP/SDK, reads other harnesses' files without hosting them. **Bot: hosted product (loop not user-visible)** — a persistent cloud computer per member, consumed through connectors and approval cards, exposing no SDK of its own.
+
+</details>
+
+## 8. Limits
+
+<details>
+<summary>What it does not claim, in the vendor's words</summary>
+
+**Grok Build** ✅
+
+> *"External contributions are not accepted."* / *"The public tree is published for source transparency and local builds."* — README, CONTRIBUTING.md
+
+> *"Hooks fail open. If a hook script crashes, times out, or is missing, the tool call proceeds as if the hook had allowed it."* — UG/22
+
+> *"Allow rules are not a closed allowlist… Treat the read-only command list as a convenience, not a security boundary."* — UG/22
+
+> *"Memory is experimental and disabled by default."* — UG/13
+
+> *"Sandbox mode is off by default."* *"Child-network blocking is enforced on Linux only… On macOS it is a no-op."* — UG/18
+
+> *"Only the top-level session spawns subagents. A subagent cannot spawn its own subagents: the maximum nesting depth is one."* — UG/16
+
+> *"Codex's `skills`, `rules`, `agents`, `mcps`, and `hooks` cells are reserved and currently inert."* — UG/05
+
+> *"This is a server you run yourself — Grok's hosted cloud sandboxes do not run `grok agent serve`."* — UG/15
+
+**Grok Bot** ✅
+
+> *"Grok Bot is in beta."* *"Enterprise users can join a waitlist for future access."* — x.ai/news
+
+> *"Do not use separate Bots as a security boundary."* *"Sharing a Bot is not a security boundary."* *"Auto Review is model-based and should complement, not replace, least privilege and explicit approval boundaries."* — BOT/approvals-security-and-privacy
+
+> *"An audit view of Bot actions is coming."* *"Model choice is fully managed by the product."* *"No [per-product spend cap] exists yet."* — BOT/teams-and-enterprises
+
+> *"Memory is not a substitute for an authoritative source."* — BOT/bots
+
+> *"One Bot can run one computer-use task on its screen at a time." "Android and iPad aren't supported at launch."* — BOT/faq
+
+</details>
+
+## 9. Sources
+
+<details>
+<summary>Primary · secondary · placement · diagrams not redrawn</summary>
+
+**All primary sources accessed 2026-09-02. No source was re-read at the 2026-09-07 restructure.**
+
+**Primary — Grok Build.** `gh api repos/xai-org/grok-build` (+ `/commits`, `/releases`, `/tags`, `/contents/...`) · `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `SOURCE_REV` · all 27 files of `crates/codegen/xai-grok-pager/docs/user-guide/` (UG/01–27) · `crates/codegen/xai-grok-shell/README.md` · `crates/common/xai-tool-protocol/src/methods.rs` · `crates/common/xai-computer-hub-core/src/lib.rs` · `gh api search/code` for "bot relay", "landlock" · `x.ai/news/grok-build-open-source` · `docs.x.ai/build/{overview,enterprise,modes-and-commands}`.
+
+**Primary — Grok Bot.** `x.ai/news/introducing-grok-bot` · `docs.x.ai/grok-bot/{overview,get-started,use-cases,skills-routines-and-automations,computer-and-apps,approvals-security-and-privacy,teams-and-enterprises,bots,faq,mobile}`.
+
+**Secondary (↪).** `ai-sdk.dev/providers/ai-sdk-harnesses/grok-build` (Vercel's own docs for its Build adapter — primary for that adapter) · a blog comparing Bot/Automations/Build, checked only for the Bot↔Build claim and making none · WebSearch snippets used only to locate primary pages.
+
+**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md#grok).
+
+**Diagrams not redrawn.** **No diagram inventory was taken at the 2026-09-02 read.** Whether either product's docs carry vendor diagrams is unknown and unrecorded — a gap in the read, not a finding about the vendor. The diagram pass (W8c) opens the sources and records what it finds.
+
+</details>
+
+## 10. Unverified
+
+<details>
+<summary>12 items</summary>
+
+- **Grok Build's current version number** — no GitHub releases/tags exist; changelog page returns 403; only `0.2.1xx`-style example strings appear in docs. ⚠️
+- **Whether Grok Bot's agent loop is Grok Build** — the repo ships a `bot.*` relay protocol and a Computer Hub tool registry (`GROK_BOT_TOOL_IDS`), but no xAI page states the relationship and no reputable secondary asserts it either. ⚠️
+- **Grok Bot's skill file format / storage location** — whether it is `SKILL.md`-compatible is never stated. ⚠️
+- **Grok Bot's memory format and location** — opaque throughout. ⚠️
+- **Whether `docs.x.ai/build/overview`'s sidebar link to "Grok Bot Overview" is more than navigation** — the fetch tool reported the sibling list as "likely"; treated as nav only. ⚠️
+- **Default model discrepancy** — UG/11 says new sessions start on `grok-4.5`; `docs.x.ai/build/overview` says `grok-4.6`. Both read directly; which applies depends on build. ✅ both quoted, ⚠️ which is current.
+- **Ownership naming** — every primary source says "SpaceXAI"; no page explains a rename from "xAI", and the merger context comes only from secondary snippets. ↪
+- **`[harness] disable_workspace_teleport`** exists in the config reference with a one-line description ("kill switch for per-turn workspace snapshots"); its purpose beyond that is undocumented. ⚠️
+- **JetBrains support** — docs say "Coming soon," no date. ⚠️
+- **Bot pricing** — only plan-inclusion statements were found on primary pages; secondary snippets disagree with each other. ⚠️ not reported.
+- **Grok Bot's "Troubleshooting" and "Settings and notifications" pages** — referenced by other Bot pages but not fetched. ⚠️
+- **The date Bot's own audit view ships** — *"an audit view of Bot actions is coming"* names no date. ⚠️
+
+**Added at the 2026-09-07 restructure, and not source questions:** the primitive-discipline split between Build (⚠️ contestable, 8 past the 5–7 band) and Bot (healthy, 6) is recorded but not resolved into one number (§5); no diagram inventory exists for either product (§2, §3, §9); and whether the scoring sheet's `split:` mechanism should gain a formal "product pair" case, distinct from the posture-vs-mechanism case it was built for, is an open question about the instrument, not about Grok.
+
+</details>

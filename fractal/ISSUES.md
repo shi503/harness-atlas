@@ -219,3 +219,74 @@ The same is true of axis III, whose `0` anchor is *"A gate exists and the model 
 rule. Three of them (axes I, III, IX) look like they collapse to a single anchor value on re-read,
 which would move Pi's fingerprint. **Recorded and not acted on** — a re-score is KD's call, and the
 values as written are defensible under the rule that was in force when they were made.
+
+---
+
+## ISSUE-013 — the §1 budgets predate §1a/§1b, and three profiles now breach caps that moved under them
+
+**Severity:** MINOR · **Found:** 2026-09-07, W8b fan-out audit · **Assigned:** W8b (this workstream)
+
+`skills/harness-teardown/SKILL.md` set `## 6. Details` at or before **line 220** and the whole file at
+**≤ 700** when §1 was a single eleven-row card of ~14 lines. W9 phase 1 added `### 1a. Positioning
+stats` (a seven-row table, a drafted banner and four links) and `### 1b. Contents` — together ~55
+lines. Every downstream line number moved by that amount and **no cap was re-cut.**
+
+`content/claude-code.md` is the proof: 671 lines with §6 at 220 before phase 1, **726 lines with §6 at
+275** after, having gained nothing but the two subsections. It did not get worse; the ruler did.
+
+**Ruled here as mechanical, the same way the 600 → 700 raise was when layout B forced it:** whole file
+**≤ 760**, `## 6. Details` at or before **line 275**. `## 6.` itself stays **≤ 400**.
+
+**Two profiles breach the §6 body cap on content, and that is not mechanical:** `content/codex.md` §6 is
+**465** lines and `content/grok.md` §6 is **477**, against 400. Grok has a defence — it is a product
+pair carrying two mark columns throughout — Codex does not. Both are trimmed under this workstream;
+the fix is shorter **Ships** lines, not a higher cap.
+
+---
+
+## ISSUE-014 — the DX-5 fill formula and every rendered bar disagree
+
+**Severity:** WARN · **Found:** 2026-09-07, reported by the OpenClaw feature-lead during the W8b fan-out · **Assigned:** W8b (this workstream)
+
+`spectrums/01-scorecard.md` §2.3 states the graded-dimension fill as **six cells, `value + 3` filled**,
+so `−3` is empty and `+3` is full. **No rendered bar in the corpus follows it.** Every one uses
+`value + 2`: Claude Code renders `+3` as `▰▰▰▰▰▱` (five) where the formula says six, and Pi renders
+`+2` as `▰▰▰▰▱▱` (four) where the formula says five.
+
+The cause is order of writing. The first two bars were drawn by eye before any rule existed —
+`01-scorecard.md` §2.3 says so itself: *"The fill mapping was undefined until 2026-09-07."* The rule
+was then written to be principled (`−3` empty, `+3` full) without re-rendering the two bars already
+drawn, and six feature-leads copied the bars rather than the rule, correctly preferring the worked
+example they were pointed at.
+
+**The formula is right and the bars are wrong.** `value + 2` never fills the meter — `+3` would render
+as five of six forever, which reads as "not quite the top" for a dimension whose top it *is*. Every bar
+is re-rendered to `value + 3` under this workstream.
+
+**The transferable lesson, and the reason this is WARN and not MINOR:** a worked example outranks a
+written rule for anyone following it. When both exist, they must be generated from each other or
+checked against each other — and this repo's standing rule forbids a checker, so the example is the
+thing to keep correct.
+
+---
+
+## ISSUE-015 — axis I's `−3` corpus anchor is OpenClaw, and the OpenClaw teardown scores it `+1`
+
+**Severity:** WARN · **Found:** 2026-09-07, reported by the OpenClaw feature-lead during the W8b fan-out · **Assigned:** none yet — KD to rule
+
+`spectrums/00-README.md` §2.1 and §3 I both cite **OpenClaw** as the corpus anchor for
+`operator-scale −3`, quoting *"designed for a single operator."* The W8b restructure read the fuller
+profile and scored OpenClaw **`+1`** — it ships named team machinery: session owner and participant
+roles, per-scope operator roles, and a gateway with bindings.
+
+**R1 requires a real harness in this corpus at each end, cited.** If OpenClaw is `+1`, axis I's minus
+pole is **vacant**, and R1 says an axis with a vacant pole *"is an aspiration, i.e. a grade."*
+
+Three ways out, and the choice is a ruling: (a) the quote is real but partial — OpenClaw says
+single-operator *and* ships roles, so it is a `split:` case and the anchor should cite a different
+harness; (b) Pi is the better `−3` anchor, since its single-operator posture is stated in its security
+model rather than its marketing; (c) the axis's `−3` anchor text is too strict and should be relaxed.
+
+**(b) looks strongest** on the evidence now in hand — Pi scores `−1` and its `−3` reading is the
+stated posture — but no harness in the scored corpus sits at `−3` yet, which is itself the finding.
+Recorded rather than resolved; the remaining restructures may supply a genuine `−3`.

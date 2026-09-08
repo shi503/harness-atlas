@@ -1,0 +1,198 @@
+# Codex CLI — spectrum positions and DX scorecard.
+#
+# Scored against the profile as restructured to Template v2 on 2026-09-07 from
+# the source read of 2026-09-03. No source was opened at scoring time (R3).
+# Every `evidence` entry points at a section or component id of that profile.
+
+# ---------------------------------------------------------------- R11 verification
+verification:
+  derived_from:
+    - "Codex CLI's own docs (learn.chatgpt.com) and codex-rs README files — read 2026-09-03 via the profile"
+    - "repo README, LICENSE and release/tag history — openai/codex"
+  grounded_against:
+    - "§4 component matrix — 33 rows, ● 14 · ◐ 13 · ○ 6, copied from the 04 grid column"
+    - "§5 primitives — 8 named units, ⚠️ contestable, mid-consolidation on two fronts"
+    - "§7 identity table — Apache-2.0 licence, 121,310 stars, repo created 2025-04-13, rust-v0.153.2"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    Codex reads heavier than any harness scored so far in this corpus — native OS sandboxing on
+    every platform, a cryptographic per-agent identity layer, OTLP telemetry exporters, and a
+    synchronous+async review gate — and §4 bears that out at 14 named-primitive rows against 6
+    absences. One tension recorded rather than resolved: the memory pipeline autonomously rewrites
+    the user's own skills/ directory with no approval gate and no network, which is read here as
+    stronger compounding (axis IX) rather than as a discipline defect, since the axis asks whether a
+    lesson becomes an authored capability, not whether the path is reviewed. A second scorer may
+    weigh that differently.
+
+spectrums:
+  schema_version: 2
+  harness: codex
+  profile: content/codex.md
+  profile_read: "2026-09-03"      # the source read; the restructure added no facts
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  positions:
+
+    - id: operator-scale
+      value: 1
+      mark: direct
+      evidence: ["§7 · serves more than one person", "10b", "10a", "3d", "4b"]
+      because: "Single-operator by default in the CLI, but a named ChatGPT Business/Enterprise/Edu workspace layer enforces per-tenant permission-profile policy through a floor local config cannot relax."
+      split: "The CLI posture is −3 — nothing in it models a second user. The admin/workspace layer is +3 — named scopes, allowlisted permission profiles, and requirements.toml as a mechanically enforced floor. Scored toward the mechanism, since it is unusually concrete for this axis; both halves are in §7 verbatim."
+
+    - id: state-durability
+      value: 0
+      mark: direct
+      evidence: ["5a", "8b", "§7 · does state persist", "5c"]
+      because: "Rollout JSONL+SQLite on one machine, resumable by its author, plus a git-baselined memory directory — file-backed and local, not a shared or queryable store."
+      gap: "Whether Codex Web's cloud-task state is queryable across sessions or users beyond the local rollout was not confirmed at the read."
+
+    - id: binding-force
+      value: 3
+      mark: direct
+      evidence: ["2c", "§7 · binds mechanically or only by prose", "3a"]
+      because: "Native OS sandbox on every platform (Seatbelt, Landlock/bwrap, an elevated and a restricted-token Windows backend), stated to fail closed rather than weaken enforcement, plus a floor (requirements.toml) local config cannot relax."
+
+    - id: loop-ownership
+      value: 3
+      dual: null
+      mark: direct
+      evidence: ["§7 · loop question", "2a", "0a"]
+      because: "Runs Session/Task/Turn itself over the Responses API and installs into no other harness's loop; the app-server is an embed surface for others, not evidence of hosting them."
+
+    - id: substrate-portability
+      value: 1
+      mark: direct
+      evidence: ["0a", "2a", "§7 · loop question"]
+      because: "Model portability is bound to endpoints that speak the Responses API shape; protocol portability is real via MCP client, app-server and SDK, but Codex ships no ACP implementation."
+      split: "Model-side portability is 0 — any endpoint must speak Responses, not an arbitrary API. Protocol-side is +2 — MCP, an app-server and an SDK, missing only ACP. Scored +1 on the pair."
+
+    - id: primitive-discipline
+      value: 1
+      mark: direct
+      evidence: ["§5 count and verdict"]
+      because: "Eight built primitives with no published list in either direction, and two systems coexisting for the same enforcement job — a mild accommodation smell, not a stated refusal posture."
+      gap: "The count could fold to six or split to nine on a defensible re-read; a re-run under rule 4 could move this axis either way."
+
+    - id: control-posture
+      value: 0
+      mark: direct
+      evidence: ["2c", "3a", "§7 · binds mechanically or only by prose"]
+      because: "approval_policy gates each exec via ExecApprovalRequest by default, and sandbox_mode's read-only/workspace-write split keeps most operations asymmetric rather than approval-first or fully autonomous."
+
+    - id: proof-ceremony
+      value: 1
+      mark: direct
+      evidence: ["8b", "8a", "7a"]
+      because: "Every session auto-saves as a rollout receipt, and containerized agent tasks get a signed AgentAssertion identity — but nothing requires a receipt per closed unit of work."
+
+    - id: improvement-loop
+      value: 2
+      mark: direct
+      evidence: ["9a", "5a", "9d"]
+      because: "Memory Phase 2 autonomously consolidates rollout summaries into MEMORY.md and rewrites the user's own skills/ directory — capture and promotion in one automatic pipeline, not a stated ask-and-build posture."
+      gap: "No stated human review gate on this promotion — a quality-control question, not a discipline one, but it could move this score if the promotion proves low-quality in practice."
+
+    - id: cost-visibility
+      value: 0
+      mark: direct
+      evidence: ["8d", "8c", "8b"]
+      because: "Token usage is recorded per turn via Event::TurnComplete, joined to nothing, with no dollar-denominated cost and no spend cap found."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  probation:
+
+    - id: surface-breadth
+      value: 2
+      mark: direct
+      evidence: ["11a", "6b"]
+      because: "CLI/TUI, an app-server embedding several IDEs, the ChatGPT desktop app, Codex Web, and an SDK — one of the widest surface counts read in this corpus, per the profile's own words."
+
+    - id: routing-determinism
+      value: 0
+      mark: direct
+      evidence: ["3b"]
+      because: "agents.default_subagent_model routes delegated work to a distinct model, but there is no general job-to-model resolver beyond the subagent split."
+      gap: "Whether per-role (worker vs. explorer) model defaults exist beyond one global default_subagent_model was not confirmed at the read."
+
+    - id: knowledge-depth
+      value: -2
+      mark: direct
+      evidence: ["5c"]
+      because: "web_search offers retrieval (disabled/cached/indexed/live) and FTS over one's own rollouts, but nothing curated, cited, or embedding-based was found."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # The revised seven (ruling `2026-09-07-dx-revision`). Authored, never computed (R8).
+  scorecard:
+
+    - id: org-scale
+      dx: 1
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: +1"]
+        profile: ["§7 Q2", "10a", "10b", "3d", "4b"]
+      because: "Pass-through of axis I. Single-operator by default, with a real enforced workspace layer for enterprise customers."
+
+    - id: weight-class
+      dx: 2
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["proof-ceremony: +1 — direct", "primitive-discipline: +1 — BULK ONLY, verdict discarded"]
+        profile: ["2c", "3a", "8c", "8a", "8b", "§5 count and verdict"]
+      because: "Native OS sandboxing on every platform, cryptographic per-agent identity, OTLP telemetry, and a synchronous+async review gate — real machinery and real rigor, short of domain-specific validation for +3."
+
+    - id: surfaces-extendability
+      dx: 3
+      value: 3
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: +2 (probation)"]
+        profile: ["2b — 11 events", "4a — plugin marketplace", "2a", "6b", "11a", "8c"]
+        note: "Scored above its surface-breadth input. The axis reads surfaces alone; this dimension also reads hooks, plugins and telemetry, where Codex is strongest — 11 named events, a plugin marketplace with UI-capable MCP connectors, and shipped OTLP exporters."
+      because: "Hooks, a plugin marketplace, an app-server protocol, OTLP telemetry exporters, and cloud/container execution environments — the platform anchor's checklist, short only of a first-party CI/CD delivery primitive."
+
+    - id: domain-specialization
+      dx: 4
+      value: 0
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 · what it says it is", "§3 Workflows", "§5 refusal-list row (none)"]
+      because: "Names itself a coding agent in its own first sentence and ships nothing domain-specific beyond code — the 0 anchor verbatim."
+
+    - id: ecosystem
+      dx: 5
+      value: 2
+      grades: true
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars 121,310", "§7 Repo created 2025-04-13", "§7 Latest rust-v0.153.2", "11a — IDE integrations"]
+      because: "121,310 stars and IDE integrations spanning several editors show wide third-party building, against seventeen months of history under one vendor throughout."
+      gap: "No marketplace listing count (comparable to a package-gallery total) was found for the plugin marketplace — it would firm this up in either direction."
+
+    - id: ownership
+      dx: 6
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: +1"]
+        profile: ["§7 License — Apache-2.0", "§7 Install", "0a", "6b"]
+      because: "Apache-2.0 and self-runnable, but substrate is bound to endpoints that speak OpenAI's Responses API shape, and the org layer (managed_config.toml, requirements.toml) is built for a vendor or enterprise to run, not for an individual fork."
+
+    - id: cost-controls
+      dx: 7
+      value: 0
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: 0 — the observability third", "routing-determinism: 0 (probation) — the routing third"]
+        profile: ["8d", "8c", "8b", "3b"]
+      because: "Per-turn token usage is recorded and reasoning-effort/verbosity are cost/quality knobs, but no compaction, caching or spend bound was found in the profile."

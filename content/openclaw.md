@@ -1,229 +1,635 @@
 ---
-title: "OpenClaw — the gateway that owns runtimes, read at source"
+title: "OpenClaw — the gateway that hosts other harnesses as runtimes"
 tier: reference
-project: loomwarp
+project: harness-atlas
 created: "2026-09-02"
+updated: "2026-09-07"
 status: DRAFT
 owner: KD
 source: "github.com/openclaw/openclaw @ v2026.8.2 · docs.openclaw.ai (590 pages, docs.json) · read 2026-09-02"
 provenance: OBSERVED
+template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
 ---
 
 # OpenClaw — Peter Steinberger · OpenClaw Foundation
 
-**Why this file exists.** [`../90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 listed OpenClaw as
-*"named repeatedly by Tan as a harness option"* with a `[S]` mark. It is the largest system in this
-corpus by stars and the one that most directly breaks the corpus's own inclusion tell — it **runs a
-loop and ships adapters**, because it is a gateway that hosts other harnesses as pluggable runtimes.
-Read against the 33 components; synthesis at
-[`../../04-harness-alignment.md`](../comparisons/04-harness-alignment.md).
+***A TypeScript gateway daemon whose defining move is hosting: it owns the channels (~30 messaging surfaces), credentials and control-plane API, and either runs its own agent loop or hands the turn to Codex, Claude Code, or eleven-plus ACP harnesses as pluggable runtimes — with a named session owner, operator roles and scopes, and a maturity scorecard it runs on itself.***
 
-**In one screen.** A TypeScript gateway daemon that owns channels (~30), config, credentials and a
-control-plane API, and runs agents as config entries with a workspace of Markdown bootstrap files
-(`AGENTS.md`, `SOUL.md`, `USER.md`, `IDENTITY.md`, `MEMORY.md`). Its own vocabulary separates the
-**agent runtime** (the loop — its own, Codex app-server, Claude Code via Agent SDK, or 11+ CLIs via
-ACP) from the **harness** (*"the implementation that provides an agent runtime (code term)"*). Two
-hook tiers, one observe-only by construction and one that blocks. Session **owner** *"in the style of
-a GitHub issue assignee"*, operator roles and scopes — the only shipped *who answers* object in this
-corpus. A metadata-only audit ledger that *"never stores prompts, message bodies, tool arguments, tool
-results."* A maturity scorecard — for itself.
+## 1. At a glance
 
-**What it does not claim.** §D. The load-bearing lines: one gateway is one trust domain, not a
-multi-tenant boundary; sandboxing off by default; internal hooks cannot block; memory *"does not
-enforce policy"*; ACP harnesses run outside its sandbox.
+| | |
+|---|---|
+| **Altitude** | Gateway / host — runs its own loop *and* hosts Codex, Claude Code, 11+ ACP harnesses as runtimes → [§7](#7-identity-and-inclusion-test) |
+| **Primitives** | 12+, accommodation failure — gateway · agent · workspace files · channel + binding · skill · plugin · hook · tool policy/exec approvals/sandbox · automation/heartbeat · node · session · agent runtime → [§5](#5-primitives) |
+| **Structured output** | ⚠️ not stated at the v1 read → [§5](#5-primitives) |
+| **Binds mechanically?** | Yes, at several layers — exec approvals only tighten, role-required sandbox never degrades to host → [2c](#2c-enforcement) |
+| **State persists** | Workspace Markdown, per-agent SQLite, shared `state.sqlite`; *"there is no hidden state"* → [5a](#5a-individual-memory) |
+| **Serves** | Many, at the gateway layer — team gateway with session owner and roles; *"one trust domain,"* not multi-tenant → [10b](#10b-org) |
+| **Refuses** | No published refusal list found at the v1 read → [§5](#5-primitives) |
+| **Coverage** | ● 20 · ◐ 10 · ○ 3 · n/a 0 → [§4](#4-component-matrix) |
+| **Source** | github.com/openclaw/openclaw @ v2026.8.2 · docs.openclaw.ai (590 pages) · read 2026-09-02 |
+| **Unverified** | 13 items → [§10](#10-unverified) |
 
----
+### 1a. Positioning stats
 
-# OpenClaw — harness research (primary-source read)
+`1 · 2 · 3 · 0 · 1† · 3 · 2` — the seven DX dimensions, in order.
 
-Access date for every URL below: **2026-09-02**. Marks: ✅ direct (read at primary source) · ◐ relayed · ⚠️ unverified.
-Method note: docs pages were fetched from docs.openclaw.ai and raw files from github.com/openclaw/openclaw; the GitHub REST API and `npm view` supplied metadata. Quotes are as extracted from those pages.
+> **⚠️ Drafted 2026-09-07, not yet verified.** Derived from OpenClaw's own README, VISION.md and docs site — grounded against §4, §5 and §7 below. No person has re-read these seven values yet. [`01-scorecard.md`](../spectrums/01-scorecard.md) §1 R11 says how the banner comes off.
 
----
+| | | | | |
+|:-:|---|---:|:-:|---|
+| **1** | Org scale | single operator | `────●──` | multi-tenant, many teams |
+| **2** | Weight class | light-weight | `─────●─` | heavy-weight |
+| **3** | Surfaces & extendability | one surface | `──────●` | many surfaces, environments, a platform |
+| **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
+| **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▱▱▱` | wide adoption, longevity, network economies |
+| **6** | Ownership | rented | `──────●` | yours |
+| **7** | Cost controls & efficiency | unmetered, unrestricted | `─────●─` | observability, efficiency, routing |
 
-## A. Identity
+**†** the one **graded** dimension; every other row is a position, not a score. **Neither end is better.** Ten axes sit beneath these seven — `I 1 · II 2 · III 3 · IV 0 (dual +3) · V 3 · VI 3 · VII 0 · VIII 0 · IX 2 · X 2` — and four of them feed no cell above by design.
 
-| Field | Value | Source | Mark |
+→ [`spectrums/positioning.md`](../spectrums/positioning.md) · [`positions/openclaw.yaml`](../spectrums/positions/openclaw.yaml) · [`01-scorecard.md`](../spectrums/01-scorecard.md) · [`00-README.md`](../spectrums/00-README.md)
+
+*Scored 2026-09-07 against this profile as read 2026-09-02. This table is the **one sanctioned echo** of the scorecard — derived from the same YAML that renders `positioning.md`, so the two match by construction. Re-score in the YAML, never here.*
+
+### 1b. Contents
+
+[§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
+
+No deep-read folder exists for OpenClaw.
+
+## 2. System map
+
+**Diagram inventory not done at the 2026-09-02 read — pending the diagram pass (W8c).** No `assets/projects/openclaw/` exists, and no vendor diagram was inventoried when the source read was taken. This is a recorded gap, not an absence: the read predates the diagram obligation.
+
+**How it thinks about work.** A unit of work is one turn in one session, run either by the embedded runtime (`runEmbeddedAgent`) or handed to a pluggable agent runtime — the Codex app-server, Claude Code via the Agent SDK, or an ACP harness — selected per model or per agent. Entry is a channel message, a cron or heartbeat tick, or a webhook; nothing gates entry structurally, but tool policy, exec approvals and sandbox scope gate what the turn may then do, and role-required sandboxing "never degrades to host execution" when it fails. Work lands as tool effects, chat replies, and — where the operator installed the machinery — background-task records, task-flow state, or workboard cards; the receipt is a metadata-only audit-ledger row plus the session transcript.
+
+## 3. Workflows
+
+**Not written at the 2026-09-02 read — pending the diagram pass (W8c).** A recorded gap. The three sequences a workflow pass should draw, each already evidenced in §6 and needing no new source read:
+
+1. **The turn, across two hook tiers** — internal event (`message:received`) → plugin lifecycle (`before_agent_run` → `before_tool_call`, can block → `after_tool_call` → `agent_end`) → internal event (`message:sent`) ([2b](#2b-hooks)).
+2. **Message-to-agent routing by specificity** — inbound message → `bindings[]` matched exact peer > parent peer > peer wildcard > guild+roles > guild > team > account > channel > default, first-in-config wins ties ([3b](#3b-routing)).
+3. **Runtime handoff** — `agentRuntime.id` resolution → embedded loop, Codex app-server, Claude Code Agent SDK, or an ACP harness, sandboxed except ACP, which runs outside it ([2a](#2a-adapters--middleware), [1a](#1a-environment)).
+
+## 4. Component matrix
+
+`● named primitive · ◐ partial, present-not-first-class · ○ absent (pages named in §6) · n/a does not apply at this altitude`
+
+**Marks copied verbatim from OpenClaw's column in [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2; not re-derived at the restructure.**
+
+| # | Component | Mark | Primitive / note |
+|---|---|:-:|---|
+| **0 · Foundation** | | | |
+| [0a](#0a-substrate) | Substrate | ● | 70+ providers + failover; utility/image/media slots — model-pluggable, not named |
+| **1 · Environment** | | | |
+| [1a](#1a-environment) | Environment | ◐ | Shell/filesystem/browser/network tools; `tools.exec.host` declares where, not an inventory |
+| **2 · Agent Harness** | | | |
+| [2a](#2a-adapters--middleware) | Adapters & Middleware | ● | [**Plugin**](#5-primitives) SDK + MCP client/server + Code Mode |
+| [2b](#2b-hooks) | Hooks | ● | Two typed tiers + webhooks — internal observe-only, plugin [**Hook**](#5-primitives) can block |
+| [2c](#2c-enforcement) | Enforcement | ● | [**Tool policy / Exec approvals / Sandbox**](#5-primitives) — role-required sandbox never degrades to host |
+| **3 · System Stacks** | | | |
+| [3a](#3a-control) | Control | ◐ | Exec-approval gates + goals; no plan-mode primitive |
+| [3b](#3b-routing) | Routing | ● | `bindings[]` specificity ladder — [**Channel + Binding**](#5-primitives) |
+| [3c](#3c-composition) | Composition | ● | [**Agent**](#5-primitives) config entries + sub-agents + experimental swarm |
+| [3d](#3d-configuration) | Configuration | ● | Strict-schema config + [**Workspace bootstrap files**](#5-primitives), two-bucket precedence |
+| [3e](#3e-standards) | Standards | ○ | No versioned rules-pack for user projects; templates only |
+| **4 · Capabilities** | | | |
+| [4a](#4a-capability) | Capability | ● | [**Skill**](#5-primitives) + [**Plugin**](#5-primitives) + ClawHub registry |
+| [4b](#4b-capability-permissions) | Capability Permissions | ● | Per-agent skill/tool allowlists; `before_install` can block |
+| **5 · Context ⟳** | | | |
+| [5a](#5a-individual-memory) | Individual Memory | ● | Workspace Markdown + hybrid `memory_search`; dreaming promotes it |
+| [5b](#5b-team-memory) | Team Memory | ◐ | Shared sessions + provenance; no governed person-to-person promotion |
+| [5c](#5c-knowledge) | Knowledge | ● | `memory-wiki` — structured claims with evidence and provenance |
+| **6 · Workspaces ⟳** | | | |
+| [6a](#6a-product) | Product | ○ | Nothing PRD-shaped; goals and Workboard both disclaim the role |
+| [6b](#6b-infrastructure) | Infrastructure | ● | Sandbox backends, [**Node**](#5-primitives), cloud workers, experimental fleet |
+| [6c](#6c-estate) | Estate | ◐ | Managed worktrees only; no multi-repo model documented |
+| [6d](#6d-delivery) | Delivery | ○ | No built-in pipeline; `pull-request-review-flow` is OpenClaw's own repo |
+| **7 · Workflow Tasks** | | | |
+| [7a](#7a-workflow-tasks) | Workflow Tasks | ◐ | Six task-shaped objects, vendor concedes the overlap itself |
+| **8 · Trust** | | | |
+| [8a](#8a-evals) | Evals | ◐ | Personal-agent benchmark pack; dev-facing, not a ship gate |
+| [8b](#8b-evidence) | Evidence | ● | (supporting) [**Audit ledger**](#5-primitives) — metadata-only by construction |
+| [8c](#8c-observability) | Observability | ● | OTel spans + Prometheus; no telemetry unless opted in |
+| [8d](#8d-efficiency) | Efficiency | ● | Compaction + cache-TTL + per-goal budget; no spend cap |
+| **9 · IMPROVE** | | | |
+| [9a](#9a-learning) | Learning | ● | Self-learning + Skill Workshop review gate + dreaming promotion |
+| [9b](#9b-rituals) | Rituals | ◐ | Bootstrap ritual + heartbeat + Custodian playbook; no human rituals |
+| [9c](#9c-cadence) | Cadence | ● | [**Automation (cron) / Heartbeat**](#5-primitives) inside the Gateway process |
+| [9d](#9d-anti-fragile-lifecycle) | Anti-fragile Lifecycle | ◐ | Restart recovery + failover + `doctor --fix`; no defect ledger |
+| [9e](#9e-raise-the-floor) | Raise the Floor | ◐ | `onboard`, `doctor --fix`, security-audit `--fix`; templates for every file |
+| [9f](#9f-diagnose-the-bottleneck) | Diagnose the Bottleneck | ◐ | Maturity scorecard — for itself, not a user's deployment |
+| **10 · Teams & Agents** | | | |
+| [10a](#10a-roster) | Roster | ● | Named [**Agent**](#5-primitives) identities + Custodian + default persona |
+| [10b](#10b-org) | Org | ● | (supporting) [**Operator roles / scopes**](#5-primitives) + session owner/participant |
+| **11 · Surfaces** | | | |
+| [11a](#11a-surfaces) | Surfaces | ● | CLI/TUI/Control UI/mobile/~30 channels/RPC/HTTP/MCP; no IDE |
+| **● 20 · ◐ 10 · ○ 3 · n/a 0** | | | |
+
+## 5. Primitives
+
+| Primitive | Path / key | Project's own definition (verbatim) | Source |
 |---|---|---|---|
-| Canonical name | **OpenClaw** | README, package.json `name: "openclaw"` | ✅ |
-| Prior names | "It evolved through several names and shells: Warelay -> Clawdbot -> Moltbot -> OpenClaw." Lore page: Clawdbot from 2025-11-25; renamed Moltbot 2026-01-27 "following a trademark request from Anthropic"; renamed OpenClaw 2026-01-30 | https://raw.githubusercontent.com/openclaw/openclaw/main/VISION.md ; https://docs.openclaw.ai/start/lore | ✅ |
-| Owner / maintainer | Creator: Peter Steinberger (credits page). Copyright holder: "Copyright (c) 2026 OpenClaw Foundation" (LICENSE). SECURITY.md: maintainers include "engineers and security researchers from organizations such as NVIDIA and Tencent" | https://docs.openclaw.ai/reference/credits ; https://raw.githubusercontent.com/openclaw/openclaw/main/LICENSE ; .../SECURITY.md | ✅ |
-| GitHub | https://github.com/openclaw/openclaw (default branch `main`) | GitHub API | ✅ |
-| License | **MIT** (LICENSE file; package.json `license: "MIT"`; npm `license = 'MIT'`). Note: GitHub API reports `spdx_id: NOASSERTION` — GitHub's detector does not classify it, but the file text is the MIT template | LICENSE, package.json, `npm view` | ✅ |
-| Stars | **388,584** stars, 81,595 forks, 6,072 open issues (2026-09-02) | GitHub API `stargazers_count` | ✅ |
-| Last push | 2026-09-02T09:25:15Z | GitHub API `pushed_at` | ✅ |
-| Language | TypeScript (GitHub primary language); pnpm monorepo; Node `>=22.22.3 <23 \|\| >=24.15.0 <25 \|\| >=25.9.0` | GitHub API; package.json `engines` | ✅ |
-| Repo created | 2025-11-24T10:16:47Z | GitHub API `created_at` | ✅ |
-| First release | npm package `openclaw` created 2026-01-29 (first publish `0.0.1`, then `2026.1.29-beta.1` on 2026-01-30). Oldest git tags are `v0.1.0`–`v0.1.3`, `v1.0.4` (dates not fetched; these predate the rename) | `npm view openclaw time`; `git ls-remote --tags` | ✅ (npm) / ⚠️ (tag dates) |
-| Latest release | **v2026.8.2** "openclaw 2026.8.2", published 2026-09-01T16:00:56Z; npm `version = '2026.8.2'`; 250 versions on npm; a `v2026.9.1-beta.1` tag exists | GitHub releases API; npm | ✅ |
-| Install | `curl -fsSL https://openclaw.ai/install.sh \| bash` (macOS/Linux/WSL2); `iwr -useb https://openclaw.ai/install.ps1 \| iex` (Windows); `npm install -g openclaw@latest --allow-scripts=openclaw`; then `openclaw onboard --install-daemon` | README | ✅ |
-| Docs | https://docs.openclaw.ai | README | ✅ |
+| Gateway | `~/.openclaw/openclaw.json`; port `127.0.0.1:18789`; `openclaw gateway` | *"A single long-lived Gateway owns all messaging surfaces… The Gateway owns channel connections, config, credentials, and the control-plane API."* | ✅ `/concepts/architecture` · `/start/why-openclaw` |
+| Agent | `agents.entries.<agentId>` | *"workspace: Directory containing SOUL.md, AGENTS.md, USER.md, and local files."* *"agentDir: State directory for auth profiles and session store."* | ✅ `/concepts/multi-agent` · `/gateway/config-agents` |
+| Workspace bootstrap files | `~/.openclaw/workspace/{AGENTS.md,SOUL.md,USER.md,IDENTITY.md,BOOTSTRAP.md,MEMORY.md}` | *"AGENTS.md: Operating instructions… Loaded at the start of every session."* *"SOUL.md: Persona, tone, and boundaries."* | ✅ `/concepts/agent-workspace` |
+| Channel + Binding | `channels.<name>.*`; top-level `bindings[]` | *"OpenClaw can talk to you on any chat app you already use."* Bindings: *"Most-specific wins."* — bundles two objects | ✅ `/channels` · `/concepts/multi-agent` |
+| Skill | `<workspace>/skills/<name>/SKILL.md` | *"markdown instruction files that teach the agent how and when to use tools."* *"OpenClaw follows the AgentSkills spec."* | ✅ `/tools/skills` |
+| Plugin | `openclaw.plugin.json`; `plugins.*` | *"Plugins extend OpenClaw with channels, model providers, agent harnesses, tools, skills, speech… and other runtime capabilities."* Run in process. | ✅ `/tools/plugin` · `VISION.md` |
+| Hook | Internal: `hooks/<name>/HOOK.md`+`handler.ts`. Plugin: `api.on(<event>)` | Internal: *"small JavaScript or TypeScript handlers that run in the Gateway process when OpenClaw emits an event."* Plugin `before_tool_call`: *"Rewrite tool params, block execution, or require approval."* | ✅ `/automation/hooks` · `/plugins/hooks` |
+| Tool policy / Exec approvals / Sandbox | `tools.{profile,allow,deny,exec,sandbox}` | *"Tool policy gates whether the exec tool itself is callable; approvals gate which commands the exec tool can run after it's invoked."* Sandbox: *"not a perfect security boundary, but it materially limits filesystem and process access."* — bundles three | ✅ `/tools/exec-approvals` · `/gateway/sandboxing` |
+| Automation (cron) / Heartbeat | `cron.*`; `agents.defaults.heartbeat.*` | Scheduler *"runs inside the Gateway process, not inside the model."* Heartbeat: *"a system-owned automation that runs periodic agent turns in the main session."* | ✅ `/automation/cron-jobs` · `/gateway/heartbeat` |
+| Node | `gateway.nodes.*`; `openclaw devices approve` | *"A node is a companion device (macOS/iOS/watchOS/Android/headless) that connects to the Gateway with `role: "node"`."* | ✅ `/nodes` |
+| Session | `~/.openclaw/agents/<id>/agent/openclaw-agent.sqlite` | *"Session key is a routing selector, not an authorization token."* | ✅ `/concepts/session` · `/gateway/security` |
+| Agent runtime (harness) | `agentRuntime.id` at `agents.defaults.models["provider/model"]` | *"owns one prepared model loop: it receives the prompt, drives model output, handles native tool calls, and returns the finished turn to OpenClaw."* Harness = *"the implementation that provides an agent runtime (code term)."* | ✅ `/concepts/agent-runtimes` |
+| (supporting) Audit ledger | `~/.openclaw/state/openclaw.sqlite` `audit_events` | *"bounded, metadata-only audit ledger in the shared OpenClaw state database"* — *"never stores prompts, message bodies, tool arguments, tool results."* | ✅ `/gateway/audit` |
+| (supporting) Operator roles / scopes | `gateway.roles.definitions.<role>.{sessions,agents,scopes,sandbox}` | *"Session ownership, visibility, and presence are usability features, not security boundaries."* Session owner *"in the style of a GitHub issue assignee."* | ✅ `/gateway/operator-scopes` · `/concepts/multi-user` |
 
-### What it says it is (verbatim)
-- README: "OpenClaw is an AI assistant that runs on your devices and meets you in the channels you already use." ✅
-- GitHub description: "Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞" ✅
-- package.json: "Multi-channel AI gateway with extensible messaging integrations" ✅
-- VISION.md: "OpenClaw is the AI that actually does things. It runs on your devices, in your channels, with your rules." … "OpenClaw is a great personal assistant and a great team assistant." ✅
-- Why-OpenClaw page: "OpenClaw is an extensible, proactive, open-source AI agent that works everywhere you work." ✅
+**Count:** 12 primitives, 2 supporting *(as counted at the 2026-09-02 read; the two supporting rows are added at this restructure — see ISSUE-007)*. **Verdict:** 12+ named units — the corpus's own count ([`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §3.3) — puts OpenClaw past the 5–7 healthy band into **accommodation failure**, most visibly at `7a`, where six task-shaped objects (background tasks, task flow, goals, standing orders, standing intents, workboard) coexist and the vendor's own docs concede the overlap: *"A goal is not a task queue"*; the workboard *"is not a replacement for GitHub Issues, Linear, Jira."*
 
-### Inclusion test
+No published refusal list was found at the v1 read.
 
-**1. Does state persist across sessions? Where, in what format?** — **Yes.** ✅
-- Workspace Markdown: `~/.openclaw/workspace/` with `MEMORY.md` ("long-term memory. Durable non-profile facts and decisions"), `memory/YYYY-MM-DD.md` daily notes, `USER.md`, `DREAMS.md`. "The model only remembers what gets saved to disk; there is no hidden state." (https://docs.openclaw.ai/concepts/memory)
-- Session store: `~/.openclaw/agents/<agentId>/agent/openclaw-agent.sqlite` (runtime sessions & transcripts); archived transcripts `~/.openclaw/agents/<agentId>/sessions/` (security page cites `sessions/*.jsonl`). (https://docs.openclaw.ai/concepts/session ; https://docs.openclaw.ai/gateway/security)
-- Shared state DB: `~/.openclaw/state/openclaw.sqlite` — tables `task_runs`, `flow_runs`, `audit_events`, `exec_approvals_config`, cron jobs, OAuth tokens. (tasks, taskflow, audit, exec-approvals pages)
-- Vector memory index: "Default: OpenAI embeddings via SQLite-based builtin engine" (`memory.search.provider`). (concepts/memory)
-- Restart recovery: "Conversations, transcripts, scheduled jobs, background task records, and queued outbound messages all live on disk, and work that was interrupted mid-turn is detected and resumed automatically." (https://docs.openclaw.ai/gateway/restart-recovery)
+## 6. Details
 
-**2. Does it serve more than one person?** — **Yes, with an explicit trust caveat.** ✅
-- Teams page: "one OpenClaw gateway that a whole team uses: a bot in the workspace chat you already have, shared sessions everyone can open and steer in the Control UI, and roles that bound what each person can do." … "A gateway is one trust domain." (https://docs.openclaw.ai/start/teams)
-- Multi-user page: "Multi-user mode lets several trusted people operate the same OpenClaw agent. It adds session ownership, participant history, live presence, and owner filtering." Sessions have an immutable creator, an assignable owner, and participants. (https://docs.openclaw.ai/concepts/multi-user)
-- Roles: `gateway.roles.default` / `gateway.roles.definitions` with `sessions`, `agents`, `scopes`, `sandbox: "required"`; bound via `users.setRole`. (https://docs.openclaw.ai/gateway/operator-scopes)
-- Limit: "OpenClaw is not a hostile multi-tenant security boundary for mutually adversarial users sharing one agent or gateway." Multi-tenant = "one complete Gateway instance per tenant" via experimental `openclaw fleet`. (gateway/security; gateway/multi-tenant-hosting)
-- Default posture: "Out of the box, OpenClaw is a personal assistant for one trusted operator." (start/why-openclaw)
+`✅ direct · ↪ relayed · ⚠️ unverified`
 
-**3. Does it bind mechanically or only by prose?** — **Mechanically, at several layers; the workspace Markdown is prose.** ✅
-- Tool policy: `tools.profile` (`minimal`/`coding`/`messaging`/`full`), `tools.allow`/`tools.deny` ("deny takes priority"), groups (`group:fs`, `group:runtime`, …), `tools.byProvider`, per-agent `agents.entries.*.tools.allow/deny`. (https://docs.openclaw.ai/gateway/config-tools)
-- Exec approvals: `tools.exec.mode` = `deny`/`allowlist`/`ask`/`auto`/`full`; `tools.exec.ask` = `off`/`on-miss`/`always`; per-agent allowlists with `argPattern`; "approvals can only tighten config-derived security/ask, never loosen them." (https://docs.openclaw.ai/tools/exec-approvals ; /tools/permission-modes)
-- Sandbox: `agents.defaults.sandbox.mode` = `off`/`non-main`/`all`; backends `docker`/`podman`/`ssh`/`openshell`; `workspaceAccess` `none`/`ro`/`rw`; "Tool allow/deny policies still apply before sandbox rules." Role `sandbox: "required"` — "failures never degrade to host execution." (gateway/sandboxing; gateway/operator-scopes)
-- Blocking plugin hooks: `before_tool_call` returns `{ block: true }` or `requireApproval`; `before_agent_run` `{ outcome: "block" }`; `message_sending` `{ cancel: true }`; `before_message_write` `{ block: true }`; `before_install` `{ block: true }`. (https://docs.openclaw.ai/plugins/hooks)
-- By contrast, internal (workspace) hooks "cannot block, cancel, or modify operations" and the `AGENTS.md` `## Tools` section "does not control tool availability; it is only guidance." Memory "does not enforce policy." Standing orders are prose in `AGENTS.md`.
-- Channel access: `dmPolicy` `pairing`/`allowlist`/`open`/`disabled`; `allowFrom`; group `requireMention`; `gateway.auth.mode`. (gateway/security)
+### 0 · Foundation
 
-### Harness or process layer?
-- **It runs the agent loop itself.** "The agent loop is the serialized, per-session run that turns a message into actions and a reply: intake, context assembly, model inference, tool execution, streaming, persistence." Executed by the "Embedded runtime (`runEmbeddedAgent`)" behind the `agent` RPC / `openclaw agent`. Runtime id `openclaw` (legacy alias `pi`); reusable package `@openclaw/agent-core`. (https://docs.openclaw.ai/concepts/agent-loop ; /agent-runtime-architecture ; /concepts/agent-runtimes) ✅
-- **It hosts other harnesses as pluggable runtimes / subprocesses:**
-  - Agent-runtime plugins: `codex` ("runs embedded OpenAI agent turns through Codex app-server instead of the built-in OpenClaw harness"), `copilot`, `claude-cli` ("Runs Claude Code through Anthropic's official Agent SDK"). Selected via `agentRuntime.id` at `agents.defaults.models["provider/model"].agentRuntime` / `models.providers.<provider>.agentRuntime`. (concepts/agent-runtimes; plugins/codex-harness; gateway/cli-backends) ✅
-  - ACP (Agent Client Protocol) via `@openclaw/acpx` plugin: harness ids `claude`, `codex`, `cursor`, `gemini`, `copilot`, `opencode`, `droid`, `fast-agent`, `kimi`, `qwen`, `trae` (+ mux, qoder, iflow, kilocode, kiro). "OpenClaw's sandbox policy does not wrap ACP harness execution." (https://docs.openclaw.ai/tools/acp-agents) ✅
-  - CLI backends: "OpenClaw can run a local AI CLI as a text-only fallback when API providers are down" — `claude-cli/<model>`, `google-gemini-cli`; tools only via `bundleMcp: true`. (gateway/cli-backends) ✅
-- **Adapters from other harnesses into it:** `openclaw migrate claude` imports `CLAUDE.md` → `AGENTS.md`, `~/.claude/CLAUDE.md` → `USER.md`, `.mcp.json` servers, `SKILL.md` skills, Claude commands → skills with `disable-model-invocation: true`; explicitly does NOT import "Claude hooks", "Claude permissions and broad tool allowlists", "`.claude/rules/`", "Claude subagents". Also `migrate-hermes`, `memory/imports/codex/`. (https://docs.openclaw.ai/install/migrating-claude ; concepts/memory) ✅
-- **Adapters for it, shipped by it:** `openclaw mcp serve` — "Exposing OpenClaw channel conversations to another MCP client" (e.g. Claude Code). OpenAI-compatible and OpenResponses HTTP APIs (`gateway/openai-http-api`, `gateway/openresponses-http-api` in nav). (tools/mcp; docs.json nav) ✅
-- **Other systems shipping adapters for OpenClaw:** none found at primary source. ⚠️ (not searched exhaustively)
+#### 0a Substrate
+<details>
+<summary>● 70+ providers + failover; utility/image/media slots — model-pluggable, not named</summary>
 
-### Primitive set (what you configure)
-See Section C for definitions. The first-class named things: **Gateway** (`~/.openclaw/openclaw.json`), **Agent** (`agents.entries.<id>`, workspace + `agentDir`), **Workspace bootstrap files** (`AGENTS.md`, `SOUL.md`, `USER.md`, `IDENTITY.md`, `MEMORY.md`, `BOOTSTRAP.md`, `BOOT.md`, `memory/`), **Channel** (`channels.<name>`) + **Binding** (`bindings[]`), **Skill** (`SKILL.md`, `skills.entries`), **Plugin** (`openclaw.plugin.json`, `plugins.entries`), **Hook** (internal `hooks/<name>/HOOK.md`+`handler.ts`; plugin `api.on(...)`), **Tool policy** (`tools.*`), **Sandbox** (`agents.defaults.sandbox`), **Automation/cron** (`cron.*`), **Node** (paired device, `gateway.nodes.*`), **Session** (`session.*`).
+**Ships.** Model-pluggable across 70+ listed providers (Anthropic, OpenAI, Google, Bedrock, Azure, Mistral, Groq, OpenRouter, DeepSeek, xAI, GitHub Copilot, LiteLLM, ClawRouter, Ollama, llama.cpp, vLLM, and more); ~100 provider/channel plugins in the repo's `extensions/`. Model failover via `{primary, fallbacks}`; separate utility/image/media/pdf model slots.
+**Path.** `agents.defaults.model.primary`; `models.providers.<id>.{baseUrl,api,apiKey,models}`
+**Source.** ✅ `/providers` · `/gateway/config-tools` · `/gateway/config-agents` · GitHub `extensions/`
 
-### Stated limitations (short form; full quotes in Section D)
-Not a hostile multi-tenant boundary; sandboxing off by default; sandbox "not a perfect security boundary"; native plugins unsandboxed; ACP runs outside sandbox; fleet experimental; swarm experimental; internal hooks observe-only; memory does not enforce policy; no telemetry by default.
+</details>
 
----
+### 1 · Environment
 
-## B. Component table (33 rows)
+#### 1a Environment
+<details>
+<summary>◐ Shell/filesystem/browser/network tools; <code>tools.exec.host</code> declares where, not an inventory</summary>
 
-| # | Component | What it ships | Path / mechanism | Source (2026-09-02) | Mark |
-|---|---|---|---|---|---|
-| 0a | Substrate | Model-pluggable. "70+ LLM providers" listed (Anthropic, OpenAI, Google, Bedrock, Azure, Mistral, Groq, OpenRouter, DeepSeek, xAI, GitHub Copilot, LiteLLM, ClawRouter, Ollama, LM Studio, llama.cpp, vLLM, SGLang, Alibaba, Moonshot, MiniMax, Qianfan, Tencent, Volcengine, …). Repo `extensions/` holds ~100 provider/channel plugins. Model failover via `{ primary, fallbacks }`. Utility/image/pdf/media model slots. | Model id `"provider/model"` at `agents.defaults.model.primary`; custom endpoints `models.providers.<id>.{baseUrl, api, apiKey, models}`; `agents.defaults.{utilityModel,imageModel,mediaModels,pdfModel}`; auth via `openclaw onboard`, `openclaw models` | https://docs.openclaw.ai/providers ; /gateway/config-tools ; /gateway/config-agents ; GitHub `extensions/` listing | ✅ |
-| 1a | Environment | Shell (`exec`, `process`, `code_execution`), filesystem (`read`/`write`/`edit`/`apply_patch`), browser (`browser` tool, dedicated profile, Chrome extension, relay auth v2), network (`web_search`/`web_fetch`/`x_search`), device peripherals via nodes (camera, screen, location, SMS, `computer.act`, `system.run`). Local host by default; Docker/Podman/SSH/OpenShell sandboxes; cloud workers; host PTY terminal in Control UI. | `tools.*`; `agents.defaults.sandbox.backend`; `tools.exec.host` = `gateway`/`node`/`sandbox`/`auto`; `browser.ssrfPolicy` | /tools ; /gateway/sandboxing ; /nodes ; /gateway/security ; /gateway/cloud-workers | ✅ |
-| 2a | Adapters & Middleware | Built-in tool registry with tool groups; provider abstraction (`models.providers`, `api` adapter types e.g. `openai-completions`, `anthropic-messages`); plugin SDK (`api.on`, `api.registerHook`, register channels/providers/tools/harnesses); MCP client (`mcp.servers`, stdio/streamable HTTP/SSE, `openclaw mcp add/doctor/status/login/reload`); OpenClaw as MCP server (`openclaw mcp serve`); Code Mode (`tools.codeMode`); tool search (`tool_search`, `tool_describe`); OpenAI-compatible HTTP API. | `mcp.servers`; `plugins.*`; `openclaw.plugin.json`; `tools.codeMode.enabled`; `group:plugins` incl. `bundle-mcp` | /tools/mcp ; /tools/plugin ; /plugins/hooks ; /gateway/config-tools ; VISION.md ("extensive plugin API") | ✅ |
-| 2b | Hooks | Two systems. (1) **Internal hooks**: "small JavaScript or TypeScript handlers that run in the Gateway process when OpenClaw emits an event." Events: `command:new`, `command:reset`, `command:stop`, `session:auto-reset`, `session:compact:before`, `session:compact:after`, `session:patch`, `agent:bootstrap`, `gateway:startup`, `gateway:shutdown`, `gateway:pre-restart`, `message:received`, `message:transcribed`, `message:preprocessed`, `message:sent`. Bundled: `command-logger`, `session-memory`, `boot-md`, `bootstrap-extra-files`, `compaction-notifier`. Observe-only. (2) **Plugin lifecycle hooks** (typed): `before_model_resolve`, `agent_turn_prepare`, `before_prompt_build`, `before_agent_run`, `before_agent_reply`, `before_agent_finalize`, `agent_end`, `heartbeat_prompt_contribution`, `model_call_started/ended`, `llm_input`, `llm_output`, `before_tool_call`, `after_tool_call`, `resolve_exec_env`, `tool_result_persist`, `before_message_write`, `inbound_claim`, `channel_pairing_requested`, `message_received`, `message_sending`, `reply_payload_sending`, `message_sent`, `before_dispatch`, `reply_dispatch`, `session_start/end`, `before_compaction`, `after_compaction`, `before_reset`, `subagent_spawned/ended/progress`, `subagent_delivery_target`, `gateway_start/stop`, `cron_reconciled`, `cron_changed`, `before_install`, `skill_proposal_evaluate`, `skill_proposal_changed`, `skill_changed`. (3) **Webhooks** (HTTP ingress): `hooks.enabled`, `hooks.mappings`, `hooks.gmail`. | `<workspace>/hooks/<name>/HOOK.md` + `handler.ts`; `~/.openclaw/hooks/`; `hooks.internal.enabled`, `hooks.internal.entries.<key>`, `hooks.internal.load.extraDirs`; `openclaw hooks list/info/check/enable/disable/install`; plugin `api.on(...)` | https://docs.openclaw.ai/automation/hooks ; https://docs.openclaw.ai/plugins/hooks ; /gateway/configuration | ✅ |
-| 2c | Enforcement | Tool policy (`tools.profile`, `allow`/`deny`, groups, `byProvider`, per-agent); exec permission modes (`deny`/`allowlist`/`ask`/`auto`/`full`) with per-agent allowlists + `argPattern`, `strictInlineEval`, `askFallback` default `deny`; `tools.elevated` (default `enabled: false`) as break-glass; sandbox modes with blocked bind paths and role-required sandboxing; blocking plugin hooks (`before_tool_call { block }`, `requireApproval`); channel gates (`dmPolicy`, `allowFrom`, `requireMention`, `contextVisibility`); gateway auth modes; owner-only control-plane tools (`gateway`, `cron`); external-content wrapping `<<<EXTERNAL_UNTRUSTED_CONTENT ...>>>`; `openclaw security audit --deep/--fix`. | `tools.exec.mode`, `tools.exec.ask`, `~/.openclaw/state/openclaw.sqlite#exec_approvals_config`; `tools.elevated.*`; `agents.defaults.sandbox.*`; `gateway.roles.definitions.<role>.sandbox: "required"` | /tools/exec-approvals ; /tools/permission-modes ; /gateway/sandboxing ; /gateway/security ; /plugins/hooks ; /gateway/operator-scopes | ✅ |
-| 3a | Control | Approval gates (exec approvals broadcast `exec.approval.requested`, resolved via macOS app / Control UI / `exec.approval.resolve`; `ask_user` tool; `operator.approvals` scope); `auto` mode "send misses through auto-review before falling back to human approval" (Codex Guardian); run contract: `agent` RPC returns `{ runId, acceptedAt }`, `agent.wait` returns status; goals (`create_goal` only "when the user or system instructions explicitly request one"); standing orders with "approval gates" and "escalation rules" as prose in `AGENTS.md`; role sandbox requirements; `before_agent_run` gate. No plan-mode primitive found. | `tools.exec.ask`; `exec.askFallback`; `/goal`; `AGENTS.md` | /tools/exec-approvals ; /concepts/agent-loop ; /tools/goal ; /automation/standing-orders ; /tools/permission-modes | ✅ |
-| 3b | Routing | Message→agent routing via `bindings[]` with `match: { channel, accountId, peer:{kind,id}, guildId }`; "Most-specific wins — exact peer > parent peer > peer wildcard > guild+roles > guild > team > account > channel > default"; `agents.ownership: "explicit"`; model routing per agent/model (`agents.entries.*.model`, fallbacks, `agentRuntime.id` auto-claim); ACP bindings `type: "acp"`; sub-agent targeting via `subagents.allowAgents`; agent-to-agent "Off by default" (`tools.agentToAgent.enabled/allow`); `mentionPatterns` in group chat. | `bindings[]`; `openclaw agents bind/unbind/bindings` | /concepts/multi-agent ; /gateway/config-agents ; /tools/acp-agents ; /concepts/agent-runtimes | ✅ |
-| 3c | Composition | Agent = `agents.entries.<agentId>` with `workspace`, `agentDir` (`~/.openclaw/agents/<id>/agent`), `model`, `identity {name, theme, emoji, avatar}`, `tools`, `skills`, `sandbox`, `groupChat`, `subagents`. Sub-agents: "background agent runs spawned from an existing agent run" (`sessions_spawn`, `sessions_send`; depth ≤5, `maxConcurrent` 8, `maxChildrenPerAgent` 5; "Sub-agent context only injects `AGENTS.md`"). Swarm: "experimental, opt-in way to orchestrate many sub-agents from a Code Mode script" (`agents.run()`, collector children). Custodian agent (system agent with `custodian-skills/`). No agent-definition *file* (e.g. `.md` per agent) — agents are config entries plus a workspace. | `agents.entries.*`; `agents.defaults.subagents.*`; `openclaw agents add <name>` | /gateway/config-agents ; /tools/subagents ; /tools/swarm ; /tools/custodian-skills | ✅ |
-| 3d | Configuration | Config: `~/.openclaw/openclaw.json` (JSON5; must be a regular file; `OPENCLAW_CONFIG_PATH`), strict schema ("unknown keys… cause startup failure"), `$include`, `${VAR}` substitution, hot reload (`hybrid`), "Two-bucket rule: Root-level siblings hold infrastructure and cross-agent defaults; `agents.defaults` holds agent-loop behavior… `agents.entries` may override". Precedence: "Environment variables > inline config `env.vars` > `.env` file > shell environment". Instruction files in `~/.openclaw/workspace/`: `AGENTS.md` ("Operating instructions for the agent and how it should use memory. Loaded at the start of every session."), `SOUL.md` ("Persona, tone, and boundaries."), `USER.md`, `IDENTITY.md`, `BOOTSTRAP.md` ("One-time first-run ritual"), `BOOT.md`, `MEMORY.md`; caps `bootstrapMaxChars` 20,000 / `bootstrapTotalMaxChars` 60,000 / USER.md 4,000. Skills precedence: workspace > `<workspace>/.agents/skills` > `~/.agents/skills` > managed > bundled. Profiles: `OPENCLAW_PROFILE` → `~/.openclaw-<profile>/`. | `openclaw config get/set/patch/unset/validate`; `openclaw configure`; Control UI Config tab | /gateway/configuration ; /concepts/agent-workspace ; /tools/skills ; /reference/templates/* | ✅ |
-| 3e | Standards | Shipped templates only: `reference/templates/AGENTS`, `SOUL`, `USER`, `IDENTITY`, `BOOTSTRAP`, `BOOT`, `HEARTBEAT`; default `AGENTS.md` (`reference/AGENTS.default`: "Don't dump directories or secrets into chat. Don't run destructive commands unless explicitly asked."); "The Molty prompt" SOUL rewrite template; custodian skills ("Release-versioned operational skills… Gather/Mutate/Repair/Prove/Report"). No versioned rules-pack / style-guide inheritance mechanism for user projects found. (The repo's own `AGENTS.md` "Repair Doctrine"/"Product Doctrine" is for contributors, not a product feature.) | `reference/templates/*`; `custodian-skills/` | /reference/AGENTS.default ; /concepts/soul ; /tools/custodian-skills ; repo AGENTS.md | ✅ |
-| 4a | Capability | **Skills**: "markdown instruction files that teach the agent how and when to use tools"; `SKILL.md` with frontmatter `name`, `description`, `user-invocable`, `disable-model-invocation`, `command-dispatch`, `metadata.openclaw.{always,emoji,os,requires.{bins,anyBins,env,config},primaryEnv,install}`; "OpenClaw follows the AgentSkills spec." ~50 bundled skills in repo `skills/` (github, gh-issues, notion, obsidian, trello, weather, coding-agent, skill-creator, taskflow, …). **ClawHub**: "the public registry for OpenClaw skills and plugins" (clawhub.ai); `openclaw skills install @owner/<slug>` / `skills-sh:owner/repo/slug` / `git:owner/repo@ref` / local path; `openclaw skills verify`; lockfile `.clawhub/lock.json`; "automated checks on published skills"; publish gate = GitHub account age. **Plugins**: manifest `openclaw.plugin.json`; `openclaw plugins install` from `clawhub:`, `npm:`, `git:`, local; `plugins.allow/deny/entries/load.paths/slots`; ~160 bundled in `extensions/`. | `<workspace>/skills/<name>/SKILL.md`; `skills.entries.<name>.{enabled,apiKey,env,config}`; `skills.allowBundled`; `agents.defaults.skills` allowlist | /tools/skills ; /clawhub ; /tools/plugin ; GitHub `skills/`, `extensions/` | ✅ |
-| 4b | Capability Permissions | Per-agent skill allowlists (`agents.entries.<id>.skills: [...]`; `[]` = none); per-agent tool allow/deny; `tools.byProvider.<id>.profile`; `tools.sandbox.tools.alsoAllow: ["bundle-mcp"]` gates MCP/plugin tools inside sandbox; `plugins.allow` inventory; `gateway.nodes.commands.allow/deny` and `gateway.nodes.pluginTools.enabled`; `tools.elevated.allowFrom`; owner-only tools (`gateway`, `cron`); `intent` tool only for `commands.ownerAllowFrom` owners; MCP tool grants "cover the exact agent, configured server name, and tool name"; `before_install` hook can block skill/plugin installs; `skills.entries.<name>.enabled`. | as listed | /gateway/config-tools ; /gateway/security ; /tools/exec-approvals ; /nodes ; /concepts/standing-intents ; /plugins/hooks | ✅ |
-| 5a | Individual Memory | Per-agent workspace Markdown: `MEMORY.md`, `memory/YYYY-MM-DD.md`, `USER.md`, `DREAMS.md`; manual ("just ask it: 'Remember that I prefer TypeScript.'") and automatic (today/yesterday notes auto-load on `/new`; pre-compaction "silent turn that reminds the agent to save important context to memory files" — `agents.defaults.compaction.memoryFlush.enabled`; `session-memory` hook; dreaming promotion into `MEMORY.md`). Hybrid `memory_search` (vector + keyword) via `memory-core`; alternatives `memory-lancedb`, Honcho. `openclaw memory status/index/search/forget`. Imports from Claude Code/Codex/Hermes into `memory/imports/<tool>/`. | `~/.openclaw/workspace/MEMORY.md`, `memory/`; `memory.search.provider`; `plugins.entries.memory-core.config.*` | /concepts/memory ; /concepts/dreaming ; /concepts/memory-provenance ; /install/migrating-claude | ✅ |
-| 5b | Team Memory | Partial. Shared sessions on a team gateway are visible to all operators; dreaming reconciles across "participating agents that share a workspace"; memory provenance tracks entry origins per agent/session in SQLite and "promotion markers" in `MEMORY.md`; admission policy (`memoryPolicy.excludeSessions`) and `memory forget`. No governed promotion *between people* (e.g. personal→team tier with review) documented; why-openclaw notes "Promoted memories have no time-based retention bound… neither admission nor forgetting is a general erasure guarantee." | `plugins.entries.memory-core.config.dreaming.*` | /concepts/memory-provenance ; /concepts/dreaming ; /start/teams ; /start/why-openclaw | ✅ |
-| 5c | Knowledge | `memory_search`/`memory_get` hybrid retrieval over memory files and session transcripts (SQLite vector index; providers: OpenAI, Gemini, Voyage, Mistral, Bedrock, Ollama, local GGUF…); **memory-wiki** plugin: "compiles durable knowledge into a navigable wiki: deterministic pages, structured claims with evidence, provenance, dashboards" — `openclaw wiki init/ingest/compile/lint/search/get/apply`, vault layout `entities/ concepts/ syntheses/ sources/ reports/`, Obsidian option; registers as "a non-exclusive memory corpus supplement". Session search (`concepts/session-search`). | `openclaw memory search`; `openclaw wiki *`; `<vault>/` | /concepts/memory ; /plugins/memory-wiki | ✅ |
-| 6a | Product | Nothing PRD-shaped. Nearest: **Goals** ("one durable objective attached to the current OpenClaw session"; `get_goal`/`create_goal`/`update_goal`; "A goal is not a task queue"); **Workboard** plugin Kanban cards ("It is not a replacement for GitHub Issues, Linear, Jira"); standing orders prose. | `/goal`; `plugins/workboard` | /tools/goal ; /plugins/workboard | ✅ |
-| 6b | Infrastructure | Gateway daemon (`openclaw gateway`, `openclaw daemon install` — launchd/systemd/schtasks); sandboxes: `docker`, `podman`, `ssh`, `openshell`, scope `agent`/`session`/`shared`; **Nodes** ("a companion device (macOS/iOS/watchOS/Android/headless) that connects to the Gateway with `role: "node"`") incl. headless nodes hosting MCP servers and worker sessions (`nodeHost.workerRuns.enabled`); **Cloud workers** ("move a session's coding work onto a throwaway cloud machine" via Crabbox; AWS/Hetzner/Daytona; `cloudWorkers.profiles`, `sessions.dispatch`); install guides for Docker, Kubernetes, Fly, Railway, Render, Hetzner, GCP, Azure, Oracle, DigitalOcean, Nix, Raspberry Pi; multi-tenant `openclaw fleet` cells. | `agents.defaults.sandbox.*`; `gateway.nodes.*`; `cloudWorkers.*`; `openclaw fleet create/status/upgrade/rm` | /gateway/sandboxing ; /nodes ; /gateway/cloud-workers ; /gateway/multi-tenant-hosting ; docs.json `install/*` | ✅ |
-| 6c | Estate | Minimal. **Managed worktrees**: "Run agent tasks in isolated git checkouts with automatic snapshots and cleanup"; `worktreeRoot` (default `<state-dir>/worktrees`), branch `openclaw/<name>`, path `<worktreeRoot>/<repo-fingerprint>/<name>`; "No explicit multi-repository functionality is documented." `cloudWorkers.projectProfiles` per-repo profiles. No cross-repo impact analysis. | `worktreeRoot` | /concepts/managed-worktrees ; /gateway/cloud-workers | ✅ |
-| 6d | Delivery | No built-in PR/CI/deploy pipeline for user work. Session rails show "pull requests" in Control UI chat; Git co-author credit on team gateways; `gh-issues`/`github` bundled skills; worktrees block cleanup on unpushed commits. (The `pull-request-review-flow` and `ci` docs describe OpenClaw's *own* repo automation — Barnacle, ClawSweeper — not a user feature.) | skills `github`, `gh-issues` | /web/control-ui ; /reference/pull-request-review-flow ; VISION.md ; GitHub `skills/` | ✅ |
-| 7a | Workflow Tasks | **Background tasks**: "activity ledger that records what detached work happened, when, and whether it succeeded" (`queued → running → succeeded/failed/timed_out/cancelled/lost`; `~/.openclaw/state/openclaw.sqlite` `task_runs`; `openclaw tasks list/show/cancel/audit`; `/tasks`; 7-day retention). **Task Flow** ("formerly ClawFlow… durable record of multi-step work with its own status, JSON state, revision counter"; `flow_runs`; `openclaw tasks flow *`). **Goals** (session-scoped). **Standing orders** (prose in `AGENTS.md`: scope, triggers, approval gates, escalation). **Standing intents** ("event-conditioned instruction"; `intent` tool; SQLite; cooldown 24h, max 3 fires, 90-day expiry). **Workboard** Kanban (statuses `triage…done`, priorities, agent assignment). `taskflow` and `taskflow-inbox-triage` bundled skills. No plan file / todo list primitive for the model beyond goals. | as listed | /automation/tasks ; /automation/taskflow ; /tools/goal ; /automation/standing-orders ; /concepts/standing-intents ; /plugins/workboard | ✅ |
-| 8a | Evals | For the project: `pnpm test` (Vitest, 13 shards), `pnpm test:e2e` (multi-gateway, Playwright Control UI), `pnpm test:live` (real providers/channels); **Personal agent benchmark pack**: "a small repo-backed QA scenario pack for local personal assistant workflows… not a generic model benchmark" — `OPENCLAW_ENABLE_PRIVATE_QA_CLI=1 pnpm openclaw qa run --qa-profile personal-agent --provider-mode mock-openai`, scenarios `qa/scenarios/personal/*.yaml` (reminder routing, memory recall, secret redaction, approval denial, completion-claim accuracy…); maturity scorecard's coverage is "deliberately evidence-led" from QA IDs; `skill_proposal_evaluate` hook returns `pass`/`revise`/`block` for Skill Workshop drafts. No user-facing eval harness for user work. | `qa/`, `test/`, `vitest.config.ts` | /help/testing ; /concepts/personal-agent-benchmark-pack ; /maturity/scorecard ; /plugins/hooks | ✅ |
-| 8b | Evidence | Transcripts (sqlite + archived `sessions/*.jsonl`; forkable; "Log/transcript redaction is always on"); **Audit ledger**: "bounded, metadata-only audit ledger in the shared OpenClaw state database" — `agent.run.started/finished`, `tool.action.started/finished`, optional `message.*`; "never stores prompts, message bodies, tool arguments, tool results"; `openclaw audit`, `audit.run.inspect` (needs `operator.read`); 30-day / 100k-row cap. Task ledger with `lost` state; `command-logger` hook (JSONL); sub-agent completions report token usage; Workboard stores "proof, artifact references". `openclaw proxy` network capture. | `state/openclaw.sqlite` `audit_events` | /gateway/audit ; /concepts/session ; /automation/tasks ; /plugins/workboard | ✅ |
-| 8c | Observability | Logs `/tmp/openclaw/openclaw-YYYY-MM-DD.log` (`logging.level/file/consoleStyle/redactPatterns/maxFileBytes`; `openclaw logs --follow`); trace fields `traceId`/`spanId`/`parentSpanId` in JSON logs; **OpenTelemetry** plugin `diagnostics-otel`: `diagnostics.otel.{enabled,endpoint,protocol:"http/protobuf",serviceName,traces,metrics,logs,logsExporter,sampleRate,flushIntervalMs,captureContent}`; spans `openclaw.model.call`, `openclaw.tool.execution`, `openclaw.exec`; `gen_ai.client.token.usage`; "Raw model/tool content is **not** exported by default"; `diagnostics-prometheus` plugin; Control UI Debug/Logs tab; `OPENCLAW_DEBUG_MODEL_PAYLOAD`. Project telemetry: only a daily update check unless `telemetry.enabled`. | `diagnostics.otel.*`; `logging.*` | /logging ; /gateway/opentelemetry ; /gateway/telemetry ; GitHub `extensions/diagnostics-otel` | ✅ |
-| 8d | Efficiency | Compaction (`agents.defaults.compaction.{enabled,mode:"safeguard"|"default",model,identifierPolicy,keepRecentTokens=20000,maxActiveTranscriptBytes,memoryFlush,postCompactionSections}`; `/compact [focus]`); cost accounting from `models.providers.<p>.models[].cost` (USD/1M, `tieredPricing`), `/status`, `/usage off|tokens|full|cost`, `/context list|detail`, `openclaw gateway usage-cost`, Usage tab; prompt caching with cache-TTL pruning (`agents.entries.*.params.cacheRetention`, heartbeat keeps cache warm); tool-result caps by context window; `contextLimits`; `contextInjection: "continuation-skip"`; `bootstrapMaxChars`; goals expose "token usage, and token budget"; `tools.loopDetection`. No hard spend budget/kill-switch documented. | as listed | /concepts/compaction ; /reference/token-use ; /gateway/config-agents | ✅ |
-| 9a | Learning | **Self-learning**: "turns corrections and successful work into reusable skills. Skills are the durable unit" — Experience Review (auto after ≥10 model iterations, 30 s quiet) and Immediate Repair; **Skill Workshop** governance (`openclaw skills workshop list/inspect/reject`; `skills.workshop.autonomous.mode="auto"`, `maxPending` 50, `maxSkillBytes` 40000; `skill_proposal_evaluate` hook); **Dreaming**: "background memory consolidation system in `memory-core`" — Light/REM/Deep phases, promotes to `MEMORY.md`, `DREAMS.md` diary, cron default `"0 3 * * *"`; `skill-creator` bundled skill; memory flush before compaction. | `skills.workshop.*`; `plugins.entries.memory-core.config.dreaming.*` | /tools/self-learning ; /tools/skill-workshop (nav) ; /concepts/dreaming | ✅ |
-| 9b | Rituals | "bootstrap ritual" (`BOOTSTRAP.md` "One-time first-run ritual"; `IDENTITY.md` "Created/updated during the bootstrap ritual"); heartbeat check-ins; nightly dreaming sweep; Skill Workshop review queue; Custodian playbook Gather→Mutate→Repair→Prove→Report. No named human rituals (standup/retro/planning) for users. | `BOOTSTRAP.md`; `agents.defaults.heartbeat` | /concepts/agent-workspace ; /gateway/heartbeat ; /concepts/dreaming ; /tools/custodian-skills | ✅ |
-| 9c | Cadence | **Automations/cron** in Gateway process: schedules `at`/`every`/`cron`/`on-exit`/`stream`; payloads system event / agent message / command / script; delivery `announce`/`webhook`/`none`; session targets `main`/`isolated` (`cron:<jobId>`)/`current`/`session:<id>`; `cron.{enabled,triggers,webhookToken,webhookSsrfPolicy,sessionRetention}`; SQLite-persisted; `openclaw automations list/create/edit/run/runs/remove` (CLI also `openclaw cron`). **Heartbeat**: "system-owned automation that runs periodic agent turns in the main session" — `agents.defaults.heartbeat.{every="30m",model,target="owner",prompt,activeHours}`; `NO_REPLY`/`heartbeat_respond`; `HEARTBEAT.md` deprecated. Webhook ingress (`hooks.mappings`, Gmail, IMAP). Standing intents (event-triggered). Readers: channel targets / owner. | as listed | /automation/cron-jobs ; /gateway/heartbeat ; /automation/hooks | ✅ |
-| 9d | Anti-fragile lifecycle | Restart recovery ("work that was interrupted mid-turn is detected and resumed automatically"; "durable budget of three charged automatic dispatch attempts"; tombstoning; sub-agent runs >2 h old finalized not resumed); model failover `fallbacks` + auth-profile rotation; retries (3 attempts, 30 s cap, 10% jitter; per request); durable outbound queue; tasks `lost` after grace; safeguard compaction; `openclaw doctor --fix` migrations and stale-lock cleanup; `openclaw backup create/verify/restore`; session fork; `gateway.reload` modes. | `openclaw doctor`, `openclaw backup` | /gateway/restart-recovery ; /concepts/retry ; /gateway/doctor ; CLI reference | ✅ |
-| 9e | Raise the floor | `openclaw onboard` / `openclaw setup` wizards (incl. `--flow import`, `--import-from claude`); `openclaw doctor` ("the repair and migration tool… fixes stale config/state, checks health, and provides actionable repair steps"; `--fix`, `--lint`, `--deep`); "safe defaults" if config missing; hardened baseline config in security docs; templates for all workspace files; `openclaw security audit --fix`; "Ask OpenClaw" setup-and-repair agent in Control UI; Custodian agent + skills; `openclaw triage`, `openclaw health`. | as listed | /gateway/doctor ; /gateway/security ; /web/control-ui ; /gateway/configuration | ✅ |
-| 9f | Diagnose the bottleneck | For the product itself: **Maturity scorecard** ("A practical view of what is ready, what is proven, and what still needs work"; 50 surfaces / 280 capability areas; bands Experimental/Alpha/Beta/Stable/Clawesome; taxonomy M0–M5 "Surfaces > categories > capabilities > evidence"; repo `taxonomy.yaml`, `docs/maturity/`). For a deployment: `openclaw security audit` findings with `checkId`s; `openclaw doctor`; `openclaw tasks audit`. No team-maturity/readiness scoring for users. | `taxonomy.yaml`; `openclaw security audit` | /maturity/scorecard ; /maturity/taxonomy ; /gateway/security ; GitHub tree | ✅ |
-| 10a | Roster | Named agents `agents.entries.<agentId>` with `identity {name, theme, emoji, avatar}`; `IDENTITY.md` ("The agent's name, vibe, and emoji"); `SOUL.md` persona; `openclaw agents list/add/delete/set-identity`; per-agent `agentDir` ("Never reuse `agentDir` across agents"); Custodian system agent; ACP harness sessions; sub-agent/swarm children; "Molty" default persona; Control UI Agents page. | `agents.entries.*.identity`; `IDENTITY.md` | /gateway/config-agents ; /concepts/agent-workspace ; /concepts/multi-agent ; /start/lore | ✅ |
-| 10b | Org | Session **creator** (immutable) / **owner** ("in the style of a GitHub issue assignee") / **participants**; operator roles `gateway.roles.definitions.<role>.{sessions:"none"|"view"|"suggest"|"write", agents, scopes, sandbox}`; scopes `operator.read/write/admin/pairing/approvals/questions/talk/talk.secrets`; channel owner (`commands.ownerAllowFrom`) vs non-owner senders; escalation in standing orders ("Escalation rules – when to stop and request help"); HITL posture via `tools.exec.mode` (`deny`→`full`) and `ask` levels. "Session ownership, visibility, and presence are usability features, not security boundaries." | as listed | /concepts/multi-user ; /gateway/operator-scopes ; /automation/standing-orders ; SECURITY.md | ✅ |
-| 11a | Surfaces | CLI (`openclaw …`), TUI (`openclaw tui`), Control UI ("Vite + Lit single-page app served by the Gateway" at `:18789` — Chat, Sessions, Tasks, Automations, Plugins, Skills, Devices, Settings, Usage, Debug/Logs, Agents, Terminal, Browser panel, Side Chat), WebChat, macOS menu-bar app, iOS/Android/watchOS apps, chat channels (~30 doc pages: WhatsApp, Telegram, Discord, Slack, Signal, iMessage, Google Chat, Microsoft Teams, Matrix, LINE, IRC, Mattermost, Twitch, WeChat/WeCom, Zalo, Feishu, Nostr, QQ, SMS, Synology Chat, Nextcloud Talk, Tlon, …), WebSocket RPC (`gateway/protocol`), OpenAI-compatible & OpenResponses HTTP APIs, `tools-invoke` HTTP API, MCP server mode, Discord Activities, canvas/A2UI widgets. No IDE plugin found. | `gateway.controlUi.*`; `channels.*` | /web/control-ui ; /concepts/architecture ; docs.json nav ; README | ✅ |
+**Ships.** Shell (`exec`, `process`, `code_execution`), filesystem (`read/write/edit/apply_patch`), browser (dedicated profile, Chrome extension), network (`web_search`/`web_fetch`/`x_search`), device peripherals via paired nodes. Local host by default; Docker/Podman/SSH/OpenShell sandboxes, cloud workers, a host PTY terminal in Control UI.
+**Path.** `tools.*`; `tools.exec.host = gateway|node|sandbox|auto`
+**Source.** ✅ `/tools` · `/gateway/sandboxing` · `/nodes` · `/gateway/security`
 
----
+</details>
 
-## C. Primitive set (name · path · project's own definition)
+### 2 · Agent Harness
 
-| Primitive | Path / key | Project's definition (verbatim where available) | Source | Mark |
-|---|---|---|---|---|
-| **Gateway** | `~/.openclaw/openclaw.json`; port `127.0.0.1:18789`; `openclaw gateway` | "A single long-lived Gateway owns all messaging surfaces (WhatsApp via Baileys, Telegram via grammY, Slack, Discord, Signal, iMessage, WebChat)." "The Gateway owns channel connections, config, credentials, and the control-plane API." | /concepts/architecture ; /start/why-openclaw | ✅ |
-| **Agent** | `agents.entries.<agentId>` (`workspace`, `agentDir`, `model`, `identity`, `tools`, `skills`, `sandbox`); `agents.defaults` | `workspace`: "Directory containing `SOUL.md`, `AGENTS.md`, `USER.md`, and local files"; `agentDir`: "State directory for auth profiles and session store (default: `~/.openclaw/agents/<agentId>/agent`)" | /concepts/multi-agent ; /gateway/config-agents | ✅ |
-| **Workspace bootstrap files** | `~/.openclaw/workspace/{AGENTS.md,SOUL.md,USER.md,IDENTITY.md,BOOTSTRAP.md,BOOT.md,MEMORY.md,memory/,skills/,hooks/}` | `AGENTS.md`: "Operating instructions for the agent and how it should use memory. Loaded at the start of every session." `SOUL.md`: "Persona, tone, and boundaries. Loaded every session." `MEMORY.md`: "Curated long-term memory: durable non-profile facts, decisions, and short summaries." | /concepts/agent-workspace | ✅ |
-| **Channel** + **Binding** | `channels.<channel>.{dmPolicy,allowFrom,groups,…}`; top-level `bindings[]` `{ agentId, match:{channel,accountId,peer,guildId} }` | "OpenClaw can talk to you on any chat app you already use. Each channel connects via the Gateway." Bindings: "Most-specific wins"; "If multiple bindings match within the same tier, the first one in config order wins." | /channels ; /concepts/multi-agent | ✅ |
-| **Skill** | `<workspace>/skills/<name>/SKILL.md`; `skills.entries.<name>`; ClawHub `openclaw skills install @owner/<slug>` | "markdown instruction files that teach the agent how and when to use tools." "OpenClaw follows the AgentSkills spec." | /tools/skills | ✅ |
-| **Plugin** | `openclaw.plugin.json`; `plugins.{enabled,allow,deny,entries.<id>.{enabled,config},load.paths,slots}`; `openclaw plugins install clawhub:|npm:|git:|<path>` | "Plugins extend OpenClaw with channels, model providers, agent harnesses, tools, skills, speech, realtime transcription, voice, media understanding, generation, web fetch, web search, and other runtime capabilities." Run in process. | /tools/plugin ; VISION.md | ✅ |
-| **Hook** | Internal: `hooks/<name>/HOOK.md` + `handler.ts`; `hooks.internal.*`. Plugin: `api.on("<event>")`. Webhook: `hooks.enabled/token/path/mappings` | Internal: "small JavaScript or TypeScript handlers that run in the Gateway process when OpenClaw emits an event." "Returned values do not block, cancel, or rewrite the operation." Plugin `before_tool_call`: "Rewrite tool params, block execution, or require approval" | /automation/hooks ; /plugins/hooks | ✅ |
-| **Tool policy / Exec approvals / Sandbox** | `tools.{profile,allow,deny,byProvider,elevated,exec,fs,sandbox}`; `tools.exec.mode`+`ask`; `agents.defaults.sandbox.{mode,backend,scope,workspaceAccess,docker}` | "Tool policy gates whether the exec tool itself is callable; approvals gate which commands the exec tool can run after it's invoked." Sandbox: "This is not a perfect security boundary, but it materially limits filesystem and process access." | /tools/exec-approvals ; /gateway/sandboxing ; /gateway/config-tools | ✅ |
-| **Automation (cron) / Heartbeat** | `cron.*`; `openclaw automations …`; `agents.defaults.heartbeat.*` | Scheduler "runs inside the Gateway process, not inside the model." Heartbeat: "a system-owned automation that runs periodic agent turns in the main session so the model can surface anything that needs attention without spamming you." | /automation/cron-jobs ; /gateway/heartbeat | ✅ |
-| **Node** | device pairing `openclaw devices approve <requestId>`; `gateway.nodes.{pairing,commands.allow/deny,pluginTools}`; `tools.exec.host="node"` | "A **node** is a companion device (macOS/iOS/watchOS/Android/headless) that connects to the Gateway with `role: "node"`" | /nodes | ✅ |
-| **Session** | key `agent:<agentId>:main`, `…:subagent:<uuid>`, `cron:<jobId>`; `session.{dmScope,reset,maintenance}`; `~/.openclaw/agents/<id>/agent/openclaw-agent.sqlite` | "Session key is a routing selector, not an authorization token." `dmScope: "per-channel-peer"` = "Isolate by channel + sender (recommended)" | /concepts/session ; /gateway/security | ✅ |
-| **Agent runtime (harness)** | `agentRuntime.id` at `agents.defaults.models["provider/model"]` / `models.providers.<p>` / `agents.entries.*.models[…]`; ids `openclaw`, `codex`, `copilot`, `claude-cli`; ACP via `acp.*` + `@openclaw/acpx` | Runtime "owns one prepared model loop: it receives the prompt, drives model output, handles native tool calls, and returns the finished turn to OpenClaw." Harness = "the implementation that provides an agent runtime (code term)." | /concepts/agent-runtimes | ✅ |
+#### 2a Adapters & Middleware
+<details>
+<summary>● <b>Plugin</b> SDK + MCP client/server + Code Mode</summary>
 
----
+**Ships.** Built-in tool registry with tool groups; provider abstraction; plugin SDK (`api.on`, `api.registerHook`, register channels/providers/tools/harnesses); MCP client (stdio/HTTP/SSE) and MCP server mode (`openclaw mcp serve`); Code Mode; tool search; OpenAI-compatible HTTP API.
+**Path.** `mcp.servers`; `plugins.*`; `openclaw.plugin.json`; `tools.codeMode.enabled`
+**Source.** ✅ `/tools/mcp` · `/tools/plugin` · `/plugins/hooks` · `VISION.md`
 
-## D. Stated limitations (quoted)
+</details>
 
-- SECURITY.md: "OpenClaw is local-first agent infrastructure for trusted operators; it is not designed as a shared multi-tenant boundary between adversarial users on one gateway." … "Anyone who can operate an agent can make it do anything that agent can do. Session ownership, visibility, and presence are usability features, not security boundaries. Turn attribution is best-effort because steering can merge input into an active turn." … "What Usually Is Not a Security Bug: Prompt injection without a policy, auth, approval, sandbox, or tool-boundary bypass… A malicious plugin after a trusted operator installs or enables it… Multiple adversarial users sharing one Gateway host/config and expecting per-user isolation." ✅ https://raw.githubusercontent.com/openclaw/openclaw/main/SECURITY.md
-- README: "Treat inbound messages as untrusted input." Tools run on host unless sandboxing configured. ✅
-- Why-OpenClaw: "Sandboxing is off by default. Out of the box, OpenClaw is a personal assistant for one trusted operator." "One gateway is one trust domain. Roles and session ownership are collaboration guardrails." "Promoted memories have no time-based retention bound… neither admission nor forgetting is a general erasure guarantee." "Tenancy means one gateway cell per tenant, and fleet is still experimental." Native plugins remain unsandboxed; egress allowlisting covers "cooperating traffic only". ✅ https://docs.openclaw.ai/start/why-openclaw
-- Sandboxing: "This is not a perfect security boundary, but it materially limits filesystem and process access." "The Gateway process always stays on the host; only tool execution moves into the sandbox." ✅
-- ACP: "The external harness can read/write according to its own CLI permissions and the selected `cwd`. OpenClaw's sandbox policy does not wrap ACP harness execution." ✅
-- Internal hooks: "Returned values do not block, cancel, or rewrite the operation." ✅
-- Memory: "Memory can preserve approval context, but it does not enforce policy." "If `MEMORY.md` grows past the bootstrap file budget, OpenClaw keeps the file on disk intact but truncates the copy injected into context." ✅
-- Fleet: "Fleet is **experimental**: its commands, flags, and container profile can change between releases without a deprecation window." "The Fleet operator and the host are trusted by every tenant. Resistance to a compromised host is a non-goal." ✅
-- Swarm: "One-shot collector children" only; "No saved workflow definitions or graph DSL"; "Local Gateway placement only (cloud placement planned)". ✅
-- Workboard: "It is not a replacement for GitHub Issues, Linear, Jira, or other team project management systems." ✅
-- Benchmark pack: "not a generic model benchmark"; "Do not point it at live chat services or real personal accounts." ✅
-- Cloud workers: "Cloud workers are opt-in"; "Cloud dispatch does not accept an arbitrary plain directory". ✅
-- VISION.md priorities/roadmap: "Priority: Security and safe defaults; Bug fixes and stability; Setup reliability and first-run UX. Next priorities: Supporting all major model providers; Improving support for major messaging channels…; Performance and test infrastructure; Better computer-use and agent harness capabilities; Ergonomics across CLI and web frontend; Companion apps…" "Core stays lean; optional capabilities should usually ship as plugins." "OpenClaw runtime code reads the current configuration schema only. We do not keep long-lived aliases or compatibility branches." "OpenClaw sends no usage analytics, tracking identifiers, or telemetry attribution to the project unless the operator turned that on themselves." ✅
-- SECURITY.md: "OpenClaw does not currently run a paid bug bounty program." ✅
+#### 2b Hooks
+<details>
+<summary>● Two typed tiers + webhooks — internal observe-only, plugin <b>Hook</b> can block</summary>
 
----
+**Ships.** Internal hooks (`command:new`, `session:compact:*`, `message:*`, `gateway:*`, …) are observe-only — *"Returned values do not block, cancel, or rewrite the operation."* Plugin lifecycle hooks (~45 named events across model, tool, session and agent stages) include `before_tool_call`, which can block, cancel or require approval. Webhook ingress (Gmail, IMAP).
+**Path.** `<workspace>/hooks/<name>/HOOK.md`+`handler.ts`; plugin `api.on(...)`
+**Source.** ✅ `/automation/hooks` · `/plugins/hooks` · `/gateway/configuration`
 
-## E. Sources (all accessed 2026-09-02)
+</details>
 
-Repo / raw / API:
-- https://github.com/openclaw/openclaw (via `https://api.github.com/repos/openclaw/openclaw`, `/releases/latest`, `/releases?per_page=100`, `/contents/`, `/contents/docs`, `/contents/docs/maturity`, `/contents/skills`, `/contents/extensions`)
-- https://raw.githubusercontent.com/openclaw/openclaw/main/README.md
-- https://raw.githubusercontent.com/openclaw/openclaw/main/package.json
-- https://raw.githubusercontent.com/openclaw/openclaw/main/LICENSE
-- https://raw.githubusercontent.com/openclaw/openclaw/main/VISION.md
-- https://raw.githubusercontent.com/openclaw/openclaw/main/SECURITY.md
-- https://raw.githubusercontent.com/openclaw/openclaw/main/AGENTS.md
-- https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG.md (grep only)
-- https://raw.githubusercontent.com/openclaw/openclaw/main/docs/docs.json (navigation, 590 pages)
-- https://raw.githubusercontent.com/openclaw/openclaw/main/docs/ci.md
-- `git ls-remote --tags https://github.com/openclaw/openclaw.git`; `npm view openclaw time/version/license`
+#### 2c Enforcement
+<details>
+<summary>● <b>Tool policy / Exec approvals / Sandbox</b> — role-required sandbox never degrades to host</summary>
 
-Docs site:
-- https://docs.openclaw.ai/ · /gateway/configuration · /gateway/config-tools · /gateway/config-agents · /gateway/security · /gateway/sandboxing · /gateway/operator-scopes · /gateway/multi-tenant-hosting · /gateway/telemetry · /gateway/opentelemetry · /gateway/audit · /gateway/doctor · /gateway/restart-recovery · /gateway/cloud-workers · /gateway/heartbeat · /gateway/cli-backends
-- /tools · /tools/skills · /tools/plugin · /tools/exec-approvals · /tools/permission-modes · /tools/subagents · /tools/swarm · /tools/mcp · /tools/acp-agents · /tools/self-learning · /tools/goal · /tools/custodian-skills
-- /automation/hooks · /automation/cron-jobs · /automation/tasks · /automation/taskflow · /automation/standing-orders
-- /plugins/hooks · /plugins/codex-harness · /plugins/memory-wiki · /plugins/workboard
-- /concepts/memory · /concepts/memory-provenance · /concepts/dreaming · /concepts/multi-agent · /concepts/multi-user · /concepts/agent-workspace · /concepts/architecture · /concepts/agent-loop · /concepts/agent-runtimes · /concepts/session · /concepts/compaction · /concepts/retry · /concepts/managed-worktrees · /concepts/standing-intents · /concepts/soul · /concepts/personal-agent-benchmark-pack
-- /agent-runtime-architecture · /logging · /channels · /nodes · /clawhub · /providers · /cli · /web/control-ui
-- /start/teams · /start/why-openclaw · /start/lore · /reference/credits · /reference/AGENTS.default · /reference/token-use · /reference/pull-request-review-flow · /help/testing · /maturity/scorecard · /maturity/taxonomy · /install/migrating-claude
+**Ships.** Tool policy (`tools.profile`, allow/deny, groups); exec modes `deny/allowlist/ask/auto/full` with per-agent allowlists and `argPattern`, `askFallback` defaulting to `deny`; `tools.elevated` break-glass (off by default); role-required sandboxing — *"failures never degrade to host execution"*; blocking plugin hooks; channel gates; owner-only control-plane tools.
+**Path.** `tools.exec.mode`, `tools.exec.ask`; `gateway.roles.definitions.<role>.sandbox: "required"`
+**Source.** ✅ `/tools/exec-approvals` · `/gateway/sandboxing` · `/gateway/security`
 
-404s encountered: https://docs.openclaw.ai/hooks ; /automation/cron ; /gateway/multi-tenant (correct pages found via docs.json).
+</details>
 
----
+### 3 · System Stacks
 
-## F. Things I could NOT verify
+#### 3a Control
+<details>
+<summary>◐ Exec-approval gates + goals; no plan-mode primitive</summary>
 
-1. **First release date.** Repo created 2025-11-24; npm package `openclaw` first published 2026-01-29 (`0.0.1`). Earlier tags `v0.1.0`–`v1.0.4` exist but I did not fetch their dates, and any earlier npm name (e.g. `clawdbot`) was not checked. ⚠️
-2. **Exact star count on the HTML repo page** — taken from the GitHub API (388,584), not the rendered page. ✅ API / ⚠️ page.
-3. **GitHub's license label** shows `NOASSERTION`; the LICENSE file is verbatim MIT with "OpenClaw Foundation" as holder. Whether the Foundation is a legal entity was not checked. ⚠️
-4. **Peter Steinberger as creator** comes from the credits/lore pages (first-name "Peter" in lore; full name on credits page per the fetch summary). No GitHub org owner listing was fetched. ◐/✅
-5. **Whether any third-party system ships an adapter *for* OpenClaw** (beyond OpenClaw's own MCP-serve / HTTP APIs) — not searched exhaustively. ⚠️
-6. **Full plugin SDK register-method list** (`registerTool`, `registerChannel`, …) — the fetch of /tools/plugin only surfaced `api.on` and `api.registerHook`; `plugins/sdk-*` pages exist in nav but were not read. ⚠️
-7. **Bundled plugin count** — `extensions/` listing returned 162 entries (includes non-plugin files); "~160" is approximate. ✅ count / ⚠️ exact plugin count.
-8. **Channel count** — the /channels fetch summary said "32+"; the nav has ~30 channel pages. ◐
-9. **`contextPruning` config keys** — referenced in the session/compaction area but not confirmed on the pages read. ⚠️
-10. **`docs/maturity` mapping to repo `taxonomy.yaml`** — the file exists in the repo root; the scorecard page did not name it. ⚠️ (linkage inferred)
-11. Fetch summaries were produced by a summarizing model over the primary pages; quoted phrases are as returned and were not independently re-checked against page HTML. Treat individual wording as ✅-with-that-caveat.
+**Ships.** Exec approvals broadcast to macOS app / Control UI / `exec.approval.resolve`; `ask_user` tool; `auto` mode *"sends misses through auto-review before falling back to human approval"*; a run contract via `agent` RPC; Goals (`create_goal` only on explicit request); standing orders in `AGENTS.md` prose (approval gates, escalation rules).
+**No plan-mode primitive was found.**
+**Path.** `tools.exec.ask`; `exec.askFallback`; `/goal`; `AGENTS.md`
+**Source.** ✅ `/tools/exec-approvals` · `/concepts/agent-loop` · `/tools/goal` · `/automation/standing-orders`
+
+</details>
+
+#### 3b Routing
+<details>
+<summary>● <code>bindings[]</code> specificity ladder — <b>Channel + Binding</b></summary>
+
+**Ships.** Message→agent routing via `bindings[]` matched on channel/account/peer/guild, with a published specificity ladder — *"exact peer > parent peer > peer wildcard > guild+roles > guild > team > account > channel > default"*, first-in-config wins ties. Per-agent model routing with fallbacks; agent-to-agent off by default; group-chat mention patterns.
+**Path.** `bindings[]`; `openclaw agents bind/unbind/bindings`
+**Source.** ✅ `/concepts/multi-agent` · `/gateway/config-agents` · `/tools/acp-agents`
+
+</details>
+
+#### 3c Composition
+<details>
+<summary>● <b>Agent</b> config entries + sub-agents + experimental swarm</summary>
+
+**Ships.** Agent = `agents.entries.<agentId>` (workspace, agentDir, model, identity, tools, skills, sandbox). Sub-agents — *"background agent runs spawned from an existing agent run"* — depth ≤5, `maxConcurrent` 8; sub-agent context injects only `AGENTS.md`. Swarm (experimental, opt-in orchestration of many sub-agents from a Code Mode script).
+**No agent-definition file** — agents are config entries plus a workspace.
+**Path.** `agents.entries.*`; `agents.defaults.subagents.*`
+**Source.** ✅ `/gateway/config-agents` · `/tools/subagents` · `/tools/swarm`
+
+</details>
+
+#### 3d Configuration
+<details>
+<summary>● Strict-schema config + <b>Workspace bootstrap files</b>, two-bucket precedence</summary>
+
+**Ships.** `~/.openclaw/openclaw.json` (JSON5, strict schema — unknown keys fail startup, `$include`, hot reload); the *"two-bucket rule"* — root-level siblings hold infrastructure/cross-agent defaults, `agents.defaults` holds agent-loop behavior, `agents.entries` may override. Precedence: env vars > inline `env.vars` > `.env` > shell env. Workspace instruction files are size-capped.
+**Path.** `openclaw config get/set/patch/validate`; `openclaw configure`
+**Source.** ✅ `/gateway/configuration` · `/concepts/agent-workspace`
+
+</details>
+
+#### 3e Standards
+<details>
+<summary>○ No versioned rules-pack for user projects; templates only</summary>
+
+**Nothing here** as a versioned rules-pack / style-guide inheritance mechanism for user projects — checked `/reference/AGENTS.default`, `/concepts/soul`, `/tools/custodian-skills`.
+**What exists instead.** Shipped templates only (AGENTS/SOUL/USER/IDENTITY/BOOTSTRAP/BOOT/HEARTBEAT); a default `AGENTS.md` (*"Don't dump directories or secrets into chat"*); custodian skills (Gather/Mutate/Repair/Prove/Report). The repo's own `AGENTS.md` is for contributors, not a product feature.
+**Source.** ✅ `/reference/AGENTS.default` · `/concepts/soul` · `/tools/custodian-skills`
+
+</details>
+
+### 4 · Capabilities
+
+#### 4a Capability
+<details>
+<summary>● <b>Skill</b> + <b>Plugin</b> + ClawHub registry</summary>
+
+**Ships.** Skills — *"markdown instruction files that teach the agent how and when to use tools,"* following the Agent Skills spec; ~50 bundled. ClawHub — *"the public registry for OpenClaw skills and plugins"* — install by `@owner/slug`, `git:`, or path; a lockfile; publish gated by GitHub account age. Plugins — manifest `openclaw.plugin.json`, ~160 bundled in `extensions/`.
+**Path.** `<workspace>/skills/<name>/SKILL.md`; `openclaw skills install`; `openclaw plugins install`
+**Source.** ✅ `/tools/skills` · `/clawhub` · `/tools/plugin` · GitHub `skills/`, `extensions/`
+
+</details>
+
+#### 4b Capability Permissions
+<details>
+<summary>● Per-agent skill/tool allowlists; <code>before_install</code> can block</summary>
+
+**Ships.** Per-agent skill allowlists (`[]` = none); per-agent tool allow/deny; `tools.byProvider.<id>.profile`; sandboxed MCP/plugin tools gated by `tools.sandbox.tools.alsoAllow`; `plugins.allow` inventory; node command allow/deny; owner-only tools (`gateway`, `cron`); `before_install` hook can block skill/plugin installs.
+**Path.** `agents.entries.<id>.skills`; `tools.byProvider.*`; `plugins.allow`
+**Source.** ✅ `/gateway/config-tools` · `/gateway/security` · `/nodes` · `/plugins/hooks`
+
+</details>
+
+### 5 · Context ⟳
+
+#### 5a Individual Memory
+<details>
+<summary>● Workspace Markdown + hybrid <code>memory_search</code>; dreaming promotes it</summary>
+
+**Ships.** Per-agent workspace Markdown — `MEMORY.md`, `memory/YYYY-MM-DD.md`, `USER.md`, `DREAMS.md` — manual (*"just ask it: 'Remember that I prefer TypeScript.'"*) and automatic (daily notes auto-load; a pre-compaction memory-flush turn; dreaming promotion into `MEMORY.md`). Hybrid `memory_search` (vector+keyword). Imports from Claude Code, Codex, Hermes into `memory/imports/<tool>/`.
+**Path.** `~/.openclaw/workspace/MEMORY.md`, `memory/`; `memory.search.provider`
+**Source.** ✅ `/concepts/memory` · `/concepts/dreaming` · `/install/migrating-claude`
+
+</details>
+
+#### 5b Team Memory
+<details>
+<summary>◐ Shared sessions + provenance; no governed person-to-person promotion</summary>
+
+**Ships.** Shared sessions on a team gateway visible to all operators; dreaming reconciles across agents sharing a workspace; memory-provenance tracks entry origin per agent/session, with *"promotion markers"* in `MEMORY.md`; admission policy and `memory forget`.
+**No governed promotion between people is documented** — *"Promoted memories have no time-based retention bound… neither admission nor forgetting is a general erasure guarantee."*
+**Path.** `plugins.entries.memory-core.config.dreaming.*`
+**Source.** ✅ `/concepts/memory-provenance` · `/concepts/dreaming` · `/start/teams`
+
+</details>
+
+#### 5c Knowledge
+<details>
+<summary>● <code>memory-wiki</code> — structured claims with evidence and provenance</summary>
+
+**Ships.** `memory_search`/`memory_get` hybrid retrieval over memory files and transcripts (SQLite vector index). **memory-wiki** plugin — *"compiles durable knowledge into a navigable wiki: deterministic pages, structured claims with evidence, provenance"* — `openclaw wiki init/ingest/compile/lint/search`, an Obsidian-compatible vault, registered as *"a non-exclusive memory corpus supplement."*
+**Path.** `openclaw memory search`; `openclaw wiki *`; `<vault>/`
+**Source.** ✅ `/concepts/memory` · `/plugins/memory-wiki`
+
+</details>
+
+### 6 · Workspaces ⟳
+
+#### 6a Product
+<details>
+<summary>○ Nothing PRD-shaped; goals and Workboard both disclaim the role</summary>
+
+**Nothing here** — checked `/gateway/configuration`, README, docs index, the examples nav.
+**What exists instead.** **Goals** — *"one durable objective attached to the current OpenClaw session"*; *"A goal is not a task queue."* Workboard plugin Kanban cards — *"not a replacement for GitHub Issues, Linear, Jira."* Standing orders in prose.
+**Source.** ✅ `/tools/goal` · `/plugins/workboard`
+
+</details>
+
+#### 6b Infrastructure
+<details>
+<summary>● Sandbox backends, <b>Node</b>, cloud workers, experimental fleet</summary>
+
+**Ships.** Gateway daemon (`openclaw gateway`, `openclaw daemon install` — launchd/systemd/schtasks); sandbox backends `docker`/`podman`/`ssh`/`openshell`; **Nodes** — paired companion devices, including headless nodes hosting MCP servers; **Cloud workers** — *"move a session's coding work onto a throwaway cloud machine"* via Crabbox; install guides for a dozen platforms; multi-tenant `openclaw fleet` (experimental).
+**Path.** `agents.defaults.sandbox.*`; `gateway.nodes.*`; `cloudWorkers.*`; `openclaw fleet create`
+**Source.** ✅ `/gateway/sandboxing` · `/nodes` · `/gateway/cloud-workers` · `/gateway/multi-tenant-hosting`
+
+</details>
+
+#### 6c Estate
+<details>
+<summary>◐ Managed worktrees only; no multi-repo model documented</summary>
+
+**Ships.** **Managed worktrees** — *"Run agent tasks in isolated git checkouts with automatic snapshots and cleanup,"* branch `openclaw/<name>`. `cloudWorkers.projectProfiles` per-repo profiles.
+**No explicit multi-repository functionality is documented** — the vendor's own line — and no cross-repo impact analysis.
+**Path.** `worktreeRoot`
+**Source.** ✅ `/concepts/managed-worktrees` · `/gateway/cloud-workers`
+
+</details>
+
+#### 6d Delivery
+<details>
+<summary>○ No built-in pipeline; <code>pull-request-review-flow</code> is OpenClaw's own repo</summary>
+
+**Nothing here** as a built-in PR/CI/deploy pipeline for user work — checked `/web/control-ui`, `docs.json` nav.
+**What exists instead.** Session rails surface "pull requests" in Control UI chat; git co-author credit on team gateways; `gh-issues`/`github` bundled skills; worktrees block cleanup on unpushed commits. The `pull-request-review-flow`/`ci` docs describe OpenClaw's *own* repo automation, not a user feature.
+**Source.** ✅ `/web/control-ui` · `/reference/pull-request-review-flow` · `VISION.md`
+
+</details>
+
+### 7 · Workflow Tasks
+
+#### 7a Workflow Tasks
+<details>
+<summary>◐ Six task-shaped objects, vendor concedes the overlap itself</summary>
+
+**Ships.** **Background tasks** — an activity ledger of detached work (`queued→running→ succeeded/failed/timed_out/cancelled/lost`, 7-day retention). **Task Flow** — *"durable record of multi-step work with its own status, JSON state, revision counter."* **Goals** (session-scoped).
+**Standing orders** and **standing intents** (event-conditioned, 24h cooldown, 3-fire cap).
+**Workboard** Kanban. No plan/todo primitive for the model beyond goals.
+**Path.** `~/.openclaw/state/openclaw.sqlite` `task_runs`, `flow_runs`; `openclaw tasks *`
+**Source.** ✅ `/automation/tasks` · `/automation/taskflow` · `/tools/goal` · `/plugins/workboard`
+
+</details>
+
+### 8 · Trust
+
+#### 8a Evals
+<details>
+<summary>◐ Personal-agent benchmark pack; dev-facing, not a ship gate</summary>
+
+**Ships.** Project CI (`pnpm test` Vitest 13 shards, e2e Playwright, `test:live`). **Personal agent benchmark pack** — *"a small repo-backed QA scenario pack for local personal assistant workflows… not a generic model benchmark"* — scenarios cover reminder routing, memory recall, secret redaction, approval denial. `skill_proposal_evaluate` hook gates Skill Workshop drafts pass/revise/block.
+**Not a ship gate for user work** — dev-facing only.
+**Path.** `qa/scenarios/personal/*.yaml`
+**Source.** ✅ `/help/testing` · `/concepts/personal-agent-benchmark-pack` · `/maturity/scorecard`
+
+</details>
+
+#### 8b Evidence
+<details>
+<summary>● (supporting) <b>Audit ledger</b> — metadata-only by construction</summary>
+
+**Ships.** Transcripts (SQLite + archived JSONL, forkable; redaction always on). **Audit ledger** — *"bounded, metadata-only… in the shared OpenClaw state database"* recording `agent.run.*`/ `tool.action.*` events — *"never stores prompts, message bodies, tool arguments, tool results"*; 30-day/100k-row cap; needs `operator.read`. Task ledger with a `lost` state.
+**Path.** `state/openclaw.sqlite` `audit_events`; `openclaw audit`
+**Source.** ✅ `/gateway/audit` · `/concepts/session` · `/automation/tasks`
+
+</details>
+
+#### 8c Observability
+<details>
+<summary>● OTel spans + Prometheus; no telemetry unless opted in</summary>
+
+**Ships.** Structured logs with `traceId`/`spanId`/`parentSpanId`; **OpenTelemetry** plugin (`diagnostics-otel`) — traces/metrics/logs, spans `openclaw.model.call`, `openclaw.tool.execution`, `openclaw.exec` — *"Raw model/tool content is not exported by default."* `diagnostics-prometheus` plugin; a Debug/Logs tab. No usage analytics unless the operator opts in.
+**Path.** `diagnostics.otel.*`; `logging.*`
+**Source.** ✅ `/logging` · `/gateway/opentelemetry` · `/gateway/telemetry`
+
+</details>
+
+#### 8d Efficiency
+<details>
+<summary>● Compaction + cache-TTL + per-goal budget; no spend cap</summary>
+
+**Ships.** Compaction (`safeguard`/`default` modes, `keepRecentTokens=20000`, memory-flush before compacting); cost accounting from per-provider pricing, `/status`, `/usage`, `/context`, a Usage tab; prompt caching with cache-TTL pruning; context-window caps; loop detection. Goals expose *"token usage, and token budget."*
+**No hard spend budget or kill-switch is documented anywhere.**
+**Path.** `agents.defaults.compaction.*`; `agents.entries.*.params.cacheRetention`
+**Source.** ✅ `/concepts/compaction` · `/reference/token-use` · `/gateway/config-agents`
+
+</details>
+
+### 9 · IMPROVE
+
+#### 9a Learning
+<details>
+<summary>● Self-learning + Skill Workshop review gate + dreaming promotion</summary>
+
+**Ships.** **Self-learning** — *"turns corrections and successful work into reusable skills. Skills are the durable unit"* — via Experience Review (auto after ≥10 model iterations) and Immediate Repair.
+**Skill Workshop** governs proposals (`autonomous.mode="auto"`, `maxPending` 50, a review-gate hook).
+**Dreaming** — background memory consolidation in three phases, promoting into `MEMORY.md` and a `DREAMS.md` diary, nightly cron.
+**Path.** `skills.workshop.*`; `plugins.entries.memory-core.config.dreaming.*`
+**Source.** ✅ `/tools/self-learning` · `/concepts/dreaming`
+
+</details>
+
+#### 9b Rituals
+<details>
+<summary>◐ Bootstrap ritual + heartbeat + Custodian playbook; no human rituals</summary>
+
+**Ships.** A *"bootstrap ritual"* (`BOOTSTRAP.md`, one-time first-run); heartbeat check-ins; nightly dreaming sweep; Skill Workshop review queue; Custodian playbook (Gather→Mutate→Repair→Prove→Report).
+**No named human rituals** (standup/retro/planning) for users were found.
+**Path.** `BOOTSTRAP.md`; `agents.defaults.heartbeat`
+**Source.** ✅ `/concepts/agent-workspace` · `/gateway/heartbeat` · `/tools/custodian-skills`
+
+</details>
+
+#### 9c Cadence
+<details>
+<summary>● <b>Automation (cron) / Heartbeat</b> inside the Gateway process</summary>
+
+**Ships.** **Automations/cron** running inside the Gateway process — `at`/`every`/`cron`/`on-exit`/ `stream` schedules, delivery `announce`/`webhook`/`none`, SQLite-persisted. **Heartbeat** — *"a system-owned automation that runs periodic agent turns in the main session"* (default every 30m, active-hours gated). Webhook ingress; standing intents (event-triggered).
+**Path.** `cron.*`; `agents.defaults.heartbeat.*`
+**Source.** ✅ `/automation/cron-jobs` · `/gateway/heartbeat`
+
+</details>
+
+#### 9d Anti-fragile Lifecycle
+<details>
+<summary>◐ Restart recovery + failover + <code>doctor --fix</code>; no defect ledger</summary>
+
+**Ships.** Restart recovery — *"work that was interrupted mid-turn is detected and resumed automatically,"* a durable three-attempt dispatch budget, tombstoning; model failover plus auth-profile rotation; retries (3 attempts, jittered); a durable outbound queue; tasks marked `lost` after a grace period; `openclaw doctor --fix` migrations; `openclaw backup create/verify/restore`.
+**No defect ledger** — recovery is runtime resilience, not a closed improvement loop.
+**Path.** `openclaw doctor`; `openclaw backup`
+**Source.** ✅ `/gateway/restart-recovery` · `/concepts/retry` · `/gateway/doctor`
+
+</details>
+
+#### 9e Raise the Floor
+<details>
+<summary>◐ <code>onboard</code>, <code>doctor --fix</code>, security-audit <code>--fix</code>; templates for every file</summary>
+
+**Ships.** `openclaw onboard`/`setup` wizards (including `--import-from claude`); `openclaw doctor` — *"the repair and migration tool… fixes stale config/state, checks health, provides actionable repair steps"*; safe defaults if config is missing; templates for every workspace file; `openclaw security audit --fix`; an "Ask OpenClaw" setup-and-repair agent in Control UI; Custodian agent.
+**Path.** `openclaw doctor`; `openclaw security audit`
+**Source.** ✅ `/gateway/doctor` · `/gateway/security` · `/web/control-ui`
+
+</details>
+
+#### 9f Diagnose the Bottleneck
+<details>
+<summary>◐ Maturity scorecard — for itself, not a user's deployment</summary>
+
+**Ships.** **Maturity scorecard** — *"a practical view of what is ready, what is proven, and what still needs work"* over 50 surfaces / 280 capability areas, bands Experimental→Clawesome, taxonomy M0–M5, *"deliberately evidence-led"* from QA IDs. `openclaw security audit` findings with `checkId`s; `openclaw doctor`; `openclaw tasks audit`.
+**This scores the product itself** — no team-maturity/readiness scoring for users.
+**Path.** `taxonomy.yaml`; `openclaw security audit`
+**Source.** ✅ `/maturity/scorecard` · `/maturity/taxonomy` · `/gateway/security`
+
+</details>
+
+### 10 · Teams & Agents
+
+#### 10a Roster
+<details>
+<summary>● Named <b>Agent</b> identities + Custodian + default persona</summary>
+
+**Ships.** Named agents (`agents.entries.<agentId>.identity {name, theme, emoji, avatar}`); `IDENTITY.md` — *"The agent's name, vibe, and emoji"*; `SOUL.md` persona; `openclaw agents list/add/delete/set-identity`; a system Custodian agent; sub-agent/swarm children; a default "Molty" persona; a Control UI Agents page.
+**Path.** `agents.entries.*.identity`; `IDENTITY.md`
+**Source.** ✅ `/gateway/config-agents` · `/concepts/agent-workspace` · `/start/lore`
+
+</details>
+
+#### 10b Org
+<details>
+<summary>● (supporting) <b>Operator roles / scopes</b> + session owner/participant</summary>
+
+**Ships.** Session **creator** (immutable) / **owner** — *"in the style of a GitHub issue assignee"* — / **participants**; operator roles (`gateway.roles.definitions.<role>.{sessions,agents,scopes, sandbox}`); scopes (`operator.read/write/admin/pairing/approvals/questions/talk`); channel owner vs. non-owner senders; escalation rules in standing-orders prose; HITL posture via exec modes. *"Session ownership, visibility, and presence are usability features, not security boundaries"* — the vendor's own bound on the claim.
+**Path.** `gateway.roles.definitions.*`; `operator.*` scopes
+**Source.** ✅ `/concepts/multi-user` · `/gateway/operator-scopes` · `/automation/standing-orders`
+
+</details>
+
+### 11 · Surfaces
+
+#### 11a Surfaces
+<details>
+<summary>● CLI/TUI/Control UI/mobile/~30 channels/RPC/HTTP/MCP; no IDE</summary>
+
+**Ships.** CLI, TUI, Control UI (Vite+Lit SPA — Chat, Sessions, Tasks, Automations, Plugins, Skills, Devices, Usage, Debug/Logs, Terminal, Browser panel), WebChat, a macOS menu-bar app, iOS/Android/watchOS apps, ~30 chat channels (WhatsApp, Telegram, Discord, Slack, Signal, iMessage, Teams, Matrix, …), WebSocket RPC, two HTTP APIs (OpenAI-compatible, OpenResponses), MCP server mode, Discord Activities.
+**No IDE plugin was found.**
+**Path.** `gateway.controlUi.*`; `channels.*`
+**Source.** ✅ `/web/control-ui` · `/concepts/architecture` · `docs.json` nav
+
+</details>
+
+## 7. Identity and inclusion test
+
+<details>
+<summary>Identity · inclusion test · loop question</summary>
+
+| Field | Value |
+|---|---|
+| Canonical name | **OpenClaw** — README, package.json `name: "openclaw"` ✅ |
+| Prior names / homes | *"It evolved through several names and shells: Warelay -> Clawdbot -> Moltbot -> OpenClaw."* Clawdbot from 2025-11-25; renamed Moltbot 2026-01-27 *"following a trademark request from Anthropic"*; renamed OpenClaw 2026-01-30 ✅ `VISION.md` · `/start/lore` |
+| Owner / maintainer | Creator Peter Steinberger (credits page); copyright holder *"OpenClaw Foundation"* (LICENSE); SECURITY.md maintainers include *"engineers and security researchers from organizations such as NVIDIA and Tencent"* ✅ (each fact) / ↪ (creator attribution — lore/credits pages, no GitHub org owner listing fetched) |
+| GitHub URL | `github.com/openclaw/openclaw` (default branch `main`) ✅ |
+| License | **MIT** (LICENSE, package.json, npm). GitHub API reports `spdx_id: NOASSERTION` — the detector doesn't classify it; the file text is the MIT template ✅ |
+| Stars | 388,584 stars, 81,595 forks, 6,072 open issues (2026-09-02) ✅ |
+| Language | TypeScript; pnpm monorepo; Node `>=22.22.3<23 \|\| >=24.15.0<25 \|\| >=25.9.0` ✅ |
+| Repo created | 2025-11-24T10:16:47Z ✅ |
+| First release | npm package created 2026-01-29 (first publish `0.0.1`, then `2026.1.29-beta.1` on 2026-01-30). Oldest git tags `v0.1.0`–`v0.1.3`, `v1.0.4` predate the rename ✅ (npm) / ⚠️ (tag dates) |
+| Latest release | **v2026.8.2**, published 2026-09-01T16:00:56Z; 250 versions on npm; a `v2026.9.1-beta.1` tag exists ✅ |
+| Install | `curl -fsSL https://openclaw.ai/install.sh \| bash` (macOS/Linux/WSL2); `npm install -g openclaw@latest`; then `openclaw onboard --install-daemon` ✅ |
+| Website / docs | `docs.openclaw.ai` ✅ |
+| What it says it is, verbatim | *"OpenClaw is an AI assistant that runs on your devices and meets you in the channels you already use."* GitHub description: *"Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞"* VISION.md: *"OpenClaw is the AI that actually does things. It runs on your devices, in your channels, with your rules."* ✅ |
+
+**Does state persist across sessions, where, in what format?** **Yes.** Workspace Markdown at `~/.openclaw/workspace/` (`MEMORY.md`, daily `memory/` notes, `USER.md`, `DREAMS.md`) — *"The model only remembers what gets saved to disk; there is no hidden state."* Per-agent session SQLite plus archived JSONL transcripts; a shared `state/openclaw.sqlite` for tasks, flows, audit and cron; a vector memory index. Restart recovery resumes interrupted work automatically. ✅ `/concepts/memory` · `/concepts/session` · `/gateway/restart-recovery`
+
+**Does it serve more than one person?** **Yes, with an explicit trust caveat.** *"One OpenClaw gateway that a whole team uses… roles that bound what each person can do."* Multi-user mode adds session ownership, participant history and presence. Limit: *"not a hostile multi-tenant security boundary for mutually adversarial users sharing one agent or gateway"* — *"one gateway is one trust domain."* True multi-tenancy is *"one complete Gateway instance per tenant"* via the experimental `openclaw fleet`. Default posture: *"a personal assistant for one trusted operator."* ✅ `/start/teams` · `/concepts/multi-user` · `/start/why-openclaw`
+
+**Does it bind mechanically, or only by prose?** **Mechanically, at several layers; the workspace Markdown is prose.** Tool policy, exec approval modes (`deny→full`, `askFallback` deny), and role-required sandboxing — *"failures never degrade to host execution"* — sit outside the prompt. Blocking plugin hooks can cancel a tool call. By contrast, internal hooks *"cannot block, cancel, or modify operations,"* the `AGENTS.md` `## Tools` section *"does not control tool availability; it is only guidance,"* and memory *"does not enforce policy."* ✅ root README · `/gateway/security` · `/plugins/hooks`
+
+**Loop question.** **Runs the loop itself, and hosts other harnesses as pluggable runtimes.** *"The agent loop is the serialized, per-session run that turns a message into actions and a reply"* — executed by the embedded runtime (`runEmbeddedAgent`, package `@openclaw/agent-core`, runtime id `openclaw`). It also hosts Codex (app-server), Copilot, and Claude Code (via the Agent SDK) as agent-runtime plugins, plus eleven-plus ACP harnesses (`claude`, `codex`, `cursor`, `gemini`, `opencode`, …) via `@openclaw/acpx` — *"OpenClaw's sandbox policy does not wrap ACP harness execution."* Adapters travel both ways: `openclaw migrate claude` imports `CLAUDE.md`/`SKILL.md`/`.mcp.json`, explicitly naming what does **not** import (Claude hooks, permissions, `.claude/rules/`, subagents); `openclaw mcp serve` exposes OpenClaw itself to another MCP client. No other system shipping an adapter *for* OpenClaw was found (not searched exhaustively). ✅ `/concepts/agent-loop` · `/concepts/agent-runtimes` · `/tools/acp-agents` · `/install/migrating-claude`
+
+**Altitude.** **Gateway / host.** Runs its own embedded agent loop *and* hosts Codex, Claude Code and eleven-plus ACP harnesses as pluggable runtimes it does not own — both altitudes evidenced above, per skill rule 7.
+
+</details>
+
+## 8. Limits
+
+<details>
+<summary>What it does not claim, in the vendor's words</summary>
+
+**From `SECURITY.md`** ✅
+
+> *"OpenClaw is local-first agent infrastructure for trusted operators; it is not designed as a shared multi-tenant boundary between adversarial users on one gateway."* … *"Anyone who can operate an agent can make it do anything that agent can do. Session ownership, visibility, and presence are usability features, not security boundaries."* … *"OpenClaw does not currently run a paid bug bounty program."*
+
+**From `/start/why-openclaw`** ✅
+
+> *"Sandboxing is off by default. Out of the box, OpenClaw is a personal assistant for one trusted operator."* *"One gateway is one trust domain. Roles and session ownership are collaboration guardrails."* *"Promoted memories have no time-based retention bound… neither admission nor forgetting is a general erasure guarantee."* *"Tenancy means one gateway cell per tenant, and fleet is still experimental."*
+
+**From `/gateway/sandboxing`** ✅
+
+> *"This is not a perfect security boundary, but it materially limits filesystem and process access."* *"The Gateway process always stays on the host; only tool execution moves into the sandbox."*
+
+**From `/tools/acp-agents`** ✅
+
+> *"The external harness can read/write according to its own CLI permissions and the selected `cwd`. OpenClaw's sandbox policy does not wrap ACP harness execution."*
+
+**From `/plugins/hooks`** ✅
+
+> Internal hooks: *"Returned values do not block, cancel, or rewrite the operation."* Memory: *"can preserve approval context, but it does not enforce policy."*
+
+**Package/feature disclaimers** ✅
+
+> Fleet: *"experimental: its commands, flags, and container profile can change between releases without a deprecation window."* *"The Fleet operator and the host are trusted by every tenant. Resistance to a compromised host is a non-goal."* Swarm: *"One-shot collector children"* only; *"No saved workflow definitions or graph DSL."* Workboard: *"not a replacement for GitHub Issues, Linear, Jira."* Benchmark pack: *"not a generic model benchmark."*
+
+**From `VISION.md`** ✅
+
+> *"Core stays lean; optional capabilities should usually ship as plugins."* *"OpenClaw runtime code reads the current configuration schema only. We do not keep long-lived aliases or compatibility branches."* *"OpenClaw sends no usage analytics, tracking identifiers, or telemetry attribution to the project unless the operator turned that on themselves."*
+
+</details>
+
+## 9. Sources
+
+<details>
+<summary>Primary · secondary · placement · diagrams not redrawn</summary>
+
+**All primary sources accessed 2026-09-02. No source was re-read at the 2026-09-07 restructure.**
+
+**Primary — GitHub API and repo.** `gh api repos/openclaw/openclaw`, `/releases/latest`, `/releases?per_page=100`, `/contents/`, `/contents/docs`, `/contents/docs/maturity`, `/contents/skills`, `/contents/extensions` · `git ls-remote --tags` · `npm view openclaw time/version/license`.
+
+**Primary — files.** `README.md` · `package.json` · `LICENSE` · `VISION.md` · `SECURITY.md` · `AGENTS.md` · `CHANGELOG.md` (grep only) · `docs/docs.json` (590-page nav) · `docs/ci.md`.
+
+**Primary — docs site.** `docs.openclaw.ai` across `/gateway/*`, `/tools/*`, `/automation/*`, `/plugins/*`, `/concepts/*`, `/nodes`, `/channels`, `/clawhub`, `/providers`, `/cli`, `/web/control-ui`, `/start/*`, `/reference/*`, `/help/testing`, `/maturity/*`, `/install/migrating-claude`.
+
+**Secondary (↪).** None read at the 2026-09-02 source read.
+
+**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md).
+
+**Diagrams not redrawn.** **No diagram inventory was taken at the 2026-09-02 read.** Whether OpenClaw's 590-page docs site carries vendor diagrams is unknown and unrecorded — it is a gap in the read, not a finding about the vendor. The diagram pass (W8c) opens the sources and records what it finds.
+
+</details>
+
+## 10. Unverified
+
+<details>
+<summary>13 items</summary>
+
+- **First release date** — repo created 2025-11-24; npm package first published 2026-01-29 (`0.0.1`). Earlier tags `v0.1.0`–`v1.0.4` exist but their dates were not fetched, and any earlier npm name (e.g. `clawdbot`) was not checked. ⚠️
+- **Exact star count on the HTML repo page** — taken from the GitHub API (388,584), not the rendered page. ✅ API / ⚠️ page.
+- **GitHub's license label** shows `NOASSERTION`; the LICENSE file is verbatim MIT with "OpenClaw Foundation" as holder. Whether the Foundation is a legal entity was not checked. ⚠️
+- **Peter Steinberger as creator** comes from the credits/lore pages. No GitHub org owner listing was fetched. ↪ / ✅
+- **Whether any third-party system ships an adapter *for* OpenClaw** (beyond its own MCP-serve / HTTP APIs) — not searched exhaustively. ⚠️
+- **Full plugin SDK register-method list** (`registerTool`, `registerChannel`, …) — only `api.on` and `api.registerHook` were surfaced; `plugins/sdk-*` pages in the nav were not read. ⚠️
+- **Bundled plugin count** — the `extensions/` listing returned 162 entries (includes non-plugin files); "~160" is approximate. ✅ count / ⚠️ exact plugin count.
+- **Channel count** — a fetch summary said "32+"; the nav has ~30 channel pages. ↪
+- **`contextPruning` config keys** — referenced near the compaction area but not confirmed on the pages read. ⚠️
+- **`docs/maturity` mapping to repo `taxonomy.yaml`** — the file exists at the repo root; the scorecard page did not name it. ⚠️ (linkage inferred)
+- **Fetch summaries were produced by a summarizing model** over the primary pages; quoted phrases are as returned and were not independently re-checked against page HTML. Treat individual wording as ✅-with-that-caveat.
+
+**Added at the 2026-09-07 restructure, and not source questions:** the primitive table carries an ISSUE-007 undercount — the metadata-only audit ledger and operator roles/scopes were load-bearing in §B but never listed in v1's §C — folded into §5/§6 here, but not re-run against rule 4's primitive-vs-supporting test against a live source; and **no diagram inventory exists** for this harness (§2, §3, §9).
+
+</details>
+
+

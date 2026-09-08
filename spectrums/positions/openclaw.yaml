@@ -1,0 +1,201 @@
+# OpenClaw — spectrum positions and DX scorecard.
+#
+# Scored against the profile as restructured to Template v2 on 2026-09-07 from
+# the source read of 2026-09-02. No source was opened at scoring time (R3).
+# Every `evidence` entry points at a section or component id of that profile.
+
+# ---------------------------------------------------------------- R11 verification
+verification:
+  derived_from:
+    - "OpenClaw's own README, VISION.md, SECURITY.md and docs.openclaw.ai — read 2026-09-02 via the profile"
+    - "repo README, LICENSE, package.json and tag/release history — openclaw/openclaw"
+    - "the docs.json navigation (590 pages) used to scope the v1 read"
+  grounded_against:
+    - "§4 component matrix — 33 rows, ● 20 · ◐ 10 · ○ 3, copied from the 04 grid column"
+    - "§5 primitives — 12 named units + 2 supporting, 12+ accommodation failure (04-harness-alignment §3.3)"
+    - "§7 identity table — MIT licence, 388,584 stars, repo created 2025-11-24, v2026.8.2"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-07"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    Two disagreements are recorded rather than resolved. (1) 00-README.md §3 axis I already
+    cites OpenClaw as its −3 corpus anchor ("designed for a single operator"), but this
+    profile's fuller read shows named team machinery — session owner, participant, per-scope
+    roles, a team-gateway doc page — that the anchor quote does not reflect. operator-scale is
+    scored between the stated default posture and the shipped mechanism (R10 split) rather than
+    at the anchor's −3, and the tension is left for the next axis-I revision to reconcile, not
+    resolved here. (2) ISSUE-007's undercount (the audit ledger, operator roles/scopes) is
+    folded into §5/§6 at the restructure but not re-run against rule 4's primitive-vs-supporting
+    test against a live source — the primitive count and weight-class dimension both carry that
+    caveat forward.
+
+spectrums:
+  schema_version: 2
+  harness: openclaw
+  profile: content/openclaw.md
+  profile_read: "2026-09-02"      # the source read; the restructure added no facts
+  scored: "2026-09-07"
+  scorer: KD
+
+  # ---------------------------------------------------------------- the ten axes
+  positions:
+
+    - id: operator-scale
+      value: 1
+      mark: direct
+      evidence: ["10b", "§7 · serves more than one person", "3d", "4b"]
+      because: "Named session owner, participant and per-scope roles for a shared team gateway — a real team object, short of the enterprise multi-tenant boundary it explicitly disclaims."
+      split: "Default posture is −3 — 'a personal assistant for one trusted operator,' out of the box. Shipped mechanism for a team gateway is closer to +2 — roles, scopes and session ownership are config objects, not just shareable files. Scored between, per R10; both halves are in §7 verbatim."
+      gap: "00-README.md's own axis-I corpus_anchor cites OpenClaw at −3 ('designed for a single operator'); this profile's fuller read shows team machinery the anchor quote doesn't reflect. Worth reconciling at the next axis revision rather than silently diverging."
+
+    - id: state-durability
+      value: 2
+      mark: direct
+      evidence: ["5a", "5c", "8b", "§7 · does state persist"]
+      because: "Workspace Markdown, per-agent session SQLite and a shared state SQLite database, plus a hybrid vector/keyword memory index — more than file-backed, short of a store any authorized session can freely join."
+      gap: "Whether the shared state.sqlite is queryable by any authorized session or only by the owning agent's process was not stated at the v1 read; if the former, this moves to +3."
+
+    - id: binding-force
+      value: 3
+      mark: direct
+      evidence: ["2c", "§7 · binds mechanically or only by prose", "4b"]
+      because: "Exec approvals can only tighten, never loosen, config-set security; role-required sandbox states failures never degrade to host execution — a control outside the prompt that no mode bypasses."
+
+    - id: loop-ownership
+      value: 0
+      dual: 3
+      dual_because: "Runs its own embedded runtime (runEmbeddedAgent, agent-core) while also hosting Codex, Claude Code and eleven-plus ACP harnesses as pluggable runtimes it does not own — both evidenced in §7's loop question, per skill rule 7."
+      mark: direct
+      evidence: ["§7 · loop question", "2a", "0a"]
+      because: "A gateway that ships adapters both ways — migrate-claude imports, mcp-serve exports — and also runs a loop of its own; the host half and the runtime half are equally real."
+
+    - id: substrate-portability
+      value: 3
+      mark: direct
+      evidence: ["0a", "2a", "§7 · loop question"]
+      because: "70+ providers plus custom endpoints, and adapters running both directions — MCP client, MCP server, ACP client for eleven-plus harnesses — moving is a config line."
+
+    - id: primitive-discipline
+      value: 3
+      mark: direct
+      evidence: ["§5 count and verdict", "§4 7a note"]
+      because: "Twelve-plus named units, with six overlapping task-shaped objects at 7a alone that its own docs concede overlap — the corpus's clearest accommodation-failure case."
+      gap: "The count carries ISSUE-007's undercount (audit ledger, operator roles/scopes added at this restructure) and has not been re-run against rule 4's primitive-vs-supporting test at a live source."
+
+    - id: control-posture
+      value: 0
+      mark: direct
+      evidence: ["2c", "3a", "9c"]
+      because: "askFallback defaults to deny and elevated tools are off by default, but heartbeat and cron enable genuinely unattended turns — asymmetric, not approval-first throughout."
+      gap: "The default value of tools.exec.mode itself (deny/allowlist/ask/auto/full) was not stated at the v1 read, only that askFallback defaults to deny; the full default posture would sharpen this score."
+
+    - id: proof-ceremony
+      value: 0
+      mark: direct
+      evidence: ["8b", "8a", "9d"]
+      because: "An always-on, metadata-only audit ledger and a task ledger record actions automatically, but nothing requires an artifact before a unit of work is considered done."
+
+    - id: improvement-loop
+      value: 2
+      mark: direct
+      evidence: ["9a", "4a", "9d"]
+      because: "Experience Review and Immediate Repair convert corrections into skills automatically, gated by Skill Workshop review before they ship — capture and promotion both real, not just a stated posture."
+
+    - id: cost-visibility
+      value: 2
+      mark: direct
+      evidence: ["8d", "8c", "8b"]
+      because: "Token/cost accounting surfaces per session and per goal, with a usage-cost command and a dedicated tab — attributed to a unit of work, short of joining every cost to a completion record."
+
+  # --------------------------------------------------- probation axes (00-README §5)
+  probation:
+
+    - id: surface-breadth
+      value: 3
+      mark: direct
+      evidence: ["11a", "6b"]
+      because: "CLI, TUI, Control UI, mobile apps, ~30 chat channels, WS RPC, two HTTP APIs and MCP server mode — the broadest surface set read in this corpus so far; no IDE plugin found."
+
+    - id: routing-determinism
+      value: 2
+      mark: direct
+      evidence: ["3b"]
+      because: "A published specificity ladder resolves message-to-agent routing deterministically — closer to 'a resolver decides' than the manual, model-facing routing most profiles score."
+
+    - id: knowledge-depth
+      value: 3
+      mark: direct
+      evidence: ["5c"]
+      because: "memory-wiki compiles 'structured claims with evidence, provenance' into a navigable, Obsidian-compatible vault — curated, retrievable and cited."
+
+  # ------------------------------------------------------- the seven DX dimensions
+  # The revised seven (ruling `2026-09-07-dx-revision`). Authored, never computed (R8).
+  scorecard:
+
+    - id: org-scale
+      dx: 1
+      value: 1
+      mark: direct
+      reads_opened:
+        axes: ["operator-scale: 1"]
+        profile: ["§7 Q2", "10b", "10a", "3d", "4b"]
+      because: "Pass-through of axis I. A team gateway with named roles and session ownership, short of the enterprise multi-tenant boundary it explicitly disclaims."
+
+    - id: weight-class
+      dx: 2
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["proof-ceremony: 0 — direct", "primitive-discipline: 3 — bulk only, verdict discarded"]
+        profile: ["§5 count and verdict", "9f maturity scorecard", "8a benchmark pack", "8b audit ledger", "2c", "8d"]
+      because: "Twelve-plus named units, a self-scored maturity table, a QA/benchmark pack and an audit ledger — real bulk and dev-facing rigor, though nothing requires an artifact before a unit of work closes."
+
+    - id: surfaces-extendability
+      dx: 3
+      value: 3
+      mark: direct
+      reads_opened:
+        axes: ["surface-breadth: 3 (probation)"]
+        profile: ["2b — ~45 events, two tiers", "4a — ClawHub + ~160 bundled plugins", "2a", "6b", "11a"]
+      because: "Two hook systems, a plugin SDK with ~160 bundled extensions, a public registry, MCP both directions and ACP for eleven-plus harnesses — the strongest platform case read in this corpus."
+
+    - id: domain-specialization
+      dx: 4
+      value: 0
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 · what it says it is", "Genre row (04-harness-alignment §1)", "§5 refusal list — none", "8a benchmark pack"]
+      because: "Names 'AI assistant' and channels in its own first sentence, but the machinery — tools, skills, plugins, agent runtimes — is general-purpose; nothing about the loop itself is assistant-only."
+      gap: "The personal-agent-benchmark-pack (8a) is domain-shaped QA scored only against personal-assistant scenarios — a partial counter-argument a re-read should weigh against the 0."
+
+    - id: ecosystem
+      dx: 5
+      value: 1
+      grades: true
+      mark: direct
+      reads_opened:
+        axes: []
+        profile: ["§7 Stars 388,584", "§7 Repo created 2025-11-24", "§7 Latest v2026.8.2, 250 npm versions", "4a ClawHub"]
+      because: "388,584 stars — the largest read in this corpus — and 250 npm releases in under a year, against a repo not yet a year old and three name changes in its first ten weeks."
+      gap: "No third-party package or author count on ClawHub was captured at the v1 read, unlike Pi's gallery figure — a real gap specific to this dimension."
+
+    - id: ownership
+      dx: 6
+      value: 3
+      mark: direct
+      reads_opened:
+        axes: ["substrate-portability: 3"]
+        profile: ["§7 License — MIT", "§7 Install", "6b install guides", "0a"]
+      because: "MIT licensed, self-hostable across a dozen listed platforms, and 70+ model providers — yours, on the same grounds as the corpus's other +3 ownership case."
+
+    - id: cost-controls
+      dx: 7
+      value: 2
+      mark: direct
+      reads_opened:
+        axes: ["cost-visibility: 2 — the observability third", "routing-determinism: 2 (probation) — the routing third"]
+        profile: ["8d", "8c", "8b", "3b"]
+      because: "Compaction, cache-TTL pruning and per-goal token budgets, plus a deterministic routing ladder — no hard spend cap or kill-switch documented anywhere in the profile."
