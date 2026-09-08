@@ -9,11 +9,30 @@ owner: KD
 source: "shi503/fractal-agent-system (upstream) @ 6398f6db059598e381336601b21609928cf24034 — the commit LoomWarp vendored, re-checked against HEAD 60393054 (2026-09-03) for drift only, never for §4/§6 marks · shi503/generic-cerebro (the fork) @ 2cd56e7ef4f3472c4e91a54810d7f69215b8f536 · this repo (`harness-atlas`), the un-routed instance, working tree at HEAD · read 2026-09-03"
 provenance: OBSERVED
 template: "v2 (restructured from v1 read 2026-09-03, no re-read)"
+verification:
+  derived_from:
+    - "shi503/fractal-agent-system (upstream) @ 6398f6db059598e381336601b21609928cf24034 — the commit LoomWarp vendored, re-checked against HEAD 60393054 (2026-09-03) for drift only, never for §4/§6 marks · shi503/generic-cerebro (the fork) @ 2cd56e7ef4f3472c4e91a54810d7f69215b8f536 · this repo (`harness-atlas`), the un-routed instance, working tree at HEAD · read 2026-09-03"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-03"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # FRACTAL — KD (`shi503`), three instances
 
 ***A four-tier process layer whose defining move is a model-free `router.py` state machine that gates a workstream's advancement on a HANDOFF's pasted build output — but never checks whether that output is true — running atop whichever harness's session is already open, at all three instances observed.***
+
+> **Profile drafted 2026-09-03 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 *Three instances throughout: **U** = upstream (`shi503/fractal-agent-system`) pinned at `6398f6db`, 2026-04-20 · **C** = the fork `generic-cerebro`, pinned at `2cd56e7` · **R** = this repo (`harness-atlas`), the un-routed instance. §4's coverage marks grade **U**; `C`/`R` deltas are in each §6 row.*
 

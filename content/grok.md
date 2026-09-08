@@ -9,11 +9,30 @@ owner: KD
 source: "github.com/xai-org/grok-build @ 72a6125 (2026-09-01, no tags) · docs.x.ai/grok-bot (beta, launched 2026-08-11) · x.ai/news · read 2026-09-02"
 provenance: OBSERVED
 template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
+verification:
+  derived_from:
+    - "github.com/xai-org/grok-build @ 72a6125 (2026-09-01, no tags) · docs.x.ai/grok-bot (beta, launched 2026-08-11) · x.ai/news · read 2026-09-02"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-02"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # Grok Bot / Grok Build — SpaceXAI
 
 ***One vendor, two products, read as a pair because no primary source resolves them into one: Grok Build is an Apache-2.0 Rust runtime with the fullest compatibility surface in this corpus — reading Claude Code's and Cursor's config, hooks and permissions live — while Grok Bot is a closed, hosted teammate taught by demonstration on its own persistent cloud computer.***
+
+> **Profile drafted 2026-09-02 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 

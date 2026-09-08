@@ -9,11 +9,30 @@ owner: feature-lead (W8 deliverable 3)
 source: "anthropics/claude-code @ v2.1.261 (d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b) · https://code.claude.com/docs/en/ · read 2026-09-04"
 provenance: OBSERVED
 template: v2
+verification:
+  derived_from:
+    - "anthropics/claude-code @ v2.1.261 (d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b) · https://code.claude.com/docs/en/ · read 2026-09-04"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-04"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # Claude Code — Anthropic
 
 ***An agent loop wrapped in an "agentic harness" that supplies tools, context management, and an execution environment; it optimises for a single operator's turn binding mechanically at the tool-call boundary, with everything upstream of that boundary — CLAUDE.md, auto memory, skills — shaping behaviour by prose rather than enforcing it.***
+
+> **Profile drafted 2026-09-04 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 

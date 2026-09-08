@@ -9,11 +9,30 @@ owner: KD
 source: "gastownhall/gascity @ 4071143 (main/edge; v1.4.1 @ 6106663, 2026-08-15) · docs/, engdocs/ · read 2026-09-03"
 provenance: OBSERVED
 template: "v2 (restructured from v1 read 2026-09-03, no re-read)"
+verification:
+  derived_from:
+    - "gastownhall/gascity @ 4071143 (main/edge; v1.4.1 @ 6106663, 2026-08-15) · docs/, engdocs/ · read 2026-09-03"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-03"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # Gas City — Gas Town Hall
 
 ***A Go orchestration SDK, extracted out of the earlier, more opinionated Gas Town product, that runs fleets of external coding-agent CLIs as managed sessions coordinated entirely through a shared, Dolt-backed work store — hardcoding zero roles, built from six named primitives gated by a documented admission test, and refusing to be a sandbox: command execution is stated as a trusted-operator feature, not a security boundary.***
+
+> **Profile drafted 2026-09-03 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 

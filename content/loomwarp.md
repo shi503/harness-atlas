@@ -9,11 +9,30 @@ owner: FeatureLead-LoomWarp (W4 #3)
 source: "shi503/loomwarp-team-system @ 8844df6f4bc48f8a563340eb3163401792e000d5 (branch `master`, private) · README.md, docs/*.md, fractal/, standards/, skills/, control/, policy/, context/, registry/, vendor/ at repo root · read 2026-09-03"
 provenance: OBSERVED
 template: "v2 (restructured from v1 read of 2026-09-03, no re-read)"
+verification:
+  derived_from:
+    - "shi503/loomwarp-team-system @ 8844df6f4bc48f8a563340eb3163401792e000d5 (branch `master`, private) · README.md, docs/*.md, fractal/, standards/, skills/, control/, policy/, context/, registry/, vendor/ at repo root · read 2026-09-03"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-03"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # LoomWarp — KD (`shi503`)
 
 ***A Python control plane — an unmodified `router.py` plus an additive `dispatch.py` — that decomposes a BLUEPRINT into scoped workstreams, dispatches each to a Claude Code session, and classifies the outcome from filesystem evidence rather than the process exit code, while naming no primitive of its own for a user to author.***
+
+> **Profile drafted 2026-09-03 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 

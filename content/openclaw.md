@@ -9,11 +9,30 @@ owner: KD
 source: "github.com/openclaw/openclaw @ v2026.8.2 · docs.openclaw.ai (590 pages, docs.json) · read 2026-09-02"
 provenance: OBSERVED
 template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
+verification:
+  derived_from:
+    - "github.com/openclaw/openclaw @ v2026.8.2 · docs.openclaw.ai (590 pages, docs.json) · read 2026-09-02"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-02"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # OpenClaw — Peter Steinberger · OpenClaw Foundation
 
 ***A TypeScript gateway daemon whose defining move is hosting: it owns the channels (~30 messaging surfaces), credentials and control-plane API, and either runs its own agent loop or hands the turn to Codex, Claude Code, or eleven-plus ACP harnesses as pluggable runtimes — with a named session owner, operator roles and scopes, and a maturity scorecard it runs on itself.***
+
+> **Profile drafted 2026-09-02 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 

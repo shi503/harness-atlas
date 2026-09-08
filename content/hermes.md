@@ -9,11 +9,30 @@ owner: KD
 source: "github.com/NousResearch/hermes-agent @ v0.21.0 (tag v2026.8.31) · docs at hermes-agent.nousresearch.com · read 2026-09-02"
 provenance: OBSERVED
 template: "v2 (restructured from v1 read 2026-09-02, no re-read)"
+verification:
+  derived_from:
+    - "github.com/NousResearch/hermes-agent @ v0.21.0 (tag v2026.8.31) · docs at hermes-agent.nousresearch.com · read 2026-09-02"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-02"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # Hermes Agent — Nous Research
 
 ***A Python personal-agent harness whose defining move is authoring its own skills from what it did — memory under hard character caps, a Curator that ages capabilities out — while binding mechanically through deny globs, a hardline blocklist and fail-closed hooks it explicitly refuses to call a security boundary.***
+
+> **Profile drafted 2026-09-02 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 
