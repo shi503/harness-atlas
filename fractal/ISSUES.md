@@ -565,3 +565,65 @@ that is a property of the harness rather than of the project.
 
 **Cost:** re-scores position four on all ten fingerprints. Same cost as the last re-referent, and this
 one is paid to cover a layer the instrument has never looked at.
+
+---
+
+## ISSUE-020 — what the seven dimensions still do not read, measured after the Context re-referent
+
+**Severity:** MINOR · **Found:** 2026-09-07, KD's follow-up to the DX-4 ruling · **Assigned:** none — a standing map, not a defect
+
+With `context` in place the headline layer reads **22 of 33 components**. Eleven are unread. They are
+not equally interesting, and the point of this entry is the difference.
+
+### Two are correctly unread, and provably so
+
+| | | |
+|---|---|---|
+| `9e` Raise the Floor | `◐` on **all ten**, identically | An axis over a constant is noise |
+| `6a` Product | `○` on **nine of ten** | An axis over an absence is noise |
+
+**These two should never be promoted.** Recorded so the question is not re-opened by someone counting
+uncovered components and treating the count as the finding.
+
+### Two discriminate and are genuinely uncovered
+
+| | | |
+|---|---|---|
+| `7a` Workflow Tasks | `4● 5◐ 1○` | *Is the unit of work written down?* |
+| `9a` Learning | `3● 2◐ 5○` | *What happens to a lesson?* |
+
+### Layer 9 (IMPROVE) is unread in its entirety — all six components
+
+It is the largest uncovered block and the strongest remaining candidate for an eighth dimension.
+Scored `● 2 · ◐ 1 · ○ 0` across all six, out of 12:
+
+| | | |
+|---|---:|---|
+| Hermes · OpenClaw · Grok | 8 | learning, cadence and a defect lifecycle all present |
+| Claude Code | 6 | |
+| Gas City | 5 | |
+| Codex · LoomWarp · FRACTAL | 3 | |
+| Pi · OpenCode | 2 | almost nothing beyond the universal `9e` |
+
+**Five distinct values across ten harnesses** — weaker than `context`'s six but stronger than four of
+the seven dimensions already on the sheet. It would also give **axis IX `improvement-loop`** a headline
+home, exactly as `context` gave one to axis II, dropping detail-only from three axes to two.
+
+**The question it asks is a real one at the top level:** *is this harness the same after a thousand
+runs?* That is Karpathy's test — *does knowledge compound, or does it just get retrieved* — and
+`comparisons/03-jtbd.md` already treats it as a first-class job (`J9 compound`, `J16 raise the floor`).
+
+**Counter-argument, and it is not weak.** Seven stats is the readable limit this sheet was built
+around, and an eighth costs that. Two narrower cuts were tested and are worse: `9a 9d 9f` alone gives
+only three distinct values, and `7a 3a 3c` clusters five of ten at 4–5 of 6. **If an eighth is ever
+added, it is the whole of layer 9 or nothing.**
+
+### Everything else is two-valued and low-yield
+
+`3a` Control · `3c` Composition · `9c` Cadence · `9d` Anti-fragile Lifecycle · `6c` Estate ·
+`9b` Rituals · `9f` Diagnose the Bottleneck. Each takes two of the three marks across the corpus. They
+are read by the ten axes and belong there; promoting any one alone would add a slider that separates
+two groups and no more.
+
+**No action proposed.** The sheet is at seven and the seven now all discriminate. This entry exists so
+the next person to ask *what is missing* gets the measured answer instead of re-deriving it.
