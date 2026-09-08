@@ -1,13 +1,23 @@
 ---
 title: "Licensing — the recommendation, ready to apply; the choice is KD's"
 tier: fractal
-status: DRAFT
+status: SUPERSEDED
 provenance: AUTHORED
 created: "2026-09-08"
 owner: KD
 ---
 
 # Licensing
+
+> **⚠️ SUPERSEDED 2026-09-08 by KD's ruling — kept as the argument, not the decision.**
+> This document recommended a **two-licence split**: CC-BY-4.0 for the prose corpus, MIT for
+> `scripts/` and `skills/`. **KD ruled a single MIT licence for the whole repository**, plus an
+> educational-purposes statement. The reasoning below for *why a prose corpus is not obviously
+> software* still stands as an argument and lost to a simpler one: one licence, one file, no question
+> about which half a reader is in. What survived from this document is its sharpest point — **a
+> licence does not launder quoted material** — which is now carried in [`NOTICE`](../NOTICE).
+> Applied: [`LICENSE`](../LICENSE), [`NOTICE`](../NOTICE), ruling `2026-09-08-mit-educational`.
+
 
 **No `LICENSE` file was created.** A licence is a legal decision about quoted vendor material, and an
 agent choosing one and committing it is the choice being made — a file saying *DRAFT* would be worse

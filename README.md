@@ -170,6 +170,21 @@ flowchart LR
 never inferred · a primitive set is 5–7 and forces a choice · do not borrow a word and change its
 referent · archive by ruling, never by deletion · vendor's words only in a primitives table.
 
+## Licence, and what "drafted" means on every page
+
+**MIT** — [`LICENSE`](LICENSE). Published **for educational purposes**: this is a research and teaching
+instrument, not a buyer's guide and not an endorsement of any product. Quoted vendor documentation
+stays the property of its owners and is cited and dated on every page. See [`NOTICE`](NOTICE).
+
+**You will see a *drafted, not yet verified* banner on almost every page. That is the instrument
+working, not an unfinished draft.** Every profile, scorecard card and deep-read document records which
+model drafted it and when, and the banner comes off only when a person re-reads the page and signs it.
+Nothing here claims a human sign-off it has not had — which is the same discipline as *absence is
+recorded, never inferred*, turned on the corpus itself.
+
+Each page also records the version it was read at and the date. Harnesses here ship weekly; **read
+anything load-bearing at the source**, which is cited on the page for exactly that reason.
+
 ---
 
 *Cut from `loomwarp-team-system/projects/loomwarp` on 2026-09-02; provenance in

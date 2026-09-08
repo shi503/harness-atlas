@@ -38,6 +38,9 @@ version of this line drew — *un-recut* versus *history* — did not survive th
 the specification's components became Tier 2, what was left of it was argument about a settled
 decision, which is history.
 
+**Licence.** MIT (`LICENSE`), published for educational purposes; `NOTICE` carries the purpose
+statement and the third-party-quotation terms. Ruled `2026-09-08-mit-educational`.
+
 ## Standing rules
 
 - **Markdown is not code.** No guard-gating, count checks, vocabulary checks, or generator contracts. The whole bar is: links resolve (`node scripts/check-doc-links.mjs`) and git is clean.

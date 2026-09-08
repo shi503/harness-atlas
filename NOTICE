@@ -1,0 +1,47 @@
+# NOTICE
+
+## This corpus is published for educational purposes
+
+**harness-atlas is a research and teaching instrument.** It exists to make agent
+harnesses legible side by side — to show how they can be decomposed, what a
+primitive is, and where systems genuinely differ. It is course material and
+reference reading, not a buyer's guide, not a procurement input, and not advice.
+
+**It is not an endorsement, a ranking, or a recommendation of any product.** The
+scorecard states this on its face: nine of its ten axes are *positions*, not
+scores, and neither end of an axis is better than the other. Exactly one dimension
+is admitted as graded, and it says so.
+
+**Nothing here has been signed off by a human reviewer.** Every profile carries
+`status: DRAFT`, and every scorecard card and deep-read document carries a
+**drafted-until-verified** banner naming the model that drafted it and the date.
+That banner comes off only when a person re-reads the page and signs it. Until
+then, treat every claim as a reading to be checked against the vendor's own
+sources — which are cited on every page for exactly that purpose.
+
+**Read anything load-bearing at the source.** Each page records the version it was
+read at and the date. Harnesses in this space ship weekly; a page that was true at
+its capture may be false today, and the corpus says so rather than pretending
+otherwise.
+
+## Third-party material
+
+**The MIT licence in `LICENSE` covers this repository's own work** — the analysis,
+the component framework, the prose, the scripts, and the skills. **It does not and
+cannot relicense material quoted from other projects.**
+
+This corpus quotes vendor documentation extensively and by design: the standing
+rule is *vendor's words only, verbatim, cited, dated*. Those quotations remain the
+property of their respective owners and are reproduced here as short excerpts for
+identification, comparison, and commentary. Every quotation names its source and
+the date it was captured. Product names, logos and trademarks belong to their
+respective owners, and their use here is nominative — to name the thing being
+described — and implies no affiliation with or endorsement by any of them.
+
+If you own material quoted here and want a citation corrected or removed, open an
+issue and it will be handled.
+
+## Attribution
+
+`skills/` and `scripts/` are written to be copied into other repositories and run.
+They are MIT like the rest; attribution is appreciated and not required.
