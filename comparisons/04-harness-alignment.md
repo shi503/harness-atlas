@@ -135,7 +135,7 @@ different axis and are not merged, per the genre rule in
 > several rows read as its *analogue* rather than a like-for-like instance: 3a Control is
 > dependency-gated dispatch, not an interactive approval gate; 2c Enforcement is trust-boundary policy
 > over operator-configured commands, not a sandbox around an agent's own tool calls. Marked ◐ rather
-> than ● where the row's chat-harness framing does not transfer cleanly; see `content/gas-city.md` §B's
+> than ● where the row's chat-harness framing does not transfer cleanly; see `content/gas-city.md` §6's
 > per-row notes and the Skill findings in its HANDOFF.
 >
 > **LoomWarp column added 2026-09-03** (W4 #3). Every cell traces to
@@ -146,7 +146,7 @@ different axis and are not merged, per the genre rule in
 > the mechanism is real — 3a Control is a model-free dependency resolver plus a markdown-regex outcome
 > classifier, not an approval gate or a completion contract; 2c Enforcement is four permission-tier
 > files, one wired, bypassed on the one live run. Several `○`s below are the product's own recorded
-> absences (`content/loomwarp.md` §B), not this table failing to find something that exists.
+> absences (`content/loomwarp.md` §6), not this table failing to find something that exists.
 >
 > **FRACTAL column added 2026-09-03** (W4 #4). Every cell traces to
 > [`content/fractal.md`](../content/fractal.md) §B, graded against the commit LoomWarp itself vendors
@@ -201,7 +201,7 @@ teardown §B); the profile is the source of truth and this grid does not re-deri
 | **9d** | Anti-fragile Lifecycle | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ● | ● | [○](../content/claude-code.md#9d-anti-fragile-lifecycle) | Recovery everywhere — restart resume, failover, doctor — and no closed improvement loop, until LoomWarp: `fractal/ISSUES.md` is a genuine append-only defect ledger, eight dated entries with severity, root cause and required fix — the second `●` in this column |
 | **9e** | Raise the Floor | `bet` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | The row asks how a second way gets retired. LoomWarp's `standards/` and `fractal-init` skill are real starting templates; no retirement mechanism for a second way once it appears |
 | **9f** | Diagnose the Bottleneck | `bet` | ◐ | ○ | ◐ | ○ | ◐ | ○ | ◐ | ○ | ○ | ◐ | OpenClaw ships a **maturity scorecard for itself**. LoomWarp has nothing — its own spec calls this function unprovided by anyone, field-wide, and that held for its own instance on this pass too |
-| **10a** | Roster | `emerging` | ● | ○ | ● | ◐ | ● | ◐ | ● | ◐ | ◐ | ◐ | Hermes Bot Mode: *"a roster of named Bots."* LoomWarp ships five role files (`.claude/agents/`) — real, though its own field-level analysis calls this function unprovided by anyone, itself included; recorded as a tension, not resolved (`content/loomwarp.md` §F) |
+| **10a** | Roster | `emerging` | ● | ○ | ● | ◐ | ● | ◐ | ● | ◐ | ◐ | ◐ | Hermes Bot Mode: *"a roster of named Bots."* LoomWarp ships five role files (`.claude/agents/`) — real, though its own field-level analysis calls this function unprovided by anyone, itself included; recorded as a tension, not resolved (`content/loomwarp.md` §10) |
 | **10b** | Org | `claimed` | ◐ | ○ | ● | ◐ | ● | ◐ | ◐ | ◐ | ○ | ◐ | **OpenClaw ships it.** LoomWarp's `people.yaml` is a thin (two-entry) but real, mechanically validated RACI registry inside its decision ledger |
 | **11a** | Surfaces | `emerging` | ● | ◐ | ● | ● | ● | ● | ● | ◐ | ◐ | ● | 35 and ~30 channel docs in the assistants. LoomWarp is CLI-only — headless dispatch or a human-run second window — with markdown (HANDOFF/PULSE) as the surface of record |
 

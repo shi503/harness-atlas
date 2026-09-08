@@ -83,7 +83,7 @@ listed in §4.
 > concatenates each file's text into the assembled prompt before the PRD — a real, mechanical
 > assembly step, thinner than a first-class object (no hashing, versioning, or owner attribution — the
 > unbuilt "Briefing" the framework names separately) but not absent. Every other LoomWarp cell in the
-> grid below was checked against `content/loomwarp.md` §B and left unchanged — including `Standards
+> grid below was checked against `content/loomwarp.md` §6 and left unchanged — including `Standards
 > tier` (●, confirmed) and `Agent definitions` (●, confirmed: `.claude/agents/*.md`).
 >
 > **FRACTAL column re-checked 2026-09-03**, against [`content/fractal.md`](../content/fractal.md)
@@ -93,7 +93,7 @@ listed in §4.
 > a real, named second-harness path, the same shape as Hermes's `◐ᴴ`; **Skills** `◐→●` — seven
 > first-class `SKILL.md` files, installed once by the README's own copy step with no ongoing sync
 > script and none of LoomWarp's `cp -r` removal defect, the same standing every other `●` in this row
-> earns. Every other FRACTAL cell was checked against `content/fractal.md` §B and left unchanged,
+> earns. Every other FRACTAL cell was checked against `content/fractal.md` §6 and left unchanged,
 > including **Standards tier** (○, confirmed absent at the pinned commit — `git ls-tree 6398f6db --
 > standards` is empty; a `standards/` directory now exists at upstream's current HEAD, outside this
 > pinned commit's scope, flagged in the profile's §F rather than changing this cell).
@@ -298,7 +298,7 @@ primitives, and they should be corrected by anyone who knows better.
 
 | Cell                             | Why inferred                                                                                                                                                            |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Gas City · Individual memory `◐` | Corrected 2026-09-03 from `○` — no Gas-City-owned memory *primitive*, but real individual memory exists one layer down: per-agent session logs and the sibling Beads product's `bd remember`/`bd prime`, surfaced through the Bead primitive rather than a Gas City feature of its own. `content/gas-city.md` §B row 5a |
+| Gas City · Individual memory `◐` | Corrected 2026-09-03 from `○` — no Gas-City-owned memory *primitive*, but real individual memory exists one layer down: per-agent session logs and the sibling Beads product's `bd remember`/`bd prime`, surfaced through the Bead primitive rather than a Gas City feature of its own. `content/gas-city.md` §6 `5a` |
 | QM · Secrets `◐`                 | Keychain view is part of the scope bundle; brokering behaviour not documented                                                                                           |
 | SageOx · Individual memory `◐`   | Ledger is per-repo and cross-machine; whether a personal scope exists is not stated                                                                                     |
 | Indigo · Evidence `○`            | No telemetry or event stream documented; the PM analysis notes no audit trail                                                                                           |
@@ -308,7 +308,7 @@ primitives, and they should be corrected by anyone who knows better.
 | OpenClaw · Provenance `◐?`       | Memory-provenance table records entry origin per agent/session — provenance on the **memory** side, same shape as SageOx's `◐`; no per-run manifest, no join. `04` §3.6 |
 | Grok · Individual memory `●?`    | Bot memory is a named, automatic, per-Bot store whose **format and location are undocumented**; Build's is documented (`~/.grok/memory/MEMORY.md` + SQLite) but *"experimental and disabled by default."* The `●` rests on the Bot half |
 | Grok · Secrets `●?`              | Bot: hosted-MCP sign-in tokens *"stay with Cursor's backend, which runs those tool calls on the computer's behalf"*; secure secret request is *"masked, excluded from the transcript, and not shown to the model."* Brokering by description, on a closed product; Build's half is `◐` (0600 credential file, env scrubbing) |
-| Codex · Secrets `◐?`             | `codex-rs/secrets` and `codex-rs/keyring-store` crates exist in the tree and `agent-identity` signs per-agent assertion headers; crate contents were not read this pass, only the file/directory listing — `content/codex.md` §F |
+| Codex · Secrets `◐?`             | `codex-rs/secrets` and `codex-rs/keyring-store` crates exist in the tree and `agent-identity` signs per-agent assertion headers; crate contents were not read this pass, only the file/directory listing — `content/codex.md` §10 |
 
 
 > KD Note: it's probably inferred that the local user context is also inherited in your harness (eg. claude code's local memories and jsonl sessions) and the affordance we made in generic-cerebro is that users would have ./specs/ where project local specs and planning were stored and we would have individual .gitignored  `./_dev/<username>/` folders for any individual sandboxes and playgrounds. 
