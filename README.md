@@ -5,7 +5,9 @@ fixed component grid, and places them on a maturity range.** Every profile is bu
 the harness's own documentation, code and configuration, so that an engineer can *grok* a harness —
 its loop, its primitives, its limits — from one page, and compare it to the next one cell for cell.
 
-Start at [`index.md`](index.md) for the whole map. This page is the argument, and the highlights.
+**Start here** — [the map](index.md) · [one profile](content/claude-code.md) · [the grid](comparisons/02-component-matrix.md) · [one component, every harness](components/2b-hooks.md) · [the scorecard](spectrums/01-scorecard.md)
+
+This page is the argument, and the highlights.
 
 ---
 
