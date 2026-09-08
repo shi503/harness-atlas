@@ -46,7 +46,7 @@ carries the block, the documents carry the line.
 ## 3. The backfill is an attestation, and the files say so
 
 **What the record actually contains.** One handoff in this repo names a model:
-[`W0-alignment-HANDOFF.md`](../fractal/workstreams/W0-alignment-HANDOFF.md) records *"Three sub-agents
+`W0-alignment-HANDOFF.md` records *"Three sub-agents
 (sonnet), in parallel, `--sanity` mode, 2026-09-03"* — the three `--sanity` drafts, now superseded and
 under `archive/`. **Every other run recorded nothing.** For the ten live profiles and the twelve
 Claude Code deep-read documents, the model was never captured.

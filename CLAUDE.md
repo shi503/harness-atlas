@@ -71,9 +71,14 @@ field: `provenance: INHERITED | OBSERVED | DERIVED | AUTHORED`. Everything under
 ## Workstreams
 
 FRACTAL runs **un-routed** here: no router, no blueprint YAML, no state file. A workstream is a PRD
-in `fractal/workstreams/`, executed by the `feature-lead` agent (or interactively with KD where the
+in `.claude/fractal/workstreams/`, executed by the `feature-lead` agent (or interactively with KD where the
 PRD says `Mode: interactive`), and closed by a `HANDOFF.md` beside it. Defects in the process go in
-`fractal/ISSUES.md`, append-only.
+`.claude/fractal/ISSUES.md`, append-only.
+
+**`.claude/` is gitignored.** The FRACTAL process record — PRDs, HANDOFFs, the issue log, the gap
+analyses — is working material, kept locally and not published with the corpus. A ruling decided in a
+session is therefore written out to `rulings/<id>.md` so its text survives in the repository; an
+index row may not point at a path under `.claude/`.
 
 Skills live at repo-root `skills/`, never `.claude/skills/`. A distributable skill carries its
 operational checklist inline and cites canonical guides by name, never by path.
@@ -82,7 +87,7 @@ operational checklist inline and cites canonical guides by name, never by path.
 
 ### Issue tracker
 
-Issues and specs live as FRACTAL workstream PRDs under `fractal/workstreams/`, not a separate ticket
+Issues and specs live as FRACTAL workstream PRDs under `.claude/fractal/workstreams/` (local, gitignored), not a separate ticket
 store. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels

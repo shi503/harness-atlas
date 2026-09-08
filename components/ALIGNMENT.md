@@ -125,7 +125,7 @@ nineteen concept rows; this one is harnesses across the v1 component set. The co
 different axis and are not merged, per the genre rule in
 [`2026-08-research/06-frameworks-addendum.md`](../archive/comparisons/2026-08-research/06-frameworks-addendum.md) §0.
 
-> **Codex column added 2026-09-03**, per [`W4-teardowns.md`](../fractal/workstreams/W4-teardowns.md)
+> **Codex column added 2026-09-03**, per `W4-teardowns.md`
 > (Codex first in the queue: *"two systems in the corpus embed its app-server as a runtime"*). Every
 > cell traces to [`content/codex.md`](../content/codex.md) §B; no existing column was re-scored.
 >

@@ -189,4 +189,4 @@ anything load-bearing at the source**, which is cited on the page for exactly th
 
 *Cut from `loomwarp-team-system/projects/loomwarp` on 2026-09-02; provenance in
 [`rulings/2026-09-02-spinout.md`](./rulings/2026-09-02-spinout.md). Front page and structure agreed in
-[`fractal/workstreams/W0-alignment.md`](./fractal/workstreams/W0-alignment.md), 2026-09-03.*
+the W0 alignment workstream, 2026-09-03.*

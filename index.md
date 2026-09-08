@@ -36,7 +36,7 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 | Claude Code | runtime | [`content/claude-code.md`](./content/claude-code.md) | v2 (2026-09-04); deep read at [`content/claude-code/`](./content/claude-code/00-README.md), 12 docs |
 | HumanLayer · Deep Agents · Indigo HQ · QM · SageOx · gstack/gbrain | process layers | [`archive/comparisons/systems/`](./archive/comparisons/systems) | short teardowns, un-recut |
 | QM (Quartermaster) | multi-tenant — **claimed, unmeasured** | [`archive/comparisons/systems/qm.md`](./archive/comparisons/systems/qm.md) | short teardown only; **promoted to the front of the queue** — it anchors axis I's `+3` and has never been scored |
-| Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | [`fractal/workstreams/W4-teardowns.md`](./fractal/workstreams/W4-teardowns.md) | queued, in that order |
+| Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | queued, in that order |
 
 ## 2. The scorecard and the sheet
 
@@ -55,7 +55,6 @@ commitment threshold between four and five.
 
 → [`maturity/AI-Native-Organizational-Maturity-Framework.md`](./maturity/AI-Native-Organizational-Maturity-Framework.md) — the six stages
 → [`maturity/grid.html`](./maturity/grid.html) — the interactive grid
-→ the graded-vs-catalogued split and the frontier past stage six: [`fractal/workstreams/W7-maturity-recut.md`](./fractal/workstreams/W7-maturity-recut.md)
 
 ## 4. The layers
 

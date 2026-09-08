@@ -126,5 +126,5 @@ do not each carry a `graded_reason:` on their own page.**
 > components. **[CROSSWALK §3.7](./CROSSWALK.md#37--ruled-2026-09-01--o-6-the-grids-warp-threads-are-the-12-layers-the-33-are-drill-down)
 > is a KD ruling of 2026-09-01 saying the opposite** — the grid runs on twelve warp threads, the
 > layers, with the 33 as drill-down — and says it was ruled *ahead of* W7 for exactly that reason.
-> The two cannot both hold. Recorded in [`../fractal/ISSUES.md`](../fractal/ISSUES.md); the field is
+> The two cannot both hold. Recorded in `../fractal/ISSUES.md`; the field is
 > set either way, because the split is worth having whichever artifact ends up reading it.

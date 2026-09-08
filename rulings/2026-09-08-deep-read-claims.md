@@ -79,7 +79,7 @@ admitted under. A person may widen it here, in one place.
 | File | Change |
 |---|---|
 | [`skills/harness-deep-read/SKILL.md`](../skills/harness-deep-read/SKILL.md) | Gate replaced by §2's depth negotiation; `AskUserQuestion` added to `allowed-tools`; §4 claims and the test; §7's source hierarchy inverted for intent |
-| [`fractal/workstreams/W10-deep-read-and-wiki-nav.md`](../fractal/workstreams/W10-deep-read-and-wiki-nav.md) | Open decision 1 is superseded — its answer was "a standing list", and the list is retired rather than written |
+| `fractal/workstreams/W10-deep-read-and-wiki-nav.md` | Open decision 1 is superseded — its answer was "a standing list", and the list is retired rather than written |
 
 Two further changes in the same revision are ruled elsewhere: the shape rule (*navigation fixed,
 content free*) and the deletion of the line budget are skill craft, not corpus rules, and are recorded
