@@ -444,3 +444,55 @@ vacancy as the finding — *no developer harness in this corpus is either solips
 — which is defensible and is what `cost-visibility` does with its own expected clustering.
 
 **Not acted on.** Nothing here changes a score beyond the OpenClaw ruling already applied.
+
+---
+
+## ISSUE-019 — DX-4 measures an instance property, not a harness property
+
+**Severity:** WARN · **Found:** 2026-09-07, KD's reading of the ten-harness corpus · **Assigned:** none yet — KD to rule between the two options below
+
+**KD's diagnosis, 2026-09-07:** *"DX-4 'Domain' is largely project specific and often more an example
+of the guide / sensor convention that we build into a project or agent's definition. This is seen more
+in FRACTAL and LoomWarp where there are things like `frontend-dev-guide`."*
+
+**The corpus agrees, twice over.**
+
+`domain-specialization` is the worst discriminator of the seven: **3 distinct values, and `0` on seven
+of ten.** Every one of those sevens is the `0` anchor verbatim — *"names a domain in its own words, but
+nothing in the machinery is domain-specific."* Ten independent reads landing on the same true sentence
+is not noise; it is the axis asking a question whose answer is fixed for this whole category.
+
+**And the harness-level version of the question is nearly empty.** If domain specialization shows up in
+a harness as convention machinery, the component that carries it is `3e Standards` — and across the
+grid that column is **one `●` (LoomWarp), one `◐` (Claude Code), eight `○`.** LoomWarp's `●` is its
+Standards tier, which is exactly the `frontend-dev-guide` shape KD names.
+
+**A composite does not rescue it.** Scoring `3e` + `4a` + `10a` + `3d` + `9e` together puts every
+harness between 5/10 and 7/10 — flatter than the axis it would replace, because four of those five
+columns are near-universal and only `3e` discriminates.
+
+**So the flatness has a cause, and it is a category error, not a bad anchor.** A domain is authored
+*into* a harness — in guides, role definitions, standards files — and R3 says a dimension must be
+derivable from the harness profile. A project's domain is not in the harness profile and never will be.
+
+### The two ways out
+
+**(a) Re-referent DX-4 to convention machinery.** *"Can I encode my team's standards in this thing, or
+do I write prose and hope?"* Reads `3e` primarily, with `4a` and `10a` secondary. Keeps seven
+dimensions, answers a real adoption question, and makes LoomWarp's lone `●` mean something. **It would
+be near-empty by construction — eight of ten at the floor — and that emptiness is the finding**, the
+same shape `cost-visibility` publishes about its own expected clustering.
+
+**(b) Retire DX-4 to six dimensions**, and record in the axes that domain specialization is an instance
+property this instrument does not measure.
+
+**Recommendation: (a).** An empty column that says *nobody in this category has solved conventions* is
+worth more than a slot that says `0` seven times. But note the cost, which is the same cost the
+2026-09-07 revision paid: **a re-referent invalidates every DX-4 value already written**, and all ten
+fingerprints would need re-scoring on that one position.
+
+**Statistical note, so the choice is not made on spread alone.** Clustering is normal here — modes of
+6 of 10 appear on `state-durability`, `control-posture`, `improvement-loop` and `routing-determinism`
+too. DX-4's mode of 7 is the worst but not an outlier. **The argument for changing it is the category
+error, not the statistics.** The genuinely free, well-spread candidates if a replacement is ever wanted
+instead: `knowledge-depth` (5 distinct, full `−3..+3`) and `improvement-loop` (4 distinct, `−2..+3`).
