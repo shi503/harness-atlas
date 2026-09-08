@@ -9,11 +9,30 @@ owner: FeatureLead-Codex (W8b)
 source: "github.com/openai/codex @ rust-v0.153.2 (79016fc) · docs/, codex-rs/, developers.openai.com/codex → learn.chatgpt.com/codex · read 2026-09-03"
 provenance: OBSERVED
 template: "v2 (restructured from v1 read 2026-09-03, no re-read)"
+verification:
+  derived_from:
+    - "github.com/openai/codex @ rust-v0.153.2 (79016fc) · docs/, codex-rs/, developers.openai.com/codex → learn.chatgpt.com/codex · read 2026-09-03"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-03"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # Codex CLI — OpenAI
 
 ***A Rust engine and a JSON-RPC wire protocol so that embedding Codex and driving it from a terminal are the same integration — one core session addressable from CLI, IDE, SDK, MCP, or another harness's runtime.***
+
+> **Profile drafted 2026-09-03 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 
@@ -56,7 +75,19 @@ template: "v2 (restructured from v1 read 2026-09-03, no re-read)"
 
 [§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-No deep-read folder exists for Codex CLI.
+**Deep read** — [`content/codex/`](codex/00-README.md), a 12-document extensibility reference set at a
+finer grain than §6: [AGENTS.md and configuration](codex/01-agents-md-and-configuration.md) ·
+[skills and plugins](codex/02-skills-and-plugins.md) · [hooks](codex/03-hooks.md) ·
+[subagents](codex/04-subagents.md) · [MCP and the app-server](codex/05-mcp-and-the-app-server.md) ·
+[sandboxing and permissions](codex/06-sandboxing-and-permissions.md) ·
+[execpolicy](codex/07-execpolicy.md) · [non-interactive and CI](codex/08-non-interactive-and-ci.md) ·
+[memory and session state](codex/09-memory-and-session-state.md) ·
+[administration](codex/10-administration-and-enterprise.md) ·
+[beyond the CLI](codex/11-beyond-the-cli.md) ·
+[the consolidated guide](codex/20-consolidated-guide.md)
+
+*Read 2026-09-08 at `rust-v0.153.4`, five days after this profile's source read. `11-beyond-the-cli`
+covers cloud and IDE surfaces this profile's §7 excludes by scope, and has no detail row here.*
 
 ## 2. System map
 
@@ -211,6 +242,8 @@ There is no published refusal list for this harness.
 **Path.** `~/.codex/config.toml` `[mcp_servers.*]` · `codex app-server [--listen ...]` · `@openai/codex-sdk`
 **Source.** ✅ `LEARN/codex/extend/mcp` · ✅ `RS/app-server/README.md` · ✅ `LEARN/codex/codex-sdk` · ✅ `RS/connectors/src/lib.rs`
 
+**More.** [`05-mcp-and-the-app-server.md`](codex/05-mcp-and-the-app-server.md) — transport fields, tool-level approval modes, the app-server's thread-ownership rule
+
 </details>
 
 #### 2b Hooks
@@ -221,6 +254,8 @@ There is no published refusal list for this harness.
 **Path.** `~/.codex/hooks.json`, `.codex/hooks.json`, `[hooks]` in `config.toml`
 **Source.** ✅ `LEARN/codex/hooks` · ✅ `REPO/blob/main/docs/config.md`
 
+**More.** [`03-hooks.md`](codex/03-hooks.md) — all events with triggers, the four config locations, the `updatedInput` rewrite path, the trust rule. **Lists twelve as of 2026-09-08**; this row's eleven is the 2026-09-03 read
+
 </details>
 
 #### 2c Enforcement
@@ -230,6 +265,8 @@ There is no published refusal list for this harness.
 **Ships.** `sandbox_mode` (`read-only` / `workspace-write` / `danger-full-access`) enforced by the native OS backend on every platform — macOS Seatbelt, Linux Landlock falling back to a bundled `bwrap`, Windows elevated/restricted-token backends that "fail closed instead of running with weaker enforcement" — **and**, coexisting, a newer named `[permissions.<profile>]` system with admin `allowed_permission_profiles`. `execpolicy`'s `prefix_rule` DSL classifies shell commands independently. `requirements.toml` is the floor neither layer can relax.
 **Path.** `sandbox_mode`, `[permissions.<name>]`, `default_permissions` · `execpolicy check --rules <file>`
 **Source.** ✅ `RS/core/README.md` · ✅ `RS/execpolicy/README.md` · ✅ `LEARN/codex/sandboxing` · ✅ `LEARN/codex/enterprise/admin-setup`
+
+**More.** [`06-sandboxing-and-permissions.md`](codex/06-sandboxing-and-permissions.md) — per-platform mechanisms, `approvals_reviewer`, profile syntax · [`07-execpolicy.md`](codex/07-execpolicy.md) — the full Starlark grammar and basename-fallback semantics
 
 </details>
 
@@ -263,6 +300,8 @@ There is no published refusal list for this harness.
 **Path.** `~/.codex/agents/*.toml`, `.codex/agents/*.toml` · `agents.max_concurrent_threads_per_session`
 **Source.** ✅ `LEARN/codex/agent-configuration/subagents` · ✅ `RS/agent-roles/src/agent_role_config.rs` · ✅ `RS/agent-graph-store/src/types.rs`
 
+**More.** [`04-subagents.md`](codex/04-subagents.md) — required and optional keys, model/effort resolution order, concurrency caps
+
 </details>
 
 #### 3d Configuration
@@ -272,6 +311,8 @@ There is no published refusal list for this harness.
 **Ships.** `AGENTS.md` (alias `AGENTS.override.md`, always wins at its level): global `~/.codex/AGENTS.md`, then every parent directory walking up from cwd, concatenated root→leaf, truncated at `project_doc_max_bytes` (32 KiB default), rebuilt every run. `config.toml` at five-plus scopes: user (`~/.codex/config.toml`), project (`.codex/config.toml`, only once trusted, unable to override machine-local provider/auth/telemetry-routing keys), system (`/etc/codex/config.toml`), `managed_config.toml`, macOS MDM profiles, and `requirements.toml` as the top admin layer local configuration cannot relax.
 **Path.** `~/.codex/AGENTS.md`, `AGENTS.override.md` · `~/.codex/config.toml`, `.codex/config.toml`, `/etc/codex/config.toml`, `managed_config.toml`, `requirements.toml`
 **Source.** ✅ `LEARN/codex/agent-configuration/agents-md` · ✅ `LEARN/docs/config-file/{config-basic,config-advanced,config-reference}` · ✅ `LEARN/codex/enterprise/managed-configuration`
+
+**More.** [`01-agents-md-and-configuration.md`](codex/01-agents-md-and-configuration.md) — the `AGENTS.md` walk and its 32 KiB ceiling, all five layers, every top-level section
 
 </details>
 
@@ -295,6 +336,8 @@ There is no published refusal list for this harness.
 **Path.** `.agents/skills/`, `~/.agents/skills/`, `/etc/codex/skills` · `.codex-plugin/plugin.json`
 **Source.** ✅ `LEARN/codex/build-skills` · ✅ `LEARN/codex/build-plugins` · ✅ `LEARN/codex/plugins` · ✅ `gh api repos/openai/codex/contents/.codex/skills`
 
+**More.** [`02-skills-and-plugins.md`](codex/02-skills-and-plugins.md) — `SKILL.md` fields, the six-scope discovery ladder, `agents/openai.yaml`
+
 </details>
 
 #### 4b Capability Permissions
@@ -316,6 +359,8 @@ There is no published refusal list for this harness.
 **Ships.** An automatic, two-phase pipeline, triggered on a non-ephemeral root session when enabled. **Phase 1** claims eligible rollouts, sends each to a model for a structured `raw_memory`/`rollout_summary`, redacts secrets, stores results with lease/retry backoff so failures don't hot-loop. **Phase 2** (single global lock) consolidates the top-N stage-1 outputs into `~/.codex/memories/{raw_memories.md, rollout_summaries/, MEMORY.md, memory_summary.md, skills/}` under a **git-baselined** directory, via an internal sub-agent that runs with no approvals, no network, local write access only, delegation disabled to prevent recursion, resetting the baseline after it succeeds.
 **Path.** `~/.codex/memories/` (git repo) · `codex-memories-read`, `codex-memories-write` crates
 **Source.** ✅ `RS/memories/README.md`
+
+**More.** [`09-memory-and-session-state.md`](codex/09-memory-and-session-state.md) — both phases in full, the lease/lock model, the git baseline
 
 </details>
 
@@ -377,6 +422,8 @@ There is no published refusal list for this harness.
 **Path.** `.codex/skills/{codex-pr-body,babysit-pr,code-review*}`
 **Source.** ✅ `LEARN/codex/cli` · ✅ `gh api repos/openai/codex/contents/.codex/skills` · ⚠️ `docs/exec.md`, `LEARN/codex/exec` both 404
 
+**More.** [`08-non-interactive-and-ci.md`](codex/08-non-interactive-and-ci.md) — every `codex exec` flag, output formats, resume, CI patterns
+
 </details>
 
 ### 7 · Workflow Tasks
@@ -410,6 +457,8 @@ There is no published refusal list for this harness.
 **Ships.** The rollout (JSONL + SQLite state DB) is the receipt, keyed by `ThreadId`/`RolloutId`, with compaction, search and a `ThreadStore` write boundary separating raw history appends from metadata mutation. `agent-identity` additionally signs Ed25519/Curve25519 "AgentAssertion" headers when a containerized caller registers an agent task.
 **Path.** `RS/rollout/`, `RS/thread-store/README.md`, `RS/agent-identity/src/lib.rs`
 **Source.** ✅ (all three, direct file reads)
+
+**More.** [`09-memory-and-session-state.md`](codex/09-memory-and-session-state.md) — the thread store's history/metadata separation
 
 </details>
 
@@ -512,6 +561,8 @@ There is no published refusal list for this harness.
 **Path.** `requirements.toml`, `managed_config.toml`
 **Source.** ✅ `LEARN/codex/enterprise/admin-setup`, `LEARN/codex/enterprise/managed-configuration` · ⚠️ roles-and-workspace-permissions page not read
 
+**More.** [`10-administration-and-enterprise.md`](codex/10-administration-and-enterprise.md) — the floor, the administratively-only keys, the silent-failure case
+
 </details>
 
 ### 11 · Surfaces
@@ -523,6 +574,8 @@ There is no published refusal list for this harness.
 **Ships.** CLI/TUI (terminal); an **app-server** for arbitrary product embedding — the VS Code extension is the vendor's own worked example, with Cursor and Windsurf via the same extension, Xcode a native integration, and JetBrains its own AI Assistant integration; the ChatGPT desktop app's integrated terminal (scoped to its current project or worktree) and local environments; **Codex Web** at `chatgpt.com/codex`; a TypeScript/Python SDK; MCP (client always, server deprecated). One of the widest surface counts read in this corpus.
 **Path.** (see per-surface sources)
 **Source.** ✅ `LEARN/codex/ide` · ✅ `LEARN/codex/integrated-terminal` · ✅ `LEARN/codex/environments/local-environment` · ✅ `REPO/blob/main/README.md`
+
+**More.** [`11-beyond-the-cli.md`](codex/11-beyond-the-cli.md) — cloud, IDE, desktop and web. **Wider than this profile's scope**
 
 </details>
 

@@ -29,7 +29,7 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 | OpenClaw | gateway / host | [`content/openclaw.md`](content/openclaw.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
 | OpenCode | runtime | [`content/opencode.md`](content/opencode.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
 | Grok Bot / Grok Build | hosted product / runtime | [`content/grok.md`](content/grok.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
-| Codex CLI | runtime | [`content/codex.md`](content/codex.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Codex CLI | runtime | [`content/codex.md`](content/codex.md) | v2 (restructured 2026-09-07, diagrams pending); scored; deep read at [`content/codex/`](content/codex/00-README.md), 12 docs |
 | Gas City | gateway / host, install-into-a-loop nested | [`content/gas-city.md`](content/gas-city.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
 | LoomWarp | process layer | [`content/loomwarp.md`](content/loomwarp.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
 | FRACTAL (upstream · generic-cerebro fork · this repo) | process layer | [`content/fractal.md`](content/fractal.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
