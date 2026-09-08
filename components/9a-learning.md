@@ -54,7 +54,7 @@ ingest job whose filename ends in a note that it only runs on one laptop.
 
 **What this layer is not.** It is not [`9e`](./9e-raise-the-floor.md), which promotes
 **convention** and retires the second way. `F8` decomposed on exactly that line: this promotes what
-the team *knows*; `9e` promotes what the team *does* ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §2). It is
+the team *knows*; `9e` promotes what the team *does* ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §2). It is
 not [`8a`](./8a-evals.md), which produces the finding this consumes.
 
 **How do we work?** *"When a review finds the same class of problem twice it becomes a rule, and that change to how we work was reviewed and can be reverted."*

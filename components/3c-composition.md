@@ -46,7 +46,7 @@ its guarantees.
 
 **Why it is new rather than a re-cut of `3a`.** `F4` sequences *work*. Nothing in `F0`–`F16` owns the
 assembly of the runner. Two peers built the object independently and named it differently — the
-condition [`12-horizon.md`](../spec/v1-framework/12-horizon.md) §2 defines as `emerging`, and the place where a
+condition [`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §2 defines as `emerging`, and the place where a
 framework can contribute a word rather than stake a claim.
 
 **What this layer is not.** It is not `2a`, which enumerates the insertion points a harness *offers*;

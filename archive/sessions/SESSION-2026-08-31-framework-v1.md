@@ -1,10 +1,11 @@
 ---
 title: "SESSION 2026-08-31 — the framework rebuild, W1–W2, and how to resume"
 tier: pm
-project: loomwarp
+project: harness-atlas
 created: "2026-08-31"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # Session handoff — 2026-08-31

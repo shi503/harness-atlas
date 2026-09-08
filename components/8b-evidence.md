@@ -38,7 +38,7 @@ proves it"*, covering *"what woke it up, which state did it inherit, what author
 executed, and what evidence survived."* **No shipped implementation was demonstrated**, which is
 exactly what `claimed` means: the ground is named and not taken, and *"nobody is claiming this"*
 should not be said again without a date on it
-([`12-horizon.md`](../spec/v1-framework/12-horizon.md) §3.3).
+([`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §3.3).
 
 **The nearest shipped thing stops in a specific place, and naming where is what makes the marker
 honest.** Deep Agents' `openwiki` ships content hashing, version pinning and reconstruction and has

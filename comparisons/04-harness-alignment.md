@@ -14,7 +14,7 @@ extends: spec/v1-framework/00-README.md
 **What this is.** The four harnesses this corpus had only by relayed name — Hermes, Pi, OpenClaw,
 and OpenCode — plus **Grok Bot / Grok Build**, asked for by name the same day, read at primary source
 on 2026-09-02 and scored against the thirty-three components of
-[`specs/v1-framework/00-README.md`](../spec/v1-framework/00-README.md). Every cell traces to a
+[`specs/v1-framework/00-README.md`](../archive/spec/v1-framework/00-README.md). Every cell traces to a
 row in a teardown under [`systems/harnesses/`](../content), and every row there carries a URL,
 an access date, and a sourcing mark.
 
@@ -26,7 +26,7 @@ shipping it as a named primitive*, and four of the most-adopted harnesses in the
 asked. This document asks them.
 
 **What it is not.** Not an edit to the framework. v1 is mid-review
-([`WALKTHROUGH.md`](../spec/v1-framework/WALKTHROUGH.md)) and its definitions are contested in
+([`WALKTHROUGH.md`](../archive/spec/v1-framework/WALKTHROUGH.md)) and its definitions are contested in
 places; this file records what the four systems ship and what that *would* do to each marker, and
 leaves the marker changes to the framework pass. Where a recommendation is made it is labelled one.
 
@@ -573,4 +573,4 @@ Not applied. Each is a proposal with its citation; the framework pass decides.
 *Companion: [`00-README.md`](./00-README.md) — the category argument this file tests ·
 [`02-component-matrix.md`](./02-component-matrix.md) — the process-layer grid on the other axis ·
 [`systems/harnesses/`](../content) — the four teardowns, every cell sourced ·
-[`../../specs/v1-framework/12-horizon.md`](../spec/v1-framework/12-horizon.md) — the marker rules §4.2 obeys*
+[`../../specs/v1-framework/12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) — the marker rules §4.2 obeys*

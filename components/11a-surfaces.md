@@ -33,7 +33,7 @@ requires: []
 **That objection was to `F1` as one function inside a nine-band stack, and it does not survive `F1`
 becoming a layer.** Layer 11 is *where work is seen and done*, and **a channel is precisely a place
 work is seen.** `F1` keeps its ID and its source-of-truth clause and gains the channel clause `J11`
-needed ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §1.2).
+needed ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §1.2).
 
 **Four peers ship channel as a first-class surface and disagree on the word**, which is the `emerging`
 condition rather than an absence: QM's **rooms** · Claude Tag's *"one shared Claude per channel"* ·

@@ -465,7 +465,7 @@ Record both halves and say which you scored.
 - Put a coverage mark anywhere but §4, or a source mark anywhere in §4.
 - Put mermaid inside `<details>`. Write the card before the details. Compare this harness to
   another inside its own page.
-- Edit any other harness's profile, `spec/`, or `components/`.
+- Edit any other harness's profile, `components/`, or anything under `archive/`.
 - Add a 34th row, rename a component to match a vendor's word, or grade anything — profiles record;
   the grids compare; the maturity range grades. An object that fits no row is recorded as a candidate
   and routed, never given a row here.

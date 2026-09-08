@@ -43,7 +43,7 @@ Two things there are worth stealing outright. First, **the document tells you wh
 
 The evidence that this was learned rather than designed: `§7 Current State` is deliberately pointer-only, and carries a note that the previous revision fossilized status in prose and that this revision does not repeat the mistake. The failure is recorded in the artifact that fixes it.
 
-→ [`adr-seeds/ADR-006`](./adr-seeds/ADR-006.md)
+→ [`adr-seeds/ADR-006`](../../../archive/adr-seeds/ADR-006.md)
 
 ## C-2 · The composing agent spends no context on implementation
 
@@ -51,7 +51,7 @@ Stated as a principle in the architect agent definition — *never consume token
 
 This is a context-economy rule masquerading as a role definition, and it is the reason the architect can hold an entire epic. An orchestrator that reads implementation detail stops being able to sequence.
 
-→ [`adr-seeds/ADR-007`](./adr-seeds/ADR-007.md)
+→ [`adr-seeds/ADR-007`](../../../archive/adr-seeds/ADR-007.md)
 
 ## C-3 · The PRD is the composition artifact, and it is self-contained
 
@@ -65,7 +65,7 @@ The remaining five — feature overview with source documents and decisions link
 
 The out-of-scope section earns its place for a non-obvious reason stated in the template itself: it *"surfaces the seam for the next workstream."* Non-goals are not just scope defence; they are where the decomposition shows its joints.
 
-→ [`adr-seeds/ADR-008`](./adr-seeds/ADR-008.md) · [`adr-seeds/ADR-009`](./adr-seeds/ADR-009.md)
+→ [`adr-seeds/ADR-008`](../../../archive/adr-seeds/ADR-008.md) · [`adr-seeds/ADR-009`](../../../archive/adr-seeds/ADR-009.md)
 
 ## C-4 · Dependency edges are the deliverable
 
@@ -75,7 +75,7 @@ The blueprint schema makes this concrete: every workstream carries `depends_on: 
 
 Note the honest limit, because it matters for the port: the state file is a flat `{workstream: status}` map that models no edges at all, so contingency and even ordinary `depends_on` are enforced by the architect at dispatch time, not by the resolver. Their own issue register says so. The *discipline* of declaring edges is what transferred value; the code that was supposed to enforce them did not.
 
-→ [`adr-seeds/ADR-010`](./adr-seeds/ADR-010.md)
+→ [`adr-seeds/ADR-010`](../../../archive/adr-seeds/ADR-010.md)
 
 ## C-5 · Evaluation is layered, and only the bottom two block
 
@@ -90,7 +90,7 @@ Each layer has a template. The judgment-layer template contains the section most
 
 Layer 1's diff-scope check is where the file manifest from C-3 pays off — the gate can mechanically ask whether the diff stayed inside the declared write surface.
 
-→ [`adr-seeds/ADR-011`](./adr-seeds/ADR-011.md)
+→ [`adr-seeds/ADR-011`](../../../archive/adr-seeds/ADR-011.md)
 
 ## C-6 · Retry is bounded at two, then escalates with a recommendation
 
@@ -101,7 +101,7 @@ Layer 1's diff-scope check is where the file manifest from C-3 pays off — the 
 
 The recommendation requirement is the part that is easy to drop and expensive to lose — an escalation without one moves the problem without moving the decision. Paired with a standing escalation list: any workstream scoping out-of-mandate work, any scope change to a gated workstream, any newly discovered failure mode, and any second evaluation failure.
 
-→ [`adr-seeds/ADR-012`](./adr-seeds/ADR-012.md)
+→ [`adr-seeds/ADR-012`](../../../archive/adr-seeds/ADR-012.md)
 
 ## C-7 · The gate artifact is evidence-shaped
 
@@ -114,7 +114,7 @@ The handoff template opens by naming itself: *"This file is the approval gate. D
 
 The pattern generalizes past software: *every completion claim names the artifact that proves it, and every absence is asserted rather than omitted.*
 
-→ [`adr-seeds/ADR-013`](./adr-seeds/ADR-013.md)
+→ [`adr-seeds/ADR-013`](../../../archive/adr-seeds/ADR-013.md)
 
 ## C-8 · Heartbeats are checkable without a model
 
@@ -128,7 +128,7 @@ The router regex-extracts every fenced JSON block, parses the **last** one, and 
 
 The corresponding worker-side rule: on a block, set `status: BLOCKED` and `escalation_needed: true` **and stop** — *do not guess around architectural ambiguity.* Escalation is cheaper than a confidently wrong branch.
 
-→ [`adr-seeds/ADR-014`](./adr-seeds/ADR-014.md)
+→ [`adr-seeds/ADR-014`](../../../archive/adr-seeds/ADR-014.md)
 
 ---
 
@@ -140,7 +140,7 @@ This is the same shape as the native parent-child instruction hierarchy document
 
 The practical consequence for LoomWarp: these are not competing designs. The native hierarchy handles *where you are*; `paths:` rules handle *what kind of thing you are editing*. Both mechanisms already exist in Claude Code, and `generic-cerebro` uses only the second. Adopting the first is free.
 
-→ [`adr-seeds/ADR-015`](./adr-seeds/ADR-015.md)
+→ [`adr-seeds/ADR-015`](../../../archive/adr-seeds/ADR-015.md)
 
 ---
 

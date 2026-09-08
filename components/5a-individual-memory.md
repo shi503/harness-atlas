@@ -32,14 +32,14 @@ requires: []
 > still resolves and no new ID namespace opens.** The bare `F3` is kept as the **roll-up**, graded as the
 > minimum of its children rather than their average, which is `C-11` applied literally: a stage-0 child
 > drags the parent down instead of averaging away
-> ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §0.1, §2).
+> ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §0.1, §2).
 >
 > ⚠️ **And the roll-up carries a cost that is recorded rather than fixed.** `F3`'s other system — **The
 > Briefing**, the per-job resolved bundle with hashes, versions and owners — is the assembly step that
 > joins these three stores, and it has **no component of its own.** It is reachable today only as the
 > layer-5 roll-up, which means **the framework's sharpest context claim is graded as the minimum of three
 > stores rather than as itself.** A `5d Briefing` would close it. **Cardinality is a KD decision and is
-> not taken here** ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §3.3).
+> not taken here** ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §3.3).
 
 > ### ⟳ Layer 5 is one of only two layers that accumulate.
 >
@@ -63,7 +63,7 @@ and it belongs at `5b` ([`03-jtbd.md`](../comparisons/03-jtbd.md) §2 `J2`).
 **The boundary is a 2×2, and only one axis is filled.** Four peers treat individual-versus-team as a
 first-class primitive, and the strongest of them crosses it with a second axis — **per-project versus
 cross-repo**. That closes `OPEN-5`'s first axis as visible structure; the `project | org` half is the
-`SCOPE` axis and is **still unfilled** ([`12-horizon.md`](../spec/v1-framework/12-horizon.md) §4.1).
+`SCOPE` axis and is **still unfilled** ([`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §4.1).
 
 **How do we work?** *"What I have learned working here follows me between repos, and it does not land in the team's canon by accident."*
 

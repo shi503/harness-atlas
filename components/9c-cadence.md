@@ -30,7 +30,7 @@ requires: []
 > that runs* — and machinery is not graded. **`9c` is therefore graded on what it emits**, never on
 > the trigger itself: `F10`'s own definition is *"the checks that run without being asked, **and the
 > artifact each run leaves behind**"*, and the second clause is the gradeable one. Cron is free; a
-> record something else reads is not ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §3.1).
+> record something else reads is not ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §3.1).
 
 **The reframe that rescued this function is about machine-readability, not about meetings.** The
 corpus was read for `standup` 0, `ceremon` 0, `ritual` 1 and the function was pronounced dead — while

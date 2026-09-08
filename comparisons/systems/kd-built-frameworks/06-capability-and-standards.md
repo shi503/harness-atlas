@@ -35,7 +35,7 @@ Plugins are cut by **audience**, not by function: tooling every repo gets, plann
 
 *Side-effecting skills disable model invocation.* Any skill that writes, posts, publishes, or touches orchestration state sets `disable-model-invocation: true`, so it never self-fires on a passing mention while remaining explicitly invocable. The list is specified as a floor, not a ceiling.
 
-→ [`adr-seeds/ADR-022`](./adr-seeds/ADR-022.md)
+→ [`adr-seeds/ADR-022`](../../../archive/adr-seeds/ADR-022.md)
 
 **And one drift to avoid reproducing.** Agent definitions exist in two places — plugin tree and repository scope — and the copies are not byte-identical. The harness resolves by frontmatter `name:`, not filename, so both load and the winner depends on load order. Their own handoff documents this and leaves it open. If capability lives in a plugin, it should live *only* in the plugin.
 
@@ -66,7 +66,7 @@ The compounding tier is 13 hardened review finding-classes — named, reusable d
 
 That is Learning, running. LoomWarp grades Learning at Stage 1 and its architecture diagram labels it DESIGNED ONLY. The mechanism that would move it is thirteen files and a promotion rule, and it is sitting in the predecessor.
 
-→ [`adr-seeds/ADR-023`](./adr-seeds/ADR-023.md)
+→ [`adr-seeds/ADR-023`](../../../archive/adr-seeds/ADR-023.md)
 
 ## 4. The distribution rule, and the break that produced it
 
@@ -78,7 +78,7 @@ The resulting model names exactly **two channels** that reach a sibling reposito
 
 This is direct, evidenced support for the clause already written into Capability — *"no hard dependency on the hub's filesystem"* — which currently reads as a design preference and can now be sourced to an incident.
 
-→ [`adr-seeds/ADR-024`](./adr-seeds/ADR-024.md)
+→ [`adr-seeds/ADR-024`](../../../archive/adr-seeds/ADR-024.md)
 
 ## 5. So what happens to F-5?
 

@@ -33,7 +33,7 @@ names the delivery of the **product**
 ([`03-jtbd.md`](../comparisons/03-jtbd.md) §0, §2 `J10`). The evidence that this is
 a real hole rather than a tidy one is sitting in this repository: `standards/ci-cd.md` exists **with
 no function to hang it on** — the same shape that produced `F14`, a decision-rights table with
-nothing to attach it to ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §2.2).
+nothing to attach it to ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §2.2).
 
 **One path is the grade, not automation.** A team with three deploy scripts and a person who knows
 which one to use has not automated less than a team with one; it has decided less. And the moment an

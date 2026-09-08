@@ -28,7 +28,7 @@ requires: ["1a"]
 > gone, and it is **destroyable** without touching anything else.
 
 **This is the object three peers built and none of them named the same way**, which is precisely the
-`emerging` condition [`12-horizon.md`](../spec/v1-framework/12-horizon.md) §2 defines: *"peers have built the
+`emerging` condition [`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §2 defines: *"peers have built the
 thing and have not agreed what to call it."*
 
 | Peer | Its word | What the word carries |
@@ -39,7 +39,7 @@ thing and have not agreed what to call it."*
 
 *Scope*, *worktree* and *backend id* are three words for one thing, and the disagreement is the
 evidence rather than the noise. **A framework can contribute the word here; it cannot claim the
-ground** ([`12-horizon.md`](../spec/v1-framework/12-horizon.md) §3.2).
+ground** ([`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §3.2).
 
 **Reattachment is the property that separates this from a temp directory.** Anything can `mkdir`. A
 graded infrastructure row is one where the environment **outlives the process that created it** and

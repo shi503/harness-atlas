@@ -42,7 +42,7 @@ a *declaration* and at `2a` as an *adaptation*. **Hooks** attach at `2b`. The re
 to bands in [`11-architecture.md`](../archive/v0/11-architecture.md) §3.1 — a mapping that file explicitly
 marks as **ours, derived from each mechanism's published description**, not as a finding of the paper.
 **Binding all eight to named components is `AC-6`'s job, done in
-[`00-README.md`](../spec/v1-framework/00-README.md)** — bound there rather than here, because a mechanism assigned in the
+[`00-README.md`](../archive/spec/v1-framework/00-README.md)** — bound there rather than here, because a mechanism assigned in the
 file that happens to be writing it is how a surface acquires a reading nobody approved.
 
 **None of the eight carries a version dimension in the survey, and the harness's own does** *(added

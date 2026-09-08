@@ -1,11 +1,12 @@
 ---
 title: "v0 — Regrounding"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-11"
 status: ARCHIVED
 owner: KD
 supersedes_framing_of: projects/loomwarp/references/elements.md
+provenance: AUTHORED
 ---
 
 # v0 — Regrounding

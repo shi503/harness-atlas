@@ -36,7 +36,7 @@ config ([`02-functions.md`](../archive/v0/02-functions.md) §6 `F2`).
 > ⚠️ **`OPEN-15` survives the rebuild verbatim, and this file is where it has to earn its keep.**
 > The original worry: *"a team with one repo cannot tell [Estate and Product] apart, and the grid
 > would show two rows moving together."* Making them `6a` and `6c` inside one layer does not dissolve
-> that — **it makes the correlation visible instead of arguable** ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md)
+> that — **it makes the correlation visible instead of arguable** ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md)
 > §3.6). The distinction that survives a one-repo team is the one below.
 
 **The test, stated so a one-repo team can run it.** [`6a`](./6a-product.md) Product answers
@@ -50,7 +50,7 @@ both rows and reading the pair, not for merging them into a score that hides whi
 piece of work belongs to*; [`3b`](./3b-routing.md) resolves *which actor picks it up*. Both
 are deterministic resolutions against a list, and they resolve against **different lists** — an
 estate and a roster — which is why `F2` was checked against `O-3` and carried whole rather than
-decomposed ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §2).
+decomposed ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §2).
 
 **What this layer is not.** It is not [`1a`](./1a-environment.md) Environment. **Estate is
 the *code* row of that inventory**, and what the rest of the inventory contains — and why its absence

@@ -23,7 +23,7 @@ sanctioned homes for a ruling's text, and `CLAUDE.md` requires everything under 
 **verbatim**, so every anchor that pointed into §3 still resolves; only the path changed.
 
 The roster of the 33 is [`00-README.md`](00-README.md). The derivation is
-[`../spec/v1-framework/CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §1–§2.
+[`../spec/v1-framework/CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §1–§2.
 
 ---
 
@@ -106,7 +106,7 @@ them. Executing that leaves no residue: `9a` takes promotion of knowledge, `9c` 
 takes retirement of the second way, `9f` takes diagnosis. Every candidate sentence for `9d` restates one of
 them — which `AC-3` names as **a finding about the component, not a gap to pad**.
 
-The marker is already argued and already honest: [`12-horizon.md`](../spec/v1-framework/12-horizon.md) §3.4 rules it
+The marker is already argued and already honest: [`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §3.4 rules it
 **`bet`** — *"No peer ships it. No one has named it on a stage. It is a position about where the field goes,
 held by us."* **A bet marked as a bet is a contribution. A bet with no distinct sentence is a layer name.**
 The cheapest resolution is that `9d` is the **name of layer 9**, which `O-4` has already renamed `IMPROVE`.
@@ -147,7 +147,7 @@ paragraph in a landscape file, which is the most this wave can honestly claim.
 
 | Item | Disposition |
 |---|---|
-| **`OPEN-5`** — the `individual \| team × project \| org` axis has nowhere to live | **Closed** by layer 5. `5a`/`5b` are the individual/team boundary as structure; the project/org half is the `SCOPE` axis, still unfilled per [`12-horizon.md`](../spec/v1-framework/12-horizon.md) §4.1 |
+| **`OPEN-5`** — the `individual \| team × project \| org` axis has nowhere to live | **Closed** by layer 5. `5a`/`5b` are the individual/team boundary as structure; the project/org half is the `SCOPE` axis, still unfilled per [`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §4.1 |
 | **`OPEN-8`** — Rituals | **Contested.** The PRD closes it with `9b`; `C-7` already closed it with `F10`. See §3.1. **✅ Closed 2026-08-31** — KD's ruling in §3.1 fixes `9b` Rituals and `9c` Cadence as separate components; `C-7` is narrowed to the scheduled half, not reversed |
 | **`OPEN-9`** — stewardship | **Open.** See §3.4 |
 | **`OPEN-15`** — does `F2` survive alongside `F15` | **Both survive**, as `6c` and `6a` in one layer. ⚠️ The original worry stands verbatim: *"a team with one repo cannot tell them apart, and the grid would show two rows moving together."* Now two rows in the same layer, where the correlation is at least visible |
@@ -225,11 +225,11 @@ honoring:
   vocabulary it described. That deliverable — the relations over the 33, plus a `run-by` column naming
   the human or agent that operates each, plus the loop overlay in Voss's loop-taxonomy vocabulary — is
   assigned to the **`harness-map-v1`** workstream (post-W7, built interactively per
-  `references/architect-craft/02-harness-sizing-lens.md` §7.1's SCAFFOLD finding).
+  `archive/craft/02-harness-sizing-lens.md` §7.1's SCAFFOLD finding).
 
 ### 3.11 Recorded 2026-09-01 — two gaps, and one absence closed by amendment
 
-- **Pre-decision judgment has no home.** `references/architect-craft/02-harness-sizing-lens.md` §3.1:
+- **Pre-decision judgment has no home.** `archive/craft/02-harness-sizing-lens.md` §3.1:
   the twelve layers house `A8` (layer 9 IMPROVE) and none of `A1` *frame the space*, `A3` *surface
   hidden assumptions*, `A4` *right-size complexity*. The layers cover the work and its improvement;
   they cover the judgment **before** the work essentially not at all. Named, not closed.
@@ -353,4 +353,4 @@ proposed for admission**; they are recorded so the argument is not re-run from s
 *The design: [`../archive/v0/11-architecture.md`](../archive/v0/11-architecture.md) §1 · The jobs:
 [`../../references/comparisons/03-jtbd.md`](../comparisons/03-jtbd.md) · The ancestor,
 re-argued and never copied: [`../archive/v0/02-functions.md`](../archive/v0/02-functions.md) · The horizon rule:
-[`12-horizon.md`](../spec/v1-framework/12-horizon.md) §2*
+[`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §2*

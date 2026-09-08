@@ -1,10 +1,11 @@
 ---
 title: "NEXT-STEPS — session synthesis and the plan for the rewrite"
 tier: pm
-project: loomwarp
+project: harness-atlas
 created: "2026-08-26"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # Next steps
@@ -89,7 +90,7 @@ Recorded because the corrections are load-bearing, not cosmetic.
 
 ## 2. Part 1 — the explainer
 
-> **Extended 2026-08-30 by [`EXPLAINER-PLAN.md`](../../spec/EXPLAINER-PLAN.md).** Everything settled below still
+> **Extended 2026-08-30 by [`EXPLAINER-PLAN.md`](../spec/EXPLAINER-PLAN.md).** Everything settled below still
 > holds. What that file adds is the **spine** — *"How do we work?"* — the factor-file template, and a
 > reframing of §2.2's README §1, §2 and §7. **Read §2.2's outline through it.**
 

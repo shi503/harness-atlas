@@ -13,7 +13,7 @@ owner: KD
 
 **Why it exists.** The comparison corpus profiles eight systems. The only one of the author's own systems in it is *upstream* FRACTAL — 74 lines, "by reference," pinned at a commit. The larger, far more iterated system is absent from the crosswalk, the component matrix and the JTBD doc, and survives only as five marginal notes asking for exactly this treatment. Meanwhile [`../../00-README.md`](../../00-README.md) §F-5 claims the standards tier is the one row where LoomWarp stands alone — a claim this folder falsifies, because that tier is inherited prior art.
 
-**The thesis.** The transferable asset is not orchestration code. [`../../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md) already established that four of seven elements now have substantial native implementations, and priced the hand-rolled resolver at approximately zero. What survives that verdict is a set of **contracts about what a dispatching agent must compose before it dispatches** — and those are what [`01-the-composition-contract.md`](./01-the-composition-contract.md) names, [`adr-seeds/`](./adr-seeds) records, and [`ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md) sequences.
+**The thesis.** The transferable asset is not orchestration code. [`../../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md) already established that four of seven elements now have substantial native implementations, and priced the hand-rolled resolver at approximately zero. What survives that verdict is a set of **contracts about what a dispatching agent must compose before it dispatches** — and those are what [`01-the-composition-contract.md`](./01-the-composition-contract.md) names, [`adr-seeds/`](../../../archive/adr-seeds/README.md) records, and [`ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md) sequences.
 
 ---
 
@@ -29,7 +29,7 @@ owner: KD
 | 06 | [`06-capability-and-standards.md`](./06-capability-and-standards.md) | Plugins, distribution, the standards tier and its compounding half |
 | 07 | [`07-transfer-manifest.md`](./07-transfer-manifest.md) | **The payoff.** Every mechanism → port verdict, reconciled against the native-coverage verdicts |
 | 08 | [`08-appendix-schemas.md`](./08-appendix-schemas.md) | Lift-ready schemas and templates |
-| — | [`adr-seeds/`](./adr-seeds) | 19 store-format ADR drafts, `status: proposed`, staged not filed |
+| — | [`adr-seeds/`](../../../archive/adr-seeds/README.md) | 19 store-format ADR drafts, `status: proposed`, staged not filed |
 | — | [`ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md) | The go/no-go table, each row backed by a dispatchable workstream |
 
 Read **01 → 07** for the argument. 02–06 are reference.

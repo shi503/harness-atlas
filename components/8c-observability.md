@@ -39,7 +39,7 @@ Trace is a Trust concern — *can this be believed* — while the Accounting is
 [`9f`](./9f-diagnose-the-bottleneck.md), which acts on the harness rather than on a unit of
 work. **The crossing is the point**: `J17` states its own maturity gate, *"it depends on rituals and
 on `J12`"*, and a function whose parts depend on each other across an ordering boundary is not one
-gradeable row ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §2).
+gradeable row ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §2).
 
 **The gradeable property is reconstruction, not volume.** Logs accumulate by default; a trace has to
 be assembled. What separates the two is whether the **agent tree** can be rebuilt — parent to child,

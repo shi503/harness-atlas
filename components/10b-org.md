@@ -38,7 +38,7 @@ as an **authority** rule rather than a config behaviour — because the mechanis
 transferable rule that *an escalation carries a proposed decision*; what `3a` cannot supply is
 **whom it carries that decision to.** An escalation with a recommendation and no named recipient
 moves the problem to whoever is watching, which is how a bounded retry policy quietly becomes an
-interrupt for the person nearest the terminal ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §1).
+interrupt for the person nearest the terminal ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §1).
 
 **The marker is `claimed` and the absence is the more useful half.** The claim is real and public —
 Chan's *Identity Binding* and AAIF's *Identity & Trust* working group name delegation protocols and
@@ -53,7 +53,7 @@ implementation behind it**, which is the shape that argued `F14` into existence 
 > and the twelve layers give it no home: the nearest are [`9a`](./9a-learning.md), which
 > promotes, and this row, which decides, and **neither owns the steward.** We have neither today, so
 > *"we already have a gate"* is not available as an argument
-> ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §3.4).
+> ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §3.4).
 
 **What this layer is not.** It is not [`10a`](./10a-roster.md) Roster — that is *who exists*,
 this is *who answers*. It is not `2c`: this decides that a rule may not be loosened by one person, and

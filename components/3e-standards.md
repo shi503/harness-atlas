@@ -45,7 +45,7 @@ that, it absorbs the half of `F6 Policy` that is *what good looks like* —
 `standards/architecture-patterns.md`, `standards/engineering-principles.md`, `standards/ci-cd.md`,
 `standards/testing-patterns.md` — while *the bar the output must clear* (`standards/definition-of-done.md`,
 `standards/evaluation-doctrine.md`) goes to layer 8. **This separates what `C-9` merged**, on `C-9`'s own
-observation that *"the two halves fail differently"* ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §2.1).
+observation that *"the two halves fail differently"* ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §2.1).
 
 **A standard is a primitive rather than machinery** — the line `3a` draws against its own resolver —
 and that is why this component is gradeable at all: you configure a standard. A team that has adopted a

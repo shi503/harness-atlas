@@ -1,10 +1,11 @@
 ---
 title: "Session record — the architecture rebuild that was designed and not built"
 tier: reference
-project: loomwarp
+project: harness-atlas
 created: "2026-08-28"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # Session record — 2026-08-27/28, the v0-framework architecture rebuild

@@ -1,10 +1,11 @@
 ---
 title: "v0-00 — The framework, in one screen"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-12"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # A guide to LoomWarp for teams that used Agile

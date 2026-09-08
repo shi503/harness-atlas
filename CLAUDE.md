@@ -30,8 +30,13 @@ where this line used to point — an argument for the ID space, not a list of it
 in the consolidated guide §1 was struck in W0 on 2026-09-03: the landscape moves too fast to keep
 re-minting IDs.
 
-Un-recut material lives under `spec/`, `comparisons/`, `craft/`. History lives under `archive/`.
-`RULING-2026-09-02-spinout.md` says what came from where.
+Supporting material lives under `comparisons/` — the grids, the jobs, the concept ledger and the short
+teardowns the recut profiles superseded. **History lives under `archive/`**, and since 2026-09-08 that
+includes the whole v1 specification, `craft/`, and the ADR drafts: `RULING-2026-09-08-archival.md` says
+what moved and why, `RULING-2026-09-02-spinout.md` says what came from where. The distinction the old
+version of this line drew — *un-recut* versus *history* — did not survive the re-cut finishing: once
+the specification's components became Tier 2, what was left of it was argument about a settled
+decision, which is history.
 
 ## Standing rules
 

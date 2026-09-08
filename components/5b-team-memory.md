@@ -44,7 +44,7 @@ root* — and answers it with scoping and ownership rather than with more docume
 arrival — not an author, an owner — or the store acquires the exact failure it was built to prevent: a
 fact nobody wrote, nobody maintains, and every agent believes.
 
-**The governed tier is the decision ledger** *(ruled 2026-09-01 — [CROSSWALK §3.9](../spec/v1-framework/CROSSWALK.md))*.
+**The governed tier is the decision ledger** *(ruled 2026-09-01 — [CROSSWALK §3.9](../archive/spec/v1-framework/CROSSWALK.md))*.
 The routing doctrine's third destination — a fact that is shared **and** change-managed with named
 ownership — lands here, above the convention tier, and three rules make it a tier rather than a folder:
 **promotion is a ceremony** (entering acquires an owner, a status and an audit entry — a `write` that

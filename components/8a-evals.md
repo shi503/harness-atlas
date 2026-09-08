@@ -36,7 +36,7 @@ split, and the enumeration of the mechanism ladder belongs to `2c` and is not re
 > **What layer 8 grades is a judgement, and this row is where the judging happens.** That is why
 > enforcement sits beneath it rather than beside it — the cardinality of Trust and the reason
 > enforcement is not one of its rows are settled at [`2c`](./2c-enforcement.md)
-> ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §2.1).
+> ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §2.1).
 
 **`eval` scores 263 — the single most-discussed term in the field** — and the volume is the problem
 rather than the evidence. Everything from a unit test to an LLM judge is called an eval, so the

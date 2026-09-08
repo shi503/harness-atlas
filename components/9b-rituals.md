@@ -30,7 +30,7 @@ requires: []
 > triggers. `9b` is **the human practice the schedule serves** — a loop with a person in it.
 > `C-7` is **narrowed, not reversed**: its reframe covers the scheduled half; the half it did not
 > address — who is in the loop and what they are there to do — is this component.
-> Argument at [`../spec/v1-framework/CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §3.1.
+> Argument at [`../spec/v1-framework/CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §3.1.
 
 **The distinction is narrow and it is the only one that survives, so it has to be used precisely.**
 [`9c`](./9c-cadence.md) answers *what runs without being asked*. This answers *what a person
@@ -60,7 +60,7 @@ does.
 
 **What this layer is not.** It is not [`11a`](./11a-surfaces.md) Surfaces — a channel is
 **where** people meet, this is **what they are doing there**, and `J11` lands in both for that reason
-([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §1). It is not [`9a`](./9a-learning.md), which is what
+([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §1). It is not [`9a`](./9a-learning.md), which is what
 happens to a finding a ritual produced.
 
 **How do we work?** *"Review, retro and planning each have a scheduled slot and a stated place the agent participates — and each one leaves an artifact behind."*

@@ -1,11 +1,12 @@
 ---
 title: "The architecture — nine bands, bottom-up"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-28"
 status: ARCHIVED
 owner: KD
 extends: archive/v0/02-functions.md
+provenance: AUTHORED
 ---
 
 # The architecture
@@ -313,7 +314,7 @@ in that file's map.
 | **`OPEN-15`** | Does `F2 Estate` survive alongside `F15 Product`, or fold into it? | Estate is *what code exists*; Product is *where outcomes land*. They are distinguishable, but a team with one repo cannot tell them apart, and the grid would show two rows moving together |
 | **`OPEN-16`** | Is `F13 Adapters` a function, or the mechanism layer *beneath* all functions? | §3.1's table maps mechanisms to **seven different bands**, which is evidence it is cross-cutting. Kept as a function because it has an owner, an artifact and an independent maturity — but the argument is not closed |
 | **`OPEN-17`** | Does the nine-band stack **replace** the five-band partition in `02-functions.md` §1, or coexist as a second view? | Currently both are in that map. Two partitions of one set is exactly the multiplicity `C-14` ruled against, and this may be the same error in a new place |
-| **`OPEN-18`** | **Which candidate bands fold into which?** KD's counter-proposal at §1 raises `Workspaces`, `Capabilities`, `Configuration`, `Surfaces` and `Rituals` as bands, and notes *"some of these do get folded into some of these systems and layers."* | **Folding is likely and the fold-lines are not established.** A test exists and is recorded here rather than run: **a candidate is a band if it can be created, named, reattached to, and destroyed independently of the layers above and below it.** On that test `Workspaces` passes (QM `scope` · HumanLayer `worktree` · Deep Agents `SandboxBackendProtocol.id` — three peers, three names) and `Configuration` does not (it attaches to other bands and has no lifecycle of its own) — which is the same failure mode as `OPEN-16`'s. **Not settled here:** renumbering bands mid-flight is the `FM-3` defect this corpus punishes in competitors, and the horizon of each candidate should be recorded before its position is. See [`12-horizon.md`](../../spec/v1-framework/12-horizon.md) §3.2 |
+| **`OPEN-18`** | **Which candidate bands fold into which?** KD's counter-proposal at §1 raises `Workspaces`, `Capabilities`, `Configuration`, `Surfaces` and `Rituals` as bands, and notes *"some of these do get folded into some of these systems and layers."* | **Folding is likely and the fold-lines are not established.** A test exists and is recorded here rather than run: **a candidate is a band if it can be created, named, reattached to, and destroyed independently of the layers above and below it.** On that test `Workspaces` passes (QM `scope` · HumanLayer `worktree` · Deep Agents `SandboxBackendProtocol.id` — three peers, three names) and `Configuration` does not (it attaches to other bands and has no lifecycle of its own) — which is the same failure mode as `OPEN-16`'s. **Not settled here:** renumbering bands mid-flight is the `FM-3` defect this corpus punishes in competitors, and the horizon of each candidate should be recorded before its position is. See [`12-horizon.md`](../spec/v1-framework/12-horizon.md) §3.2 |
 
 ---
 

@@ -48,7 +48,7 @@ checks running on a cadence and an accounting to read. **`J17` depends on
 [`9c`](./9c-cadence.md) and on [`8d`](./8d-efficiency.md)** — which is why `F11` split
 across layers 8 and 9 rather than decomposing inside one: **a function whose parts depend on each
 other across an ordering boundary is not one gradeable row**
-([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §2).
+([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §2).
 
 **The gradeable property is that it is a single answer with a consequence attached.** A dashboard
 showing twelve numbers has not diagnosed anything; a team that can say *review is the constraint this

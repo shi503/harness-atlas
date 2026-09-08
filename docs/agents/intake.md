@@ -75,12 +75,12 @@ Sync costs are **counted, not estimated**. Read the cost before proposing the th
 
 Ten full enumerations, twelve profile matrices, and two generated-looking artifacts that are not:
 
-`CROSSWALK.md` §0 · `spec/v1-framework/00-README.md` (owns `horizon`) ·
+`components/00-README.md` (the roster) · `archive/spec/v1-framework/00-README.md` (owns `horizon`) ·
 `00-consolidated-guide-and-mental-model.md` §4 · `skills/harness-teardown/SKILL.md` §4 (owns the anchor
 slugs) · `index.md`'s layer-stack mermaid · `assets/templates/layer-stack.mmd` (declares itself canonical) ·
 `maturity/grid.html` `sub:` fields (**hand-maintained** — its generator did not survive the spin-out,
-see ISSUE-009) · `comparisons/04-harness-alignment.md` §2 · `spec/v1-framework/06-relations.md` §2
-(owns the `performs` edges) · one new `spec/v1-framework/content/component-NN-*.md` · **and the
+see ISSUE-009) · `comparisons/04-harness-alignment.md` §2 · `components/RELATIONS.md` §2
+(owns the `performs` edges) · one new `components/<id>-<name>.md` · **and the
 `## 4. Component matrix` of all twelve profiles under `content/`.**
 
 **This number is the argument for probation.** A candidate that never gets a matrix row costs nothing

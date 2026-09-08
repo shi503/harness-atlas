@@ -1,10 +1,11 @@
 ---
 title: "The context layer — F3 specified as a pluggable function"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-27"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # The context layer

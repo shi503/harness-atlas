@@ -32,7 +32,7 @@ requires: []
 dispatcher and the recovery path — and `router.py` and `dispatch.py`, which are machinery and are not
 graded. **The contract those resolvers read is the configurable primitive, and it is graded here**
 ([`11-architecture.md`](../archive/v0/11-architecture.md) §4, `C-24`; the primitive-versus-machinery line
-itself is stated in full once, in [`00-README.md`](../spec/v1-framework/00-README.md), where `AC-7` lands it).
+itself is stated in full once, in [`00-README.md`](../archive/spec/v1-framework/00-README.md), where `AC-7` lands it).
 
 **A team does not configure a resolver. It configures the contract** — and the difference is visible
 in what each is good for. A resolver either exists or it does not; a contract can be reviewed,
@@ -45,7 +45,7 @@ whole test for whether something belongs in this framework at all.**
 materializes as beads that outlive the file and any session."* FRACTAL calls it a **workstream PRD**.
 Deep Agents' evaluation harness types a task as `environment` + `solution` + `tests` +
 `instruction.md`. **Four teams, four words, one shape** — which is the `emerging` condition
-([`12-horizon.md`](../spec/v1-framework/12-horizon.md) §2).
+([`12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) §2).
 
 **The done-condition is what makes it a contract rather than a ticket.** A unit of work whose
 completion is asserted by the thing that did it is not a contract; it is a claim. The published

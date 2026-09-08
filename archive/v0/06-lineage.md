@@ -1,10 +1,11 @@
 ---
 title: "Lineage — the published models we sit among"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-27"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # Lineage

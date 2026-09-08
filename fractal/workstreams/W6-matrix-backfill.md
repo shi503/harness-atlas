@@ -18,7 +18,7 @@ Every teardown in the corpus has its column, and the grid's own prose describes 
   W3's ledger: a row, or a stated altitude, never silently absorbed.
 - The stale *"eighteen concept rows"* prose fixed: the grid has 19 rows and 14 columns at the time
   of writing; count again before writing the number.
-- The `shipped` horizon rule: `spec/v1-framework/12-horizon.md` §2 requires two teardowns cited by
+- The `shipped` horizon rule: `archive/spec/v1-framework/12-horizon.md` §2 requires two teardowns cited by
   file and section; only `5c` Knowledge meets it. Either re-cite the eleven or relax the rule **and
   record the relaxation** in a dated note.
 

@@ -38,7 +38,7 @@ requires: ["3a"]
 
 That is Böckeler's split, and the factor set already carries both halves as separate imperatives —
 Factor `VII` *"The gate does not run on the model"* and Factor `VIII` *"Feedback is addressed to the
-machine"* ([`EXPLAINER-PLAN.md`](../spec/EXPLAINER-PLAN.md) §3.1). The jobs record the same division
+machine"* ([`EXPLAINER-PLAN.md`](../archive/spec/EXPLAINER-PLAN.md) §3.1). The jobs record the same division
 from the same author: *Guides* under `J5 bound`, *Sensors* under `J6 validate`
 ([`03-jtbd.md`](../comparisons/03-jtbd.md) §2).
 

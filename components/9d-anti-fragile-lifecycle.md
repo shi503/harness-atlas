@@ -31,7 +31,7 @@ requires: []
 > the next run is measured → `9f` diagnoses again. **`9d` is that circuit.** Each neighbour describes
 > one arc; only this component describes the closure — which is the difference between *resilient*
 > (survives stress unchanged) and *anti-fragile* (improves because of it).
-> Argument at [`../spec/v1-framework/CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §3.2.
+> Argument at [`../spec/v1-framework/CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §3.2.
 
 **The wiring is the object, and it is gradeable because a broken edge is nameable.** Five working
 activities with four of six edges connected is a common and invisible state: findings that never

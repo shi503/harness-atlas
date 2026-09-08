@@ -30,7 +30,7 @@ requires: []
 **This component exists because the crosswalk would not close without it.** `F6 Policy` opens *"What an
 agent may do"* — which is neither a standard (`3e`), nor a bar on output (`8a`), nor a mechanism (`2c`).
 It is a decision about a grant, and without a home for it `J5 bound` — a **CORE, converged** job — would
-carry a mechanism and no decision ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §2.1).
+carry a mechanism and no decision ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §2.1).
 
 **Three components hold three different objects, and conflating any two of them hides a zero.**
 
@@ -50,7 +50,7 @@ grant travels with the package rather than with the enumeration of what exists t
 > **whitespace #1 in the entire category** and which `NEXT-STEPS.md` §3.2 records as *"currently nobody's
 > job."* Layer 4 has this row. **Layer 5 has no counterpart.** The twelve-layer structure does not close
 > that gap — it turns it from a paragraph into a missing cell in a visible grid, which is the most this
-> wave can honestly claim ([`CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §3.5).
+> wave can honestly claim ([`CROSSWALK.md`](../archive/spec/v1-framework/CROSSWALK.md) §3.5).
 
 **How do we work?** *"Each capability declares who may invoke it and against what, and an agent that has not been granted one cannot reach it."*
 

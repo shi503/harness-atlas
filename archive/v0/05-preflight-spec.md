@@ -1,10 +1,11 @@
 ---
 title: "v0-05 — Pre-flight: the install config generator"
 tier: spec
-project: loomwarp
+project: harness-atlas
 created: "2026-08-11"
 status: ARCHIVED
 owner: KD
+provenance: AUTHORED
 ---
 
 # Pre-flight — the install config generator

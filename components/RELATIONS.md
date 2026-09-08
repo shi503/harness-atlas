@@ -30,7 +30,7 @@ it — which is itself worth knowing before anyone builds a maturity argument on
 
 The roster of the 33 is [`00-README.md`](00-README.md). The retired relation model and the session
 that produced it are in
-[`../archive/spec/v1-framework/06-relations.md`](../spec/v1-framework/06-relations.md).
+[`../archive/spec/v1-framework/06-relations.md`](../archive/spec/v1-framework/06-relations.md).
 
 ---
 
@@ -40,7 +40,7 @@ that produced it are in
 
 | From | requires | Because | Cited at |
 |---|---|---|---|
-| `2a` | `1a` | *"one **adapter** per system declared at `1a`"* — and the preflight forces the order: *"you cannot write an adapter for a system you have not declared"* | [`2a`](./2a-adapters-and-middleware.md) · [`05-preflight.md`](../spec/v1-framework/05-preflight.md) §3 |
+| `2a` | `1a` | *"one **adapter** per system declared at `1a`"* — and the preflight forces the order: *"you cannot write an adapter for a system you have not declared"* | [`2a`](./2a-adapters-and-middleware.md) · [`05-preflight.md`](../archive/spec/v1-framework/05-preflight.md) §3 |
 | `3b` | `10a` | *"A resolver is only as good as the list it resolves against, and that list is `10a` Roster."* **The published upward edge**, drawn dashed in `img/000-the-twelve-layers.svg` | [`3b`](./3b-routing.md) |
 | `3a` | `7a` | *"The gradeable object is the work contract the resolver reads… A team does not configure a resolver; it configures the contract."* Control's machinery is inert without the primitive one layer up | [`3a`](./3a-control.md) |
 | `3a` | `10b` | *"An escalation needs a destination, and this is it… what `3a` cannot supply is"* the named authority | [`10b`](./10b-org.md) |
