@@ -10,6 +10,8 @@ sublayer: "4b"
 function: "F6 (split)"
 job: "J5"
 horizon: "emerging"
+graded: false
+requires: []
 ---
 
 [← 00-README](../spec/v1-framework/00-README.md) — the twelve layers, read bottom-up · [CROSSWALK](../spec/v1-framework/CROSSWALK.md) — the derivation and supersession arguments for every component

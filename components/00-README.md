@@ -94,3 +94,37 @@ The **live register of open questions** — recorded gaps, candidates for a thir
 and the rulings that closed six of them — is [`CROSSWALK.md`](CROSSWALK.md) beside this file. A
 thirty-fourth component is admitted by a ruling, never by a teardown, and it costs 24 edits: see
 [`../docs/agents/intake.md`](../docs/agents/intake.md).
+
+---
+
+## The graded split
+
+**`graded:` says whether a component has maturity *stages* or only an *answer*.** A component with a
+ladder can be climbed; one with an answer is given or it is not. The working hypothesis W5 set was
+*layers 0–4 mostly `false`, 6–12 mostly `true`* — the CONFIGURED half is decided once, the
+ACCUMULATES and RUNS halves compound. **Twenty-nine of the thirty-three agree with it; the four that
+do not each carry a `graded_reason:` on their own page.**
+
+**Graded — 23 have stages**
+
+`2c` [Enforcement](2c-enforcement.md) · `3e` [Standards](3e-standards.md) · `4a` [Capability](4a-capability.md) · `5a` [Individual Memory](5a-individual-memory.md) · `5b` [Team Memory](5b-team-memory.md) · `5c` [Knowledge](5c-knowledge.md) · `6a` [Product](6a-product.md) · `6b` [Infrastructure](6b-infrastructure.md) · `6c` [Estate](6c-estate.md) · `6d` [Delivery](6d-delivery.md) · `7a` [Workflow Tasks](7a-workflow-tasks.md) · `8a` [Evals](8a-evals.md) · `8b` [Evidence](8b-evidence.md) · `8c` [Observability](8c-observability.md) · `8d` [Efficiency](8d-efficiency.md) · `9a` [Learning](9a-learning.md) · `9b` [Rituals](9b-rituals.md) · `9c` [Cadence](9c-cadence.md) · `9d` [Anti-fragile Lifecycle](9d-anti-fragile-lifecycle.md) · `9e` [Raise the Floor](9e-raise-the-floor.md) · `9f` [Diagnose the Bottleneck](9f-diagnose-the-bottleneck.md) · `10a` [Roster](10a-roster.md) · `10b` [Org](10b-org.md)
+
+**Catalogued — 10 have an answer**
+
+`0a` [Substrate](0a-substrate.md) · `1a` [Environment](1a-environment.md) · `2a` [Adapters & Middleware](2a-adapters-and-middleware.md) · `2b` [Hooks](2b-hooks.md) · `3a` [Control](3a-control.md) · `3b` [Routing](3b-routing.md) · `3c` [Composition](3c-composition.md) · `3d` [Configuration](3d-configuration.md) · `4b` [Capability Permissions](4b-capability-permissions.md) · `11a` [Surfaces](11a-surfaces.md)
+
+**The four that disagree with the hypothesis**
+
+| | Called | Because |
+|---|---|---|
+| `2c` Enforcement | `true` | the page names an explicit ladder — deny rules, hooks, managed settings, sandbox — where each rung binds more and costs more to deploy |
+| `3e` Standards | `true` | a standards tier accumulates — guides authored, then an inheritance contract, then findings promoted into canon — and the page grades a peer as holding one half of that and not the other |
+| `4a` Capability | `true` | the page grades catalog maturity directly, from a `cp -r` loop with a broken removal path up to SHA pinning, semver and renames |
+| `11a` Surfaces | `false` | the page frames source-of-truth as a decision rather than a tool — *one of only two consequential decisions this system forces anyone to take* — and a decision is answered, not climbed |
+
+> **Open, and not for an agent to close.** W7's PRD says `grid.html`'s rows become the `graded: true`
+> components. **[CROSSWALK §3.7](CROSSWALK.md#37--ruled-2026-09-01--o-6-the-grids-warp-threads-are-the-12-layers-the-33-are-drill-down)
+> is a KD ruling of 2026-09-01 saying the opposite** — the grid runs on twelve warp threads, the
+> layers, with the 33 as drill-down — and says it was ruled *ahead of* W7 for exactly that reason.
+> The two cannot both hold. Recorded in [`../fractal/ISSUES.md`](../fractal/ISSUES.md); the field is
+> set either way, because the split is worth having whichever artifact ends up reading it.

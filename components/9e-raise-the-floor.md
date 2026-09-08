@@ -10,6 +10,8 @@ sublayer: "9e"
 function: "F8.2"
 job: "J16"
 horizon: "bet"
+graded: true
+requires: ["9f"]
 ---
 
 [← 00-README](../spec/v1-framework/00-README.md) — the twelve layers, read bottom-up · [CROSSWALK](../spec/v1-framework/CROSSWALK.md) — the derivation and supersession arguments for every component

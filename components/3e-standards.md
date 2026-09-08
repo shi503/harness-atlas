@@ -10,6 +10,9 @@ sublayer: "3e"
 function: "F16 (widened)"
 job: "J15"
 horizon: "bet"
+graded: true
+graded_reason: "disagrees with the layer-0-4 hypothesis: a standards tier accumulates — guides authored, then an inheritance contract, then findings promoted into canon — and the page grades a peer as holding one half of that and not the other"
+requires: []
 ---
 
 [← 00-README](../spec/v1-framework/00-README.md) — the twelve layers, read bottom-up · [CROSSWALK](../spec/v1-framework/CROSSWALK.md) — the derivation and supersession arguments for every component

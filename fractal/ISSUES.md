@@ -627,3 +627,55 @@ two groups and no more.
 
 **No action proposed.** The sheet is at seven and the seven now all discriminate. This entry exists so
 the next person to ask *what is missing* gets the measured answer instead of re-deriving it.
+
+---
+
+## ISSUE-021 — the link checker cannot see a malformed link, only a missing target
+
+**Severity:** WARN · **Found:** 2026-09-08, W11 while carrying `06-relations.md` §3 · **Assigned:** none yet — the fix is cheap, the decision is whether it earns its place
+
+A substitution in `components/RELATIONS.md` dropped the closing paren on all thirteen citations:
+
+```
+before   [`2a`](./2a-adapters-and-middleware.md)
+after    [`2a`](./2a-adapters-and-middleware.md
+```
+
+**`node scripts/check-doc-links.mjs` reported PASS.** It matches `\[[^\]]*\]\(([^)\s]+)\)`, so a link with no
+closing paren is not a link it can see: there is no target left to resolve, and nothing to report.
+
+**This is the same shape as the defect the `--external` flag was written for.** The gate answers *does
+this target exist* and is silent on *is this still a link at all* — so a corpus can lose navigation and
+stay green. It was caught by reading the output rather than trusting the exit code, which is not a
+control.
+
+The cheap fix is a warning on `](` sequences with no closing paren before the next newline. It is
+narrowly defensible against *markdown is not code* on the same grounds `--external` was: it does not
+check content, count or vocabulary, only whether a promise of a destination is well-formed enough to
+be one. **Not taken unattended** — the standing rule is a real constraint and this is a new check.
+
+---
+
+## ISSUE-022 — W7's PRD and CROSSWALK §3.7 give `grid.html` contradictory row sets
+
+**Severity:** WARN · **Found:** 2026-09-08, W11 while setting `graded:` for W5 AC-3 · **Assigned:** KD to rule
+
+`fractal/workstreams/W7-maturity-recut.md:17` says *"`maturity/grid.html` re-pointed: rows are the
+`graded: true` components only"*, and its `AC-1` makes that a gate: *"Every row in `grid.html`
+corresponds to a component page with `graded: true`."*
+
+`components/CROSSWALK.md` §3.7 is a **KD ruling dated 2026-09-01** that says the opposite: *"`grid.html`
+runs on 12 warp threads — the layers — with the 33 components as drill-down"*, on a cell-count argument
+(33 × 6 = 198 cells against a ~168 escalation threshold). It states it was ruled **ahead of W7**
+specifically so the grid work would be written to it rather than retrofitted.
+
+**Both cannot hold.** Twenty-three components are now `graded: true`, so the W7 reading gives 23 rows
+and the ruling gives 12. The ruling is dated, argued and explicitly anticipates W7; the PRD text is
+undated on this point and reads as though written before it. **The likely resolution is that W7's line
+17 and `AC-1` are stale and should be struck** — but a PRD is not struck by an agent noticing a conflict,
+and `graded:` is worth having either way, so the field is set and the grid is untouched.
+
+**A second stale claim rides along.** §3.7 says the ruling was executed *"at `W7`"* by
+`scripts/gen-grid-rows.mjs`. That script does not exist — see ISSUE-009, struck in the same commit as
+this entry. So the ruling's own record of its execution is unreliable, and whoever settles this should
+re-read `grid.html` rather than trust either document about what it currently does.

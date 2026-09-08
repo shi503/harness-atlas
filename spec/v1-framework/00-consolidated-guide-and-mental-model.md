@@ -409,8 +409,13 @@ first one that requires somebody to decide something and write it down, which is
 ledger and named owner in this framework appears at that rung or above.
 
 Two artifacts operationalise this. [grid.html](../../maturity/grid.html) is the instrument — twelve
-sliders, and its rows are **generated** from [CROSSWALK.md](./CROSSWALK.md) §0 so drift is impossible
-rather than detectable. [05-preflight.md](./05-preflight.md) is the generator that turns a grid
+sliders, and its rows are ~~**generated** from [CROSSWALK.md](./CROSSWALK.md) §0 so drift is impossible
+rather than detectable~~ **hand-maintained. Struck 2026-09-08, ISSUE-009:** the generator this claimed,
+`scripts/gen-grid-rows.mjs`, did not survive the spin-out and no longer exists, so drift here is neither
+impossible nor detected. Struck rather than restored, because the standing rule is *markdown is not
+code — no generator contracts*; the twelve `sub:` fields are maintained by hand and `docs/agents/intake.md`
+counts `grid.html` as one of the twenty-four places a new component must be synced by hand, which is only
+a correct count if this is known. [05-preflight.md](./05-preflight.md) is the generator that turns a grid
 reading into a decision record, gated so a team sees only the rungs between where it is and where it
 is going.
 

@@ -10,6 +10,8 @@ sublayer: "3a"
 function: "F4 (split)"
 job: "J4 · J7 · J5"
 horizon: "shipped"
+graded: false
+requires: ["7a", "10b"]
 ---
 
 [← 00-README](../spec/v1-framework/00-README.md) — the twelve layers, read bottom-up · [CROSSWALK](../spec/v1-framework/CROSSWALK.md) — the derivation and supersession arguments for every component

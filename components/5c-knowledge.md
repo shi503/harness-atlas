@@ -10,6 +10,8 @@ sublayer: "5c"
 function: "F3.3"
 job: "J1"
 horizon: "shipped"
+graded: true
+requires: []
 ---
 
 [← 00-README](../spec/v1-framework/00-README.md) — the twelve layers, read bottom-up · [CROSSWALK](../spec/v1-framework/CROSSWALK.md) — the derivation and supersession arguments for every component

@@ -10,6 +10,9 @@ sublayer: "4a"
 function: "F5"
 job: "J10"
 horizon: "shipped"
+graded: true
+graded_reason: "disagrees with the layer-0-4 hypothesis: the page grades catalog maturity directly, from a `cp -r` loop with a broken removal path up to SHA pinning, semver and renames"
+requires: []
 ---
 
 [← 00-README](../spec/v1-framework/00-README.md) — the twelve layers, read bottom-up · [CROSSWALK](../spec/v1-framework/CROSSWALK.md) — the derivation and supersession arguments for every component

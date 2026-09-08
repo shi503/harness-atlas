@@ -10,6 +10,8 @@ sublayer: "3c"
 function: "new"
 job: "—"
 horizon: "emerging"
+graded: false
+requires: ["2a"]
 ---
 
 [← 00-README](../spec/v1-framework/00-README.md) — the twelve layers, read bottom-up · [CROSSWALK](../spec/v1-framework/CROSSWALK.md) — the derivation and supersession arguments for every component
@@ -85,3 +87,24 @@ all.
 cannot predict what it changed. **The failure is not that composition is missing — every system composes
 something — it is that the composition is implicit,** and an implicit arrangement cannot be reviewed,
 cannot be inherited by the next person, and cannot be given a floor.
+
+> ### The deletion test — stated plainly, because hiding it would be the tell
+>
+> **On the seeded graph this component performs no job and is required by nothing.** It carries one
+> outbound edge — it *requires* [`2a`](./2a-adapters-and-middleware.md) — and **zero inbound**: no
+> other component's argument says it cannot work without composition
+> ([`RELATIONS.md`](RELATIONS.md) §3.1, thirteen cited edges, none of them ending here). On a graph
+> that sparse it is the weakest node in the set.
+>
+> **The test, and it is cheap:** delete `3c` and re-read the corpus. If every claim it carries can be
+> made at `2a` (which insertion points a harness *offers*) or at [`3d`](./3d-configuration.md) (what
+> a given agent is *configured* with), the component was a distinction without a gradeable object and
+> should retire by ruling, per the standing rule that a vocabulary retires by writing a ruling,
+> publishing a crosswalk and re-heading the loser.
+>
+> **What the test has to beat.** The corpus reads `emerging` here on two peers with no shared word —
+> Claude Code's lifecycle events and Deep Agents' middleware stack, *"the same design reached
+> independently"*. Independent arrival is the strongest evidence in this atlas that a component is
+> real rather than invented, and it is the argument a deletion has to answer. **Recorded as open, not
+> resolved:** nobody has run this test, and W5's `AC-4` asks that the page say so rather than let the
+> row sit unexamined because it is easier to keep a row than to kill one.

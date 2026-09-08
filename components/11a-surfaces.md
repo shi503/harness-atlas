@@ -10,6 +10,9 @@ sublayer: "11a"
 function: "F1 (widened)"
 job: "J11"
 horizon: "emerging"
+graded: false
+graded_reason: "disagrees with the layer-6-12 hypothesis: the page frames source-of-truth as a decision rather than a tool — *one of only two consequential decisions this system forces anyone to take* — and a decision is answered, not climbed"
+requires: []
 ---
 
 [← 00-README](../spec/v1-framework/00-README.md) — the twelve layers, read bottom-up · [CROSSWALK](../spec/v1-framework/CROSSWALK.md) — the derivation and supersession arguments for every component
