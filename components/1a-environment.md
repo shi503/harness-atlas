@@ -48,7 +48,7 @@ in one screen* — Distribution row); Deep Agents' CI docs say **pin a reviewed 
 ([`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md)
 §5 *Distribution*). Our own record is the counter-example: the vendored `fractal/` machinery is *"pinned
 at a commit, not a version. No upgrade path is defined"*
-([`systems/fractal.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/fractal.md) §*Credibility check*) — the
+([`fractal.md`](../content/fractal.md#1a-environment)) — the
 exact exposure a version column in this inventory exists to make visible.
 
 **MCP is therefore split across two layers, and the split is the argument.** It is **declared** here — as
@@ -70,7 +70,7 @@ the SaaS, the data systems, the execution environments — has never had a home 
 | **Deep Agents** | The nearest published thing to a declared environment, and it is a **backend list** rather than an inventory: `state` · `store` · `filesystem` · `local_shell` · `sandbox` · `composite` · `context_hub` · `langsmith`. Its `THREAT_MODEL.md` goes further than anyone — **six named trust boundaries** and five data classifications — but that is a map of risk, not a map of systems | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Backends*, §5 *Policy* |
 | **MCP** | **Declared here, adapted at `2a`.** The mechanism is defined as *"external tool or data connections via the Model Context Protocol,"* configured per tool at `.mcp.json` and four other published per-tool paths. A server list is the closest the field comes to a declaration — and it is a list of **connections**, not of systems with owners | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
 | **HumanLayer** | The most concrete peer instance, and it is four files: `rpi-coordination-template` grants `permissions.additionalDirectories: ["../repo1", "../repo2"]` and its `CLAUDE.md` *lists the repos and their descriptions*. **A declared inventory of two entries, with descriptions and no owners** — and its own README retires it into the product's Workspaces feature | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5 |
-| **ours** | `registry/repositories.yaml` with a schema — built, two repos, one of them a private submodule that blocks a clean clone. **That is the Estate row of the inventory and nothing else**: no SaaS, no data systems, no execution environments, no auth model | [`systems/loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/loomwarp.md) §*Architecture* |
+| **LoomWarp** | `registry/repositories.yaml` with a schema — built, two repos, one of them a private submodule that blocks a clean clone. **That is the Estate row of the inventory and nothing else**: no SaaS, no data systems, no execution environments, no auth model | [`loomwarp.md`](../content/loomwarp.md#1a-environment) |
 
 **Horizon:** `bet` — `11-architecture.md` §5.1 — *"Nothing in `F0`–`F11` holds a declared inventory of systems the team works across."* No peer declares the environment before the call. Said out loud: this is ours and uncorroborated
 

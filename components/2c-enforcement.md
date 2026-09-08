@@ -54,7 +54,7 @@ by a peer: QM ships *no hooks at all*, and reaches genuinely unviolatable invari
 AST-level lint rule, route-auth conformance by enumeration, and tests that fail when the README stops
 matching the code. **The mechanism is *enforcement points*, and some invariants are better served by a
 lint rule than a hook — because a lint rule runs in CI for humans too**
-([`04-benchmark-qm.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/specs/v1/04-benchmark-qm.md) §*The correction it forces on E5*).
+([`systems/qm.md`](../comparisons/systems/qm.md); originally argued in `loomwarp-team-system` `specs/v1/04-benchmark-qm.md`, private).
 
 **`J15 secure and harden` splits here and it splits honestly.** *Secure* — secrets, sandboxing,
 credentials an agent never holds — is a mechanism and lands at `2c`. *Harden* — vulnerability surface
@@ -72,7 +72,7 @@ nobody notices.
 | **Deep Agents** | `allow` \| `deny` \| `interrupt` as **one mode field on one rule** — a three-level posture that costs a value rather than three subsystems. ⚠️ And the corpus's **first counter-example to deny-wins**: resolution is *first-match-wins with an `allow` default*, so a permissive rule listed first silently defeats a later deny | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Permissions — a real policy primitive, and it is not deny-wins* |
 | **MCP** | **Nothing here, and it is the reason enforcement cannot live at the connection layer.** MCP is *"external tool or data connections"*; what an agent may do with a connection is decided by the harness around it | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
 | **HumanLayer** | Enforcement as a **record rather than a bit**: approvals carry `ApproveToolCall(id, comment)` and `DenyToolCall(id, reason)`, with `resolved` as a distinct terminal state for approvals settled outside the system — the honest admission that a control plane never owns every channel | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §7 |
-| **ours** | **Policy theatre, caught in our own repo.** Four tier files, risk tiers designed, **one wired** — and the only live run used `bypassPermissions`, which skips deny rules entirely, while the shipped diagram claimed otherwise | [`systems/loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/loomwarp.md) §*Architecture*, §*Credibility check* |
+| **LoomWarp** | **Policy theatre, caught in its own repo.** Four tier files, risk tiers designed, **one wired** — and the only live run used `bypassPermissions`, which skips deny rules entirely, while the shipped diagram claimed otherwise | [`loomwarp.md`](../content/loomwarp.md#2c-enforcement), §*Credibility check* |
 
 **Horizon:** `shipped` — `03-jtbd.md` §2 `J5` *"Who"* — Claude Code deny rules, hooks, managed settings, sandbox; Indigo hook profiles `minimal/standard/strict`; QM `strict/auto/dangerous` with monotonic narrowing
 

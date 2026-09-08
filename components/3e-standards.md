@@ -28,7 +28,7 @@ horizon: "bet"
 post-hoc appearance — evals and sensors, checking work that was done. **This is the pre-hoc appearance,
 and it is stored in layer 5**, because a standard is knowledge before it is a rule and the store that
 serves it to an agent is the context layer. Böckeler names the pair; the factor set carries both halves
-as separate imperatives ([`component-05-enforcement.md`](./2c-enforcement.md)).
+as separate imperatives ([`2c-enforcement.md`](./2c-enforcement.md)).
 
 **The inheritance contract is the whole artifact.** *Reference, never copy. Tighten, never contradict.*
 Without it a standards tier is a folder of opinions that diverge on first fork; with it, a repo can raise
@@ -61,7 +61,7 @@ ship — which is adjacent and different: **it tells you the order, not the bar.
 | **Deep Agents** | The nearest published object, and it is post-hoc by construction: `RubricMiddleware` lets a caller **declare what done looks like** and then grades against it at the moment the agent would finish. **The declaration is a standard; the grading is a sensor** — one component holding both appearances, which is the cleanest illustration of why the framework separates them. It also ships a full threat model, and *"no other system in this corpus ships"* one | [`systems/langchain-deepagents.md`](../comparisons/systems/langchain-deepagents.md) §2 *Rubric*, §5 *Policy* |
 | **MCP** | **Nothing here.** A connection mechanism carries no opinion about quality, and cannot | [`07-verified-inventories.md`](../comparisons/2026-08-research/07-verified-inventories.md) §1 Table 1, row 8 |
 | **HumanLayer** | The most instructive evidence in the corpus, and it is a **survival result**: when the multi-repo coordination template was absorbed into the product, what its own README says still justifies the repo is *"shared `AGENTS.md`, skills, etc."* — **the orchestration got absorbed; the canon did not.** Separately, 12-Factor Agents at 25.6k★ is the most-adopted principle manifesto in the space, at single-agent altitude | [`systems/humanlayer.md`](../comparisons/systems/humanlayer.md) §5, §1 |
-| **ours** | Seven guides, roughly 970 lines, behind a real inheritance contract — *reference never copy, tighten never contradict*. **The one row in the component matrix where we are alone.** ⚠️ And the row has a second half we do not have: named review finding-classes that any review may append to and that **promote into canon once hardened** | [`systems/loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/loomwarp.md) §*What it does well* · [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 — *Reading the three rows that matter* |
+| **LoomWarp** | Seven guides, roughly 970 lines, behind a real inheritance contract — *reference never copy, tighten never contradict*. **The one row in the component matrix where it is alone.** ⚠️ And the row has a second half it does not have: named review finding-classes that any review may append to and that **promote into canon once hardened** | [`loomwarp.md`](../content/loomwarp.md#3e-standards) · [`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 — *Reading the three rows that matter* |
 
 **Horizon:** `bet` — `02-functions.md` §6 `F5` — *"Nobody ships the Standards system. Not Claude Code, not gstack, not Gas City, not QM."* gstack encodes process opinion, which is adjacent and different: it tells you the sequence, not the bar. Said out loud
 
