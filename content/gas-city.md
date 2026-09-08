@@ -222,7 +222,6 @@ six-primitive count is unaffected, since it is stated directly in `how-gas-city-
 `✅ direct · ↪ relayed · ⚠️ unverified`
 
 ### 0 · Foundation
-
 #### 0a Substrate
 <details>
 <summary>● 15 named provider CLIs; per-agent <code>provider</code>/<code>option_defaults</code>/<code>upstream</code></summary>
@@ -235,7 +234,6 @@ harness or model is a config edit, no code.
 </details>
 
 ### 1 · Environment
-
 #### 1a Environment
 <details>
 <summary>◐ Shell, rig filesystem, HTTP+SSE API, GitHub, k8s, Dolt — no declared inventory</summary>
@@ -248,7 +246,6 @@ No declared systems inventory beyond this "Execution Surfaces" table.
 </details>
 
 ### 2 · Agent Harness
-
 #### 2a Adapters & Middleware
 <details>
 <summary>● <code>runtime.Provider</code> (tmux/subprocess/exec/ACP/k8s/herdr); MCP catalog-only</summary>
@@ -284,7 +281,6 @@ content-digest match.
 </details>
 
 ### 3 · System Stacks
-
 #### 3a Control
 <details>
 <summary>◐ v2 control beads (<code>check</code>,<code>retry</code>,<code>fanout</code>,<code>drain</code>) gate steps on <code>needs</code> edges</summary>
@@ -341,7 +337,6 @@ matrix mark is `○`**; this row's evidence argues for at least `◐` — flagge
 </details>
 
 ### 4 · Capabilities
-
 #### 4a Capability
 <details>
 <summary>● <b>Pack</b> bundles agents/formulas/orders/skills; <code>gascity-packs</code> registry</summary>
@@ -366,7 +361,6 @@ human-facing RBAC — single-tier "trusted operator code."
 </details>
 
 ### 5 · Context ⟳
-
 #### 5a Individual Memory
 <details>
 <summary>◐ Per-agent session logs, <code>wake_mode</code>; Beads' <code>bd remember</code>/<code>bd prime</code> one layer down</summary>
@@ -401,7 +395,6 @@ Bead/mail/skill above.
 </details>
 
 ### 6 · Workspaces ⟳
-
 #### 6a Product
 <details>
 <summary>○ Work lands as commits/PRs; no "must not become" statement found</summary>
@@ -446,7 +439,6 @@ agent-produced work — no dedicated PR-automation guide; `gh` is an optional de
 </details>
 
 ### 7 · Workflow Tasks
-
 #### 7a Workflow Tasks
 <details>
 <summary>● <b>Bead</b> <code>open</code>→<code>in_progress</code>→<code>closed</code>; <b>Convoy</b> groups related work</summary>
@@ -458,7 +450,6 @@ grouping related work; blocking `needs` edges order work "with no central schedu
 </details>
 
 ### 8 · Trust
-
 #### 8a Evals
 <details>
 <summary>○ Nothing here — only a <code>retry-eval</code> control-bead <i>kind</i>, not a quality gate</summary>
@@ -506,7 +497,6 @@ intermediated by Gas City itself.
 </details>
 
 ### 9 · IMPROVE
-
 #### 9a Learning
 <details>
 <summary>○ Hand-authored skills only; no auto-capture pipeline found</summary>
@@ -573,7 +563,6 @@ Dolt-trend health; `gc convoy` tracks a batch of related work as a unit.
 </details>
 
 ### 10 · Teams & Agents
-
 #### 10a Roster
 <details>
 <summary>● <b>Agent</b> folder is the roster entry; Gastown pack ships an example roster</summary>
@@ -598,7 +587,6 @@ schema and the auth wire, a vocabulary seam (rule 3).
 </details>
 
 ### 11 · Surfaces
-
 #### 11a Surfaces
 <details>
 <summary>● <code>gc session attach</code> TUI, web dashboard, HTTP+SSE API, <code>gc</code>/<code>bd</code> CLIs</summary>
@@ -716,47 +704,33 @@ narrower mechanism nested inside the host architecture (rule 7: both recorded, n
 <details>
 <summary>Primary · secondary · placement · diagrams not redrawn</summary>
 
-**All primary sources accessed 2026-09-03. No source was re-read at the 2026-09-07 restructure.**
+**All primary sources accessed 2026-09-03; none re-read at the 2026-09-07 restructure.**
 
-**Primary — GitHub API and repo.** `gh api repos/gastownhall/gascity` · `gh api repos/gastownhall/{gastown,beads}`
-· `gh api orgs/gastownhall`; `gh api orgs/gastownhall/public_members` (`[]`) · `gh api
-repos/gastownhall/gascity/releases --paginate`, `.../tags?per_page=100` · `gh api
-repos/gastownhall/gascity/git/refs/tags/{edge,v1.4.1}` · `gh api repos/gastownhall/gascity/commits/main`
-· `gh api repos/gastownhall/{gascity,gastown}/contributors?per_page=100` · `gh api
-search/code?q=%22Factory+Worker+Protocol%22+org:gastownhall` (zero hits) · `gh api
-search/code?q=%22FWP%22+org:gastownhall` (5 incidental lockfile hits) · `gh api
-repos/gastownhall/gascity-otel`.
+**Primary — GitHub API.** `gh api repos/gastownhall/gascity`; `.../{gastown,beads}`; `orgs/gastownhall`
+and `public_members` (`[]`); `.../releases --paginate`, `.../tags`; `git/refs/tags/{edge,v1.4.1}`;
+`commits/main`; `.../contributors`; `search/code?q="Factory+Worker+Protocol"+org:gastownhall` (zero
+hits); `search/code?q="FWP"+org:gastownhall` (5 incidental lockfile hits); `repos/gastownhall/gascity-otel`.
 
 **Primary — files**, cloned at `gascity` HEAD `4071143`: `README.md`, `CONTRIBUTING.md`,
-`SECURITY.md`, `CHANGELOG.md`, `LICENSE`; `docs/getting-started/{how-gas-city-works,
-coming-from-gastown,dashboard,installation,faq}.md`; `docs/guides/{capabilities-for-coding-agent-users,
-understanding-formulas,understanding-packs,harness-recipes,registry-showcase,connected-clients}.md`;
-`docs/reference/{config,cli,events,trust-boundaries,gastown-command-map,herdr-provider}.md`;
-`docs/reference/specs/{service-protocol-v0,formula-spec-v1,formula-spec-v2,pack-spec}.md`;
-`engdocs/architecture/{nine-concepts,invariants,health-patrol,glossary}.md`;
-`engdocs/contributors/primitive-test.md`; `engdocs/design/usage-facts-v0.md`;
-`internal/bootstrap/packs/core/formulas/mol-review-quorum.toml`; `.github/workflows/` (listing);
-`gastown` README, `beads` README, `wasteland` README; `docs/docs.json`.
+`SECURITY.md`, `CHANGELOG.md`, `LICENSE`; `docs/getting-started/*`; `docs/guides/*`;
+`docs/reference/*` incl. `specs/*`; `engdocs/architecture/*`, `engdocs/contributors/primitive-test.md`,
+`engdocs/design/usage-facts-v0.md`; `internal/bootstrap/packs/core/formulas/mol-review-quorum.toml`;
+`.github/workflows/` (listing); `gastown`/`beads`/`wasteland` READMEs; `docs/docs.json`.
 
-**Secondary (↪, not re-verified this run).** Announcing Gas City 1.0 (sellsbrothers.com); Welcome to
-Gas City, Gas Town: from Clown Show to v1.0 (steve-yegge.medium.com); yegge.ai/gastown; Maggie
-Appleton, "Gas Town's Agent Patterns"; Software Engineering Daily, "Gas Town, Beads, and the Rise of
-Agentic Development."
+**Secondary (↪, not re-verified this run).** Two Gas City/Gas Town blog posts (sellsbrothers.com,
+steve-yegge.medium.com); yegge.ai/gastown; Maggie Appleton, "Gas Town's Agent Patterns"; Software
+Engineering Daily, "Gas Town, Beads, and the Rise of Agentic Development."
 
-**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md)
-§1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2
-and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row:
-[`index.md`](../index.md). **A `spectrums/positioning.md` row is not yet added** — out of this
-restructure's write manifest (`spectrums/positions/gas-city.yaml` is the source of truth in the
-meantime).
+**Placement.** Short-profiles row: [`90-short-profiles.md`](../comparisons/systems/90-short-profiles.md)
+§1 · grid columns: [`04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and
+[`02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md).
+**A `spectrums/positioning.md` row is not yet added** — out of this restructure's write manifest.
 
-**Diagrams not redrawn.** Sixteen `.excalidraw` sources exist beyond `primitives.excalidraw` in
-`docs/diagrams/`: `bead-lifecycle`, `convoy-tracks-membership`, `cooldown-vs-cron`,
-`coordination-through-store`, `formula-apply-pipeline`, `formula-drain-fanout`, `formula-v1-vs-v2`,
-`formula-whole-job`, `gastown-agents-by-scope`, `hand-rolled-to-city`, `import-binding-namespace`,
-`json-discover-validate`, `pack-loading`, `pancakes-dag`, `work-lifecycle`
-(`docs/diagrams/excalidraw-rendered/*.svg`). Per the diagram rule, only the one nearest the loop
-question (`primitives.svg`) is redrawn.
+**Diagrams not redrawn.** Sixteen `.excalidraw` sources exist beyond `primitives.excalidraw`:
+`bead-lifecycle`, `convoy-tracks-membership`, `cooldown-vs-cron`, `coordination-through-store`,
+`formula-apply-pipeline`, `formula-drain-fanout`, `formula-v1-vs-v2`, `formula-whole-job`,
+`gastown-agents-by-scope`, `hand-rolled-to-city`, `import-binding-namespace`, `json-discover-validate`,
+`pack-loading`, `pancakes-dag`, `work-lifecycle`. Only the one nearest the loop question is redrawn.
 
 </details>
 
@@ -765,34 +739,24 @@ question (`primitives.svg`) is redrawn.
 <details>
 <summary>7 items</summary>
 
-- **`primitive-test.md` vs. `nine-concepts.md`'s characterization of it** (§5). The canonical doc's
-  "Atomicity" condition (concurrency safety of a *capability* joining the SDK) is not the same test as
-  `nine-concepts.md`'s paraphrase (decomposability of a *primitive*), even though the latter cites the
-  former as its source. Both are primary sources from the same repository, describing the same named
-  artifact two ways. The six-primitive count does not depend on either framing.
-- **Whether Steve Yegge holds any formal maintainer role in `gastownhall`.** The org's
-  `public_members` list is empty (private membership); contributor-commit count is the only signal —
-  top committer on `gastown`, lighter contributor to `gascity`, not the named owner of either repo. ⚠️
-- **Whether Wasteland integrates with Gas City specifically**, as opposed to Gas Town. Its README
-  describes "federation protocol for Gas Towns"; `wasteland`'s own docs and `gascity`'s code were not
-  opened for a Gas-City-specific integration point. ⚠️
-- **Whether `mol-review-quorum.toml`'s two-lane pattern is the same "code-review-loop" formula a prior
-  short profile attributed a three-way Codex/Claude/Gemini run to.** The shipped core-pack formula,
-  read verbatim, is parameterized for exactly two provider/model lanes plus a synthesis step; no
-  formula matching a three-way description was located. ◐ the general claim (parallel, cross-provider
-  review is real and shipped); ⚠️ the specific three-provider instance.
-- **The "Agent Protocol" deletion commit (`dd90ac0a`, 2026-03-08)**, quoted directly from
-  `nine-concepts.md`'s own text, was not independently re-verified against `gh api` commit history —
-  the working clone is `--depth 1` with no history beyond `main` HEAD. ◐
-- **`docs/reference/specs/identity-separator-contract-v1.md`** — surfaced in `docs/docs.json`'s nav
-  tree but not itself opened; unclear whether it bears on 10b Org or the Service Protocol's identity
-  model. Flagged rather than silently skipped.
-- **The exact SVG text-layer connector endpoints for the primitives diagram** (§2) — reconstructed
-  from the docs page's prose caption, not from raw SVG path coordinates.
+- **`primitive-test.md` vs. `nine-concepts.md`'s characterization of it** (§5) — "Atomicity" (SDK
+  concurrency safety) is not the same test as the latter's paraphrase (primitive decomposability),
+  though it cites the former as source. Both primary, same repo, two readings. Count unaffected. ⚠️
+- **Whether Steve Yegge holds any formal maintainer role in `gastownhall`.** `public_members` is
+  empty; commit count is the only signal — top committer on `gastown`, lighter on `gascity`. ⚠️
+- **Whether Wasteland integrates with Gas City specifically**, vs. Gas Town. Its README says
+  "federation protocol for Gas Towns"; neither `wasteland`'s docs nor `gascity`'s code were opened. ⚠️
+- **Whether `mol-review-quorum.toml` matches a prior short profile's three-way Codex/Claude/Gemini
+  claim.** Read verbatim, it is two provider/model lanes plus a synthesis step, not three. ◐/⚠️
+- **The "Agent Protocol" deletion commit (`dd90ac0a`)**, quoted from `nine-concepts.md`, not
+  independently re-verified — the clone is `--depth 1`, no history beyond `main` HEAD. ◐
+- **`docs/reference/specs/identity-separator-contract-v1.md`** — surfaced in `docs.json`'s nav but
+  not opened; unclear if it bears on 10b Org or the Service Protocol's identity model. ⚠️
+- **The exact SVG connector endpoints for the primitives diagram** (§2) — reconstructed from the
+  docs page's prose caption, not raw SVG path coordinates. ⚠️
 
-**A removal, not an unverified item.** A prior short profile of Gas City named a "Factory Worker
-Protocol" / "FWP" as a seventh primitive. `gh api search/code` found zero hits for the full name and
-only incidental lockfile substring matches for "FWP" across `org:gastownhall`. It does not appear
-anywhere on this page outside this note, and is not carried forward (`fractal/ISSUES.md` ISSUE-004).
+**A removal, not an unverified item.** A prior short profile named a "Factory Worker Protocol"/"FWP"
+as a seventh primitive. `gh api search/code` found zero hits for the full name and only incidental
+lockfile matches for "FWP." It appears nowhere on this page outside this note (`ISSUES.md` ISSUE-004).
 
 </details>

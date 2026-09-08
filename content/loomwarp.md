@@ -81,20 +81,15 @@ flowchart TD
   Print --> Evidence
 ```
 
-**How it thinks about work.** A unit of work is one **workstream** — a BLUEPRINT entry paired with a PRD file — and the loop that moves it is `router.py`'s dependency-driven state machine, entirely free of any model call. `dispatch.py` wraps that resolver: for each ready workstream it either prints an assembled prompt for a human to paste into a second Claude Code window, or spawns `claude -p
---agent feature-lead` itself, wall-clock-timeout-wrapped. Nothing in the loop trusts the process exit
-code — the outcome is read back off the filesystem, from a HANDOFF's PASS/FAIL cell or a PULSE's escalation flag, and only that classification advances `router.py`'s own state. Work lands in a target repo Claude Code already owns; LoomWarp's own state lives in `.state.json`, an evidence directory, and an events log that never joins the other two.
+**How it thinks about work.** A unit of work is one **workstream** — a BLUEPRINT entry paired with a PRD file — and the loop that moves it is `router.py`'s dependency-driven state machine, entirely free of any model call. `dispatch.py` wraps that resolver: for each ready workstream it either prints an assembled prompt for a human to paste into a second Claude Code window, or spawns `claude -p --agent feature-lead` itself, wall-clock-timeout-wrapped. Nothing in the loop trusts the process exit code — the outcome is read back off the filesystem, from a HANDOFF's PASS/FAIL cell or a PULSE's escalation flag, and only that classification advances `router.py`'s own state. Work lands in a target repo Claude Code already owns; LoomWarp's own state lives in `.state.json`, an evidence directory, and an events log that never joins the other two.
 
 ## 3. Workflows
 
 **Not written at the 2026-09-03 read — pending the diagram pass.** A recorded gap. The sequences a workflow pass should draw, each already evidenced in §6 and needing no new source read:
 
-1. **BLUEPRINT dependency resolution** — `router.py next` walking `dependencies:` to find ready
-workstreams, before `dispatch.py` ever runs ([3a](#3a-control), [3b](#3b-routing)).
-2. **Skill and role-file sync** — `control/sync-skills.sh` copying `.claude/agents/*.md` and
-`skills/*/SKILL.md` into a target repo's own Claude Code conventions, with the documented removal defect ([4a](#4a-capability), [3c](#3c-composition)).
-3. **Decision-ledger write** — schema validation → atomic write → SQLite index update, the one
-genuinely schema-validated store in the tree ([5b](#5b-team-memory), [9d](#9d-anti-fragile-lifecycle)).
+1. **BLUEPRINT dependency resolution** — `router.py next` walking `dependencies:` to find ready workstreams, before `dispatch.py` ever runs ([3a](#3a-control), [3b](#3b-routing)).
+2. **Skill and role-file sync** — `control/sync-skills.sh` copying `.claude/agents/*.md` and `skills/*/SKILL.md` into a target repo's own Claude Code conventions, with the documented removal defect ([4a](#4a-capability), [3c](#3c-composition)).
+3. **Decision-ledger write** — schema validation → atomic write → SQLite index update, the one genuinely schema-validated store in the tree ([5b](#5b-team-memory), [9d](#9d-anti-fragile-lifecycle)).
 
 ## 4. Component matrix
 

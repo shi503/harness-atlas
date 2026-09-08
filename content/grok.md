@@ -48,7 +48,7 @@ template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
 
 **†** the one **graded** dimension; every other row is a position, not a score. **Neither end is better, and the pair is not scored twice** — Grok Build carries every value above; Grok Bot's divergence lives only in the YAML's `split:` fields, sharpest at **DX-6 Ownership** (Build +3 Apache-2.0 self-hostable, Bot −3 closed and hosted) and **DX-1 Org scale**. Ten axes sit beneath these seven — `I +1 · II 0 · III 0 · IV +3 · V +2 · VI +1 · VII 0 · VIII +2 · IX 0 · X +2` — and four of them feed no cell above by design.
 
-→ [`spectrums/positioning.md`](../spectrums/positioning.md#grok) · [`positions/grok.yaml`](../spectrums/positions/grok.yaml) · [`01-scorecard.md`](../spectrums/01-scorecard.md) · [`00-README.md`](../spectrums/00-README.md)
+→ [`spectrums/positioning.md`](../spectrums/positioning.md) · [`positions/grok.yaml`](../spectrums/positions/grok.yaml) · [`01-scorecard.md`](../spectrums/01-scorecard.md) · [`00-README.md`](../spectrums/00-README.md)
 
 *Scored 2026-09-07 against this profile as read 2026-09-02. This table is the **one sanctioned echo** of the scorecard — derived from the same YAML that renders `positioning.md`, so the two match by construction. Re-score in the YAML, never here.*
 
@@ -186,7 +186,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 <details>
 <summary>◐ Local shell + FS (Build); cloud VM (Bot); no declared inventory</summary>
 
-**Ships.** Build: local shell/filesystem tools (`read_file`, `run_terminal_command`, `web_search`/ `web_fetch` with SSRF fail-closed), no built-in browser tool (MCP only), plus a remote WebSocket server (`grok agent serve`) and a Grove NFS/FUSE mount (`grok clone`). Bot: a persistent Linux VM per user with browser, filesystem and terminal; optional local-computer execution on the member's own machine under an approval policy.
+**Ships.** Build: local shell/filesystem tools (`read_file`, `run_terminal_command`, `web_search`/`web_fetch` with SSRF fail-closed), no built-in browser tool (MCP only), plus a remote WebSocket server (`grok agent serve`) and a Grove NFS/FUSE mount (`grok clone`). Bot: a persistent Linux VM per user with browser, filesystem and terminal; optional local-computer execution on the member's own machine under an approval policy.
 **Nothing here** as a declared systems inventory for either product — checked UG/01, UG/05, UG/20, UG/27, BOT/computer-and-apps.
 **Path.** `[toolset.*]` (Build); Settings → General → Agent (Bot).
 **Source.** ✅ UG/01 §Tools · ✅ BOT/computer-and-apps
@@ -364,7 +364,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 <details>
 <summary>◐ Git ACP methods, headless CI; no PR/deploy flow</summary>
 
-**Ships.** No built-in PR/deploy flow. ACP `x.ai/git/*` (status/stage/commit/diffs/discard); read-only git commands auto-approve, `git push` stays on the dangerous list; headless mode *"for scripting/ CI"* with JSON output formats; a built-in `review-changes` workflow. Bot: examples only — a Bot filing a ticket and handing off to another; *"keep production changes behind approval."*
+**Ships.** No built-in PR/deploy flow. ACP `x.ai/git/*` (status/stage/commit/diffs/discard); read-only git commands auto-approve, `git push` stays on the dangerous list; headless mode *"for scripting/CI"* with JSON output formats; a built-in `review-changes` workflow. Bot: examples only — a Bot filing a ticket and handing off to another; *"keep production changes behind approval."*
 **Path.** `grok -p --output-format json`, `/workflow review-changes`.
 **Source.** ✅ UG/14 §Command-Line Options · ✅ UG/22 §Dangerous Commands
 
@@ -491,7 +491,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 <details>
 <summary>● <b>Bot</b> roster (≤50) + Build's agent dashboard</summary>
 
-**Ships.** Build: agent definitions, built-in types (`grok-build`/`explore`/`plan`), personas and roles, plus an Agent Dashboard listing every top-level session grouped by state (peek/reply/dispatch/ pin/stop). Bot: *"the Bots are the roster"* — named, avatar'd, up to 50 Bots and group chats combined, pinnable, shareable by public link.
+**Ships.** Build: agent definitions, built-in types (`grok-build`/`explore`/`plan`), personas and roles, plus an Agent Dashboard listing every top-level session grouped by state (peek/reply/dispatch/pin/stop). Bot: *"the Bots are the roster"* — named, avatar'd, up to 50 Bots and group chats combined, pinnable, shareable by public link.
 **Path.** `/config-agents`, `/dashboard` (Build); sidebar (Bot).
 **Source.** ✅ UG/16 · ✅ BOT/bots
 
@@ -622,7 +622,7 @@ Second tier, also first-class in the docs but not user-authoring units: **Sessio
 
 **Secondary (↪).** `ai-sdk.dev/providers/ai-sdk-harnesses/grok-build` (Vercel's own docs for its Build adapter — primary for that adapter) · a blog comparing Bot/Automations/Build, checked only for the Bot↔Build claim and making none · WebSearch snippets used only to locate primary pages.
 
-**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md#grok).
+**Placement.** Short-profiles row: [`comparisons/systems/90-short-profiles.md`](../comparisons/systems/90-short-profiles.md) §1 · grid columns: [`comparisons/04-harness-alignment.md`](../comparisons/04-harness-alignment.md) §2 and [`comparisons/02-component-matrix.md`](../comparisons/02-component-matrix.md) §1 · index row: [`index.md`](../index.md) · positioning: [`spectrums/positioning.md`](../spectrums/positioning.md).
 
 **Diagrams not redrawn.** **No diagram inventory was taken at the 2026-09-02 read.** Whether either product's docs carry vendor diagrams is unknown and unrecorded — a gap in the read, not a finding about the vendor. The diagram pass (W8c) opens the sources and records what it finds.
 

@@ -290,3 +290,30 @@ model rather than its marketing; (c) the axis's `−3` anchor text is too strict
 **(b) looks strongest** on the evidence now in hand — Pi scores `−1` and its `−3` reading is the
 stated posture — but no harness in the scored corpus sits at `−3` yet, which is itself the finding.
 Recorded rather than resolved; the remaining restructures may supply a genuine `−3`.
+
+---
+
+## ISSUE-013 addendum, 2026-09-07 — the Codex and Grok "breaches" were a mid-flight measurement, not a defect
+
+**Severity:** MINOR · **Found:** 2026-09-07, re-audit after the fan-out settled · **Assigned:** closed by this note
+
+The entry above reported `content/codex.md` §6 at **465** lines and `content/grok.md` §6 at **477**
+against a cap of 400, and assigned both for trimming. **Both numbers were read while the feature-leads
+were still writing the files.** Measured after they finished:
+
+| | §6 body | whole file |
+|---|---:|---:|
+| Codex | **353** | 624 |
+| Grok | **355** | 651 |
+
+Every landed profile is inside the §6 body cap of 400 — Pi 366, Claude Code 354, Hermes 368, OpenClaw
+372, Codex 353, FRACTAL 343, Grok 355 — and inside 700 lines but for `content/claude-code.md` at 726,
+which is the §1a/§1b arithmetic this issue was raised for.
+
+**The mechanical cap raise stands** (760 whole-file, §6 starting by 275); the trimming assignment is
+withdrawn. **Nothing needs trimming.**
+
+**The process lesson is the part worth keeping:** an audit run against a working tree that eight agents
+are concurrently writing measures a moment, not a result. Byte counts confirm it — all seven profiles
+sit between 45 KB and 54 KB, within 20% of each other, so no profile was ever an outlier in substance.
+Audit after the writers stop.
