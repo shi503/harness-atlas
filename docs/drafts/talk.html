@@ -1,0 +1,657 @@
+<title>Mapping Agent Harnesses</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+
+<style>
+:root{
+  --paper:#e9edf1; --plate:#ffffff; --surface:#f5f7f9;
+  --ink:#121a22; --ink-2:#3c4b5a; --muted:#67788a; --hair:#c3ccd6;
+  --accent:#1a5b8e; --accent-soft:#dbe7f1;
+  --present:#2f7d4f; --absent:#b1442e; --partial:#a8781a;
+  --shadow:0 1px 0 rgba(18,26,34,.06), 0 12px 34px -18px rgba(18,26,34,.35);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0d1218; --plate:#ffffff; --surface:#151d26;
+    --ink:#e7edf3; --ink-2:#b3c1cf; --muted:#8496a8; --hair:#2b3742;
+    --accent:#6aaee0; --accent-soft:#17303f;
+    --present:#5cb87f; --absent:#e08066; --partial:#dcb35d;
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 16px 40px -20px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0d1218; --plate:#ffffff; --surface:#151d26;
+  --ink:#e7edf3; --ink-2:#b3c1cf; --muted:#8496a8; --hair:#2b3742;
+  --accent:#6aaee0; --accent-soft:#17303f;
+  --present:#5cb87f; --absent:#e08066; --partial:#dcb35d;
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 16px 40px -20px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+  min-height:100vh; overflow:hidden;
+}
+.wrap{position:fixed; inset:0; display:grid; place-items:center}
+
+/* fixed 1600x900 stage, scaled to fit */
+.stage{
+  width:1600px; height:900px; position:relative;
+  transform-origin:center center;
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  border:1px solid var(--hair);
+  overflow:hidden;
+}
+
+/* ---- slide chrome ---- */
+.slide{
+  position:absolute; inset:0; padding:74px 90px 96px;
+  display:none; flex-direction:column;
+}
+.slide.on{display:flex}
+.eyebrow{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:15px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent); display:flex; align-items:center; gap:14px;
+}
+.eyebrow::after{content:""; flex:1; height:1px; background:var(--hair)}
+h1{
+  font-family:"Bricolage Grotesque",Archivo,sans-serif;
+  font-weight:800; font-size:86px; line-height:.98; letter-spacing:-.026em;
+  margin:26px 0 0; text-wrap:balance; max-width:22ch;
+}
+h2{
+  font-family:"Bricolage Grotesque",Archivo,sans-serif;
+  font-weight:700; font-size:56px; line-height:1.03; letter-spacing:-.02em;
+  margin:20px 0 0; text-wrap:balance; max-width:26ch;
+}
+.lede{font-size:29px; line-height:1.42; color:var(--ink-2); max-width:52ch; margin-top:22px}
+.small{font-size:22px; line-height:1.5; color:var(--muted); max-width:66ch}
+strong{font-weight:700; color:var(--ink)}
+em{font-style:italic}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+/* footer rail */
+.rail{
+  position:absolute; left:90px; right:90px; bottom:38px;
+  display:flex; align-items:baseline; gap:22px;
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:14px; letter-spacing:.11em; text-transform:uppercase; color:var(--muted);
+  border-top:1px solid var(--hair); padding-top:14px;
+}
+.rail .grow{flex:1}
+.progress{position:absolute; left:0; bottom:0; height:3px; background:var(--accent); transition:width .28s ease}
+
+/* ---- building blocks ---- */
+.body-flow{flex:1; display:flex; flex-direction:column; justify-content:center; gap:34px}
+.top-flow{flex:1; display:flex; flex-direction:column; gap:26px}
+
+.trio{display:grid; grid-template-columns:repeat(3,1fr); gap:26px}
+.tile{
+  border:1px solid var(--hair); background:var(--paper); padding:30px 30px 34px;
+  display:flex; flex-direction:column; gap:12px; min-height:210px;
+}
+.tile .k{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.tile .v{font-family:"Bricolage Grotesque",Archivo,sans-serif; font-weight:700; font-size:34px; line-height:1.1; letter-spacing:-.015em}
+.tile .n{font-size:20px; line-height:1.45; color:var(--ink-2)}
+.tile.gone{opacity:.34}
+.tile.gone .v{text-decoration:line-through; text-decoration-thickness:3px; text-decoration-color:var(--absent)}
+.tile.hit{border-color:var(--accent); background:var(--accent-soft)}
+
+/* the big number */
+.figure-num{
+  font-family:"Bricolage Grotesque",Archivo,sans-serif; font-weight:800;
+  font-size:250px; line-height:.82; letter-spacing:-.045em; color:var(--accent);
+  font-variant-numeric:tabular-nums;
+}
+
+/* zero list */
+.zeros{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--hair)}
+.zrow{
+  display:grid; grid-template-columns:118px 1fr auto; align-items:center; gap:30px;
+  padding:22px 4px; border-bottom:1px solid var(--hair);
+}
+.zid{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:22px; font-weight:700; color:var(--accent)}
+.zname{font-family:"Bricolage Grotesque",Archivo,sans-serif; font-weight:700; font-size:33px; letter-spacing:-.01em}
+.zsub{display:block; font-family:Archivo,sans-serif; font-weight:400; font-size:19px; color:var(--muted); letter-spacing:0; margin-top:3px}
+.zcount{
+  font-family:"JetBrains Mono",ui-monospace,monospace; font-size:26px; font-weight:700;
+  color:var(--absent); font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+
+/* plate — data figures print on white paper in both themes */
+.plate{
+  flex:1; background:var(--plate); border:1px solid var(--hair);
+  display:grid; place-items:center; padding:16px; min-height:0; position:relative;
+}
+.plate svg{width:100%; height:100%; display:block}
+.plate-tag{
+  position:absolute; top:-1px; left:-1px; background:var(--accent); color:#fff;
+  font-family:"JetBrains Mono",ui-monospace,monospace; font-size:12px;
+  letter-spacing:.14em; padding:5px 11px; text-transform:uppercase;
+}
+.caption{font-size:20px; color:var(--muted); margin-top:14px; max-width:96ch}
+
+/* quote pair */
+.quotes{display:grid; grid-template-columns:1fr 1fr; gap:30px}
+.q{border-left:4px solid var(--partial); padding:6px 0 6px 26px}
+.q p{font-size:28px; line-height:1.36; margin:0 0 14px; font-style:italic}
+.q cite{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:16px; font-style:normal; color:var(--muted); letter-spacing:.06em}
+
+/* title slide */
+.title-slide{justify-content:space-between}
+.title-meta{display:flex; gap:60px; align-items:flex-end}
+.title-meta div{font-size:21px; line-height:1.5; color:var(--ink-2)}
+.title-meta .lbl{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:13px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px}
+
+.ask{
+  font-family:"Bricolage Grotesque",Archivo,sans-serif; font-weight:800;
+  font-size:64px; line-height:1.04; letter-spacing:-.022em; text-wrap:balance;
+}
+.chips{display:flex; flex-wrap:wrap; gap:12px}
+.chip{
+  font-family:"JetBrains Mono",ui-monospace,monospace; font-size:17px;
+  border:1px solid var(--hair); padding:9px 15px; color:var(--ink-2); background:var(--paper);
+}
+
+/* speaker notes */
+.notes{
+  position:fixed; left:0; right:0; bottom:0; max-height:42vh; overflow:auto;
+  background:var(--surface); border-top:2px solid var(--accent);
+  padding:22px 30px 26px; font-size:16px; line-height:1.55; color:var(--ink-2);
+  box-shadow:0 -14px 40px -22px rgba(0,0,0,.6);
+}
+.notes h3{
+  margin:0 0 10px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:13px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:700;
+}
+.notes p{margin:0 0 9px; max-width:110ch}
+.hint{
+  position:fixed; right:16px; top:14px; z-index:5;
+  font-family:"JetBrains Mono",ui-monospace,monospace; font-size:12px;
+  letter-spacing:.1em; color:var(--muted); background:var(--surface);
+  border:1px solid var(--hair); padding:7px 12px;
+}
+button.nav{
+  position:fixed; top:50%; transform:translateY(-50%); z-index:4;
+  width:52px; height:82px; border:1px solid var(--hair); background:var(--surface);
+  color:var(--ink-2); font-size:22px; cursor:pointer; opacity:.42;
+}
+button.nav:hover{opacity:1}
+button.nav:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+#prev{left:10px} #next{right:10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="hint">← → move · <strong>S</strong> notes</div>
+<button class="nav" id="prev" aria-label="Previous slide">‹</button>
+<button class="nav" id="next" aria-label="Next slide">›</button>
+
+<div class="wrap">
+<div class="stage" id="stage">
+
+  <!-- 1 ————————————————————————————————— -->
+  <section class="slide on title-slide" data-notes="Hi — I'm Kevin Deng. Two years building products with AI: startup founder, then this past year in an applied-AI role shipping enterprise SaaS. Today: a side project that uses Claude Code to tear down and compare agent harnesses.">
+    <div>
+      <div class="eyebrow">AI Tinkerers · September 2026</div>
+      <h1>Mapping the changing shape of agent harnesses</h1>
+    </div>
+    <div class="title-meta">
+      <div><span class="lbl">Speaker</span>Kevin Deng<br>Applied AI · Product</div>
+      <div><span class="lbl">The project</span>harness-atlas<br>Ten harnesses, one grid, MIT</div>
+      <div><span class="lbl">Built with</span>Claude Code, reading<br>every harness at its own source</div>
+    </div>
+    <div class="rail"><span>harness-atlas</span><span class="grow"></span><span>01 / 14</span></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" data-notes="Back in March I was a contractor. My main tool was Cursor. I loved that I could swap models, and I'd built a good workflow: write a spec, drive it test-first, let the agent work inside that.">
+    <div class="eyebrow">March · the setup</div>
+    <h2>I had a workflow that worked</h2>
+    <div class="body-flow">
+      <div class="trio">
+        <div class="tile"><span class="k">Tool</span><span class="v">Cursor</span><span class="n">An IDE that let the agent see the whole repo.</span></div>
+        <div class="tile"><span class="k">Freedom</span><span class="v">Any model</span><span class="n">Swap the substrate when the work changed shape.</span></div>
+        <div class="tile"><span class="k">Method</span><span class="v">Spec → TDD</span><span class="n">Write it down first, let the tests be the gate.</span></div>
+      </div>
+    </div>
+    <div class="rail"><span>a contractor's stack</span><span class="grow"></span><span>02 / 14</span></div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" data-notes="Then in April I took a full-time role — and the full-time constraints. Corporate VM. No Claude Desktop, no AI IDEs. VSCode and an API key. Meanwhile the world moved to context engineering and building loops, and we couldn't get Ops to approve the subscriptions.">
+    <div class="eyebrow">April · the constraint</div>
+    <h2>Then I lost it</h2>
+    <div class="body-flow">
+      <div class="trio">
+        <div class="tile gone"><span class="k">Tool</span><span class="v">Cursor</span><span class="n">Corporate VM. VSCode and an API key.</span></div>
+        <div class="tile gone"><span class="k">Freedom</span><span class="v">Any model</span><span class="n">Subscriptions Ops wouldn't approve.</span></div>
+        <div class="tile hit"><span class="k">What survived</span><span class="v">The method</span><span class="n">The only thing I still owned was how I worked.</span></div>
+      </div>
+      <p class="small">So I started building my own tools.</p>
+    </div>
+    <div class="rail"><span>the constraint that started this</span><span class="grow"></span><span>03 / 14</span></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" data-notes="I built a workflow for orchestrating agents — learned a lot of it from reading OpenClaw — and shipped a feature with it. Then I shared the repo with my team, and found the thing we were actually missing wasn't tooling. It was shared context. So I built a decision ledger. Remember that.">
+    <div class="eyebrow">So I built one</div>
+    <h2>Three things, in the order the problem arrived</h2>
+    <div class="body-flow">
+      <div class="trio">
+        <div class="tile"><span class="k">First</span><span class="v">Orchestration</span><span class="n">Agents running against a spec. Learned by reading OpenClaw. It shipped a feature.</span></div>
+        <div class="tile"><span class="k">Then</span><span class="v">I shared the repo</span><span class="n">And found the gap wasn't tooling.</span></div>
+        <div class="tile hit"><span class="k">So</span><span class="v">A decision ledger</span><span class="n">What we were missing was shared context. Hold onto this one.</span></div>
+      </div>
+    </div>
+    <div class="rail"><span>this comes back on slide 12</span><span class="grow"></span><span>04 / 14</span></div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" data-notes="Next thing I know, the stack I'd built — the industry was calling it a harness. Agent equals model plus harness. Everything that isn't the model.">
+    <div class="eyebrow">And then it got a name</div>
+    <h2>The stack I'd built, the industry was calling a <em>harness</em></h2>
+    <div class="body-flow">
+      <p class="lede"><span class="mono" style="font-size:.86em">Agent = Model + Harness</span><br>
+        <span style="color:var(--muted)">— every piece of code, configuration and execution logic that isn't the model itself.</span></p>
+      <div class="chips">
+        <span class="chip">Hashimoto · the formula</span>
+        <span class="chip">Böckeler &amp; Fowler · harness engineering, Apr 2026</span>
+        <span class="chip">LangChain · anatomy of a harness, Mar 2026</span>
+        <span class="chip">OpenAI · Codex</span>
+      </div>
+      <p class="small">Four frameworks inside a few weeks. The field had agreed on the word before I'd finished naming my own folders.</p>
+    </div>
+    <div class="rail"><span>the vocabulary landed in early 2026</span><span class="grow"></span><span>05 / 14</span></div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" data-notes="Here's why this matters beyond my own annoyance. Same model. Different harness. Twenty-five points on Terminal-Bench. Anthropic's own research calls infrastructure configuration a first-class optimization variable — it can move a benchmark more than the gap between the top two models. So harness choice is now worth more than a model generation. And we have no standard way to describe one.">
+    <div class="eyebrow">Why it matters now</div>
+    <div class="body-flow" style="gap:26px">
+      <div style="display:flex; align-items:center; gap:56px">
+        <div class="figure-num">25.7</div>
+        <div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:44px; line-height:1.08; letter-spacing:-.018em; max-width:16ch">points of swing.<br>Same model.<br>Different harness.</div>
+        </div>
+      </div>
+      <p class="lede" style="max-width:78ch">GPT-5.5 on Terminal-Bench: <strong class="mono">61.5% → 87.2%</strong>, moved by harness configuration alone. Anthropic's own work on infrastructure noise calls config a first-class optimization variable — capable of swinging a benchmark further than the gap between the top two models.</p>
+      <p class="small"><strong>Harness choice is now worth more than a model generation — and we have no standard way to describe one.</strong> <span style="color:var(--muted)">Figures as reported; read them at the source before you cite them.</span></p>
+    </div>
+    <div class="rail"><span>the harness outweighs the model</span><span class="grow"></span><span>06 / 14</span></div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" data-notes="For individuals, work however you want. But teams need structure and shared understanding. My favourite graphic about this: everyone nods at the same vague shape and walks away holding four different things. In the age of AI convenience it's hard to advocate for alignment when nobody reads — but you want to nail down the shape before an agent ships one you didn't expect.">
+    <div class="eyebrow">The reason a map is worth drawing</div>
+    <h2>&ldquo;I'm glad we all agree&rdquo;</h2>
+    <div class="plate" style="margin-top:24px">
+      <span class="plate-tag">Fig. A</span>
+      <svg viewBox="0 0 1300 400" role="img" aria-label="One vague agreed shape becoming four different concrete things">
+        <rect width="1300" height="400" fill="#ffffff"/>
+        <text x="30" y="46" font-family="JetBrains Mono, monospace" font-size="17" fill="#67788a" letter-spacing="2">WHAT WE AGREED ON</text>
+        <path d="M60 130 q40 -50 110 -34 q60 -44 128 6 q56 -6 60 52 q22 62 -42 84 q-40 52 -114 26 q-64 30 -110 -18 q-56 -32 -32 -116 z" fill="#eef2f6" stroke="#a8b6c4" stroke-width="3" stroke-dasharray="9 7"/>
+        <text x="200" y="240" text-anchor="middle" font-family="Archivo, sans-serif" font-size="21" fill="#67788a">a shape everybody nodded at</text>
+        <path d="M400 195 L470 195" stroke="#a8b6c4" stroke-width="3"/>
+        <path d="M470 195 l-13 -8 v16 z" fill="#a8b6c4"/>
+        <text x="520" y="46" font-family="JetBrains Mono, monospace" font-size="17" fill="#67788a" letter-spacing="2">WHAT FOUR PEOPLE BUILT</text>
+        <rect x="520" y="96" width="160" height="130" rx="4" fill="#dbe7f1" stroke="#1a5b8e" stroke-width="3"/>
+        <circle cx="790" cy="161" r="66" fill="#e6f1ea" stroke="#2f7d4f" stroke-width="3"/>
+        <path d="M900 227 L976 96 L1052 227 z" fill="#f7ece7" stroke="#b1442e" stroke-width="3"/>
+        <path d="M1110 96 h150 v130 h-150 z M1110 96 l150 130 M1260 96 l-150 130" fill="#faf3e3" stroke="#a8781a" stroke-width="3"/>
+        <text x="890" y="290" text-anchor="middle" font-family="Archivo, sans-serif" font-size="21" fill="#67788a">four concrete, incompatible answers</text>
+        <line x1="30" y1="336" x2="1270" y2="336" stroke="#c3ccd6" stroke-width="1"/>
+        <text x="30" y="372" font-family="Archivo, sans-serif" font-size="20" fill="#121a22">Individuals can work however they like. Teams need the shape written down — before an agent ships one nobody expected.</text>
+      </svg>
+    </div>
+    <p class="caption">After Jeff Patton &amp; Luke Barrett, <em>I'm Glad We All Agree</em> — redrawn. Original: jpattonassociates.com</p>
+    <div class="rail"><span>alignment, when nobody reads</span><span class="grow"></span><span>07 / 14</span></div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" data-notes="So this repo is my attempt to draw that shape. A profile per harness, all built the same way from the harness's own docs, code and config. A system map and its workflows. A thirty-three row feature matrix. And the rules: absence is recorded, never inferred — every empty cell names the pages I checked. Vendor's words only in a primitives table. And I scored my own harness by the same rules. It came out worst.">
+    <div class="eyebrow">What the repo is</div>
+    <h2>One page per harness, built the same way every time</h2>
+    <div class="body-flow">
+      <div class="trio">
+        <div class="tile"><span class="k">Thirty seconds</span><span class="v">The card</span><span class="n">Altitude, primitives, what it refuses, where state lives, a coverage count.</span></div>
+        <div class="tile"><span class="k">The picture</span><span class="v">System map</span><span class="n">The vendor's own diagram, redrawn — plus its signature workflows.</span></div>
+        <div class="tile"><span class="k">The receipts</span><span class="v">33 rows</span><span class="n">One mark each: <span class="mono">●</span> named primitive · <span class="mono">◐</span> present · <span class="mono">○</span> absent.</span></div>
+      </div>
+      <p class="small"><strong>Absence is recorded, never inferred</strong> — every <span class="mono">○</span> names the pages that were checked. <strong>Vendor's words only</strong> in a primitives table, verbatim and dated. <strong>And I scored my own harness by the same rules. It came out worst on the sheet.</strong></p>
+    </div>
+    <div class="rail"><span>ten harnesses · 118 deep-read documents · MIT</span><span class="grow"></span><span>08 / 14</span></div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" data-notes="Read enough of them and the first finding is boring: they're all the same shape. One loop, and a set of insertion points around it. Load context, call a tool, pass a gate, get a result, go again. Everyone who has drawn this anatomy — LangChain's seven parts, the academic surveys' six, Fowler's guides and sensors — has drawn this picture.">
+    <div class="eyebrow">Finding one</div>
+    <h2>They are all the same shape</h2>
+    <div class="plate" style="margin-top:20px">
+      <span class="plate-tag">Fig. B · the anatomy</span>
+      <svg viewBox="0 0 1340 470" role="img" aria-label="The agent loop and its insertion points">
+        <rect width="1340" height="470" fill="#ffffff"/>
+        <g font-family="Archivo, sans-serif" font-size="19" fill="#121a22">
+          <rect x="40" y="176" width="196" height="96" rx="4" fill="#f3f6f9" stroke="#a8b6c4" stroke-width="2"/>
+          <text x="138" y="212" text-anchor="middle" font-weight="600">load context</text>
+          <text x="138" y="240" text-anchor="middle" font-size="16" fill="#67788a">instructions · skills</text>
+          <text x="138" y="260" text-anchor="middle" font-size="16" fill="#67788a">settings · memory</text>
+
+          <rect x="316" y="176" width="196" height="96" rx="4" fill="#dbe7f1" stroke="#1a5b8e" stroke-width="3"/>
+          <text x="414" y="220" text-anchor="middle" font-weight="700" font-size="23">MODEL</text>
+          <text x="414" y="248" text-anchor="middle" font-size="16" fill="#1a5b8e">0a substrate</text>
+
+          <path d="M592 224 L680 152 L768 224 L680 296 z" fill="#faf3e3" stroke="#a8781a" stroke-width="3"/>
+          <text x="680" y="218" text-anchor="middle" font-weight="600" font-size="18">permission</text>
+          <text x="680" y="242" text-anchor="middle" font-size="16" fill="#67788a">allow · ask · deny</text>
+
+          <rect x="848" y="176" width="196" height="96" rx="4" fill="#f3f6f9" stroke="#a8b6c4" stroke-width="2"/>
+          <text x="946" y="212" text-anchor="middle" font-weight="600">tool runs</text>
+          <text x="946" y="240" text-anchor="middle" font-size="16" fill="#67788a">shell · edit</text>
+          <text x="946" y="260" text-anchor="middle" font-size="16" fill="#67788a">MCP · ACP</text>
+
+          <rect x="1124" y="176" width="176" height="96" rx="4" fill="#e6f1ea" stroke="#2f7d4f" stroke-width="2"/>
+          <text x="1212" y="212" text-anchor="middle" font-weight="600">result</text>
+          <text x="1212" y="240" text-anchor="middle" font-size="16" fill="#67788a">back to context</text>
+
+          <g stroke="#5d6b7a" stroke-width="2.5" fill="none">
+            <path d="M236 224 H310"/><path d="M512 224 H586"/>
+            <path d="M768 224 H842"/><path d="M1044 224 H1118"/>
+            <path d="M1212 272 V352 H414 V278"/>
+          </g>
+          <g fill="#5d6b7a">
+            <path d="M310 224 l-11 -7 v14 z"/><path d="M586 224 l-11 -7 v14 z"/>
+            <path d="M842 224 l-11 -7 v14 z"/><path d="M1118 224 l-11 -7 v14 z"/>
+            <path d="M414 278 l-7 11 h14 z"/>
+          </g>
+          <text x="813" y="342" text-anchor="middle" font-size="17" fill="#67788a" font-style="italic">and again, until the turn ends</text>
+
+          <g stroke="#b1442e" stroke-width="2" stroke-dasharray="7 5" fill="none">
+            <path d="M138 176 V116"/><path d="M680 152 V116"/><path d="M946 176 V116"/>
+          </g>
+          <rect x="40" y="52" width="1004" height="56" rx="4" fill="#f7ece7" stroke="#b1442e" stroke-width="2"/>
+          <text x="542" y="87" text-anchor="middle" font-weight="600" fill="#b1442e">hooks, packaging, delegation, orchestration — the insertion points around the loop</text>
+
+          <text x="40" y="424" font-size="18" fill="#67788a">LangChain draws seven parts. The academic surveys draw six. Fowler draws guides and sensors.</text>
+          <text x="40" y="450" font-size="18" font-weight="600">Every one of them draws this picture.</text>
+        </g>
+      </svg>
+    </div>
+    <div class="rail"><span>one loop, and the insertion points around it</span><span class="grow"></span><span>09 / 14</span></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" data-notes="But the loop is only the bottom of the thing. If the real question is how do we work, the answer runs up through twelve layers. What's configured before any work starts. What accumulates and survives the session — context, codebase, knowledge. And what runs: how work gets done, who does it, what says it's good. Same as a software development lifecycle: your harness scales in complexity the way process does, from lean to something enterprise-shaped.">
+    <div class="eyebrow">Finding two</div>
+    <h2>&ldquo;How do we work?&rdquo; runs up twelve layers</h2>
+    <div class="plate" style="margin-top:20px">
+      <span class="plate-tag">Fig. C · the stack</span>
+      <svg viewBox="0 0 1340 440" role="img" aria-label="Twelve layers in three bands">
+        <rect width="1340" height="440" fill="#ffffff"/>
+        <g font-family="Archivo, sans-serif">
+          <rect x="30" y="30" width="1280" height="112" rx="4" fill="#f3f6f9" stroke="#a8b6c4" stroke-width="2"/>
+          <text x="52" y="62" font-family="JetBrains Mono, monospace" font-size="15" fill="#1a5b8e" letter-spacing="2">RUNS — re-decided for every unit of work</text>
+          <text x="52" y="98" font-size="23" fill="#121a22" font-weight="600">8 Trust · 9 Improve · 10 Teams &amp; Agents · 11 Surfaces</text>
+          <text x="52" y="126" font-size="18" fill="#67788a">evals, evidence, learning, rituals, cadence, the roster, who answers for it, where work is seen</text>
+
+          <rect x="30" y="158" width="1280" height="112" rx="4" fill="#f3f6f9" stroke="#a8b6c4" stroke-width="2"/>
+          <text x="52" y="190" font-family="JetBrains Mono, monospace" font-size="15" fill="#1a5b8e" letter-spacing="2">ACCUMULATES — survives the session</text>
+          <text x="52" y="226" font-size="23" fill="#121a22" font-weight="600">5 Context · 6 Workspaces · 7 Workflow Tasks</text>
+          <text x="52" y="254" font-size="18" fill="#67788a">memory, team knowledge, the codebase as a platform, the estate, the unit of work written down</text>
+
+          <rect x="30" y="286" width="1280" height="112" rx="4" fill="#dbe7f1" stroke="#1a5b8e" stroke-width="3"/>
+          <text x="52" y="318" font-family="JetBrains Mono, monospace" font-size="15" fill="#1a5b8e" letter-spacing="2">CONFIGURED — decided before any work starts</text>
+          <text x="52" y="354" font-size="23" fill="#121a22" font-weight="600">0 Foundation · 1 Environment · 2 Agent Harness · 3 System Stacks · 4 Capabilities</text>
+          <text x="52" y="382" font-size="18" fill="#67788a">the model, where shell runs, hooks, enforcement, routing, composition, configuration, skills</text>
+
+          <text x="670" y="428" text-anchor="middle" font-size="19" fill="#67788a" font-style="italic">Harness = SDLC. It scales in complexity the way process does — lean, then something enterprise-shaped.</text>
+        </g>
+      </svg>
+    </div>
+    <div class="rail"><span>twelve layers · thirty-three components</span><span class="grow"></span><span>10 / 14</span></div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" data-notes="So I scored ten of them against those thirty-three components. Here's the finding. Five components are a named primitive in all seven loop-owning harnesses: substrate, adapters, hooks, configuration, skills. Every one of them is layer four or below. Notice what they have in common — they're all how you plug things in. Above layer four? Zero. Not one component is settled. There's a line through the stack, and everyone converged below it.">
+    <div class="eyebrow">Finding three · the whole talk</div>
+    <h2>Everyone converged — and then stopped</h2>
+    <div class="plate" style="margin-top:18px">
+      <span class="plate-tag">Fig. D · where convergence stops</span>
+      <svg viewBox="0 0 1920 1080" role="img" aria-label="Convergence by layer: five components universal below layer 5, none above">
+        <rect width="1920" height="1080" fill="#ffffff"/>
+        <text x="90" y="86" font-size="44" font-weight="700" fill="#121a22" font-family="Bricolage Grotesque, sans-serif">Where convergence stops</text>
+        <text x="90" y="128" font-size="25" fill="#67788a" font-family="Archivo, sans-serif">33 components, 7 harnesses, each read at its own source</text>
+        <g font-family="Archivo, sans-serif">
+          <rect x="1290" y="62" width="22" height="22" rx="4" fill="#2f7d4f"/><text x="1322" y="80" font-size="21" fill="#3c4b5a">named primitive in all 7</text>
+          <rect x="1290" y="96" width="22" height="22" rx="4" fill="#c3ccd6"/><text x="1322" y="114" font-size="21" fill="#3c4b5a">some ship it</text>
+          <rect x="1290" y="130" width="22" height="22" rx="4" fill="#b1442e"/><text x="1322" y="148" font-size="21" fill="#3c4b5a">not one of the 7</text>
+
+          <g font-size="25" fill="#121a22">
+            <text x="300" y="215" text-anchor="end" font-weight="600">11 Surfaces</text>
+            <rect x="330" y="190" width="940" height="34" rx="5" fill="#c3ccd6"/>
+            <text x="1300" y="215" font-size="22" fill="#67788a">11a at 6 of 7 — the one converged row up here</text>
+
+            <text x="300" y="263" text-anchor="end" font-weight="600">10 Teams &amp; Agents</text>
+            <rect x="330" y="238" width="940" height="34" rx="5" fill="#c3ccd6"/>
+            <text x="1300" y="263" font-size="22" fill="#67788a">roster 3 of 7 · org 2 of 7</text>
+
+            <text x="300" y="311" text-anchor="end" font-weight="600">9 Improve</text>
+            <rect x="330" y="286" width="313" height="34" rx="5" fill="#c3ccd6"/>
+            <rect x="649" y="286" width="621" height="34" rx="5" fill="#b1442e"/>
+            <text x="1300" y="311" font-size="22" fill="#8e3423" font-weight="600">rituals · lifecycle · raise-the-floor · diagnose — all 0 of 7</text>
+
+            <text x="300" y="359" text-anchor="end" font-weight="600">8 Trust</text>
+            <rect x="330" y="334" width="699" height="34" rx="5" fill="#c3ccd6"/>
+            <rect x="1035" y="334" width="235" height="34" rx="5" fill="#b1442e"/>
+            <text x="1300" y="359" font-size="22" fill="#8e3423" font-weight="600">evals — 0 of 7</text>
+
+            <text x="300" y="407" text-anchor="end" font-weight="600">7 Workflow Tasks</text>
+            <rect x="330" y="382" width="940" height="34" rx="5" fill="#c3ccd6"/>
+            <text x="1300" y="407" font-size="22" fill="#67788a">1 of 7 — one kanban, six half-answers</text>
+
+            <text x="300" y="455" text-anchor="end" font-weight="600">6 Workspaces</text>
+            <rect x="330" y="430" width="464" height="34" rx="5" fill="#c3ccd6"/>
+            <rect x="800" y="430" width="470" height="34" rx="5" fill="#b1442e"/>
+            <text x="1300" y="455" font-size="22" fill="#8e3423" font-weight="600">product · estate — 0 of 7</text>
+
+            <text x="300" y="503" text-anchor="end" font-weight="600">5 Context</text>
+            <rect x="330" y="478" width="620" height="34" rx="5" fill="#c3ccd6"/>
+            <rect x="956" y="478" width="314" height="34" rx="5" fill="#b1442e"/>
+            <text x="1300" y="503" font-size="22" fill="#8e3423" font-weight="600">team memory — 0 of 7</text>
+          </g>
+
+          <line x1="90" y1="551" x2="1830" y2="551" stroke="#a8781a" stroke-width="5" stroke-dasharray="14 8"/>
+          <rect x="640" y="527" width="640" height="48" rx="24" fill="#faf3e3" stroke="#a8781a" stroke-width="3"/>
+          <text x="960" y="559" text-anchor="middle" font-size="25" font-weight="700" fill="#7a5810">nothing above this line is settled</text>
+
+          <g font-size="25" fill="#121a22">
+            <text x="300" y="628" text-anchor="end" font-weight="600">4 Capabilities</text>
+            <rect x="330" y="603" width="470" height="34" rx="5" fill="#2f7d4f"/>
+            <rect x="806" y="603" width="464" height="34" rx="5" fill="#c3ccd6"/>
+            <text x="1300" y="628" font-size="22" fill="#26663f" font-weight="600">skills — 7 of 7</text>
+
+            <text x="300" y="676" text-anchor="end" font-weight="600">3 System Stacks</text>
+            <rect x="330" y="651" width="182" height="34" rx="5" fill="#2f7d4f"/>
+            <rect x="518" y="651" width="562" height="34" rx="5" fill="#c3ccd6"/>
+            <rect x="1086" y="651" width="184" height="34" rx="5" fill="#b1442e"/>
+            <text x="1300" y="676" font-size="22" fill="#3c4b5a">configuration 7 of 7 · <tspan fill="#8e3423" font-weight="600">standards 0 of 7</tspan></text>
+
+            <text x="300" y="724" text-anchor="end" font-weight="600">2 Agent Harness</text>
+            <rect x="330" y="699" width="620" height="34" rx="5" fill="#2f7d4f"/>
+            <rect x="956" y="699" width="314" height="34" rx="5" fill="#c3ccd6"/>
+            <text x="1300" y="724" font-size="22" fill="#26663f" font-weight="600">adapters, hooks — 7 of 7</text>
+
+            <text x="300" y="772" text-anchor="end" font-weight="600">1 Environment</text>
+            <rect x="330" y="747" width="940" height="34" rx="5" fill="#b1442e"/>
+            <text x="1300" y="772" font-size="22" fill="#8e3423" font-weight="600">0 of 7 — the only empty row down here</text>
+
+            <text x="300" y="820" text-anchor="end" font-weight="600">0 Foundation</text>
+            <rect x="330" y="795" width="940" height="34" rx="5" fill="#2f7d4f"/>
+            <text x="1300" y="820" font-size="22" fill="#26663f" font-weight="600">substrate — 7 of 7</text>
+          </g>
+
+          <rect x="90" y="884" width="850" height="122" rx="10" fill="#eef5f0" stroke="#2f7d4f" stroke-width="2"/>
+          <text x="120" y="932" font-size="27" font-weight="700" fill="#26663f">BELOW · layers 0–4 · 12 components</text>
+          <text x="120" y="976" font-size="24" fill="#3c4b5a"><tspan font-weight="700" font-size="30">5</tspan> shipped by all seven   ·   <tspan font-weight="700" font-size="30">2</tspan> shipped by none</text>
+
+          <rect x="980" y="884" width="850" height="122" rx="10" fill="#f9efec" stroke="#b1442e" stroke-width="2"/>
+          <text x="1010" y="932" font-size="27" font-weight="700" fill="#8e3423">ABOVE · layers 5–11 · 21 components</text>
+          <text x="1010" y="976" font-size="24" fill="#3c4b5a"><tspan font-weight="700" font-size="30">0</tspan> shipped by all seven   ·   <tspan font-weight="700" font-size="30">8</tspan> shipped by none</text>
+
+          <text x="90" y="1046" font-size="19" fill="#8b98a6">Hermes · Pi · OpenClaw · OpenCode · Grok · Codex · Claude Code — every cell a verbatim copy of that harness's own profile. Absence recorded, never inferred.</text>
+        </g>
+      </svg>
+    </div>
+    <div class="rail"><span>five universal · ten empty · one line</span><span class="grow"></span><span>11 / 14</span></div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" data-notes="Now sort those upper rows by who ships them, and the finding gets sharper. The systems that ship memory, learning, cadence, roster and org are personal assistants. The coding harnesses refuse them — Pi publishes a refusal list. Seventeen of twenty-one on one side; six of twenty-eight on the other. And that row there — 5b, team memory, the decision ledger I built in April because my team had no shared context — is zero of seven. Nobody ships it. Multiplayer is the next frontier, and I can prove it rather than predict it.">
+    <div class="eyebrow">Finding four · the frontier</div>
+    <h2>The team-shaped rows belong to the assistants</h2>
+    <div class="plate" style="margin-top:18px">
+      <span class="plate-tag">Fig. E · by genre</span>
+      <svg viewBox="0 0 1920 1080" role="img" aria-label="Upper-layer components by genre: assistants ship them, coding harnesses do not">
+        <rect width="1920" height="1080" fill="#ffffff"/>
+        <text x="90" y="84" font-size="44" font-weight="700" fill="#121a22" font-family="Bricolage Grotesque, sans-serif">Who actually ships the team-shaped rows</text>
+        <text x="90" y="126" font-size="25" fill="#67788a" font-family="Archivo, sans-serif">The seven components above the line, by genre. Same grid, same rules, same day.</text>
+        <g font-family="Archivo, sans-serif">
+          <rect x="620" y="164" width="450" height="54" rx="8" fill="#dbe7f1" stroke="#1a5b8e" stroke-width="2"/>
+          <text x="845" y="200" text-anchor="middle" font-size="25" font-weight="700" fill="#0f4470">PERSONAL ASSISTANTS</text>
+          <rect x="1090" y="164" width="600" height="54" rx="8" fill="#f2f4f7" stroke="#8b98a6" stroke-width="2"/>
+          <text x="1390" y="200" text-anchor="middle" font-size="25" font-weight="700" fill="#3c4b5a">CODING HARNESSES</text>
+
+          <g font-size="22" fill="#3c4b5a" text-anchor="middle" font-weight="600">
+            <text x="690" y="256">Hermes</text><text x="845" y="256">OpenClaw</text><text x="1000" y="256">Grok</text>
+            <text x="1160" y="256">Pi</text><text x="1290" y="256">OpenCode</text><text x="1430" y="256">Codex</text><text x="1600" y="256">Claude Code</text>
+          </g>
+          <line x1="1080" y1="230" x2="1080" y2="716" stroke="#c3ccd6" stroke-width="2" stroke-dasharray="6 5"/>
+
+          <rect x="90" y="330" width="1620" height="52" fill="#f7f9fb"/>
+          <rect x="90" y="446" width="1620" height="52" fill="#f7f9fb"/>
+          <rect x="90" y="562" width="1620" height="52" fill="#f7f9fb"/>
+
+          <g font-size="25" fill="#121a22" font-weight="600" text-anchor="end">
+            <text x="580" y="310">5a  Individual Memory</text>
+            <text x="580" y="368">5b  Team Memory</text>
+            <text x="580" y="426">9a  Learning</text>
+            <text x="580" y="484">9c  Cadence</text>
+            <text x="580" y="542">10a  Roster</text>
+            <text x="580" y="600">10b  Org</text>
+            <text x="580" y="658">11a  Surfaces</text>
+          </g>
+
+          <g text-anchor="middle" font-size="34">
+            <text x="690" y="312" fill="#2f7d4f">●</text><text x="845" y="312" fill="#2f7d4f">●</text><text x="1000" y="312" fill="#2f7d4f">●</text><text x="1160" y="312" fill="#b1442e">○</text><text x="1290" y="312" fill="#b1442e">○</text><text x="1430" y="312" fill="#2f7d4f">●</text><text x="1600" y="312" fill="#2f7d4f">●</text>
+            <text x="690" y="370" fill="#b1442e">○</text><text x="845" y="370" fill="#a8781a">◐</text><text x="1000" y="370" fill="#b1442e">○</text><text x="1160" y="370" fill="#b1442e">○</text><text x="1290" y="370" fill="#b1442e">○</text><text x="1430" y="370" fill="#b1442e">○</text><text x="1600" y="370" fill="#a8781a">◐</text>
+            <text x="690" y="428" fill="#2f7d4f">●</text><text x="845" y="428" fill="#2f7d4f">●</text><text x="1000" y="428" fill="#2f7d4f">●</text><text x="1160" y="428" fill="#b1442e">○</text><text x="1290" y="428" fill="#b1442e">○</text><text x="1430" y="428" fill="#a8781a">◐</text><text x="1600" y="428" fill="#a8781a">◐</text>
+            <text x="690" y="486" fill="#2f7d4f">●</text><text x="845" y="486" fill="#2f7d4f">●</text><text x="1000" y="486" fill="#2f7d4f">●</text><text x="1160" y="486" fill="#b1442e">○</text><text x="1290" y="486" fill="#b1442e">○</text><text x="1430" y="486" fill="#b1442e">○</text><text x="1600" y="486" fill="#2f7d4f">●</text>
+            <text x="690" y="544" fill="#2f7d4f">●</text><text x="845" y="544" fill="#2f7d4f">●</text><text x="1000" y="544" fill="#2f7d4f">●</text><text x="1160" y="544" fill="#b1442e">○</text><text x="1290" y="544" fill="#a8781a">◐</text><text x="1430" y="544" fill="#a8781a">◐</text><text x="1600" y="544" fill="#a8781a">◐</text>
+            <text x="690" y="602" fill="#a8781a">◐</text><text x="845" y="602" fill="#2f7d4f">●</text><text x="1000" y="602" fill="#2f7d4f">●</text><text x="1160" y="602" fill="#b1442e">○</text><text x="1290" y="602" fill="#a8781a">◐</text><text x="1430" y="602" fill="#a8781a">◐</text><text x="1600" y="602" fill="#a8781a">◐</text>
+            <text x="690" y="660" fill="#2f7d4f">●</text><text x="845" y="660" fill="#2f7d4f">●</text><text x="1000" y="660" fill="#2f7d4f">●</text><text x="1160" y="660" fill="#a8781a">◐</text><text x="1290" y="660" fill="#2f7d4f">●</text><text x="1430" y="660" fill="#2f7d4f">●</text><text x="1600" y="660" fill="#2f7d4f">●</text>
+          </g>
+
+          <rect x="620" y="700" width="450" height="60" rx="8" fill="#eef5f0" stroke="#2f7d4f" stroke-width="2"/>
+          <text x="845" y="740" text-anchor="middle" font-size="26" font-weight="700" fill="#26663f">17 of 21 are named primitives</text>
+          <rect x="1090" y="700" width="600" height="60" rx="8" fill="#f9efec" stroke="#b1442e" stroke-width="2"/>
+          <text x="1390" y="740" text-anchor="middle" font-size="26" font-weight="700" fill="#8e3423">6 of 28 — and 12 are hard absences</text>
+
+          <rect x="90" y="806" width="1740" height="176" rx="12" fill="#fdf9ee" stroke="#a8781a" stroke-width="3"/>
+          <text x="130" y="862" font-size="32" font-weight="700" fill="#121a22">The rows that make a harness a team thing are shipped by personal assistants.</text>
+          <text x="130" y="910" font-size="32" font-weight="700" fill="#121a22">The coding harnesses refuse them — on the record.</text>
+          <text x="130" y="956" font-size="24" fill="#5d6b7a" font-style="italic">Pi ships a published refusal list. OpenCode has no memory, no cadence, no rituals, and no non-goals section to explain why.</text>
+
+          <text x="90" y="1030" font-size="19" fill="#8b98a6">Grok column reads the Bot half. Codex and Claude Code are the two coding harnesses reaching upward — and neither reaches 10b.</text>
+        </g>
+      </svg>
+    </div>
+    <div class="rail"><span>5b team memory — the thing I built — is 0 of 7</span><span class="grow"></span><span>12 / 14</span></div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" data-notes="Which turns what I thought were hot takes into measurements. If agents work the whole environment, you have to map the whole environment — environment and estate are zero of seven. Rituals — standups, retros — don't have agents present; rituals is zero of seven. Nobody ships what good looks like, and nobody ships evals — both zero of seven, and standards is six hard absences. And on the bitter lesson: it's right, and it already happened. Below layer five. Adapters, hooks, config, skills — all absorbed, all converged, in about eighteen months. It has nothing to say about who's on call.">
+    <div class="eyebrow">Finding five</div>
+    <h2>The things I assumed were hot takes</h2>
+    <div class="top-flow" style="gap:0; margin-top:18px">
+      <div class="zeros">
+        <div class="zrow"><span class="zid">1a · 6c</span><span class="zname">Environment &amp; Estate<span class="zsub">If agents work the whole environment, someone has to map the whole environment.</span></span><span class="zcount">0 of 7</span></div>
+        <div class="zrow"><span class="zid">9b</span><span class="zname">Rituals<span class="zsub">Standups, retros, planning — none of them have an agent present. So they stay manual.</span></span><span class="zcount">0 of 7</span></div>
+        <div class="zrow"><span class="zid">3e</span><span class="zname">Standards<span class="zsub">What good looks like, as a versioned artifact you inherit. Six of the seven are hard absences.</span></span><span class="zcount">0 of 7</span></div>
+        <div class="zrow"><span class="zid">8a</span><span class="zname">Evals<span class="zsub">Every one is dev-facing. Nobody ships the bar a team's work has to clear.</span></span><span class="zcount">0 of 7</span></div>
+      </div>
+      <p class="small" style="margin-top:26px; max-width:96ch"><strong>And on the bitter lesson: it's right, and it already happened.</strong> Below layer 5 — adapters, hooks, configuration, skills — absorbed and converged in about eighteen months. It has nothing to say about who's on call, or what your review bar is. That part doesn't arrive in the next model.</p>
+    </div>
+    <div class="rail"><span>opinions, until you count them</span><span class="grow"></span><span>13 / 14</span></div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" data-notes="So — this is a map, it's MIT, and almost every page carries a drafted-not-yet-verified banner because no human has signed it off yet. That's the instrument working, not an unfinished draft. What I want from this room: what did I get right, what did I get wrong, and would we actually benefit from tools that help a team see the shape of what they're building? Come argue with a cell.">
+    <div class="eyebrow">What I want from this room</div>
+    <div class="body-flow" style="gap:34px">
+      <p class="ask">What did I get right?<br>What did I get wrong?</p>
+      <p class="lede" style="max-width:60ch">And the real question underneath it — would we benefit from tools that show a team the shape of what they're building, and where it's going?</p>
+      <div class="chips">
+        <span class="chip">github.com/shi503/harness-atlas</span>
+        <span class="chip">MIT · for educational purposes</span>
+        <span class="chip">10 harnesses · 33 components · 118 deep-read docs</span>
+        <span class="chip">every page: drafted, not yet verified</span>
+      </div>
+      <p class="small">Come argue with a cell. Every <span class="mono">○</span> names the pages I checked, so a wrong one is falsifiable — which is the only reason a grid like this is worth publishing.</p>
+    </div>
+    <div class="rail"><span>harness-atlas · Kevin Deng</span><span class="grow"></span><span>14 / 14</span></div>
+  </section>
+
+  <div class="progress" id="bar"></div>
+</div>
+</div>
+
+<div class="notes" id="notes" hidden><h3>Speaker notes</h3><p id="noteText"></p></div>
+
+<script>
+(function(){
+  var stage = document.getElementById('stage');
+  var slides = Array.prototype.slice.call(stage.querySelectorAll('.slide'));
+  var bar = document.getElementById('bar');
+  var notes = document.getElementById('notes');
+  var noteText = document.getElementById('noteText');
+  var i = 0, notesOn = false;
+
+  function fit(){
+    var pad = 28;
+    var s = Math.min((window.innerWidth - pad*2)/1600, (window.innerHeight - pad*2 - (notesOn ? window.innerHeight*0.42 : 0))/900);
+    stage.style.transform = 'scale(' + Math.max(s, 0.1) + ')';
+  }
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
+    bar.style.width = ((i+1)/slides.length*100) + '%';
+    noteText.textContent = slides[i].getAttribute('data-notes') || '';
+  }
+  function toggleNotes(){
+    notesOn = !notesOn;
+    notes.hidden = !notesOn;
+    fit();
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(i+1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i-1); }
+    else if (e.key === 'Home') { show(0); }
+    else if (e.key === 'End') { show(slides.length-1); }
+    else if (e.key === 's' || e.key === 'S') { toggleNotes(); }
+  });
+  document.getElementById('next').addEventListener('click', function(){ show(i+1); });
+  document.getElementById('prev').addEventListener('click', function(){ show(i-1); });
+  var x0 = null;
+  document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 45) show(i + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, {passive:true});
+  window.addEventListener('resize', fit);
+  show(0); fit();
+})();
+</script>

@@ -1,0 +1,17 @@
+%% The four bands that answer "How do we work?" — the simplified read of the twelve layers.
+%% Band names and their one-line descriptions are KD's, from the AI Tinkerers outline (2026-09-08).
+%% Differs from layer-stack.mmd in one place, deliberately: 0 Foundation stands alone as its own band,
+%% and 1 Environment sits under CONFIGURED, because the outline's own words put "defining the work
+%% environment" in the configured band. layer-stack.mmd stays the canonical twelve-layer read.
+%% Reads bottom-up, like layer-stack.mmd. An LR version was tried first and rejected: at four bands
+%% wide it scales down to unreadable inside a GitHub README column.
+%% README.md embeds a RENDER of this file at assets/img/4-layers-stack.png; edit here, then re-render.
+flowchart BT
+  F["<b>FOUNDATION</b><br/>0 Foundation<br/><br/><i>the substrate — what models and<br/>frameworks you run on</i>"]
+  C["<b>WHAT IS CONFIGURED</b><br/>1 Environment · 2 Agent Harness<br/>3 System Stacks<br/>4 Capabilities<br/><br/><i>harness stacks, loops, capabilities —<br/>defining the work environment</i>"]
+  A["<b>WHAT ACCUMULATES</b> ⟳<br/>5 Context · 6 Workspaces<br/>7 Workflow Tasks<br/><br/><i>codebase as a platform,<br/>knowledge &amp; context</i>"]
+  R["<b>WHAT RUNS</b><br/>8 Trust · 9 Improve<br/>10 Teams &amp; Agents<br/>11 Surfaces<br/><br/><i>how does work get done? surfaces,<br/>team — and what says what good<br/>looks like</i>"]
+  P(("people"))
+  F -->|"decided before<br/>work starts"| C -->|"survives<br/>the session"| A -->|"re-decided every<br/>unit of work"| R -->|"crosses the<br/>surface"| P
+  classDef band fill:#f4f7fa,stroke:#5b7a94,stroke-width:2px,color:#121a22;
+  class F,C,A,R band;

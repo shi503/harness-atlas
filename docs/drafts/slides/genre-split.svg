@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" font-family="Inter, Helvetica Neue, Arial, sans-serif">
+  <rect width="1920" height="1080" fill="#ffffff"/>
+
+  <text x="90" y="84" font-size="44" font-weight="700" fill="#111">Who actually ships the team-shaped rows</text>
+  <text x="90" y="126" font-size="25" fill="#666">The seven components above the line, by genre. Same grid, same rules, same day.</text>
+
+  <!-- group headers -->
+  <rect x="620" y="164" width="450" height="54" rx="8" fill="#e8f0fe" stroke="#1a56b5" stroke-width="2"/>
+  <text x="845" y="200" text-anchor="middle" font-size="25" font-weight="700" fill="#0d3c85">PERSONAL ASSISTANTS</text>
+
+  <rect x="1090" y="164" width="600" height="54" rx="8" fill="#f5f5f5" stroke="#8a8a8a" stroke-width="2"/>
+  <text x="1390" y="200" text-anchor="middle" font-size="25" font-weight="700" fill="#444">CODING HARNESSES</text>
+
+  <!-- column labels -->
+  <g font-size="22" fill="#333" text-anchor="middle">
+    <text x="690" y="256" font-weight="600">Hermes</text>
+    <text x="845" y="256" font-weight="600">OpenClaw</text>
+    <text x="1000" y="256" font-weight="600">Grok</text>
+    <text x="1160" y="256" font-weight="600">Pi</text>
+    <text x="1290" y="256" font-weight="600">OpenCode</text>
+    <text x="1430" y="256" font-weight="600">Codex</text>
+    <text x="1600" y="256" font-weight="600">Claude Code</text>
+  </g>
+
+  <!-- divider between genres -->
+  <line x1="1080" y1="230" x2="1080" y2="716" stroke="#bbb" stroke-width="2" stroke-dasharray="6 5"/>
+
+  <!-- rows -->
+  <g font-size="26">
+    <!-- row template y: 300, 358, 416, 474, 532, 590, 648 -->
+
+    <text x="580" y="310" text-anchor="end" font-size="25" fill="#111" font-weight="600">5a  Individual Memory</text>
+    <text x="690" y="312" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="845" y="312" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1000" y="312" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1160" y="312" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1290" y="312" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1430" y="312" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1600" y="312" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+
+    <rect x="90" y="330" width="1620" height="52" fill="#fafafa"/>
+    <text x="580" y="368" text-anchor="end" font-size="25" fill="#111" font-weight="600">5b  Team Memory</text>
+    <text x="690" y="370" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="845" y="370" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+    <text x="1000" y="370" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1160" y="370" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1290" y="370" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1430" y="370" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1600" y="370" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+
+    <text x="580" y="426" text-anchor="end" font-size="25" fill="#111" font-weight="600">9a  Learning</text>
+    <text x="690" y="428" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="845" y="428" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1000" y="428" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1160" y="428" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1290" y="428" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1430" y="428" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+    <text x="1600" y="428" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+
+    <rect x="90" y="446" width="1620" height="52" fill="#fafafa"/>
+    <text x="580" y="484" text-anchor="end" font-size="25" fill="#111" font-weight="600">9c  Cadence</text>
+    <text x="690" y="486" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="845" y="486" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1000" y="486" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1160" y="486" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1290" y="486" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1430" y="486" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1600" y="486" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+
+    <text x="580" y="542" text-anchor="end" font-size="25" fill="#111" font-weight="600">10a  Roster</text>
+    <text x="690" y="544" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="845" y="544" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1000" y="544" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1160" y="544" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1290" y="544" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+    <text x="1430" y="544" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+    <text x="1600" y="544" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+
+    <rect x="90" y="562" width="1620" height="52" fill="#fafafa"/>
+    <text x="580" y="600" text-anchor="end" font-size="25" fill="#111" font-weight="600">10b  Org</text>
+    <text x="690" y="602" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+    <text x="845" y="602" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1000" y="602" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1160" y="602" text-anchor="middle" fill="#c62828" font-size="34">○</text>
+    <text x="1290" y="602" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+    <text x="1430" y="602" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+    <text x="1600" y="602" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+
+    <text x="580" y="658" text-anchor="end" font-size="25" fill="#111" font-weight="600">11a  Surfaces</text>
+    <text x="690" y="660" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="845" y="660" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1000" y="660" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1160" y="660" text-anchor="middle" fill="#a08000" font-size="34">◐</text>
+    <text x="1290" y="660" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1430" y="660" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+    <text x="1600" y="660" text-anchor="middle" fill="#2e7d32" font-size="34">●</text>
+  </g>
+
+  <!-- counts -->
+  <rect x="620" y="700" width="450" height="60" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="845" y="740" text-anchor="middle" font-size="26" font-weight="700" fill="#1b5e20">17 of 21 are named primitives</text>
+  <rect x="1090" y="700" width="600" height="60" rx="8" fill="#fdecea" stroke="#c62828" stroke-width="2"/>
+  <text x="1390" y="740" text-anchor="middle" font-size="26" font-weight="700" fill="#8e0000">6 of 28 — and 12 are hard absences</text>
+
+  <!-- the takeaway -->
+  <rect x="90" y="806" width="1740" height="176" rx="12" fill="#fffdf3" stroke="#f9a825" stroke-width="3"/>
+  <text x="130" y="862" font-size="32" font-weight="700" fill="#111">The rows that make a harness a team thing are shipped by personal assistants.</text>
+  <text x="130" y="910" font-size="32" font-weight="700" fill="#111">The coding harnesses refuse them — on the record.</text>
+  <text x="130" y="956" font-size="24" fill="#555" font-style="italic">Pi ships a published refusal list. OpenCode has no memory, no cadence, no rituals, and no non-goals section to explain why.</text>
+
+  <text x="90" y="1030" font-size="19" fill="#999">Grok column reads the Bot half. Codex and Claude Code are the two coding harnesses reaching upward — and neither reaches 10b. Source: components/ALIGNMENT.md §2, §3.1.</text>
+</svg>
