@@ -256,4 +256,4 @@ Mark each component as having maturity stages or only an answer. Working hypothe
 
 ---
 
-*The plan this executes was authored 2026-09-02 in the session linked in the frontmatter. The corpus it migrates: [`00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md) · the framework: [`specs/v1-framework/00-README.md`](../spec/v1-framework/00-README.md) · the mental model in flight: [`specs/v1-framework/00-consolidated-guide-and-mental-model.md`](../spec/v1-framework/00-consolidated-guide-and-mental-model.md) · the open register: [`specs/v1-framework/CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §3*
+*The plan this executes was authored 2026-09-02 in the session linked in the frontmatter. The corpus it migrates: `loomwarp-team-system` `00-MAP.md` (private) · the framework: [`specs/v1-framework/00-README.md`](../spec/v1-framework/00-README.md) · the mental model in flight: [`specs/v1-framework/00-consolidated-guide-and-mental-model.md`](../spec/v1-framework/00-consolidated-guide-and-mental-model.md) · the open register: [`specs/v1-framework/CROSSWALK.md`](../spec/v1-framework/CROSSWALK.md) §3*

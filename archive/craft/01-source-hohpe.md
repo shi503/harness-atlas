@@ -12,7 +12,7 @@ owner: KD
 # What top-tier architects do differently — Gregor Hohpe
 
 **Provenance: `OBSERVED`.** Other people's work, recorded as evidence. Per
-[`../../00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md) §1 this may be quoted and cited, never
+`loomwarp-team-system` `00-MAP.md` (private) §1 this may be quoted and cited, never
 restated as ours. The synthesis built on it is `DERIVED` and lives at
 [`02-harness-sizing-lens.md`](./02-harness-sizing-lens.md).
 

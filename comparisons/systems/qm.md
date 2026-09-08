@@ -10,7 +10,7 @@ owner: KD
 # QM (Quartermaster) — Y Combinator
 
 > **Partial pointer.** A full source-level teardown already exists at
-> [`../../../specs/v1/04-benchmark-qm.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/specs/v1/04-benchmark-qm.md) — 239,609 LOC read,
+> `loomwarp-team-system` `specs/v1/04-benchmark-qm.md` (private) — 239,609 LOC read,
 > with twelve patterns extracted in priority order and the correction it forced on `F5` Policy. This
 > file covers only what that benchmark does not: QM as a *product design*, for the comparison tables.
 
@@ -80,4 +80,4 @@ analysis.
 ## Sources
 
 - [Inside QM: a system design teardown](https://atul4u.medium.com/inside-qm-a-system-design-teardown-of-y-combinators-multiplayer-agent-harness-d5482cd8d5d3) — the template this corpus's teardowns follow
-- Source-level analysis: [`../../../specs/v1/04-benchmark-qm.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/specs/v1/04-benchmark-qm.md) (2026-08-04)
+- Source-level analysis: `loomwarp-team-system` `specs/v1/04-benchmark-qm.md` (private) (2026-08-04)

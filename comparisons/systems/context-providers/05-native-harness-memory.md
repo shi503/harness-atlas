@@ -152,6 +152,6 @@ keyed by `session_id`, and join it to the run's outcome. **`GAP-27`.**
   — `claude_code.plugin_loaded`, correlation keys
 - [`../../../claude-code/20-consolidated-guide.md`](../../../content/claude-code/20-consolidated-guide.md) — the
   no-context-provenance finding
-- [`../../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md)
+- `loomwarp-team-system` `references/claude-code/30-gap-analysis-loomwarp.md` (private)
   — `ContextProvenance` as a priority
 - **Not read:** Codex, Cursor, Amp memory documentation. Queued

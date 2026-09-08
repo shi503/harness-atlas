@@ -1036,7 +1036,7 @@ agent-native pillar a competitor grades.
 | Factory.ai Agent Readiness                   | B     | [docs.factory.ai/agent-readiness/overview](https://docs.factory.ai/agent-readiness/overview)                                  | ✅ **direct 2026-08-26**                        |
 | Microsoft Agentic AI adoption maturity model | B     | [learn.microsoft.com/en-us/agents/adoption-maturity-model](https://learn.microsoft.com/en-us/agents/adoption-maturity-model/) | ✅ **direct 2026-08-26**                        |
 | Hassan et al. — Agentic SE / SASE            | —     | [arXiv:2509.06216](https://arxiv.org/abs/2509.06216)                                                                          | ✅ **direct 2026-08-26**                        |
-| Debois — Agent Enablement                    | B     | [tessl.io/speaker/patrickdebois](https://tessl.io/speaker/patrickdebois/) + blog corpus                                       | ◐ pillars direct-ish; **4 stages unretrieved** |
+| Debois — Agent Enablement                    | B     | tessl.io/speaker/patrickdebois `https://tessl.io/speaker/patrickdebois/` + blog corpus                                       | ◐ pillars direct-ish; **4 stages unretrieved** | **⚠️ 404, checked 2026-09-08 — link dead at the publisher; the citation is kept because the claim rests on it, and the title is the thing to search for**
 | AAIF taxonomy                                | A     | [github.com/aaif/ws-taxonomy-landscape](https://github.com/aaif/ws-taxonomy-landscape)                                        | ◐ relayed                                      |
 | Meng et al. `H=(E,T,C,S,L,V)`                | A     | [10.20944/preprints202604.0428.v3](https://doi.org/10.20944/preprints202604.0428.v3) — **403**                                | ◐ **repo-sourced, not paper-sourced**          |
 | Macedo — T1–T4                               | A     | [arXiv:2606.10106](https://arxiv.org/abs/2606.10106)                                                                          | ◐ relayed                                      |
@@ -1094,11 +1094,11 @@ C-level audience.** ✅ *accessed 2026-08-26*
 
 **Patrick Debois (Tessl) — Agent Enablement** ◐
 
-- Speaker page and talk index — [https://tessl.io/speaker/patrickdebois/](https://tessl.io/speaker/patrickdebois/)
+- Speaker page and talk index — https://tessl.io/speaker/patrickdebois/ `https://tessl.io/speaker/patrickdebois/` **⚠️ 404, checked 2026-09-08 — link dead at the publisher; the citation is kept because the claim rests on it, and the title is the thing to search for**
 - *The Context Flywheel: Why the Best AI Coding Teams Will Win on Context* — [https://tessl.io/blog/the-context-flywheel-why-the-best-ai-coding-teams-will-win-on-context/](https://tessl.io/blog/the-context-flywheel-why-the-best-ai-coding-teams-will-win-on-context/)
 - *The State of the AI Coding Stack: Agent Skills, Harnesses, and Enablement*, AI Native DevCon London 2026 — [https://tessl.io/blog/the-state-of-the-ai-coding-stack-agent-skills-harnesses-and-enablement-at-ai-native-devcon-london-2026](https://tessl.io/blog/the-state-of-the-ai-coding-stack-agent-skills-harnesses-and-enablement-at-ai-native-devcon-london-2026)
 - *AI Native DevCon Day 1: Making AI Agents Ready for Enterprise* — [https://tessl.io/blog/ai-native-devcon-day-1-making-ai-agents-ready-for-enterprise/](https://tessl.io/blog/ai-native-devcon-day-1-making-ai-agents-ready-for-enterprise/)
-- Podcast, *From DevOps to AI* — [https://tessl.io/podcast/from-devops-to-patrick-debois-shares-strategies-for-successful-ai-integration-and-cultural-change](https://tessl.io/podcast/from-devops-to-patrick-debois-shares-strategies-for-successful-ai-integration-and-cultural-change)
+- Podcast, *From DevOps to AI* — https://tessl.io/podcast/from-devops-to-patrick-debois-shares-strategies-for-successful-ai-integration-and-cultural-change `https://tessl.io/podcast/from-devops-to-patrick-debois-shares-strategies-for-successful-ai-integration-and-cultural-change` **⚠️ 404, checked 2026-09-08 — link dead at the publisher; the citation is kept because the claim rests on it, and the title is the thing to search for**
 - ⚠️ **The four maturity stages under each pillar remain unretrieved.**
 
 **Ahmed E. Hassan, Hao Li, Dayi Lin, Bram Adams, Tse-Hsun Chen, Yutaro Kashiwa, Dong Qiu** —

@@ -218,7 +218,7 @@ people and starts naming an artifact. That is exactly the mechanical threshold �
 places there, and it is the first time the ladder's own text says why the jump is the hard one.
 
 > ⚠️ **Not applied in this pass.** `03-maturity.md` is marked ❌ *rebuild* in
-> [`00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md) §3 and its §4 ladders carry only 4 of 6 columns. Adding a row to a table
+> `loomwarp-team-system` `00-MAP.md` (private) §3 and its §4 ladders carry only 4 of 6 columns. Adding a row to a table
 > queued for rebuild is churn. **These six sentences are drafted here and land when that file is
 > rebuilt.**
 

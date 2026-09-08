@@ -46,7 +46,7 @@ The RACI sub-schema is not optional decoration:
 
 All initials must resolve against a people registry. The minimum-one on `responsible` is annotated in the schema as a **guard against unowned decisions**, and it is worth pausing on: it is the only rule in the entire system that a machine actually enforces. Everything in [`01-the-composition-contract.md`](./01-the-composition-contract.md) is prose an agent may ignore. This one is a validator that fails.
 
-That asymmetry is the argument for the whole enforcement half of [`ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md). The one guard they built is the one guard that never degraded.
+That asymmetry is the argument for the whole enforcement half of `loomwarp-team-system` `references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md` (private). The one guard they built is the one guard that never degraded.
 
 → [`adr-seeds/ADR-017`](../../../archive/adr-seeds/ADR-017.md)
 

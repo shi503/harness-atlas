@@ -13,7 +13,7 @@ owner: KD
 
 **Provenance: `DERIVED`.** Our synthesis over one `OBSERVED` source
 ([`01-source-hohpe.md`](./01-source-hohpe.md)). The synthesis is claimable; the
-underlying observations are not. Per [`../../00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md) §1.
+underlying observations are not. Per `loomwarp-team-system` `00-MAP.md` (private) §1.
 
 **What this is.** A lens for answering one question: **how much harness does
 this team actually need, for this work, right now?** It takes the jobs a senior
@@ -37,7 +37,7 @@ register and moved here from `standards/`:
 
 | Not | Why |
 |---|---|
-| **Not a team standard** | [`../../../../standards/README.md`](https://github.com/shi503/loomwarp-team-system/blob/master/standards/README.md) is the canonical tier with a one-directional inheritance contract. Nothing here is inherited from, tightened, or enforced. It is a thinking tool, not a rule set |
+| **Not a team standard** | `loomwarp-team-system` `standards/README.md` (private) is the canonical tier with a one-directional inheritance contract. Nothing here is inherited from, tightened, or enforced. It is a thinking tool, not a rule set |
 | **Not the model for LoomWarp's own agents** | The `.claude/agents/*` roster is not derived from this and should not be retrofitted to it. §7.4 records where the two disagree, as observation only |
 | **Not a measured claim about the field** | One interview, one practitioner. `03-jtbd.md`'s convergence line was measured against a committed 562-session corpus; this was not. Where they conflict, that document wins on standing |
 
@@ -377,14 +377,14 @@ bad, which is bad; or it is good enough to ship unedited, in which case the
 surrounding role was not needed.
 
 This is the same argument as
-[`../../../../fractal/STRATEGIST-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/fractal/STRATEGIST-loomwarp.md)
+`loomwarp-team-system` `fractal/STRATEGIST-loomwarp.md` (private)
 §2.1 (*evidence over assertion*) reached from a different direction, which is
 mild corroboration for both.
 
 ### 7.3 Suitability cannot be gated, and conformance can
 
 The sharpest boundary in the lens, and it sits directly on
-[`../../../../standards/README.md`](https://github.com/shi503/loomwarp-team-system/blob/master/standards/README.md)'s stated
+`loomwarp-team-system` `standards/README.md` (private)'s stated
 preference for mechanical enforcement over prose.
 
 That preference is right, and **H5/H6 mark its edge.** There is no global ranking

@@ -39,11 +39,11 @@ These run the agent loop. LoomWarp installs *into* one of these; it is not one.
 | **Pi** | Mario Zechner · Earendil | **Torn down 2026-09-02** — [`harnesses/pi.md`](../../content/pi.md). The runtime under QM; refuses MCP, subagents, permissions, plan mode and to-dos by design | `[V]` |
 | **OpenCode** | Anomaly | **Torn down 2026-09-02** — [`harnesses/opencode.md`](../../content/opencode.md). Coding-harness control case; nine-rung config precedence ending in MDM | `[V]` |
 | **Grok Bot / Grok Build** | SpaceXAI | **Torn down 2026-09-02** — [`harnesses/grok.md`](../../content/grok.md). Hosted always-on teammate (beta 2026-08-11) paired with the Apache-2.0 Rust harness; whether one runs on the other is ⚠️ unstated at source | `[V]` |
-| **Amp** | Sourcegraph | Abstracted by Gas City's FWP; SageOx ships a plugin for it | `[S]` |
-| **Gemini CLI · Droid · Aider · Windsurf · Cline** | various | Appear in SageOx's support matrix and Gas City's FWP list. Not separately assessed | `[S]` |
+| **Amp** | Sourcegraph | Named in Gas City's `provider` list; SageOx ships a plugin for it ⚠️ *was "Gas City's FWP" — ISSUE-004* | `[S]` |
+| **Gemini CLI · Droid · Aider · Windsurf · Cline** | various | Appear in SageOx's support matrix and Gas City's `provider` list ⚠️ *was "FWP list" — ISSUE-004*. Not separately assessed | `[S]` |
 
 **Why most got no teardown — and why four now have.** The harness layer is not where LoomWarp
-competes, and Claude Code — the one we run on — already has 13 documents of analysis. That held for
+competes, and Claude Code — the one we run on — already has 12 documents of analysis. That held for
 the seventeen-function model. v1's upper-layer markers (`emerging`, `claimed`, `bet`) need peer
 citations the process layers could not supply, so on 2026-09-02 Hermes, Pi, OpenClaw, OpenCode and
 Grok Bot / Grok Build were read at source against all thirty-three components. The synthesis — including where the

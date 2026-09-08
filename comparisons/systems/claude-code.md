@@ -76,4 +76,4 @@ QM makes the same move about its command policy. Both are the honest register th
 Docs: <https://code.claude.com/docs/en/> · index at `/docs/llms.txt` · any page's raw markdown by
 appending `.md`. Full reading: [`../../claude-code/`](../../content/claude-code) (13 documents, 2026-08-10)
 and the function-by-function gap analysis at
-[`../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md).
+`loomwarp-team-system` `references/claude-code/30-gap-analysis-loomwarp.md` (private).

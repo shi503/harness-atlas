@@ -111,7 +111,7 @@ Decided once, rarely revisited, and it constrains everything below it.
 |---|---|
 | **Named by** | Nobody, *as a job*. Every taxonomy treats the substrate as a given and starts above it |
 | **Function** | `F0 Substrate` |
-| **Who** | Everyone does it; almost nobody records it. gstack `--host` · Gas City's Factory Worker Protocol · QM's per-scope adapters · Indigo's `AGENTS.md`↔`CLAUDE.md` symlink |
+| **Who** | Everyone does it; almost nobody records it. gstack `--host` · Gas City's `provider` field (15 named CLIs) ⚠️ *was cited as "Factory Worker Protocol" until 2026-09-08; the primary-source read found zero matches for that name — ISSUE-004* · QM's per-scope adapters · Indigo's `AGENTS.md`↔`CLAUDE.md` symlink |
 | **Why it is a job** | `Agent = Model + Harness` makes the substrate a *choice*, and choosing badly constrains every job below it. **Adapters are the maturity tell** — you write one only after the first choice hurt |
 | **Corpus** | `harness` 113 — the layer is discussed constantly; *selecting* it is discussed as a given |
 
@@ -531,7 +531,7 @@ must do. KD's notes are retained inline.*
 
 > When I am cycling between terminals re-injecting context and guardrails by hand, I want a factory that runs multi-agent workflows unattended, so I can build software at a scale my attention does not bound.
 
-Yegge's problem statement is babysitting, and every primitive answers it: formulas make the workflow declarative, orders make it trigger-driven, the Factory Worker Protocol makes the worker substitutable, the Event Stream tells you what happened while you were not watching. The framing is industrial — *"a system for building, validating, deploying, operating, and maintaining production software."*
+Yegge's problem statement is babysitting, and every primitive answers it: formulas make the workflow declarative, orders make it trigger-driven, the `provider` field makes the worker substitutable ⚠️ *was "Factory Worker Protocol" — ISSUE-004*, the Event Stream tells you what happened while you were not watching. The framing is industrial — *"a system for building, validating, deploying, operating, and maintaining production software."*
 
 ### SageOx — *stop losing the conversation*
 

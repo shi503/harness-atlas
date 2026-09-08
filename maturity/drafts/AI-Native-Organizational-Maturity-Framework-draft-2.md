@@ -577,7 +577,7 @@ Score each component as 🔴 (Traditional), 🟡 (Transitioning), or 🟢 (AI-Na
 ### Industry Research
 
 - McKinsey & Company. [The State of AI](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai)  
-- McKinsey & Company. [Superagency in the Workplace](https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work)  
+- McKinsey & Company. Superagency in the Workplace `https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/superagency-in-the-workplace-empowering-people-to-unlock-ais-full-potential-at-work` **⚠️ 404, checked 2026-09-08 — link dead at the publisher; the citation is kept because the claim rests on it, and the title is the thing to search for**
 - Microsoft WorkLab. [2025: The Year the Frontier Firm Is Born](https://www.microsoft.com/en-us/worklab/work-trend-index/2025-the-year-the-frontier-firm-is-born)  
 - Boston Consulting Group. [AI Is Outpacing Your Workforce Strategy](https://www.bcg.com/publications/2025/ai-is-outpacing-your-workforce-strategy-are-you-ready)
 

@@ -14,7 +14,7 @@ provenance: AUTHORED
 
 **They are staged, not filed.** The live store at `context/memory/decision-ledger/store/` holds `ADR-001`…`ADR-005`. These carry `status: proposed` and IDs `ADR-006`…`ADR-027`. Filing them would burn IDs and imply an acceptance that has not been given — and the store's own doctrine says entries are written through the CLI, never hand-placed.
 
-**What decides.** [`../ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md). Each proposal there names the ADRs it would accept; a `Go` files them, a `No-Go` leaves them here as a record of what was considered and declined.
+**What decides.** `loomwarp-team-system` `references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md` (private). Each proposal there names the ADRs it would accept; a `Go` files them, a `No-Go` leaves them here as a record of what was considered and declined.
 
 **ID collision warning.** If anything else files an ADR before these are decided, renumber from the next free ID. The store enforces uniqueness; it does not renumber for you.
 
@@ -94,4 +94,4 @@ Filing 006–024 without 025 produces a better-documented version of a system th
 
 ---
 
-*Companion: [`../ENRICHMENT-PLAN.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md) — what decides these · [`../07-transfer-manifest.md`](../../comparisons/systems/kd-built-frameworks/07-transfer-manifest.md) — the underlying verdicts*
+*Companion: `loomwarp-team-system` `references/comparisons/systems/kd-built-frameworks/ENRICHMENT-PLAN.md` (private) — what decides these · [`../07-transfer-manifest.md`](../../comparisons/systems/kd-built-frameworks/07-transfer-manifest.md) — the underlying verdicts*

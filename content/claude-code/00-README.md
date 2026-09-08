@@ -72,7 +72,7 @@ date is more dangerous than no reference doc, because it will be trusted.
 | 09 | [`09-telemetry-and-evidence.md`](./09-telemetry-and-evidence.md) | OpenTelemetry metrics, events, and distributed traces — the native evidence substrate, with full attribute lists |
 | 10 | [`10-programmatic-and-sdk.md`](./10-programmatic-and-sdk.md) | `claude -p`, `--bare`, structured output, stream-json, CI gating, and the Agent SDK |
 | **20** | [**`20-consolidated-guide.md`**](./20-consolidated-guide.md) | **The synthesis: current best practice for building on Claude Code, as one opinionated read** |
-| **30** | [**`30-gap-analysis-loomwarp.md`**](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md) | **Overlap and coverage against LoomWarp's seven elements — build, adopt, or delete** |
+| **30** | `loomwarp-team-system` `references/claude-code/30-gap-analysis-loomwarp.md` (private) | **Overlap and coverage against LoomWarp's seven elements — build, adopt, or delete** |
 
 Read **20** if you have ten minutes. Read **30** if you are deciding what to work on next. The
 numbered references are lookup material; read them when you need an exact field name.

@@ -11,7 +11,7 @@ owner: KD
 
 **What this is.** The eight contracts that govern how a Tier-1 architect agent assembles context and hands work to a Tier-2 worker in `generic-cerebro`. Each is stated, evidenced, and paired with an ADR seed.
 
-**Why it is the first document in this folder.** [`../../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md) reached a hard and correct conclusion: for Estate, Control, Capability, Policy and Evidence the harness now supplies substantial native mechanism, and the verdict on the hand-rolled resolver is *adopt the native one, delete ours.* That verdict prices `router.py` at roughly zero. It does **not** touch anything in this document.
+**Why it is the first document in this folder.** `loomwarp-team-system` `references/claude-code/30-gap-analysis-loomwarp.md` (private) reached a hard and correct conclusion: for Estate, Control, Capability, Policy and Evidence the harness now supplies substantial native mechanism, and the verdict on the hand-rolled resolver is *adopt the native one, delete ours.* That verdict prices `router.py` at roughly zero. It does **not** touch anything in this document.
 
 Agent teams give you task dependencies, file-locked claiming, and a thousand parallel agents. They do not tell you what to put in the task. The gap between "the harness can dispatch" and "the dispatch produces correct work" is filled by a set of authoring disciplines, and those disciplines are the actual artifact this system produced over 27 blueprints and 130 workstreams. They are portable because they are contracts, not code.
 
@@ -154,4 +154,4 @@ This is the corpus's third inclusion-test question, failed, and it is the same S
 
 ---
 
-*Companion: [`02-generic-cerebro.md`](./02-generic-cerebro.md) — the system these contracts run in · [`07-transfer-manifest.md`](./07-transfer-manifest.md) — port verdicts · [`../../../claude-code/30-gap-analysis-loomwarp.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/claude-code/30-gap-analysis-loomwarp.md) — what the harness already supplies*
+*Companion: [`02-generic-cerebro.md`](./02-generic-cerebro.md) — the system these contracts run in · [`07-transfer-manifest.md`](./07-transfer-manifest.md) — port verdicts · `loomwarp-team-system` `references/claude-code/30-gap-analysis-loomwarp.md` (private) — what the harness already supplies*

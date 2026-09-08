@@ -133,7 +133,7 @@ restate it.
 
 **`targets` is blocked, and has been since the prototype.** The archived §7 already recorded the
 blocker: *targets* is *"supplied by the target function — `09-config.md`, not yet written."* It is
-still not written. [`00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md) §4 lists **the target function** — team scale ×
+still not written. `loomwarp-team-system` `00-MAP.md` (private) §4 lists **the target function** — team scale ×
 production-quality expectation → your correct target — as *"the strongest differentiator available and
 the one nobody has published"*, and as **not yet written**. Until it exists, `targets` has no source
 and the map should render the column empty rather than guess.

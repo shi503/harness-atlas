@@ -9,7 +9,7 @@ owner: KD
 
 # FRACTAL as iterated
 
-**What this settles.** [`../fractal.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/fractal.md) profiles upstream FRACTAL — four tiers, blueprint → router → handoff, Claude Code only, vendored at a commit with zero tags and zero releases. LoomWarp vendored that version. `generic-cerebro` ran a fork of it across 27 blueprints and 130 workstreams and changed it substantially. This document is the delta, including the parts not worth taking.
+**What this settles.** `loomwarp-team-system` `references/comparisons/systems/fractal.md` (private) profiles upstream FRACTAL — four tiers, blueprint → router → handoff, Claude Code only, vendored at a commit with zero tags and zero releases. LoomWarp vendored that version. `generic-cerebro` ran a fork of it across 27 blueprints and 130 workstreams and changed it substantially. This document is the delta, including the parts not worth taking.
 
 **The short answer.** Adopt the artifacts and the disciplines. Do not adopt the state machine — their own defect register and yours independently condemned it, and the harness now supplies a better one.
 
@@ -82,7 +82,7 @@ Upstream's profile lists what FRACTAL does not have: *single-repo only · Claude
 
 ## 5. The open question upstream's profile raised
 
-[`../fractal.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/fractal.md) asks whether four tiers is minimum-sufficient scope, noting that `STRATEGIST-loomwarp.md` §2.6 requires naming the measurable failure of a simpler design before adding a tier, and that no such failure is recorded for tier four.
+`loomwarp-team-system` `references/comparisons/systems/fractal.md` (private) asks whether four tiers is minimum-sufficient scope, noting that `STRATEGIST-loomwarp.md` §2.6 requires naming the measurable failure of a simpler design before adding a tier, and that no such failure is recorded for tier four.
 
 The evidence here is genuinely mixed and does not settle it. The atomic-task tier is used — the corpus contains dedicated worker agent definitions and single-file task dispatch — but it is also the tier with the vocabulary drift in §2, which is what an under-exercised abstraction looks like. Meanwhile the Tier-0/Tier-1 split is heavily exercised and clearly load-bearing: the intent document and the decomposition artifacts are authored by different roles at different cadences with different review gates.
 
@@ -90,4 +90,4 @@ The evidence here is genuinely mixed and does not settle it. The atomic-task tie
 
 ---
 
-*Companion: [`../fractal.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/references/comparisons/systems/fractal.md) — upstream · [`01-the-composition-contract.md`](./01-the-composition-contract.md) — the disciplines that survive · [`08-appendix-schemas.md`](./08-appendix-schemas.md) — the schemas, lift-ready*
+*Companion: `loomwarp-team-system` `references/comparisons/systems/fractal.md` (private) — upstream · [`01-the-composition-contract.md`](./01-the-composition-contract.md) — the disciplines that survive · [`08-appendix-schemas.md`](./08-appendix-schemas.md) — the schemas, lift-ready*

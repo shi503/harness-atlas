@@ -38,7 +38,7 @@ is the finding. **Beads is the negative control for the context-layer thesis.**
 | **Automation** | **Orders** — trigger-based: *when X happens, run Y* |
 | **Distribution** | **Packs** — shareable bundles of agents, formulas and orders |
 | **Observability** | **Event Stream** — notification and logging across orchestrated work |
-| **Portability** | **Factory Worker Protocol** — *"a standardized interface abstracting differences between CLI coding agents"* |
+| **Portability** | **The `provider` field** ⚠️ *was "Factory Worker Protocol" — ISSUE-004* — *"a standardized interface abstracting differences between CLI coding agents"* |
 
 **No record schema, no field names, no write or read path, no provenance model, no supersession
 semantics, and no enforcement mechanism are available for beads at any level of detail.** The corpus's

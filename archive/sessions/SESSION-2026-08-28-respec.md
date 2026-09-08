@@ -264,4 +264,4 @@ this session's defects. And do not rewrite a quotation, ever, including by codem
 ---
 
 *Process fix: `fractal/workstreams/process-amendment.md` · Prior handoff:
-[`NEXT-STEPS.md`](./NEXT-STEPS.md) · Front door: [`00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md)*
+[`NEXT-STEPS.md`](./NEXT-STEPS.md) · Front door: `loomwarp-team-system` `00-MAP.md` (private)*

@@ -15,7 +15,7 @@ extends: spec/v1-framework/00-README.md
 and OpenCode — plus **Grok Bot / Grok Build**, asked for by name the same day, read at primary source
 on 2026-09-02 and scored against the thirty-three components of
 [`specs/v1-framework/00-README.md`](../archive/spec/v1-framework/00-README.md). Every cell traces to a
-row in a teardown under [`systems/harnesses/`](../content), and every row there carries a URL,
+row in a teardown under [`content/`](../content), and every row there carries a URL,
 an access date, and a sourcing mark.
 
 **Why now.** [`00-README.md`](./00-README.md) §3 declined to tear down harnesses because *"the harness
@@ -58,7 +58,7 @@ more than one way · `○` absent, checked. Every mark is ✅ direct unless the 
 | **Latest release** | v0.21.0 (2026-08-31) | v0.84.4 (2026-08-28) | v2026.8.2 (2026-09-01) | v1.18.26 (2026-09-01) | Build: no tags, synced 2026-09-01 · Bot: beta since 2026-08-11 |
 | **Says it is** | *"The self-improving AI agent"* | *"a minimal terminal coding harness"* | *"an AI assistant that runs on your devices and meets you in the channels you already use"* | *"The open source AI coding agent"* | Bot: *"AI teammates you can give real work to"* · Build: *"SpaceXAI's terminal-based AI coding agent"* |
 | **Genre** | personal assistant, channel-first | coding, terminal-first | personal assistant, gateway-first | coding, terminal-first | Bot: hosted teammate, computer-first · Build: coding, terminal-first |
-| **Teardown** | [`systems/harnesses/hermes.md`](../content/hermes.md) | [`systems/harnesses/pi.md`](../content/pi.md) | [`systems/harnesses/openclaw.md`](../content/openclaw.md) | [`systems/harnesses/opencode.md`](../content/opencode.md) | [`systems/harnesses/grok.md`](../content/grok.md) |
+| **Teardown** | [`content/hermes.md`](../content/hermes.md) | [`content/pi.md`](../content/pi.md) | [`content/openclaw.md`](../content/openclaw.md) | [`content/opencode.md`](../content/opencode.md) | [`content/grok.md`](../content/grok.md) |
 
 **The Grok column is a pair, and the pairing is the corpus's, not xAI's.** No primary source says
 Grok Bot runs on Grok Build. What is direct: the Build repo ships a `bot.*` relay protocol and a
@@ -121,7 +121,7 @@ missing, and it names a de-facto standard the standards layer does not list.
 ## 2. The matrix — thirty-three components, five harnesses
 
 Read with [`02-component-matrix.md`](./02-component-matrix.md): that grid is process layers across
-eighteen concept rows; this one is harnesses across the v1 component set. The columns are a
+nineteen concept rows; this one is harnesses across the v1 component set. The columns are a
 different axis and are not merged, per the genre rule in
 [`2026-08-research/06-frameworks-addendum.md`](./2026-08-research/06-frameworks-addendum.md) §0.
 
@@ -296,7 +296,7 @@ appears in four primary sources this week, in the vendors' words:
   should complement, not replace, least privilege."*
 
 And once from outside the vendors, in an operator's words — Tom Crawshaw's Hermes walkthrough
-(2026-08-24, [`systems/harnesses/hermes.md`](../content/hermes.md) §G, ◐): *"An approval waits
+(2026-08-24, [`content/hermes.md`](../content/hermes.md) §G, ◐): *"An approval waits
 for your answer while a hook applies a rule that you set in advance and can block on its own"*, and a
 hook *"does that in a shell. It's not a prompt that gets injected."* The same example, too: block
 `.env` from entering the conversation. The rule has reached the people who install these things.
@@ -434,7 +434,7 @@ evidence-gating rule.
 ### 3.7b The operator's rituals, seen once
 
 One practitioner source was read beside the five vendor sources — a forty-minute Hermes walkthrough
-by a consultant who runs it for clients ([`systems/harnesses/hermes.md`](../content/hermes.md)
+by a consultant who runs it for clients ([`content/hermes.md`](../content/hermes.md)
 §G, all ◐). It changed no cell. What it showed is that the rows the vendors leave thin, the operator
 fills by hand: a **handoff document** written at 40–60 % of context because the harness's own
 compaction fires too late for his taste (ACE-FCA's *intentional compaction*, arrived at
@@ -572,5 +572,5 @@ Not applied. Each is a proposal with its citation; the framework pass decides.
 
 *Companion: [`00-README.md`](./00-README.md) — the category argument this file tests ·
 [`02-component-matrix.md`](./02-component-matrix.md) — the process-layer grid on the other axis ·
-[`systems/harnesses/`](../content) — the four teardowns, every cell sourced ·
+[`content/`](../content) — the four teardowns, every cell sourced ·
 [`../../specs/v1-framework/12-horizon.md`](../archive/spec/v1-framework/12-horizon.md) — the marker rules §4.2 obeys*

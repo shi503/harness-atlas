@@ -349,7 +349,7 @@ this rebuild is buildable and the ancestor was not.
 **The rest of that explorer does not exist.** [`03-maturity.md`](../../v0/03-maturity.md) §7 specs five
 views — the ladder, the grid, the **two-axis AI-native × delivery plot**, the thresholds, and the
 anti-pattern cards — and `grid.html` implements the grid plus a bridge table.
-[`../../00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md) and [`../../NEXT-STEPS.md`](../../sessions/NEXT-STEPS.md) both still carry
+`loomwarp-team-system` `00-MAP.md` (private) and [`../../NEXT-STEPS.md`](../../sessions/NEXT-STEPS.md) both still carry
 `03-maturity.md` at ❌. **What that costs this document specifically: §4.4's delivery gate needs the delivery
 axis the unbuilt two-axis view was to supply**, so that gate runs on a number a team types rather than one
 the instrument computes — which makes it the weakest-instrumented of the five.

@@ -288,4 +288,4 @@ checker's read surface.
 ---
 
 *Counterpart: [`SESSION-2026-08-28-respec.md`](./SESSION-2026-08-28-respec.md) · Process fix:
-`fractal/workstreams/process-amendment.md` · Front door: [`00-MAP.md`](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md)*
+`fractal/workstreams/process-amendment.md` · Front door: `loomwarp-team-system` `00-MAP.md` (private)*

@@ -191,7 +191,7 @@ is **derived from** the details, never written first.
     - **(e)** the harness's row in `index.md` §1: state cell → `v2 (<date>)`.
     Skipping any of these is a known live defect (the repo's ISSUES ledger, `ISSUE-001`).
 12. **Check.** `node scripts/check-doc-links.mjs` passes (it resolves anchors). Then: `## 6. Details`
-    at or before line 220; the file ≤ 700 lines; 33 matrix rows, 33 `####` headings and 33
+    at or before line 275; the file ≤ 760 lines; 33 matrix rows, 33 `####` headings and 33
     `<details>` blocks in §6, in order; no `◐` outside §4 and the two echoes, no `✅ ↪ ⚠️` before §5;
     matrix totals = card Coverage = grid column totals; every embedded mermaid diffs empty against
     its `.mmd`; no `####` heading sits inside a `<details>`.
@@ -200,8 +200,11 @@ is **derived from** the details, never written first.
 
 Output path: beside the other profiles, in the repo's Tier-3 directory (`content/` here), as
 `<name>.md` in lower-kebab-case, the harness's canonical short name. Ten numbered H2s, exact text,
-so every anchor is stable. Budgets in brackets; **frontmatter through §5 ≤ 220 lines, whole file
-≤ 700** (layout B costs four lines per component in §6; the number that matters is the first). A
+so every anchor is stable. Budgets in brackets; **frontmatter through §5 ≤ 275 lines, whole file
+≤ 760** (layout B costs four lines per component in §6; the number that matters is the first).
+*Raised from 220/700 by ruling on 2026-09-07, ISSUE-013: W9 added `1a. Positioning stats` and
+`1b. Contents`, ~55 lines, and every downstream number moved by that amount without a cap being
+re-cut. The profiles did not get worse; the ruler did.* A
 harness that cannot fit links out to `content/<name>/`; it does not grow.
 
 ### Frontmatter [≤ 11]

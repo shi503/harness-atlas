@@ -16,7 +16,7 @@ published, what LoomWarp adds, and which layer you are actually asking about whe
 Written for someone who has to **operate** a team on this — not for someone auditing the derivation.
 
 **Three documents, three jobs, and it is worth being blunt about the difference.**
-[00-MAP.md](https://github.com/shi503/loomwarp-team-system/blob/master/projects/loomwarp/00-MAP.md) is a **provenance index** — which files are ours, which are other
+`loomwarp-team-system` `00-MAP.md` (private) is a **provenance index** — which files are ours, which are other
 people's, which are dead. [00-README.md](./00-README.md) is the **specification** — the twelve layers
 and thirty-three components, each with its argument. **This file is the mental model**: the shape you
 carry in your head, the rules that fall out of it, and the table you look at when you are trying to

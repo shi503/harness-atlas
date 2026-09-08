@@ -48,9 +48,9 @@ listed in §4.
 > Build, placed beside Claude Code, which already set the precedent for a harness in this grid. The
 > Grok column pairs a hosted product with the open harness beside it, the way `gstack / gbrain` does;
 > whether Bot *runs on* Build is ⚠️ unstated at source, and the teardown says so. Every cell traces to the 33-row
-> table in that system's teardown under `[systems/harnesses/](../content)`; the 33-component
+> table in that system's teardown under `[content/](../content)`; the 33-component
 > view is `[04-harness-alignment.md](./04-harness-alignment.md)` §2, and this grid is the same read
-> compressed onto the eighteen concept rows. **Read the harness columns as a block**: they answer *what
+> compressed onto the nineteen concept rows. **Read the harness columns as a block**: they answer *what
 > the loop ships natively*, and the process-layer columns answer *what gets installed into a loop*.
 > The `Harness adapter` row is the one place the two senses collide — `ᴴ` marks a cell where the
 > system is a **host** shipping adapters *for other harnesses* (OpenClaw's `agentRuntime` slot and
