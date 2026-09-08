@@ -30,10 +30,11 @@ successor, carried rather than copied.
 
 ## Acceptance criteria
 
-- **AC-1** No page over 100 lines. **Not met as stated, and the cap is the wrong number now.** Pages
-  run 61–121 lines because each gained a ten-row corpus table the PRD's cap predates. The table is
-  the PRD's own §Deliverable item — *"the comparison table: for each harness in `content/`"* — so the
-  cap and the deliverable were never consistent. **Recorded, not silently widened.**
+- **AC-1** No page over 100 lines. **Not met, and the cap is the wrong number now.** Pages run
+  **84–112 lines; six exceed 100.** Each gained a ten-row corpus table the cap predates — and that
+  table is the PRD's own §Deliverable item, *"the comparison table: for each harness in `content/`"* —
+  so the cap and the deliverable were never consistent with each other. **Recorded, not silently
+  widened:** raising a cap to match what was built is how a budget stops meaning anything.
 - **AC-2** Every cell claiming a primitive links to an anchor in `content/` that exists. **Met** —
   checker resolves 2,219 links and 1,201 anchors, up from 757 anchors before Tier 2.
 - **AC-3** `graded:` on all 33, with a reason where it disagrees with the hypothesis. **Met** — 23

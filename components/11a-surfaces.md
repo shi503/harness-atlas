@@ -15,7 +15,7 @@ graded_reason: "disagrees with the layer-6-12 hypothesis: the page frames source
 requires: []
 ---
 
-[← 00-README](../spec/v1-framework/00-README.md) — the twelve layers, read bottom-up · [CROSSWALK](../spec/v1-framework/CROSSWALK.md) — the derivation and supersession arguments for every component
+[← the roster](./00-README.md) — all 33, and the graded split · [CROSSWALK](./CROSSWALK.md) — recorded gaps and the rulings that closed them · [RELATIONS](./RELATIONS.md) — the `requires` graph
 
 ### 11a · Surfaces
 
