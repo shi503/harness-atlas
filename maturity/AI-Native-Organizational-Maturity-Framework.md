@@ -1,7 +1,7 @@
 ---
 title: "AI-Native Organizational Maturity Framework"
 tier: reference
-project: loomwarp
+project: harness-atlas
 created: "2026-04-07"
 status: DRAFT
 owner: KD
