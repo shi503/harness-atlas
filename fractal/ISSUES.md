@@ -349,3 +349,57 @@ architect and the agents, which the manifests never covered.
 
 **Not rewritten.** `1b29f7a` stands, per *archive by ruling, never by deletion*. This note is the
 correction; the history keeps the mistake.
+
+---
+
+## ISSUE-017 — the two-product rule in §4 asks for something `--restructure` forbids
+
+**Severity:** WARN · **Found:** 2026-09-07, reported by the Grok feature-lead during the W8b fan-out · **Assigned:** W8c or the next skill revision
+
+`skills/harness-teardown/SKILL.md` §4 says *"Two-product harnesses (Grok Bot / Grok Build) carry two
+mark columns and two totals."* The `--restructure` mode says the matrix's marks are **copied from the
+harness's existing column in `04-harness-alignment.md` §2, not re-derived.** That grid holds **one**
+Grok column. A second column can only come from re-deriving marks, which the mode bans.
+
+**The two rules are individually sound and jointly unsatisfiable**, and nothing in the skill says which
+yields. The Grok restructure only got through because the dispatch brief happened to patch it by hand —
+*"keep the single copied mark, carry the distinction in the note"* — which was luck, not design.
+
+**Proposed general form:** a two-product harness carries two mark columns **only where the grid carries
+two**. Where the grid carries one, the profile carries one, and the per-product distinction lives in the
+row note and in §6, under rule 8's requirement that every row name which product it is about. Under
+`--sanity` or a full teardown, where marks *are* derived, the two-column form applies as written.
+
+**A second, related gap:** the scorecard has no case for product pairs at all. Grok's `split:` entries
+carry it — DX-6 Ownership is `+3` for Build (Apache-2.0, self-hostable) and `−3` for Bot (closed, *"model
+choice is fully managed by the product"*) — which is a legitimate use of `split:` under
+`2026-09-07-split-before-anchor`, since both anchors are genuinely true at once. But `split:` was written
+for one system with two readings, not for two products under one name, and the fingerprint can only
+show one of them. **Grok is the corpus's widest internal spread and the sheet renders it as a single
+row.** Worth a rule.
+
+---
+
+## ISSUE-018 — the per-section line budgets ignore the blank lines HTML blocks require
+
+**Severity:** MINOR · **Found:** 2026-09-07, reported by the Gas City and Codex feature-leads during the W8b fan-out · **Assigned:** W8c or the next skill revision
+
+Two independent leads reported the same thing and solved it the same way: to fit the budget they
+**joined wrapped prose into single physical lines**, changing nothing rendered and cutting raw line
+count. Codex went from 870 lines to 624 that way.
+
+The budgets were set without counting what layout B costs. Each of the 33 components needs a blank line
+after `<summary>`, a blank line before `</details>`, and a blank line after `</details>` so the next
+heading is not swallowed — roughly **100 structural blank lines** in a 33-component profile, none of
+them content.
+
+**Why this is MINOR and not a defect to fix by raising the cap:** the measured outcome is fine. All ten
+profiles sit between 45 KB and 54 KB, within 20% of each other, and every §6 body is inside 400 lines.
+The budget is doing its job. What it is *not* doing is measuring what it claims to, and the tell is that
+two leads independently reached for the same workaround.
+
+**The honest fix is to say what the cap is for.** It is a proxy for how long a page takes to read, and
+the `**Ships.** / **Path.** / **Source.**` shape is one line per field by design — the worked example
+`content/pi.md` has 24 prose lines over 400 characters, so the style the skill teaches *already*
+defeats a raw line count. Either count bytes, or say plainly that the cap is a soft signal and joining
+lines to meet it is allowed. **Do not raise the number again without saying what it measures.**

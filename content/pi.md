@@ -47,7 +47,7 @@ example extension instead, so the loop is minimal and everything above it is you
 | **2** | Weight class | light-weight | `─●─────` | heavy-weight |
 | **3** | Surfaces & extendability | one surface | `─────●─` | many surfaces, environments, a platform |
 | **4** | Domain specialization | general-purpose | `───●───` | one named domain, with workflows to match |
-| **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▱▱` | wide adoption, longevity, network economies |
+| **5** | Ecosystem **†** | tribal, low adoption | `▰▰▰▰▰▱` | wide adoption, longevity, network economies |
 | **6** | Ownership | rented | `──────●` | yours |
 | **7** | Cost controls & efficiency | unmetered, unrestricted | `────●──` | observability, efficiency, routing |
 

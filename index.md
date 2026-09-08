@@ -25,15 +25,15 @@ The grid: components down, harnesses across, every `●` a named primitive with 
 | Harness | Altitude | Profile | State |
 |---|---|---|---|
 | Pi | runtime | [`content/pi.md`](content/pi.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
-| Hermes | gateway / host | [`content/hermes.md`](content/hermes.md) | template |
-| OpenClaw | gateway / host | [`content/openclaw.md`](content/openclaw.md) | template |
-| OpenCode | runtime | [`content/opencode.md`](content/opencode.md) | template |
-| Grok Bot / Grok Build | hosted product / runtime | [`content/grok.md`](content/grok.md) | template |
-| Codex CLI | runtime | [`content/codex.md`](content/codex.md) | template (W4 #1, 2026-09-03) |
-| Gas City | gateway / host, install-into-a-loop nested | [`content/gas-city.md`](content/gas-city.md) | template (W4 #2, 2026-09-03); short profile superseded |
-| LoomWarp | process layer | [`content/loomwarp.md`](content/loomwarp.md) | template (W4 #3, 2026-09-03); peer, primitive set 0 named |
-| FRACTAL (upstream · generic-cerebro fork · this repo) | process layer | [`content/fractal.md`](content/fractal.md) | template (W4 #4, 2026-09-03); peer, three instances, five named artifacts never stated as a set |
-| Claude Code | runtime | [`content/claude-code.md`](content/claude-code.md) | v2 (2026-09-04); deep read at [`content/claude-code/`](content/claude-code/00-README.md), 13 docs |
+| Hermes | gateway / host | [`content/hermes.md`](content/hermes.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| OpenClaw | gateway / host | [`content/openclaw.md`](content/openclaw.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| OpenCode | runtime | [`content/opencode.md`](content/opencode.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Grok Bot / Grok Build | hosted product / runtime | [`content/grok.md`](content/grok.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Codex CLI | runtime | [`content/codex.md`](content/codex.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Gas City | gateway / host, install-into-a-loop nested | [`content/gas-city.md`](content/gas-city.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| LoomWarp | process layer | [`content/loomwarp.md`](content/loomwarp.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| FRACTAL (upstream · generic-cerebro fork · this repo) | process layer | [`content/fractal.md`](content/fractal.md) | v2 (restructured 2026-09-07, diagrams pending); scored |
+| Claude Code | runtime | [`content/claude-code.md`](content/claude-code.md) | v2 (2026-09-04); deep read at [`content/claude-code/`](content/claude-code/00-README.md), 12 docs |
 | HumanLayer · Deep Agents · Indigo HQ · QM · SageOx · gstack/gbrain | process layers | [`comparisons/systems/`](comparisons/systems/) | short teardowns, un-recut |
 | Cursor · Amp · Aider · Gemini CLI · Kiro · Antigravity · Droid · Windsurf · Cline | — | [`fractal/workstreams/W4-teardowns.md`](fractal/workstreams/W4-teardowns.md) | queued, in that order |
 
