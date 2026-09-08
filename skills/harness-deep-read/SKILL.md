@@ -64,6 +64,11 @@ Depth changes how long the set is; **scope changes what it is about**. If the ag
 than the profile's, say so in `00-README.md` and mark the documents that have no counterpart in §6 —
 nothing links out to them, and nothing in them should read as scoring.
 
+> **If you were dispatched as a sub-agent, depth and scope arrive in your dispatch — do not ask.**
+> They were agreed with the commissioner before you were launched, and you have no channel to that
+> person. If your dispatch does not name both, **stop and say so**; guessing the scope produces a
+> folder about a different subject than the profile it sits beneath.
+
 ---
 
 ## 3. The file shape — navigation is fixed, content is free
@@ -108,6 +113,24 @@ capture date, drawn from:
 usual hierarchy inverts: a blog post is secondary evidence about *mechanism* and primary evidence
 about *what the vendor says this is for*, because the vendor is the only authority on its own intent.
 Mark it as the claim it is, never as a finding.
+
+### When there is no vendor
+
+**A self-authored or internal system has no landing page, no launch post and nothing written to
+persuade.** That is not a missing claim ledger; it is a different one. Do both of these:
+
+1. **Record the absence, naming what was checked** — *"no positioning copy: checked the repository
+   description, `README.md`, `docs/` and the release history."* An absence of marketing is a fact
+   about the system worth stating plainly.
+2. **Substitute a stated-intent ledger from the system's own markdown.** Its README, its `docs/`, its
+   standards files, its module headers. Same discipline — verbatim, cited, dated — but **cited to a
+   file and a commit rather than a URL**.
+
+**And apply the opposite caution.** Marketing copy overstates on purpose, and §4 exists to quarantine
+that. A self-authored system's markdown fails the other way: **it states intent in the present tense
+as though it were implemented**, because it was written to specify rather than to sell. So ground each
+stated intent against the code before the guide's walk in §4 — where a design document and the source
+tree disagree, **the code wins and the disagreement is recorded**, never resolved silently.
 
 **`20-consolidated-guide.md` closes by walking the claims against the mechanisms this set documented.**
 One row per claim, naming the document that carries the mechanism behind it.

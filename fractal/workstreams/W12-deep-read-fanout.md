@@ -89,21 +89,38 @@ components wearing the vendor's numbering, which is the one thing §1 forbids.
 **Recommendation: neither is dispatched with the other six.** Both are decided on their own, after the
 public six are done and the skill has stopped changing.
 
-### Order, and why it inverted
+### Order — superseded 2026-09-08 by KD's ruling
 
-The earlier draft of this PRD put **OpenClaw first**, on richest-first logic. **ISSUE-023 argues
-against that**: falsification came from *difference*, not from more of the same. OpenClaw is Codex's
-shape, larger. Pi is a different shape entirely.
+The sequencing argument below is **kept as the reasoning, not as the plan**. KD, 2026-09-08, on the
+Codex pilot: *"I think that the quality of the codex was good enough to justify dispatching sub-agents
+to tackle the entire set of the remaining harnesses."*
 
-| # | Harness | Mode | Why here |
-|---|---|---|---|
-| 1 | **Pi** | interactive | Cheap, and it tests the floor the amended §3 newly permits. If `00` + `20` is wrong, learn it on the smallest surface rather than after committing to a 20-document set |
-| 2 | **OpenClaw** | interactive | The Exhaustive proof. Nothing has exercised that depth setting |
-| 3–6 | **Gas City · OpenCode · Hermes · Grok** | **parallel `feature-lead` fan-out** | Conventional shapes, public docs, no open scope question except Grok's two products — which is settled the way Codex's was, by asking before reading |
-| 7–8 | **LoomWarp · FRACTAL** | decision, then perhaps interactive | Per the section above |
+**All eight dispatch in parallel**, as `feature-lead` sub-agents, one per harness. The staged
+alternative — Pi, then OpenClaw, then a fan-out of four — was recommended on ISSUE-023's logic that
+falsification comes from difference. That logic still holds and is why the risks are named per harness
+in the table above; what changed is the judgement that the pilot de-risked the skill enough to pay for
+eight runs at once rather than four rounds of one.
 
-**Re-read the skill after 1 and after 2.** Not after all eight — that is the mistake W10 made once
-already, and the four defects in ISSUE-023 are what it cost.
+**The trade being accepted, stated so it is not a surprise:** a defect the skill still carries lands
+in eight folders instead of one. The mitigation is that each agent writes only inside
+`content/<harness>/` and `content/<harness>.md`, and reports findings rather than editing shared files
+— `index.md`, `fractal/ISSUES.md` and this PRD are consolidated centrally after the runs return.
+
+**And the two self-authored systems dispatch too.** KD: *"loomwarp and fractal will need to be broken
+down based on just the code and what is described in the markdown."* That answers open question 2
+below — the skill now carries a **§4 "When there is no vendor"** branch: record the absence of
+positioning copy naming what was checked, substitute a stated-intent ledger from the system's own
+markdown cited to file and commit, and **ground each stated intent against the code**, because
+self-authored markdown fails by stating intent in the present tense as though it were implemented.
+
+### One source is gone
+
+**`shi503/generic-cerebro` — FRACTAL's instance `C`, pinned in the profile at `2cd56e7` — returns 404
+as of 2026-09-08.** Not renamed: an authenticated repository search across the account, private
+included, returns only `fractal-agent-system` and `loomwarp-team-system`. Instances `U` (upstream,
+public) and `R` (this repo) are reachable; `C` is not. The FRACTAL deep read covers `U` and `R` and
+**records `C` as unreachable at the read date** rather than relaying the profile's 2026-09-03 figures
+as though re-verified. Logged as ISSUE-024.
 
 ## Acceptance criteria
 

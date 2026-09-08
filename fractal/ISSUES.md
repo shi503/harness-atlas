@@ -755,3 +755,33 @@ and **LoomWarp**, whose sources are private and cannot carry a resolvable citati
 re-read after each, not after all eight.
 
 ---
+
+## ISSUE-024 — FRACTAL's instance `C` no longer exists; the profile pins a commit in a repository that is gone
+
+**Severity:** WARN · **Found:** 2026-09-08, W12 while probing sources before the deep-read fan-out · **Assigned:** the FRACTAL deep read records it; the profile is corrected on its next re-read, not retro-fitted
+
+`content/fractal.md` reads three instances, and its frontmatter pins the second:
+
+> *"shi503/generic-cerebro (the fork) @ 2cd56e7ef4f3472c4e91a54810d7f69215b8f536"*
+
+**`gh api repos/shi503/generic-cerebro` returns 404.** It was not renamed — an authenticated
+`search/repositories` across `user:shi503`, private repositories included, returns exactly two matches
+for *cerebro* or *fractal*: `fractal-agent-system` (public) and `loomwarp-team-system` (private). The
+account's repository list does not contain it under any name.
+
+**What this costs.** §4's coverage marks grade instance `U`, so the matrix is unaffected. What is
+affected is every `C` delta in a §6 row: those are now claims about a repository no reader — including
+KD — can open, and they cannot be re-verified. They were true on 2026-09-03; they are unverifiable on
+2026-09-08.
+
+**Handled, not fixed.** The FRACTAL deep read covers `U` and `R` and records `C` as unreachable at its
+read date. The profile itself is **not** retro-fitted, per ruling `2026-09-04-w3-q3` — a profile is
+corrected when it is next re-read, and this is exactly the class of drift that rule exists for. What
+should not happen is a deep read relaying `C`'s figures as though it had re-opened them.
+
+**The general point, which is the reason this is WARN and not MINOR.** A profile pinned to a private or
+personal repository has a source that can vanish without notice, and nothing in the corpus notices.
+`content/loomwarp.md` has the same exposure — its source is a private repository, reachable today.
+`scripts/check-doc-links.mjs --external` would not catch either, because neither is written as a link.
+
+---
