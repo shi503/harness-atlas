@@ -90,47 +90,16 @@ for**, so this column should be read next to §3 rather than on its own.
 
 ---
 
-## 3. `requires` — the model
+## 3. `requires` — the model — moved 2026-09-08
 
-### 3.1 Cited edges — a sentence in the corpus asserts each one
+**This section is live and was carried out of this file**, to
+[`../../components/RELATIONS.md`](../../components/RELATIONS.md), when the v1 specification was
+archived. The thirteen cited edges are the source for the `requires:` frontmatter every component
+page carries, so they are read rather than remembered — and `CLAUDE.md` requires everything under
+`archive/` to be `ARCHIVED` or `SUPERSEDED`. A register the live tier reads cannot live in the
+archive, so it left; the relation *model* around it argues for a settled structure and stayed.
 
-| From | requires | Because | Cited at |
-|---|---|---|---|
-| `2a` | `1a` | *"one **adapter** per system declared at `1a`"* — and the preflight forces the order: *"you cannot write an adapter for a system you have not declared"* | [`component-03`](../../components/2a-adapters-and-middleware.md) · [`05-preflight.md`](./05-preflight.md) §3 |
-| `3b` | `10a` | *"A resolver is only as good as the list it resolves against, and that list is `10a` Roster."* **The published upward edge**, drawn dashed in `img/000-the-twelve-layers.svg` | [`component-07`](../../components/3b-routing.md) |
-| `3a` | `7a` | *"The gradeable object is the work contract the resolver reads… A team does not configure a resolver; it configures the contract."* Control's machinery is inert without the primitive one layer up | [`component-06`](../../components/3a-control.md) |
-| `3a` | `10b` | *"An escalation needs a destination, and this is it… what `3a` cannot supply is"* the named authority | [`component-32`](../../components/10b-org.md) |
-| `2c` | `3a` | *"`3a` declares the bound"*, and *"comprehensive enforcement over bounds nobody named"* is named as a failure rather than as immaturity | [`component-05`](../../components/2c-enforcement.md) · [`component-06`](../../components/3a-control.md) |
-| `3c` | `2a` | *"It is not `2a`, which enumerates the insertion points a harness **offers**; this decides which of them a given agent **uses**."* | [`component-08`](../../components/3c-composition.md) |
-| `6b` | `1a` | *"`1a` says the system exists; `6b` is where a copy of it is stood up so work can happen against it."* | [`component-17`](../../components/6b-infrastructure.md) |
-| `8b` | `5b` | *"`8b`'s unbuilt join runs **to** this ledger, which must exist for the join to have a destination."* | [`component-14`](../../components/5b-team-memory.md) |
-| `8d` | `8c` | *"It is not `8d`, which reads the same stream for **cost** rather than for sequence."* One stream, two readings; the reading requires the stream | [`component-23`](../../components/8c-observability.md) · [`component-24`](../../components/8d-efficiency.md) |
-| `9f` | `8d` | *"It is not `8d` Efficiency, which produces the reading this consumes"* — and `9f` *"states its own dependency on this job explicitly"* | [`component-30`](../../components/9f-diagnose-the-bottleneck.md) |
-| `9f` | `9c` | *"The dependency is stated from `9f`'s side"* — without a scheduled refresh, *"a Grid computes a bottleneck that nothing refreshes"* | [`component-27`](../../components/9c-cadence.md) |
-| `9a` | `8a` | *"It is not `8a`, which produces the finding this consumes."* | [`component-25`](../../components/9a-learning.md) |
-| `9e` | `9f` | *"It is not `9e`, which acts on what this finds."* | [`component-30`](../../components/9f-diagnose-the-bottleneck.md) |
-
-**Thirteen cited edges over 33 nodes.** That is a sparse graph, and the sparseness is a finding rather
-than an omission in this file: the corpus states *contrasts* far more often than it states
-*dependencies*. Every component file carries a **What this layer is not** paragraph; almost none
-carries a *what this layer cannot work without*. See §9.
-
-### 3.2 Proposed edges — structurally obvious, nowhere written
-
-`AC-2` is explicit: *"an edge nobody can cite is deleted in session, not kept as decoration."* These
-are staged for that decision, not asserted.
-
-| From | requires | The argument nobody has written | Disposition |
-|---|---|---|---|
-| `4b` | `4a` | A grant over a capability presumes the capability exists | confirm or delete |
-| `4b` | `10a` | A grant is made *to an actor*, and the actor list is the roster | confirm or delete |
-| `10b` | `10a` | *Who answers* presumes *who exists* — `10a` notes *"the org-chart metaphor `3b` is built on presumes that the chart exists"* but says it about `3b`, not about `10b` | confirm or delete |
-| `6d` | `6b` | Delivery needs an environment the change lands in | confirm or delete |
-| `2a` | `0a` | An adapter runs inside a chosen harness — though `2a`'s own claim is the **opposite**, that it insulates from `0a` | **likely delete** — argue it |
-| `9f` | `8b` | The `⟳` falsifier says `8b`'s ledger *"feeds forward… as measurement, into `9f` diagnosis and `9c` cadence"* — which is a feed, and may not be a requirement | confirm, weaken, or delete |
-| `5b` | `5a` | *"A fact arriving from `5a` needs an owner"* describes a **promotion path**, not a dependency; `5b` plainly works with no `5a` at all | **likely delete** |
-
----
+**The headings were carried verbatim**, so any `#3.1` / `#3.2` anchor still resolves at the new path.
 
 ## 4. `records-in` — where the decision physically lives
 
