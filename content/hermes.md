@@ -78,7 +78,19 @@ verification:
 
 [§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-No deep-read folder exists for Hermes.
+**Deep read** — [`content/hermes/`](hermes/00-README.md), a 13-document reference set at a finer grain
+than §6: [profiles and SOUL.md](hermes/01-profiles-and-soul.md) ·
+[context files](hermes/02-context-files.md) · [skills](hermes/03-skills.md) ·
+[the learning loop](hermes/04-the-learning-loop.md) · [memory](hermes/05-memory.md) ·
+[the Curator](hermes/06-curator.md) · [hooks](hermes/07-hooks.md) ·
+[approvals and write safety](hermes/08-approvals-and-write-safety.md) ·
+[kanban](hermes/09-kanban.md) · [cron](hermes/10-cron.md) ·
+[plugins and extension points](hermes/11-plugins-and-extension-points.md) ·
+[the consolidated guide](hermes/20-consolidated-guide.md)
+
+*Read 2026-09-08 at `v0.21.1` (tag `v2026.9.7`), six days and one release after this profile's source
+read at `v0.21.0`. Four figures moved between the two reads; the deep read's
+[`00-README.md`](hermes/00-README.md) carries both with both dates.*
 
 ## 2. System map
 
@@ -205,6 +217,8 @@ No deep-read folder exists for Hermes.
 **Path.** `tools/registry.py`, `plugins/`, `config.yaml → mcp_servers`, `tool_search:`
 **Source.** ✅ `docs/developer-guide/architecture`, `features/plugins`, `features/mcp`, `features/tool-search`, `features/code-execution`
 
+**More.** [`11-plugins-and-extension-points.md`](hermes/11-plugins-and-extension-points.md) — every `ctx.*` registration point, five discovery sources with two opposite collision rules, what `plugins.enabled` does not gate, and `ctx.call_mcp`'s per-server allowlist
+
 </details>
 
 #### 2b Hooks
@@ -215,6 +229,8 @@ No deep-read folder exists for Hermes.
 **Path.** `config.yaml → hooks:`, `~/.hermes/agent-hooks/`, `~/.hermes/hooks/`; `hermes hooks list/test/revoke/doctor`
 **Source.** ✅ `docs/user-guide/features/hooks`
 
+**More.** [`07-hooks.md`](hermes/07-hooks.md) — every gateway event with its context keys, the plugin event catalogue and its fail-closed timeout, the shell wire protocol including the `modify` rewrite shape, and the consent model's stated gap. **The docs now count four hook systems as of 2026-09-08**, with outbound webhooks as the fourth; this row's three is the 2026-09-02 read
+
 </details>
 
 #### 2c Enforcement
@@ -224,6 +240,8 @@ No deep-read folder exists for Hermes.
 **Ships.** `approvals.mode: smart|manual|off`; `approvals.deny:` fnmatch patterns checked before YOLO or approval settings; a **hardline blocklist** (`rm -rf /`, fork bombs, ~40 patterns) YOLO cannot override; `--yolo`/`HERMES_YOLO_MODE=1` with a red banner; `cron_mode`/`unattended_mode` auto-deny/approve. Always-blocked write paths (`~/.ssh/`, `.env*`) + `HERMES_WRITE_SAFE_ROOT`. `pre_tool_call` fails closed on timeout. Container hardening on sandbox backends; Docker egress isolation via internal/egress networks + Squid allowlist; skill install trust levels `builtin→official→trusted→community→dangerous`; MCP subprocess env scrubbing; `hermes security audit`.
 **Path.** `config.yaml → approvals`, `security.*`, `skills.write_approval`
 **Source.** ✅ `docs/user-guide/security`, `docs/security/network-egress-isolation.md`
+
+**More.** [`08-approvals-and-write-safety.md`](hermes/08-approvals-and-write-safety.md) — the three headless approval defaults, the hardline blocklist in full, `approvals.deny`'s matching semantics and its own threat-model note, every approval trigger, the protected write paths. **The `SECURITY.md` sentence quoted here has been extended since**: as of 2026-09-08 it reads *"…not any pattern scanner, **not any tool allowlist**"*, preceded by *"The only security boundary against an adversarial LLM is the operating system."*
 
 </details>
 
@@ -257,6 +275,8 @@ No deep-read folder exists for Hermes.
 **Path.** `hermes profile create/use/list/…`; `~/.hermes/profiles/<name>/`
 **Source.** ✅ `docs/user-guide/bot-mode`, `features/delegation`, `profile-distributions`
 
+**More.** [`01-profiles-and-soul.md`](hermes/01-profiles-and-soul.md) — the `HERMES_HOME` mechanism, `HERMES_HOME` versus `HOME` and `terminal.home_mode`, the profile/workspace/sandbox distinction, and the one-writer-per-home rule
+
 </details>
 
 #### 3d Configuration
@@ -267,6 +287,8 @@ No deep-read folder exists for Hermes.
 **managed** `/etc/hermes/` overrides user for pinned keys. Scopes: managed → profile home → project (`.hermes/skills`, `.hermes/plugins` opt-in) → session. `/init` generates `AGENTS.md`.
 **Path.** `~/.hermes/config.yaml`, `~/.hermes/.env`, `/etc/hermes/config.yaml`; `hermes config get/set/check/migrate`
 **Source.** ✅ `docs/user-guide/which-file-does-what`, `docs/user-guide/settings`, `managed-scope`
+
+**More.** [`02-context-files.md`](hermes/02-context-files.md) — all seven context files, truncation and read-timeout keys · [`01-profiles-and-soul.md`](hermes/01-profiles-and-soul.md) — `SOUL.md`'s slot #1 and the eight-slot prompt stack. **The assembly rule reads differently as of 2026-09-08**: *"Only **one** project context type is loaded per session (first match wins)"*, with the git-root-downward merge operating **within** the winning type — this row's priority-order assembly is the 2026-09-02 read
 
 </details>
 
@@ -290,6 +312,8 @@ No deep-read folder exists for Hermes.
 **Path.** `~/.hermes/skills/<name>/SKILL.md`; `hermes skills …`
 **Source.** ✅ `docs/reference/skills-catalog`, `features/skills`
 
+**More.** [`03-skills.md`](hermes/03-skills.md) — the full `SKILL.md` frontmatter, progressive disclosure's three levels with their token costs, the project→local→external precedence ladder, project trust and scan-time quarantine, all eight install sources and the four trust levels
+
 </details>
 
 #### 4b Capability Permissions
@@ -299,6 +323,8 @@ No deep-read folder exists for Hermes.
 **Ships.** Per-platform toolsets (`hermes-cli` full; `hermes-webhook` four tools only; `hermes-acp` drops several; `kanban` opt-in even under `all`); per-cron-job `enabled_toolsets`; subagent `allowed_toolsets` ("parent-broadening toolsets get rejected"); MCP per-server `tools.include/exclude`; plugin `capabilities:` grants + `mcp_allowlist` (zero MCP access by default); skill trust levels + `hermes skills trust /path`; `skills.write_approval`/`memory.write_approval` gates.
 **Path.** `config.yaml → toolsets`, `plugins.entries.<p>.mcp_allowlist`
 **Source.** ✅ `reference/toolsets-reference`, `features/plugins`, `features/skills`
+
+**More.** [`11-plugins-and-extension-points.md`](hermes/11-plugins-and-extension-points.md) — capability consent, update re-consent, the non-interactive fail-closed case, legacy keys that open a gate, and the `mcp_allowlist` rules · [`03-skills.md`](hermes/03-skills.md) — the four trust levels and what `--force` cannot override
 
 </details>
 
@@ -311,6 +337,8 @@ No deep-read folder exists for Hermes.
 **Ships.** `~/.hermes/memories/MEMORY.md` (2,200-char cap) and `USER.md` (1,375-char cap), Markdown, error-not-truncate on overflow, "injected into the system prompt as a frozen snapshot at session start." Written by the agent's `memory` tool with periodic nudges and a post-turn "Background Review" on the auxiliary model; optional `write_approval`. `session_search` over `state.db` FTS5. `/journey` timeline; `/refine` runs memory/skill self-improvement. External providers (Honcho, Mem0, …) optional.
 **Path.** `~/.hermes/memories/{MEMORY,USER}.md`; `config.yaml → memory_enabled, write_approval, memory_char_limit`
 **Source.** ✅ `docs/user-guide/features/memory`
+
+**More.** [`05-memory.md`](hermes/05-memory.md) — the overflow error verbatim, the injected block's format, all three tool actions with substring matching, three distinct off-states, the `write_approval` staging flow, `/journey`'s prune-and-correct verbs
 
 </details>
 
@@ -387,6 +415,8 @@ No deep-read folder exists for Hermes.
 **Path.** `~/.hermes/kanban.db`; `hermes kanban`; `/kanban`
 **Source.** ✅ `features/kanban`, `features/kanban-worker-lanes`, `reference/slash-commands`
 
+**More.** [`09-kanban.md`](hermes/09-kanban.md) — three workspace kinds and their cleanup rules, the dispatcher's nine environment variables, the four lifecycle terminators, six handled failure modes, and every `task_events` kind with its payload
+
 </details>
 
 ### 8 · Trust
@@ -443,6 +473,8 @@ No deep-read folder exists for Hermes.
 **Path.** `~/.hermes/skills/`, `.usage.json`; `config.yaml → curator, skills.write_approval`
 **Source.** ✅ `features/skills`, `features/curator`, `features/memory`, README
 
+**More.** [`04-the-learning-loop.md`](hermes/04-the-learning-loop.md) — the three writers and why only one is curated, every `skill_manage` action, the advisory linter's two rules, the background review's cadence, cost, cache parity and GPU deferral, and both write gates · [`06-curator.md`](hermes/06-curator.md) — the four thresholds, the three-condition agent-created test, adoption, pinning, and undo at three depths
+
 </details>
 
 #### 9b Rituals
@@ -463,6 +495,8 @@ No deep-read folder exists for Hermes.
 **Ships.** `cronjob` tool + `hermes cron create/list/pause/resume/…`; jobs run "in a fresh agent session with no chat history"; attempt ledger `~/.hermes/cron/executions.db` (`claimed→running→completed/failed/unknown`); output `~/.hermes/cron/output/{job_id}/{timestamp}.md`; misfire grace, `failure_streak`; `hermes cron doctor`. Each job carries `skill`/`skills` (zero, one or multiple, injected into the fresh session), `workdir`, and `cron.script_timeout_seconds` (default 3600) — a field the first read's row omitted ↪, docs-confirmed ✅.
 **Path.** `~/.hermes/cron/jobs.json`; `hermes cron …`
 **Source.** ✅ README, `features/cron`
+
+**More.** [`10-cron.md`](hermes/10-cron.md) — the tick's seven steps, model resolution and the fail-closed drift guard, pre-dispatch validation that spends no tokens, the ledger's replay protection and its stated limits, all five schedule formats, and no-agent mode
 
 </details>
 

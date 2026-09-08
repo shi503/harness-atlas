@@ -83,12 +83,12 @@ documents.
 | *"**Codex CLI** is a coding agent from OpenAI that runs locally on your computer."* | `github.com/openai/codex` README | 2026-09-08 |
 | *"Lightweight coding agent that runs in your terminal"* | `github.com/openai/codex`, repository description | 2026-09-08 |
 | *"Run coding tasks in parallel cloud environments"* · *"work in parallel, and start work from the web, GitHub, GitLab, Linear, or Slack"* | `learn.chatgpt.com/docs/cloud` | 2026-09-08 |
-| *"Give each task dedicated environments and let them continue while you work on something else."* | `learn.chatgpt.com/docs/cloud` | 2026-09-08 |
+| *"Give longer tasks dedicated environments and let them continue while you work on something else."* | `learn.chatgpt.com/docs/cloud` | 2026-09-08 |
 | *"Codex reads `AGENTS.md` files before doing any work. By layering global guidance with project-specific overrides, you can start each task with consistent expectations, no matter which repository you open."* | `learn.chatgpt.com/docs/agent-configuration/agents-md` | 2026-09-08 |
 | *"Use agent skills to extend ChatGPT and Codex with task-specific capabilities. A skill packages instructions, resources, and optional scripts so either product can follow a workflow reliably."* | `learn.chatgpt.com/docs/build-skills` | 2026-09-08 |
 | *"A plugin is an installable package that can include skills, an MCP server, or both."* | `learn.chatgpt.com/docs/build-plugins` | 2026-09-08 |
 | *"Hooks are an extensibility framework for Codex… enabling features such as: Send the chat to a custom logging/analytics engine"* | `learn.chatgpt.com/docs/hooks` | 2026-09-08 |
-| *"you can additionally define custom agents with different model configurations and instructions for different tasks"* | `learn.chatgpt.com/docs/agent-configuration/subagents` | 2026-09-08 |
+| *"In local Codex clients, you can also define custom agents with different model configurations and instructions for different tasks"* | `learn.chatgpt.com/docs/agent-configuration/subagents` | 2026-09-08 |
 | *"The sandbox defines technical boundaries. The approval policy decides when the agent must stop and ask before crossing them."* | `learn.chatgpt.com/docs/sandboxing` | 2026-09-08 |
 | *"Work with Codex beside your code. Bring open files and selections into the prompt, review edits in place, and hand off longer work without breaking your flow."* | `learn.chatgpt.com/docs/codex/ide` | 2026-09-08 |
 

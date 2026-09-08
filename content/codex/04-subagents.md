@@ -14,9 +14,16 @@ source_verified: "2026-09-08"
 
 Read against `learn.chatgpt.com/docs` at **rust-v0.153.4**, **2026-09-08**.
 
-*"you can additionally define custom agents with different model configurations and instructions for
-different tasks"* — additionally, that is, to three built-in roles that exist whether or not anything
-is authored.
+*"In local Codex clients, you can also define custom agents with different model configurations and
+instructions for different tasks"* — also, that is, to three built-in roles that exist whether or not
+anything is authored.
+
+> **Wording drift, carried rather than reconciled.** [`../codex.md`](../codex.md) §5 quotes this
+> sentence without its `"In local Codex clients"` lead-in and with *"additionally"* where the page now
+> reads *"also"*, from its 2026-09-03 read. The text above is the page as it stands on **2026-09-08**,
+> confirmed against the raw HTML rather than a rendered summary. Whether the page changed or the
+> earlier capture slipped cannot be established from here, and the profile is corrected when it is next
+> re-read, not retro-fitted.
 
 ---
 

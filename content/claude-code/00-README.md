@@ -60,7 +60,7 @@ vendor is the sole authority on — they are recorded as claims, never as findin
 | *"Work with Claude directly in your codebase. Build, debug, and ship from your terminal, IDE, Slack, web, and more."* | `claude.com/product/claude-code`, headline | 2026-09-08 |
 | *"Create what's exciting. Maintain what's essential."* | `claude.com/product/claude-code`, tagline | 2026-09-08 |
 | *"Claude Code is composable and follows the Unix philosophy."* | `code.claude.com/docs/en/overview`, "Pipe, script, and automate with the CLI" | 2026-09-08 |
-| *"Each surface connects to the same underlying Claude Code engine, so your repo's CLAUDE.md files, settings, and MCP servers work across all of them."* | `code.claude.com/docs/en/overview`, "Use Claude Code everywhere" | 2026-09-08 |
+| *"Each surface […] connects to the same underlying Claude Code engine, so your repo's CLAUDE.md files, settings, and MCP servers work across all of them."* — `[…]` elides an inline docs link on "surface" | `code.claude.com/docs/en/overview`, "Use Claude Code everywhere" | 2026-09-08 |
 
 [`20-consolidated-guide.md`](./20-consolidated-guide.md) closes by walking these against the
 mechanisms this set documents.

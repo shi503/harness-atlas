@@ -4,7 +4,7 @@
 **Mode:** interactive — with KD (four decisions taken in session, recorded below); headless fan-out for the remaining eight
 **Dependencies:** W10 (both skills), W11 (publish readiness). Blocks nothing.
 **Routing:** un-routed. Terminal artifact: `fractal/workstreams/W12-deep-read-fanout-HANDOFF.md`.
-**Status:** ready-for-agent (phase 3 only — phases 1 and 2 are complete)
+**Status:** ready-for-human — all three phases complete; two skill questions remain open (ISSUE-025)
 
 ## Goal
 
@@ -53,7 +53,7 @@ before the first deep read was attempted:
 - Claim ledger and `verification:` added to `00-README.md`; claim → mechanism close added to `20-`.
 - Ten profiles backfilled with `verification:`, each marked as attested rather than captured.
 
-**Phase 3 — the fan-out.** ⏳ not started
+**Phase 3 — the fan-out.** ✅ complete 2026-09-08 — eight sets, 87 documents, 20,033 lines, all wired
 
 ### The eight, measured
 
@@ -125,15 +125,16 @@ as though re-verified. Logged as ISSUE-024.
 ## Acceptance criteria
 
 - **AC-1** `node scripts/check-doc-links.mjs` PASS with anchors. ✅
-- **AC-2** `git status` clean at close.
-- **AC-3** No coverage mark (`● ◐ ○`) appears anywhere under a deep-read folder. ✅ for `content/codex/`.
+- **AC-2** `git status` clean at close. ✅
+- **AC-3** No coverage mark (`● ◐ ○`) appears anywhere under a deep-read folder. ✅ all ten, 118 documents.
 - **AC-4** No `30-` document exists in any deep-read folder. ✅
 - **AC-5** Every deep read carries a claim ledger and a `verification:` block with a **captured**
-  `drafted_by`; every document carries the one-line drafted note. ✅ for `content/codex/`.
+  `drafted_by`; every document carries the one-line drafted note. ✅ all ten.
 - **AC-6** Both directions wired: the profile's §1b lists every document, §6 rows link out, the folder
   points back up, `index.md` names the folder. ✅ for Codex.
 - **AC-7** Each deep read's findings against the skill are logged before the next is commissioned.
-  ✅ ISSUE-023.
+  ✅ ISSUE-023 (pilot), ISSUE-025 (the eight). Superseded in spirit: KD ruled parallel dispatch, so the
+  eight were logged together rather than between runs.
 
 ## Do NOT
 

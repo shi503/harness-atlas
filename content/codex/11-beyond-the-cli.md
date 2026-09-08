@@ -31,7 +31,7 @@ GitLab, Linear, or Slack."*
 
 **The environment is the configured unit.** A repository is connected through GitHub or GitLab, and an
 environment is defined for it: *"Configure the dependencies, tools, variables, and setup steps each
-repository needs."* Tasks then run against that environment — *"Give each task dedicated environments
+repository needs."* Tasks then run against that environment — *"Give longer tasks dedicated environments
 and let them continue while you work on something else."*
 
 | Concern | Mechanism |

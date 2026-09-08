@@ -785,3 +785,96 @@ personal repository has a source that can vanish without notice, and nothing in 
 `scripts/check-doc-links.mjs --external` would not catch either, because neither is written as a link.
 
 ---
+
+## ISSUE-024 addendum, 2026-09-08 — the same profile's drift re-check cites a commit that does not exist
+
+**Severity:** WARN · **Found:** 2026-09-08, W12, by the FRACTAL deep read and confirmed independently · **Assigned:** the profile's next re-read
+
+`content/fractal.md` frontmatter states its upstream pin and then a drift check against it:
+
+> *"re-checked against HEAD `60393054` (2026-09-03) for drift only, never for §4/§6 marks"*
+
+**`gh api repos/shi503/fractal-agent-system/commits/60393054` returns HTTP 422 — *"No commit found
+for SHA"*.** The deep read reached the same result from a full clone with all PR refs
+(`git cat-file -t 60393054` → *"Not a valid object name"*), and reported that the directories the
+drift note describes — `standards/`, `tools/decision-ledger/`, `tools/wiki-index/`, `.claude/plugins/`
+— exist nowhere at HEAD.
+
+**What does hold:** the primary pin `6398f6db` resolves (2026-04-20). The profile's `U` reading rests
+on that commit and is unaffected. What fails is only the **drift re-check** layered on top of it — and
+with it the *"29 commits past the pinned read, +32,875/−3,853 across 303 files"* figure, which the deep
+read measured at **4 commits / 16 files / +1,506 −230** against the actual `origin/main` at
+`9905012`.
+
+**Why this is the same defect as ISSUE-024 and not a new one.** One profile now cites two sources
+nobody can open: a repository that is gone, and a commit that never resolved. Both were recorded as
+verification, and both made the profile *look* better checked than it was. **A citation that cannot
+fail is not evidence** — and neither of these was written as a link, so the corpus's only gate was
+never going to see them.
+
+**Three of §10's unverified items rest on the phantom commit** and should be re-derived rather than
+carried forward.
+
+---
+
+## ISSUE-025 — eight parallel runs, thirty-six defects: what a one-example skill did not know
+
+**Severity:** MINOR · **Found:** 2026-09-08, W12 phase 3, across eight concurrent deep reads · **Assigned:** fixed in `skills/harness-deep-read/SKILL.md` in the same commit; two items remain open below
+
+ISSUE-023 recorded four defects from the first real run. Eight parallel runs found **thirty-six more**.
+The ones worth keeping are those **three or more agents found independently**, because independent
+rediscovery is the only evidence available here that a defect is real rather than one agent's taste.
+
+### Found independently by three or more
+
+| Defect | Found by | Fix |
+|---|---|---|
+| **No instruction to re-pin the version.** An agent following only the skill inherits the profile's tag, dates the set today, and publishes a confidently stale snapshot — the exact failure §6 exists to prevent | Pi, Hermes, Gas City, FRACTAL | §6: resolve the current version yourself; the profile's pin is a datum. Pin what the docs are generated from and state the release lag |
+| **`allowed-tools` cannot execute the skill.** No `curl`, no `tar`, no `mkdir`, no `git clone`, no `python3`. A 123 KB doc file, a pinned release tarball, and a repository with no docs site are all unreachable as written | Pi, OpenCode, Gas City, FRACTAL, OpenClaw | Frontmatter widened |
+| **§4's three outcomes are too few.** A claim can be partly mechanised, contradicted by the system's own code, contradicted by another vendor page at the same version, or un-mechanisable by construction | OpenCode, LoomWarp, Hermes, Grok, OpenClaw | Four rows added |
+| **§5's drift rule is written for numbers.** Most drift is not a figure — a quoted sentence gains a clause, a mechanism is re-framed onto a different axis, a relayed claim disagrees with source at the *same commit* | Gas City, Hermes, LoomWarp, FRACTAL, OpenClaw | Generalised; consolidated table required above ~3 |
+| **§8 is entirely subtractive.** Four "delete this" bullets and no inclusion test, so every candidate page fails on first look; and no way to declare a surface deliberately not written | Pi, Gas City, Hermes, OpenClaw | Inclusion test added; *deliberately not documented here* required |
+| **The per-document header shape is unspecified.** §6 demands three facts and names no fields, while giving nine lines of exact YAML for `verification:`. Two sets agreed only by copying the exemplar | OpenCode, Hermes, OpenClaw | Fields named. **A distributable skill cannot depend on an exemplar it does not ship** |
+| **§7's source taxonomy misses classes that turned out decisive** — published machine-readable artifacts, generated docs nested in a module, a deliberately unpublished engineering tree, two directories both called `docs` | OpenCode, Grok, Gas City, Hermes | Four classes named |
+
+### Found once, and kept because the failure is silent
+
+- **A summarising fetch tool cannot produce a quotation** (OpenCode). Paraphrase inside quotation marks
+  is fabrication, and nothing surfaces it. **This was not hypothetical: it had already put two misquotes
+  into the committed Codex set**, and an audit of all ten ledgers found a third — a six-item refusal
+  list published as one `·`-joined sentence the vendor never wrote. Fixed in the sets and in §7.
+- **A contents API returns the default branch, not your tag** (OpenClaw). An outline fetched that way
+  listed pages absent at the pinned tag; the two navs differed by 21 routes. Caught only by extracting
+  the tarball. Silent corruption, now warned about in §6.
+- **§9 step 1 contradicted §2's sub-agent carve-out** (Hermes). Step 1 said *"Agree the depth… with
+  `AskUserQuestion`"* unconditionally, while the exemption sat in a §2 blockquote. An agent reading
+  Steps as the procedure calls a tool with nobody to answer.
+- **Nothing licensed running the code** (FRACTAL). Six failure modes in `router.py` were settleable only
+  by executing it against constructed inputs. §9 now names it as an evidence step.
+- **§9 step 4's *"its docs sidebar is the outline"* is actively misleading** (Hermes, OpenClaw). An
+  overview page is often not an index of its own directory, and a nav may be a browsing tree rather than
+  a surface list. Verify against a directory listing; record where you departed from the grouping.
+- **Rule 9 is hardest inside the instance you are describing** (FRACTAL). The working test is now in §1.
+
+### Two heuristics this workstream itself got wrong
+
+**Both were written into the skill or the PRD by the same author who then watched them fail.**
+
+1. **§2 said a published refusal list *"may be a legitimate Index read."*** Backwards. Pi's refusal list
+   was the surface that most needed a page — three sources that never meet — and the agent found **two
+   of six refusals have nothing shipped behind them**, which is a finding no Index read would surface.
+   The sentence was written *from* Pi without having read Pi.
+2. **The phase-3 map claimed coverage predicts depth.** *"Coverage is the best available proxy for how
+   much surface there is to document."* Pi has the thinnest coverage in the corpus and the largest
+   single documentation file in it. Coverage measures what fraction of **our** component list a harness
+   ships; it says nothing about how much the vendor wrote. They are independent.
+
+### Still open
+
+- **Depth does not compose across products** (Grok). One Standard setting gave an open-source runtime
+  8 documents and a closed hosted product 3 — a difference measuring what was *reachable*, not what
+  exists. §2 now says agree a depth per product; whether that is sufficient is untested.
+- **§5's link contract assumes one document per §6 row** (Grok). Nine of seventeen rows had to point at
+  two, and there is no stated convention for ordering or labelling them.
+
+---
