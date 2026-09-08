@@ -1,0 +1,43 @@
+# The repo's one standing gate, automated.
+#
+# CLAUDE.md: "Markdown is not code. No guard-gating, count checks, vocabulary checks, or generator
+# contracts. The whole bar is: links resolve and git is clean."
+#
+# This workflow adds no new bar. It runs the bar that already existed, on every push, because on
+# 2026-09-07 the local checker passed while 74 links pointed into a private repo — green gate,
+# unpublishable corpus. `local` enforces; `external` reports.
+name: links
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 9 * * 1"   # Mondays 09:00 UTC — external rot check
+  workflow_dispatch:
+
+jobs:
+  local:
+    name: local links and anchors
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node scripts/check-doc-links.mjs
+
+  external:
+    name: external links (non-blocking)
+    # Only on the schedule and on demand. Bot-hostile hosts return 403 to datacenter IPs as a matter
+    # of course; gating a PR on them would turn "links resolve" into "whether Cloudflare likes us
+    # today." A 403 is reported SKIPPED by the checker, never a failure — but a flaky 404 should not
+    # block a merge either, so this job never gates.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node scripts/check-doc-links.mjs --external

@@ -20,13 +20,32 @@
  * caught.
  *
  * What it checks: inline markdown links `[text](target)` in every .md under the repo root, resolved relative to the
- * linking file. External links, anchors and mailto are skipped — this is about local navigation.
+ * linking file. Anchors are checked against GitHub heading slugs; mailto is skipped.
  *
  * Exits non-zero when a link dead-ends. Run: node scripts/check-doc-links.mjs
+ *
+ * ---
+ *
+ * `--external` — added 2026-09-08 (publish readiness). Off by default: the local pass stays offline
+ * and instant.
+ *
+ * Why it had to exist. On 2026-09-07 this checker reported PASS on 1,690 local links while 74
+ * markdown hyperlinks pointed at `github.com/shi503/loomwarp-team-system`, a PRIVATE repo — a 404
+ * for every reader who is not its owner. The gate was green and the corpus was unpublishable. The
+ * invariant "this path exists on disk" was correct for a private repo and silently became the wrong
+ * question the moment publishing was on the table: the author cannot reproduce the reader's failure,
+ * because their own credentials make all 74 links work.
+ *
+ * This is not a new gate. CLAUDE.md's standing rule is "the whole bar is: links resolve" — a link
+ * that resolves only for one person does not resolve. No content guard, no count, no vocabulary.
+ *
+ * Fails on 404 / 410 / DNS failure only. A 403 is reported as SKIPPED, never a failure: bot-hostile
+ * hosts (medium, mckinsey, bcg) refuse datacenter IPs as a matter of course, and failing on them
+ * would turn "links resolve" into "whether Cloudflare likes us today."
  */
 
 import { readdirSync, statSync, existsSync } from "node:fs";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { join, dirname, resolve, relative } from "node:path";
 
 const REPO = new URL("..", import.meta.url).pathname.replace(/\/$/, "");
@@ -114,6 +133,8 @@ const files = walk(ROOT);
 const broken = [];
 const badAnchors = [];
 const debts = new Map();
+/** url -> [{file, line}] — collected always, only fetched under --external. */
+const external = new Map();
 let checked = 0;
 let anchorsChecked = 0;
 
@@ -129,7 +150,13 @@ for (const file of files) {
     if (fenced) return;
     for (const m of line.matchAll(/\[[^\]]*\]\(([^)\s]+)\)/g)) {
       const raw = m[1];
-      if (/^(https?:|mailto:)/.test(raw)) continue;
+      if (/^https?:/.test(raw)) {
+        const url = raw.replace(/[.,;:]+$/, "");
+        if (!external.has(url)) external.set(url, []);
+        external.get(url).push({ file: rel, line: i + 1 });
+        continue;
+      }
+      if (/^mailto:/.test(raw)) continue;
       const [path, ...fragParts] = raw.split("#");
       const fragment = fragParts.length ? decodeURIComponent(fragParts.join("#")) : null;
       const target = decodeURIComponent(path);
@@ -182,3 +209,112 @@ if (broken.length) {
 }
 
 console.log("\nPASS — every local markdown link resolves.");
+
+/* ------------------------------------------------------------------ external */
+
+if (!process.argv.includes("--external")) {
+  console.log(
+    `\n${external.size} external URL(s) collected, not checked. Run with --external to verify they\n` +
+      `resolve for a reader who is not you.`
+  );
+  process.exit(0);
+}
+
+const CACHE = join(REPO, ".link-cache.json");
+const TTL_MS = 7 * 24 * 60 * 60 * 1000;
+const UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) " +
+  "Chrome/125.0 Safari/537.36 harness-atlas-link-check";
+
+let cache = {};
+try {
+  cache = JSON.parse(readFileSync(CACHE, "utf8"));
+} catch {
+  /* no cache yet — first run */
+}
+
+async function probe(url) {
+  const hit = cache[url];
+  if (hit && Date.now() - hit.at < TTL_MS) return { ...hit, cached: true };
+
+  for (const method of ["HEAD", "GET"]) {
+    try {
+      const ac = new AbortController();
+      const t = setTimeout(() => ac.abort(), 10_000);
+      const res = await fetch(url, {
+        method,
+        redirect: "follow",
+        signal: ac.signal,
+        headers: { "user-agent": UA, accept: "*/*" },
+      });
+      clearTimeout(t);
+      // 405/501 mean the host dislikes HEAD, not that the page is missing.
+      if (method === "HEAD" && [405, 501, 403].includes(res.status)) continue;
+      return { status: res.status, at: Date.now() };
+    } catch (e) {
+      if (method === "GET") return { status: 0, err: String(e.name || e), at: Date.now() };
+    }
+  }
+  return { status: 0, err: "unreachable", at: Date.now() };
+}
+
+const urls = [...external.keys()].sort();
+console.log(`\nChecking ${urls.length} external URL(s)…`);
+
+const dead = [];
+const skipped = [];
+let ok = 0;
+
+const QUEUE = [...urls];
+async function worker() {
+  for (let url = QUEUE.shift(); url; url = QUEUE.shift()) {
+    const r = await probe(url);
+    cache[url] = { status: r.status, ...(r.err ? { err: r.err } : {}), at: r.at };
+    const where = external.get(url);
+    if ([404, 410].includes(r.status) || (r.status === 0 && /notfound|enotfound|dns/i.test(r.err || ""))) {
+      dead.push({ url, status: r.status || r.err, where });
+    } else if (r.status === 0 || r.status === 403 || r.status === 429 || r.status >= 500) {
+      skipped.push({ url, status: r.status || r.err, where });
+    } else {
+      ok++;
+    }
+  }
+}
+await Promise.all(Array.from({ length: 8 }, worker));
+
+try {
+  writeFileSync(CACHE, JSON.stringify(cache, null, 2));
+} catch {
+  /* cache is a convenience, never a gate */
+}
+
+console.log(`  ${ok} resolved · ${skipped.length} unverifiable · ${dead.length} dead`);
+
+if (skipped.length) {
+  console.log(`\nSKIPPED — unverifiable from CI, not failures (403 / 429 / 5xx / timeout):`);
+  const byHost = new Map();
+  for (const s of skipped) {
+    const h = new URL(s.url).host;
+    byHost.set(h, (byHost.get(h) ?? 0) + 1);
+  }
+  for (const [h, n] of [...byHost].sort((a, b) => b[1] - a[1])) console.log(`  ${h} — ${n}`);
+  console.log(
+    `  A bot-protected host refusing a datacenter IP is not a broken link. Open one by hand if in doubt.`
+  );
+}
+
+if (dead.length) {
+  console.error(`\nFAIL — ${dead.length} external link(s) do not resolve for a public reader:\n`);
+  for (const d of dead) {
+    console.error(`  ${d.url}  [${d.status}]`);
+    for (const w of d.where.slice(0, 5)) console.error(`    ${w.file}:${w.line}`);
+    if (d.where.length > 5) console.error(`    … and ${d.where.length - 5} more`);
+  }
+  console.error(
+    `\nA link that resolves only for its author does not resolve. Cite it as a backticked\n` +
+      `provenance string marked (private), the way content/loomwarp.md does — not as a hyperlink.`
+  );
+  process.exit(1);
+}
+
+console.log("\nPASS — every external link resolves for a public reader.");
