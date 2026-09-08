@@ -1,7 +1,8 @@
 ---
 title: "Claude Code — extensibility reference set"
 tier: reference
-project: loomwarp
+project: harness-atlas
+provenance: OBSERVED
 created: "2026-08-10"
 source_verified: "2026-08-10"
 docs_root: "https://code.claude.com/docs/en/"
@@ -13,15 +14,24 @@ status: ACTIVE
 **This folder is the deep read for the Template v2 profile at [`../claude-code.md`](../claude-code.md).**
 Start there; open these documents when a detail row's `Ships`/`Path`/`Source` links out here.
 
-**What this is.** A distilled, LoomWarp-oriented reading of Anthropic's official Claude Code
-documentation, focused on the **extension layer** — the surfaces you use to change what Claude Code
-knows, what it can reach, what it is allowed to do, and how work gets orchestrated across agents.
+**What this is.** A reading of Anthropic's official Claude Code documentation, organised by the
+**extension layer** — the surfaces you use to change what Claude Code knows, what it can reach, what
+it is allowed to do, and how work gets orchestrated across agents. Cut by Claude Code's own surface
+vocabulary rather than by this atlas's 33 components, which is what makes it the profile's
+complement rather than a second copy of it.
 
-**Why it exists.** LoomWarp is an agent-OS built *on top of* Claude Code. Every capability the
-harness ships natively is capability LoomWarp does not have to build, and every capability LoomWarp
-duplicates is maintenance debt with no differentiation attached. These documents establish what the
-platform actually provides so that `30-gap-analysis-loomwarp.md` can say honestly what LoomWarp
-should build, adopt, or delete.
+**Why it exists.** A profile answers *what is this harness, and how does it compare*. It cannot
+answer *how does this surface actually work* without becoming something nobody reads in thirty
+seconds. This folder is that grain: the tables too long for a detail row, the surfaces the vendor
+documents across four scattered pages, and the caveats stated once in a changelog.
+
+> **Re-headed 2026-09-08.** This file previously opened as a *"LoomWarp-oriented reading"* framed
+> around what one consumer should build, adopt or delete — pre-spin-out framing that violates the
+> standing rule *a profile describes its harness and nothing else*. The consumer-specific analysis it
+> pointed at, `30-gap-analysis-loomwarp.md`, correctly left with that consumer at the spin-out and is
+> not reachable from here. The generalised form of this folder is now
+> [`skills/harness-deep-read/SKILL.md`](../../skills/harness-deep-read/SKILL.md), which reserves the
+> `30-` slot and forbids filling it.
 
 ---
 
