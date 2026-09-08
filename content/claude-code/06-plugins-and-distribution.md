@@ -2,12 +2,14 @@
 status: DRAFT
 title: "Plugins and distribution"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/plugins, /plugins-reference, /plugin-marketplaces, /plugin-dependencies"
 source_verified: "2026-08-10"
 ---
 
 # Plugins and distribution
+
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
 
 A plugin is a self-contained directory bundling skills, agents, hooks, MCP servers, LSP servers,
 workflows, output styles, themes, monitors, channels, and executables. A marketplace is a catalog
@@ -295,46 +297,3 @@ supported, and only two kinds of private plugin source work — a github.com sou
 marketplace repo's owner, or a source on your GitHub Enterprise host with the GHE App installed. For
 private plugins, put the folders **inside** the marketplace repository and reference them by relative
 path; organization sync packages each plugin during distribution.
-
----
-
-## LoomWarp notes
-
-**This is where LoomWarp's largest duplication sits.**
-
-`control/sync-skills.sh` is a `cp -r` loop that copies skills from the control repo into sibling
-repos, with the known defect that a deleted skill stays installed in every sibling forever.
-`vendor/manifest.json` + `scripts/verify-vendored.mjs` records upstream repo, SHA, source path, and
-content hash for 15 files and fails CI on drift. Together these are a hand-rolled marketplace.
-
-Point-by-point, what the native layer already does:
-
-| LoomWarp mechanism | Native equivalent |
-|---|---|
-| `vendor/manifest.json` recording upstream repo + SHA + content hash | Plugin source `sha` pinning + the local versioned cache at `~/.claude/plugins/cache` |
-| `scripts/verify-vendored.mjs` drift check | `claude plugin validate --strict` in CI, plus SHA pinning making drift impossible rather than detectable |
-| `sync-skills.sh` distributing skills into siblings | `enabledPlugins` in each sibling's `.claude/settings.json`, resolved from a marketplace |
-| The removal-handling defect (deleted skill stays installed) | `marketplace.json` `renames` mapping a removed plugin to `null` migrates existing users automatically |
-| "Skills recorded with provenance" (v1 scope) | `plugin.json` `version` + `metadata` + `author` + `repository` + `license` |
-| Per-capability ownership | `owner` on the marketplace, `author` on each plugin entry |
-
-The `plan.md` position — *"a marketplace earns its keep when other repos consume capabilities, which
-is the v1.x gate; building distribution before there is a second consumer is scope past the v1
-line"* — is sound reasoning about **when to invest**, and it was written before this reference set
-existed. What it does not survive is the framing that a marketplace is the *expensive* option. The
-cheap path is: `marketplace.json` with relative-path sources pointing at folders already in this
-repo, `enabledPlugins` in each sibling, `claude plugin validate --strict` in CI. That is a smaller
-artifact than `sync-skills.sh` plus `verify-vendored.mjs` plus `vendor/manifest.json`, and it
-correctly handles removal, versioning, and pinning — three things the current implementation gets
-wrong or does not do.
-
-Two further points:
-
-- **`strictPluginOnlyCustomization` is the only mechanism that makes distributed capability
-  authoritative.** Without it, a developer's `~/.claude/skills/` silently overrides a synced project
-  skill (see the precedence table in `01-extension-surfaces.md`). If LoomWarp's claim is "a
-  consistent context layer for distributed projects," this setting is that claim's enforcement point.
-- **Plugin agents lose `hooks`, `mcpServers`, and `permissionMode`.** Packaging the four FRACTAL
-  agents as a plugin means those three move to repo-level settings. That is a constraint, but it also
-  makes them auditable in one committed file instead of scattered across agent frontmatter — which is
-  closer to what a control plane should want.

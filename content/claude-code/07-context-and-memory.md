@@ -2,12 +2,14 @@
 status: DRAFT
 title: "Context and memory — CLAUDE.md, rules, auto memory, monorepos"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/memory, /large-codebases, /context-window"
 source_verified: "2026-08-10"
 ---
 
 # Context and memory
+
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
 
 Two mechanisms carry knowledge across sessions: **CLAUDE.md files** you write, and **auto memory**
 Claude writes itself. Both load at the start of every conversation, and — the critical framing —
@@ -107,11 +109,6 @@ Verify either way by running `/context` and confirming `CLAUDE.md` appears under
 multi-phase flow that explores the codebase with a subagent and presents a reviewable proposal before
 writing anything. `/import` (v2.1.213+) brings another agent's configuration in wholesale — instruction
 files, MCP servers, commands, subagents, and skills.
-
-**LoomWarp note:** this resolves AC-4 of `FeatureLead-FractalRegrounding` — the cross-runtime
-portability requirement — with a documented answer and a documented Windows caveat. The symlink
-approach works; the divergence protocol (replace the symlink with a real file in the commit that
-introduces the deviation) is a LoomWarp convention layered on top, not something the harness enforces.
 
 ---
 
@@ -414,24 +411,3 @@ re-attached after the summary, keeping the **first 5,000 tokens** of each within
 | Don't know what auto memory saved | `/memory` → open the auto memory folder. Plain markdown |
 | CLAUDE.md too large | Path-scoped rules; `/doctor` trim proposals |
 | Config not taking effect | `/doctor`, and `/docs/en/debug-your-config` |
-
----
-
-## LoomWarp notes
-
-- **`InstructionsLoaded` is the primitive LoomWarp's E2 element has been missing.** It fires with a
-  matcher of `session_start`, `nested_traversal`, or `compact`, reporting which instruction files
-  loaded and why. A hook on this event emitting a hashed, timestamped record is the shortest path
-  from "the bundle resolver is a spike, not wired into dispatch" (GAP-05/GAP-06) to a real per-run
-  context manifest. **What it does not give you is content hashing, version pinning, or owner
-  attribution** — those remain LoomWarp's to add, and they are the differentiating part.
-- **The monorepo guide is the native description of LoomWarp's "virtual monorepo" pattern (E1).**
-  Per-directory CLAUDE.md, per-package skills, `additionalDirectories`, `worktree.sparsePaths`, and
-  `claudeMdExcludes` cover most of what `registry/repositories.yaml` was going to resolve. The
-  registry's remaining unique value is **routing and impact analysis across repos**, which the native
-  layer genuinely does not do.
-- **"Project settings load only from your starting directory"** is a hard constraint on any
-  control-repo design that assumes settings inherit downward. They do not. Anything that must apply
-  in a worktree has to be in the repository root's settings file.
-- **`autoMemoryDirectory` from project settings requires workspace trust** — the same gate as hooks.
-  Worth knowing if LoomWarp ever wants agent memory checked into the repo.

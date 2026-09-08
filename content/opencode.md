@@ -9,11 +9,30 @@ owner: KD
 source: "github.com/anomalyco/opencode (formerly sst/opencode) @ v1.18.26 · opencode.ai/docs · read 2026-09-02"
 provenance: OBSERVED
 template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
+verification:
+  derived_from:
+    - "github.com/anomalyco/opencode (formerly sst/opencode) @ v1.18.26 · opencode.ai/docs · read 2026-09-02"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-02"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # OpenCode — Anomaly
 
 ***A Bun/TypeScript client-server coding agent whose defining move is a mechanical permission ladder — `allow`/`ask`/`deny` globs where a denied rule survives `--auto` and a global policy overrides a project's attempt to re-enable it — merged up a nine-rung configuration chain into managed settings and MDM.***
+
+> **Profile drafted 2026-09-02 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 
@@ -59,7 +78,19 @@ template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
 
 [§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-No deep-read folder exists for OpenCode.
+**Deep read** — [`content/opencode/`](opencode/00-README.md), a 9-document configuration and
+extensibility reference set at a finer grain than §6:
+[config and rules](opencode/01-config-and-rules.md) · [permissions](opencode/02-permissions.md) ·
+[policies](opencode/03-policies.md) · [agents](opencode/04-agents.md) ·
+[the tool registry](opencode/05-the-tool-registry.md) ·
+[skills and commands](opencode/06-skills-and-commands.md) ·
+[plugins, hooks and events](opencode/07-plugins-hooks-and-events.md) ·
+[the consolidated guide](opencode/20-consolidated-guide.md)
+
+*Read 2026-09-08 at `v1.18.29`, six days and three releases after this profile's source read. Its
+scope is the configurable surface only — the TUI, desktop, web, server, SDK, ACP, GitHub, GitLab and
+Slack surfaces of [11a](#11a-surfaces), the provider catalogue of [0a](#0a-substrate), and formatters
+and LSP are deliberately outside it.*
 
 ## 2. System map
 
@@ -179,6 +210,8 @@ No deep-read folder exists for OpenCode.
 **Path.** `permission.external_directory`; `references` key; `opencode serve`/`attach` 
 **Source.** ✅ `/docs/tools/`, `/docs/permissions/`, `/docs/references/`, `/docs/server/`
 
+**More.** [`02-permissions.md`](opencode/02-permissions.md) §8 — the absence of any documented sandbox or threat model, naming the five pages checked · §6 — how a configured `reference` is auto-allowed through the `external_directory` boundary while normal tool permissions still apply
+
 </details>
 
 ### 2 · Agent Harness
@@ -191,6 +224,8 @@ No deep-read folder exists for OpenCode.
 **Path.** `mcp` key; `plugin` key; `packages/plugin/src/index.ts` Hooks type 
 **Source.** ✅ `/docs/mcp-servers/`, `/docs/plugins/`, `/docs/custom-tools/`
 
+**More.** [`05-the-tool-registry.md`](opencode/05-the-tool-registry.md) — the four tool sources in one namespace, MCP local/remote option tables, OAuth with RFC 7591, the `<server>_<tool>` prefix rule and the one stated collision rule · [`07-plugins-hooks-and-events.md`](opencode/07-plugins-hooks-and-events.md) §2 — the plugin context including `serverUrl` and `experimental_workspace`
+
 </details>
 
 #### 2b Hooks
@@ -201,6 +236,8 @@ No deep-read folder exists for OpenCode.
 **Path.** `.opencode/plugins/*.ts`; npm via `plugin: [...]` 
 **Source.** ✅ `/docs/plugins/`, raw `plugin/src/index.ts`
 
+**More.** [`07-plugins-hooks-and-events.md`](opencode/07-plugins-hooks-and-events.md) — every hook key with what it can change, the four-step load order, and the event inventory. **`packages/plugin/src/index.ts` defines 21 hook keys and the SDK's `Event` union 32 types as of 2026-09-08**; this row's 20 and ~25 are the 2026-09-02 read
+
 </details>
 
 #### 2c Enforcement
@@ -210,6 +247,8 @@ No deep-read folder exists for OpenCode.
 **Ships.** `permission.<tool>`: `allow`/`ask`/`deny`, glob, last-match-wins; defaults allow except `doom_loop`/`external_directory` (ask) and `*.env` reads (deny). `--auto` approves what is not explicitly denied — **`deny` rules are still enforced.** `tools.<name>: false` removes a tool. Per-agent `permission` overrides global. `experimental.policies` (`deny provider.use`) — *"global policies override project policies."* A plugin `tool.execute.before` may throw to block. No OS sandbox shipped (see [1a](#1a-environment), [6b](#6b-infrastructure)). 
 **Path.** `opencode.json` `permission`, `tools`, `experimental.policies` 
 **Source.** ✅ `/docs/permissions/`, `/docs/policies/`, `/docs/plugins/`
+
+**More.** [`02-permissions.md`](opencode/02-permissions.md) — the ladder in full: three published key inventories reconciled against the schema, the wildcard grammar, the shipped `.env` defaults, what `--auto` leaves standing, and the `permission.ask` hook · [`03-policies.md`](opencode/03-policies.md) — the statement shape and the global-over-project inversion
 
 </details>
 
@@ -243,6 +282,8 @@ No deep-read folder exists for OpenCode.
 **Path.** `~/.config/opencode/agents/*.md`, `.opencode/agents/*.md`; `agent` key 
 **Source.** ✅ `/docs/agents/`
 
+**More.** [`04-agents.md`](opencode/04-agents.md) — every option key with its default, the eight built-ins including the three hidden system agents, child-session navigation, and the legacy `mode` object's fold into `agent`
+
 </details>
 
 #### 3d Configuration
@@ -252,6 +293,8 @@ No deep-read folder exists for OpenCode.
 **Ships.** Instruction files `AGENTS.md` (walks up), `CLAUDE.md` fallback, `~/.config/opencode/AGENTS.md`; `instructions: [...]` (globs, remote URLs). Config: `opencode.json`/`.jsonc` (project), global config, `OPENCODE_CONFIG*` env vars. Precedence low→high: remote `.well-known/opencode` → global → `OPENCODE_CONFIG` → project → `.opencode/` dirs → inline env → managed settings → macOS MDM. *"Merged together, not replaced."* 
 **Path.** as listed 
 **Source.** ✅ `/docs/rules/`, `/docs/config/`
+
+**More.** [`01-config-and-rules.md`](opencode/01-config-and-rules.md) — all eight numbered rungs, the three loading points documented or implemented outside them, the merge semantics (`instructions` is the one unioned array), the MDM plist paths, and the `AGENTS.md` chain's first-match-wins rule
 
 </details>
 
@@ -275,6 +318,8 @@ No deep-read folder exists for OpenCode.
 **Path.** as listed 
 **Source.** ✅ `/docs/skills/`, `/docs/plugins/`, `/docs/references/`, `/docs/ecosystem/`
 
+**More.** [`06-skills-and-commands.md`](opencode/06-skills-and-commands.md) — the six skill discovery roots, the name regex and 1–1024-character description limit, the `<available_skills>` block, and the command template's three substitutions · [`05-the-tool-registry.md`](opencode/05-the-tool-registry.md) — custom-tool naming and the `<filename>_<exportname>` rule
+
 </details>
 
 #### 4b Capability Permissions
@@ -284,6 +329,8 @@ No deep-read folder exists for OpenCode.
 **Ships.** `permission.skill` with globs; `tools: {skill: false}` disables skills entirely; per-agent skill/tool permission in frontmatter; MCP tools gated by `tools` globs, re-enabled per-agent; `permission.task` globs which subagents may spawn (denied ones removed from the Task tool's own description); `experimental.policies` for providers. 
 **Path.** `permission`, `tools`, agent frontmatter 
 **Source.** ✅ `/docs/skills/`, `/docs/mcp-servers/`, `/docs/policies/`
+
+**More.** [`02-permissions.md`](opencode/02-permissions.md) §§2, 6 — which keys accept the object form, why the key set is open (`additionalProperties` in the schema), and the carve-out that lets an operator `@`-mention a subagent `permission.task` denies
 
 </details>
 
@@ -369,6 +416,8 @@ No deep-read folder exists for OpenCode.
 **Ships.** `todowrite` tool (*"Manage todo lists during coding sessions"*; off for subagents by default) with a `todo.updated` event; the Task tool spawns subagent child sessions; `command` templates with `$ARGUMENTS`, `` !`cmd` ``, `@file`, `subtask: true`. No ticket or plan object. 
 **Path.** `todowrite`; `.opencode/commands/*.md` 
 **Source.** ✅ `/docs/tools/`, `/docs/commands/`
+
+**More.** [`06-skills-and-commands.md`](opencode/06-skills-and-commands.md) §2 — every command option, `$ARGUMENTS` against positional `$1`…`$n`, and `subtask` forcing a subagent invocation even for a `primary` agent
 
 </details>
 
@@ -494,6 +543,8 @@ No deep-read folder exists for OpenCode.
 **Ships.** Human-in-the-loop posture is `ask` permissions + the `question` tool + `--auto`; `plan` vs `build` agents. Enterprise SSO, central config, gateway-only routing; managed settings and macOS MDM *"enforced automatically."* Zen has *"Team workspace support with admin/member roles"* and per-member usage limits. `opencode serve` uses one basic-auth pair, not per-user accounts. **No ownership, RACI or escalation model.** 
 **Path.** as listed 
 **Source.** ✅ `/docs/permissions/`, `/docs/enterprise/`, `/docs/zen/`, `/docs/server/`
+
+**More.** [`01-config-and-rules.md`](opencode/01-config-and-rules.md) §§2, 4 — the managed-settings directories, the `ai.opencode.managed` plist paths and MDM deployment, `opencode debug config` as the verification step, and the two inputs that reach the resolved config outside the numbered chain
 
 </details>
 

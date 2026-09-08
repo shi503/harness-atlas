@@ -9,11 +9,30 @@ owner: FeatureLead-LoomWarp (W4 #3)
 source: "shi503/loomwarp-team-system @ 8844df6f4bc48f8a563340eb3163401792e000d5 (branch `master`, private) · README.md, docs/*.md, fractal/, standards/, skills/, control/, policy/, context/, registry/, vendor/ at repo root · read 2026-09-03"
 provenance: OBSERVED
 template: "v2 (restructured from v1 read of 2026-09-03, no re-read)"
+verification:
+  derived_from:
+    - "shi503/loomwarp-team-system @ 8844df6f4bc48f8a563340eb3163401792e000d5 (branch `master`, private) · README.md, docs/*.md, fractal/, standards/, skills/, control/, policy/, context/, registry/, vendor/ at repo root · read 2026-09-03"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-03"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # LoomWarp — KD (`shi503`)
 
 ***A Python control plane — an unmodified `router.py` plus an additive `dispatch.py` — that decomposes a BLUEPRINT into scoped workstreams, dispatches each to a Claude Code session, and classifies the outcome from filesystem evidence rather than the process exit code, while naming no primitive of its own for a user to author.***
+
+> **Profile drafted 2026-09-03 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 
@@ -58,7 +77,22 @@ template: "v2 (restructured from v1 read of 2026-09-03, no re-read)"
 
 [§1 At a glance](#1-at-a-glance) · [1a Positioning stats](#1a-positioning-stats) · [§2 System map](#2-system-map) · [§3 Workflows](#3-workflows) · [§4 Component matrix](#4-component-matrix) · [§5 Primitives](#5-primitives) · [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) · [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-No deep-read folder exists for LoomWarp.
+**Deep read** — [`content/loomwarp/`](loomwarp/00-README.md), a 10-document control-plane reference
+set at a finer grain than §6: [the vendored core](loomwarp/01-the-vendored-core.md) ·
+[the BLUEPRINT and the workstream](loomwarp/02-the-blueprint-and-the-workstream.md) ·
+[dispatch and outcome classification](loomwarp/03-dispatch-and-outcome-classification.md) ·
+[the context fabric](loomwarp/04-the-context-fabric.md) ·
+[skill distribution and the registry](loomwarp/05-skill-distribution-and-the-registry.md) ·
+[policy tiers](loomwarp/06-policy-tiers.md) ·
+[the standards tier](loomwarp/07-the-standards-tier.md) ·
+[the audit trail](loomwarp/08-the-audit-trail.md) ·
+[the consolidated guide](loomwarp/20-consolidated-guide.md)
+
+*Read 2026-09-08 against the same commit this profile pins, `8844df6`, five days later. Scope: the
+control plane in code and in its own markdown — `projects/` and `specs/`, 167 files of design
+specification, are excluded. There being no vendor, the deep read substitutes a stated-intent ledger
+cited to file and commit for a claim ledger, and records fifteen places where a design document and
+the source tree disagree.*
 
 ## 2. System map
 
@@ -191,6 +225,7 @@ flowchart TD
 **Ships.** Claude Code only; model chosen per agent role via `model:` in `.claude/agents/*.md` frontmatter — opus for architect/strategist/loomwarp-cto-architect, sonnet for feature-lead/sub-agent. No portability adapter of its own.
 **Path.** `.claude/agents/*.md` frontmatter
 **Source.** ✅ `REPO/.claude/agents/*.md`; ↪ `V1/00-README.md` ("Adapter: … LoomWarp: undecided")
+**More.** [`loomwarp/03-dispatch-and-outcome-classification.md`](loomwarp/03-dispatch-and-outcome-classification.md) §3 — binary resolution, the full flag list, and the role files the `--agent` flag selects.
 
 </details>
 
@@ -215,6 +250,7 @@ flowchart TD
 **Ships.** One adapter: a CLI invocation of `claude -p` with `--agent`, `--permission-mode`, `--output-format json`, `--max-budget-usd`. No MCP, no ACP, no protocol beyond that CLI surface.
 **Path.** `control/dispatch.py` (`dispatch_headless`)
 **Source.** ✅ same
+**More.** [`loomwarp/03-dispatch-and-outcome-classification.md`](loomwarp/03-dispatch-and-outcome-classification.md) §3 — both invocations side by side, and why the binary is resolved rather than named.
 
 </details>
 
@@ -235,6 +271,7 @@ flowchart TD
 **Ships.** Four risk-tier permission files (`policy/tier-{1,2,3,4-auto}.json`), Claude-Code-`settings.json`-shaped allow/deny lists. `tier-1.json` is real and would bind mechanically (`Bash(rm -rf *)`, `.env` reads denied) — but the one live dispatch used `--permission-mode bypassPermissions`, which skips all of it, a limitation the vendor's own code comment names directly.
 **Path.** `policy/tier-1.json`; `control/dispatch.py` lines 183–190
 **Source.** ✅ (doctrine ≠ code) same
+**More.** [`loomwarp/06-policy-tiers.md`](loomwarp/06-policy-tiers.md) — all four files compared entry by entry, who loads them (nothing in-repo), and the `R0`–`R4` ladder beside them.
 
 </details>
 
@@ -247,6 +284,7 @@ flowchart TD
 **Ships.** `router.py` (vendored, unmodified, model-free dependency resolver) plus `dispatch.py` (additive: prompt assembly, subprocess dispatch, outcome classification, evidence write, conditional state update). Deterministic decomposition and dispatch — but outcome classification itself is a regex over markdown (`re.search(r"\|\s*FAIL\s*\|", content)`), not structured evidence, against the vendor's own evaluation doctrine.
 **Path.** `fractal/router.py`; `control/dispatch.py` (`classify()`)
 **Source.** ✅ (doctrine ≠ code) same
+**More.** [`loomwarp/01-the-vendored-core.md`](loomwarp/01-the-vendored-core.md) and [`loomwarp/03-dispatch-and-outcome-classification.md`](loomwarp/03-dispatch-and-outcome-classification.md) §4 — the router's five subcommands, and both classifier regexes run against the two shipped HANDOFF templates.
 
 </details>
 
@@ -257,6 +295,7 @@ flowchart TD
 **Nothing here** as a resolver — checked the BLUEPRINT schema and `registry/repositories.yaml`. What exists instead: a BLUEPRINT entry's `repo` and `target_agent` fields fix which sibling and agent role handle a workstream, author-time and static.
 **Path.** `fractal/BLUEPRINT-*.yaml`; `registry/repositories.yaml`
 **Source.** ✅ same
+**More.** [`loomwarp/02-the-blueprint-and-the-workstream.md`](loomwarp/02-the-blueprint-and-the-workstream.md) §2 — every field and which of the two programs reads it.
 
 </details>
 
@@ -267,6 +306,7 @@ flowchart TD
 **Ships.** Five role files in `.claude/agents/` (architect, feature-lead, loomwarp-cto-architect, strategist, sub-agent); `feature-lead.md` documents delegating up to 2 Sub-Agent sessions. Composition itself is Claude Code's native mechanism — LoomWarp supplies the role files, not the runtime.
 **Path.** `.claude/agents/*.md`
 **Source.** ✅ same
+**More.** [`loomwarp/05-skill-distribution-and-the-registry.md`](loomwarp/05-skill-distribution-and-the-registry.md) §4 — the five role files against `vendor/manifest.json`'s four, and which is LoomWarp's own.
 
 </details>
 
@@ -277,6 +317,7 @@ flowchart TD
 **Ships.** BLUEPRINT YAML with two field classes, explicit in every blueprint's header comment: standard fields (`feature_lead`, `model`, `prd`, `dependencies`) read by the unmodified router; additive fields (`repo`, `target_agent`, `target_mode`, `kebab`, `context_bundle`) read only by `dispatch.py`, *"silently ignored by router.py."* No managed-settings/org-override layer of its own.
 **Path.** `fractal/BLUEPRINT-*.yaml`; `.claude/settings.local.json`
 **Source.** ✅ same
+**More.** [`loomwarp/02-the-blueprint-and-the-workstream.md`](loomwarp/02-the-blueprint-and-the-workstream.md) §3 — four sources disagree about which fields are "standard"; `router.py` reads three.
 
 </details>
 
@@ -287,6 +328,7 @@ flowchart TD
 **Ships.** Seven guides under `standards/` (engineering-principles, architecture-patterns, definition-of-done, testing-patterns, evaluation-doctrine, ci-cd, process-improvement-model — 927 lines plus a 43-line index), with a stated three-tier inheritance contract: *"Reference, never copy... Tighten, never contradict."* The most developed row in this profile.
 **Path.** `standards/README.md`; `standards/*.md`
 **Source.** ✅ same
+**More.** [`loomwarp/07-the-standards-tier.md`](loomwarp/07-the-standards-tier.md) — the seven guides by section, the three-rule contract, and the tension between rules 1 and 3.
 
 </details>
 
@@ -299,6 +341,8 @@ flowchart TD
 **Ships.** Seven skills (`commit-summarize`, `cross-repo-dispatch` — documentation-only, `fractal-init`, `gap-analysis`, `handoff`, `pulse`, `quality-pass`), distributed to sibling repos by a `cp -r` sync script; the self-assessment names a known defect — a deleted skill stays installed — not independently re-verified this pass.
 **Path.** `skills/*/SKILL.md`; `docs/DEMO-SCRIPT.md` (`sync-skills.sh`)
 **Source.** ✅ (skills, direct); ↪ (removal defect, `SELF`)
+**Drift, both figures carried.** This row records `cp -r` and a removal defect, relayed from the self-assessment on **2026-09-03**. A direct read of `control/sync-skills.sh` at the same commit on **2026-09-08** finds `rsync --delete` scoped per skill with a `.synced-from-loomwarp` receipt driving removal, whose own header states it replaced the `cp -r` loop and its three defects. Neither read is wrong; one is relayed and one is direct.
+**More.** [`loomwarp/05-skill-distribution-and-the-registry.md`](loomwarp/05-skill-distribution-and-the-registry.md) §2–§4.
 
 </details>
 
@@ -331,6 +375,7 @@ flowchart TD
 **Ships.** `context/org/PRINCIPLES.md`, `context/domain/taskflow-platform/CONVENTIONS.md` (read into every dispatched prompt via a workstream's `context_bundle`), and `context/memory/decision-ledger/` — a genuine schema-validated ADR store (`schema/schema.yaml`, `schema/validate.ts`, atomic writes, locks, a SQLite index, a CLI with `list`/`audit`), five ADRs on disk.
 **Path.** `context/org/PRINCIPLES.md`; `context/domain/taskflow-platform/CONVENTIONS.md`; `context/memory/decision-ledger/`
 **Source.** ✅ same, direct read of schema + store
+**More.** [`loomwarp/04-the-context-fabric.md`](loomwarp/04-the-context-fabric.md) §2–§4 — `schema.yaml` v2.0's fields, `people.yaml`'s two entries, and the fact that no control-plane code reads the store.
 
 </details>
 
@@ -373,6 +418,7 @@ flowchart TD
 **Ships.** `registry/repositories.yaml` — a real, if thin, inventory schema: `name`, `path`, `origin`, `visibility`, `owner`, `role`, `modified_by_this_project`, `fractal_installed`, `notes`, per repo. Two entries at this read. The control repo itself is absent from its own registry despite being a dispatch target — a named, open defect.
 **Path.** `registry/repositories.yaml`; `fractal/ISSUES.md` (`ISSUE-001`)
 **Source.** ✅ same
+**More.** [`loomwarp/05-skill-distribution-and-the-registry.md`](loomwarp/05-skill-distribution-and-the-registry.md) §1 — the registry's stated consumers against its one real one.
 
 </details>
 
@@ -395,6 +441,7 @@ flowchart TD
 **Ships.** The **work contract** — a BLUEPRINT entry (`feature_lead`, `model`, `prd`, `dependencies`, plus additive `repo`/`target_agent`/`target_mode`/`kebab`/`context_bundle` fields) paired with a workstream PRD file. The framework's own current spec names this object directly as the one genuinely surviving, concrete primitive at this layer — `router.py`/`dispatch.py` are named machinery, explicitly not graded.
 **Path.** `fractal/BLUEPRINT-*.yaml`; `fractal/workstreams/*.md`
 **Source.** ✅ same; ↪ (the machinery/primitive split, `V1/00-README.md`)
+**More.** [`loomwarp/02-the-blueprint-and-the-workstream.md`](loomwarp/02-the-blueprint-and-the-workstream.md) — the file shape, every field, the graph counted, and the eight PRD paths that do not exist.
 
 </details>
 
@@ -407,6 +454,7 @@ flowchart TD
 **Ships.** The vendor's own doctrine (`standards/evaluation-doctrine.md`) specifies a genuine five-layer model (L1 Deterministic → L5 Outcome) with hard rules — *"Never trust the exit code... Never parse prose for structure... Two-attempt maximum"* — but the shipped classifier this repo actually runs (`dispatch.py`'s `classify()`) is exactly the anti-pattern the doctrine names: a regex over a HANDOFF's markdown table.
 **Path.** `standards/evaluation-doctrine.md`; `control/dispatch.py` (`classify()`)
 **Source.** ✅ (doctrine ≠ code), both direct
+**More.** [`loomwarp/03-dispatch-and-outcome-classification.md`](loomwarp/03-dispatch-and-outcome-classification.md) §4 — the two regexes are asymmetric, and both shipped HANDOFF templates classify as `COMPLETE` with their placeholders intact.
 
 </details>
 
@@ -417,6 +465,8 @@ flowchart TD
 **Ships.** `context/evidence/<workstream>/{run.json, <OUTCOME>.md}`, populated at dispatch time with exit code, duration, and the classifying HANDOFF/PULSE text verbatim — real, and genuinely populated (three named workstream directories at this read).
 **Path.** `context/evidence/`; `control/dispatch.py` (`dispatch_headless`)
 **Source.** ✅ same
+**Drift, both figures carried.** Three workstream directories at the **2026-09-03** read; at the **2026-09-08** read of the same commit the tracked tree holds `.gitkeep` only, because `.gitignore` excludes `context/evidence/*`. A working tree and a committed tree, five days apart.
+**More.** [`loomwarp/03-dispatch-and-outcome-classification.md`](loomwarp/03-dispatch-and-outcome-classification.md) §5 — `run.json`'s three fields, the missing stderr, and the inferred `timed_out`.
 
 </details>
 
@@ -427,6 +477,7 @@ flowchart TD
 **Ships.** `control/events.jsonl` — one append-only, one-JSON-object-per-line log every dispatch writes to, described in the product's own words as *"CloudEvents-shaped."* Verified at this read: 13 lines, three event types (`dispatch_start`, `dispatch_end`, `dispatch_printed`). **No schema file of any kind exists anywhere in this repository** (`find . -iname "*.schema.json"` — zero hits), against the vendor's own stated bar: *"An unvalidated event stream is a log, not evidence."* This is the card's structured output, by its own rule not yet earned.
 **Path.** `control/events.jsonl`
 **Source.** ✅ same; ✅ `find . -iname "*.schema.json"` (no matches); ✅ `standards/evaluation-doctrine.md` §3 (quoted)
+**More.** [`loomwarp/03-dispatch-and-outcome-classification.md`](loomwarp/03-dispatch-and-outcome-classification.md) §6 — the three emitted shapes, the one logged line no code path produces, and the unpaired start.
 
 </details>
 
@@ -437,6 +488,7 @@ flowchart TD
 **Ships.** One crude cap: `LOOMWARP_DISPATCH_MAX_BUDGET` (default `5`), passed straight through as `--max-budget-usd`. The module's own docstring says this number is not evidence-based: *"this is a starting point, not a measured value; re-tune it from the actual spike run's real cost."* No aggregate cost reporting across workstreams.
 **Path.** `control/dispatch.py` (module docstring, `MAX_BUDGET_USD`)
 **Source.** ✅ same
+**More.** [`loomwarp/03-dispatch-and-outcome-classification.md`](loomwarp/03-dispatch-and-outcome-classification.md) §3.
 
 </details>
 
@@ -479,6 +531,7 @@ flowchart TD
 **Ships.** `fractal/ISSUES.md` — an append-only defect ledger, eight entries at this read (`ISSUE-001`–`004`, `OBS-005`, `FINDING-006`/`007`, `ISSUE-008`), each carrying Severity, Found-date, Assigned workstream, Consequence, Why-it-was-missed, Interim mitigation, Required fix. A genuine anti-fragile mechanism, not a changelog-as-narrative substitute.
 **Path.** `fractal/ISSUES.md`
 **Source.** ✅ same
+**More.** [`loomwarp/08-the-audit-trail.md`](loomwarp/08-the-audit-trail.md) — the entry shape, the three prefixes, the severity vocabulary the header does not declare, and three practices the register demonstrates.
 
 </details>
 
@@ -533,6 +586,7 @@ flowchart TD
 **Ships.** CLI only: `claude -p` (headless) or an interactive `claude` session opened by a human from a printed command; `HANDOFF.md`/`PULSE.md` markdown files are the surface work is judged from. No dashboard or web UI. Stated source-of-truth default, quoted as the framework's own recommendation: *"Markdown plans and specs in the repository are the source of truth... they flow outward... which are views."*
 **Path.** `control/dispatch.py` (`dispatch_human`); `docs/DEMO-SCRIPT.md`
 **Source.** ✅ same; ↪ (the SoT quote, `V0/09-context-layer.md`, relayed via `V1/00-README.md`)
+**More.** [`loomwarp/03-dispatch-and-outcome-classification.md`](loomwarp/03-dispatch-and-outcome-classification.md) §3 — what each mode prints, spawns and persists.
 
 </details>
 

@@ -2,12 +2,14 @@
 status: DRAFT
 title: "Building on Claude Code — the consolidated guide"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source_verified: "2026-08-10"
 covers: "Claude Code through v2.1.224 (Week 32, Aug 3–7 2026)"
 ---
 
 # Building on Claude Code — the consolidated guide
+
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
 
 One opinionated read of the current extension layer, synthesized from the numbered references in this
 directory. Written for someone building an agent platform on top of Claude Code rather than someone
@@ -323,3 +325,32 @@ Honest boundaries, useful for anyone deciding what to build:
 
 Those six are where a platform built on Claude Code can hold durable ground. Everything else in this
 guide is table stakes that the harness either already provides or is visibly moving toward.
+
+---
+
+## 11. The claims, walked against what this set documented
+
+The claim ledger in [`00-README.md`](./00-README.md) records what Anthropic says Claude Code is for.
+This walks each claim to the mechanism behind it, in this set.
+
+**This maps; it does not grade.** A row names the document carrying the mechanism, or records that
+nothing was found and says what was checked. There is no verdict column, and none is implied — the
+corpus grades in one place, and it is not here.
+
+| Claim, abbreviated | Mechanism, and where it is documented |
+|---|---|
+| *"reads your codebase, edits files, runs commands"* | The built-in tool set, which this set treats as the loop's floor rather than an extension surface — the surfaces in [`01`](./01-extension-surfaces.md) are what changes its behaviour, not what performs it |
+| *"integrates with your development tools"* | MCP servers, one of the nine surfaces — [`01`](./01-extension-surfaces.md); permission and scope treatment in [`08`](./08-policy-and-governance.md) |
+| *"Available in your terminal, IDE, desktop app, and browser"* · *"Each surface connects to the same underlying Claude Code engine"* | **Not a mechanism this set documents.** Surface parity is a product claim about deployment, and this folder is cut by the extension layer. Checked: the docs index at capture, and each of the eleven pages read. The cross-surface artifacts the claim rests on — `CLAUDE.md`, settings, MCP config — are documented in [`07`](./07-context-and-memory.md) and [`08`](./08-policy-and-governance.md), but their portability across surfaces was not read |
+| *"understands your entire codebase"* | `CLAUDE.md` load order, `@` imports, `.claude/rules/` path scoping, auto memory, and monorepo layering — [`07`](./07-context-and-memory.md). Note the shape: this is instruction context assembled by rule, not an index of the repository |
+| *"helps you build features, fix bugs, and automate development tasks"* | Automation surfaces: `claude -p`, `--bare`, structured output, stream-json and CI gating — [`10`](./10-programmatic-and-sdk.md) |
+| *"handling git workflows"* | Worktrees, covered as an orchestration mechanism — [`05`](./05-multi-agent-orchestration.md). The commit and PR behaviour the claim names is built-in tool behaviour, not an extension surface, and is not documented here |
+| *"through natural language commands"* | Skills, which subsume the former custom-command surface — [`02`](./02-skills.md) |
+| *"tag @claude on Github"* | **Not documented in this set.** Checked: the docs index at capture and all eleven pages. GitHub Actions and Code Review are product surfaces outside the extension layer this folder cuts by |
+| *"composable and follows the Unix philosophy"* | The strongest-supported claim here: `claude -p`, `--output-format json`, `--json-schema`, stream-json, and subprocess invocation from any language — [`10`](./10-programmatic-and-sdk.md) |
+
+**One asymmetry worth naming, and it is about this folder, not about Claude Code.** The claims are
+about *what the product does for a developer*; this set is cut by *what a builder can change*. Three
+rows above resolve to "not documented here" for that reason alone — they are absences in this folder's
+scope, not absences in the harness. A reader testing product claims should read the profile at
+[`../claude-code.md`](../claude-code.md), whose 33 rows are cut to answer exactly that.

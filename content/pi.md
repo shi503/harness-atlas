@@ -9,6 +9,23 @@ owner: KD
 source: "github.com/earendil-works/pi (formerly badlogic/pi-mono) @ v0.84.4 · packages/coding-agent/docs · read 2026-09-02"
 provenance: OBSERVED
 template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
+verification:
+  derived_from:
+    - "github.com/earendil-works/pi (formerly badlogic/pi-mono) @ v0.84.4 · packages/coding-agent/docs · read 2026-09-02"
+  grounded_against:
+    - "§4 component matrix — 33 rows against the sources above"
+    - "§5 primitives, §7 identity table, §9 sources"
+  drafted_by: "claude-opus-5"
+  drafted_on: "2026-09-02"
+  verified: false
+  verified_by: ~
+  verified_on: ~
+  note: >
+    drafted_by is an ATTESTATION, not a capture. This profile was written before the corpus recorded
+    authorship; KD attested opus on 2026-09-08 under ruling 2026-09-08-authorship-provenance, which
+    also requires this sentence. drafted_on is the date the profile was authored; it was restructured to Template v2 on 2026-09-07 without a re-read.
+    The separate drafted banner in §1a covers the seven DX values, which were scored later and are a
+    different analysis with its own date.
 ---
 
 # Pi — Mario Zechner · Earendil
@@ -16,6 +33,8 @@ template: "v2 (restructured from the v1 read of 2026-09-02, no re-read)"
 ***A TypeScript terminal harness whose defining move is subtraction: it publishes what it will not
 ship — MCP, sub-agents, permission popups, plan mode, to-dos, background bash — and ships each as an
 example extension instead, so the loop is minimal and everything above it is yours to author.***
+
+> **Profile drafted 2026-09-02 by `claude-opus-5`, not yet verified.** Attested, not captured — see `verification:` above.
 
 ## 1. At a glance
 
@@ -71,8 +90,16 @@ construction. Re-score in the YAML, never here.*
 [§6 Details](#6-details) · [§7 Identity and inclusion test](#7-identity-and-inclusion-test) ·
 [§8 Limits](#8-limits) · [§9 Sources](#9-sources) · [§10 Unverified](#10-unverified)
 
-No deep-read folder exists for Pi. `content/pi-draft.md` is a superseded `--sanity` draft, kept as
-history and not a reading path.
+**Deep read** — [`content/pi/`](pi/00-README.md), a 5-document extensibility reference set at a finer
+grain than §6: [the refusals](pi/01-the-refusals.md) · [extensions](pi/02-extensions.md) ·
+[resources, scope and trust](pi/03-resources-scope-and-trust.md) ·
+[the consolidated guide](pi/20-consolidated-guide.md)
+
+*Read 2026-09-08 at `v0.85.1`, six days and one tag after this profile's source read. Deliberately
+three surface documents: Pi's own `DOCS/` is thorough and well-navigated, so only the three things it
+leaves unassembled earn a page — `00-README.md` says which and why.*
+
+`content/pi-draft.md` is a superseded `--sanity` draft, kept as history and not a reading path.
 
 ## 2. System map
 
@@ -229,6 +256,8 @@ verdict is not simply "accommodation":
 **Path.** `pi.*` ExtensionAPI · `--mode rpc|json` · `@earendil-works/pi-{protocol,client,server}`
 **Source.** ✅ `DOCS/extensions.md` §ExtensionAPI Methods · `CA/README.md` §Philosophy · package READMEs
 
+**More.** [`02-extensions.md`](pi/02-extensions.md) — the twenty-six `pi.*` methods grouped, both context objects, built-in tool override and the pluggable-operations path · [`01-the-refusals.md`](pi/01-the-refusals.md) §3 — **no MCP example ships**, naming what was checked
+
 </details>
 
 #### 2b Hooks
@@ -239,6 +268,8 @@ verdict is not simply "accommodation":
 **Handlers are TypeScript, not shell scripts.**
 **Path.** `~/.pi/agent/extensions/*.ts`, `.pi/extensions/*.ts`, `-e <path>`; `pi.on("<event>", handler)`
 **Source.** ✅ `DOCS/extensions.md` §Events, §Lifecycle Overview · `CA/CHANGELOG.md` 0.84.4
+
+**More.** [`02-extensions.md`](pi/02-extensions.md) — every event with what its handler may return, and the ordering rules each stated once. **Counts 36 events in eight groups as of 2026-09-08 at v0.85.1**; this row's "~40, seven groups" is the 2026-09-02 read at v0.84.4. Both stand
 
 </details>
 
@@ -251,6 +282,8 @@ verdict is not simply "accommodation":
 **Path.** `pi.on("tool_call")` · `--tools` · `~/.pi/agent/trust.json`, `defaultProjectTrust`, `/trust`
 **Source.** ✅ `DOCS/extensions.md` §tool_call · `CA/README.md` §Tool Options · `DOCS/security.md`
 
+**More.** [`03-resources-scope-and-trust.md`](pi/03-resources-scope-and-trust.md) §§2–3 — exactly what trust gates, what it never gates, and the three-step resolution order · [`02-extensions.md`](pi/02-extensions.md) §2 — `tool_call`'s block contract, input mutation without re-validation, and the conditional `terminate`
+
 </details>
 
 ### 3 · System Stacks
@@ -262,6 +295,8 @@ verdict is not simply "accommodation":
 **Ships.** No built-in plan mode — *"**No plan mode.** Write plans to files, or build it with extensions, or install a package."* The shipped example supplies `/plan`, a `--plan` flag, `Ctrl+Alt+P`, plan extraction and `[DONE:n]` markers. Approval affordances: the project-trust prompt at startup, `ctx.ui.confirm()` for extensions, `timed-confirm.ts`. Run contracts: interactive, `-p` print, `--mode json`, `--mode rpc` with `streamingBehavior: "steer" | "followUp"`, and a message queue where Enter steers and Alt+Enter follows up.
 **Path.** `EX/plan-mode/` · `--mode rpc` `prompt` · `steeringMode`/`followUpMode`
 **Source.** ✅ `CA/README.md` §Philosophy, §Message Queue · `EX/plan-mode/README.md` · `DOCS/rpc.md`
+
+**More.** [`01-the-refusals.md`](pi/01-the-refusals.md) §4 — the plan-mode example's full command allowlist and blocklist, and the refusal's stated reason from the 2025-11-30 post
 
 </details>
 
@@ -283,6 +318,8 @@ verdict is not simply "accommodation":
 **Path.** `EX/subagent/` · `~/.pi/agent/agents/*.md` · `agentScope`, `confirmProjectAgents`
 **Source.** ✅ `EX/subagent/README.md` · `CA/README.md` §Philosophy, §System Prompt
 
+**More.** [`01-the-refusals.md`](pi/01-the-refusals.md) §4 — the three tool modes, the caps (max 8 tasks, 4 concurrent, 50 KB per task), agent-frontmatter fields, model inheritance, and the manual symlink install
+
 </details>
 
 #### 3d Configuration
@@ -292,6 +329,8 @@ verdict is not simply "accommodation":
 **Ships.** Instruction files `AGENTS.md` or `CLAUDE.md` loaded from `~/.pi/agent/AGENTS.md`, every parent directory walking up, and cwd — all concatenated; `AGENTS.override.md` replaces that directory's file; `--no-context-files` disables. Settings at `~/.pi/agent/settings.json` (global) and `.pi/settings.json` (project, *"overrides global"*, nested objects merged, `defaultProjectTrust`/`httpProxy` global-only, project `defaultTools` replaces rather than merges). Keybindings, `PI_CODING_AGENT_DIR`, `PI_PACKAGE_DIR`, and a session-dir precedence chain.
 **Path.** `~/.pi/agent/{settings,keybindings}.json` · `.pi/settings.json` · `pi config`
 **Source.** ✅ `CA/README.md` §Context Files, §Settings · `DOCS/settings.md` §Project Overrides
+
+**More.** [`03-resources-scope-and-trust.md`](pi/03-resources-scope-and-trust.md) §§1, 5 — the four resource types against all six sources, path resolution per settings file, and the merge rule
 
 </details>
 
@@ -315,6 +354,8 @@ verdict is not simply "accommodation":
 **Path.** `pi install` · `~/.pi/agent/{npm,git}/` · `.pi/{npm,git}/` · https://pi.dev/packages
 **Source.** ✅ `DOCS/packages.md` · `DOCS/skills.md` · `CA/README.md` §Pi Packages
 
+**More.** [`03-resources-scope-and-trust.md`](pi/03-resources-scope-and-trust.md) §4 — the three source types with their install roots and pinning behaviour, the dependency rule, and cross-scope dedup. **The gallery showed 5,536 on 2026-09-08**; this row's 5,618 is the 2026-09-02 read
+
 </details>
 
 #### 4b Capability Permissions
@@ -325,6 +366,8 @@ verdict is not simply "accommodation":
 **No per-user ACLs** — there is no user model to hang them on ([10b](#10b-org)).
 **Path.** `SKILL.md` frontmatter · `settings.json` package objects · `pi config`
 **Source.** ✅ `DOCS/skills.md` §Frontmatter · `DOCS/packages.md` §Package Filtering
+
+**More.** [`03-resources-scope-and-trust.md`](pi/03-resources-scope-and-trust.md) §4 — the full filter grammar (`!`, `+path`, `-path`, `[]`) and why filters only ever narrow
 
 </details>
 
@@ -379,6 +422,8 @@ verdict is not simply "accommodation":
 **Path.** `EX/gondolin/` · `Dockerfile.pi` · `openshell sandbox create` · `--ssh`
 **Source.** ✅ `DOCS/containerization.md` · `DOCS/extensions.md` §Remote Execution
 
+**More.** [`01-the-refusals.md`](pi/01-the-refusals.md) §2 — `sandbox/` and `gondolin/` as the shipped answer to the permission refusal, and the fact that **neither carries a README**
+
 </details>
 
 #### 6c Estate
@@ -410,6 +455,8 @@ verdict is not simply "accommodation":
 **Nothing here, by refusal** — *"**No built-in to-dos.** They confuse models. Use a TODO.md file, or build your own with extensions."* This is a refusal-list entry, not a gap.
 **What exists instead.** The `todo.ts` example (*"Stateful tool with persistence"*) and the plan-mode example's `/todos` with `[DONE:n]` progress markers.
 **Source.** ✅ `CA/README.md` §Philosophy · `EX/plan-mode/README.md`
+
+**More.** [`01-the-refusals.md`](pi/01-the-refusals.md) §§1–2 — the refusal's stated reason, and the two shipped examples that supply to-dos anyway
 
 </details>
 
@@ -468,6 +515,8 @@ verdict is not simply "accommodation":
 **Nothing here** as capture — checked `DOCS/skills.md`, `DOCS/extensions.md`, `DOCS/packages.md`, root README.
 **What exists instead, and it is a genuine posture.** Each capability doc opens with the same banner: *"pi can create extensions/skills/prompt templates/pi packages. Ask it to build one for your use case."* The promotion path from lesson to authored capability is real and stated; what is missing is anything that notices a lesson happened. Session sharing through `pi-share-hf` is framed as improving agents generally, not this install.
 **Source.** ✅ `DOCS/skills.md`, `DOCS/extensions.md`, `DOCS/packages.md` banners
+
+**More.** [`20-consolidated-guide.md`](pi/20-consolidated-guide.md) §5 — all five banners quoted, and the recorded absence of any scaffold, generator or `init` behind them
 
 </details>
 

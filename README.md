@@ -118,7 +118,25 @@ are in [`index.md`](index.md) §1.
 | **Hermes** | gateway / host | Makes *learning* the headline: authors skills from experience, caps memory files, ages skills out; hosts the Codex app-server as an alternate loop | the kanban that owns *"lifecycle truth"* | [`content/hermes.md`](content/hermes.md) |
 | **Gas City** | gateway / host, with an install-into-a-loop mechanism nested inside | Yegge's *software factory*: six declared primitives with a published admission test for adding one — and a documented deletion of one — driving fifteen-plus coding-agent CLIs through shared state | the Bead — the one substrate every other primitive writes through | [`content/gas-city.md`](content/gas-city.md) *(supersedes the short profile, whose "seven" and "Factory Worker Protocol" did not survive a primary-source read)* |
 | **LoomWarp** | process layer | The system this atlas was cut out of, scored here as a peer with no special status — its primitive set reads **0 named**: stated once in a superseded spec, then dropped; six candidates listed apart from the verdict | `control/events.jsonl` — thirteen lines, three event types, none schema-validated | [`content/loomwarp.md`](content/loomwarp.md) |
-| **FRACTAL** | process layer | KD-built, graded by the same rules, read at three instances (upstream · the generic-cerebro fork · this repo, un-routed): five named artifacts — STRATEGIST, BLUEPRINT, PRD, HANDOFF, PULSE — never stated as a set; this repo runs two of them | the `HANDOFF.md` — the mandatory terminal artifact every workstream writes before state advances | [`content/fractal.md`](content/fractal.md) |
+| **FRACTAL** | process layer | KD-built, graded by the same rules, read at three instances (upstream · a fork since removed from GitHub · this repo, un-routed): five named artifacts — STRATEGIST, BLUEPRINT, PRD, HANDOFF, PULSE — never stated as a set; this repo runs two of them | the `HANDOFF.md` — the mandatory terminal artifact every workstream writes before state advances | [`content/fractal.md`](content/fractal.md) |
+
+## The deep reads
+
+Beneath each profile sits a folder cut by **the vendor's own vocabulary** rather than by our 33
+components — `content/<harness>/`. The profile answers *what is this and how does it compare*; the deep
+read answers *how does this surface actually work*, at a grain a table row cannot hold: an execpolicy
+grammar, a memory pipeline's two phases, twelve hook events with their payloads.
+
+**The two cuts disagree on purpose.** A reader comparing harnesses reads the profile. A reader using one
+reads the deep read.
+
+Ten of ten harnesses, **118 documents**, each carrying the version it was read at, the date, and a
+ledger of what the vendor claims the thing is *for* — walked against the mechanisms actually found.
+
+→ [`content/openclaw/`](content/openclaw/00-README.md) is the largest at 21 documents ·
+[`content/pi/`](content/pi/00-README.md) the smallest at 5, because Pi ships less and documents it
+better · [`content/codex/`](content/codex/00-README.md) is the worked example the others were built
+against.
 
 ## The map
 
@@ -127,6 +145,7 @@ flowchart LR
   readme["README.md<br/>the manifesto — why, and the highlights"]
   index["index.md<br/>Tier 1 · the shape, one screen<br/>grid → range → layers → words"]
   content["content/&lt;harness&gt;.md<br/>Tier 3 · one profile per harness<br/>identity · 33 rows · primitives · limits · unverified"]
+  deepread["content/&lt;harness&gt;/<br/>the deep read — cut by the vendor's own surfaces<br/>what §6 links out to, at a grain a row cannot hold"]
   components["components/&lt;id&gt;-&lt;name&gt;.md<br/>Tier 2 · one page per component<br/>what it is · best example · comparison table"]
   vocab["vocabulary.md<br/>term → concept → who says it → component"]
   maturity["maturity/<br/>the range argument · grid.html"]
@@ -140,6 +159,8 @@ flowchart LR
   index --> vocab
   components <-->|"every cell links to an anchor"| content
   skill -.->|"produces"| content
+  content -->|"§6 links out to"| deepread
+  deepskill["skills/harness-deep-read/SKILL.md<br/>the procedure every deep read follows"] -.->|"produces"| deepread
   vocab -.-> components
   assets -.-> readme
   assets -.-> content

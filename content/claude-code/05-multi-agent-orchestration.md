@@ -2,15 +2,17 @@
 status: DRAFT
 title: "Multi-agent orchestration — subagents, teams, workflows, worktrees"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/agents, /agent-teams, /workflows, /worktrees, /cross-session-messaging"
 source_verified: "2026-08-10"
 ---
 
 # Multi-agent orchestration
 
-Four ways to run agents in parallel, plus three supporting mechanisms. This is the area that changed
-most between LoomWarp's architecture being set and today, so it deserves careful reading.
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
+
+Four ways to run agents in parallel, plus three supporting mechanisms. This is the fastest-moving
+area of the extension layer, and the one where the four objects are easiest to confuse.
 
 ---
 
@@ -94,7 +96,7 @@ The config's `members` array carries each member's name and agent ID; the lead a
 
 ### Task dependencies
 
-This is the part most relevant to LoomWarp. Tasks have three states — pending, in progress,
+Tasks have three states — pending, in progress,
 completed — and **tasks can depend on other tasks**. A pending task with unresolved dependencies
 cannot be claimed until those dependencies complete, and when a teammate completes a task others
 depend on, the dependents unblock automatically.
@@ -332,36 +334,3 @@ disappear, `ultracode` no longer triggers a run, and `ultracode` is removed from
 The `/workflows` progress view shows each phase with agent counts, token totals, and elapsed time.
 Keys: `↑`/`↓` select · `Enter`/`→` drill in · `Esc`/`←` back out · `j`/`k` scroll · `f` filter by
 status · `p` pause/resume · `x` stop agent or whole run · `r` restart a running agent · `s` save.
-
----
-
-## LoomWarp notes
-
-**This section is the single largest source of overlap with LoomWarp's existing build.**
-
-- **`fractal/router.py` + `control/dispatch.py` implement a dependency-resolving orchestrator over
-  subprocess `claude` invocations.** Agent teams' shared task list implements task dependencies with
-  automatic unblocking and **file-locked claiming**; dynamic workflows implement the same thing as a
-  resumable script with `pipeline()` and 16-way concurrency. Both are native, both handle the
-  concurrency and race conditions LoomWarp would otherwise have to write.
-- **GAP-08 / GAP-10 — "zero dependency edges ever exercised" — has a native answer.** The
-  `BLUEPRINT-LoomWarp-V1.yaml` epic has 11 dependency edges and running it is stated as exit-evidence
-  E3. Agent-team task dependencies and workflow `pipeline()` both exercise real dependency edges
-  today, with locking, without LoomWarp writing a scheduler.
-- **ISSUE-002 (one global `.state.json` across all blueprints) does not have an analogue natively.**
-  Workflow runs write per-run script and state under the session directory; team task lists are keyed
-  by session-derived name. Whatever LoomWarp keeps, it should key state per-epic, not per-router.
-- **The workflow resume rule is a real design constraint worth adopting regardless of mechanism.**
-  "Prefer several small workstreams over one large one" already appears in
-  `specs/loom-warp-consolidation/02-remaining.md` as an operational note learned the expensive way.
-  The workflow runtime encodes the same rule and explains exactly why: replay follows start order.
-- **Agent teams' `TaskCompleted` hook is the handoff gate.** LoomWarp classifies terminal state by
-  regexing a markdown HANDOFF file (GAP-18, ISSUE-001). `TaskCompleted` + exit 2 rejects a completion
-  that fails its acceptance criteria and returns feedback to the agent, at the moment of completion,
-  with no filesystem convention involved.
-- **Caution on maturity.** Agent teams are explicitly **experimental, off by default**, with
-  documented limitations including no session resumption for in-process teammates and lagging task
-  status. Dynamic workflows are GA-ish (all paid plans) but resume only within a session. Neither is
-  a drop-in replacement for a control plane that must survive process death — which is a real
-  argument for LoomWarp retaining *something*. The argument it does not support is retaining a
-  hand-rolled dependency resolver.

@@ -2,12 +2,14 @@
 status: DRAFT
 title: "Skills — full reference"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/skills"
 source_verified: "2026-08-10"
 ---
 
 # Skills — full reference
+
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
 
 A skill is a `SKILL.md` file containing instructions, knowledge, or a workflow. You invoke it with
 `/skill-name`, or Claude loads it automatically when the description matches your task.
@@ -91,10 +93,6 @@ any case as well as `true/false` (v2.1.218+).
 | `metadata` | Free-form YAML map for your own tooling. Claude Code does not act on it; drops non-map values |
 | `license` | Agent Skills spec field. Accepted, not acted on |
 | `compatibility` | Agent Skills spec field, string ≤500 chars. Accepted, not acted on |
-
-**LoomWarp note:** `metadata` is the hook for capability provenance. It is a documented, ignored-by-
-the-harness key-value map read by your own tooling — exactly the right place to carry
-`owner`, `source_sha`, `version`, and `risk_tier` on a distributed skill.
 
 ### Invocation control matrix
 
@@ -309,7 +307,7 @@ without per-session diffs (v2.1.205+).
 
 ## Evaluating a skill
 
-The docs are unusually direct here, and it is a point LoomWarp's evaluation doctrine should absorb:
+The docs are unusually direct here:
 
 > Seeing a skill trigger tells you Claude found it, not that it did what you intended.
 
@@ -337,12 +335,6 @@ It automates the loop inside Claude Code:
 | Description tuning — generates should-trigger and should-not-trigger prompts, measures hit rate, proposes description edits | — |
 | Review viewer — HTML report with qualitative feedback the next iteration reads | — |
 
-**LoomWarp note:** this is a working, shipped implementation of the agent-work evaluation loop that
-`standards/evaluation-doctrine.md` describes and that LoomWarp's E7 element lists as DESIGNED ONLY.
-The eval pyramid it implements — isolated runs → assertion grading → aggregate benchmark → blind A/B
-— is the same shape. Adopting it for LoomWarp's own distributed skills is strictly cheaper than
-building it, and it produces exactly the corpus of evaluated outcomes E7 says it needs.
-
 ---
 
 ## Portability outside Claude Code
@@ -363,11 +355,6 @@ allowed-tools, compatibility, description, license, metadata, name
 
 Claude Code-only *body* features — dynamic context injection above all — do not function in
 claude.ai chat or through the API.
-
-**LoomWarp note:** if LoomWarp ever wants its skills usable outside Claude Code, the six-field subset
-is the compatibility contract, and `metadata` is the only structured extension point inside it. A
-skill written to those six fields loads unchanged in Claude Code. That is a cheap constraint to
-adopt now and an expensive one to retrofit.
 
 ---
 

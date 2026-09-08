@@ -2,12 +2,14 @@
 status: DRAFT
 title: "Extension surfaces — the map"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/features-overview"
 source_verified: "2026-08-10"
 ---
 
 # Extension surfaces — the map
+
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
 
 Claude Code's built-in tools cover most coding work. The extension layer is what you add to change
 what Claude knows, what it can reach, what it may do, and how work is split across agents. There are
@@ -166,22 +168,3 @@ your schema and query patterns. They are complements, not alternatives.
 | CLAUDE.md + skills | CLAUDE.md holds the always-on rule ("follow our API conventions"); a skill holds the full style guide |
 | Hook + MCP | A `PostToolUse` hook fires an MCP tool — e.g. Slack notification when a critical file changes |
 | Subagent + worktree | `isolation: worktree` gives a subagent its own checkout so parallel edits can't collide |
-
----
-
-## LoomWarp notes
-
-- **The four-tier FRACTAL model maps onto these surfaces but is not identical to them.** FRACTAL's
-  Strategist / Architect / Feature Lead / Sub-Agent tiers are a *role* decomposition. Claude Code's
-  surfaces are a *mechanism* decomposition. A role can be expressed as a subagent definition, as an
-  agent-team teammate, or as a workflow phase — and as of the current docs, all three are viable
-  implementations of the same tier.
-- **The precedence asymmetry between skills and subagents is a live hazard for LoomWarp.** LoomWarp
-  distributes skills into sibling repos via `control/sync-skills.sh` and installs agents into
-  `.claude/agents/`. A user-level skill in a developer's `~/.claude/skills/` **overrides** the
-  project skill LoomWarp synced. A user-level *agent* does not. If LoomWarp wants its distributed
-  capability to be authoritative, `strictPluginOnlyCustomization` (see `08-policy-and-governance.md`)
-  is the only mechanism that actually guarantees it.
-- **"Zero context cost unless the hook returns output" is the property LoomWarp's policy tier
-  should be built on.** The current `policy/tier-*.json` files are permission templates that nothing
-  enforces at runtime; hooks are the enforcement point that costs nothing to add.

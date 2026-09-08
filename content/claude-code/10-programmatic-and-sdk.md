@@ -2,18 +2,17 @@
 status: DRAFT
 title: "Programmatic execution — headless CLI and the Agent SDK"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/headless, /agent-sdk/overview, /cli-reference"
 source_verified: "2026-08-10"
 ---
 
 # Programmatic execution
 
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
+
 Two ways to run Claude Code without a human at the terminal: the **CLI in non-interactive mode**
 (`claude -p`), and the **Agent SDK** as a Python or TypeScript library. Both run the same agent loop.
-
-**This is the surface `control/dispatch.py` sits on**, so the details here bear directly on LoomWarp's
-control plane.
 
 ---
 
@@ -55,12 +54,6 @@ Bash, file read, and file edit; load anything else explicitly:
 | Custom agents | `--agents <json>` |
 | A plugin | `--plugin-dir <path>`, `--plugin-url <url>` |
 
-**LoomWarp note:** this is directly relevant to reproducibility. LoomWarp dispatches into sibling
-repos where FRACTAL is installed; whether the dispatched run should inherit that repo's local
-configuration or run from an explicit, declared set is a real design decision that `--bare` makes
-available. It also happens to be the mode in which a **context manifest is knowable**, because
-everything loaded was passed on the command line.
-
 ---
 
 ## Output formats
@@ -86,10 +79,6 @@ The structured value lands in `structured_output`. An invalid schema exits with
 `Error: --json-schema is not a valid JSON Schema` plus the validator's diagnostic (v2.1.205+; before
 that an invalid schema was silently ignored and returned unstructured text). The `format` keyword is
 accepted but treated as an annotation, not enforced.
-
-**LoomWarp note:** `--json-schema` is the direct answer to GAP-18's "outcome regexed from markdown".
-A dispatched workstream can be required to return a typed verdict object — `{status, acceptance_criteria[],
-evidence[]}` — validated by the harness, instead of a HANDOFF.md the classifier greps.
 
 ### Streaming
 
@@ -191,13 +180,6 @@ commands no longer need to run from the same directory.
 - **SIGTERM** aborts the in-progress turn, terminates the process tree of any running Bash command,
   runs `SessionEnd` hooks, and exits **143**.
 
-**LoomWarp note on OBS-005.** The observation of a dispatch running 3874s against a nominal 600s cap
-remains unexplained and confounded. Two documented behaviors are candidates worth checking on the
-re-observation the issue calls for: the **10-minute background-agent wait ceiling** (600s — exactly
-the nominal cap, and a suspicious coincidence), and the note that background Bash grandchildren are
-terminated only after the final result. Neither confirms anything; both are cheaper to test than the
-grandchildren-holding-the-pipe hypothesis already recorded.
-
 ---
 
 ## Skills and commands in `-p`
@@ -238,9 +220,9 @@ own process**.
 | Running long agents without managing your own sandbox or session infra | **Managed Agents** (hosted REST API, separate product) |
 
 To drive the same loop from another language, run the CLI as a subprocess with `-p` and
-`--output-format json`. **That is exactly what `control/dispatch.py` does** — and it is the documented
-approach for non-Python/TS callers, so the choice is sound even though LoomWarp's control plane *is*
-Python and could use the SDK directly.
+`--output-format json`. This is the documented approach for callers outside Python and TypeScript,
+and it remains available to Python and TypeScript callers that would rather not take the SDK as a
+dependency.
 
 Everything from the CLI carries over: built-in tools, hooks, subagents, MCP, permissions, sessions,
 skills, commands, memory, and plugins (loadable by local path). Skills, commands, and memory load
@@ -254,21 +236,3 @@ SDK-specific pages worth knowing: `structured-outputs`, `custom-tools`, `tool-se
 developers to offer claude.ai login or rate limits for their products, including agents built on the
 Claude Agent SDK. Use API key authentication instead." There are also branding rules — "Claude Agent"
 is permitted, "Claude Code" is not.
-
----
-
-## LoomWarp notes
-
-- **`--json-schema` + `--output-format json` collapses the entire HANDOFF-parsing design.** LoomWarp
-  currently writes a markdown HANDOFF at a filesystem-convention path and regexes a terminal state
-  out of it — the root of ISSUE-001 and GAP-18. A schema-constrained result is validated by the
-  harness, needs no path convention, and cannot classify `UNKNOWN` because a file landed in the wrong
-  directory.
-- **`system/init` `plugin_errors` and `mcp_server_errors` are the CI gate LoomWarp's E1 "clean
-  install" evidence needs.** They fail loudly on a plugin or server that did not load, which is
-  precisely the second-person-clone failure mode the v1 gate is about.
-- **`--bare` is worth adopting for dispatch.** It makes a dispatched run's inputs explicit and
-  therefore *recordable*, which is a prerequisite for the context-manifest claim, and it removes the
-  class of bug where a run behaves differently on the author's machine because of `~/.claude`.
-- **`capabilities` on `system/init` is the right feature-detection mechanism** for a control plane
-  that has to work across Claude Code versions, rather than parsing `claude --version`.
