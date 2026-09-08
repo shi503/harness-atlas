@@ -2,12 +2,14 @@
 status: DRAFT
 title: "Policy and governance — permissions, managed settings, sandboxing"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/permissions, /settings, /server-managed-settings, /sandboxing"
 source_verified: "2026-08-10"
 ---
 
 # Policy and governance
+
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
 
 Four enforcement layers, in increasing order of authority: **permission rules** (declarative,
 client-side), **hooks** (procedural, client-side), **managed settings** (admin-controlled,
@@ -409,76 +411,3 @@ is the only layer that binds **arbitrary subprocesses**, which permission rules 
 `sandbox.filesystem.allowManagedReadPathsOnly` and `sandbox.network.allowManagedDomainsOnly` are the
 lock keys that make managed sandbox policy exclusive. Full detail: `/docs/en/sandboxing` and
 `/docs/en/sandbox-environments`.
-
----
-
-## LoomWarp notes
-
-- **`policy/tier-1..4.json` map directly onto `permissions` blocks**, but LoomWarp's four tiers are
-  currently templates that nothing reads at runtime, and the gap analysis records that enforcement
-  was bypassed on the only live run (E5 is graded Stage 1, "the thinnest warp section"). The native
-  path from template to enforcement is: put the tier's rules in a settings file, and put anything
-  needing judgment in a `PreToolUse` hook.
-- **`plan.md` records a correction worth re-checking against the current docs:** *"the qm benchmark
-  shows enforcement does not require hooks — it requires a point the model cannot reach."* That is
-  right in spirit and the docs agree on the principle, but they are specific about *which* points the
-  model cannot reach, and they are not all lint rules. In ascending order of authority: permission
-  rules (client-enforced, model-independent), hooks (client-enforced, can deny and rewrite),
-  managed settings (admin-controlled, user cannot override), sandboxing (OS-level, binds arbitrary
-  subprocesses). Deny rules and managed settings are cheaper than hooks *and* strictly enforced —
-  they should be LoomWarp's first enforcement layer, with hooks reserved for decisions that need
-  inspection of the tool input.
-- **"A real denial" — the v1 exit gate for E5 — is now a three-line settings change plus one command
-  that trips it.** There is no remaining engineering blocker on that gate.
-- **`Bash(devbox run *)` class of trap applies to LoomWarp's own dispatch.** `control/dispatch.py`
-  shells out to `claude`. Any allow rule broad enough to permit the dispatcher permits whatever the
-  dispatcher is told to run. Write rules for the specific invocation.
-- **The `Read`/`Edit`-only rule matters for any policy tier LoomWarp writes.** Rules written for
-  `Write(...)` or `Glob(...)` paths are accepted and silently never consulted.
-
----
-
-## Appendix — audit of `policy/tier-*.json` against this reference
-
-Read on 2026-08-10 and checked against the syntax rules above. The four files are structurally valid
-and use only `Bash(...)`, `Read(...)`, `WebFetch(domain:...)`, and `WebSearch` — **no `Write(...)` or
-`Glob(...)` path rules**, so the silently-never-consulted trap is avoided. Six findings.
-
-**P-1 — `autoMode` in `tier-4-auto.json` is ignored in the scope it would be applied from.**
-The docs state `autoMode` is read from **user settings, `--settings`, and managed settings only**.
-Tier files are applied as project-scope permission templates, so the `environment` and `soft_deny`
-blocks in `tier-4-auto.json` — four lines of real safety guidance, including "Never force-push to
-main or master" — have no effect where they sit. Deliver via `--settings` at dispatch, or move to
-managed settings.
-
-**P-2 — tier-4 drops the `curl`/`wget` denies that tier-3 has.** Tier 3 denies `Bash(curl *)` and
-`Bash(wget *)`; tier 4, the *most permissive* tier, does not. The docs are explicit that a `WebFetch`
-domain allowlist provides no network restriction while Bash is allowed. The domain allowlist in
-tier 4 is therefore decorative. Whether intentional or a copy-paste omission, the most permissive
-tier should carry *more* network restriction, not less.
-
-**P-3 — `Bash(python3 *router.py *)` is a leading-wildcard rule and is broader than it reads.**
-A `*` matches any sequence **including spaces**, so this allows any command starting `python3 ` that
-contains ` router.py ` anywhere later — for example `python3 /tmp/anything.py --flag router.py x`.
-Write the specific invocation instead: `Bash(python3 fractal/router.py *)`, or better, the
-`./.venv/bin/python3` form the operational notes actually use.
-
-**P-4 — `Bash(rm -rf *)` in deny only catches that exact flag spelling.** It does not match `rm -fr`,
-`rm -r -f`, or `rm --recursive --force`. Deny rules do match past leading assignments and are checked
-per-subcommand, so the compound-command case is covered — but the flag-order case is not. Denying
-bare `Bash(rm *)` and allowing specific safe removals is the more robust shape.
-
-**P-5 — the tiers are stack-contaminated in the same way the agent definitions were.** Tiers 2–4
-allow `npx prisma *`, `npx shadcn@latest *`, and `npm run *`; the tier-4 `autoMode.environment`
-declares "Organization: FRACTAL Agent System", "Source control: github.com/shi503/fractal-agent-system",
-and "Stack: Next.js 15, TypeScript, Prisma, Supabase". None of that describes this repo, whose control
-plane is Python with no build step. This is the same ~25-line contamination class that
-`FeatureLead-FractalRegrounding` exists to fix in the agent tier — **the policy tier has it too, and
-no workstream currently owns it.**
-
-**P-6 — `Bash(npm run *)` in tiers 3 and 4 is an arbitrary-execution allow.** `npm run` executes
-whatever `package.json` defines, so the rule delegates the permission decision to a file in the
-target repository. Tiers 1 and 2 correctly enumerate specific scripts; 3 and 4 do not. This is the
-same class as the documented `devbox run` trap.
-
-None of these are blocking. P-1 and P-5 are the two worth acting on, and both are cheap.

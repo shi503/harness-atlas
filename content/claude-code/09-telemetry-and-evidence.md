@@ -2,19 +2,21 @@
 status: DRAFT
 title: "Telemetry and evidence — OpenTelemetry"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/monitoring-usage"
 source_verified: "2026-08-10"
 ---
 
 # Telemetry and evidence — OpenTelemetry
 
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
+
 Claude Code emits **metrics**, **events (OTel logs)**, and — in beta — **distributed traces**. This
 is the native evidence substrate: schema'd, attributed, exportable, and already carrying per-agent,
 per-skill, per-plugin, per-MCP-server cost and outcome attribution.
 
-**For LoomWarp this is the most under-appreciated page in the entire documentation set.** Read the
-attribution fields on `claude_code.api_request` before deciding what E6 has to build.
+**The attribution fields on `claude_code.api_request` are the least-cited part of this surface**, and
+they are what makes per-agent, per-skill and per-plugin cost attribution possible without a wrapper.
 
 ---
 
@@ -205,39 +207,3 @@ the API's `traceresponse` is recorded as a span link.
 - Metrics: check the backend for `claude_code.session.count` after a session starts.
 - Logs-only: submit a prompt, look for `claude_code.user_prompt`.
 - Failures: `claude --debug` shows OTel export errors in the debug log.
-
----
-
-## LoomWarp notes
-
-**E6 Evidence is graded Stage 3 with "8 real events, none schema-validated; outcome regexed from
-markdown; 0 tests". Nearly every gap in that sentence has a native answer here.**
-
-| LoomWarp gap | Native answer |
-|---|---|
-| GAP-18: terminal state derived from filesystem convention and markdown parsing | `claude_code.tool_result` with `success` and `error_type`; `SubagentStop` hooks; workflow agent results |
-| ISSUE-004: `dispatch.py` captures stdout but not stderr, so `run.json` records `exit_code=1` with no reason | `claude_code.api_error` with `error`, `status_code`, `attempt`; `tool_result` with `error` under `OTEL_LOG_TOOL_DETAILS=1` |
-| OBS-005: `timed_out={exit_code is None}` — a proxy that reported `False` for a run that overran 6.5× | `claude_code.tool.execution` `duration_ms` and `success` are **observed**, not inferred |
-| "none schema-validated" | OTLP is the schema. Metrics and events are typed and versioned by the harness |
-| Per-workstream cost attribution | `claude_code.cost.usage` / `token.usage` with `agent.name`, `skill.name`, `plugin.name` |
-| "which skills go unused" | `claude_code.skill_activated` with `skill.name` and `invocation_trigger` — the docs recommend exactly this |
-| Policy denial evidence (E5 exit gate) | `claude_code.tool_decision` with `decision: reject` and `source: config` or `hook` |
-
-**What OTel does not give you, and this is the whole of LoomWarp's remaining differentiation:**
-
-1. **No context manifest.** Nothing in the metric or event set records *which instruction files,
-   skills, and rules were in the window* for a unit of work, at what version, with what content hash.
-   `claude_code.plugin_loaded` comes closest — it reports plugin name, version, and scope at session
-   start — but it covers plugins only, not CLAUDE.md, rules, or non-plugin skills. The
-   `InstructionsLoaded` hook (see `03-hooks.md`) covers instruction files but emits nothing to OTel
-   on its own.
-2. **No join between context set and work outcome.** `prompt.id`, `agent_id`, and `workflow.run_id`
-   give you the correlation *keys*. Nothing writes the joined record.
-3. **No reconstruction.** There is no "show me the context set for run X" command. The v1 gate — *one
-   command reconstructs a past run's context set from events* — is unclaimed.
-
-**The shortest credible path to LoomWarp's v1 E6 gate is therefore:** an `InstructionsLoaded` hook
-that hashes each loaded file and emits a manifest keyed by `session_id` and `prompt_id`, plus an OTel
-collector capturing `claude_code.*` events, plus a reconstruction command that joins them. That is
-substantially less code than `control/dispatch.py` already contains — and it produces a claim nobody
-else in the landscape is making, rather than a second implementation of run tracking.

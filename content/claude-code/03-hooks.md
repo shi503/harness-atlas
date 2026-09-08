@@ -2,12 +2,14 @@
 status: DRAFT
 title: "Hooks — full reference"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/hooks"
 source_verified: "2026-08-10"
 ---
 
 # Hooks — full reference
+
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
 
 Hooks are the **deterministic** layer. They fire on their event regardless of what the model decides,
 cost zero context unless they return output, and are the only mechanism that turns an instruction
@@ -54,11 +56,6 @@ Cadence: once per session (`SessionStart`, `SessionEnd`), once per turn (`UserPr
 | `PostCompact` | After compaction completes |
 | `Elicitation` | An MCP server requests user input during a tool call |
 | `ElicitationResult` | After a user responds to an elicitation, before the response is sent back |
-
-**LoomWarp note:** `InstructionsLoaded` is the load-bearing event for LoomWarp's context-provenance
-thesis. It is the only native surface that reports **which instruction files loaded, when, and why**.
-Its matcher values are `session_start`, `nested_traversal`, and `compact`. A hook on this event is
-the natural emitter for a per-run context manifest.
 
 ---
 
@@ -293,11 +290,6 @@ Inside a subagent, add `agent_id` and `agent_type`. Tool events add `tool_name`,
 Non-blocking: `PostToolUse`, `PostToolUseFailure`, `PermissionDenied` (code ignored), `Notification`,
 `StopFailure` (output and code ignored), and the rest.
 
-**LoomWarp note:** `TaskCreated`, `TaskCompleted`, and `TeammateIdle` are quality gates on the agent-
-team task list — exit 2 to reject a task marked complete that has not met its acceptance criteria,
-and send feedback back to the agent. This is the "handoff gate" LoomWarp's evaluation doctrine
-describes, available natively.
-
 ---
 
 ## Output — JSON
@@ -468,20 +460,3 @@ fi
 ```
 
 On Windows, write the script in PowerShell and add `"shell": "powershell"` to the hook entry.
-
----
-
-## LoomWarp notes
-
-- **The five handler types collapse a design LoomWarp had planned to build.** `type: agent` is an
-  agentic verifier with tool access; `type: prompt` is a cheap LLM judge; `type: http` is a policy
-  service call; `type: mcp_tool` routes into an existing server. The eval pyramid's "deterministic
-  check → model judge → escalate" is expressible entirely in hook config.
-- **`PostToolUse` `updatedToolOutput` is a redaction point.** Any evidence-bundle work that must not
-  leak secrets into a transcript has a native place to sit.
-- **`SubagentStart` / `SubagentStop` with an agent-type matcher is the right emitter for LoomWarp's
-  PULSE and HANDOFF events**, replacing filesystem-convention discovery. This directly addresses
-  ISSUE-001 (HANDOFF path resolution) and GAP-18 (terminal state derived from markdown parsing) —
-  the state becomes observed at the event, not inferred from a file.
-- **`allowManagedHooksOnly` plus `enabledPlugins` is the enforcement story** for a control repo that
-  wants its policy hooks to be non-negotiable in sibling repos.

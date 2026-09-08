@@ -2,12 +2,14 @@
 status: DRAFT
 title: "Subagents — full reference"
 tier: reference
-project: loomwarp
+project: harness-atlas
 source: "https://code.claude.com/docs/en/sub-agents"
 source_verified: "2026-08-10"
 ---
 
 # Subagents — full reference
+
+> **Drafted 2026-08-10 by `claude-opus-5`, not yet verified.** Attested, not captured — see [`00-README.md`](./00-README.md).
 
 A subagent is a specialized worker with its own context window, system prompt, tool access, and
 permissions. It works independently and returns a summary. Subagents work **within a single
@@ -382,27 +384,3 @@ two visible changes:
 It does not judge maliciousness and does not change what an instruction can do — a resulting tool
 call still goes through permission checks and sandboxing. It is **not** a substitute for restricting
 what a subagent can reach.
-
----
-
-## LoomWarp notes
-
-- **`isolation: worktree` is the native answer to cross-repo write isolation.** It branches from the
-  **default branch**, not the parent's `HEAD`, and auto-cleans when nothing changed. Combined with
-  `worktree.sparsePaths` (see `07-context-and-memory.md`), a subagent gets a lightweight checkout of
-  only the packages it needs.
-- **The two-filter tool model is a correctness hazard for LoomWarp's dispatched Feature Leads.**
-  Because background is now the default and the background filter is silent, an agent definition
-  that assumes a tool outside the background set will behave differently depending on how it was
-  invoked. Any LoomWarp agent that needs a tool outside that list must set `background: false` or
-  run in the foreground explicitly.
-- **`memory: project` is the cheapest available implementation of a per-role knowledge base**, and
-  it is version-controlled. LoomWarp's E7 Learning element can start here rather than at zero.
-- **Plugin subagents cannot carry `hooks`, `mcpServers`, or `permissionMode`.** If LoomWarp packages
-  its four FRACTAL agents as a plugin for distribution, those three capabilities must move to
-  settings-level hooks and MCP config — which is arguably the correct place for them anyway, since it
-  makes them auditable at the repo level.
-- **FINDING-006 confirmed by omission.** Nothing in the current subagent documentation describes a
-  `*.local.md` overlay mechanism. The supported ways to modify an inherited agent definition are:
-  override by name at a higher-priority scope, `--append-subagent-system-prompt`, or edit the file.
-  The empirical result recorded in `fractal/ISSUES.md` on 2026-08-05 matches the current docs.
