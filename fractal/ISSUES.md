@@ -496,3 +496,72 @@ fingerprints would need re-scoring on that one position.
 too. DX-4's mode of 7 is the worst but not an outlier. **The argument for changing it is the category
 error, not the statistics.** The genuinely free, well-spread candidates if a replacement is ever wanted
 instead: `knowledge-depth` (5 distinct, full `−3..+3`) and `improvement-loop` (4 distinct, `−2..+3`).
+
+---
+
+## ISSUE-019 addendum, 2026-09-07 — the replacement is Context, and the evidence is unambiguous
+
+**Severity:** WARN · **Found:** 2026-09-07, testing KD's proposed cluster against the corpus · **Assigned:** KD to rule on the proposal below
+
+**KD's question:** *"what do we think about potentially turning this vector into something that
+encompasses domain specialization, steering, observability, trust/safety, standards — 'context
+engineering' topics, but from a DX perspective? Let's consider what other vectors are genuinely vectors
+that need to be known at the top level."*
+
+**Taking that seriously meant measuring, not choosing.** Two things were computed across all ten scored
+harnesses: which of the 33 components any headline dimension currently reads, and which uncovered
+blocks actually discriminate.
+
+### First finding: fourteen of thirty-three components feed no dimension at all
+
+`3a` `3c` `5a` `5b` `5c` `6a` `6c` `7a` `9a` `9b` `9c` `9d` `9e` `9f`. **All of layer 5 (Context) and
+all of layer 9 (IMPROVE) are unread.** Some of that is correct — `9e Raise the Floor` is `◐` on all ten,
+literally identical, and `6a Product` is absent on nine; an axis over either would be noise. But layer 5
+is not that shape.
+
+### Second finding: four of KD's five proposed members are already read, or empty
+
+| Proposed member | Where it already lives |
+|---|---|
+| observability | **DX-7** already reads `8c` |
+| trust / safety | **DX-2** already reads `2c` `8a` `8b` |
+| standards | `3e` — **eight of ten are `○`**; near-empty, as ISSUE-019 established |
+| steering | `3a` `3b` `3c` — discriminates weakly: **six of ten score 5–6 of 6** |
+| domain specialization | the broken referent this issue exists for |
+
+Bundling them would build a composite that mostly re-reads what DX-2 and DX-7 already read — **the exact
+DX-3/DX-5 collision the 2026-09-07 revision was written to fix**, rebuilt one dimension over.
+
+### Third finding: Context is the best discriminator available, by a clear margin
+
+Composite of `5a` `5b` `5c`, scored `● 2 · ◐ 1 · ○ 0` out of 6:
+
+| | | |
+|---|---:|---|
+| OpenClaw | 5 | `5a●` `5b◐` `5c●` |
+| Claude Code | 4 | `5a●` `5b◐` `5c◐` |
+| Hermes · Grok · Codex | 3 | `5a●` `5b○` `5c◐` |
+| Gas City | 2 | `5a◐` `5b◐` `5c○` |
+| LoomWarp | 1 | `5a○` `5b◐` `5c○` |
+| **Pi · OpenCode · FRACTAL** | **0** | nothing in layer 5 at all |
+
+**Six distinct values across a possible seven.** No current DX dimension does better — `cost-controls`
+is the best at six, and every other is four or five. Three harnesses score a clean zero, which is a real
+statement about them and not a measurement failure.
+
+### The proposal
+
+**DX-4 becomes `context` — *what does it remember about my project, and what can it look up?***
+Reads `5a` `5b` `5c` from the profile, and takes **axis II `state-durability`** as its axis input —
+which also gives that axis a headline home and drops detail-only from four axes to three.
+
+Anchors, low to high: nothing survives the session · file-backed and machine-local · shared, durable and
+retrievable, with curated knowledge beside it.
+
+**Why this and not KD's broader cluster:** the broad version double-counts three dimensions and pulls in
+two near-flat columns. This version reads an entirely unread layer, discriminates better than anything
+already on the sheet, and is the sharpest possible reading of *context engineering* — the part of it
+that is a property of the harness rather than of the project.
+
+**Cost:** re-scores position four on all ten fingerprints. Same cost as the last re-referent, and this
+one is paid to cover a layer the instrument has never looked at.
